@@ -16,6 +16,24 @@
       "revId": "49a913a276bd7cfba60df7e9c96f4f331b8d832b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e45ed22a_90a7bc43",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5045
+      },
+      "writtenOn": "2014-12-09T03:01:46Z",
+      "side": 1,
+      "message": "I thought I had. I guess I missed this one. I\u0027ll double check them.",
+      "parentUuid": "84e0b6b0_4f466df4",
+      "revId": "49a913a276bd7cfba60df7e9c96f4f331b8d832b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
