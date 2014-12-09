@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84e0b6b0_4f466df4",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2014-12-09T02:51:08Z",
+      "side": 1,
+      "message": "I assume there is another file in this directory with an actual doc comment. Can you put the import comment on the same package clause that has the doc comment, to keep all the meaningful comments together? I\u0027d like to establish that as the convention, and now is a good time.\n\nThanks.",
+      "revId": "49a913a276bd7cfba60df7e9c96f4f331b8d832b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
