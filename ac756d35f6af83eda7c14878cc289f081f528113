@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01f918d6_695bc1c9",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-19T18:27:58Z",
+      "side": 1,
+      "message": "Is this actually correct? What if the prompt was just empty but the terminal is still getting resized?\n\nWhat about testing whether cursorX is zero in clearAndRepaintLinePlusNPrevious and not reprinting the prompt in that case?",
+      "range": {
+        "startLine": 792,
+        "startChar": 8,
+        "endLine": 792,
+        "endChar": 15
+      },
+      "revId": "ac756d35f6af83eda7c14878cc289f081f528113",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
