@@ -788,6 +788,9 @@ func (t *Terminal) SetSize(width, height int) error {
 	case width == oldWidth:
 		// If the width didn't change then nothing else needs to be
 		// done.
+		fallthrough
+	case t.cursorX == 0 && t.cursorY == 0:
+		// If there is nothing on current line, just do nothing
 		return nil
 	case width < oldWidth:
 		// Some terminals (e.g. xterm) will truncate lines that were
