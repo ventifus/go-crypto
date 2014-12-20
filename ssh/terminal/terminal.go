@@ -354,8 +354,8 @@ func (t *Terminal) eraseNPreviousChars(n int) {
 		t.writeLine(t.line[t.pos:])
 		for i := 0; i < n; i++ {
 			t.queue(space)
+			t.advanceCursor(1)
 		}
-		t.advanceCursor(n)
 		t.moveCursorToPos(t.pos)
 	}
 }
