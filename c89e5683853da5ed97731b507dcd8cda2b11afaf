@@ -1,0 +1,6 @@
+Code-Review+2: Minux Ma <minux@golang.org>
+Submitted-by: Alex Brainman <alex.brainman@gmail.com>
+Submitted-at: Tue, 23 Dec 2014 06:54:51 +0000
+Reviewed-on: https://go-review.googlesource.com/2073
+Project: crypto
+Branch: refs/heads/master
