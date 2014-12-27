@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c180e07b_a42aec68",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-27T11:49:28Z",
+      "side": 1,
+      "message": "I think I mentioned this in the review on appspot (I can\u0027t find it right now), but how does this work in the face of additional  features in the future? It looks like this will reject any keys that use an unknown feature.",
+      "revId": "6d1b06c917668c2324498267df8e059ccf13b150",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
