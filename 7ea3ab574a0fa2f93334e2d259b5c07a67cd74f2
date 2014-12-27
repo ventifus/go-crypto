@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c180e07b_e424f49e",
+        "filename": "sha3/doc.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-27T11:57:41Z",
+      "side": 1,
+      "message": "space after \"and\"",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "7ea3ab574a0fa2f93334e2d259b5c07a67cd74f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c180e07b_042ab867",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-27T11:57:41Z",
+      "side": 1,
+      "message": "move this allocation into the untimed part of the function?",
+      "revId": "7ea3ab574a0fa2f93334e2d259b5c07a67cd74f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c180e07b_243fbca9",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-27T11:57:41Z",
+      "side": 1,
+      "message": "stopping the timer at the end shouldn\u0027t be needed.",
+      "revId": "7ea3ab574a0fa2f93334e2d259b5c07a67cd74f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
