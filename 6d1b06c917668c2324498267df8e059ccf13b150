@@ -34,6 +34,24 @@
       "revId": "6d1b06c917668c2324498267df8e059ccf13b150",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c180e07b_4465a0b4",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2014-12-28T09:11:05Z",
+      "side": 1,
+      "message": "In this case, the subpacket is known, I feel, even if some of the bits aren\u0027t understood.\n\nI think this section should simply be:\n\nfeaturesSubpacket:\n  // Features subpacket, section …\n  // …\n  sig.MDC \u003d len(subpacket) \u003e\u003d 1 \u0026\u0026 subpacket[0]\u00261 \u003d\u003d 1",
+      "parentUuid": "8158a81b_f2bae660",
+      "revId": "6d1b06c917668c2324498267df8e059ccf13b150",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
