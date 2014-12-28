@@ -16,6 +16,24 @@
       "revId": "6d1b06c917668c2324498267df8e059ccf13b150",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8158a81b_f2bae660",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 5830
+      },
+      "writtenOn": "2014-12-28T03:57:54Z",
+      "side": 1,
+      "message": "I should have noted: This has been updated to reflect your previous comment.\n\nThe strict parsing now only kicks in if the critical bit is set. To quote RFC 4880:\n\n\"If a subpacket is encountered that is marked critical but is unknown to the evaluating software, the evaluator SHOULD consider the signature to be in error.\"\n\nI\u0027m happy to remove all of the critical bit stuff from the subpacket parser, if you like; it is only a SHOULD.",
+      "parentUuid": "c180e07b_a42aec68",
+      "revId": "6d1b06c917668c2324498267df8e059ccf13b150",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
