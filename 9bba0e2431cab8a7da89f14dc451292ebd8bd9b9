@@ -16,6 +16,24 @@
       "revId": "9bba0e2431cab8a7da89f14dc451292ebd8bd9b9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c14e2056_37b700ca",
+        "filename": "sha3/xor_ref.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5830
+      },
+      "writtenOn": "2014-12-29T02:38:47Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "618f34ae_47968459",
+      "revId": "9bba0e2431cab8a7da89f14dc451292ebd8bd9b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
