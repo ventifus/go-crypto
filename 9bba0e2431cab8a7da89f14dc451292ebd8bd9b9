@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "618f34ae_47968459",
+        "filename": "sha3/xor_ref.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2014-12-29T02:34:57Z",
+      "side": 1,
+      "message": "I would like to see this split done like crypto/md5 etc, where the reference (\"generic\" in md5\u0027s naming) implementation is also tested (see its md5block_generic.go, md5block.go, TestBlockGeneric, etc)\n\nOtherwise this file is likely to never be tested, since we don\u0027t have appengine builders.",
+      "revId": "9bba0e2431cab8a7da89f14dc451292ebd8bd9b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
