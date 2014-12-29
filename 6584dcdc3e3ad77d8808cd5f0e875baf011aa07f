@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "618f34ae_87908c5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2014-12-29T02:38:20Z",
+      "side": 1,
+      "message": "the subject should be a phrase and not a story in a complete sentence with capitals and period.  start with a verb about what this patch does, not why. \n\ne.g. could just be\n\n   ssh: add ServerConfig.Version option\n\nThen tell the story after the blank line.",
+      "revId": "6584dcdc3e3ad77d8808cd5f0e875baf011aa07f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "618f34ae_a70108fd",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2014-12-29T02:38:20Z",
+      "side": 1,
+      "message": "can this just be called Version? It\u0027s already in a struct named ServerConfig.\n\nThe other fields here aren\u0027t all prefixed with Server",
+      "revId": "6584dcdc3e3ad77d8808cd5f0e875baf011aa07f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
