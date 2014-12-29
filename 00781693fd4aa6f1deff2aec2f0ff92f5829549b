@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "618f34ae_072abc67",
+        "filename": "ssh/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2014-12-29T05:27:23Z",
+      "side": 1,
+      "message": "oh, I didn\u0027t notice we already had the stutter of ClientConfig.ClientVersion when I made my stutter comment of ServerConfig.ServerVersion being just Version.  Perhaps we should keep the stutter of ServerVersion for consistency with this one. Sorry.\n\nI\u0027ll let somebody else be the decider here, as I don\u0027t maintain or even use this package.",
+      "revId": "00781693fd4aa6f1deff2aec2f0ff92f5829549b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
