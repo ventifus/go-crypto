@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4ef89d38_20b424c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef89d38_80a53896",
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ef89d38_e0eabcaf",
         "filename": "otr/otr.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-04T06:47:31Z",
       "side": 1,
       "message": "regexps conventionally use raw string literals (with `backticks` instead of double quotes) so you don\u0027t need all the backslashes",
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef89d38_00b928ba",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef89d38_e0eabcaf",
       "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "4ef89d38_e0b51cbe",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6126549e_1a0ced5c",
+      "range": {
+        "startLine": 65,
+        "startChar": 1,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ef89d38_c0e7c0e5",
         "filename": "otr/otr.go",
         "patchSetId": 1
@@ -70,6 +130,24 @@
       "writtenOn": "2015-01-04T06:47:31Z",
       "side": 1,
       "message": "likewise",
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef89d38_c0c22032",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef89d38_c0e7c0e5",
       "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "4ef89d38_a0bf149c",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef89d38_a0e4b4e1",
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6126549e_3a09a94d",
         "filename": "otr/otr.go",
         "patchSetId": 1
@@ -104,6 +200,30 @@
       "writtenOn": "2015-01-04T07:08:10Z",
       "side": 1,
       "message": "it seems better to use a for loop, rather to recurse.",
+      "range": {
+        "startLine": 241,
+        "startChar": 2,
+        "endLine": 241,
+        "endChar": 20
+      },
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef89d38_808c181e",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 5901
+      },
+      "writtenOn": "2015-01-04T08:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6126549e_3a09a94d",
       "range": {
         "startLine": 241,
         "startChar": 2,
