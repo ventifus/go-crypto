@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Package otr implements the Off The Record protocol as specified in
-// http://www.cypherpunks.ca/otr/Protocol-v2-3.1.0.html
+// https://otr.cypherpunks.ca/Protocol-v3-4.0.0.html
 package otr // import "golang.org/x/crypto/otr"
 
 import (
@@ -22,6 +22,7 @@ import (
 	"hash"
 	"io"
 	"math/big"
+	"regexp"
 	"strconv"
 )
 
@@ -50,7 +51,7 @@ const (
 )
 
 // QueryMessage can be sent to a peer to start an OTR conversation.
-var QueryMessage = "?OTRv2?"
+var QueryMessage = "?OTRv23?"
 
 // ErrorPrefix can be used to make an OTR error by appending an error message
 // to it.
@@ -58,50 +59,27 @@ var ErrorPrefix = "?OTR Error:"
 
 var (
 	fragmentPartSeparator = []byte(",")
-	fragmentPrefix        = []byte("?OTR,")
+	instancePartSeparator = []byte("|")
+	fragmentPrefix        = regexp.MustCompile("^\\?OTR(\\||,)")
 	msgPrefix             = []byte("?OTR:")
-	queryMarker           = []byte("?OTR")
+	acceptedVersions      = map[uint16]bool{2: true, 3: true}
+	versionsRegExp        = regexp.MustCompile("\\?OTR\\??v(\\S+)\\?")
 )
 
 // isQuery attempts to parse an OTR query from msg and returns the greatest
 // common version, or 0 if msg is not an OTR query.
-func isQuery(msg []byte) (greatestCommonVersion int) {
-	pos := bytes.Index(msg, queryMarker)
-	if pos == -1 {
+func isQuery(msg []byte) (greatestCommonVersion uint16) {
+	result := versionsRegExp.FindSubmatch(msg)
+	if result == nil {
 		return 0
 	}
-	for i, c := range msg[pos+len(queryMarker):] {
-		if i == 0 {
-			if c == '?' {
-				// Indicates support for version 1, but we don't
-				// implement that.
-				continue
-			}
-
-			if c != 'v' {
-				// Invalid message
-				return 0
-			}
-
-			continue
-		}
-
-		if c == '?' {
-			// End of message
-			return
-		}
-
-		if c == ' ' || c == '\t' {
-			// Probably an invalid message
-			return 0
-		}
-
-		if c == '2' {
-			greatestCommonVersion = 2
+	for _, v := range result[1] {
+		r := uint16(v - '0')
+		if r > greatestCommonVersion && acceptedVersions[r] {
+			greatestCommonVersion = r
 		}
 	}
-
-	return 0
+	return
 }
 
 const (
@@ -177,6 +155,9 @@ type Conversation struct {
 	SSID           [8]byte
 	TheirPublicKey PublicKey
 
+	// Negotiated OTR version
+	version uint16
+
 	state, authState int
 
 	r       [16]byte
@@ -188,12 +169,14 @@ type Conversation struct {
 	revealKeys, sigKeys akeKeys
 
 	myKeyId         uint32
+	myInstanceTag   uint32
 	myCurrentDHPub  *big.Int
 	myCurrentDHPriv *big.Int
 	myLastDHPub     *big.Int
 	myLastDHPriv    *big.Int
 
 	theirKeyId        uint32
+	theirInstanceTag  uint32
 	theirCurrentDHPub *big.Int
 	theirLastDHPub    *big.Int
 
@@ -244,6 +227,22 @@ func (c *Conversation) randMPI(buf []byte) *big.Int {
 	return new(big.Int).SetBytes(buf)
 }
 
+func (c *Conversation) randTag() uint32 {
+	buf := make([]byte, 4)
+	_, err := io.ReadFull(c.rand(), buf)
+	if err != nil {
+		panic("otr: short read from random source")
+	}
+	r, _, ok := getU32(buf)
+	if !ok {
+		panic("otr: cannot make tag")
+	}
+	if r < 100 {
+		return c.randTag()
+	}
+	return r
+}
+
 // tlv represents the type-length value from the protocol.
 type tlv struct {
 	typ, length uint16
@@ -266,7 +265,7 @@ const (
 // encryption state and zero or more messages to send back to the peer.
 // These messages do not need to be passed to Send before transmission.
 func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change SecurityChange, toSend [][]byte, err error) {
-	if bytes.HasPrefix(in, fragmentPrefix) {
+	if fragmentPrefix.Match(in) {
 		in, err = c.processFragment(in)
 		if in == nil || err != nil {
 			return
@@ -278,6 +277,7 @@ func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change Se
 	} else if version := isQuery(in); version > 0 {
 		c.authState = authStateAwaitingDHKey
 		c.myKeyId = 0
+		c.version = version
 		toSend = c.encode(c.generateDHCommit())
 		return
 	} else {
@@ -294,26 +294,51 @@ func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change Se
 	}
 	msg = msg[:msgLen]
 
-	// The first two bytes are the protocol version (2)
-	if len(msg) < 3 || msg[0] != 0 || msg[1] != 2 {
+	// The first two bytes are the protocol version (2,3)
+	if len(msg) < 3 {
 		err = errors.New("otr: invalid OTR message")
+		return
+	}
+	version := uint16(msg[1])
+	if msg[0] != 0 || !acceptedVersions[version] {
+		err = errors.New("otr: unacceptable OTR version")
 		return
 	}
 
 	msgType := int(msg[2])
 	msg = msg[3:]
 
+	if version == 3 {
+		theirTag, _, ok := getU32(msg[0:4])
+		if theirTag < 100 {
+			err = instanceError
+			return
+		}
+		if c.theirInstanceTag == 0 {
+			c.theirInstanceTag = theirTag
+		} else if c.theirInstanceTag != theirTag { // from another session
+			err = instanceError
+			return
+		}
+		myTag, _, ok := getU32(msg[4:8])
+		if !ok || (myTag != 0 && c.myInstanceTag != myTag) {
+			err = instanceError
+			return
+		}
+		msg = msg[8:]
+	}
+
 	switch msgType {
 	case msgTypeDHCommit:
 		switch c.authState {
-		case authStateNone:
+		case authStateNone, authStateAwaitingSig:
 			c.authState = authStateAwaitingRevealSig
 			if err = c.processDHCommit(msg); err != nil {
 				return
 			}
 			c.myKeyId = 0
+			c.version = version
 			toSend = c.encode(c.generateDHKey())
-			return
 		case authStateAwaitingDHKey:
 			// This is a 'SYN-crossing'. The greater digest wins.
 			var cmp int
@@ -331,6 +356,7 @@ func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change Se
 					return
 				}
 				c.myKeyId = 0
+				c.version = version
 				toSend = c.encode(c.generateDHKey())
 				return
 			}
@@ -339,13 +365,6 @@ func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change Se
 				return
 			}
 			toSend = c.encode(c.serializeDHKey())
-		case authStateAwaitingSig:
-			if err = c.processDHCommit(msg); err != nil {
-				return
-			}
-			c.myKeyId = 0
-			toSend = c.encode(c.generateDHKey())
-			c.authState = authStateAwaitingRevealSig
 		default:
 			panic("bad state")
 		}
@@ -519,25 +538,44 @@ func (c *Conversation) IsEncrypted() bool {
 	return c.state == stateEncrypted
 }
 
-var fragmentError = errors.New("otr: invalid OTR fragment")
+var (
+	fragmentError = errors.New("otr: invalid OTR fragment")
+	instanceError = errors.New("otr: instance tags do not match")
+)
 
 // processFragment processes a fragmented OTR message and possibly returns a
-// complete message. Fragmented messages look like "?OTR,k,n,msg," where k is
-// the fragment number (starting from 1), n is the number of fragments in this
-// message and msg is a substring of the base64 encoded message.
+// complete message. Fragmented messages look like "?OTR,k,n,msg," in v2
+// and "?OTR|their_tag|my_tag,k,n,msg," in v3, where k is the fragment number
+// (starting from 1), n is the number of fragments in this message and msg is
+// a substring of the base64 encoded message.
 func (c *Conversation) processFragment(in []byte) (out []byte, err error) {
-	in = in[len(fragmentPrefix):] // remove "?OTR,"
+	in = in[4:] // remove "?OTR"
 	parts := bytes.Split(in, fragmentPartSeparator)
-	if len(parts) != 4 || len(parts[3]) != 0 {
+	if len(parts) != 5 || len(parts[4]) != 0 {
 		return nil, fragmentError
 	}
 
-	k, err := strconv.Atoi(string(parts[0]))
+	if len(parts[0]) != 0 { // v3
+		instanceParts := bytes.Split(parts[0], instancePartSeparator)
+		if len(instanceParts) != 3 || len(instanceParts[0]) != 0 {
+			return nil, fragmentError
+		}
+		tag := make([]byte, 4)
+		i, err := hex.Decode(tag, instanceParts[2])
+		if err != nil || i != 4 {
+			return nil, fragmentError
+		}
+		if myTag, _, ok := getU32(tag); !ok || (myTag != 0 && c.myInstanceTag != myTag) {
+			return nil, instanceError
+		}
+	}
+
+	k, err := strconv.Atoi(string(parts[1]))
 	if err != nil {
 		return nil, fragmentError
 	}
 
-	n, err := strconv.Atoi(string(parts[1]))
+	n, err := strconv.Atoi(string(parts[2]))
 	if err != nil {
 		return nil, fragmentError
 	}
@@ -547,10 +585,10 @@ func (c *Conversation) processFragment(in []byte) (out []byte, err error) {
 	}
 
 	if k == 1 {
-		c.frag = append(c.frag[:0], parts[2]...)
+		c.frag = append(c.frag[:0], parts[3]...)
 		c.k, c.n = k, n
 	} else if n == c.n && k == c.k+1 {
-		c.frag = append(c.frag, parts[2]...)
+		c.frag = append(c.frag, parts[3]...)
 		c.k++
 	} else {
 		c.frag = c.frag[:0]
@@ -595,8 +633,12 @@ func (c *Conversation) generateDHCommit() []byte {
 
 func (c *Conversation) serializeDHCommit() []byte {
 	var ret []byte
-	ret = appendU16(ret, 2) // protocol version
+	ret = appendU16(ret, c.version) // protocol version
 	ret = append(ret, msgTypeDHCommit)
+	if c.version == 3 {
+		ret = appendU32(ret, c.myInstanceTag)
+		ret = appendU32(ret, c.theirInstanceTag)
+	}
 	ret = appendData(ret, c.gxBytes)
 	ret = appendData(ret, c.digest[:])
 	return ret
@@ -631,8 +673,12 @@ func (c *Conversation) generateDHKey() []byte {
 
 func (c *Conversation) serializeDHKey() []byte {
 	var ret []byte
-	ret = appendU16(ret, 2) // protocol version
+	ret = appendU16(ret, c.version) // protocol version
 	ret = append(ret, msgTypeDHKey)
+	if c.version == 3 {
+		ret = appendU32(ret, c.myInstanceTag)
+		ret = appendU32(ret, c.theirInstanceTag)
+	}
 	ret = appendMPI(ret, c.gy)
 	return ret
 }
@@ -705,8 +751,12 @@ func (c *Conversation) generateRevealSig() []byte {
 	incCounter(&c.myCounter)
 
 	var ret []byte
-	ret = appendU16(ret, 2)
+	ret = appendU16(ret, c.version)
 	ret = append(ret, msgTypeRevealSig)
+	if c.version == 3 {
+		ret = appendU32(ret, c.myInstanceTag)
+		ret = appendU32(ret, c.theirInstanceTag)
+	}
 	ret = appendData(ret, c.r[:])
 	ret = append(ret, encryptedSig...)
 	ret = append(ret, mac[:20]...)
@@ -818,8 +868,12 @@ func (c *Conversation) generateSig() []byte {
 	incCounter(&c.myCounter)
 
 	var ret []byte
-	ret = appendU16(ret, 2)
+	ret = appendU16(ret, c.version)
 	ret = append(ret, msgTypeSig)
+	if c.version == 3 {
+		ret = appendU32(ret, c.myInstanceTag)
+		ret = appendU32(ret, c.theirInstanceTag)
+	}
 	ret = append(ret, encryptedSig...)
 	ret = append(ret, mac[:macPrefixBytes]...)
 	return ret
@@ -889,7 +943,12 @@ func (c *Conversation) processData(in []byte) (out []byte, tlvs []tlv, err error
 	}
 
 	mac := hmac.New(sha1.New, slot.recvMACKey)
-	mac.Write([]byte{0, 2, 3})
+	mac.Write(appendU16([]byte{}, c.version))
+	mac.Write([]byte{3}) // data msg type
+	if c.version == 3 {
+		mac.Write(appendU32([]byte{}, c.theirInstanceTag))
+		mac.Write(appendU32([]byte{}, c.myInstanceTag))
+	}
 	mac.Write(macedData)
 	myMAC := mac.Sum(nil)
 	if len(myMAC) != len(theirMAC) || subtle.ConstantTimeCompare(myMAC, theirMAC) == 0 {
@@ -991,8 +1050,12 @@ func (c *Conversation) generateData(msg []byte, extra *tlv) []byte {
 	ctr.XORKeyStream(encrypted, plaintext)
 
 	var ret []byte
-	ret = appendU16(ret, 2)
+	ret = appendU16(ret, c.version)
 	ret = append(ret, msgTypeData)
+	if c.version == 3 {
+		ret = appendU32(ret, c.myInstanceTag)
+		ret = appendU32(ret, c.theirInstanceTag)
+	}
 	ret = append(ret, 0 /* flags */)
 	ret = appendU32(ret, c.myKeyId-1)
 	ret = appendU32(ret, c.theirKeyId)
@@ -1137,18 +1200,26 @@ func (c *Conversation) encode(msg []byte) [][]byte {
 	copy(b64, msgPrefix)
 	b64[len(b64)-1] = '.'
 
-	if c.FragmentSize < minFragmentSize || len(b64) <= c.FragmentSize {
+	var instances string
+	adjustedMinFragmentSize := minFragmentSize
+	if c.version == 3 {
+		adjustedMinFragmentSize += 18
+		instances = "|" + hex.EncodeToString(appendU32([]byte{}, c.myInstanceTag))
+		instances += "|" + hex.EncodeToString(appendU32([]byte{}, c.theirInstanceTag))
+	}
+
+	if c.FragmentSize < adjustedMinFragmentSize || len(b64) <= c.FragmentSize {
 		// We can encode this in a single fragment.
 		return [][]byte{b64}
 	}
 
 	// We have to fragment this message.
 	var ret [][]byte
-	bytesPerFragment := c.FragmentSize - minFragmentSize
+	bytesPerFragment := c.FragmentSize - adjustedMinFragmentSize
 	numFragments := (len(b64) + bytesPerFragment) / bytesPerFragment
 
 	for i := 0; i < numFragments; i++ {
-		frag := []byte("?OTR," + strconv.Itoa(i+1) + "," + strconv.Itoa(numFragments) + ",")
+		frag := []byte("?OTR" + instances + "," + strconv.Itoa(i+1) + "," + strconv.Itoa(numFragments) + ",")
 		todo := bytesPerFragment
 		if todo > len(b64) {
 			todo = len(b64)
