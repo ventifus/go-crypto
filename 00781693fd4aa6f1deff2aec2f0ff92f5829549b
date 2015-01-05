@@ -33,6 +33,29 @@
       "revId": "00781693fd4aa6f1deff2aec2f0ff92f5829549b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef61548_88779b72",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-01-05T14:06:34Z",
+      "side": 1,
+      "message": "Can we use ServerVersion for now? It does stutter, but it is more consistent with ClientConfig.ClientVersion , and it is consistent with the method naming in ConnMetadata.\n\nIt might be a good idea to move to a shared Version setting in the Config struct, but that breaks compatibility, so that needs some more thought.",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 8
+      },
+      "revId": "00781693fd4aa6f1deff2aec2f0ff92f5829549b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
