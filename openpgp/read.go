@@ -8,12 +8,13 @@ package openpgp // import "golang.org/x/crypto/openpgp"
 import (
 	"crypto"
 	_ "crypto/sha256"
-	"golang.org/x/crypto/openpgp/armor"
-	"golang.org/x/crypto/openpgp/errors"
-	"golang.org/x/crypto/openpgp/packet"
 	"hash"
 	"io"
 	"strconv"
+
+	"golang.org/x/crypto/openpgp/armor"
+	"golang.org/x/crypto/openpgp/errors"
+	"golang.org/x/crypto/openpgp/packet"
 )
 
 // SignatureType is the armor type for a PGP signature.
@@ -195,9 +196,18 @@ FindKey:
 		// Try the symmetric passphrase first
 		if len(symKeys) != 0 && passphrase != nil {
 			for _, s := range symKeys {
-				err = s.Decrypt(passphrase)
-				if err == nil && !s.Encrypted {
-					decrypted, err = se.Decrypt(s.CipherFunc, s.Key)
+				// Calling Decrypt() on s changes the
+				// state of s in all sorts of ways,
+				// ruining it for subsequent
+				// decryption attempts with other
+				// passphrases. Copy it and use the
+				// copy to protect ourselves against
+				// that.
+				sc := s.Copy()
+
+				err = sc.Decrypt(passphrase)
+				if err == nil && !sc.Encrypted {
+					decrypted, err = se.Decrypt(sc.CipherFunc, sc.Key)
 					if err != nil && err != errors.ErrKeyIncorrect {
 						return nil, err
 					}
