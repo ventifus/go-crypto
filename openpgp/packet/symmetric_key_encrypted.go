@@ -30,6 +30,25 @@ type SymmetricKeyEncrypted struct {
 
 const symmetricKeyEncryptedVersion = 4
 
+// Copy returns a deep copy of ske.
+func (ske *SymmetricKeyEncrypted) Copy() *SymmetricKeyEncrypted {
+	s := new(SymmetricKeyEncrypted)
+	s.CipherFunc = ske.CipherFunc
+	s.Encrypted = ske.Encrypted
+
+	key := make([]byte, len(ske.Key))
+	copy(key, ske.Key)
+	s.Key = key
+
+	s.s2k = ske.s2k
+
+	ek := make([]byte, len(ske.encryptedKey))
+	copy(ek, ske.encryptedKey)
+	s.encryptedKey = ek
+
+	return s
+}
+
 func (ske *SymmetricKeyEncrypted) parse(r io.Reader) (err error) {
 	// RFC 4880, section 5.3.
 	var buf [2]byte
