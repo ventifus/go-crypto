@@ -514,6 +514,21 @@ func TestMuxMaxPacketSize(t *testing.T) {
 	}
 }
 
+func TestMuxChannelIDs(t *testing.T) {
+	a, b, mux := channelPair(t)
+	defer a.Close()
+	defer b.Close()
+	defer mux.Close()
+
+	if a.LocalID() != b.RemoteID() {
+		t.Errorf("LocalID(%v) != RemoteID(%v)", a.LocalID(), b.RemoteID())
+	}
+
+	if b.LocalID() != a.RemoteID() {
+		t.Errorf("LocalID(%v) != RemoteID(%v)", b.LocalID(), a.RemoteID())
+	}
+}
+
 // Don't ship code with debug=true.
 func TestDebug(t *testing.T) {
 	if debugMux {
