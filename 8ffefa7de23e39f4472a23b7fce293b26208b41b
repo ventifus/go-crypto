@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ef09d0f_d15cf4cc",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "NACK to using regexs. See http://commandcenter.blogspot.com/2011/08/regular-expressions-in-lexing-and.html",
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef09d0f_11677c93",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "Data races are not allowed so this cannot be global.",
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef09d0f_91ad4c29",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "checking !ok when the input is known to be 4 bytes is a bit excessive.",
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef09d0f_d14354e3",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "\"(2 or 3)\"",
+      "range": {
+        "startLine": 304,
+        "startChar": 51,
+        "endLine": 304,
+        "endChar": 53
+      },
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef09d0f_f142d0dc",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "You need to check that msg is long enough before reading the first 8 bytes.",
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ef09d0f_318718a5",
+        "filename": "otr/otr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-01-12T22:20:54Z",
+      "side": 1,
+      "message": "Can you explain this change? There\u0027s not an easy diff to the spec.",
+      "revId": "8ffefa7de23e39f4472a23b7fce293b26208b41b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
