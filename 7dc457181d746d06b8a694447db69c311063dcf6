@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee7b115e_02270aa2",
+        "filename": "ssh/channel.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-01-13T01:46:02Z",
+      "side": 1,
+      "message": "... but you\u0027re modifying an interface that is already way too large for Go.\n\nI would protest adding anything else to this.  It\u0027s already not well designed.  These should all be methods on a channel struct, and interfaces should be tiny.",
+      "revId": "7dc457181d746d06b8a694447db69c311063dcf6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee7b115e_821cfa5c",
+        "filename": "ssh/channel.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-01-13T01:46:02Z",
+      "side": 1,
+      "message": "drop the parens, and s/id/ID/.  And probably just:\n\n   // LocalID returns the channel\u0027s local ID.",
+      "revId": "7dc457181d746d06b8a694447db69c311063dcf6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee7b115e_a2273ea3",
+        "filename": "ssh/channel.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-01-13T01:46:02Z",
+      "side": 1,
+      "message": "likewise.",
+      "revId": "7dc457181d746d06b8a694447db69c311063dcf6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
