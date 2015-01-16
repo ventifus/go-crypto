@@ -17,7 +17,7 @@ import (
 
 var isQueryTests = []struct {
 	msg             string
-	expectedVersion int
+	expectedVersion uint16
 }{
 	{"foo", 0},
 	{"?OtR", 0},
@@ -28,8 +28,11 @@ var isQueryTests = []struct {
 	{"?OTR?v1?", 0},
 	{"?OTR?v?", 0},
 	{"?OTR?v2?", 2},
+	{"?OTR?v3?", 3},
 	{"?OTRv2?", 2},
-	{"?OTRv23?", 2},
+	{"?OTRv3?", 3},
+	{"?OTRv23?", 3},
+	{"?OTRv24?", 2},
 	{"?OTRv23 ?", 0},
 }
 
@@ -127,7 +130,9 @@ func TestConversation(t *testing.T) {
 
 	var alice, bob Conversation
 	alice.PrivateKey = new(PrivateKey)
+	alice.myInstanceTag = alice.randTag()
 	bob.PrivateKey = new(PrivateKey)
+	bob.myInstanceTag = bob.randTag()
 	alice.PrivateKey.Parse(alicePrivateKey)
 	bob.PrivateKey.Parse(bobPrivateKey)
 	alice.FragmentSize = 100
