@@ -95,6 +95,31 @@ func (e *EncryptedKey) Decrypt(priv *PrivateKey, config *Config) error {
 	return nil
 }
 
+// Serialize the encrypted key packet to w
+func (e *EncryptedKey) Serialize(w io.Writer) (err error) {
+
+	mpilen := 0
+	switch e.Algo {
+	case PubKeyAlgoRSA, PubKeyAlgoRSAEncryptOnly:
+		mpilen = 2 + len(e.encryptedMPI1)
+	case PubKeyAlgoElGamal:
+		mpilen = 2 + len(e.encryptedMPI1) + 2 + len(e.encryptedMPI2)
+	}
+	serializeHeader(w, packetTypeEncryptedKey, 1+8+1+mpilen)
+
+	w.Write([]byte{3})
+	binary.Write(w, binary.BigEndian, e.KeyId)
+	w.Write([]byte{byte(e.Algo)})
+	switch e.Algo {
+	case PubKeyAlgoRSA, PubKeyAlgoRSAEncryptOnly:
+		writeMPI(w, uint16(len(e.encryptedMPI1)*8), e.encryptedMPI1)
+	case PubKeyAlgoElGamal:
+		writeMPI(w, uint16(len(e.encryptedMPI1)*8), e.encryptedMPI1)
+		writeMPI(w, uint16(len(e.encryptedMPI2)*8), e.encryptedMPI2)
+	}
+	return
+}
+
 // SerializeEncryptedKey serializes an encrypted key packet to w that contains
 // key, encrypted to pub.
 // If config is nil, sensible defaults will be used.
