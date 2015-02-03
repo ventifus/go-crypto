@@ -10,6 +10,7 @@ import (
 	"golang.org/x/crypto/openpgp/errors"
 	"golang.org/x/crypto/openpgp/packet"
 	"io"
+	"sort"
 	"time"
 )
 
@@ -85,10 +86,21 @@ func (e *Entity) primaryIdentity() *Identity {
 	return firstIdentity
 }
 
+// SubKeyByCreated - Will sort the SubKeys by CreationTime
+type SubKeyByCreated []Subkey
+
+func (a SubKeyByCreated) Len() int      { return len(a) }
+func (a SubKeyByCreated) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a SubKeyByCreated) Less(i, j int) bool {
+	return a[i].Sig.CreationTime.After(a[j].Sig.CreationTime)
+}
+
 // encryptionKey returns the best candidate Key for encrypting a message to the
-// given Entity.
+// given Entity.  Based on SubKey creation date.
 func (e *Entity) encryptionKey(now time.Time) (Key, bool) {
 	candidateSubkey := -1
+
+	sort.Sort(SubKeyByCreated(e.Subkeys))
 
 	for i, subkey := range e.Subkeys {
 		if subkey.Sig.FlagsValid &&
