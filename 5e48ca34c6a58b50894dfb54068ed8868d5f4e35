@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c0fe024_f77cc009",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "The current content of the ocsp module is focused on the processing needed to implement an OCSP client: it only implements request generation and response parsing.\n\nThis change adds response generation and request parsing.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_37211819",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "// Request represents an OCSP request. See RFC 2560.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_d7377c5b",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "one space after periods (throughout).",
+      "range": {
+        "startLine": 282,
+        "startChar": 51,
+        "endLine": 282,
+        "endChar": 54
+      },
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_d7e53c5b",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "just import crypto/sha1 directly and use sha1.New()",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_978d8495",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "I think %v or such is fine here and the uint() casts aren\u0027t needed.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_576dac1b",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "check the error return here.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_b7652833",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "sha1.New()",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_5acb91a5",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "maybe:\n\nif got :\u003d decodedRequest.IssuerKeyHash; !bytes.Equal(got, issuerKeyHash) {\n  t.Errorf(request.IssuerKeyHash: got %x, want %x\", got, issuerKeyHash)\n}\n\nand the same pattern for the other two. Makes it a bit tighter.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c0fe024_dad6814c",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-02-03T22:15:12Z",
+      "side": 1,
+      "message": "this should probably be Fatal – nothing following is going to work if it fails.",
+      "revId": "5e48ca34c6a58b50894dfb54068ed8868d5f4e35",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
