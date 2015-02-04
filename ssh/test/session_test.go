@@ -11,7 +11,6 @@ package test
 import (
 	"bytes"
 	"errors"
-	"golang.org/x/crypto/ssh"
 	"io"
 	"strings"
 	"testing"
