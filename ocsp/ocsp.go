@@ -264,6 +264,12 @@ type Response struct {
 	SignatureAlgorithm x509.SignatureAlgorithm
 }
 
+// UnauthorizedResponse is a pre-serialized response with a responseStatus of
+// unauthorized.  This can be used by an OCSP responder that supports only
+// pre-signed responses as a response to requests for certificates with unknown
+// status.  See RFC 5019.
+const UnauthorizedResponse = []byte{0x30, 0x03, 0x0A, 0x01, 0x06}
+
 // CheckSignatureFrom checks that the signature in resp is a valid signature
 // from issuer. This should only be used if resp.Certificate is nil. Otherwise,
 // the OCSP response contained an intermediate certificate that created the
