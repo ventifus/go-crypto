@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "c533957d_4280f228",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-02-24T22:51:45Z",
+      "side": 1,
+      "message": "lowercase pre",
+      "revId": "2719f3a81630d299b4884c729715339e286e1f87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c533957d_22836e38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-02-24T22:51:45Z",
+      "side": 1,
+      "message": "word-wrap this at 76 or 80 character boundaries.",
+      "revId": "2719f3a81630d299b4884c729715339e286e1f87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "850a7d12_b8d87929",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
