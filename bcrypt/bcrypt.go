@@ -52,6 +52,8 @@ func (ic InvalidCostError) Error() string {
 	return fmt.Sprintf("crypto/bcrypt: cost %d is outside allowed range (%d,%d)", int(ic), int(MinCost), int(MaxCost))
 }
 
+var PasswordContainsNullCharacter = errors.New("crypto/bcrypt: password must not contain a null character")
+
 const (
 	majorVersion       = '2'
 	minorVersion       = 'a'
@@ -127,6 +129,16 @@ func Cost(hashedPassword []byte) (int, error) {
 }
 
 func newFromPassword(password []byte, cost int) (*hashed, error) {
+	// Disallow passwords containing a null character since, otherwise,
+	// anything succeeding one would be silently truncated. (This is
+	// particularly problematic when bcrypt is fed the output of another
+	// hash function.)
+	for _, v := range password {
+		if v == 0x00 {
+			return nil, PasswordContainsNullCharacter
+		}
+	}
+
 	if cost < MinCost {
 		cost = DefaultCost
 	}
