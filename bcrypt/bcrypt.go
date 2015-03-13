@@ -52,6 +52,8 @@ func (ic InvalidCostError) Error() string {
 	return fmt.Sprintf("crypto/bcrypt: cost %d is outside allowed range (%d,%d)", int(ic), int(MinCost), int(MaxCost))
 }
 
+var PasswordContainsNullCharacter = errors.New("crypto/bcrypt: password must not contain a null character")
+
 const (
 	majorVersion       = '2'
 	minorVersion       = 'a'
@@ -86,6 +88,14 @@ type hashed struct {
 // DefaultCost, instead. Use CompareHashAndPassword, as defined in this package,
 // to compare the returned hashed password with its cleartext version.
 func GenerateFromPassword(password []byte, cost int) ([]byte, error) {
+	// If null character inclusion is allowed, the inputs "abc\x00def" and
+	// "abc\x00ghi" will match. This is particularly problematic when
+	// bcrypt is fed the output of another hash function.
+	for _, v := range password {
+		if v == 0x00 {
+			return nil, PasswordContainsNullCharacter
+		}
+	}
 	p, err := newFromPassword(password, cost)
 	if err != nil {
 		return nil, err
