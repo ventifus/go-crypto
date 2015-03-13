@@ -206,6 +206,13 @@ func TestMinorNotRequired(t *testing.T) {
 	}
 }
 
+func TestGenerateWithNullCharacter(t *testing.T) {
+	pass := []byte("abc\x00def")
+	if _, err := GenerateFromPassword(pass, 10); err == nil {
+		t.Error("GenerateFromPassword using input containing a null byte was allowed")
+	}
+}
+
 func BenchmarkEqual(b *testing.B) {
 	b.StopTimer()
 	passwd := []byte("somepasswordyoulike")
