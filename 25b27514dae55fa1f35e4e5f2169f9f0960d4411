@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "438406cc_82799af8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7305
+      },
+      "writtenOn": "2015-03-26T15:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438406cc_c2c0029a",
+      "revId": "25b27514dae55fa1f35e4e5f2169f9f0960d4411",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "438406cc_628fb67f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-26T15:18:36Z",
       "side": 1,
       "message": "Fixes? I think this just updates it, since it doesn\u0027t touch all directories.\n\nAlso, since we use a different github repo\u0027s issue tracker (and not crypto), you need to write it like:\n\n   Updates golang/go#9845",
+      "revId": "25b27514dae55fa1f35e4e5f2169f9f0960d4411",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "438406cc_227e8edf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7305
+      },
+      "writtenOn": "2015-03-26T15:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438406cc_628fb67f",
       "revId": "25b27514dae55fa1f35e4e5f2169f9f0960d4411",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
