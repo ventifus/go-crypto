@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a371421d_34d5be70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2015-04-01T19:13:33Z",
+      "side": 1,
+      "message": "The description should be something like:\n\nssh: add hmac-ssha2-256 and hmac-sha2-512\n\nFixes #10274",
+      "revId": "bdae5945955b067aaf7b47fd94b16785d667efc9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
