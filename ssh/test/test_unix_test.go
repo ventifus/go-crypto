@@ -153,6 +153,8 @@ func unixConnection() (*net.UnixConn, *net.UnixConn, error) {
 }
 
 func (s *server) TryDial(config *ssh.ClientConfig) (*ssh.Client, error) {
+	envpath := os.Getenv("PATH")
+	os.Setenv("PATH", envpath+":/usr/sbin")
 	sshd, err := exec.LookPath("sshd")
 	if err != nil {
 		s.t.Skipf("skipping test: %v", err)

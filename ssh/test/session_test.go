@@ -280,6 +280,7 @@ func TestCiphers(t *testing.T) {
 	var config ssh.Config
 	config.SetDefaults()
 	cipherOrder := config.Ciphers
+	cipherOrder = append(cipherOrder, "aes128-cbc")
 
 	for _, ciph := range cipherOrder {
 		server := newServer(t)
