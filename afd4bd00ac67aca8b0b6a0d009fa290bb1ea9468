@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83519eaa_e35b4188",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "insecure",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 12
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_b2225dcd",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "These are presumably CBC-specific values, but have very generic names.",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_d211298c",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "These are unsigned values, so I\u0027m not sure that this is correct.",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_321ded1e",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "MAC",
+      "range": {
+        "startLine": 485,
+        "startChar": 18,
+        "endLine": 485,
+        "endChar": 21
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_72fe1533",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "MAC",
+      "range": {
+        "startLine": 515,
+        "startChar": 9,
+        "endLine": 515,
+        "endChar": 12
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_528c39cb",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "Does this work even if this cipher is commented out commented out in the previous file?",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83519eaa_f25545a6",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-06T21:16:49Z",
+      "side": 1,
+      "message": "This should be a separate change if needed.",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
