@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "2312b2d8_52654a44",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "should be newAESCBCCipher, or inject the BlockMode",
+      "range": {
+        "startLine": 362,
+        "startChar": 5,
+        "endLine": 362,
+        "endChar": 17
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83519eaa_b2225dcd",
         "filename": "ssh/cipher.go",
         "patchSetId": 1
@@ -36,6 +59,52 @@
       "writtenOn": "2015-04-06T21:16:49Z",
       "side": 1,
       "message": "These are presumably CBC-specific values, but have very generic names.",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2312b2d8_72684e1e",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "why should this be configurable?",
+      "range": {
+        "startLine": 385,
+        "startChar": 1,
+        "endLine": 385,
+        "endChar": 15
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2312b2d8_9d2f53b7",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "comment which length this represents exactly, to clarify the gymnastics below. Probably makes sense to either declare the vars from l.430 together in one place (so their relations become clear) or put them together with their uses,\n\n  length :\u003d ...\n  if length \u003e maxPacket ...\n\n  paddingLength :\u003d ..\n  if paddingLegth \u003c minPadding || length \u003c paddingLength +1  ...",
+      "range": {
+        "startLine": 401,
+        "startChar": 11,
+        "endLine": 401,
+        "endChar": 17
+      },
       "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -59,6 +128,47 @@
     },
     {
       "key": {
+        "uuid": "2312b2d8_1d03633e",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "also, the stream cipher has condition length \u003c\u003d padding + 1, rather than \u003c . Is the inconsistency expected?",
+      "parentUuid": "83519eaa_d211298c",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2312b2d8_1deec3ff",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "could you use macStart here instead?",
+      "range": {
+        "startLine": 413,
+        "startChar": 4,
+        "endLine": 413,
+        "endChar": 10
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83519eaa_321ded1e",
         "filename": "ssh/cipher.go",
         "patchSetId": 1
@@ -75,6 +185,29 @@
         "startChar": 18,
         "endLine": 485,
         "endChar": 21
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2312b2d8_7dcedfaf",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "is :dataEnd necessary? It\u0027s implied in len(packet)?\n\noverall, it\u0027s easier to follow if you write like\n\n p :\u003d packetData\n bigendian.PutUint32(p, len)\n p \u003d p[4:]\n p[0] \u003d paddingLen\n p \u003d p[1:]\n copy(p, .. )\n p \u003d p[len(packet):]\n \n  etc",
+      "range": {
+        "startLine": 502,
+        "startChar": 21,
+        "endLine": 502,
+        "endChar": 28
       },
       "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
@@ -116,6 +249,24 @@
       "writtenOn": "2015-04-06T21:16:49Z",
       "side": 1,
       "message": "Does this work even if this cipher is commented out commented out in the previous file?",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2312b2d8_3d7ce7b0",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-07T12:32:54Z",
+      "side": 1,
+      "message": "it does (see line 291), but it won\u0027t have coverage for the cipher.\n\nIt would be nice to print a log message if this happens, but I don\u0027t think we expose the selected cipher to the outside. You can use the debug info in sshd to verify it\u0027s working as intended.\n\nthe above explanation should probably become a comment.",
+      "parentUuid": "83519eaa_528c39cb",
       "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
