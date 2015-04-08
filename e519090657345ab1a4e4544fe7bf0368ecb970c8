@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3f39619_becf79dd",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-08T12:15:38Z",
+      "side": 1,
+      "message": "opt: for symmetry with decode, you could use binary.BigEndian here too.",
+      "range": {
+        "startLine": 491,
+        "startChar": 3,
+        "endLine": 491,
+        "endChar": 13
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3eea234_e3720692",
+        "filename": "ssh/cipher_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-08T12:15:38Z",
+      "side": 1,
+      "message": "defer delete(cipherModes, cbcID)",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3eea234_036e12ac",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-08T12:15:38Z",
+      "side": 1,
+      "message": "but it is enabled, right?  It should fall back to a supported cipher if CBC is disabled.\n\nCan you add some description here? Feel free to reuse my comment from a previous review round.",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 283,
+        "endChar": 17
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
