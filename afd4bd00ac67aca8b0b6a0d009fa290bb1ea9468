@@ -537,6 +537,24 @@
     },
     {
       "key": {
+        "uuid": "8316fefe_b4f160b3",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7370
+      },
+      "writtenOn": "2015-04-08T06:05:11Z",
+      "side": 1,
+      "message": "ok, this is a bit messy:\nwhat happened here is during key exchange:\nclient side(go-ssh) sends out: \ndebug2: kex_parse_kexinit: aes128-cbc,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,arcfour256,arcfour128,aes128-cbc [preauth]\n\nThen the server side(openssh) selected aes128-cbc as server side cipher.\n\nBut, since aes128-cbc is not in the map, common.go line 102 makes the client side(go-ssh) selected the second cipher on the list.\n\nSo client/server ends up using different cipher.\n\nShould I fix this in this change?(probably check if the cipher is in the map before sending out the SSH2_MSG_KEXINIT?",
+      "parentUuid": "8316fefe_b4e2001a",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83519eaa_f25545a6",
         "filename": "ssh/test/test_unix_test.go",
         "patchSetId": 1
