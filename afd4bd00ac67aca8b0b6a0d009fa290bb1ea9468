@@ -437,6 +437,30 @@
     },
     {
       "key": {
+        "uuid": "a3eea234_638a76e9",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-08T12:12:24Z",
+      "side": 1,
+      "message": "if you do \n\n  p :\u003d c.packetData\n\nat the top, you\u0027ll reuse the byte array for all packets. I think the compiler is also smart enough to reuse the slice itself (pointer + 2 length fields).\n\nIt\u0027s not terribly important, but the indexing makes it harder to read because you have to verify all the indices.",
+      "parentUuid": "236e327b_c9b97111",
+      "range": {
+        "startLine": 502,
+        "startChar": 21,
+        "endLine": 502,
+        "endChar": 28
+      },
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83519eaa_72fe1533",
         "filename": "ssh/cipher.go",
         "patchSetId": 1
@@ -567,6 +591,24 @@
       "side": 1,
       "message": "I have a patch in common.go so the test can run with or without the cipher commented out, please let me know if that\u0027s ok.",
       "parentUuid": "8316fefe_b4f160b3",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3eea234_635f16fa",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-08T12:12:24Z",
+      "side": 1,
+      "message": "yes, seems OK to me.",
+      "parentUuid": "8316fefe_f4c91859",
       "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
