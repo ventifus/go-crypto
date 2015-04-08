@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3f39619_a1be38f5",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-04-08T13:01:44Z",
+      "side": 1,
+      "message": "this isn\u0027t in Go style, which uses complete sentences. But if you unexport this, you can delete it, since it\u0027s then obvious.",
+      "revId": "98eb2891bbadad6b37207e0b8fba7afc39a21464",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3f39619_c1b9c411",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-04-08T13:01:44Z",
+      "side": 1,
+      "message": "make this lowercase, and call it \"bySigCreationTime\" so it reads like sort.Sort(bySigCreationTime(e.Subkeys))",
+      "revId": "98eb2891bbadad6b37207e0b8fba7afc39a21464",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3f39619_e1c840a5",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-04-08T13:01:44Z",
+      "side": 1,
+      "message": "This mutates e.Subkeys.  You don\u0027t want to mutate the caller\u0027s memory.\n\nYou should probably drop the sort type and just track a \"best\" item as you iterate over e.Subkeys instead.",
+      "revId": "98eb2891bbadad6b37207e0b8fba7afc39a21464",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
