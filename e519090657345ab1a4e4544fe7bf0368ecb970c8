@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8316fefe_5780cef7",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 7370
+      },
+      "writtenOn": "2015-04-08T13:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3f39619_becf79dd",
+      "range": {
+        "startLine": 491,
+        "startChar": 3,
+        "endLine": 491,
+        "endChar": 13
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3eea234_e3720692",
         "filename": "ssh/cipher_test.go",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8316fefe_3706f21f",
+        "filename": "ssh/cipher_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7370
+      },
+      "writtenOn": "2015-04-08T13:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3eea234_e3720692",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3eea234_036e12ac",
         "filename": "ssh/test/session_test.go",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2015-04-08T12:15:38Z",
       "side": 1,
       "message": "but it is enabled, right?  It should fall back to a supported cipher if CBC is disabled.\n\nCan you add some description here? Feel free to reuse my comment from a previous review round.",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 283,
+        "endChar": 17
+      },
+      "revId": "e519090657345ab1a4e4544fe7bf0368ecb970c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8316fefe_1703f60f",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7370
+      },
+      "writtenOn": "2015-04-08T13:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3eea234_036e12ac",
       "range": {
         "startLine": 283,
         "startChar": 8,
