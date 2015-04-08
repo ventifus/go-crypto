@@ -555,6 +555,24 @@
     },
     {
       "key": {
+        "uuid": "8316fefe_f4c91859",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7370
+      },
+      "writtenOn": "2015-04-08T06:17:36Z",
+      "side": 1,
+      "message": "I have a patch in common.go so the test can run with or without the cipher commented out, please let me know if that\u0027s ok.",
+      "parentUuid": "8316fefe_b4f160b3",
+      "revId": "afd4bd00ac67aca8b0b6a0d009fa290bb1ea9468",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83519eaa_f25545a6",
         "filename": "ssh/test/test_unix_test.go",
         "patchSetId": 1
