@@ -280,6 +280,9 @@ func TestCiphers(t *testing.T) {
 	var config ssh.Config
 	config.SetDefaults()
 	cipherOrder := config.Ciphers
+	// The following test can only be enabled when aes128cbcID is uncommented from
+	// cipher.go
+	// cipherOrder = append(cipherOrder, "aes128-cbc")
 
 	for _, ciph := range cipherOrder {
 		server := newServer(t)
