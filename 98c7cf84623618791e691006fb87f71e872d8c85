@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a38a229d_00270869",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-04-10T13:47:54Z",
+      "side": 1,
+      "message": "This should be the final commit message, not a description of deltas between versions.\n\nAlso, max 76 chars for the subject, then a blank line",
+      "revId": "98c7cf84623618791e691006fb87f71e872d8c85",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a38a229d_60160c01",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-04-10T13:47:54Z",
+      "side": 1,
+      "message": "var maxTime time.Time",
+      "revId": "98c7cf84623618791e691006fb87f71e872d8c85",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
