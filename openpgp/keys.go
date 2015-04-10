@@ -90,13 +90,16 @@ func (e *Entity) primaryIdentity() *Identity {
 func (e *Entity) encryptionKey(now time.Time) (Key, bool) {
 	candidateSubkey := -1
 
+	// Iterate the keys to find the newest key
+	var maxTime time.Time
 	for i, subkey := range e.Subkeys {
 		if subkey.Sig.FlagsValid &&
 			subkey.Sig.FlagEncryptCommunications &&
 			subkey.PublicKey.PubKeyAlgo.CanEncrypt() &&
-			!subkey.Sig.KeyExpired(now) {
+			!subkey.Sig.KeyExpired(now) &&
+			subkey.Sig.CreationTime.After(maxTime) {
 			candidateSubkey = i
-			break
+			maxTime = subkey.Sig.CreationTime
 		}
 	}
 
