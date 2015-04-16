@@ -1,0 +1,6 @@
+Code-Review+2: David Symonds <dsymonds@golang.org>
+Submitted-by: David Symonds <dsymonds@golang.org>
+Submitted-at: Thu, 16 Apr 2015 05:37:57 +0000
+Reviewed-on: https://go-review.googlesource.com/8976
+Project: crypto
+Branch: refs/heads/master
