@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"encoding/binary"
 	"errors"
 	"fmt"
 	"io"
@@ -85,46 +86,116 @@ func marshalStringList(namelist []string) []byte {
 	return to
 }
 
+type optionsTuple struct {
+	Key string
+	Val []byte
+}
+
+type optionsTupleValue struct {
+	Val string
+}
+
+// optionsTupleEmptyValue is used to marshal/unmarshal an options
+// tuple with an empty value (as is the case in all the extensions)
+// The unnamed second field corresponds to the four bytes of 0's
+// on Marshal/Unmarshal
+type optionsTupleEmptyValue struct {
+	Key string
+	uint32
+}
+
+// serialize a map of critical options or extensions
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty string value
 func marshalTuples(tups map[string]string) []byte {
 	keys := make([]string, 0, len(tups))
-	for k := range tups {
-		keys = append(keys, k)
+	for key := range tups {
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 
 	var r []byte
-	for _, k := range keys {
-		s := struct{ K, V string }{k, tups[k]}
+
+	for _, key := range keys {
+		if len(tups[key]) == 0 {
+			// If option's value is empty as it is for all the current
+			// Extensions ("permit-X11-forwarding", "permit-agent-forwarding", etc.),
+			// the serialized value should be just four zero bytes
+			s := optionsTupleEmptyValue{key, 0}
+			r = append(r, Marshal(&s)...)
+			continue
+		}
+		s := optionsTuple{key, Marshal(&optionsTupleValue{tups[key]})}
 		r = append(r, Marshal(&s)...)
 	}
 	return r
 }
 
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty value of a critical option
 func parseTuples(in []byte) (map[string]string, error) {
 	tups := map[string]string{}
 	var lastKey string
 	var haveLastKey bool
+	// according to [PROTOCOL.certkeys], the names must be in
+	// lexical order.
+	checkKeysOrder := func(name string) bool {
+		if haveLastKey && name <= lastKey {
+			return false
+		}
+		lastKey, haveLastKey = name, true
+		return true
+	}
 
 	for len(in) > 0 {
 		nameBytes, rest, ok := parseString(in)
 		if !ok {
 			return nil, errShortRead
 		}
-		data, rest, ok := parseString(rest)
-		if !ok {
+		name := string(nameBytes)
+		// If the first four bytes of rest are all 0s,
+		// add empty string as the value.
+		// This is how extensions (such as "permit-X11-forwarding" and
+		// "permit-agent-forwarding" are encoded).
+		length := binary.BigEndian.Uint32(rest)
+		if length == 0 {
+			tups[name] = ""
+			in = rest[4:]
+			if !checkKeysOrder(name) {
+				return nil, fmt.Errorf("ssh: certificate options are not in lexical order")
+			}
+			continue
+		}
+		// issue #10569 = [PROTOCOL.certkeys] treats the value of
+		// a critical option as a composite field that itself
+		// contains a string - resulting in a double length prefix
+		// the first with a value of len(s)+4, the second - len(s)
+		if len(rest) <= 4 {
 			return nil, errShortRead
 		}
-		name := string(nameBytes)
 
-		// according to [PROTOCOL.certkeys], the names must be in
-		// lexical order.
-		if haveLastKey && name <= lastKey {
+		length2 := binary.BigEndian.Uint32(rest[4:])
+		// verify the expected condition - that values of
+		// the two length prefixes of the value string are in sync
+		if length != length2+4 {
+			return nil, errors.New("ssh: certificate has unexpected format for the value of the option " + name + " - see https://github.com/golang/go/issues/10569")
+		}
+		// make sure the rest is at least as long as indicated by the length offset
+		if len(rest) < int(length2+8) {
+			return nil, errShortRead
+		}
+		s := optionsTupleValue{}
+		err := Unmarshal(rest[4:length2+8], &s)
+		if err != nil {
+			return nil, errShortRead
+		}
+
+		if !checkKeysOrder(name) {
 			return nil, fmt.Errorf("ssh: certificate options are not in lexical order")
 		}
-		lastKey, haveLastKey = name, true
 
-		tups[name] = string(data)
-		in = rest
+		tups[name] = s.Val
+		in = rest[length2+8:]
 	}
 	return tups, nil
 }
