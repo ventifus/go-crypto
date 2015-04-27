@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"encoding/binary"
 	"errors"
 	"fmt"
 	"io"
@@ -85,6 +86,9 @@ func marshalStringList(namelist []string) []byte {
 	return to
 }
 
+// serialize a map of critical options or extensions
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty string value
 func marshalTuples(tups map[string]string) []byte {
 	keys := make([]string, 0, len(tups))
 	for k := range tups {
@@ -93,28 +97,65 @@ func marshalTuples(tups map[string]string) []byte {
 	sort.Strings(keys)
 
 	var r []byte
+
 	for _, k := range keys {
-		s := struct{ K, V string }{k, tups[k]}
+		if len(tups[k]) == 0 {
+			// If option's value is empty as it is for all the current
+			// Extensions ("permit-X11-forwarding", "permit-agent-forwarding", etc.)
+			// the serialized value should be four bytes of zeros
+			s := struct {
+				K string
+				u uint32
+			}{k, 0}
+			r = append(r, Marshal(&s)...)
+			continue
+		}
+		// s.L - the first of the two length prefixes
+		// s.V - a regularly serialized string
+		// (with the second length prefix)
+		s := struct {
+			K string
+			L uint32
+			V string
+		}{k, uint32(len(tups[k]) + 4), tups[k]}
 		r = append(r, Marshal(&s)...)
 	}
 	return r
 }
 
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty value of a critical option
 func parseTuples(in []byte) (map[string]string, error) {
 	tups := map[string]string{}
 	var lastKey string
 	var haveLastKey bool
-
 	for len(in) > 0 {
 		nameBytes, rest, ok := parseString(in)
 		if !ok {
 			return nil, errShortRead
 		}
-		data, rest, ok := parseString(rest)
+		name := string(nameBytes)
+		// If the first four bytes of rest are all 0s,
+		// add empty string as the value.
+		// This is how extensions (such as "permit-X11-forwarding" and
+		// "permit-agent-forwarding" are encoded).
+		length := binary.BigEndian.Uint32(rest)
+		if length == 0 {
+			tups[name] = ""
+			in = rest[4:]
+			continue
+		}
+		// issue #10569 = [PROTOCOL.certkeys] treats the value of
+		// a critical option as a composite field that itself
+		// contains a string - resulting in a double length prefix
+		// the first with a value of len(s)+4, the second - len(s)
+		if len(rest) <= 4 {
+			return nil, errShortRead
+		}
+		data, rest, ok := parseString(rest[4:])
 		if !ok {
 			return nil, errShortRead
 		}
-		name := string(nameBytes)
 
 		// according to [PROTOCOL.certkeys], the names must be in
 		// lexical order.
