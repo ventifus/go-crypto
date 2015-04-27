@@ -85,46 +85,72 @@ func marshalStringList(namelist []string) []byte {
 	return to
 }
 
+type optionsTuple struct {
+	Key   string
+	Value []byte
+}
+
+type optionsTupleValue struct {
+	Value string
+}
+
+// serialize a map of critical options or extensions
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty string value
 func marshalTuples(tups map[string]string) []byte {
 	keys := make([]string, 0, len(tups))
-	for k := range tups {
-		keys = append(keys, k)
+	for key := range tups {
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 
 	var r []byte
-	for _, k := range keys {
-		s := struct{ K, V string }{k, tups[k]}
+
+	for _, key := range keys {
+		s := optionsTuple{Key: key}
+		if len(tups[key]) > 0 {
+			s.Value = Marshal(&optionsTupleValue{tups[key]})
+		}
 		r = append(r, Marshal(&s)...)
 	}
 	return r
 }
 
+// issue #10569 - per [PROTOCOL.certkeys] and SSH implementation,
+// we need two length prefixes for a non-empty option value
 func parseTuples(in []byte) (map[string]string, error) {
 	tups := map[string]string{}
 	var lastKey string
 	var haveLastKey bool
-
 	for len(in) > 0 {
-		nameBytes, rest, ok := parseString(in)
+		var key []byte
+		var ok bool
+		key, in, ok = parseString(in)
 		if !ok {
 			return nil, errShortRead
 		}
-		data, rest, ok := parseString(rest)
-		if !ok {
-			return nil, errShortRead
-		}
-		name := string(nameBytes)
-
+		keyStr := string(key)
 		// according to [PROTOCOL.certkeys], the names must be in
 		// lexical order.
-		if haveLastKey && name <= lastKey {
+		if haveLastKey && keyStr <= lastKey {
 			return nil, fmt.Errorf("ssh: certificate options are not in lexical order")
 		}
-		lastKey, haveLastKey = name, true
-
-		tups[name] = string(data)
-		in = rest
+		lastKey, haveLastKey = keyStr, true
+		var val []byte
+		// the next field is a data field, which if non-empty has a string embedded
+		val, in, ok = parseString(in)
+		if !ok {
+			return nil, errShortRead
+		}
+		if len(val) > 0 {
+			val, _, ok = parseString(val)
+			if !ok {
+				return nil, errShortRead
+			}
+			tups[keyStr] = string(val)
+		} else {
+			tups[keyStr] = ""
+		}
 	}
 	return tups, nil
 }
