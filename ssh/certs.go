@@ -100,6 +100,27 @@ func marshalTuples(tups map[string]string) []byte {
 	return r
 }
 
+// issue #10569 - need two length prefixes for the value
+// of a critical option
+func marshalCriticalOptions(opts map[string]string) []byte {
+	keys := make([]string, 0, len(opts))
+	for k := range opts {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	var r []byte
+	for _, k := range keys {
+		s := struct {
+			K string
+			L uint32
+			V string
+		}{k, uint32(len(opts[k]) + 4), opts[k]}
+		r = append(r, Marshal(&s)...)
+	}
+	return r
+}
+
 func parseTuples(in []byte) (map[string]string, error) {
 	tups := map[string]string{}
 	var lastKey string
@@ -127,6 +148,43 @@ func parseTuples(in []byte) (map[string]string, error) {
 		in = rest
 	}
 	return tups, nil
+}
+
+func parseCriticalOptions(in []byte) (map[string]string, error) {
+	opts := map[string]string{}
+	var lastKey string
+	var haveLastKey bool
+	cnt := 0
+	for len(in) > 0 {
+		nameBytes, rest, ok := parseString(in)
+		if !ok {
+			return nil, errShortRead
+		}
+		// issue #10569 = [PROTOCOL.certkeys] treats the value of
+		// a critical option as a composite field that itself
+		// contains a string - resulting in a double length prefix
+		// the first with a value of len(s)+4, the second - len(s)
+		if len(rest) <= 4 {
+			return nil, errShortRead
+		}
+		data, rest, ok := parseString(rest[4:])
+		if !ok {
+			return nil, errShortRead
+		}
+		name := string(nameBytes)
+
+		// according to [PROTOCOL.certkeys], the names must be in
+		// lexical order.
+		if haveLastKey && name <= lastKey {
+			return nil, fmt.Errorf("ssh: certificate options are not in lexical order")
+		}
+		lastKey, haveLastKey = name, true
+
+		opts[name] = string(data)
+		in = rest
+		cnt++
+	}
+	return opts, nil
 }
 
 func parseCert(in []byte, privAlgo string) (*Certificate, error) {
@@ -164,7 +222,7 @@ func parseCert(in []byte, privAlgo string) (*Certificate, error) {
 		principals = rest
 	}
 
-	c.CriticalOptions, err = parseTuples(g.CriticalOptions)
+	c.CriticalOptions, err = parseCriticalOptions(g.CriticalOptions)
 	if err != nil {
 		return nil, err
 	}
@@ -405,7 +463,7 @@ func (c *Certificate) Marshal() []byte {
 		ValidPrincipals: marshalStringList(c.ValidPrincipals),
 		ValidAfter:      uint64(c.ValidAfter),
 		ValidBefore:     uint64(c.ValidBefore),
-		CriticalOptions: marshalTuples(c.CriticalOptions),
+		CriticalOptions: marshalCriticalOptions(c.CriticalOptions),
 		Extensions:      marshalTuples(c.Extensions),
 		Reserved:        c.Reserved,
 		SignatureKey:    c.SignatureKey.Marshal(),

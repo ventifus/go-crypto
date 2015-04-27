@@ -154,3 +154,36 @@ func TestHostKeyCert(t *testing.T) {
 		}
 	}
 }
+
+func TestMarshalTuples(t *testing.T) {
+	tups := map[string]string{"source-address": "127.0.0.42/24",
+		"force-command": "foobar",
+	}
+	want := []byte{
+		0, 0, 0, 13, 102, 111, 114, 99, 101, 45, 99, 111, 109, 109, 97, 110,
+		100, 0, 0, 0, 6, 102, 111, 111, 98, 97, 114, 0, 0, 0, 14, 115,
+		111, 117, 114, 99, 101, 45, 97, 100, 100, 114, 101, 115, 115, 0, 0, 0,
+		13, 49, 50, 55, 46, 48, 46, 48, 46, 52, 50, 47, 50, 52,
+	}
+	b := marshalTuples(tups)
+	if bytes.Compare(b, want) != 0 {
+		t.Errorf("wrong bytes from marshalTuples - got %b, want %b\n", b, want)
+	}
+}
+
+func TestMarshalCriticalOptions(t *testing.T) {
+	opts := map[string]string{"source-address": "127.0.0.42/24",
+		"force-command": "foobar",
+	}
+	want := []byte{
+		0, 0, 0, 13, 102, 111, 114, 99, 101, 45, 99, 111, 109, 109, 97, 110,
+		100, 0, 0, 0, 10, 0, 0, 0, 6, 102, 111, 111, 98, 97, 114, 0,
+		0, 0, 14, 115, 111, 117, 114, 99, 101, 45, 97, 100, 100, 114, 101, 115,
+		115, 0, 0, 0, 17, 0, 0, 0, 13, 49, 50, 55, 46, 48, 46, 48,
+		46, 52, 50, 47, 50, 52,
+	}
+	b := marshalCriticalOptions(opts)
+	if bytes.Compare(b, want) != 0 {
+		t.Errorf("wrong bytes from marshalCriticalOptions - \ngot  %b\nwant %b\n", b, want)
+	}
+}

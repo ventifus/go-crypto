@@ -61,6 +61,51 @@ func (t *msgAllTypes) Generate(rand *rand.Rand, size int) reflect.Value {
 	return reflect.ValueOf(m)
 }
 
+func TestParseTuples(t *testing.T) {
+	b := []byte{}
+	b = appendInt(b, len("ext1_key"))
+	b = append(b, []byte("ext1_key")...)
+	b = appendInt(b, len("ext1_value"))
+	b = append(b, []byte("ext1_value")...)
+	// b = appendInt(b, len("foobar")+4)
+	b = appendInt(b, len("ext2_key"))
+	b = append(b, []byte("ext2_key")...)
+	b = appendInt(b, len("ext2_value"))
+	b = append(b, []byte("ext2_value")...)
+
+	want := map[string]string{"ext1_key": "ext1_value", "ext2_key": "ext2_value"}
+	opts, err := parseTuples(b)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if !reflect.DeepEqual(opts, want) {
+		t.Errorf("Wrong marshalled tuples: want %v, got %v\n", want, opts)
+	}
+}
+
+func TestParseCriticalOptions(t *testing.T) {
+	b := []byte{}
+	b = appendInt(b, len("force-command"))
+	b = append(b, []byte("force-command")...)
+	b = appendInt(b, len("foobar")+4)
+	b = appendInt(b, len("foobar"))
+	b = append(b, []byte("foobar")...)
+	b = appendInt(b, len("source-address"))
+	b = append(b, []byte("source-address")...)
+	b = appendInt(b, len("127.0.0.42/24")+4)
+	b = appendInt(b, len("127.0.0.42/24"))
+	b = append(b, []byte("127.0.0.42/24")...)
+
+	want := map[string]string{"force-command": "foobar", "source-address": "127.0.0.42/24"}
+	opts, err := parseCriticalOptions(b)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if !reflect.DeepEqual(opts, want) {
+		t.Errorf("Wrong marshalled critical options: want %v, got %v\n", want, opts)
+	}
+}
+
 func TestMarshalUnmarshal(t *testing.T) {
 	rand := rand.New(rand.NewSource(0))
 	iface := &msgAllTypes{}
