@@ -7,6 +7,8 @@ package ssh
 import (
 	"bytes"
 	"crypto/rand"
+	"reflect"
+	"sort"
 	"testing"
 	"time"
 )
@@ -152,5 +154,61 @@ func TestHostKeyCert(t *testing.T) {
 		if (err == nil) != succeed {
 			t.Fatalf("NewClientConn(%q): %v", name, err)
 		}
+	}
+}
+
+func TestMarshalUnmarshalCriticalOptions(t *testing.T) {
+	opts := map[string]string{"source-address": "127.0.0.42/24",
+		"force-command": "foobar",
+	}
+	keys := make([]string, 0, len(opts))
+	for k := range opts {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	b := []byte{}
+	for _, k := range keys {
+		b = appendInt(b, len(k))
+		b = append(b, []byte(k)...)
+		b = appendInt(b, len(opts[k])+4)
+		b = appendInt(b, len(opts[k]))
+		b = append(b, []byte(opts[k])...)
+	}
+
+	dump := marshalTuples(opts)
+	if bytes.Compare(dump, b) != 0 {
+		t.Errorf("wrong bytes from marshalTuples - got %b want %b\n", dump, b)
+	}
+	opts2, err := parseTuples(b)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if !reflect.DeepEqual(opts, opts2) {
+		t.Errorf("wrong result / different maps from parseTuples - got %v want %v\n", opts2, opts)
+	}
+}
+
+func TestMarshalUnmarshalExtension(t *testing.T) {
+	exts := map[string]string{
+		"permit-agent-forwarding": "",
+		"permit-port-forwarding":  "",
+	}
+	b := []byte{}
+	for k, _ := range exts {
+		b = appendInt(b, len(k))
+		b = append(b, []byte(k)...)
+		b = appendInt(b, 0)
+	}
+
+	dump := marshalTuples(exts)
+	if bytes.Compare(dump, b) != 0 {
+		t.Errorf("wrong bytes from marshalTuples - got %b want %b\n", dump, b)
+	}
+	exts2, err := parseTuples(b)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if !reflect.DeepEqual(exts, exts2) {
+		t.Errorf("wrong result / different maps from parseTuples - got %v want %v\n", exts2, exts)
 	}
 }
