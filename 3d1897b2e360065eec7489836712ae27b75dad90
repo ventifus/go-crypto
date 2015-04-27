@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f00b02a7_ad21c91f",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "s/k/key/",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_8d260534",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "key",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_6d3cf142",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "Key",
+      "range": {
+        "startLine": 115,
+        "startChar": 3,
+        "endLine": 115,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_4d392d51",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "Len",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_2d36f960",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "Value",
+      "range": {
+        "startLine": 117,
+        "startChar": 3,
+        "endLine": 117,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_0d333571",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "is cnt needed?",
+      "range": {
+        "startLine": 157,
+        "startChar": 1,
+        "endLine": 157,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_edd22186",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the first four bytes be checked? I.e. extract the uint32 and use it?",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f00b02a7_cdd75d74",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-04-27T23:40:24Z",
+      "side": 1,
+      "message": "this would typically be a hex string-literal.",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
