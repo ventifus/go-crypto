@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_135fd6c1",
+        "filename": "ssh/certs.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:08:45Z",
+      "side": 1,
+      "message": "You are absolutely right, I was thinking about Val \u003d []byte{0,0,0,0}.  Changing and removing optionsTupleEmptyValue.\n\nIs it OK if I add a short test for marshaling a tuple with an empty value:\n\nfunc TestMarshalEmptyTuple(t *testing.T) {\n\ts :\u003d optionsTuple{Key: \"foo\"}\n\twant :\u003d []byte{0, 0, 0, 3, 102, 111, 111, 0, 0, 0, 0}\n\tb :\u003d Marshal(\u0026s)\n\tif bytes.Compare(b, want) !\u003d 0 {\n\t\tt.Errorf(\"got %b want %b\", b, want)\n\t}\n}",
+      "parentUuid": "f00b02a7_509782c1",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 99,
+        "endChar": 13
+      },
+      "revId": "c56e67bd9af6529330b21cf329a52208d65bc63e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_709a86ed",
         "filename": "ssh/certs.go",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2015-04-28T15:28:31Z",
       "side": 1,
       "message": "I don\u0027t understand. Why doesn\u0027t it work to do \n\n\n\n  tup :\u003d optionsTuple{}\n  if err :\u003d Unmarshal(\u0026tup); .. {\n\n  }\n  \n  valStr :\u003d \"\"\n  if len(tup.Val) \u003e 0 {\n     val :\u003d optTupVal{}\n     if err :\u003d Unmarshal(\u0026val) .. { }\n     valStr \u003d string(val.Val)\n  }\n\nif the length prefixes are off, Unmarshal would detect that, no?",
+      "revId": "c56e67bd9af6529330b21cf329a52208d65bc63e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_733cd242",
+        "filename": "ssh/certs.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:08:45Z",
+      "side": 1,
+      "message": "You cannot do: \nif err :\u003d Unmarshal(\u0026tup); \nsince you need to give to Unmarshal a slice - that is, indicate where the piece that you want to Unmarshal ends.\n\nTake a look at the latest patch set (#8), I used Unmarshal but I have to do the following:\n  keylen :\u003d binary.BigEndian.Uint32(in)\n  vallen :\u003d binary.BigEndian.Uint32(in[keylen+4:])\nand then use those values to tell Unmarshal what to parse and where the limits are.\n\nDo you like it?  It would be nice if there were a length offset for the whole key/value pair at the beginning...  I wonder if using parseString - with its nice return of \"rest\" - would be a more natural, less magical, easier to understand and less error prone way to parse this than Unmarshal...  Let me know what you think!",
+      "parentUuid": "f00b02a7_709a86ed",
       "revId": "c56e67bd9af6529330b21cf329a52208d65bc63e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_131c76ea",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:08:45Z",
+      "side": 1,
+      "message": "I think it\u0027s unchanged from\nhttps://github.com/golang/crypto/blob/master/ssh/certs_test.go#L30\n\nthough it\u0027s done differently in\nhttps://github.com/golang/crypto/blob/master/ssh/certs_test.go#L49\n\nchanging now (yet another patch [sigh])",
+      "parentUuid": "f00b02a7_30bd2e45",
+      "range": {
+        "startLine": 66,
+        "startChar": 16,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "c56e67bd9af6529330b21cf329a52208d65bc63e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_30940ebb",
         "filename": "ssh/testdata/keys.go",
         "patchSetId": 6
@@ -76,6 +142,30 @@
       "writtenOn": "2015-04-28T15:28:31Z",
       "side": 1,
       "message": "unused?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 7
+      },
+      "revId": "c56e67bd9af6529330b21cf329a52208d65bc63e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_5312eeda",
+        "filename": "ssh/testdata/keys.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:08:45Z",
+      "side": 1,
+      "message": "This cakey was used to produce the certificateWithOptions which is used for tests.  I wanted to record it so that the result could be reproduced (the signed key is in the certs_test,go as a long commented out line).\n\nRemoved it now - let me know if I should add the value in one of the files.",
+      "parentUuid": "f00b02a7_30940ebb",
       "range": {
         "startLine": 43,
         "startChar": 2,
