@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_105fccc1",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "changed this one and in general across the changes I did",
+      "parentUuid": "f00b02a7_ad21c91f",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_8d260534",
         "filename": "ssh/certs.go",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2015-04-27T23:40:24Z",
       "side": 1,
       "message": "key",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_338adaec",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00b02a7_8d260534",
       "range": {
         "startLine": 113,
         "startChar": 8,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_1387d6e2",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00b02a7_6d3cf142",
+      "range": {
+        "startLine": 115,
+        "startChar": 3,
+        "endLine": 115,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_4d392d51",
         "filename": "ssh/certs.go",
         "patchSetId": 1
@@ -76,6 +142,30 @@
       "writtenOn": "2015-04-27T23:40:24Z",
       "side": 1,
       "message": "Len",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_f36682d7",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00b02a7_4d392d51",
       "range": {
         "startLine": 116,
         "startChar": 3,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_93750679",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00b02a7_2d36f960",
+      "range": {
+        "startLine": 117,
+        "startChar": 3,
+        "endLine": 117,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f222e5_4c336e70",
         "filename": "ssh/certs.go",
         "patchSetId": 1
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_90cdfc07",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "since the spec says that the same format should be used for both critical options and extensions, I named the structures:\noptionsTuple, optionsTupleValue, and optionsTupleEmptyValue (I believe I needed the latter to marshal extensions with empty values where there is no double length prefix) - starting at Line 89 of certs.go.   I used them in the marshalTuples and parseTuples.  Regarding unmarshaling - please take a look at the current version, I wanted to use the same function for critical options and extensions, and to handle properly empty and non-empty values I believe some \"low-level\" handling is needed.  I used an instance of optionsTupleValue structure to pass to Unmarshal (Line 186).",
+      "parentUuid": "f0f222e5_4c336e70",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f222e5_2c770a04",
         "filename": "ssh/certs.go",
         "patchSetId": 1
@@ -139,6 +271,30 @@
       "writtenOn": "2015-04-28T00:03:37Z",
       "side": 1,
       "message": "why is this function still here if you\u0027re replacing the (un)marshal functionality for certificates?",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 18
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_500c24ef",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "you have a very good point.  I left it for the Extensions and because it worked - but re-reading [PROTOCOL.certkeys] I notice that the Critical Options and Extensions are supposed to have the same format, it\u0027s just that the current extensions have all empty values.  I reverted the names to parseTuples / marshalTuples to cover both critical options and extensions, and made those functions to cover both type of option fields.",
+      "parentUuid": "f0f222e5_2c770a04",
       "range": {
         "startLine": 141,
         "startChar": 13,
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_302650b3",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "no, sorry - removed (debugging leftovers).",
+      "parentUuid": "f00b02a7_0d333571",
+      "range": {
+        "startLine": 157,
+        "startChar": 1,
+        "endLine": 157,
+        "endChar": 4
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_edd22186",
         "filename": "ssh/certs.go",
         "patchSetId": 1
@@ -191,6 +371,24 @@
     },
     {
       "key": {
+        "uuid": "500f6eb1_f06c388a",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "You are right - it is needed if you want to parse the values of Extensions which are (currently) always empty.  Made a corresponding change in the (renamed) parseTuples function - see:\nlength :\u003d binary.BigEndian.Uint32(rest)\nand the following check for length being 0.\n\nI also added a check to verify that the value of bytes[0-3] is the same as that of [4-7] plus 4, and fail with an error if it is not the case (to flag certificates generated with the previous versions of crypto/ssh, or corrupted):\n\n0 - 3:          len(s)+4\n4 - 7:          len(s)\n8 - \u003clen(s)+8\u003e: bytes of s",
+      "parentUuid": "f00b02a7_edd22186",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_cdd75d74",
         "filename": "ssh/certs_test.go",
         "patchSetId": 1
@@ -202,6 +400,24 @@
       "writtenOn": "2015-04-27T23:40:24Z",
       "side": 1,
       "message": "this would typically be a hex string-literal.",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500f6eb1_b357ea5b",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-28T18:20:24Z",
+      "side": 1,
+      "message": "Yes, that was not very user-friendly.\n\nI have since changed it to a sequence of append calls - I think it shows more clearly how the byte slice is composed and make it easier for others to understand and change than just a dump of characters:\n\n\tb :\u003d []byte{}\n\tfor _, key :\u003d range keys {\n\t\tb \u003d appendInt(b, len(key))\n\t\tb \u003d append(b, []byte(key)...)\n\t\tb \u003d appendInt(b, len(opts[key])+4)\n\t\tb \u003d appendInt(b, len(opts[key]))\n\t\tb \u003d append(b, []byte(opts[key])...)\n\t}\n\nYou also don\u0027t need to change this code composing the byte array if for example you decide to change the values of the options for any reason (or add/remove some pairs).",
+      "parentUuid": "f00b02a7_cdd75d74",
       "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
