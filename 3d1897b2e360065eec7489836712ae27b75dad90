@@ -111,6 +111,46 @@
     },
     {
       "key": {
+        "uuid": "f0f222e5_4c336e70",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-28T00:03:37Z",
+      "side": 1,
+      "message": "can you express this more roundabout, eg.\n\n type criticalOptionValue struct {\n    V string\n }\n\n type criticalOption struct {\n   K string\n   V []byte\n }\n\n  ..\n\n  Marshal(criticalOption{key, Marshal(criticalOptionValue{opt[key]}))\n\n\nand then use the same structures for unmarshaling?",
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0f222e5_2c770a04",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-28T00:03:37Z",
+      "side": 1,
+      "message": "why is this function still here if you\u0027re replacing the (un)marshal functionality for certificates?",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 18
+      },
+      "revId": "3d1897b2e360065eec7489836712ae27b75dad90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00b02a7_0d333571",
         "filename": "ssh/certs.go",
         "patchSetId": 1
