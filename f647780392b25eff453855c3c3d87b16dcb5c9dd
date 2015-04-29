@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0f222e5_349a9f47",
+        "filename": "ssh/certs.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-29T17:59:18Z",
+      "side": 1,
+      "message": "I\u0027m still convinced that this can be done wihtout indexing/length checks. Maybe\n\nfor len(in) \u003e 0 {\n  var key []byte\n  key, in, ok \u003d parseString(in)\n  if !ok ..  { }\n\n  // check ordering\n\n  var val []byte \n  val, in, ok \u003d parseString(in)\n  if !ok ..  { }\n\n  valStr :\u003d \"\"\n  if len(val) \u003e 0 {\n    valStr, _, ok :\u003d parseString(val)\n    if !ok { }\n  }\n  ..\n}",
+      "range": {
+        "startLine": 132,
+        "startChar": 14,
+        "endLine": 132,
+        "endChar": 15
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0f222e5_b4a68f89",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-29T17:59:18Z",
+      "side": 1,
+      "message": "can you do one for extensions too?",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 11
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0f222e5_3953b8f3",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-04-29T17:59:18Z",
+      "side": 1,
+      "message": "the code for this test looks very similar to the previous test. The spec says that options and extensions are exactly equal; do they need separate tests? You could name it TestMarshalUnmarshalOptionTuples",
+      "range": {
+        "startLine": 243,
+        "startChar": 3,
+        "endLine": 243,
+        "endChar": 9
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
