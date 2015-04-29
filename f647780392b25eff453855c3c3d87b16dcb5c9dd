@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b0598aea_a894333f",
+        "filename": "ssh/certs.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-29T21:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f222e5_349a9f47",
+      "range": {
+        "startLine": 132,
+        "startChar": 14,
+        "endLine": 132,
+        "endChar": 15
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f222e5_b4a68f89",
         "filename": "ssh/certs_test.go",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b0598aea_28aa837f",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-29T21:36:54Z",
+      "side": 1,
+      "message": "The key already includes all available extensions - expanding the output from ssh-keygen -L to show them, and adding related checks in this testing function:\n\tif !reflect.DeepEqual(cert.Extensions, exts) {",
+      "parentUuid": "f0f222e5_b4a68f89",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 11
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f222e5_3953b8f3",
         "filename": "ssh/certs_test.go",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2015-04-29T17:59:18Z",
       "side": 1,
       "message": "the code for this test looks very similar to the previous test. The spec says that options and extensions are exactly equal; do they need separate tests? You could name it TestMarshalUnmarshalOptionTuples",
+      "range": {
+        "startLine": 243,
+        "startChar": 3,
+        "endLine": 243,
+        "endChar": 9
+      },
+      "revId": "f647780392b25eff453855c3c3d87b16dcb5c9dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30e3da4b_c1a4220a",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-29T21:36:54Z",
+      "side": 1,
+      "message": "They are identical in the specification theory but different in practice in the sense that the values of critical options are always non-zero while those of extensions are always empty (at least with the current set of extensions).  I think it would be also easier to read and understand code if you have two different inputs for critical options and extensions - if you squash them into one map, the resulting dump will look different from the \"real\" ones because the fields will be intervened due to the ordering..  But you have a good point that there is a lot of repetition.between two functions that should be avoided.  How about if we factor out the common handling into a common helper function - testMarshalUnmarshalTuplesHelper - and call it twice from TestMarshalUnmarshalTuples with two different maps?  It would nicely highlight that they are processed the same way while still keeping the two distinctive groups of options.  (patch set is on the way)",
+      "parentUuid": "f0f222e5_3953b8f3",
       "range": {
         "startLine": 243,
         "startChar": 3,
