@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b0598aea_6bfcf5b1",
+        "filename": "ssh/certs.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-30T13:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "100336c0_bb5313c2",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 11
+      },
+      "revId": "4037688ecce4c580df5c1f3ece17803d68db15a4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "100336c0_9b58cfdf",
         "filename": "ssh/certs_test.go",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2015-04-30T12:53:42Z",
       "side": 1,
       "message": "this \"if\" is encompassed in the next one. cna you drop it?",
+      "range": {
+        "startLine": 83,
+        "startChar": 1,
+        "endLine": 83,
+        "endChar": 2
+      },
+      "revId": "4037688ecce4c580df5c1f3ece17803d68db15a4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0598aea_4b26d9e5",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-04-30T13:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "100336c0_9b58cfdf",
       "range": {
         "startLine": 83,
         "startChar": 1,
