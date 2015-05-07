@@ -569,7 +569,24 @@ func (pk *PublicKey) VerifyKeySignature(signed *PublicKey, sig *Signature) (err 
 	if err != nil {
 		return err
 	}
-	return pk.VerifySignature(h, sig)
+	err = pk.VerifySignature(h, sig)
+	if err != nil {
+		return err
+	}
+	if !sig.FlagSign {
+		return nil
+	}
+	if sig.EmbeddedSignature == nil {
+		return errors.SignatureError("Missing cross-signature for a signing subkey")
+	}
+	// Verify the cross-signature. This is calculated over the
+	// same data as the main signature, so we cannot just
+	// recursively call signed.VerifyKeySignature(...)
+	h, err = keySignatureHash(pk, signed, sig.EmbeddedSignature.Hash)
+	if err != nil {
+		return err
+	}
+	return signed.VerifySignature(h, sig.EmbeddedSignature)
 }
 
 func keyRevocationHash(pk signingKey, hashFunc crypto.Hash) (h hash.Hash, err error) {
