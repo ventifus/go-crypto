@@ -5,6 +5,7 @@
 package packet
 
 import (
+	"bytes"
 	"crypto"
 	"crypto/dsa"
 	"crypto/rsa"
@@ -67,6 +68,10 @@ type Signature struct {
 	// MDC is set if this signature has a feature packet that indicates
 	// support for MDC subpackets.
 	MDC bool
+
+	// EmbeddedSignature is set if this signature contains an
+	// embedded signature subpacket.
+	EmbeddedSignature *Signature
 
 	outSubpackets []outputSubpacket
 }
@@ -196,6 +201,7 @@ const (
 	keyFlagsSubpacket            signatureSubpacketType = 27
 	reasonForRevocationSubpacket signatureSubpacketType = 29
 	featuresSubpacket            signatureSubpacketType = 30
+	embeddedSignatureSubpacket   signatureSubpacketType = 32
 )
 
 // parseSignatureSubpacket parses a single subpacket. len(subpacket) is >= 1.
@@ -355,6 +361,20 @@ func parseSignatureSubpacket(sig *Signature, subpacket []byte, isHashed bool) (r
 		// features. In practice, the subpacket is used exclusively to
 		// indicate support for MDC-protected encryption.
 		sig.MDC = len(subpacket) >= 1 && subpacket[0]&1 == 1
+	case embeddedSignatureSubpacket:
+		// Only usage is in signatures that cross-certify
+		// signing subkeys. section 5.2.3.26 describes the
+		// format, with its usage described in section 11.1
+		if sig.EmbeddedSignature != nil {
+			err = errors.StructuralError("Cannot have multiple embedded signatures")
+			return
+		}
+		// Embedded signatures are required to be v4 signatures
+		// see section 12.1
+		sig.EmbeddedSignature, err = expectV4SignatureBody(subpacket)
+		if err != nil {
+			return
+		}
 	default:
 		if isCritical {
 			err = errors.UnsupportedError("unknown critical signature subpacket type " + strconv.Itoa(int(packetType)))
@@ -365,6 +385,17 @@ func parseSignatureSubpacket(sig *Signature, subpacket []byte, isHashed bool) (r
 
 Truncated:
 	err = errors.StructuralError("signature subpacket truncated")
+	return
+}
+
+// expectV4SignatureBody expects to find the body of a v4 signature
+// within the provided bytes, and returns the parsed object.
+func expectV4SignatureBody(data []byte) (sig *Signature, err error) {
+	sig = new(Signature)
+	err = sig.parse(bytes.NewBuffer(data))
+	if err != nil {
+		return nil, err
+	}
 	return
 }
 
