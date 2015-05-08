@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad24d1ad_21a67637",
+        "filename": "ssh/common.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-05-08T14:35:32Z",
+      "side": 1,
+      "message": "shouldn\u0027t the SHA2 hashes be preferred over SHA1 ? What is the default for OpenSSH ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "a62f35ce0b8aa120855953998318956f36b1bae2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
