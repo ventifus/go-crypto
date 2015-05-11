@@ -1,0 +1,7 @@
+Code-Review+1: JP Sugarbroad <jpsugar@google.com>
+Code-Review+2: Adam Langley <agl@golang.org>
+Submitted-by: Adam Langley <agl@golang.org>
+Submitted-at: Mon, 11 May 2015 18:34:55 +0000
+Reviewed-on: https://go-review.googlesource.com/9807
+Project: crypto
+Branch: refs/heads/master
