@@ -16,6 +16,24 @@
       "revId": "760520729c30a01e88b4a17a773c029c9734964e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d92d967_0e550ba7",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-05-15T09:03:04Z",
+      "side": 1,
+      "message": "I think it is overcomplicated. The protocol is fixed in an RFC, and it is unlikely that we\u0027ll see many changes with this code, so errors creeping in due to reshuffling code seem unlikely.",
+      "parentUuid": "ed2329ea_e6871be1",
+      "revId": "760520729c30a01e88b4a17a773c029c9734964e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
