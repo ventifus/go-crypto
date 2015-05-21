@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net"
 	"sync"
+	"time"
 )
 
 // Client implements a traditional SSH client that supports shells,
@@ -169,7 +170,7 @@ func (c *Client) handleChannelOpens(in <-chan NewChannel) {
 // to incoming channels and requests, use net.Dial with NewClientConn
 // instead.
 func Dial(network, addr string, config *ClientConfig) (*Client, error) {
-	conn, err := net.Dial(network, addr)
+	conn, err := net.DialTimeout(network, addr, config.ConnTimeout)
 	if err != nil {
 		return nil, err
 	}
@@ -203,4 +204,8 @@ type ClientConfig struct {
 	// ClientVersion contains the version identification string that will
 	// be used for the connection. If empty, a reasonable default is used.
 	ClientVersion string
+
+	// ConnTimeout implement connection timeout, it passed to Net.DialTimeout:
+	// if not set or set to zero - equivalent to dialing without that option.
+	ConnTimeout time.Duration
 }
