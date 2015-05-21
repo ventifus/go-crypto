@@ -1,0 +1,7 @@
+Code-Review+2: Brad Fitzpatrick <bradfitz@golang.org>
+Code-Review+2: Adam Langley <agl@golang.org>
+Submitted-by: Adam Langley <agl@golang.org>
+Submitted-at: Thu, 21 May 2015 15:47:07 +0000
+Reviewed-on: https://go-review.googlesource.com/10307
+Project: crypto
+Branch: refs/heads/master
