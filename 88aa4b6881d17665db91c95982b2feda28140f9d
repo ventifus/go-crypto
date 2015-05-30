@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "190b6419_c1b8d8b4",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-05-30T20:12:53Z",
+      "side": 1,
+      "message": "Have deleted this. I don\u0027t see why setting the FullBytes of the asn1.RawValue results in a different serialisation.",
+      "revId": "88aa4b6881d17665db91c95982b2feda28140f9d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "190b6419_a1b5e4ba",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-05-30T20:12:53Z",
+      "side": 1,
+      "message": "Turned this into responseData as ResponderName wasn\u0027t used on the read-side anyway.",
+      "revId": "88aa4b6881d17665db91c95982b2feda28140f9d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "190b6419_2181d4d2",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-05-30T20:12:53Z",
+      "side": 1,
+      "message": "Removed these casts.",
+      "revId": "88aa4b6881d17665db91c95982b2feda28140f9d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
