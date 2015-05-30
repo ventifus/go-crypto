@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "70bf1233_63fe0233",
+        "filename": "openpgp/packet/encrypted_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5335
+      },
+      "writtenOn": "2015-05-30T13:06:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab858b8b_23cc1447",
+      "revId": "3eb938d65dd7d254cee351b0de200a65fcae1ae0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab858b8b_e3c14c14",
         "filename": "openpgp/packet/encrypted_key.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-26T02:28:01Z",
       "side": 1,
       "message": "add ECDSA",
+      "revId": "3eb938d65dd7d254cee351b0de200a65fcae1ae0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70bf1233_a31aba25",
+        "filename": "openpgp/packet/encrypted_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 5335
+      },
+      "writtenOn": "2015-05-30T13:06:43Z",
+      "side": 1,
+      "message": "There is currently no ECDH support in the whole EncryptedKey class, for instance parse() and Decrypt() don\u0027t support it. I think implementing support for it in serialize() should be left to whoever adds ECDH to the whole class.",
+      "parentUuid": "ab858b8b_e3c14c14",
       "revId": "3eb938d65dd7d254cee351b0de200a65fcae1ae0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
