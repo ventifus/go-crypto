@@ -328,7 +328,7 @@ func ParseRequest(bytes []byte) (*Request, error) {
 // then the signature over the response is checked. If issuer is not nil then
 // it will be used to validate the signature or embedded certificate. Invalid
 // signatures or parse failures will result in a ParseError.
-func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
+func ParseResponse(bytes []byte, cert, issuer *x509.Certificate) (*Response, error) {
 	var resp responseASN1
 	rest, err := asn1.Unmarshal(bytes, &resp)
 	if err != nil {
@@ -358,7 +358,7 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 		return nil, ParseError("OCSP response contains bad number of certificates")
 	}
 
-	if len(basicResp.TBSResponseData.Responses) != 1 {
+	if len(basicResp.TBSResponseData.Responses) < 1 {
 		return nil, ParseError("OCSP response contains bad number of responses")
 	}
 
@@ -387,7 +387,13 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 		}
 	}
 
-	r := basicResp.TBSResponseData.Responses[0]
+	var r singleResponse
+	for _, resp := range basicResp.TBSResponseData.Responses {
+		if cert == nil || cert.SerialNumber.Cmp(resp.CertID.SerialNumber) == 0 {
+			r = resp
+			break
+		}
+	}
 
 	ret.SerialNumber = r.CertID.SerialNumber
 
