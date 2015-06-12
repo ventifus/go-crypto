@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"crypto"
 	"crypto/dsa"
 	"crypto/ecdsa"
 	"crypto/elliptic"
@@ -79,6 +80,36 @@ func TestNewPublicKey(t *testing.T) {
 		}
 		if !reflect.DeepEqual(k.PublicKey(), pub) {
 			t.Errorf("NewPublicKey(%#v) = %#v, want %#v", raw, pub, k.PublicKey())
+		}
+	}
+}
+
+func TestNewSignerFromSigner(t *testing.T) {
+	for _, k := range testPrivateKeys {
+		// Not all PrivateKey classes implement crypto.Signer,
+		// so skip those
+		cryptoSigner, ok := k.(crypto.Signer)
+		if !ok {
+			continue
+		}
+
+		signer, err := NewSignerFromSigner(cryptoSigner)
+		if err != nil {
+			t.Fatalf("NewSitnerFromSigner(%T): %v", cryptoSigner, err)
+		}
+		pub := signer.PublicKey()
+		data := []byte("sign me")
+		sig, err := signer.Sign(rand.Reader, data)
+		if err != nil {
+			t.Fatalf("Sign(%T): $v", signer, err)
+		}
+
+		if err := pub.Verify(data, sig); err != nil {
+			t.Errorf("PublicKey.Verify(%T): %v", signer, err)
+		}
+		sig.Blob[5]++
+		if err := pub.Verify(data, sig); err == nil {
+			t.Errorf("PublicKey.Verify on a broken sig did not fail")
 		}
 	}
 }

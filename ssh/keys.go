@@ -544,6 +544,77 @@ func NewSignerFromKey(k interface{}) (Signer, error) {
 	return sshKey, nil
 }
 
+type wrappedSigner struct {
+	signer crypto.Signer
+	pubkey PublicKey
+}
+
+// NewSignerFromSigner takes a generic crypto.Signer implementation,
+// and returns a corresponding Signer interface. This can be used, for
+// example, with keys kept in hardware modules.
+func NewSignerFromSigner(signer crypto.Signer) (Signer, error) {
+	pubkey, err := NewPublicKey(signer.Public())
+	if err != nil {
+		return nil, err
+	}
+
+	return &wrappedSigner{signer, pubkey}, nil
+}
+
+func (s *wrappedSigner) PublicKey() PublicKey {
+	return s.pubkey
+}
+
+func (s *wrappedSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	var hashFunc crypto.Hash
+	switch k := s.pubkey.(type) {
+	case (*rsaPublicKey), (*dsaPublicKey):
+		hashFunc = crypto.SHA1
+	case (*ecdsaPublicKey):
+		hashFunc = ecHash(k.Curve)
+	}
+
+	h := hashFunc.New()
+	h.Write(data)
+	digest := h.Sum(nil)
+
+	signature, err := s.signer.Sign(rand, digest, hashFunc)
+	if err != nil {
+		return nil, err
+	}
+
+	// crypto.Signer.Sign is expected to return an ASN.1-encoded
+	// signature for ECDSA and DSA, but that's not the encoding
+	// expected by ssh, so re-encode
+	switch s.pubkey.(type) {
+	case (*ecdsaPublicKey):
+		asn1Sig := &struct{ R, S *big.Int }{}
+		_, err := asn1.Unmarshal(signature, asn1Sig)
+		if err != nil {
+			return nil, err
+		}
+
+		signature = Marshal(asn1Sig)
+	case (*dsaPublicKey):
+		asn1Sig := &struct{ R, S *big.Int }{}
+		_, err := asn1.Unmarshal(signature, asn1Sig)
+		if err != nil {
+			return nil, err
+		}
+
+		signature = make([]byte, 40)
+		r := asn1Sig.R.Bytes()
+		s := asn1Sig.S.Bytes()
+		copy(signature[20-len(r):20], r)
+		copy(signature[40-len(s):40], s)
+	}
+
+	return &Signature{
+		Format: s.pubkey.Type(),
+		Blob:   signature,
+	}, nil
+}
+
 // NewPublicKey takes a pointer to rsa, dsa or ecdsa PublicKey
 // and returns a corresponding ssh PublicKey instance. EC keys should use P256, P384 or P521.
 func NewPublicKey(k interface{}) (PublicKey, error) {
