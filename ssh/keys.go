@@ -267,28 +267,6 @@ func (r *rsaPublicKey) Verify(data []byte, sig *Signature) error {
 	return rsa.VerifyPKCS1v15((*rsa.PublicKey)(r), crypto.SHA1, digest, sig.Blob)
 }
 
-type rsaPrivateKey struct {
-	*rsa.PrivateKey
-}
-
-func (r *rsaPrivateKey) PublicKey() PublicKey {
-	return (*rsaPublicKey)(&r.PrivateKey.PublicKey)
-}
-
-func (r *rsaPrivateKey) Sign(rand io.Reader, data []byte) (*Signature, error) {
-	h := crypto.SHA1.New()
-	h.Write(data)
-	digest := h.Sum(nil)
-	blob, err := rsa.SignPKCS1v15(rand, r.PrivateKey, crypto.SHA1, digest)
-	if err != nil {
-		return nil, err
-	}
-	return &Signature{
-		Format: r.PublicKey().Type(),
-		Blob:   blob,
-	}, nil
-}
-
 type dsaPublicKey dsa.PublicKey
 
 func (r *dsaPublicKey) Type() string {
@@ -496,52 +474,91 @@ func (key *ecdsaPublicKey) Verify(data []byte, sig *Signature) error {
 	return errors.New("ssh: signature did not verify")
 }
 
-type ecdsaPrivateKey struct {
-	*ecdsa.PrivateKey
+// NewSignerFromKey takes a pointer to rsa, dsa or ecdsa PrivateKey or
+// any other crypto.Signer returns a corresponding Signer instance. EC
+// keys should use P256, P384 or P521.
+func NewSignerFromKey(k interface{}) (Signer, error) {
+	switch t := k.(type) {
+	case crypto.Signer:
+		return NewSignerFromSigner(t)
+	case *dsa.PrivateKey:
+		return &dsaPrivateKey{t}, nil
+	default:
+		return nil, fmt.Errorf("ssh: unsupported key type %T", k)
+	}
 }
 
-func (k *ecdsaPrivateKey) PublicKey() PublicKey {
-	return (*ecdsaPublicKey)(&k.PrivateKey.PublicKey)
+type wrappedSigner struct {
+	signer crypto.Signer
+	pubkey PublicKey
 }
 
-func (k *ecdsaPrivateKey) Sign(rand io.Reader, data []byte) (*Signature, error) {
-	h := ecHash(k.PrivateKey.PublicKey.Curve).New()
-	h.Write(data)
-	digest := h.Sum(nil)
-	r, s, err := ecdsa.Sign(rand, k.PrivateKey, digest)
+// NewSignerFromSigner takes any crypto.Signer implementation and
+// returns a corresponding Signer interface. This can be used, for
+// example, with keys kept in hardware modules.
+func NewSignerFromSigner(signer crypto.Signer) (Signer, error) {
+	pubkey, err := NewPublicKey(signer.Public())
 	if err != nil {
 		return nil, err
 	}
 
-	sig := make([]byte, intLength(r)+intLength(s))
-	rest := marshalInt(sig, r)
-	marshalInt(rest, s)
-	return &Signature{
-		Format: k.PublicKey().Type(),
-		Blob:   sig,
-	}, nil
+	return &wrappedSigner{signer, pubkey}, nil
 }
 
-// NewSignerFromKey takes a pointer to rsa, dsa or ecdsa PrivateKey
-// returns a corresponding Signer instance. EC keys should use P256,
-// P384 or P521.
-func NewSignerFromKey(k interface{}) (Signer, error) {
-	var sshKey Signer
-	switch t := k.(type) {
-	case *rsa.PrivateKey:
-		sshKey = &rsaPrivateKey{t}
-	case *dsa.PrivateKey:
-		sshKey = &dsaPrivateKey{t}
-	case *ecdsa.PrivateKey:
-		if !supportedEllipticCurve(t.Curve) {
-			return nil, errors.New("ssh: only P256, P384 and P521 EC keys are supported.")
-		}
+func (s *wrappedSigner) PublicKey() PublicKey {
+	return s.pubkey
+}
 
-		sshKey = &ecdsaPrivateKey{t}
+func (s *wrappedSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	var hashFunc crypto.Hash
+	switch k := s.pubkey.(type) {
+	case (*rsaPublicKey), (*dsaPublicKey):
+		hashFunc = crypto.SHA1
+	case (*ecdsaPublicKey):
+		hashFunc = ecHash(k.Curve)
 	default:
 		return nil, fmt.Errorf("ssh: unsupported key type %T", k)
 	}
-	return sshKey, nil
+
+	h := hashFunc.New()
+	h.Write(data)
+	digest := h.Sum(nil)
+
+	signature, err := s.signer.Sign(rand, digest, hashFunc)
+	if err != nil {
+		return nil, err
+	}
+
+	// crypto.Signer.Sign is expected to return an ASN.1-encoded
+	// signature for ECDSA and DSA, but that's not the encoding
+	// expected by ssh, so re-encode
+	switch s.pubkey.(type) {
+	case (*ecdsaPublicKey):
+		asn1Sig := &struct{ R, S *big.Int }{}
+		_, err := asn1.Unmarshal(signature, asn1Sig)
+		if err != nil {
+			return nil, err
+		}
+
+		signature = Marshal(asn1Sig)
+	case (*dsaPublicKey):
+		asn1Sig := &struct{ R, S *big.Int }{}
+		_, err := asn1.Unmarshal(signature, asn1Sig)
+		if err != nil {
+			return nil, err
+		}
+
+		signature = make([]byte, 40)
+		r := asn1Sig.R.Bytes()
+		s := asn1Sig.S.Bytes()
+		copy(signature[20-len(r):20], r)
+		copy(signature[40-len(s):40], s)
+	}
+
+	return &Signature{
+		Format: s.pubkey.Type(),
+		Blob:   signature,
+	}, nil
 }
 
 // NewPublicKey takes a pointer to rsa, dsa or ecdsa PublicKey
