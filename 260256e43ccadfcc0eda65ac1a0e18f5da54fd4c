@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99abd4ef_2f2065d1",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "It\u0027s no big deal, but it\u0027s unclear whether this file is disconnected and large enough to be a different file. May be easier just to put it at the bottom of the other one.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_6fec2d05",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "s/2009/2015/",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_4fe971f3",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "Use a \"// \" comment block to fit in.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_0f1da997",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "encryptBlockWithRounds?",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_4f17b175",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "delta looks like it should be a package-level const.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_6f1a6da1",
+        "filename": "tea/block.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "ditto about the naming.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_af04554e",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "ditto.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_8f099968",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "Include URL in package description?",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_ef0e5d6c",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "Comments should start with the name of the const/var/func that they are commenting. E.g.:\n\n// BlockSize is the size of a TEA block, in bytes.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_cf13a194",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "s/ A//",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_6f038d41",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "key [4]uint32?\n\nThat would save some overhead of converting it for each block and avoid having the Cipher alias the key argument given by the caller of NewCipher.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_2ff985c1",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "just \"tea:\" as a prefix I think. \"crypto/tea\" would be a standard-library package.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_0ff649cf",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "if keyLen :\u003d len(key); keyLen !\u003d 16 {\n  return nil, KeySizeError(keyLen)\n}\n\nBut I wonder whether KeySizeError is a useful error to name and export. Exporting errors like that is so that calling code can handle them specially, but it seems that the effort of handling that exceeds the effort needed to just pass the correct sized key in the first place. I suspect that KeySizeError can be removed and that this can just return errors.New(\"tea: incorrect key size\").",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_af2bb5ba",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "Does anything actually need this?\n\nIf so, name it EncryptWithRounds? (Open to suggestions, but EncryptFlexible isn\u0027t right.)\n\n(Later:)\n\nDoes the number of rounds need to be a member of Cipher? Otherwise how does one wrap this with the generic CBC implementation? NewCipherWithRounds?",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99abd4ef_ef25bde4",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-06-14T18:48:15Z",
+      "side": 1,
+      "message": "ditto.",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
