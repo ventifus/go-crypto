@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "397f484e_a14f3e3a",
+        "filename": "tea/cipher.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-06-15T10:36:08Z",
+      "side": 1,
+      "message": "Consistency of \"a\" and \"an\" before \"TEA\" - on line 14 above, a different form of the article is used: \"size of a TEA block\"",
+      "revId": "c25bb6b2f1856ffb8c99c6cd6ff3cb6489b4843f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
