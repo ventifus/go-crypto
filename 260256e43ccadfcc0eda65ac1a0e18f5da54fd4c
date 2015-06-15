@@ -172,6 +172,24 @@
     },
     {
       "key": {
+        "uuid": "79bf0033_83cb3e16",
+        "filename": "tea/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-06-15T10:30:55Z",
+      "side": 1,
+      "message": "probably also change the article from \"an\" to \"a\" to be consistent with Adam\u0027s suggestion in the previous comment (\"the size of a TEA block\").",
+      "parentUuid": "99abd4ef_cf13a194",
+      "revId": "260256e43ccadfcc0eda65ac1a0e18f5da54fd4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99abd4ef_6f038d41",
         "filename": "tea/cipher.go",
         "patchSetId": 1
