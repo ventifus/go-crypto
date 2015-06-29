@@ -62,6 +62,19 @@ func TestOCSPDecodeWithoutCert(t *testing.T) {
 	}
 }
 
+func TestOCSPDecodeError(t *testing.T) {
+	responseBytes, _ := hex.DecodeString(ocspResponseErrorHex)
+	resp, err := ParseResponse(responseBytes, nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	// Response contains an ocspInternalError which is translated to ServerFailed
+	if resp.Status != ServerFailed {
+		t.Errorf("resp.Status: got %d, want %d", resp.Status, ServerFailed)
+	}
+}
+
 func TestOCSPSignature(t *testing.T) {
 	issuerCert, _ := hex.DecodeString(startComHex)
 	issuer, err := x509.ParseCertificate(issuerCert)
@@ -332,6 +345,8 @@ const ocspResponseWithoutCertHex = "308201d40a0100a08201cd308201c906092b06010505
 	"9e7dec8698e36a8df68b7592ad3489fb2937afb90eb85d2aa96b81c94c25057dbd4759d9" +
 	"20a1a65c7f0b6427a224b3c98edd96b9b61f706099951188b0289555ad30a216fb774651" +
 	"5a35fca2e054dfa8"
+
+const ocspResponseErrorHex = "30030a0102"
 
 const ocspRequestHex = "3051304f304d304b3049300906052b0e03021a05000414c0fe0278fc99188891b3f212e9" +
 	"c7e1b21ab7bfc004140dfc1df0a9e0f01ce7f2b213177e6f8d157cd4f60210017f77deb3" +

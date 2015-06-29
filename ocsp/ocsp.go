@@ -60,7 +60,7 @@ type request struct {
 
 type responseASN1 struct {
 	Status   asn1.Enumerated
-	Response responseBytes `asn1:"explicit,tag:0"`
+	Response responseBytes `asn1:"optional,explicit,tag:0"`
 }
 
 type responseBytes struct {
