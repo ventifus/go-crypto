@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3ae0d65_0c1e3b66",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6190
+      },
+      "writtenOn": "2015-06-30T13:02:07Z",
+      "side": 1,
+      "message": "Another possibility is to remove the revision number altogether.  On top of https://godoc.org/golang.org/x/crypto/ssh#Certificate.SignCert we are now linking to the HEAD version of the spec - it is likely that there may be other minor changes and revisions of the document that would not change the structure of SSH Certificate data referenced here.  If at some point there are changes in the data structure, they will likely require an update in the Go library to reflect them.\n\nLet me know if you would rather remove \"?rev\u003d1.x\" and I\u0027ll submit another CL (or change it on merge).",
+      "revId": "7685ca295e9d121578cbfa69cf9bf1d72d104542",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
