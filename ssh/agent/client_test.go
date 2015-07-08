@@ -100,10 +100,10 @@ func testAgentInterface(t *testing.T, agent Agent, key interface{}, cert *ssh.Ce
 	// Attempt to insert the key, with certificate if specified.
 	var pubKey ssh.PublicKey
 	if cert != nil {
-		err = agent.Add(key, cert, "comment")
+		err = agent.Add(AddedKey{PrivateKey: key, Certificate: cert, Comment: "comment"})
 		pubKey = cert
 	} else {
-		err = agent.Add(key, nil, "comment")
+		err = agent.Add(AddedKey{PrivateKey: key, Comment: "comment"})
 		pubKey = signer.PublicKey()
 	}
 	if err != nil {
@@ -185,7 +185,7 @@ func TestAuth(t *testing.T) {
 	agent, _, cleanup := startAgent(t)
 	defer cleanup()
 
-	if err := agent.Add(testPrivateKeys["rsa"], nil, "comment"); err != nil {
+	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["rsa"], Comment: "comment"}); err != nil {
 		t.Errorf("Add: %v", err)
 	}
 
@@ -223,10 +223,10 @@ func TestLockClient(t *testing.T) {
 }
 
 func testLockAgent(agent Agent, t *testing.T) {
-	if err := agent.Add(testPrivateKeys["rsa"], nil, "comment 1"); err != nil {
+	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["rsa"], Comment: "comment 1"}); err != nil {
 		t.Errorf("Add: %v", err)
 	}
-	if err := agent.Add(testPrivateKeys["dsa"], nil, "comment dsa"); err != nil {
+	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["dsa"], Comment: "comment dsa"}); err != nil {
 		t.Errorf("Add: %v", err)
 	}
 	if keys, err := agent.List(); err != nil {

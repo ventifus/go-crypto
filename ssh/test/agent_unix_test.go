@@ -21,7 +21,7 @@ func TestAgentForward(t *testing.T) {
 	defer conn.Close()
 
 	keyring := agent.NewKeyring()
-	keyring.Add(testPrivateKeys["dsa"], nil, "")
+	keyring.Add(agent.AddedKey{PrivateKey: testPrivateKeys["dsa"]})
 	pub := testPublicKeys["dsa"]
 
 	sess, err := conn.NewSession()
