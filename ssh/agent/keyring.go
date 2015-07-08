@@ -150,6 +150,12 @@ func (r *keyring) Add(priv interface{}, cert *ssh.Certificate, comment string) e
 	return nil
 }
 
+// Insert adds a private key to the agent with the given constraints.
+// If a certificate is given, that certificate is added as public key.
+func (r *keyring) AddWithConstraints(priv interface{}, cert *ssh.Certificate, comment string, c []byte) error {
+	return r.Add(priv, cert, comment)
+}
+
 // Sign returns a signature for the data.
 func (r *keyring) Sign(key ssh.PublicKey, data []byte) (*ssh.Signature, error) {
 	r.mu.Lock()
