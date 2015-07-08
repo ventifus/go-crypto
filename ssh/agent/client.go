@@ -40,6 +40,11 @@ type Agent interface {
 	// is given, that certificate is added as public key.
 	Add(s interface{}, cert *ssh.Certificate, comment string) error
 
+	// AddWithConstraints adds a private key to the agent with the given
+	// constraints. If a certificate is given, that certificate
+	// is added as public key.
+	AddWithConstraints(s interface{}, cert *ssh.Certificate, comment string, constraints []byte) error
+
 	// Remove removes all identities with the given public key.
 	Remove(key ssh.PublicKey) error
 
@@ -74,8 +79,10 @@ const (
 	agentAddSmartcardKeyConstrained = 26
 
 	// 3.7 Key constraint identifiers
-	agentConstrainLifetime = 1
-	agentConstrainConfirm  = 2
+	// Give the identity a max lifetime in seconds.
+	AgentConstrainLifetime = 1
+	// Tell the agent to ask for confirmation prior to using the identity.
+	AgentConstrainConfirm = 2
 )
 
 // maxAgentResponseBytes is the maximum agent reply size that is accepted. This
@@ -378,6 +385,18 @@ type rsaKeyMsg struct {
 	Comments string
 }
 
+type rsaKeyConstrainedMsg struct {
+	Type        string `sshtype:"25"`
+	N           *big.Int
+	E           *big.Int
+	D           *big.Int
+	Iqmp        *big.Int // IQMP = Inverse Q Mod P
+	P           *big.Int
+	Q           *big.Int
+	Comments    string
+	Constraints []byte
+}
+
 type dsaKeyMsg struct {
 	Type     string `sshtype:"17"`
 	P        *big.Int
@@ -388,6 +407,17 @@ type dsaKeyMsg struct {
 	Comments string
 }
 
+type dsaKeyConstrainedMsg struct {
+	Type        string `sshtype:"25"`
+	P           *big.Int
+	Q           *big.Int
+	G           *big.Int
+	Y           *big.Int
+	X           *big.Int
+	Comments    string
+	Constraints []byte
+}
+
 type ecdsaKeyMsg struct {
 	Type     string `sshtype:"17"`
 	Curve    string
@@ -396,8 +426,17 @@ type ecdsaKeyMsg struct {
 	Comments string
 }
 
+type ecdsaKeyConstrainedMsg struct {
+	Type        string `sshtype:"25"`
+	Curve       string
+	KeyBytes    []byte
+	D           *big.Int
+	Comments    string
+	Constraints []byte
+}
+
 // Insert adds a private key to the agent.
-func (c *client) insertKey(s interface{}, comment string) error {
+func (c *client) insertKey(s interface{}, comment string, constraints []byte) error {
 	var req []byte
 	switch k := s.(type) {
 	case *rsa.PrivateKey:
@@ -405,35 +444,73 @@ func (c *client) insertKey(s interface{}, comment string) error {
 			return fmt.Errorf("agent: unsupported RSA key with %d primes", len(k.Primes))
 		}
 		k.Precompute()
-		req = ssh.Marshal(rsaKeyMsg{
-			Type:     ssh.KeyAlgoRSA,
-			N:        k.N,
-			E:        big.NewInt(int64(k.E)),
-			D:        k.D,
-			Iqmp:     k.Precomputed.Qinv,
-			P:        k.Primes[0],
-			Q:        k.Primes[1],
-			Comments: comment,
-		})
+		if len(constraints) == 0 {
+			req = ssh.Marshal(rsaKeyMsg{
+				Type:     ssh.KeyAlgoRSA,
+				N:        k.N,
+				E:        big.NewInt(int64(k.E)),
+				D:        k.D,
+				Iqmp:     k.Precomputed.Qinv,
+				P:        k.Primes[0],
+				Q:        k.Primes[1],
+				Comments: comment,
+			})
+		} else {
+			req = ssh.Marshal(rsaKeyConstrainedMsg{
+				Type:        ssh.KeyAlgoRSA,
+				N:           k.N,
+				E:           big.NewInt(int64(k.E)),
+				D:           k.D,
+				Iqmp:        k.Precomputed.Qinv,
+				P:           k.Primes[0],
+				Q:           k.Primes[1],
+				Comments:    comment,
+				Constraints: constraints,
+			})
+		}
 	case *dsa.PrivateKey:
-		req = ssh.Marshal(dsaKeyMsg{
-			Type:     ssh.KeyAlgoDSA,
-			P:        k.P,
-			Q:        k.Q,
-			G:        k.G,
-			Y:        k.Y,
-			X:        k.X,
-			Comments: comment,
-		})
+		if len(constraints) == 0 {
+			req = ssh.Marshal(dsaKeyMsg{
+				Type:     ssh.KeyAlgoDSA,
+				P:        k.P,
+				Q:        k.Q,
+				G:        k.G,
+				Y:        k.Y,
+				X:        k.X,
+				Comments: comment,
+			})
+		} else {
+			req = ssh.Marshal(dsaKeyConstrainedMsg{
+				Type:        ssh.KeyAlgoDSA,
+				P:           k.P,
+				Q:           k.Q,
+				G:           k.G,
+				Y:           k.Y,
+				X:           k.X,
+				Comments:    comment,
+				Constraints: constraints,
+			})
+		}
 	case *ecdsa.PrivateKey:
 		nistID := fmt.Sprintf("nistp%d", k.Params().BitSize)
-		req = ssh.Marshal(ecdsaKeyMsg{
-			Type:     "ecdsa-sha2-" + nistID,
-			Curve:    nistID,
-			KeyBytes: elliptic.Marshal(k.Curve, k.X, k.Y),
-			D:        k.D,
-			Comments: comment,
-		})
+		if len(constraints) == 0 {
+			req = ssh.Marshal(ecdsaKeyMsg{
+				Type:     "ecdsa-sha2-" + nistID,
+				Curve:    nistID,
+				KeyBytes: elliptic.Marshal(k.Curve, k.X, k.Y),
+				D:        k.D,
+				Comments: comment,
+			})
+		} else {
+			req = ssh.Marshal(ecdsaKeyConstrainedMsg{
+				Type:        "ecdsa-sha2-" + nistID,
+				Curve:       nistID,
+				KeyBytes:    elliptic.Marshal(k.Curve, k.X, k.Y),
+				D:           k.D,
+				Comments:    comment,
+				Constraints: constraints,
+			})
+		}
 	default:
 		return fmt.Errorf("agent: unsupported key type %T", s)
 	}
@@ -457,6 +534,17 @@ type rsaCertMsg struct {
 	Comments  string
 }
 
+type rsaCertConstrainedMsg struct {
+	Type        string `sshtype:"25"`
+	CertBytes   []byte
+	D           *big.Int
+	Iqmp        *big.Int // IQMP = Inverse Q Mod P
+	P           *big.Int
+	Q           *big.Int
+	Comments    string
+	Constraints []byte
+}
+
 type dsaCertMsg struct {
 	Type      string `sshtype:"17"`
 	CertBytes []byte
@@ -475,13 +563,23 @@ type ecdsaCertMsg struct {
 // that certificate is added instead as public key.
 func (c *client) Add(s interface{}, cert *ssh.Certificate, comment string) error {
 	if cert == nil {
-		return c.insertKey(s, comment)
+		return c.insertKey(s, comment, make([]byte, 0))
 	} else {
-		return c.insertCert(s, cert, comment)
+		return c.insertCert(s, cert, comment, make([]byte, 0))
 	}
 }
 
-func (c *client) insertCert(s interface{}, cert *ssh.Certificate, comment string) error {
+// Insert adds a private key to the agent with the given constraints.
+// If a certificate is given, that certificate is added as public key.
+func (c *client) AddWithConstraints(s interface{}, cert *ssh.Certificate, comment string, constraints []byte) error {
+	if cert == nil {
+		return c.insertKey(s, comment, constraints)
+	} else {
+		return c.insertCert(s, cert, comment, constraints)
+	}
+}
+
+func (c *client) insertCert(s interface{}, cert *ssh.Certificate, comment string, constraints []byte) error {
 	var req []byte
 	switch k := s.(type) {
 	case *rsa.PrivateKey:
@@ -489,15 +587,28 @@ func (c *client) insertCert(s interface{}, cert *ssh.Certificate, comment string
 			return fmt.Errorf("agent: unsupported RSA key with %d primes", len(k.Primes))
 		}
 		k.Precompute()
-		req = ssh.Marshal(rsaCertMsg{
-			Type:      cert.Type(),
-			CertBytes: cert.Marshal(),
-			D:         k.D,
-			Iqmp:      k.Precomputed.Qinv,
-			P:         k.Primes[0],
-			Q:         k.Primes[1],
-			Comments:  comment,
-		})
+		if len(constraints) == 0 {
+			req = ssh.Marshal(rsaCertMsg{
+				Type:      cert.Type(),
+				CertBytes: cert.Marshal(),
+				D:         k.D,
+				Iqmp:      k.Precomputed.Qinv,
+				P:         k.Primes[0],
+				Q:         k.Primes[1],
+				Comments:  comment,
+			})
+		} else {
+			req = ssh.Marshal(rsaCertConstrainedMsg{
+				Type:        cert.Type(),
+				CertBytes:   cert.Marshal(),
+				D:           k.D,
+				Iqmp:        k.Precomputed.Qinv,
+				P:           k.Primes[0],
+				Q:           k.Primes[1],
+				Comments:    comment,
+				Constraints: constraints,
+			})
+		}
 	case *dsa.PrivateKey:
 		req = ssh.Marshal(dsaCertMsg{
 			Type:      cert.Type(),

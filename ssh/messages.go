@@ -433,7 +433,9 @@ func marshalStruct(out []byte, msg interface{}) []byte {
 			switch t.Elem().Kind() {
 			case reflect.Uint8:
 				if v.Type().Field(i).Tag.Get("ssh") != "rest" {
-					out = appendInt(out, field.Len())
+					if v.Type().Field(i).Name != "Constraints" {
+						out = appendInt(out, field.Len())
+					}
 				}
 				out = append(out, field.Bytes()...)
 			case reflect.String:
