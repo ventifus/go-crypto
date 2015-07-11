@@ -1,0 +1,6 @@
+Code-Review+2: Ian Lance Taylor <iant@golang.org>
+Submitted-by: Ian Lance Taylor <iant@golang.org>
+Submitted-at: Sat, 11 Jul 2015 23:27:04 +0000
+Reviewed-on: https://go-review.googlesource.com/12033
+Project: crypto
+Branch: refs/heads/master
