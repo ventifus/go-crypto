@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78753eb8_dcd781b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2015-07-11T16:21:14Z",
+      "side": 1,
+      "message": "s/Allow/allow/",
+      "revId": "0b395e91546e127a7e7dc5e528f9b9c55e672e91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78753eb8_3cd315ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2015-07-11T16:21:14Z",
+      "side": 1,
+      "message": "Please remove the diff from the description.  Thanks.",
+      "revId": "0b395e91546e127a7e7dc5e528f9b9c55e672e91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
