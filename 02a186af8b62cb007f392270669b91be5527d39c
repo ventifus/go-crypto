@@ -1,0 +1,6 @@
+Code-Review+2: Brad Fitzpatrick <bradfitz@golang.org>
+Submitted-by: Brad Fitzpatrick <bradfitz@golang.org>
+Submitted-at: Tue, 14 Jul 2015 19:39:10 +0000
+Reviewed-on: https://go-review.googlesource.com/12183
+Project: crypto
+Branch: refs/heads/master
