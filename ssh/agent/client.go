@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-  Package agent implements a client to an ssh-agent daemon.
+Package agent implements a client to an ssh-agent daemon.
 
 References:
   [PROTOCOL.agent]:    http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL.agent?rev=HEAD
@@ -471,14 +471,13 @@ type ecdsaCertMsg struct {
 	Comments  string
 }
 
-// Insert adds a private key to the agent. If a certificate is given,
+// Add adds a private key to the agent. If a certificate is given,
 // that certificate is added instead as public key.
 func (c *client) Add(s interface{}, cert *ssh.Certificate, comment string) error {
 	if cert == nil {
 		return c.insertKey(s, comment)
-	} else {
-		return c.insertCert(s, cert, comment)
 	}
+	return c.insertCert(s, cert, comment)
 }
 
 func (c *client) insertCert(s interface{}, cert *ssh.Certificate, comment string) error {
@@ -553,10 +552,12 @@ type agentKeyringSigner struct {
 	pub   ssh.PublicKey
 }
 
+// PublicKey returns the public key to satisfy the ssh.Signer interface.
 func (s *agentKeyringSigner) PublicKey() ssh.PublicKey {
 	return s.pub
 }
 
+// Sign signs the given data. It is part of the Signer interface.
 func (s *agentKeyringSigner) Sign(rand io.Reader, data []byte) (*ssh.Signature, error) {
 	// The agent has its own entropy source, so the rand argument is ignored.
 	return s.agent.Sign(s.pub, data)
