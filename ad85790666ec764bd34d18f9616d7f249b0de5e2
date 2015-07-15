@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98fcb2c6_448c6eba",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2015-07-15T21:57:55Z",
+      "side": 1,
+      "message": "git codereview gofmt seems to be adding these spaces .. sorry.",
+      "revId": "ad85790666ec764bd34d18f9616d7f249b0de5e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
