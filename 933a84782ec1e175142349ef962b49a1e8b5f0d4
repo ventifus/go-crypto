@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3837466d_c105e282",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-07-15T17:43:47Z",
+      "side": 1,
+      "message": "Certainly some of the other comments in this file could do with being a little better, but you would need to document the |constraints| argument.\n\nHowever, should it really be a []byte? Why are callers expected to deal with the internals of the agent protocol like this?",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3837466d_01ad0af6",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-07-15T17:43:47Z",
+      "side": 1,
+      "message": "Duplicating all these structs is unfortunate and causes more duplication in |insertKey| too.\n\nCan we assume that the agent will always support constraints and thus send an empty byte-string when none are specified? If not, by using the \"rest\" tag it\u0027s possible to have it appended, raw, to the message. See the handling in messages.go.",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3837466d_a1b1be52",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-07-15T17:43:47Z",
+      "side": 1,
+      "message": "This appears to be a literal copy-paste from Add(). Could we not just call Add()?",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3837466d_c1b64248",
+        "filename": "ssh/messages.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-07-15T17:43:47Z",
+      "side": 1,
+      "message": "Does this mean that the contents of Constraints is, in fact, a series of SSH message fields? If so, why not use the \"rest\" tag?",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
