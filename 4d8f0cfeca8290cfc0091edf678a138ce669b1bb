@@ -1,0 +1,6 @@
+Code-Review+2: Dave Cheney <dave@cheney.net>
+Submitted-by: Andrew Gerrand <adg@golang.org>
+Submitted-at: Wed, 15 Jul 2015 23:39:57 +0000
+Reviewed-on: https://go-review.googlesource.com/12229
+Project: crypto
+Branch: refs/heads/master
