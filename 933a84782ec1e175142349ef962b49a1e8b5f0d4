@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "98fcb2c6_a4cd622b",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2015-07-15T21:57:55Z",
+      "side": 1,
+      "message": "This is where I admit that this is my first foray into go. I wasn\u0027t sure of the idiomatic go way to add zero or more of the (currently) two possible constraints.\n\nWould something like\n\nfunc MakeConstraint(constraints []byte, constraintType, constraintOptions int) ([]byte, error) {}",
+      "parentUuid": "3837466d_c105e282",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3837466d_01ad0af6",
         "filename": "ssh/agent/client.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-15T17:43:47Z",
       "side": 1,
       "message": "Duplicating all these structs is unfortunate and causes more duplication in |insertKey| too.\n\nCan we assume that the agent will always support constraints and thus send an empty byte-string when none are specified? If not, by using the \"rest\" tag it\u0027s possible to have it appended, raw, to the message. See the handling in messages.go.",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98fcb2c6_e4c35a00",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2015-07-15T21:57:55Z",
+      "side": 1,
+      "message": "sending an empty byte for the constraint seems to work just fine.\n\nsending constrained keys to ssh-agent with a type of 17 (unconstrained) seems to work, but that feels like a bug. I\u0027m checking with djm@ to see if it\u0027s expected behavior. In the meantime, I\u0027m happy with less duplication.",
+      "parentUuid": "3837466d_01ad0af6",
       "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "98fcb2c6_84d266c7",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2015-07-15T21:57:55Z",
+      "side": 1,
+      "message": "yes, whoops.",
+      "parentUuid": "3837466d_a1b1be52",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3837466d_c1b64248",
         "filename": "ssh/messages.go",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-07-15T17:43:47Z",
       "side": 1,
       "message": "Does this mean that the contents of Constraints is, in fact, a series of SSH message fields? If so, why not use the \"rest\" tag?",
+      "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98fcb2c6_c4f17e63",
+        "filename": "ssh/messages.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2015-07-15T21:57:55Z",
+      "side": 1,
+      "message": "\u003e Does this mean that the contents of Constraints is, in fact, a series of SSH message fields?\n\nYes.\n\n\u003e If so, why not use the \"rest\" tag?\n\nno reason, just my unfamiliarity with go. fixing.",
+      "parentUuid": "3837466d_c1b64248",
       "revId": "933a84782ec1e175142349ef962b49a1e8b5f0d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
