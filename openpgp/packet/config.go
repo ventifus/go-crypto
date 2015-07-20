@@ -43,6 +43,9 @@ type Config struct {
 	// use a value that is at least 65536. See RFC 4880 Section
 	// 3.7.1.3.
 	S2KCount int
+	// Bits is the number of bits in the generated RSA keys. If zero 2048 is
+	// used.
+	Bits int
 }
 
 func (c *Config) Random() io.Reader {
@@ -85,4 +88,11 @@ func (c *Config) PasswordHashIterations() int {
 		return 0
 	}
 	return c.S2KCount
+}
+
+func (c *Config) KeyBits() int {
+	if c == nil || c.Bits == 0 {
+		return 2048
+	}
+	return c.Bits
 }

@@ -455,8 +455,6 @@ func addSubkey(e *Entity, packets *packet.Reader, pub *packet.PublicKey, priv *p
 	return nil
 }
 
-const defaultRSAKeyBits = 2048
-
 // NewEntity returns an Entity that contains a fresh RSA/RSA keypair with a
 // single identity composed of the given full name, comment and email, any of
 // which may be empty but must not contain any of "()<>\x00".
@@ -468,11 +466,11 @@ func NewEntity(name, comment, email string, config *packet.Config) (*Entity, err
 	if uid == nil {
 		return nil, errors.InvalidArgumentError("user id field contained invalid characters")
 	}
-	signingPriv, err := rsa.GenerateKey(config.Random(), defaultRSAKeyBits)
+	signingPriv, err := rsa.GenerateKey(config.Random(), config.KeyBits())
 	if err != nil {
 		return nil, err
 	}
-	encryptingPriv, err := rsa.GenerateKey(config.Random(), defaultRSAKeyBits)
+	encryptingPriv, err := rsa.GenerateKey(config.Random(), config.KeyBits())
 	if err != nil {
 		return nil, err
 	}
