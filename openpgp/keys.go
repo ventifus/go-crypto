@@ -6,11 +6,12 @@ package openpgp
 
 import (
 	"crypto/rsa"
+	"io"
+	"time"
+
 	"golang.org/x/crypto/openpgp/armor"
 	"golang.org/x/crypto/openpgp/errors"
 	"golang.org/x/crypto/openpgp/packet"
-	"io"
-	"time"
 )
 
 // PublicKeyType is the armor type for a PGP public key.
@@ -460,15 +461,20 @@ const defaultRSAKeyBits = 2048
 func NewEntity(name, comment, email string, config *packet.Config) (*Entity, error) {
 	currentTime := config.Now()
 
+	bits := defaultRSAKeyBits
+	if config != nil && config.Bits != 0 {
+		bits = config.Bits
+	}
+
 	uid := packet.NewUserId(name, comment, email)
 	if uid == nil {
 		return nil, errors.InvalidArgumentError("user id field contained invalid characters")
 	}
-	signingPriv, err := rsa.GenerateKey(config.Random(), defaultRSAKeyBits)
+	signingPriv, err := rsa.GenerateKey(config.Random(), bits)
 	if err != nil {
 		return nil, err
 	}
-	encryptingPriv, err := rsa.GenerateKey(config.Random(), defaultRSAKeyBits)
+	encryptingPriv, err := rsa.GenerateKey(config.Random(), bits)
 	if err != nil {
 		return nil, err
 	}
