@@ -8,11 +8,12 @@ import (
 	"bytes"
 	_ "crypto/sha512"
 	"encoding/hex"
-	"golang.org/x/crypto/openpgp/errors"
 	"io"
 	"io/ioutil"
 	"strings"
 	"testing"
+
+	"golang.org/x/crypto/openpgp/errors"
 )
 
 func readerFromHex(s string) io.Reader {
@@ -365,6 +366,40 @@ func TestNoArmoredData(t *testing.T) {
 	_, err := ReadArmoredKeyRing(bytes.NewBufferString("foo"))
 	if _, ok := err.(errors.InvalidArgumentError); !ok {
 		t.Errorf("error was not an InvalidArgumentError: %s", err)
+	}
+}
+
+// An empty Keyring.
+type emptyKR struct {
+}
+
+func (kr emptyKR) KeysById(id uint64) []Key {
+	return nil
+}
+
+func (kr emptyKR) DecryptionKeys() []Key {
+	return nil
+}
+
+func (kr emptyKR) KeysByIdUsage(uint64, byte) []Key {
+	return nil
+}
+
+func TestIssue11503(t *testing.T) {
+	data := "8c040402000aa430aa8228b9248b01fc899a91197130303030"
+
+	buf, err := hex.DecodeString(data)
+	if err != nil {
+		t.Errorf("hex.DecodeSting(): %v", err)
+	}
+
+	_, err = ReadMessage(bytes.NewBuffer(buf), emptyKR{},
+		func([]Key, bool) ([]byte, error) {
+			return []byte("insecure"), nil
+		}, nil)
+
+	if err == nil {
+		t.Errorf("ReadMessage(): Unexpected nil error")
 	}
 }
 
