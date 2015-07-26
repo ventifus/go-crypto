@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd882a39_bc950d4d",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2015-07-26T01:37:24Z",
+      "side": 1,
+      "message": "This is fine, but in future I don\u0027t feel that these comments, just for the sake of having a comment, add a lot of value.\n\nIf you want to document what the method does, rather than the fact that it must exist to satisfy an interface, that would be preferable.",
+      "revId": "eb14ff77132cd9728a68297907b8cc54ce71f634",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
