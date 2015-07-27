@@ -8,11 +8,12 @@ import (
 	"bytes"
 	_ "crypto/sha512"
 	"encoding/hex"
-	"golang.org/x/crypto/openpgp/errors"
 	"io"
 	"io/ioutil"
 	"strings"
 	"testing"
+
+	"golang.org/x/crypto/openpgp/errors"
 )
 
 func readerFromHex(s string) io.Reader {
@@ -365,6 +366,29 @@ func TestNoArmoredData(t *testing.T) {
 	_, err := ReadArmoredKeyRing(bytes.NewBufferString("foo"))
 	if _, ok := err.(errors.InvalidArgumentError); !ok {
 		t.Errorf("error was not an InvalidArgumentError: %s", err)
+	}
+}
+
+func TestIssue11504(t *testing.T) {
+	data := "9303000130303030303030303030983002303030303030030000000130"
+
+	buf, err := hex.DecodeString(data)
+	if err != nil {
+		t.Errorf("hex.DecodeString(): %v", err)
+	}
+
+	kr, err := ReadKeyRing(new(bytes.Buffer))
+	if err != nil {
+		t.Errorf("ReadKeyRing(): %v", err)
+	}
+
+	_, err = ReadMessage(bytes.NewBuffer(buf), kr,
+		func([]Key, bool) ([]byte, error) {
+			return []byte("insecure"), nil
+		}, nil)
+
+	if err == nil {
+		t.Errorf("ReadMessage(): Unexpected nil error")
 	}
 }
 

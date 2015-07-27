@@ -72,6 +72,13 @@ func (pk *PublicKeyV3) parse(r io.Reader) (err error) {
 		return
 	}
 
+	// RFC 4880 Section 12.2 requires the low 8 bytes of the
+	// modulus to form the key id.
+	if len(pk.n.bytes) < 8 {
+		err = errors.StructuralError("v3 public key modulus is too short")
+		return
+	}
+
 	pk.setFingerPrintAndKeyId()
 	return
 }
