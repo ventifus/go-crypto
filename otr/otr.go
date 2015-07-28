@@ -1096,6 +1096,10 @@ func (c *Conversation) calcDataKeys(myKeyId, theirKeyId uint32) (slot *keySlot, 
 	h.Write(slot.recvAESKey)
 	slot.recvMACKey = h.Sum(slot.recvMACKey[:0])
 
+	slot.theirKeyId = theirKeyId
+	slot.myKeyId = myKeyId
+	slot.used = true
+
 	zero(slot.theirLastCtr[:])
 	return
 }

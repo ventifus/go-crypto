@@ -194,22 +194,81 @@ func TestConversation(t *testing.T) {
 		t.Error("Bob doesn't believe that the conversation is secure")
 	}
 
-	var testMessage = []byte("hello Bob")
-	alicesMessage, err = alice.Send(testMessage)
-	for i, msg := range alicesMessage {
-		out, encrypted, _, _, err := bob.Receive(msg)
-		if err != nil {
-			t.Errorf("Error generated while processing test message: %s", err.Error())
+	var testMessages = []string{
+		"hello", "bye",
+	}
+
+	for j, m := range testMessages {
+		testMessage := []byte(m)
+		alicesMessage, err = alice.Send(testMessage)
+
+		if len(alice.oldMACs) != 0 {
+			t.Errorf("Alice has not revealed all MAC keys")
 		}
-		if len(out) > 0 {
-			if i != len(alicesMessage)-1 {
-				t.Fatal("Bob produced a message while processing a fragment of Alice's")
+
+		for i, msg := range alicesMessage {
+			out, encrypted, _, _, err := bob.Receive(msg)
+
+			if err != nil {
+				t.Errorf("Error generated while processing test message: %s", err.Error())
 			}
-			if !encrypted {
-				t.Errorf("Message was not marked as encrypted")
+			if len(out) > 0 {
+				if i != len(alicesMessage)-1 {
+					t.Fatal("Bob produced a message while processing a fragment of Alice's")
+				}
+				if !encrypted {
+					t.Errorf("Message was not marked as encrypted")
+				}
+				if !bytes.Equal(out, testMessage) {
+					t.Errorf("Message corrupted: got %x, want %x", out, testMessage)
+				}
 			}
-			if !bytes.Equal(out, testMessage) {
-				t.Errorf("Message corrupted: got %x, want %x", out, testMessage)
+		}
+
+		switch j {
+		case 0:
+			if len(bob.oldMACs) != 0 {
+				t.Errorf("Bob should not have MAC keys to reveal")
+			}
+		case 1:
+			if len(bob.oldMACs) != 80 {
+				t.Errorf("Bob does not have MAC keys to reveal")
+			}
+		}
+
+		bobsMessage, err = bob.Send(testMessage)
+
+		if len(bob.oldMACs) != 0 {
+			t.Errorf("Bob has not revealed all MAC keys")
+		}
+
+		for i, msg := range bobsMessage {
+			out, encrypted, _, _, err := alice.Receive(msg)
+
+			if err != nil {
+				t.Errorf("Error generated while processing test message: %s", err.Error())
+			}
+			if len(out) > 0 {
+				if i != len(bobsMessage)-1 {
+					t.Fatal("Alice produced a message while processing a fragment of Bob's")
+				}
+				if !encrypted {
+					t.Errorf("Message was not marked as encrypted")
+				}
+				if !bytes.Equal(out, testMessage) {
+					t.Errorf("Message corrupted: got %x, want %x", out, testMessage)
+				}
+			}
+		}
+
+		switch j {
+		case 0:
+			if len(alice.oldMACs) != 40 {
+				t.Errorf("Alice does not have MAC keys to reveal")
+			}
+		case 1:
+			if len(alice.oldMACs) != 80 {
+				t.Errorf("Alice does not have MAC keys to reveal")
 			}
 		}
 	}
