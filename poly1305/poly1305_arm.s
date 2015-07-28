@@ -47,6 +47,16 @@ TEXT poly1305_init_ext_armv6<>(SB),4,$-4
   MOVM.IA.W (R13), [R4-R11]
   RET
 
+#define LOAD_UNALIGNED(Rsrc, Rdst, Rtmp, offset) \
+  MOVBU (offset+0)(Rsrc), Rtmp; \
+  MOVBU Rtmp, (offset+0)(Rdst); \
+  MOVBU (offset+1)(Rsrc), Rtmp; \
+  MOVBU Rtmp, (offset+1)(Rdst); \
+  MOVBU (offset+2)(Rsrc), Rtmp; \
+  MOVBU Rtmp, (offset+2)(Rdst); \
+  MOVBU (offset+3)(Rsrc), Rtmp; \
+  MOVBU Rtmp, (offset+3)(Rdst)
+
 TEXT poly1305_blocks_armv6<>(SB),4,$-4
   MOVM.DB.W [R4, R5, R6, R7, R8, R9, g, R11, R14], (R13)
   SUB $128, R13
@@ -66,7 +76,19 @@ TEXT poly1305_blocks_armv6<>(SB),4,$-4
   CMP $16, R12
   BLO poly1305_blocks_armv6_done
 poly1305_blocks_armv6_mainloop:
+  WORD $0xe31e0003 // TST R14, #3 not working see issue 5921
+  BEQ poly1305_blocks_armv6_poly1305_aligned
+  ADD $48, R13, R3
+  LOAD_UNALIGNED(R14, R3, R0, 0)
+  LOAD_UNALIGNED(R14, R3, R0, 4)
+  LOAD_UNALIGNED(R14, R3, R0, 8)
+  LOAD_UNALIGNED(R14, R3, R0, 12)
+  MOVM.IA (R3), [R0-R3]
+  ADD $16, R14
+  B poly1305_blocks_armv6_poly1305_loaded
+poly1305_blocks_armv6_poly1305_aligned:
   MOVM.IA.W (R14), [R0-R3]
+poly1305_blocks_armv6_poly1305_loaded:
   MOVW R0>>26, g
   MOVW R1>>20, R11
   MOVW R2>>14, R12
@@ -176,7 +198,7 @@ poly1305_blocks_armv6_done:
 
 TEXT poly1305_finish_ext_armv6<>(SB),4,$-4
   MOVM.DB.W [R4, R5, R6, R7, R8, R9, g, R11, R14], (R13)
-  SUB $16, R13, R13
+  SUB $24, R13, R13
   MOVW R0, R5
   MOVW R1, R6
   MOVW R2, R7
@@ -191,7 +213,17 @@ TEXT poly1305_finish_ext_armv6<>(SB),4,$-4
   MOVW R0, 12(R13)
   WORD $0xe3120008 // TST R2, #8 not working see issue 5921
   BEQ poly1305_finish_ext_armv6_skip8
+  WORD $0xe3110003 // TST R1, #3 not working see issue 5921
+  BEQ poly1305_finish_ext_armv6_aligned
+  ADD $20, R13, R11
+  LOAD_UNALIGNED(R1, R11, g, 0)
+  LOAD_UNALIGNED(R1, R11, g, 4)
+  MOVM.IA (R11), [g-R11]
+  ADD $8, R1
+  B poly1305_finish_ext_armv6_loaded
+poly1305_finish_ext_armv6_aligned:
   MOVM.IA.W (R1), [g-R11]
+poly1305_finish_ext_armv6_loaded:
   MOVM.IA.W [g-R11], (R9)
 poly1305_finish_ext_armv6_skip8:
   WORD $0xe3120004 // TST $4, R2 not working see issue 5921
@@ -297,7 +329,7 @@ poly1305_finish_ext_armv6_noremaining:
   EOR R7, R7, R7
   MOVM.IA.W [R0-R7], (R12)
   MOVM.IA [R0-R7], (R12)
-  ADD $16, R13, R13
+  ADD $24, R13, R13
   MOVM.IA.W (R13), [R4, R5, R6, R7, R8, R9, g, R11, R14]
   RET
 
