@@ -203,4 +203,9 @@ type ClientConfig struct {
 	// ClientVersion contains the version identification string that will
 	// be used for the connection. If empty, a reasonable default is used.
 	ClientVersion string
+
+	// HostKeyAlgorithms lists the host key types that the client
+	// will accept from the server, in order of preference. If
+	// empty, a reasonable default is used.
+	HostKeyAlgorithms []string
 }
