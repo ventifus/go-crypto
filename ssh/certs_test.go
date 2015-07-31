@@ -183,8 +183,10 @@ func TestHostKeyCert(t *testing.T) {
 		if err != nil {
 			t.Fatalf("netPipe: %v", err)
 		}
-		defer c1.Close()
 		defer c2.Close()
+		defer c1.Close()
+
+		errc := make(chan error)
 
 		go func() {
 			conf := ServerConfig{
@@ -192,9 +194,7 @@ func TestHostKeyCert(t *testing.T) {
 			}
 			conf.AddHostKey(certSigner)
 			_, _, _, err := NewServerConn(c1, &conf)
-			if err != nil {
-				t.Fatalf("NewServerConn: %v", err)
-			}
+			errc <- err
 		}()
 
 		config := &ClientConfig{
@@ -206,6 +206,11 @@ func TestHostKeyCert(t *testing.T) {
 		succeed := name == "hostname"
 		if (err == nil) != succeed {
 			t.Fatalf("NewClientConn(%q): %v", name, err)
+		}
+
+		err = <-errc
+		if (err == nil) != succeed {
+			t.Fatalf("NewServerConn: %v", err)
 		}
 	}
 }
