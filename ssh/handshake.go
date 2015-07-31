@@ -61,6 +61,10 @@ type handshakeTransport struct {
 
 	hostKeys []Signer // If hostKeys are given, we are the server.
 
+	// If hostKeys is not given, we are the client, and we accept
+	// these algorithms.
+	hostKeyAlgorithms []string
+
 	// On read error, incoming is closed, and readError is set.
 	incoming  chan []byte
 	readError error
@@ -98,6 +102,11 @@ func newClientTransport(conn keyingTransport, clientVersion, serverVersion []byt
 	t.dialAddress = dialAddr
 	t.remoteAddr = addr
 	t.hostKeyCallback = config.HostKeyCallback
+	if config.HostKeyAlgorithms != nil {
+		t.hostKeyAlgorithms = config.HostKeyAlgorithms
+	} else {
+		t.hostKeyAlgorithms = supportedHostKeyAlgos
+	}
 	go t.readLoop()
 	return t
 }
@@ -158,7 +167,7 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 	t.readSinceKex += uint64(len(p))
 	if debugHandshake {
 		msg, err := decode(p)
-		log.Printf("%s got %T %v (%v)", t.id(), msg, msg, err)
+		log.Printf("%s got %#v (%v)", t.id(), msg, err)
 	}
 	if p[0] != msgKexInit {
 		return p, nil
@@ -234,7 +243,7 @@ func (t *handshakeTransport) sendKexInitLocked() (*kexInitMsg, []byte, error) {
 				msg.ServerHostKeyAlgos, k.PublicKey().Type())
 		}
 	} else {
-		msg.ServerHostKeyAlgos = supportedHostKeyAlgos
+		msg.ServerHostKeyAlgos = t.hostKeyAlgorithms
 	}
 	packet := Marshal(msg)
 
