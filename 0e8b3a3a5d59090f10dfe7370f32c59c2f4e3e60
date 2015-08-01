@@ -22,6 +22,30 @@
       "revId": "0e8b3a3a5d59090f10dfe7370f32c59c2f4e3e60",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad72168f_8868a795",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2015-08-01T02:10:40Z",
+      "side": 1,
+      "message": "Doing a defer inside a for loop made me twitch, but it is not relevant to this test, so I\u0027ve moved this back.",
+      "parentUuid": "4d68ba9e_5f19e385",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 17
+      },
+      "revId": "0e8b3a3a5d59090f10dfe7370f32c59c2f4e3e60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
