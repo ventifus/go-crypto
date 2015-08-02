@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad9936fb_45f1200a",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-08-02T09:38:24Z",
+      "side": 1,
+      "message": "include the \u0027name\u0027 variable in this failure message, so we know which test case failed, like on line 208.",
+      "revId": "e040ec4bef6a622473dfe669fbd871ae581422ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
