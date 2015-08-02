@@ -1,0 +1,6 @@
+Code-Review+2: Brad Fitzpatrick <bradfitz@golang.org>
+Submitted-by: Dave Cheney <dave@cheney.net>
+Submitted-at: Sun, 02 Aug 2015 23:53:49 +0000
+Reviewed-on: https://go-review.googlesource.com/12916
+Project: crypto
+Branch: refs/heads/master
