@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2d862697_d4c79c0b",
+        "filename": "ssh/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-04T09:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca673030_f8d50d64",
+      "revId": "e7384a49e073d9a3a9358a060a20d01ed573f874",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a5c2064_7f0a875d",
         "filename": "ssh/handshake.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6d657ec3_8326c43d",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-04T09:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a5c2064_7f0a875d",
+      "revId": "e7384a49e073d9a3a9358a060a20d01ed573f874",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a5c2064_5f0fc36b",
         "filename": "ssh/handshake.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2015-08-03T18:12:07Z",
       "side": 1,
       "message": "This seems unrelated? Revert or move to a different change?",
+      "revId": "e7384a49e073d9a3a9358a060a20d01ed573f874",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d862697_14d2e4cd",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-04T09:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a5c2064_5f0fc36b",
       "revId": "e7384a49e073d9a3a9358a060a20d01ed573f874",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
