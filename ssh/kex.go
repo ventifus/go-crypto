@@ -10,16 +10,20 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"errors"
+	"fmt"
 	"io"
 	"math/big"
+
+	"golang.org/x/crypto/curve25519"
 )
 
 const (
-	kexAlgoDH1SHA1  = "diffie-hellman-group1-sha1"
-	kexAlgoDH14SHA1 = "diffie-hellman-group14-sha1"
-	kexAlgoECDH256  = "ecdh-sha2-nistp256"
-	kexAlgoECDH384  = "ecdh-sha2-nistp384"
-	kexAlgoECDH521  = "ecdh-sha2-nistp521"
+	kexAlgoDH1SHA1          = "diffie-hellman-group1-sha1"
+	kexAlgoDH14SHA1         = "diffie-hellman-group14-sha1"
+	kexAlgoECDH256          = "ecdh-sha2-nistp256"
+	kexAlgoECDH384          = "ecdh-sha2-nistp384"
+	kexAlgoECDH521          = "ecdh-sha2-nistp521"
+	kexAlgoCurve25519SHA256 = "curve25519-sha256@libssh.org"
 )
 
 // kexResult captures the outcome of a key exchange.
@@ -383,4 +387,132 @@ func init() {
 	kexAlgoMap[kexAlgoECDH521] = &ecdh{elliptic.P521()}
 	kexAlgoMap[kexAlgoECDH384] = &ecdh{elliptic.P384()}
 	kexAlgoMap[kexAlgoECDH256] = &ecdh{elliptic.P256()}
+	kexAlgoMap[kexAlgoCurve25519SHA256] = &curve25519sha256{}
+}
+
+// curve25519sha256 implements the curve25519-sha256@libssh.org key
+// agreement protocol, as described in
+// https://git.libssh.org/projects/libssh.git/tree/doc/curve25519-sha256@libssh.org.txt
+type curve25519sha256 struct{}
+
+type curve25519KeyPair struct {
+	priv [32]byte
+	pub  [32]byte
+}
+
+func (kp *curve25519KeyPair) gen(rand io.Reader) error {
+	if _, err := rand.Read(kp.priv[:]); err != nil {
+		return err
+	}
+	curve25519.ScalarBaseMult(&kp.pub, &kp.priv)
+	return nil
+}
+
+func (kex *curve25519sha256) Client(c packetConn, rand io.Reader, magics *handshakeMagics) (*kexResult, error) {
+	var kp curve25519KeyPair
+	if err := kp.gen(rand); err != nil {
+		return nil, err
+	}
+	kexInit := kexECDHInitMsg{kp.pub[:]}
+	if err := c.writePacket(Marshal(&kexInit)); err != nil {
+		return nil, err
+	}
+
+	packet, err := c.readPacket()
+	if err != nil {
+		return nil, err
+	}
+
+	var reply kexECDHReplyMsg
+	if err = Unmarshal(packet, &reply); err != nil {
+		return nil, err
+	}
+	if len(reply.EphemeralPubKey) != 32 {
+		return nil, fmt.Errorf("ssh: server public key has %d bytes, want 32", len(reply.EphemeralPubKey))
+	}
+
+	var servPub, secret [32]byte
+	copy(servPub[:], reply.EphemeralPubKey)
+	curve25519.ScalarMult(&secret, &kp.priv, &servPub)
+	kInt := &big.Int{}
+	kInt.SetBytes(secret[:])
+
+	h := crypto.SHA256.New()
+	magics.write(h)
+	writeString(h, reply.HostKey)
+	writeString(h, kexInit.ClientPubKey)
+	writeString(h, reply.EphemeralPubKey)
+
+	K := make([]byte, intLength(kInt))
+	marshalInt(K, kInt)
+	h.Write(K)
+
+	return &kexResult{
+		H:         h.Sum(nil),
+		K:         K,
+		HostKey:   reply.HostKey,
+		Signature: reply.Signature,
+		Hash:      crypto.SHA256,
+	}, nil
+}
+
+func (kex *curve25519sha256) Server(c packetConn, rand io.Reader, magics *handshakeMagics, priv Signer) (result *kexResult, err error) {
+	packet, err := c.readPacket()
+	if err != nil {
+		return
+	}
+	var kexInit kexECDHInitMsg
+	if err = Unmarshal(packet, &kexInit); err != nil {
+		return
+	}
+
+	if len(kexInit.ClientPubKey) != 32 {
+		return nil, fmt.Errorf("ssh: client public key has %d bytes, want 32", len(kexInit.ClientPubKey))
+	}
+
+	var kp curve25519KeyPair
+	if err := kp.gen(rand); err != nil {
+		return nil, err
+	}
+
+	var clientPub, secret [32]byte
+	copy(clientPub[:], kexInit.ClientPubKey)
+	curve25519.ScalarMult(&secret, &kp.priv, &clientPub)
+	kInt := &big.Int{}
+	kInt.SetBytes(secret[:])
+
+	hostKeyBytes := priv.PublicKey().Marshal()
+
+	h := crypto.SHA256.New()
+	magics.write(h)
+	writeString(h, hostKeyBytes)
+	writeString(h, kexInit.ClientPubKey)
+	writeString(h, kp.pub[:])
+
+	K := make([]byte, intLength(kInt))
+	marshalInt(K, kInt)
+	h.Write(K)
+
+	H := h.Sum(nil)
+
+	sig, err := signAndMarshal(priv, rand, H)
+	if err != nil {
+		return nil, err
+	}
+
+	reply := kexECDHReplyMsg{
+		EphemeralPubKey: kp.pub[:],
+		HostKey:         hostKeyBytes,
+		Signature:       sig,
+	}
+	if err := c.writePacket(Marshal(&reply)); err != nil {
+		return nil, err
+	}
+	return &kexResult{
+		H:         H,
+		K:         K,
+		HostKey:   hostKeyBytes,
+		Signature: sig,
+		Hash:      crypto.SHA256,
+	}, nil
 }
