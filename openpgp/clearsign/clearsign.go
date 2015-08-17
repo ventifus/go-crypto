@@ -197,7 +197,17 @@ func (d *dashEscaper) Write(data []byte) (n int, err error) {
 				d.h.Write(crlf)
 			}
 			d.isFirstLine = false
+		}
 
+		// Any whitespace at the end of the line has to be removed so we
+		// buffer it until we find out whether there's more on this line.
+		if b == ' ' || b == '\t' || b == '\r' {
+			d.whitespace = append(d.whitespace, b)
+			d.atBeginningOfLine = false
+			continue
+		}
+
+		if d.atBeginningOfLine {
 			// At the beginning of a line, hyphens have to be escaped.
 			if b == '-' {
 				// The signature isn't calculated over the dash-escaped text so
@@ -217,11 +227,7 @@ func (d *dashEscaper) Write(data []byte) (n int, err error) {
 				return
 			}
 		} else {
-			// Any whitespace at the end of the line has to be removed so we
-			// buffer it until we find out whether there's more on this line.
-			if b == ' ' || b == '\t' || b == '\r' {
-				d.whitespace = append(d.whitespace, b)
-			} else if b == '\n' {
+			if b == '\n' {
 				// We got a raw \n. Drop any trailing whitespace and write a
 				// CRLF.
 				d.whitespace = d.whitespace[:0]
