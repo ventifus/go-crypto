@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64591d73_1ad8b296",
+        "filename": "poly1305/poly1305_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-08-17T22:37:48Z",
+      "side": 1,
+      "message": "did you mean 16 here? (If not then I don\u0027t understand something, which is quite possible since I don\u0027t know ARM assembly very well.)",
+      "range": {
+        "startLine": 218,
+        "startChar": 7,
+        "endLine": 218,
+        "endChar": 9
+      },
+      "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64591d73_3ab1364e",
+        "filename": "poly1305/poly1305_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-08-17T22:37:48Z",
+      "side": 1,
+      "message": "This is handling non-alignment of the |key| argument? If so, is that a lot easier to handle in sum_arm.go? If R1 is unaligned, won\u0027t the read on linux 231 go badly?",
+      "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
