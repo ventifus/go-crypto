@@ -81,6 +81,24 @@
       "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64591d73_157fe31c",
+        "filename": "poly1305/poly1305_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-08-18T00:16:05Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right.\n\nHowever, if R1 is unaligned, then wouldn\u0027t the MOVW.P instruction at line 231 also cause a problem?\n\nAlso, you\u0027re copying the 8 bytes to a scratch area on the stack, I think. But doesn\u0027t the MOVM.IA.W at line 227 just copy to a different scratch area on the stack?",
+      "parentUuid": "64591d73_95abf35c",
+      "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
