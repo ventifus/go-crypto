@@ -117,6 +117,24 @@
       "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64591d73_66a673cb",
+        "filename": "poly1305/poly1305_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5935
+      },
+      "writtenOn": "2015-08-18T17:44:36Z",
+      "side": 1,
+      "message": "I updated poly1305_finish_ext_armv6 to handle unaligned access in other cases as well. PTAL.",
+      "parentUuid": "64591d73_b0ba8506",
+      "revId": "02ec784e5e29b4ec912c1d8e8d36c860ecb8bf93",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
