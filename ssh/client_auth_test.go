@@ -252,8 +252,8 @@ func TestClientUnsupportedKex(t *testing.T) {
 			KeyExchanges: []string{"diffie-hellman-group-exchange-sha256"}, // not currently supported
 		},
 	}
-	if err := tryAuth(t, config); err == nil || !strings.Contains(err.Error(), "no common algorithms") {
-		t.Errorf("got %v, expected 'no common algorithms'", err)
+	if err := tryAuth(t, config); err == nil || !strings.Contains(err.Error(), "unable to find a common algorithm") {
+		t.Errorf("got %v, expected 'unable to find a common algorithm'", err)
 	}
 }
 

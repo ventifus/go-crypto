@@ -85,27 +85,27 @@ func parseError(tag uint8) error {
 	return fmt.Errorf("ssh: parse error in message type %d", tag)
 }
 
-func findCommonAlgorithm(clientAlgos []string, serverAlgos []string) (commonAlgo string, ok bool) {
+func findCommonAlgorithm(what string, clientAlgos []string, serverAlgos []string) (commonAlgo string, err error) {
 	for _, clientAlgo := range clientAlgos {
 		for _, serverAlgo := range serverAlgos {
 			if clientAlgo == serverAlgo {
-				return clientAlgo, true
+				return clientAlgo, nil
 			}
 		}
 	}
-	return
+	return "", fmt.Errorf("no common algorithms for %s. client: %v, server: %v", what, clientAlgos, serverAlgos)
 }
 
-func findCommonCipher(clientCiphers []string, serverCiphers []string) (commonCipher string, ok bool) {
+func findCommonCipher(what string, clientCiphers []string, serverCiphers []string) (commonCipher string, err error) {
 	for _, clientCipher := range clientCiphers {
 		for _, serverCipher := range serverCiphers {
 			// reject the cipher if we have no cipherModes definition
 			if clientCipher == serverCipher && cipherModes[clientCipher] != nil {
-				return clientCipher, true
+				return clientCipher, nil
 			}
 		}
 	}
-	return
+	return "", fmt.Errorf("no common ciphers for %s. client: %v, server: %v", what, clientCiphers, serverCiphers)
 }
 
 type directionAlgorithms struct {
@@ -121,50 +121,50 @@ type algorithms struct {
 	r       directionAlgorithms
 }
 
-func findAgreedAlgorithms(clientKexInit, serverKexInit *kexInitMsg) (algs *algorithms) {
-	var ok bool
+func findAgreedAlgorithms(clientKexInit, serverKexInit *kexInitMsg) (algs *algorithms, err error) {
 	result := &algorithms{}
-	result.kex, ok = findCommonAlgorithm(clientKexInit.KexAlgos, serverKexInit.KexAlgos)
-	if !ok {
+
+	result.kex, err = findCommonAlgorithm("key exchange", clientKexInit.KexAlgos, serverKexInit.KexAlgos)
+	if err != nil {
 		return
 	}
 
-	result.hostKey, ok = findCommonAlgorithm(clientKexInit.ServerHostKeyAlgos, serverKexInit.ServerHostKeyAlgos)
-	if !ok {
+	result.hostKey, err = findCommonAlgorithm("ServerHostKey", clientKexInit.ServerHostKeyAlgos, serverKexInit.ServerHostKeyAlgos)
+	if err != nil {
 		return
 	}
 
-	result.w.Cipher, ok = findCommonCipher(clientKexInit.CiphersClientServer, serverKexInit.CiphersClientServer)
-	if !ok {
+	result.w.Cipher, err = findCommonCipher("ciphers algorithm from the client to the server", clientKexInit.CiphersClientServer, serverKexInit.CiphersClientServer)
+	if err != nil {
 		return
 	}
 
-	result.r.Cipher, ok = findCommonCipher(clientKexInit.CiphersServerClient, serverKexInit.CiphersServerClient)
-	if !ok {
+	result.r.Cipher, err = findCommonCipher("ciphers algorithm from the server to the slient", clientKexInit.CiphersServerClient, serverKexInit.CiphersServerClient)
+	if err != nil {
 		return
 	}
 
-	result.w.MAC, ok = findCommonAlgorithm(clientKexInit.MACsClientServer, serverKexInit.MACsClientServer)
-	if !ok {
+	result.w.MAC, err = findCommonAlgorithm("MACs algorithm from the client to the server", clientKexInit.MACsClientServer, serverKexInit.MACsClientServer)
+	if err != nil {
 		return
 	}
 
-	result.r.MAC, ok = findCommonAlgorithm(clientKexInit.MACsServerClient, serverKexInit.MACsServerClient)
-	if !ok {
+	result.r.MAC, err = findCommonAlgorithm("MACs algorithm from the server to the client", clientKexInit.MACsServerClient, serverKexInit.MACsServerClient)
+	if err != nil {
 		return
 	}
 
-	result.w.Compression, ok = findCommonAlgorithm(clientKexInit.CompressionClientServer, serverKexInit.CompressionClientServer)
-	if !ok {
+	result.w.Compression, err = findCommonAlgorithm("compression algorithm from the client to the server", clientKexInit.CompressionClientServer, serverKexInit.CompressionClientServer)
+	if err != nil {
 		return
 	}
 
-	result.r.Compression, ok = findCommonAlgorithm(clientKexInit.CompressionServerClient, serverKexInit.CompressionServerClient)
-	if !ok {
+	result.r.Compression, err = findCommonAlgorithm("compression algorithm from the server to the client", clientKexInit.CompressionServerClient, serverKexInit.CompressionServerClient)
+	if err != nil {
 		return
 	}
 
-	return result
+	return result, nil
 }
 
 // If rekeythreshold is too small, we can't make any progress sending
