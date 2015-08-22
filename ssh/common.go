@@ -7,6 +7,7 @@ package ssh
 import (
 	"crypto"
 	"crypto/rand"
+	"errors"
 	"fmt"
 	"io"
 	"sync"
@@ -121,50 +122,50 @@ type algorithms struct {
 	r       directionAlgorithms
 }
 
-func findAgreedAlgorithms(clientKexInit, serverKexInit *kexInitMsg) (algs *algorithms) {
+func findAgreedAlgorithms(clientKexInit, serverKexInit *kexInitMsg) (algs *algorithms, err error) {
 	var ok bool
 	result := &algorithms{}
 	result.kex, ok = findCommonAlgorithm(clientKexInit.KexAlgos, serverKexInit.KexAlgos)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over Kex (Key Exchange) Algorithm")
 	}
 
 	result.hostKey, ok = findCommonAlgorithm(clientKexInit.ServerHostKeyAlgos, serverKexInit.ServerHostKeyAlgos)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over ServerHostKey Algorithm")
 	}
 
 	result.w.Cipher, ok = findCommonCipher(clientKexInit.CiphersClientServer, serverKexInit.CiphersClientServer)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over Ciphers Algorithm from the Client to the Server")
 	}
 
 	result.r.Cipher, ok = findCommonCipher(clientKexInit.CiphersServerClient, serverKexInit.CiphersServerClient)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over Ciphers Algorithm from the Server to the Client")
 	}
 
 	result.w.MAC, ok = findCommonAlgorithm(clientKexInit.MACsClientServer, serverKexInit.MACsClientServer)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over MACs Algorithm from the Client to the Server")
 	}
 
 	result.r.MAC, ok = findCommonAlgorithm(clientKexInit.MACsServerClient, serverKexInit.MACsServerClient)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over MAC Algorithm from the Server to the Client")
 	}
 
 	result.w.Compression, ok = findCommonAlgorithm(clientKexInit.CompressionClientServer, serverKexInit.CompressionClientServer)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over Compression Algorithm from the Client to the Server")
 	}
 
 	result.r.Compression, ok = findCommonAlgorithm(clientKexInit.CompressionServerClient, serverKexInit.CompressionServerClient)
 	if !ok {
-		return
+		return nil, errors.New("disagreement over Compression Algorithm from the Server to the Client")
 	}
 
-	return result
+	return result, nil
 }
 
 // If rekeythreshold is too small, we can't make any progress sending
