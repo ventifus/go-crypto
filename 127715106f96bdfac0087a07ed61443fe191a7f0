@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "446ed97b_6c965320",
+        "filename": "ssh/common.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-24T20:51:17Z",
+      "side": 1,
+      "message": "just write in full.",
+      "range": {
+        "startLine": 130,
+        "startChar": 44,
+        "endLine": 130,
+        "endChar": 47
+      },
+      "revId": "127715106f96bdfac0087a07ed61443fe191a7f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "446ed97b_2c905b1f",
+        "filename": "ssh/common.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-24T20:51:17Z",
+      "side": 1,
+      "message": "how about adding info to the message?\n\n type commonAlgoError {\n   what string\n   client, server []string\n }\n func (e *commonAlgoError) Error()string {\n   return fmt.Sprintf(\"no common algorithms for %s, client %v server %v\", what, client, server\n }\n\nreturn this error from findCommonCipher()",
+      "range": {
+        "startLine": 135,
+        "startChar": 26,
+        "endLine": 135,
+        "endChar": 38
+      },
+      "revId": "127715106f96bdfac0087a07ed61443fe191a7f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64e03d3d_052bb407",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-08-24T20:51:17Z",
+      "side": 1,
+      "message": "this can just propagate the error.",
+      "range": {
+        "startLine": 337,
+        "startChar": 13,
+        "endLine": 337,
+        "endChar": 19
+      },
+      "revId": "127715106f96bdfac0087a07ed61443fe191a7f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
