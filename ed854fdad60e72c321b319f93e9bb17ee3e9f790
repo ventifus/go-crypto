@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44e3394a_c73a7282",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T13:38:14Z",
+      "side": 1,
+      "message": "just look for the string \"common algorithm\". That is sufficiently specific.",
+      "range": {
+        "startLine": 255,
+        "startChar": 87,
+        "endLine": 255,
+        "endChar": 91
+      },
+      "revId": "ed854fdad60e72c321b319f93e9bb17ee3e9f790",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44e3394a_a73f6e70",
+        "filename": "ssh/common.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T13:38:14Z",
+      "side": 1,
+      "message": "s/./;/\n\nadd \"ssh: \" prefix",
+      "range": {
+        "startLine": 96,
+        "startChar": 51,
+        "endLine": 96,
+        "endChar": 52
+      },
+      "revId": "ed854fdad60e72c321b319f93e9bb17ee3e9f790",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44e3394a_472f8240",
+        "filename": "ssh/common.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T13:38:14Z",
+      "side": 1,
+      "message": "this function should be merged with the previous one. \n\nCan you verify that the Config.SetDefaults will ensure that all ciphers are supported? Then this function can disappear.",
+      "revId": "ed854fdad60e72c321b319f93e9bb17ee3e9f790",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24656596_2ecb7397",
+        "filename": "ssh/common.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T13:38:14Z",
+      "side": 1,
+      "message": "\"client to server cipher\"\n\nadjust the rest of the strings similarly.",
+      "range": {
+        "startLine": 137,
+        "startChar": 42,
+        "endLine": 137,
+        "endChar": 49
+      },
+      "revId": "ed854fdad60e72c321b319f93e9bb17ee3e9f790",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24656596_ced89768",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T13:38:14Z",
+      "side": 1,
+      "message": "pass err to caller.",
+      "range": {
+        "startLine": 337,
+        "startChar": 13,
+        "endLine": 337,
+        "endChar": 19
+      },
+      "revId": "ed854fdad60e72c321b319f93e9bb17ee3e9f790",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
