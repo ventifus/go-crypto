@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a45875e6_8777e878",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:44:03Z",
+      "side": 1,
+      "message": "s/agreement/algorithm/",
+      "revId": "07104b06d536cd05e62b2cab7cdf1769d0d73a44",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "845371c9_464574cb",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:44:03Z",
+      "side": 1,
+      "message": "drop \"the\" here, and below.",
+      "range": {
+        "startLine": 125,
+        "startChar": 45,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "07104b06d536cd05e62b2cab7cdf1769d0d73a44",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24656596_ce2ad7b4",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:44:03Z",
+      "side": 1,
+      "message": "s/ciphers/cipher/",
+      "range": {
+        "startLine": 130,
+        "startChar": 57,
+        "endLine": 130,
+        "endChar": 64
+      },
+      "revId": "07104b06d536cd05e62b2cab7cdf1769d0d73a44",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a45875e6_476250bb",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:44:03Z",
+      "side": 1,
+      "message": "I think \"algorithm\" is superfluous here and below.",
+      "range": {
+        "startLine": 135,
+        "startChar": 58,
+        "endLine": 135,
+        "endChar": 67
+      },
+      "revId": "07104b06d536cd05e62b2cab7cdf1769d0d73a44",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
