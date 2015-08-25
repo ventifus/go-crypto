@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44e3394a_87b4ea69",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:34:34Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 142,
+        "startChar": 56,
+        "endLine": 142,
+        "endChar": 62
+      },
+      "revId": "d73a8778febe105d62c1083e7b93961900852ba4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44e3394a_27a7de41",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-08-25T14:34:34Z",
+      "side": 1,
+      "message": "s/MACs/MAC/",
+      "range": {
+        "startLine": 147,
+        "startChar": 63,
+        "endLine": 147,
+        "endChar": 67
+      },
+      "revId": "d73a8778febe105d62c1083e7b93961900852ba4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
