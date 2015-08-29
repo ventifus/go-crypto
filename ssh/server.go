@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"strings"
 )
 
 // The Permissions type holds fine-grained permissions that are
@@ -173,6 +174,11 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 	}
 
 	if config.ServerVersion != "" {
+		// Insert protocol version at beginning if not provided;
+		// some (many?) clients expect this. Use 2.0 as default.
+		if !strings.HasPrefix(config.ServerVersion, "SSH-") {
+			config.ServerVersion = "SSH-2.0-" + config.ServerVersion
+		}
 		s.serverVersion = []byte(config.ServerVersion)
 	} else {
 		s.serverVersion = []byte(packageVersion)
