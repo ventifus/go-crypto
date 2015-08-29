@@ -69,6 +69,8 @@ type ServerConfig struct {
 	// ServerVersion is the version identification string to
 	// announce in the public handshake.
 	// If empty, a reasonable default is used.
+	// Some implementations, including OpenSSH, ignore incoming
+	// connections if this string doesn't start with 'SSH-2.0-'.
 	ServerVersion string
 }
 
