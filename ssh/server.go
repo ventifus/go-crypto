@@ -69,6 +69,8 @@ type ServerConfig struct {
 	// ServerVersion is the version identification string to
 	// announce in the public handshake.
 	// If empty, a reasonable default is used.
+	// RFC 4253 ("The Secure Shell Transport Layer Protocol")
+	// requires that this string start with "SSH-2.0-".
 	ServerVersion string
 }
 
