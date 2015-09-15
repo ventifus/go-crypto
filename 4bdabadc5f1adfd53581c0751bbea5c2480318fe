@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "44725a92_8a4fb454",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 8750
+      },
+      "writtenOn": "2015-09-15T16:19:59Z",
+      "side": 1,
+      "message": "That would break passing DSA private keys to NewSignerFromKey, since *dsa.PrivateKey is not a Signer.",
+      "parentUuid": "a9f4cf41_bf705763",
+      "range": {
+        "startLine": 555,
+        "startChar": 5,
+        "endLine": 555,
+        "endChar": 24
+      },
+      "revId": "4bdabadc5f1adfd53581c0751bbea5c2480318fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44209a82_8737a8c7",
         "filename": "ssh/keys.go",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-09-15T15:07:54Z",
       "side": 1,
       "message": "I think this should check the curve type; see NewSignerFromKey()",
+      "range": {
+        "startLine": 574,
+        "startChar": 10,
+        "endLine": 574,
+        "endChar": 11
+      },
+      "revId": "4bdabadc5f1adfd53581c0751bbea5c2480318fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44725a92_ca37ecc6",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 8750
+      },
+      "writtenOn": "2015-09-15T16:19:59Z",
+      "side": 1,
+      "message": "That doesn\u0027t seem necessary. NewPublicKey already checks the curve type, so at this point we know it\u0027s valid.",
+      "parentUuid": "44209a82_8737a8c7",
       "range": {
         "startLine": 574,
         "startChar": 10,
