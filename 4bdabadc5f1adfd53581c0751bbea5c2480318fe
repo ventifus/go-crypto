@@ -22,6 +22,29 @@
       "revId": "4bdabadc5f1adfd53581c0751bbea5c2480318fe",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44209a82_8737a8c7",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-09-15T15:07:54Z",
+      "side": 1,
+      "message": "I think this should check the curve type; see NewSignerFromKey()",
+      "range": {
+        "startLine": 574,
+        "startChar": 10,
+        "endLine": 574,
+        "endChar": 11
+      },
+      "revId": "4bdabadc5f1adfd53581c0751bbea5c2480318fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
