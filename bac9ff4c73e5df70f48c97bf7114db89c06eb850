@@ -22,6 +22,30 @@
       "revId": "bac9ff4c73e5df70f48c97bf7114db89c06eb850",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44209a82_87e40853",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 9772
+      },
+      "writtenOn": "2015-09-17T06:24:59Z",
+      "side": 1,
+      "message": "Ok, that was my first intention actually.",
+      "parentUuid": "89fb8b33_feaee1cd",
+      "range": {
+        "startLine": 181,
+        "startChar": 2,
+        "endLine": 181,
+        "endChar": 3
+      },
+      "revId": "bac9ff4c73e5df70f48c97bf7114db89c06eb850",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
