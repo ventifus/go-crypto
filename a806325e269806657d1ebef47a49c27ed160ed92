@@ -22,6 +22,30 @@
       "revId": "a806325e269806657d1ebef47a49c27ed160ed92",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "091ddbf6_fab20920",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 9772
+      },
+      "writtenOn": "2015-09-18T06:14:46Z",
+      "side": 1,
+      "message": "Actually, per RFC4253 \"The Secure Shell (SSH) Transport Layer Protocol\" (https://tools.ietf.org/html/rfc4253#section-4.2), the string MUST start with \"SSH-2.0-\":\n\n\u003e When the connection has been established, both sides MUST send an identification string.  This identification string MUST be\n\u003e  \n\u003e       SSH-protoversion-softwareversion SP comments CR LF\n\u003e  \n\u003e Since the protocol being defined in this set of documents is version 2.0, the \u0027protoversion\u0027 MUST be \"2.0\".\n\nI would recommend not only leaving this comment but using my first solution that modifies the string if needed, in order to be RFC-compliant.",
+      "parentUuid": "694d7785_053b929a",
+      "range": {
+        "startLine": 72,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "a806325e269806657d1ebef47a49c27ed160ed92",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
