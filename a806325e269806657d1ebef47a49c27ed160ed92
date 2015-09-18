@@ -46,6 +46,30 @@
       "revId": "a806325e269806657d1ebef47a49c27ed160ed92",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "091ddbf6_9ad0ad34",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6115
+      },
+      "writtenOn": "2015-09-18T07:44:32Z",
+      "side": 1,
+      "message": "There are multiple systems that tweak the version string because they want to restrict the software used to connect to it, and this would break interoperability with them. (The ones that come to mind are actually servers, so this change does not affect them, IMO but client and server version string should have the same behavior).\n\nRFC-compliance in itself is not a virtue.",
+      "parentUuid": "091ddbf6_fab20920",
+      "range": {
+        "startLine": 72,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "a806325e269806657d1ebef47a49c27ed160ed92",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
