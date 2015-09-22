@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6971f71a_6e6a03b5",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 8750
+      },
+      "writtenOn": "2015-09-22T17:55:12Z",
+      "side": 1,
+      "message": "Fixed, thanks",
+      "parentUuid": "090f9bb2_6d5e315e",
+      "revId": "0dce2ccc965ccd7fc9174d64e6542fec5acb32b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44209a82_07ae58cf",
         "filename": "ssh/keys_test.go",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2015-09-22T12:31:30Z",
       "side": 1,
       "message": "since NewSignerFromKey uses NewSignerFromSigner, this doesn\u0027t really add any test coverage, right?",
+      "range": {
+        "startLine": 87,
+        "startChar": 5,
+        "endLine": 87,
+        "endChar": 28
+      },
+      "revId": "0dce2ccc965ccd7fc9174d64e6542fec5acb32b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6971f71a_4e6547e4",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8750
+      },
+      "writtenOn": "2015-09-22T17:55:12Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s right - all of keys in testPrivateKeys are already used in other tests. Dropped.",
+      "parentUuid": "44209a82_07ae58cf",
       "range": {
         "startLine": 87,
         "startChar": 5,
