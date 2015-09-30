@@ -22,6 +22,30 @@
       "revId": "47b7174129a83e527bc17a69fb4b84252e6e7f4d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f86a1765_deb36567",
+        "filename": "openpgp/packet/symmetric_key_encrypted.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-09-30T00:38:31Z",
+      "side": 1,
+      "message": "Thanks. (Should be cipherFunc.)",
+      "parentUuid": "64091ddd_84e4e71a",
+      "range": {
+        "startLine": 88,
+        "startChar": 92,
+        "endLine": 88,
+        "endChar": 106
+      },
+      "revId": "47b7174129a83e527bc17a69fb4b84252e6e7f4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
