@@ -16,6 +16,24 @@
       "revId": "7685ca295e9d121578cbfa69cf9bf1d72d104542",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35e91ad0_850ac829",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2015-10-06T09:32:46Z",
+      "side": 1,
+      "message": "I think this is fine as it is, since most changes to the RFC will be backward compatible. \n\nIf anything, this should document the version of the doc that was used to write the code. AFAICT, there has been no significant change between 1.8 and 1.9.",
+      "parentUuid": "d3ae0d65_0c1e3b66",
+      "revId": "7685ca295e9d121578cbfa69cf9bf1d72d104542",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
