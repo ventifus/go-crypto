@@ -133,8 +133,13 @@ func pbkdf(hash func([]byte) []byte, u, v int, salt, password []byte, r int, ID 
 					Ij.Add(Ij, Bbi)
 					Ij.Add(Ij, one)
 					Ijb := Ij.Bytes()
+					// We expect Ijb to be exactly v bytes, if it is longer or shorter
+					// we must adjust it accordingly.
 					if len(Ijb) > v {
 						Ijb = Ijb[len(Ijb)-v:]
+					}
+					if len(Ijb) < v {
+						Ijb = append(make([]byte, v-len(Ijb)), Ijb...)
 					}
 					copy(I[j*v:(j+1)*v], Ijb)
 				}
