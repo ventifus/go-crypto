@@ -12,6 +12,7 @@ import (
 	"io/ioutil"
 	"strings"
 	"testing"
+	"time"
 
 	"golang.org/x/crypto/openpgp/errors"
 )
@@ -415,6 +416,62 @@ func TestIssue11503(t *testing.T) {
 
 func TestIssue11504(t *testing.T) {
 	testReadMessageError(t, "9303000130303030303030303030983002303030303030030000000130")
+}
+
+func symEncrypt(content, password []byte) ([]byte, error) {
+	var byteWriter bytes.Buffer
+	var err error
+	var output io.WriteCloser
+	var ret []byte
+	var hints FileHints
+
+	hints.IsBinary = true
+	hints.ModTime = time.Now()
+	output, err = SymmetricallyEncrypt(&byteWriter, password, &hints, nil)
+	if err != nil {
+		return nil, err
+	}
+	output.Write(content)
+	output.Close()
+	ret = byteWriter.Bytes()
+
+	return ret, nil
+}
+
+func symDecrypt(content, password []byte) ([]byte, error) {
+	var err error
+	var byteReader io.Reader
+	var messageDetails *MessageDetails
+	var ret []byte
+
+	byteReader = bytes.NewReader(content)
+	messageDetails, err = ReadMessage(byteReader, nil,
+		func(keys []Key, symmetric bool) ([]byte, error) {
+			return password, nil
+		}, nil)
+	if err != nil {
+		return nil, err
+	}
+	ret, err = ioutil.ReadAll(messageDetails.UnverifiedBody)
+
+	return ret, err
+}
+
+func TestSymmetricBadPassword(t *testing.T) {
+	password1 := []byte("0123456789")
+	password2 := []byte("abcde")
+
+	encrypted, err := symEncrypt([]byte(signedTextInput), password1)
+	if err == nil {
+		_, err = symDecrypt(encrypted, []byte(password2))
+		if err != nil {
+			t.Logf("OK, decrypt failed but a failure is expected here err=%s\n", err)
+		} else {
+			t.Errorf("decrypt is possible with a bad password, this *should* be impossible\n")
+		}
+	} else {
+		t.Errorf("encryption failed %s", err)
+	}
 }
 
 const testKey1KeyId = 0xA34D7E18C20C31BB

@@ -205,8 +205,9 @@ FindKey:
 					if decrypted != nil {
 						break FindKey
 					}
+				} else {
+					return nil, err
 				}
-
 			}
 		}
 	}
