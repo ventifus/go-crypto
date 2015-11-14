@@ -16,6 +16,24 @@
       "revId": "9a8af55441422e87b9a87d5278dac5c190ec3d69",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d67c5259_e54790f6",
+        "filename": "openpgp/read.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 11070
+      },
+      "writtenOn": "2015-11-14T13:37:54Z",
+      "side": 1,
+      "message": "mmm, I see. It\u0027s indeed broken, as is. The problem is the infinite loop on label FindKey line 148. It always tries and rerun decrypt, possibly calling prompt, but the idea is that prompt (in the code I ran to identify the problem...) always returns the same value as it\u0027s not a real prompt but just a function that returns the same passphrase, always. In typicall user interfaces the solution is to call the prompt only N times (3?) but I feel uncomfortable at implementing this here. This is way too low level, I\u0027m currently trying to figure out a way to detect the condition \"hey, this is just nonsense, trying again and again the same passphrase on the same block won\u0027t work better with time...\". Again, if prompt is a real prompt func, one *NEEDS* to rerun the loop several times, as I undestand it.",
+      "parentUuid": "569062ca_e4a86e9f",
+      "revId": "9a8af55441422e87b9a87d5278dac5c190ec3d69",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
