@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "368beea4_c041a01e",
+        "filename": "openpgp/read_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 11070
+      },
+      "writtenOn": "2015-11-14T13:41:32Z",
+      "side": 1,
+      "message": "This is how I work arround the problem in my own code, I don\u0027t know wether this fits into the read.go test suite, I personnally find it usefull to have code snipets that show tricky usage, but OTOH lots of LOC can be a mess too. This might belong to the documentation rather than source code.",
+      "revId": "4623182487cd0414b78e376c22ce74ec0a354fe2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
