@@ -9,6 +9,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"encoding/hex"
+	"fmt"
 	"math/big"
 	"os"
 	"os/exec"
@@ -450,7 +451,7 @@ func TestAgainstLibOTR(t *testing.T) {
 		if change == NewKeys {
 			alicesMessage, err := alice.Send([]byte("Go -> libotr test message"))
 			if err != nil {
-				t.Errorf("error sending message: %s", err.Error())
+				t.Fatalf("error sending message: %s", err.Error())
 			} else {
 				for _, msg := range alicesMessage {
 					out.Write(msg)
@@ -459,11 +460,12 @@ func TestAgainstLibOTR(t *testing.T) {
 			}
 		}
 		if len(text) > 0 {
+			fmt.Printf("Go got: %s\n", text)
 			if !bytes.Equal(text, expectedText) {
-				t.Errorf("expected %x, but got %x", expectedText, text)
+				t.Fatalf("expected %x, but got %x", expectedText, text)
 			}
 			if !encrypted {
-				t.Error("message wasn't encrypted")
+				t.Fatal("message wasn't encrypted")
 			}
 		}
 	}
