@@ -1,0 +1,6 @@
+Code-Review+2: Adam Langley <agl@golang.org>
+Submitted-by: Adam Langley <agl@golang.org>
+Submitted-at: Sun, 15 Nov 2015 23:11:33 +0000
+Reviewed-on: https://go-review.googlesource.com/11235
+Project: crypto
+Branch: refs/heads/master
