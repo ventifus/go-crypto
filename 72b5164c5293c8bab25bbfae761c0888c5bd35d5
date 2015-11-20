@@ -16,6 +16,24 @@
       "revId": "72b5164c5293c8bab25bbfae761c0888c5bd35d5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b167790_a5019ee4",
+        "filename": "otr/otr_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2015-11-20T20:13:17Z",
+      "side": 1,
+      "message": "Deleted. (I don\u0027t think Logf would work because it buffers until the end of the test. But this test doesn\u0027t end.)",
+      "parentUuid": "7bf54f3c_13597c0b",
+      "revId": "72b5164c5293c8bab25bbfae761c0888c5bd35d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
