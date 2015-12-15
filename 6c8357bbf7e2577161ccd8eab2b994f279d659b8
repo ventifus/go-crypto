@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5b81ad7_d3caccc6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-15T18:48:44Z",
+      "side": 1,
+      "message": "Fixes golang/go#13628\n\n(you need the full syntax with golang/go when working in other repos)",
+      "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
