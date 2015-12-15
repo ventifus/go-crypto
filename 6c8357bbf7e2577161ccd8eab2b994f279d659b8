@@ -70,6 +70,74 @@
       "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5b81ad7_93cf74a9",
+        "filename": "ssh/agent/keyring_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-15T19:03:26Z",
+      "side": 1,
+      "message": "use %q instead of \u0027%s\u0027\n\nand use %v for error values, per convention\n\nshould these be Fatalf instead?",
+      "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5b81ad7_b3d39852",
+        "filename": "ssh/agent/keyring_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-15T19:03:26Z",
+      "side": 1,
+      "message": "likewse",
+      "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5b81ad7_f3dd105d",
+        "filename": "ssh/agent/keyring_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-15T19:03:26Z",
+      "side": 1,
+      "message": "for everything in this file",
+      "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5b81ad7_73a3c0db",
+        "filename": "ssh/agent/keyring_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-15T19:03:26Z",
+      "side": 1,
+      "message": "%v",
+      "revId": "6c8357bbf7e2577161ccd8eab2b994f279d659b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
