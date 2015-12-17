@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "c50c9af0_19584b04",
+        "filename": "sha3/keccakf.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6545
+      },
+      "writtenOn": "2015-12-17T14:54:04Z",
+      "side": 1,
+      "message": "I searched the code repo, and didn\u0027t find any appengine constraints, so it seems like it shouldn\u0027t be in there.",
+      "parentUuid": "651dae1a_5608d43c",
+      "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c50c9af0_191ccb4f",
         "filename": "sha3/keccakf_amd64.s",
         "patchSetId": 2
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "The latter interpretation would however make this very odd: https://github.com/golang/go/blob/master/src/runtime/asm_amd64.s#L208 .",
       "parentUuid": "c50c9af0_590763f6",
+      "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c50c9af0_795507cc",
+        "filename": "sha3/keccakf_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 6545
+      },
+      "writtenOn": "2015-12-17T14:54:04Z",
+      "side": 1,
+      "message": "Just wanted to be sure. I have not needed additional space on the stack, so this value is a bit of an unknown for me.",
+      "parentUuid": "85ed423a_ff6c5f13",
       "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
