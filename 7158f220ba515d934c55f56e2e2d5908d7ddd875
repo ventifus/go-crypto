@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "e5aefef8_120e6c4b",
+        "filename": "sha3/keccakf.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6545
+      },
+      "writtenOn": "2015-12-17T15:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a50326be_985d752b",
+      "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c50c9af0_191ccb4f",
         "filename": "sha3/keccakf_amd64.s",
         "patchSetId": 2
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "Just wanted to be sure. I have not needed additional space on the stack, so this value is a bit of an unknown for me.",
       "parentUuid": "85ed423a_ff6c5f13",
+      "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85ed423a_3f11a76b",
+        "filename": "sha3/keccakf_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 6545
+      },
+      "writtenOn": "2015-12-17T15:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c50c9af0_795507cc",
       "revId": "7158f220ba515d934c55f56e2e2d5908d7ddd875",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
