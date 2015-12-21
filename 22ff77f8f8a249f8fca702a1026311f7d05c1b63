@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a53bb27_f5fee21c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-21T12:51:16Z",
+      "side": 1,
+      "message": "remove the \"[gerrit/master] \" part\n\nand lowercase \"add\"",
+      "revId": "22ff77f8f8a249f8fca702a1026311f7d05c1b63",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a53bb27_d5fbe62a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2015-12-21T12:51:16Z",
+      "side": 1,
+      "message": "add after this:\n\nFixes golang/go#13505\nor\nUpdates golang/go#13505\n\n(the latter if this isn\u0027t a full fix)",
+      "revId": "22ff77f8f8a249f8fca702a1026311f7d05c1b63",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
