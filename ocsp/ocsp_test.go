@@ -11,6 +11,7 @@ import (
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
+	"encoding/base64"
 	"encoding/hex"
 	"math/big"
 	"reflect"
@@ -51,6 +52,61 @@ func TestOCSPDecode(t *testing.T) {
 
 	if resp.RevocationReason != expected.RevocationReason {
 		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, expected.RevocationReason)
+	}
+
+	if len(resp.SingleResponseExtensions) != 0 {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", len(resp.SingleResponseExtensions), 0)
+	}
+
+	if len(resp.ResponseExtensions) != 0 {
+		t.Errorf("resp.ResponseExtensions: got %d, want %d", len(resp.ResponseExtensions), 0)
+	}
+}
+
+func TestOCSPDecodeWithNonce(t *testing.T) {
+	responseBytes, _ := base64.StdEncoding.DecodeString(responseWithNonce)
+	resp, err := ParseResponse(responseBytes, nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected := Response{
+		Status:           Unknown,
+		SerialNumber:     big.NewInt(0).SetBytes([]byte{0x01, 0x7f, 0x77, 0xde, 0xb3, 0xbc, 0xbb, 0x23, 0x5d, 0x44, 0xcc, 0xc7, 0xdb, 0xa6, 0x2e, 0x72}),
+		RevocationReason: Unspecified,
+		ThisUpdate:       time.Date(2015, 12, 21, 11, 45, 8, 0, time.UTC),
+	}
+
+	if !reflect.DeepEqual(resp.ThisUpdate, expected.ThisUpdate) {
+		t.Errorf("resp.ThisUpdate: got %d, want %d", resp.ThisUpdate, expected.ThisUpdate)
+	}
+
+	if !reflect.DeepEqual(resp.NextUpdate, expected.NextUpdate) {
+		t.Errorf("resp.NextUpdate: got %d, want %d", resp.NextUpdate, expected.NextUpdate)
+	}
+
+	if resp.Status != expected.Status {
+		t.Errorf("resp.Status: got %d, want %d", resp.Status, expected.Status)
+	}
+
+	if resp.SerialNumber.Cmp(expected.SerialNumber) != 0 {
+		t.Errorf("resp.SerialNumber: got %x, want %x", resp.SerialNumber, expected.SerialNumber)
+	}
+
+	if resp.RevocationReason != expected.RevocationReason {
+		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, expected.RevocationReason)
+	}
+
+	if len(resp.SingleResponseExtensions) != 0 {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", len(resp.SingleResponseExtensions), 0)
+	}
+
+	if len(resp.ResponseExtensions) != 1 {
+		t.Fatalf("resp.ResponseExtensions: got %d, want %d", len(resp.ResponseExtensions), 1)
+	}
+
+	if got := resp.ResponseExtensions[0]; !reflect.DeepEqual(got, nonceExtension) {
+		t.Errorf("request.Extension[0]: got %x, want %x", got, nonceExtension)
 	}
 }
 
@@ -135,6 +191,83 @@ func TestOCSPRequest(t *testing.T) {
 	if got := decodedRequest.SerialNumber; got.Cmp(cert.SerialNumber) != 0 {
 		t.Errorf("request.SerialNumber: got %x, want %x", got, cert.SerialNumber)
 	}
+
+	if got := len(decodedRequest.Extensions); got != 0 {
+		t.Errorf("len(request.Extensions): got %x, want 0", got)
+	}
+
+}
+
+func TestOCSPRequestWithExtension(t *testing.T) {
+	leafCert, _ := hex.DecodeString(leafCertHex)
+	cert, err := x509.ParseCertificate(leafCert)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	issuerCert, _ := hex.DecodeString(issuerCertHex)
+	issuer, err := x509.ParseCertificate(issuerCert)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	extensions := []pkix.Extension{nonceExtension}
+	opts := &RequestOptions{Extensions: extensions}
+	request, err := CreateRequest(cert, issuer, opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expectedBytes, _ := base64.StdEncoding.DecodeString(requestWithNonce)
+	if !bytes.Equal(request, expectedBytes) {
+		t.Errorf("request: got %x, wanted %x", request, expectedBytes)
+	}
+
+	decodedRequest, err := ParseRequest(expectedBytes)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if decodedRequest.HashAlgorithm != crypto.SHA1 {
+		t.Errorf("request.HashAlgorithm: got %v, want %v", decodedRequest.HashAlgorithm, crypto.SHA1)
+	}
+
+	var publicKeyInfo struct {
+		Algorithm pkix.AlgorithmIdentifier
+		PublicKey asn1.BitString
+	}
+	_, err = asn1.Unmarshal(issuer.RawSubjectPublicKeyInfo, &publicKeyInfo)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	h := sha1.New()
+	h.Write(publicKeyInfo.PublicKey.RightAlign())
+	issuerKeyHash := h.Sum(nil)
+
+	h.Reset()
+	h.Write(issuer.RawSubject)
+	issuerNameHash := h.Sum(nil)
+
+	if got := decodedRequest.IssuerKeyHash; !bytes.Equal(got, issuerKeyHash) {
+		t.Errorf("request.IssuerKeyHash: got %x, want %x", got, issuerKeyHash)
+	}
+
+	if got := decodedRequest.IssuerNameHash; !bytes.Equal(got, issuerNameHash) {
+		t.Errorf("request.IssuerKeyHash: got %x, want %x", got, issuerNameHash)
+	}
+
+	if got := decodedRequest.SerialNumber; got.Cmp(cert.SerialNumber) != 0 {
+		t.Errorf("request.SerialNumber: got %x, want %x", got, cert.SerialNumber)
+	}
+
+	if got := len(decodedRequest.Extensions); got != 1 {
+		t.Fatalf("len(request.Extensions): got %x, want 1", got)
+	}
+
+	if got := decodedRequest.Extensions[0]; !reflect.DeepEqual(got, nonceExtension) {
+		t.Errorf("request.Extension[0]: got %x, want %x", got, nonceExtension)
+	}
 }
 
 func TestOCSPResponse(t *testing.T) {
@@ -211,6 +344,14 @@ func TestOCSPResponse(t *testing.T) {
 
 	if resp.RevocationReason != template.RevocationReason {
 		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, template.RevocationReason)
+	}
+
+	if len(resp.SingleResponseExtensions) != 0 {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", len(resp.SingleResponseExtensions), 0)
+	}
+
+	if len(resp.ResponseExtensions) != 0 {
+		t.Errorf("resp.ResponseExtensions: got %d, want %d", len(resp.ResponseExtensions), 0)
 	}
 }
 
@@ -451,3 +592,47 @@ const responderCertHex = "308202e2308201caa003020102020101300d06092a864886f70d01
 	"9e2005d5939bfc031589ca143e6e8ab83f40ee08cc20a6b4a95a318352c28d18528dcaf9" +
 	"66705de17afa19d6e8ae91ddf33179d16ebb6ac2c69cae8373d408ebf8c55308be6c04d9" +
 	"3a25439a94299a65a709756c7a3e568be049d5c38839"
+
+// Request with Nonce Extension
+// To Generate:
+//   $ openssl ocsp -issuer issuerCert.crt -cert leafCert.crt -reqout /dev/stdout | base64
+// This will generate a random nonce Extension. nonceExtension has been extracted
+const requestWithNonce = "MHYwdDBNMEswSTAJBgUrDgMCGgUABBTA/gJ4/JkYiJGz8hLpx+GyGre/wAQUDfwd8Kng8Bzn" +
+	"8rITF35vjRV81PYCEAF/d96zvLsjXUTMx9umLnKiIzAhMB8GCSsGAQUFBzABAgQSBBB89vDm" +
+	"KUGFOvfZ1+PKxY9Q"
+
+// Response with Nonce Extensions
+// To generate:
+//  $ touch empty_file
+//  $ openssl ocsp -index empty_file -CA issuerCert.crt -rsigner responder.crt -rkey responder.key -port 8125
+// In another shell:
+//  $ openssl ocsp -reqin req -url http://127.0.0.1:8125/ -respout /dev/stdout | base64
+const responseWithNonce = "MIIE2AoBAKCCBNEwggTNBgkrBgEFBQcwAQEEggS+MIIEujCBtaEbMBkxFzAVBgNVBAMTDk9D" +
+	"U1AgUmVzcG9uZGVyGA8yMDE1MTIyMTExNDUwOFowYDBeMEkwCQYFKw4DAhoFAAQUwP4CePyZ" +
+	"GIiRs/IS6cfhshq3v8AEFA38HfCp4PAc5/KyExd+b40VfNT2AhABf3fes7y7I11EzMfbpi5y" +
+	"ggAYDzIwMTUxMjIxMTE0NTA4WqEjMCEwHwYJKwYBBQUHMAECBBIEEHz28OYpQYU699nX48rF" +
+	"j1AwDQYJKoZIhvcNAQELBQADggEBAIiVA7rfkvtr8mASnq+hZW0hLOCJB25LcRBWphdXmUh0" +
+	"vVXSJWKfvPRF4Gz/xR+Gpsy7WCAPOp+bGDFlmcUaGbq8EhP3fg+ThekQERQ2VPUotp9vbe1I" +
+	"0KmxaUKrMM/XS0iRmt/51XE0WNC9kloeyXnl/ERSh/8c0unNE+25KY9bjgk9nxj8UC93p29+" +
+	"cmz5A5ozRgvWmXvPh56JQdyrNGZp6gy4X9/V6z818BDIbzo2KDWtatnFruZYLgfbs6hytYL6" +
+	"+XbNKZAb5oXI4J/pJDVQytlJsCWkzYFNchGCOuvmPON6ZNIdY/5ZqOgW5rZ2NWEkJDrb6axI" +
+	"ekJiPg81oQygggLqMIIC5jCCAuIwggHKoAMCAQICAQEwDQYJKoZIhvcNAQELBQAwGTEXMBUG" +
+	"A1UEAxMOT0NTUCBSZXNwb25kZXIwHhcNMTUwMTMwMTU1MDMzWhcNMTYwMTMwMTU1MDMzWjAZ" +
+	"MRcwFQYDVQQDEw5PQ1NQIFJlc3BvbmRlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC" +
+	"ggEBAOgVXy0+by6NFMYqeIvUYvn4ROeml3yD7xCZ8PZhbsUmW1bzVuYsVADwsGoueUWoJ1LG" +
+	"Nt8yqJUVLWB03xcB3GzPvL7HWnC9K1WuK+fmytO1/UzVt3kKtAGkNtP180YHT/3oqZ1bcjNQ" +
+	"8KESB2YUsS73nHiZGxGUU0RazyQWqwBGtUDbFMn8Dye4mJrQ9jqkuK78kaqKchYMNjB8YP7H" +
+	"ipPT/d9CWZAqp35zMpccfShbagT2SJk8aSKj6dqa31+BUIwyKHkYQ+XUnyTbLxKQuv2X5lWx" +
+	"BJoZn2Us1gPE+vozDDkLDaePu8Z+j6Ahy9dOuWIisSrOMad9z5IDNNyUWBsCAwEAAaM1MDMw" +
+	"DgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMJMAwGA1UdEwEB/wQCMAAwDQYJ" +
+	"KoZIhvcNAQELBQADggEBAHGAEnYbUGPhjw3ERkTY5quGEjHBX9U1eAVCXYKuwd6Fv20+MPzi" +
+	"BePjuLeVu+UuQKQ5KG0iiJBk9K7rFQNZuUJfHaUbOlyTkBhVXROsQsVloGA3hqkZMo8yZwnc" +
+	"5SwirZWOy3hzuXcdEUixxL4u/oC6hokZ/J9otgkMLzPBVtZxVuQnZqULXVHnlje35Yr3TCqV" +
+	"Gx5kL6d0H+yYLMk33jfv9Z4gBdWTm/wDFYnKFD5uirg/QO4IzCCmtKlaMYNSwo0YUo3K+WZw" +
+	"XeF6+hnW6K6R3fMxedFuu2rCxpyug3PUCOv4xVMIvmwE2TolQ5qUKZplpwl1bHo+VovgSdXD" +
+	"iDk="
+
+var nonceExtension = pkix.Extension{
+	Id:    []int{1, 3, 6, 1, 5, 5, 7, 48, 1, 2},
+	Value: []byte{4, 16, 124, 246, 240, 230, 41, 65, 133, 58, 247, 217, 215, 227, 202, 197, 143, 80},
+}
