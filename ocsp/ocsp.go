@@ -52,6 +52,7 @@ type tbsRequest struct {
 	Version       int              `asn1:"explicit,tag:0,default:0,optional"`
 	RequestorName pkix.RDNSequence `asn1:"explicit,tag:1,optional"`
 	RequestList   []request
+	Extensions    []pkix.Extension `asn1:"explicit,tag:2,optional"`
 }
 
 type request struct {
@@ -82,15 +83,17 @@ type responseData struct {
 	KeyHash          []byte        `asn1:"optional,explicit,tag:2"`
 	ProducedAt       time.Time     `asn1:"generalized"`
 	Responses        []singleResponse
+	Extensions       []pkix.Extension `asn1:"optional,explicit,tag:1"`
 }
 
 type singleResponse struct {
 	CertID     certID
-	Good       asn1.Flag   `asn1:"tag:0,optional"`
-	Revoked    revokedInfo `asn1:"tag:1,optional"`
-	Unknown    asn1.Flag   `asn1:"tag:2,optional"`
-	ThisUpdate time.Time   `asn1:"generalized"`
-	NextUpdate time.Time   `asn1:"generalized,explicit,tag:0,optional"`
+	Good       asn1.Flag        `asn1:"tag:0,optional"`
+	Revoked    revokedInfo      `asn1:"tag:1,optional"`
+	Unknown    asn1.Flag        `asn1:"tag:2,optional"`
+	ThisUpdate time.Time        `asn1:"generalized"`
+	NextUpdate time.Time        `asn1:"generalized,explicit,tag:0,optional"`
+	Extensions []pkix.Extension `asn1:"explicit,tag:1,optional"`
 }
 
 type revokedInfo struct {
@@ -263,6 +266,7 @@ type Request struct {
 	IssuerNameHash []byte
 	IssuerKeyHash  []byte
 	SerialNumber   *big.Int
+	Extensions     []pkix.Extension
 }
 
 // Response represents an OCSP response. See RFC 2560.
@@ -275,9 +279,11 @@ type Response struct {
 	Certificate                                   *x509.Certificate
 	// TBSResponseData contains the raw bytes of the signed response. If
 	// Certificate is nil then this can be used to verify Signature.
-	TBSResponseData    []byte
-	Signature          []byte
-	SignatureAlgorithm x509.SignatureAlgorithm
+	TBSResponseData          []byte
+	Signature                []byte
+	SignatureAlgorithm       x509.SignatureAlgorithm
+	SingleResponseExtensions []pkix.Extension
+	ResponseExtensions       []pkix.Extension
 }
 
 // These are pre-serialized error responses for the various non-success codes
@@ -336,6 +342,7 @@ func ParseRequest(bytes []byte) (*Request, error) {
 		IssuerNameHash: innerRequest.Cert.NameHash,
 		IssuerKeyHash:  innerRequest.Cert.IssuerKeyHash,
 		SerialNumber:   innerRequest.Cert.SerialNumber,
+		Extensions:     req.TBSRequest.Extensions,
 	}, nil
 }
 
@@ -422,6 +429,9 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 	ret.ThisUpdate = r.ThisUpdate
 	ret.NextUpdate = r.NextUpdate
 
+	ret.ResponseExtensions = basicResp.TBSResponseData.Extensions
+	ret.SingleResponseExtensions = r.Extensions
+
 	return ret, nil
 }
 
@@ -429,7 +439,8 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 type RequestOptions struct {
 	// Hash contains the hash function that should be used when
 	// constructing the OCSP request. If zero, SHA-1 will be used.
-	Hash crypto.Hash
+	Hash       crypto.Hash
+	Extensions []pkix.Extension
 }
 
 func (opts *RequestOptions) hash() crypto.Hash {
@@ -438,6 +449,14 @@ func (opts *RequestOptions) hash() crypto.Hash {
 		return crypto.SHA1
 	}
 	return opts.Hash
+}
+
+func (opts *RequestOptions) extensions() []pkix.Extension {
+	if opts == nil {
+		// Return an empty slice of extensions
+		return nil
+	}
+	return opts.Extensions
 }
 
 // CreateRequest returns a DER-encoded, OCSP request for the status of cert. If
@@ -490,6 +509,7 @@ func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte
 					},
 				},
 			},
+			Extensions: opts.extensions(),
 		},
 	})
 }
@@ -536,6 +556,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		},
 		ThisUpdate: template.ThisUpdate.UTC(),
 		NextUpdate: template.NextUpdate.UTC(),
+		Extensions: template.SingleResponseExtensions,
 	}
 
 	switch template.Status {
@@ -561,6 +582,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		RawResponderName: responderName,
 		ProducedAt:       time.Now().Truncate(time.Minute).UTC(),
 		Responses:        []singleResponse{innerResponse},
+		Extensions:       template.ResponseExtensions,
 	}
 
 	tbsResponseDataDER, err := asn1.Marshal(tbsResponseData)
