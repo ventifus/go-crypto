@@ -11,6 +11,7 @@ import (
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
+	"encoding/base64"
 	"encoding/hex"
 	"math/big"
 	"reflect"
@@ -52,6 +53,11 @@ func TestOCSPDecode(t *testing.T) {
 	if resp.RevocationReason != expected.RevocationReason {
 		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, expected.RevocationReason)
 	}
+
+	if !reflect.DeepEqual(resp.SingleResponseExtensions, expected.SingleResponseExtensions) {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", resp.SingleResponseExtensions, expected.SingleResponseExtensions)
+	}
+
 }
 
 func TestOCSPDecodeWithoutCert(t *testing.T) {
@@ -59,6 +65,47 @@ func TestOCSPDecodeWithoutCert(t *testing.T) {
 	_, err := ParseResponse(responseBytes, nil)
 	if err != nil {
 		t.Error(err)
+	}
+}
+
+func TestOCSPDecodeWithSCT(t *testing.T) {
+	responseBytes, _ := base64.StdEncoding.DecodeString(ocspResponseWithSCT)
+	resp, err := ParseResponse(responseBytes, nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected := Response{
+		Status:                   Good,
+		SerialNumber:             big.NewInt(0).SetBytes([]byte{0x7B, 0x60, 0xCD, 0x98, 0x58, 0x4A, 0x56, 0xEC, 0x9C, 0x21, 0x45, 0xC4, 0x0C, 0x54, 0xF8, 0x30}),
+		RevocationReason:         Unspecified,
+		ThisUpdate:               time.Date(2015, 12, 21, 20, 07, 28, 0, time.UTC),
+		NextUpdate:               time.Date(2015, 12, 25, 20, 07, 28, 0, time.UTC),
+		SingleResponseExtensions: []pkix.Extension{sctExtension},
+	}
+
+	if !reflect.DeepEqual(resp.ThisUpdate, expected.ThisUpdate) {
+		t.Errorf("resp.ThisUpdate: got %d, want %d", resp.ThisUpdate, expected.ThisUpdate)
+	}
+
+	if !reflect.DeepEqual(resp.NextUpdate, expected.NextUpdate) {
+		t.Errorf("resp.NextUpdate: got %d, want %d", resp.NextUpdate, expected.NextUpdate)
+	}
+
+	if resp.Status != expected.Status {
+		t.Errorf("resp.Status: got %d, want %d", resp.Status, expected.Status)
+	}
+
+	if resp.SerialNumber.Cmp(expected.SerialNumber) != 0 {
+		t.Errorf("resp.SerialNumber: got %x, want %x", resp.SerialNumber, expected.SerialNumber)
+	}
+
+	if resp.RevocationReason != expected.RevocationReason {
+		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, expected.RevocationReason)
+	}
+
+	if !reflect.DeepEqual(resp.SingleResponseExtensions, expected.SingleResponseExtensions) {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", resp.SingleResponseExtensions, expected.SingleResponseExtensions)
 	}
 }
 
@@ -211,6 +258,10 @@ func TestOCSPResponse(t *testing.T) {
 
 	if resp.RevocationReason != template.RevocationReason {
 		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, template.RevocationReason)
+	}
+
+	if !reflect.DeepEqual(resp.SingleResponseExtensions, template.SingleResponseExtensions) {
+		t.Errorf("resp.SingleResponseExtensions: got %d, want %d", resp.SingleResponseExtensions, template.SingleResponseExtensions)
 	}
 }
 
@@ -451,3 +502,42 @@ const responderCertHex = "308202e2308201caa003020102020101300d06092a864886f70d01
 	"9e2005d5939bfc031589ca143e6e8ab83f40ee08cc20a6b4a95a318352c28d18528dcaf9" +
 	"66705de17afa19d6e8ae91ddf33179d16ebb6ac2c69cae8373d408ebf8c55308be6c04d9" +
 	"3a25439a94299a65a709756c7a3e568be049d5c38839"
+
+// OCSP response with sct extension extracted from ritter.vg
+const ocspResponseWithSCT = "MIIC5woBAKCCAuAwggLcBgkrBgEFBQcwAQEEggLNMIICyTCCAbGiFgQUkK9qOpRaC9iQ6hJW" +
+	"c99DtDoo2ucYDzIwMTUxMjIxMjAwNzI4WjCCAYQwggGAMEkwCQYFKw4DAhoFAAQUeuE+6KDE" +
+	"Kiy0KMvnpgVGGUDioekEFJCvajqUWgvYkOoSVnPfQ7Q6KNrnAhB7YM2YWEpW7JwhRcQMVPgw" +
+	"gAAYDzIwMTUxMjIxMjAwNzI4WqARGA8yMDE1MTIyNTIwMDcyOFqhggELMIIBBzCCAQMGCisG" +
+	"AQQB1nkCBAUEgfQEgfEA7wB2AGj2mPgfZIK+OozuuSgdTPxxUV1nk9RE0QpnrLtPT/vEAAAB" +
+	"R5fhtXAAAAQDAEcwRQIgMiEUOAbYci4AMGQa4uhtTlrh2UIegkuWJYnVJhPTnPoCIQCPEihk" +
+	"UU9E1YwYYiOyQ5MzBfNDVaHZ7s3FcTWR3UnRCwB1AKS5CZC0GFgUh7sTosxncAo8NZgE+Rvf" +
+	"uON3zQ7IDdwQAAABR5eZ7hYAAAQDAEYwRAIgHEuCXZVuZ1vbBJVL9s70Mj6GenoyqxhgdN4I" +
+	"2gWRTC8CIHNUG25/obB9Ebzm84Uvl2Ya94rkECWPEvRvOQ/SnhjwMA0GCSqGSIb3DQEBCwUA" +
+	"A4IBAQBp9NvVBvm2htiKbjEYBDxG6ecm0eqa9Gw9s3oZIFIDyPgRrk3jG7Rt8gn7AzxhulPv" +
+	"guVG1GwVdyjLyeHhNkhaXbwmXjIAfYerBFeV6jOJwerFg+W6rTovMrY2i8oiBq7L8NgdhKyZ" +
+	"tZYJ+50qALp2vKv0V4+Q1NYXSeDNbIuqy7vHVkhgCn+1j87bCutz3FSy1QEmLNmlLOx9iZ+u" +
+	"Nm1sehbPfXpO/ioyB9yVWCP32ApwKq4bTWV3rA/TxhMOA8ALN1o4nUKORL6aC/ofNJQ39ErP" +
+	"jtGiz/7+SAFoQbwWDFsSkvE/m9G9A9J0oJiW8E1Ycc2uWg7PHpBusEmUOBlU"
+
+var sctExtension = pkix.Extension{
+	Id: []int{1, 3, 6, 1, 4, 1, 11129, 2, 4, 5},
+	Value: []byte{0x04, 0x81, 0xf1, 0x00, 0xef, 0x00, 0x76, 0x00, 0x68, 0xf6, 0x98, 0xf8, 0x1f,
+		0x64, 0x82, 0xbe, 0x3a, 0x8c, 0xee, 0xb9, 0x28, 0x1d, 0x4c, 0xfc, 0x71, 0x51,
+		0x5d, 0x67, 0x93, 0xd4, 0x44, 0xd1, 0x0a, 0x67, 0xac, 0xbb, 0x4f, 0x4f, 0xfb,
+		0xc4, 0x00, 0x00, 0x01, 0x47, 0x97, 0xe1, 0xb5, 0x70, 0x00, 0x00, 0x04, 0x03,
+		0x00, 0x47, 0x30, 0x45, 0x02, 0x20, 0x32, 0x21, 0x14, 0x38, 0x06, 0xd8, 0x72,
+		0x2e, 0x00, 0x30, 0x64, 0x1a, 0xe2, 0xe8, 0x6d, 0x4e, 0x5a, 0xe1, 0xd9, 0x42,
+		0x1e, 0x82, 0x4b, 0x96, 0x25, 0x89, 0xd5, 0x26, 0x13, 0xd3, 0x9c, 0xfa, 0x02,
+		0x21, 0x00, 0x8f, 0x12, 0x28, 0x64, 0x51, 0x4f, 0x44, 0xd5, 0x8c, 0x18, 0x62,
+		0x23, 0xb2, 0x43, 0x93, 0x33, 0x05, 0xf3, 0x43, 0x55, 0xa1, 0xd9, 0xee, 0xcd,
+		0xc5, 0x71, 0x35, 0x91, 0xdd, 0x49, 0xd1, 0x0b, 0x00, 0x75, 0x00, 0xa4, 0xb9,
+		0x09, 0x90, 0xb4, 0x18, 0x58, 0x14, 0x87, 0xbb, 0x13, 0xa2, 0xcc, 0x67, 0x70,
+		0x0a, 0x3c, 0x35, 0x98, 0x04, 0xf9, 0x1b, 0xdf, 0xb8, 0xe3, 0x77, 0xcd, 0x0e,
+		0xc8, 0x0d, 0xdc, 0x10, 0x00, 0x00, 0x01, 0x47, 0x97, 0x99, 0xee, 0x16, 0x00,
+		0x00, 0x04, 0x03, 0x00, 0x46, 0x30, 0x44, 0x02, 0x20, 0x1c, 0x4b, 0x82, 0x5d,
+		0x95, 0x6e, 0x67, 0x5b, 0xdb, 0x04, 0x95, 0x4b, 0xf6, 0xce, 0xf4, 0x32, 0x3e,
+		0x86, 0x7a, 0x7a, 0x32, 0xab, 0x18, 0x60, 0x74, 0xde, 0x08, 0xda, 0x05, 0x91,
+		0x4c, 0x2f, 0x02, 0x20, 0x73, 0x54, 0x1b, 0x6e, 0x7f, 0xa1, 0xb0, 0x7d, 0x11,
+		0xbc, 0xe6, 0xf3, 0x85, 0x2f, 0x97, 0x66, 0x1a, 0xf7, 0x8a, 0xe4, 0x10, 0x25,
+		0x8f, 0x12, 0xf4, 0x6f, 0x39, 0x0f, 0xd2, 0x9e, 0x18, 0xf0},
+}

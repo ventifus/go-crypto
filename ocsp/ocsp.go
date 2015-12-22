@@ -86,11 +86,12 @@ type responseData struct {
 
 type singleResponse struct {
 	CertID     certID
-	Good       asn1.Flag   `asn1:"tag:0,optional"`
-	Revoked    revokedInfo `asn1:"tag:1,optional"`
-	Unknown    asn1.Flag   `asn1:"tag:2,optional"`
-	ThisUpdate time.Time   `asn1:"generalized"`
-	NextUpdate time.Time   `asn1:"generalized,explicit,tag:0,optional"`
+	Good       asn1.Flag        `asn1:"tag:0,optional"`
+	Revoked    revokedInfo      `asn1:"tag:1,optional"`
+	Unknown    asn1.Flag        `asn1:"tag:2,optional"`
+	ThisUpdate time.Time        `asn1:"generalized"`
+	NextUpdate time.Time        `asn1:"generalized,explicit,tag:0,optional"`
+	Extensions []pkix.Extension `asn1:"explicit,tag:1,optional"`
 }
 
 type revokedInfo struct {
@@ -275,9 +276,10 @@ type Response struct {
 	Certificate                                   *x509.Certificate
 	// TBSResponseData contains the raw bytes of the signed response. If
 	// Certificate is nil then this can be used to verify Signature.
-	TBSResponseData    []byte
-	Signature          []byte
-	SignatureAlgorithm x509.SignatureAlgorithm
+	TBSResponseData          []byte
+	Signature                []byte
+	SignatureAlgorithm       x509.SignatureAlgorithm
+	SingleResponseExtensions []pkix.Extension
 }
 
 // These are pre-serialized error responses for the various non-success codes
@@ -421,6 +423,7 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 	ret.ProducedAt = basicResp.TBSResponseData.ProducedAt
 	ret.ThisUpdate = r.ThisUpdate
 	ret.NextUpdate = r.NextUpdate
+	ret.SingleResponseExtensions = r.Extensions
 
 	return ret, nil
 }
@@ -536,6 +539,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		},
 		ThisUpdate: template.ThisUpdate.UTC(),
 		NextUpdate: template.NextUpdate.UTC(),
+		Extensions: template.SingleResponseExtensions,
 	}
 
 	switch template.Status {
