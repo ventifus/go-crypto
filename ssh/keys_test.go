@@ -304,3 +304,66 @@ func TestInvalidEntry(t *testing.T) {
 		t.Errorf("got valid entry for %q", authInvalid)
 	}
 }
+
+type hostAuthResult struct {
+	pubKey   PublicKey
+	marker   string
+	comments string
+	hosts    []string
+	rest     string
+	ok       bool
+}
+
+func testKnownHostKeys(t *testing.T, knownHostKeys []byte, expected []hostAuthResult) {
+	rest := knownHostKeys
+	var values []hostAuthResult
+	for len(rest) > 0 {
+		var r hostAuthResult
+		var err error
+		r.pubKey, r.marker, r.comments, r.hosts, rest, err = ParseKnownHosts(rest)
+		r.ok = (err == nil)
+		t.Log(err)
+		r.rest = string(rest)
+		values = append(values, r)
+	}
+
+	if !reflect.DeepEqual(values, expected) {
+		t.Errorf("got %#v, expected %#v", values, expected)
+	}
+}
+
+func TestKnownHostsKeyBasic(t *testing.T) {
+	pub, pubSerialized := getTestKey()
+	line := "localhost ssh-rsa " + pubSerialized + " comment"
+	testKnownHostKeys(t, []byte(line),
+		[]hostAuthResult{
+			{pub, "", "comment", []string{"localhost"}, "", true},
+		})
+}
+
+func TestKnownHostsKeyCertAuthority(t *testing.T) {
+	pub, pubSerialized := getTestKey()
+	line := "@cert-authority localhost ssh-rsa " + pubSerialized + " comment"
+	testKnownHostKeys(t, []byte(line),
+		[]hostAuthResult{
+			{pub, "@cert-authority", "comment", []string{"localhost"}, "", true},
+		})
+}
+
+func TestKnownHostsKeyRevoked(t *testing.T) {
+	pub, pubSerialized := getTestKey()
+	line := "@revoked localhost ssh-rsa " + pubSerialized + " comment"
+	testKnownHostKeys(t, []byte(line),
+		[]hostAuthResult{
+			{pub, "@revoked", "comment", []string{"localhost"}, "", true},
+		})
+}
+
+func TestKnownHostsKeyInvalidMarker(t *testing.T) {
+	_, pubSerialized := getTestKey()
+	line := "@invalid-marker localhost ssh-rsa " + pubSerialized + " comment"
+	testKnownHostKeys(t, []byte(line),
+		[]hostAuthResult{
+			{nil, "", "", []string{}, "", false},
+		})
+}

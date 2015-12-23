@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"strings"
 )
 
 // These constants represent the algorithm names for key types supported by this
@@ -75,6 +76,67 @@ func parseAuthorizedKey(in []byte) (out PublicKey, comment string, err error) {
 	}
 	comment = string(bytes.TrimSpace(in[i:]))
 	return out, comment, nil
+}
+
+// ParseKnownHosts parses a public key from a known_hosts file
+// used in OpenSSH according to the sshd(8) manual page.
+func ParseKnownHosts(in []byte) (out PublicKey, marker, comment string, hosts []string, rest []byte, err error) {
+	for len(in) > 0 {
+
+		end := bytes.IndexByte(in, '\n')
+		if end != -1 {
+			rest = in[end+1:]
+			in = in[:end]
+		} else {
+			rest = nil
+		}
+
+		end = bytes.IndexByte(in, '\r')
+		if end != -1 {
+			in = in[:end]
+		}
+
+		in = bytes.TrimSpace(in)
+		if len(in) == 0 || in[0] == '#' {
+			in = rest
+			continue
+		}
+
+		i := bytes.IndexAny(in, " \t")
+		if i == -1 {
+			in = rest
+			continue
+		}
+
+		// Strip out the begining of the known_host key.
+		// This is either an optional marker or a (set of) hostname(s).
+		keyFields := bytes.Fields(in)
+		if len(keyFields) < 3 || len(keyFields) > 5 {
+			return nil, "", "", []string{}, nil, fmt.Errorf("invalid key length")
+		}
+
+		// keyFields[0] is either "@cert-authority", "@revoked" or a comma separated
+		// list of hosts
+		marker := ""
+		if keyFields[0][0] == byte('@') {
+			keyMarker := string(keyFields[0])
+			if keyMarker != "@cert-authority" && keyMarker != "@revoked" {
+				return nil, "", "", []string{}, nil, errors.New("ssh: invalid key marker")
+			}
+			marker = keyMarker
+			keyFields = keyFields[1:]
+		}
+
+		hosts := string(keyFields[0])
+		key := bytes.Join(keyFields[2:], []byte(" "))
+		if out, comment, err = parseAuthorizedKey(key); err == nil {
+			return out, marker, comment, strings.Split(hosts, ","), rest, nil
+		}
+
+		in = rest
+		continue
+	}
+	return nil, "", "", []string{}, nil, errors.New("ssh: invalid key type")
 }
 
 // ParseAuthorizedKeys parses a public key from an authorized_keys
@@ -147,6 +209,19 @@ func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []str
 			continue
 		}
 
+		if len(candidateOptions) == 1 && strings.HasPrefix(candidateOptions[0], "@cert-authority") {
+			options := in[:i]
+			in = in[i:]
+			i = bytes.IndexAny(in, " \t")
+			if i == -1 {
+				in = rest
+				continue
+			}
+			if out, comment, _, rest, err = ParseAuthorizedKey(in[i:]); err == nil {
+				return out, comment, strings.Split(string(options), ","), rest, nil
+			}
+
+		}
 		if out, comment, err = parseAuthorizedKey(in[i:]); err == nil {
 			options = candidateOptions
 			return out, comment, options, rest, nil
