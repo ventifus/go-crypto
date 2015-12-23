@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"strings"
 )
 
 // These constants represent the algorithm names for key types supported by this
@@ -147,6 +148,19 @@ func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []str
 			continue
 		}
 
+		if len(candidateOptions) == 1 && strings.HasPrefix(candidateOptions[0], "@cert-authority") {
+			options := in[:i]
+			in = in[i:]
+			i = bytes.IndexAny(in, " \t")
+			if i == -1 {
+				in = rest
+				continue
+			}
+			if out, comment, _, rest, err = ParseAuthorizedKey(in[i:]); err == nil {
+				return out, comment, strings.Split(string(options), ","), rest, nil
+			}
+
+		}
 		if out, comment, err = parseAuthorizedKey(in[i:]); err == nil {
 			options = candidateOptions
 			return out, comment, options, rest, nil
