@@ -62,6 +62,30 @@ func TestOCSPDecodeWithoutCert(t *testing.T) {
 	}
 }
 
+func TestOCSPDecodeWithExtensions(t *testing.T) {
+	responseBytes, _ := hex.DecodeString(ocspResponseWithCriticalExtensionHex)
+	_, err := ParseResponse(responseBytes, nil)
+	if err == nil {
+		t.Error(err)
+	}
+
+	responseBytes, _ = hex.DecodeString(ocspResponseWithExtensionHex)
+	response, err := ParseResponse(responseBytes, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(response.Extensions) != 1 {
+		t.Errorf("len(response.Extensions): got %v, want %v", len(response.Extensions), 1)
+	}
+
+	extensionBytes := response.Extensions[0].Value
+	expectedBytes, _ := hex.DecodeString(ocspExtensionValueHex)
+	if !bytes.Equal(extensionBytes, expectedBytes) {
+		t.Errorf("response.Extensions[0]: got %x, want %x", extensionBytes, expectedBytes)
+	}
+}
+
 func TestOCSPSignature(t *testing.T) {
 	issuerCert, _ := hex.DecodeString(startComHex)
 	issuer, err := x509.ParseCertificate(issuerCert)
@@ -162,6 +186,15 @@ func TestOCSPResponse(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	extensionBytes, _ := hex.DecodeString(ocspExtensionValueHex)
+	extensions := []pkix.Extension{
+		pkix.Extension{
+			Id:       ocspExtensionOID,
+			Critical: false,
+			Value:    extensionBytes,
+		},
+	}
+
 	producedAt := time.Now().Truncate(time.Minute)
 	thisUpdate := time.Date(2010, 7, 7, 15, 1, 5, 0, time.UTC)
 	nextUpdate := time.Date(2010, 7, 7, 18, 35, 17, 0, time.UTC)
@@ -173,6 +206,7 @@ func TestOCSPResponse(t *testing.T) {
 		RevokedAt:        thisUpdate,
 		RevocationReason: KeyCompromise,
 		Certificate:      responder,
+		ExtraExtensions:  extensions,
 	}
 
 	responseBytes, err := CreateResponse(issuer, responder, template, responderPrivateKey)
@@ -195,6 +229,10 @@ func TestOCSPResponse(t *testing.T) {
 
 	if !reflect.DeepEqual(resp.RevokedAt, template.RevokedAt) {
 		t.Errorf("resp.RevokedAt: got %d, want %d", resp.RevokedAt, template.RevokedAt)
+	}
+
+	if !reflect.DeepEqual(resp.Extensions, template.ExtraExtensions) {
+		t.Errorf("resp.Extensions: got %v, want %v", resp.Extensions, template.ExtraExtensions)
 	}
 
 	if !resp.ProducedAt.Equal(producedAt) {
@@ -332,6 +370,42 @@ const ocspResponseWithoutCertHex = "308201d40a0100a08201cd308201c906092b06010505
 	"9e7dec8698e36a8df68b7592ad3489fb2937afb90eb85d2aa96b81c94c25057dbd4759d9" +
 	"20a1a65c7f0b6427a224b3c98edd96b9b61f706099951188b0289555ad30a216fb774651" +
 	"5a35fca2e054dfa8"
+
+var ocspExtensionOID = asn1.ObjectIdentifier{1, 2, 3, 4}
+
+var ocspExtensionValueHex = "01020304"
+
+const ocspResponseWithCriticalExtensionHex = "308202090a0100a0820202308201fe06092b0601050507300101048201ef308201eb3081" +
+	"d4a003020100a11b3019311730150603550403130e4f43535020526573706f6e64657218" +
+	"0f32303135313232393136323230305a30819e30819b3049300906052b0e03021a050004" +
+	"14c0fe0278fc99188891b3f212e9c7e1b21ab7bfc004140dfc1df0a9e0f01ce7f2b21317" +
+	"7e6f8d157cd4f60210017f77deb3bcbb235d44ccc7dba62e72a116180f32303130303730" +
+	"373135303130355aa0030a0101180f32303130303730373135303130355aa011180f3230" +
+	"3130303730373138333531375aa1123010300e06032a03040101ff040401020304300d06" +
+	"092a864886f70d01010b05000382010100d3f773ac5f5ec0ed1f07d6be19735e66fdee9d" +
+	"0ece27cb279308cb869bfe6383d5633ec488313b50ed6866f4bdf81d83552372aea6672f" +
+	"0103b97bec4e3c4c074ad468ddff9fbc3c6b90a7147f81235fa4173b2cbf2a4815fe7d4c" +
+	"997e30f8d652f4604518a13245589fdfa93e83083e2d58532a9d30eda0196728d5879d58" +
+	"b2533aa8f627ee28192caa163c2ead0b142f5d21a549618e7ed62b2d47ff5f3f66607c22" +
+	"7d8620bb15c0ff7fc4ebe06245f9659f712b1498cac73897b1f188ecf56271c3c4c355f7" +
+	"0e10ad7780dfc0d3deaf19b906b1775400c2b9ac9e92f0eb79d4218a34070bdcbb00face" +
+	"01a518cad048e31f3b104599cf9616cc8626bcb736"
+
+const ocspResponseWithExtensionHex = "308202060a0100a08201ff308201fb06092b0601050507300101048201ec308201e83081" +
+	"d1a003020100a11b3019311730150603550403130e4f43535020526573706f6e64657218" +
+	"0f32303135313232393136313930305a30819b3081983049300906052b0e03021a050004" +
+	"14c0fe0278fc99188891b3f212e9c7e1b21ab7bfc004140dfc1df0a9e0f01ce7f2b21317" +
+	"7e6f8d157cd4f60210017f77deb3bcbb235d44ccc7dba62e72a116180f32303130303730" +
+	"373135303130355aa0030a0101180f32303130303730373135303130355aa011180f3230" +
+	"3130303730373138333531375aa10f300d300b06032a0304040401020304300d06092a86" +
+	"4886f70d01010b05000382010100af7280a2b2cf95ab7e40897172995c2ab3d0fc157286" +
+	"389b5bc1014a5d7e268e00b05e83f6180392513eb7ada7837e214afd04580f3e0423fee9" +
+	"9588e79742e8be67736cbb0a5ea246789cc92db10d6cca8a7ace7ddd20d9add4c39362c1" +
+	"d82520adf2b8b629bb97d46473362ccf746563741bc9520e7bf0d13c0eaf38f031e45a10" +
+	"34cb08ff72059baf5f4ae0dc66a6827c80afe5bc07fe01504b7ce3d4c1b66d00a6a58917" +
+	"a01cb2a85bf5e70be2f8faa50b6dbd2d800f184d769cdb4a7afca3dd6350dc14f9c4da5d" +
+	"2fdfae9f75fb1efb453a452b29fd77c0639026ffa7c0a2f842bf3b09622edfe4cc969bad" +
+	"937328b57ae5f309f5c461367d012ebbfcf1"
 
 const ocspRequestHex = "3051304f304d304b3049300906052b0e03021a05000414c0fe0278fc99188891b3f212e9" +
 	"c7e1b21ab7bfc004140dfc1df0a9e0f01ce7f2b213177e6f8d157cd4f60210017f77deb3" +
