@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -30,6 +31,8 @@ type chanList struct {
 	// amount. This helps distinguish otherwise identical
 	// server/client muxes
 	offset uint32
+
+	danglingReplies []uint32
 }
 
 // Assigns a channel ID to the given channel.
@@ -37,31 +40,60 @@ func (c *chanList) add(ch *channel) uint32 {
 	c.Lock()
 	defer c.Unlock()
 	for i := range c.chans {
-		if c.chans[i] == nil {
+		var reserved bool
+		for _, d := range c.danglingReplies {
+			if uint32(d) == uint32(i) {
+				reserved = true
+			}
+		}
+
+		if c.chans[i] == nil && !reserved {
 			c.chans[i] = ch
 			return uint32(i) + c.offset
 		}
+
 	}
 	c.chans = append(c.chans, ch)
+
 	return uint32(len(c.chans)-1) + c.offset
 }
 
+var ErrorOutstandingReply = errors.New("outstanding reply")
+var ErrorChannelNotFound = errors.New("channel not found")
+
 // getChan returns the channel for the given ID.
-func (c *chanList) getChan(id uint32) *channel {
+func (c *chanList) getChan(id uint32) (*channel, error) {
 	id -= c.offset
 
 	c.Lock()
 	defer c.Unlock()
-	if id < uint32(len(c.chans)) {
-		return c.chans[id]
+
+	for pos, i := range c.danglingReplies {
+		if id == i {
+			// remove the danglingReply from the list since once it's requested it'll never
+			// be used again since mustReply can only be one per channel.
+			c.danglingReplies = append(c.danglingReplies[:pos], c.danglingReplies[pos+1:]...)
+			return nil, ErrorOutstandingReply
+		}
 	}
-	return nil
+
+	if id < uint32(len(c.chans)) {
+		return c.chans[id], nil
+	}
+	return nil, ErrorChannelNotFound
 }
 
 func (c *chanList) remove(id uint32) {
 	id -= c.offset
 	c.Lock()
 	if id < uint32(len(c.chans)) {
+		ch := c.chans[id]
+		if ch.outstandingReply {
+			if debugMux {
+				log.Println("outstanding reply still hanging out there", id)
+			}
+			c.danglingReplies = append(c.danglingReplies, id)
+		}
 		c.chans[id] = nil
 	}
 	c.Unlock()
@@ -252,7 +284,13 @@ func (m *mux) onePacket() error {
 		return parseError(packet[0])
 	}
 	id := binary.BigEndian.Uint32(packet[1:])
-	ch := m.chanList.getChan(id)
+	ch, err := m.chanList.getChan(id)
+	if err == ErrorOutstandingReply {
+		if debugMux {
+			log.Println("dropping packet for channel:", id)
+		}
+		return nil
+	}
 	if ch == nil {
 		return fmt.Errorf("ssh: invalid channel %d", id)
 	}

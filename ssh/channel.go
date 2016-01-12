@@ -174,7 +174,8 @@ type channel struct {
 	// Since requests have no ID, there can be only one request
 	// with WantReply=true outstanding.  This lock is held by a
 	// goroutine that has such an outgoing request pending.
-	sentRequestMu sync.Mutex
+	sentRequestMu    sync.Mutex
+	outstandingReply bool
 
 	incomingRequests chan *Request
 
@@ -571,6 +572,7 @@ func (ch *channel) SendRequest(name string, wantReply bool, payload []byte) (boo
 
 	if wantReply {
 		ch.sentRequestMu.Lock()
+		ch.outstandingReply = true
 		defer ch.sentRequestMu.Unlock()
 	}
 
@@ -588,8 +590,15 @@ func (ch *channel) SendRequest(name string, wantReply bool, payload []byte) (boo
 	if wantReply {
 		m, ok := (<-ch.msg)
 		if !ok {
+			ch.writeMu.Lock()
+			defer ch.writeMu.Unlock()
+			if ch.sentClose {
+				return true, nil
+			}
 			return false, io.EOF
 		}
+
+		ch.outstandingReply = false
 		switch m.(type) {
 		case *channelRequestFailureMsg:
 			return false, nil
