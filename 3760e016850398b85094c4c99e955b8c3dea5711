@@ -1,0 +1,7 @@
+Code-Review+1: Peter Moody <peter.moody@gmail.com>
+Code-Review+2: Adam Langley <agl@golang.org>
+Submitted-by: Adam Langley <agl@golang.org>
+Submitted-at: Wed, 13 Jan 2016 19:11:29 +0000
+Reviewed-on: https://go-review.googlesource.com/18106
+Project: crypto
+Branch: refs/heads/master
