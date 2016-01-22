@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;crypto&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../hc" />
+      <root url="file://$PROJECT_DIR$/../../../serpent" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../chacha20" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <excluded>
+      <root url="file://$PROJECT_DIR$/../../../hc/.git" />
+      <root url="file://$PROJECT_DIR$/.idea" />
+      <root url="file://$PROJECT_DIR$/../../../serpent/.git" />
+      <root url="file://$PROJECT_DIR$/.git" />
+      <root url="file://$PROJECT_DIR$/../../.idea" />
+      <root url="file://$PROJECT_DIR$/../review/.git" />
+      <root url="file://$PROJECT_DIR$/sha3/testdata" />
+      <root url="file://$PROJECT_DIR$/../../../serpent/.idea" />
+      <root url="file://$PROJECT_DIR$/ssh/testdata" />
+      <root url="file://$PROJECT_DIR$/../../../hc/.idea" />
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$PROJECT_DIR$/../../../chacha20/.idea" />
+    </excluded>
+  </library>
+</component>
