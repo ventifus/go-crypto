@@ -34,6 +34,23 @@
       "revId": "a7d196de7c768cb008f8501ef5f25074fd508700",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34b68e05_bcfc61d5",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 12216
+      },
+      "writtenOn": "2016-01-26T18:33:57Z",
+      "side": 1,
+      "message": "Maybe mention ServerFailed was never actually returned, either.",
+      "revId": "a7d196de7c768cb008f8501ef5f25074fd508700",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
