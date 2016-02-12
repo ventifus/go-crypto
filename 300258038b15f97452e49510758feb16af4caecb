@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1da7f0d2_92006a4f",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-02-12T21:37:58Z",
+      "side": 1,
+      "message": "I don\u0027t know this code, but what if signal is set but not msg? Is that possible? What about lang?",
+      "revId": "300258038b15f97452e49510758feb16af4caecb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
