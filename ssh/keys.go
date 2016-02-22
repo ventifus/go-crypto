@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"regexp"
 	"strings"
 )
 
@@ -76,6 +77,56 @@ func parseAuthorizedKey(in []byte) (out PublicKey, comment string, err error) {
 	}
 	comment = string(bytes.TrimSpace(in[i:]))
 	return out, comment, nil
+}
+
+// CheckHostPrincipal checks if a given host/port pair match a host string slice returned
+// by ParseKnownHostsFile. This allows you to check if a host key should be trusted.
+// Note: this doesn't support hashed hostnames.
+func KnownHostPrincipal(host string, validPrincipals []string) bool {
+	hostParts := strings.Split(host, ":")
+	if len(hostParts) < 2 {
+		hostParts = append(hostParts, "22")
+	}
+
+	for _, p := range validPrincipals {
+		principalParts := strings.Split(p, ":")
+		if len(principalParts) < 2 {
+			principalParts = append(principalParts, "22")
+		}
+		principalParts[0] = strings.Trim(principalParts[0], "[]")
+
+		if hostParts[0] == principalParts[0] && hostParts[1] == principalParts[1] {
+			return true
+		}
+
+		// simplistic regex builder, this turns something like:
+		// foo*.com into foo.*\.com, bar?.com into bar.\.com
+		// or even foo?.*.com into
+		// foo.\..*\.com
+		matchRe := strings.Replace(principalParts[0], ".", "\\.", -1)
+		matchRe = strings.Replace(matchRe, "?", ".", -1)
+		matchRe = strings.Replace(matchRe, "*\\.", ".*\\.", -1)
+		negate := false
+		if strings.HasPrefix(matchRe, "!") {
+			negate = true
+			matchRe = matchRe[1:]
+		}
+		// remove the non-standard port brackets.
+		if strings.HasPrefix(matchRe, "[") && strings.HasSuffix(matchRe, "]") {
+			matchRe = matchRe[1 : len(matchRe)-1]
+		}
+
+		matchRe = fmt.Sprintf("^%s$", matchRe)
+
+		m, err := regexp.Compile(matchRe)
+		if err != nil {
+			continue
+		}
+		if m.MatchString(hostParts[0]) && hostParts[1] == principalParts[1] && !negate {
+			return true
+		}
+	}
+	return false
 }
 
 // ParseKnownHosts parses an entry in the format of the known_hosts file.

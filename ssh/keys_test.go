@@ -306,14 +306,14 @@ func TestInvalidEntry(t *testing.T) {
 }
 
 var knownHostsParseTests = []struct {
-	input     string
-	err       string
+	input string
+	err   string
 
-	marker   string
-	comment  string
-	hosts    []string
-	rest     string
-} {
+	marker  string
+	comment string
+	hosts   []string
+	rest    string
+}{
 	{
 		"",
 		"EOF",
@@ -372,13 +372,13 @@ var knownHostsParseTests = []struct {
 		"localhost,[host2:123]\tssh-rsa {RSAPUB}\tcomment comment",
 		"",
 
-		"", "comment comment", []string{"localhost","[host2:123]"}, "",
+		"", "comment comment", []string{"localhost", "[host2:123]"}, "",
 	},
 	{
 		"@marker \tlocalhost,[host2:123]\tssh-rsa {RSAPUB}",
 		"",
 
-		"marker", "", []string{"localhost","[host2:123]"}, "",
+		"marker", "", []string{"localhost", "[host2:123]"}, "",
 	},
 	{
 		"@marker \tlocalhost,[host2:123]\tssh-rsa aabbccdd",
@@ -432,6 +432,38 @@ func TestKnownHostsParsing(t *testing.T) {
 
 		if rest := string(rest); rest != test.rest {
 			t.Errorf("#%d: expected remaining input to be %q, but got %q", i, test.rest, rest)
+		}
+	}
+}
+
+var principalMatchTests = []struct {
+	host            string
+	validPrincipals []string
+	matches         bool
+}{
+	{"host:22", []string{"host"}, true},
+	{"host:22", []string{"[host]:2222"}, false},
+	{"host:2222", []string{"[host]:2222"}, true},
+	{"host.domain:22", []string{"host"}, false},
+	{"host.domain:22", []string{"host", "*.domain"}, true},
+	{"host.domain:22", []string{""}, false},
+	{"host01.domain.tld:22", []string{"host??.domain.tld"}, true},
+	{"host.domain.tld:22", []string{"host.*.tld"}, true},
+	{"host.domain.tld:22", []string{"*.tld"}, true},
+	{"host:22", []string{"!host"}, false},
+	{"host:22", []string{"!host", "host"}, true},
+	{"host.domain.tld:2222", []string{"!*.tld", "[host.domain.tld]:2221", "[host.domain.???]:2222"}, true},
+	{"host.domain.tld:2222", []string{"!*.tld", "[host.domain.tld]:2221", "![host.domain.???]:2222"}, false},
+}
+
+func TestPrincipalMatching(t *testing.T) {
+	for i, test := range principalMatchTests {
+		if KnownHostPrincipal(test.host, test.validPrincipals) != test.matches {
+			err_result := "didn't match"
+			if !test.matches {
+				err_result = "matched"
+			}
+			t.Errorf("#%d %s %s %s", i, test.validPrincipals, err_result, test.host)
 		}
 	}
 }
