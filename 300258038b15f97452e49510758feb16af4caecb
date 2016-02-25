@@ -16,6 +16,24 @@
       "revId": "300258038b15f97452e49510758feb16af4caecb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22dbb13a_91804c21",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-02-25T13:50:47Z",
+      "side": 1,
+      "message": "this is unmarshaled from the remote side, so it\u0027s up to the remote end. \n\nhttps://go.googlesource.com/crypto/+/300258038b15f97452e49510758feb16af4caecb/ssh/session.go#406\n\nfor OpenSSH, this is what goes over the wire:\n\n2016/02/25 14:46:14 SIGVAL struct { Signal string; CoreDumped bool; Error string; Lang string }{Signal:\"KILL\", CoreDumped:false, Error:\"\", Lang:\"\"}\n\nI would suggest appending msg and error separately, and only if they are set.\n\nThe \"lang\" field is a wart in the protocol, and we don\u0027t anything with it anywhere.",
+      "parentUuid": "1da7f0d2_92006a4f",
+      "revId": "300258038b15f97452e49510758feb16af4caecb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
