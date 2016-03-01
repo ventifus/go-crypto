@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02feade5_d6818480",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-01T06:05:17Z",
+      "side": 1,
+      "message": "the part before the colon is the directory name in the repo, so:\n\npkcs12: add PKCS#12 encoding support",
+      "revId": "175f76127887d6b9d5e9f76d49e3aca89657df85",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
