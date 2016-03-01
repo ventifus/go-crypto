@@ -32,14 +32,19 @@ func verifyMac(macData *macData, message, password []byte) error {
 		return NotImplementedError("unknown digest algorithm: " + macData.Mac.Algorithm.Algorithm.String())
 	}
 
-	key := pbkdf(sha1Sum, 20, 64, macData.MacSalt, password, macData.Iterations, 3, 20)
-
-	mac := hmac.New(sha1.New, key)
-	mac.Write(message)
-	expectedMAC := mac.Sum(nil)
+	expectedMAC := computeMac(message, macData.Iterations, macData.MacSalt, password)
 
 	if !hmac.Equal(macData.Mac.Digest, expectedMAC) {
 		return ErrIncorrectPassword
 	}
 	return nil
+}
+
+func computeMac(message []byte, iterations int, salt, password []byte) []byte {
+	key := pbkdf(sha1Sum, 20, 64, salt, password, iterations, 3, 20)
+
+	mac := hmac.New(sha1.New, key)
+	mac.Write(message)
+
+	return mac.Sum(nil)
 }

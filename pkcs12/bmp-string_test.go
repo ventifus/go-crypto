@@ -22,6 +22,14 @@ var bmpStringTests = []struct {
 	{"\u2115 - Double-struck N", "21150020002d00200044006f00750062006c0065002d00730074007200750063006b0020004e0000", false},
 	// any character outside the BMP should trigger an error.
 	{"\U0001f000 East wind (Mahjong)", "", true},
+	// odd length string
+}
+
+func TestBMPStringDecode(t *testing.T) {
+	_, err := decodeBMPString([]byte("a"))
+	if err == nil {
+		t.Fatalf("expected decode to fail, but it succeeded")
+	}
 }
 
 func TestBMPString(t *testing.T) {

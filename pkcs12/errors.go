@@ -17,7 +17,12 @@ var (
 
 // NotImplementedError indicates that the input is not currently supported.
 type NotImplementedError string
+type EncodeError string
 
 func (e NotImplementedError) Error() string {
 	return "pkcs12: " + string(e)
+}
+
+func (e EncodeError) Error() string {
+	return "pkcs12: encode error: " + string(e)
 }
