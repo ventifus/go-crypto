@@ -8,11 +8,18 @@ import (
 	"bytes"
 	"crypto/cipher"
 	"crypto/des"
+	"crypto/rand"
 	"crypto/x509/pkix"
 	"encoding/asn1"
 	"errors"
+	"io"
 
 	"golang.org/x/crypto/pkcs12/internal/rc2"
+)
+
+const (
+	pbeIterationCount = 2048
+	pbeSaltSizeBytes  = 8
 )
 
 var (
@@ -122,6 +129,35 @@ func pbDecrypt(info decryptable, password []byte) (decrypted []byte, err error) 
 	}
 
 	return
+}
+
+func pad(src []byte, blockSize int) []byte {
+	paddingLength := blockSize - len(src)%blockSize
+	paddingText := bytes.Repeat([]byte{byte(paddingLength)}, paddingLength)
+	return append(src, paddingText...)
+}
+
+func pbEncrypt(plainText, salt, password []byte, iterations int) (cipherText []byte, err error) {
+	if _, err := io.ReadFull(rand.Reader, salt); err != nil {
+		return nil, errors.New("pkcs12: failed to create a random salt value: " + err.Error())
+	}
+
+	cipherType := shaWithTripleDESCBC{}
+	key := cipherType.deriveKey(salt, password, iterations)
+	iv := cipherType.deriveIV(salt, password, iterations)
+
+	block, err := cipherType.create(key)
+	if err != nil {
+		return nil, errors.New("pkcs12: failed to create a block cipher: " + err.Error())
+	}
+
+	paddedPlainText := pad(plainText, block.BlockSize())
+
+	encrypter := cipher.NewCBCEncrypter(block, iv)
+	cipherText = make([]byte, len(paddedPlainText))
+	encrypter.CryptBlocks(cipherText, paddedPlainText)
+
+	return cipherText, nil
 }
 
 // decryptable abstracts a object that contains ciphertext.

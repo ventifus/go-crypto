@@ -6,8 +6,10 @@ package pkcs12
 
 import (
 	"bytes"
+	"crypto/rand"
 	"crypto/x509/pkix"
 	"encoding/asn1"
+	"io"
 	"testing"
 )
 
@@ -79,17 +81,10 @@ var pbDecryptTests = []struct {
 }
 
 func TestPbDecrypt(t *testing.T) {
+	salt := []byte("\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8")
+
 	for i, test := range pbDecryptTests {
-		decryptable := testDecryptable{
-			data: test.in,
-			algorithm: pkix.AlgorithmIdentifier{
-				Algorithm: sha1WithTripleDES,
-				Parameters: pbeParams{
-					Salt:       []byte("\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8"),
-					Iterations: 4096,
-				}.RawASN1(),
-			},
-		}
+		decryptable := makeTestDecryptable(test.in, salt)
 		password, _ := bmpString("sesame")
 
 		plaintext, err := pbDecrypt(decryptable, password)
@@ -102,6 +97,54 @@ func TestPbDecrypt(t *testing.T) {
 			t.Errorf("#%d: got %x, but wanted %x", i, plaintext, test.expected)
 		}
 	}
+}
+
+func TestRoundTripPkc12EncryptDecrypt(t *testing.T) {
+	salt := []byte{0xfe, 0xee, 0xfa, 0xce}
+	password := salt
+
+	// Sweep the possible padding lengths
+	for i := 0; i < 9; i++ {
+		bs := make([]byte, i)
+		_, err := io.ReadFull(rand.Reader, bs)
+		if err != nil {
+			t.Fatalf("failed to read: %s", err)
+		}
+
+		cipherText, err := pbEncrypt(bs, salt, password, 4096)
+		if err != nil {
+			t.Fatalf("failed to encrypt: %s\n", err)
+		}
+
+		if len(cipherText)%8 != 0 {
+			t.Fatalf("plain text was not padded as expected")
+		}
+
+		decryptable := makeTestDecryptable(cipherText, salt)
+		plainText, err := pbDecrypt(decryptable, password)
+		if err != nil {
+			t.Fatalf("failed to decrypt: %s\n", err)
+		}
+
+		if !bytes.Equal(bs, plainText) {
+			t.Fatalf("got %x, but wanted %x", bs, plainText)
+		}
+	}
+}
+
+func makeTestDecryptable(bytes, salt []byte) testDecryptable {
+	decryptable := testDecryptable{
+		data: bytes,
+		algorithm: pkix.AlgorithmIdentifier{
+			Algorithm: sha1WithTripleDES,
+			Parameters: pbeParams{
+				Salt:       salt,
+				Iterations: 4096,
+			}.RawASN1(),
+		},
+	}
+
+	return decryptable
 }
 
 type testDecryptable struct {

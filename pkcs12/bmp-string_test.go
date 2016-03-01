@@ -24,6 +24,12 @@ var bmpStringTests = []struct {
 	{"\U0001f000 East wind (Mahjong)", "", true},
 }
 
+func TestBMPStringDecode(t *testing.T) {
+	if _, err := decodeBMPString([]byte("a")); err == nil {
+		t.Fatalf("expected decode to fail, but it succeeded")
+	}
+}
+
 func TestBMPString(t *testing.T) {
 	for i, test := range bmpStringTests {
 		expected, err := hex.DecodeString(test.expectedHex)
