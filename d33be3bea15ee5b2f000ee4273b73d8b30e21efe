@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7ab1dee_af257549",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-10T23:37:25Z",
+      "side": 1,
+      "message": "You have to write golang/go#14663 when in sub-repos, since this is a cross-repo reference.",
+      "revId": "d33be3bea15ee5b2f000ee4273b73d8b30e21efe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
