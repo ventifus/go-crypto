@@ -16,6 +16,24 @@
       "revId": "5dc8cb4b8a8eb076cbb5a06bc3b8682c15bdbbd3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7ab1dee_e90c928f",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6285
+      },
+      "writtenOn": "2016-03-12T19:18:25Z",
+      "side": 0,
+      "message": "Yep, that\u0027s a merge error :)",
+      "parentUuid": "f7ab1dee_96c4090b",
+      "revId": "5dc8cb4b8a8eb076cbb5a06bc3b8682c15bdbbd3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
