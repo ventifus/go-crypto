@@ -5,6 +5,12 @@
 package packet
 
 import (
+	"bytes"
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"hash"
 	"testing"
 	"time"
 )
@@ -53,6 +59,56 @@ func TestPrivateKeyRead(t *testing.T) {
 		if !privKey.CreationTime.Equal(test.creationTime) || privKey.Encrypted {
 			t.Errorf("#%d: bad result, got: %#v", i, privKey)
 		}
+	}
+}
+
+func populateHash(hAlg crypto.Hash, msg []byte) (hash.Hash, error) {
+	h := hAlg.New()
+	_, err := h.Write(msg)
+	return h, err
+}
+
+func TestECDSAPrivateKey(t *testing.T) {
+	priv, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	newPK := NewECDSAPrivateKey(time.Now(), priv)
+	buf := bytes.NewBuffer(nil)
+	if err := newPK.Serialize(buf); err != nil {
+		t.Fatal(err)
+	}
+
+	p, err := Read(buf)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pk, ok := p.(*PrivateKey)
+	if !ok {
+		t.Fatal("didn't parse private key")
+	}
+
+	sig := &Signature{
+		PubKeyAlgo: PubKeyAlgoECDSA,
+		Hash:       crypto.SHA256,
+	}
+	msg := []byte("Hello World!")
+	h, err := populateHash(sig.Hash, msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := sig.Sign(h, pk, nil); err != nil {
+		t.Fatal(err)
+	}
+
+	hashed, err := populateHash(sig.Hash, msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := pk.VerifySignature(hashed, sig); err != nil {
+		t.Fatal(err)
 	}
 }
 
