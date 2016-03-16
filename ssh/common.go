@@ -80,6 +80,16 @@ func unexpectedMessageError(expected, got uint8) error {
 	return fmt.Errorf("ssh: unexpected message type %d (expected %d)", got, expected)
 }
 
+// msgDisconnectHandler results when the SSH client receives SSH_MSG_DISCONNECT packet
+// See RFC 4253, section 11.1.
+func msgDisconnectHandler(packet []byte) error {
+	msg, err := decode(packet)
+	if err != nil {
+		return fmt.Errorf("ssh: could not decode 'msgDisconnect' packet (%v)", err)
+	}
+	return fmt.Errorf("%v", msg)
+}
+
 // parseError results from a malformed SSH message.
 func parseError(tag uint8) error {
 	return fmt.Errorf("ssh: parse error in message type %d", tag)
