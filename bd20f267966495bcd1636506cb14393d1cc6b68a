@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cb552ab_68dc83e5",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-03-17T11:02:58Z",
+      "side": 1,
+      "message": "this function doesn\u0027t add much over the inlined code.\n\nIn general, the Disconnect message is not handled consistently in the code, and most likely the server is not handling it correctly some places. Let me see if I can cook up a CL to move disconnect handling in a lower layer of the code.",
+      "revId": "bd20f267966495bcd1636506cb14393d1cc6b68a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
