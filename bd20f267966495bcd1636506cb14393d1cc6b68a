@@ -16,6 +16,24 @@
       "revId": "bd20f267966495bcd1636506cb14393d1cc6b68a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cb552ab_48789f9d",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 12906
+      },
+      "writtenOn": "2016-03-17T11:23:18Z",
+      "side": 1,
+      "message": "With this function I\u0027ve tried to avoid unnecessary duplicate code.",
+      "parentUuid": "7cb552ab_68dc83e5",
+      "revId": "bd20f267966495bcd1636506cb14393d1cc6b68a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
