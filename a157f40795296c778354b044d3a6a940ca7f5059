@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c1bdab9_6cb5cf44",
+        "filename": "ssh/terminal/util_solaris.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 12936
+      },
+      "writtenOn": "2016-03-17T21:13:57Z",
+      "side": 1,
+      "message": "You can just   defer f(), you don\u0027t need defer func() { f() }()",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "revId": "a157f40795296c778354b044d3a6a940ca7f5059",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
