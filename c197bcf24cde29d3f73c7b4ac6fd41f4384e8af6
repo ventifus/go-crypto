@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c1bdab9_e970911a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-17T20:21:36Z",
+      "side": 1,
+      "message": "I missed this, but in the future don\u0027t include \"golang/x/crypto\" in the subject. Just \"sha3: \" here. (the directory within the repo)",
+      "revId": "c197bcf24cde29d3f73c7b4ac6fd41f4384e8af6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
