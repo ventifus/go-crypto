@@ -22,6 +22,30 @@
       "revId": "cfb66f886897f5a97e5ccbd4b5682ef3b6b5e94a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cc1b619_6db335cb",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 12906
+      },
+      "writtenOn": "2016-03-17T07:52:13Z",
+      "side": 1,
+      "message": "What if \"msg\" could not be decoded?",
+      "parentUuid": "7cb552ab_c82c8fe2",
+      "range": {
+        "startLine": 335,
+        "startChar": 25,
+        "endLine": 335,
+        "endChar": 26
+      },
+      "revId": "cfb66f886897f5a97e5ccbd4b5682ef3b6b5e94a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
