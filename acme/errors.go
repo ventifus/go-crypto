@@ -1,0 +1,67 @@
+// Copyright 2014 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package acme
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"time"
+)
+
+// Predefined Error.Type values by the ACME spec.
+const (
+	ErrBadCSR       = "urn:acme:error:badCSR"
+	ErrBadNonce     = "urn:acme:error:badNonce"
+	ErrConnection   = "urn:acme:error:connection"
+	ErrDNSSec       = "urn:acme:error:dnssec"
+	ErrMalformed    = "urn:acme:error:malformed"
+	ErrInternal     = "urn:acme:error:serverInternal"
+	ErrTLS          = "urn:acme:error:tls"
+	ErrUnauthorized = "urn:acme:error:unauthorized"
+	ErrUnknownHost  = "urn:acme:error:unknownHost"
+	ErrRateLimited  = "urn:acme:error:rateLimited"
+)
+
+// Error is an ACME error.
+type Error struct {
+	Status int
+	Type   string
+	Detail string
+	// Response is the original server response used to construct the Error,
+	// with Response.Body closed.
+	Response *http.Response `json:"-"`
+}
+
+func (e *Error) Error() string {
+	return fmt.Sprintf("%d %s: %s", e.Status, e.Type, e.Detail)
+}
+
+// responseError creates an error of Error type from resp.
+func responseError(resp *http.Response) error {
+	// don't care if ReadAll returns an error:
+	// json.Unmarshal will fail in that case anyway
+	b, _ := ioutil.ReadAll(resp.Body)
+	e := &Error{Status: resp.StatusCode, Response: resp}
+	if err := json.Unmarshal(b, e); err != nil {
+		// this is not a regular error response:
+		// populate detail with anything we received,
+		// e.Status will already contain HTTP response code value
+		e.Detail = string(b)
+		if e.Detail == "" {
+			e.Detail = resp.Status
+		}
+	}
+	return e
+}
+
+// RetryError is a "temporary" error indicating that the request
+// can be retried after the specified duration.
+type RetryError time.Duration
+
+func (re RetryError) Error() string {
+	return fmt.Sprintf("retry after %s", re)
+}
