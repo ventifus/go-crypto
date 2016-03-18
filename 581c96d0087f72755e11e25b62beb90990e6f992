@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c1bdab9_7b0743fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "Start with \"acme: \", then lowercase \"initial import ...\"",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_5b0c071d",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "The project started Nov 6, 2015 according to your git history.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_bb209b85",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "drop the word \"spec\".",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_3b278b53",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "end in a period",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_bb1a5bfc",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "Do these need to be exported?\n\nIf so, maybe they should have a custom string type.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_dbf8f7d8",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "this appears to be unused. Delete?\n\nMaybe you have a design in your head that isn\u0027t yet reflected here. Maybe we should review a CL with only the final API, with no implementation yet.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_9b1ddf47",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "*x509.CertificateRequest is a big struct. This puts a large burden on either the interface implementation or your documentation here. Which fields are required to be set by callers or respected by implementations?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_7b40e312",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "don\u0027t have public types with `json:\"...\"` struct tags. Separate out types used by users and types used on the wire for speaking the protocol.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_bb29bb69",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "implements the ACME spec\n\nBut I\u0027d say: \"Client is an ACME client.\"",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_5b452721",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "Don\u0027t embed an http.Client. (Also: the type users use is *http.Client, not the value type).\n\nGive this a name, and document the zero value. A nil client should mean *http.DefaultClient. Add a private accessor method to return a non-nil *http.Client.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_fb3333d3",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "all public fields needs docs",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_3b5f8bec",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "create a new",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_db73d772",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "c.httpClient().Get(url)",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_fb769364",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "the provided body is not already JWS-signed, though, right?\n\nMaybe:\n\n// PostJWS signs body and posts it to the provided url.\n\nAlso, why is this exported? Seems like an internal detail.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_fb9df3dc",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "I think this might be the fundamental API difference between what you\u0027re thinking and I\u0027m thinking.\n\nI\u0027m imagining all these details being private to the package, so users don\u0027t need to care about them.\n\nIf we proceed with this, we\u0027ll need better documentation anyway, so please write an example_test.go file showing users how they wire this all up in a real program. In parallel I\u0027ll write up an API (without implementation) that I\u0027m thinking of.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_5b8fe7a9",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "usually?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_db491732",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be a method on acme.Client?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_bb525bdd",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "why isn\u0027t this a method on *Client? Why does this taken an *http.Client if your acme.Client already has an *http.Client?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_9b4f9f37",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "I\u0027d rather not expose RetryError at all. You can just wait here and do it for them.\n\nSo I\u0027d take a context.Context as your first parameter so the caller can cancel.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_3bd2eb7b",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_1bd72f6c",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_7bdc638c",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "Maybe these should have a specific type, so they can have methods on them, and implement the error interface. They could even implement the net.Error interface (later, if needed) to e.g. distinguish temporary vs not.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_7b590303",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "What is Status? This needs docs.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_dba59713",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "and what are these two?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c1bdab9_7b4f430b",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-18T17:42:22Z",
+      "side": 1,
+      "message": "Is this redundant with Status? Is Status the HTTP response status?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
