@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9ccf6672_27c81e9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_7b0743fc",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_5b0c071d",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "The project started Nov 6, 2015 according to your git history.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cd6320e_43cd18aa",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_5b0c071d",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7cd6320e_63d21c4b",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_bb209b85",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_3b278b53",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "end in a period",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9cb846d6_7c60f5dd",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_3b278b53",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "fce942d0_bf3c3376",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "This was a higher level API I had in mind, yes, similar to /x/oauth2:\n\n  s :\u003d acme.GiveMeCertSourceFunc(opts...)\n  cert, err :\u003d s.Cert(csr, opts...)\n\nand that\u0027s it. A lower level API is the acme.Client.\n\nBut I agree, no reason to have it here at the moment, since it\u0027s not implemented yet anyway. And maybe you\u0027ll have a better idea.\n\nI\u0027ll remove.",
+      "parentUuid": "3c1bdab9_dbf8f7d8",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_9b1ddf47",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -115,6 +205,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "*x509.CertificateRequest is a big struct. This puts a large burden on either the interface implementation or your documentation here. Which fields are required to be set by callers or respected by implementations?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ce03ae0_4187d404",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "remove the whole interface for now. will think about this later.",
+      "parentUuid": "3c1bdab9_9b1ddf47",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -149,6 +257,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "implements the ACME spec\n\nBut I\u0027d say: \"Client is an ACME client.\"",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cdb763a_a0efb4a3",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_bb29bb69",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -206,6 +332,24 @@
     },
     {
       "key": {
+        "uuid": "7cd6320e_03e3101f",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "removed CertSource-related stuff for now.",
+      "parentUuid": "3c1bdab9_3b5f8bec",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_db73d772",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -240,6 +384,24 @@
     },
     {
       "key": {
+        "uuid": "fce942d0_3f5ae3c9",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Ah right. It was exported before the client had a minimal complete implementation, and doc didn\u0027t get updated as well.\n\nI\u0027ll unexport.",
+      "parentUuid": "3c1bdab9_fb769364",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_fb9df3dc",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -251,6 +413,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "I think this might be the fundamental API difference between what you\u0027re thinking and I\u0027m thinking.\n\nI\u0027m imagining all these details being private to the package, so users don\u0027t need to care about them.\n\nIf we proceed with this, we\u0027ll need better documentation anyway, so please write an example_test.go file showing users how they wire this all up in a real program. In parallel I\u0027ll write up an API (without implementation) that I\u0027m thinking of.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9cb846d6_3c4f5d65",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Agree. I mainly added it to make ./cmd/goacme program work and thought it could be useful for the package users.\n\nIdeally, I imagined an API where users could provide their own challenge handlers. Something like a type T which takes a challenge request arg and resolves it.\n\nI could remove it for now, until we converge on a better API.",
+      "parentUuid": "3c1bdab9_fb9df3dc",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -274,6 +454,24 @@
     },
     {
       "key": {
+        "uuid": "bcb50adc_6013e69d",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_5b8fe7a9",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_db491732",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -291,6 +489,24 @@
     },
     {
       "key": {
+        "uuid": "bcb50adc_c02912d0",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "I didn\u0027t see it as the client\u0027s method: it doesn\u0027t require auth, just a stateless helper method to get Endpoint from a given CA discovery URL:\nhttps://ietf-wg-acme.github.io/acme/#rfc.section.6.2\n\nIt could, however, return *acme.Client, if the latter had an Endpoint field.",
+      "parentUuid": "3c1bdab9_db491732",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_bb525bdd",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -302,6 +518,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "why isn\u0027t this a method on *Client? Why does this taken an *http.Client if your acme.Client already has an *http.Client?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cdb763a_80047837",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "An already issued cert can be fetched by anyone, e.g. using curl. This is on the same level as acme.Discover.\n\nThe reason for this to be exported package func is I thought users might find it useful to retrieve an already issued cert, also in different forms: e.g. bundled vs unbundled.\n\nSee last example of \"GET /acme/cert/asdf\" in https://ietf-wg-acme.github.io/acme/#rfc.section.6.5.\n\nBut now that you mention it, I\u0027m not sure whether it provides a real added value anymore. We could unexport it for now.",
+      "parentUuid": "3c1bdab9_bb525bdd",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -342,6 +576,24 @@
     },
     {
       "key": {
+        "uuid": "bccc2a7e_05a6b41e",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_3bd2eb7b",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_1bd72f6c",
         "filename": "acme/errors.go",
         "patchSetId": 1
@@ -353,6 +605,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "2015",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cdb763a_a0189496",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_1bd72f6c",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -376,6 +646,24 @@
     },
     {
       "key": {
+        "uuid": "fce942d0_df149fd3",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "The issue with these is it\u0027s not a complete list:\nhttps://ietf-wg-acme.github.io/acme/#errors\n\nWe mainly did this for users to be able to do e.g.\n\n  err.Type \u003d\u003d acme.ErrMalformed\n\nAnother thing is Error.Type (which is what these are) is usually not enough to handle an error. You\u0027d normally need other Error fields. In fact, Marcin sadly hand to resort to something like this:\n\n  if err.Type \u003d\u003d acme.ErrMalformed \u0026\u0026 strings.Contains(err.Detail, \"already in use\") {\n    // handle a case where account key has already been used\n    // for registration\n  }",
+      "parentUuid": "3c1bdab9_7bdc638c",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_7b590303",
         "filename": "acme/errors.go",
         "patchSetId": 1
@@ -387,6 +675,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "What is Status? This needs docs.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cd96e3d_c2c1246d",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_7b590303",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -410,6 +716,24 @@
     },
     {
       "key": {
+        "uuid": "9cb846d6_dc202195",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_dba59713",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_7b4f430b",
         "filename": "acme/errors.go",
         "patchSetId": 1
@@ -421,6 +745,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "Is this redundant with Status? Is Status the HTTP response status?",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bccc2a7e_c53ccc77",
+        "filename": "acme/errors.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-03-21T16:08:17Z",
+      "side": 1,
+      "message": "Yes, Status is the HTTP resp status. The reason for this is we also needed other headers, like Link: ... to properly handle errors.\n\nI guess the truth is we don\u0027t know yet exactly what acme.Client should/can handle and when to let users do it. In the latter case we wanted to provide users with as many error details as possible.\n\nWDYT?",
+      "parentUuid": "3c1bdab9_7b4f430b",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
