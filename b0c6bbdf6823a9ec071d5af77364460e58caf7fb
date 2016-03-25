@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5144f987_215d88f8",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-25T22:18:43Z",
+      "side": 1,
+      "message": "Write a complete sentence (with a verb), ending in a period. Look at the other fields for examples.\n\nSpecify that it\u0027s optional and clarify the meaning of the zero value.",
+      "revId": "b0c6bbdf6823a9ec071d5af77364460e58caf7fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
