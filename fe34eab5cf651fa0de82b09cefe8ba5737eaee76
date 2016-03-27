@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f16b2d2f_43e526bf",
+        "filename": "ssh/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-27T00:38:52Z",
+      "side": 1,
+      "message": "// Timeout optionally specifies the maximum ...",
+      "revId": "fe34eab5cf651fa0de82b09cefe8ba5737eaee76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f16b2d2f_63ea2292",
+        "filename": "ssh/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-27T00:38:52Z",
+      "side": 1,
+      "message": "you can drop the final sentence here. Implementation detail.",
+      "revId": "fe34eab5cf651fa0de82b09cefe8ba5737eaee76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f16b2d2f_83ee3ea2",
+        "filename": "ssh/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-03-27T00:38:52Z",
+      "side": 1,
+      "message": "This seems out of place. Is this specific to the ssh package? I\u0027d just delete it. You can replace with:\n\n// Zero means no timeout.",
+      "revId": "fe34eab5cf651fa0de82b09cefe8ba5737eaee76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
