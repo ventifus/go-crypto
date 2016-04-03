@@ -69,6 +69,10 @@ func (s *server) processRequest(data []byte) (interface{}, error) {
 	switch data[0] {
 	case agentRequestV1Identities:
 		return &agentV1IdentityMsg{0}, nil
+
+	case agentRemoveAllV1Identities:
+		return nil, nil
+
 	case agentRemoveIdentity:
 		var req agentRemoveIdentityMsg
 		if err := ssh.Unmarshal(data, &req); err != nil {

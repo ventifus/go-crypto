@@ -76,7 +76,8 @@ type AddedKey struct {
 
 // See [PROTOCOL.agent], section 3.
 const (
-	agentRequestV1Identities = 1
+	agentRequestV1Identities   = 1
+	agentRemoveAllV1Identities = 9
 
 	// 3.2 Requests from client to agent for protocol 2 key operations
 	agentAddIdentity         = 17
