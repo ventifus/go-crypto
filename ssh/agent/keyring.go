@@ -133,8 +133,8 @@ func (r *keyring) Add(key AddedKey) error {
 	if r.locked {
 		return errLocked
 	}
-	signer, err := ssh.NewSignerFromKey(key.PrivateKey)
 
+	signer, err := ssh.NewSignerFromKey(key.PrivateKey)
 	if err != nil {
 		return err
 	}

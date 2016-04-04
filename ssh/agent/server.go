@@ -5,8 +5,12 @@
 package agent
 
 import (
+	"crypto/dsa"
+	"crypto/ecdsa"
+	"crypto/elliptic"
 	"crypto/rsa"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -134,42 +138,225 @@ func (s *server) processRequest(data []byte) (interface{}, error) {
 			rep.Keys = append(rep.Keys, marshalKey(k)...)
 		}
 		return rep, nil
-	case agentAddIdentity:
+	case agentAddIdConstrained, agentAddIdentity:
 		return nil, s.insertIdentity(data)
 	}
 
 	return nil, fmt.Errorf("unknown opcode %d", data[0])
 }
 
+func parseRSAKey(req []byte) (*AddedKey, error) {
+	var k rsaKeyMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+	if k.E.BitLen() > 30 {
+		return nil, errors.New("agent: RSA public exponent too large")
+	}
+	priv := &rsa.PrivateKey{
+		PublicKey: rsa.PublicKey{
+			E: int(k.E.Int64()),
+			N: k.N,
+		},
+		D:      k.D,
+		Primes: []*big.Int{k.P, k.Q},
+	}
+	priv.Precompute()
+
+	return &AddedKey{PrivateKey: priv, Comment: k.Comments}, nil
+}
+
+func parseDSAKey(req []byte) (*AddedKey, error) {
+	var k dsaKeyMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+	priv := &dsa.PrivateKey{
+		PublicKey: dsa.PublicKey{
+			Parameters: dsa.Parameters{
+				P: k.P,
+				Q: k.Q,
+				G: k.G,
+			},
+			Y: k.Y,
+		},
+		X: k.X,
+	}
+
+	return &AddedKey{PrivateKey: priv, Comment: k.Comments}, nil
+}
+
+func parseECDSAKey(req []byte) (*AddedKey, error) {
+	var k ecdsaKeyMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+
+	key := new(ecdsa.PublicKey)
+	switch k.Curve {
+	case "nistp256":
+		key.Curve = elliptic.P256()
+	case "nistp384":
+		key.Curve = elliptic.P384()
+	case "nistp521":
+		key.Curve = elliptic.P521()
+	default:
+		return nil, fmt.Errorf("agent: unknown curve %q", k.Curve)
+	}
+
+	key.X, key.Y = elliptic.Unmarshal(key.Curve, k.KeyBytes)
+	if key.X == nil || key.Y == nil {
+		return nil, fmt.Errorf("agent: point not on curve")
+	}
+	priv := ecdsa.PrivateKey{
+		PublicKey: *key,
+		D:         k.D,
+	}
+
+	return &AddedKey{PrivateKey: &priv, Comment: k.Comments}, nil
+}
+
+func parseRSACert(req []byte) (*AddedKey, error) {
+	var k rsaCertMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+
+	pubKey, err := ssh.ParsePublicKey(k.CertBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	cert, ok := pubKey.(*ssh.Certificate)
+	if !ok {
+		return nil, errors.New("agent: bad RSA certificate")
+	}
+
+	var w ssh.RSAPublicKey
+	if err := ssh.Unmarshal(cert.Key.Marshal(), &w); err != nil {
+		return nil, errors.New("agent: Unmarshal failed to parse public key: " + err.Error())
+	}
+
+	priv := rsa.PrivateKey{
+		PublicKey: rsa.PublicKey{E: int(w.E.Int64()), N: w.N},
+		D:         k.D,
+		Primes:    []*big.Int{k.Q, k.P},
+	}
+	priv.Precompute()
+	return &AddedKey{PrivateKey: &priv, Certificate: cert, Comment: k.Comments}, nil
+}
+
+func parseDSACert(req []byte) (*AddedKey, error) {
+	var k dsaCertMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+	pubKey, err := ssh.ParsePublicKey(k.CertBytes)
+	if err != nil {
+		return nil, err
+	}
+	cert, ok := pubKey.(*ssh.Certificate)
+	if !ok {
+		return nil, errors.New("agent: bad DSA certificate")
+	}
+
+	var w ssh.DSAPublicKey
+	if err := ssh.Unmarshal(cert.Key.Marshal(), &w); err != nil {
+		return nil, errors.New("agent: Unmarshal failed to parse public key: " + err.Error())
+	}
+
+	priv := &dsa.PrivateKey{
+		PublicKey: dsa.PublicKey{
+			Parameters: dsa.Parameters{
+				P: w.P,
+				Q: w.Q,
+				G: w.G,
+			},
+			Y: w.Y,
+		},
+		X: k.X,
+	}
+
+	return &AddedKey{PrivateKey: priv, Certificate: cert, Comment: k.Comments}, nil
+}
+
+func parseECDSACert(req []byte) (*AddedKey, error) {
+	var k ecdsaCertMsg
+	if err := ssh.Unmarshal(req, &k); err != nil {
+		return nil, err
+	}
+
+	pubKey, err := ssh.ParsePublicKey(k.CertBytes)
+	if err != nil {
+		return nil, err
+	}
+	cert, ok := pubKey.(*ssh.Certificate)
+	if !ok {
+		return nil, errors.New("agent: bad ECDSA certificate")
+	}
+
+	var w ssh.ECDSAPublicKey
+	if err := ssh.Unmarshal(cert.Key.Marshal(), &w); err != nil {
+		return nil, err
+	}
+
+	key := new(ecdsa.PublicKey)
+	switch w.ID {
+	case "nistp256":
+		key.Curve = elliptic.P256()
+	case "nistp384":
+		key.Curve = elliptic.P384()
+	case "nistp521":
+		key.Curve = elliptic.P521()
+	default:
+		return nil, errors.New("agent: unknown curve %q" + w.ID)
+	}
+
+	key.X, key.Y = elliptic.Unmarshal(key.Curve, w.Key)
+	if key.X == nil || key.Y == nil {
+		return nil, errors.New("agent: point not on curve")
+	}
+	priv := ecdsa.PrivateKey{
+		PublicKey: *key,
+		D:         k.D,
+	}
+	return &AddedKey{PrivateKey: &priv, Certificate: cert, Comment: k.Comments}, nil
+}
+
 func (s *server) insertIdentity(req []byte) error {
 	var record struct {
-		Type string `sshtype:"17"`
+		Type string `sshtype:"17,25"`
 		Rest []byte `ssh:"rest"`
 	}
+
 	if err := ssh.Unmarshal(req, &record); err != nil {
 		return err
 	}
 
+	var addedKey *AddedKey
+	var err error
+
 	switch record.Type {
 	case ssh.KeyAlgoRSA:
-		var k rsaKeyMsg
-		if err := ssh.Unmarshal(req, &k); err != nil {
-			return err
-		}
-
-		priv := rsa.PrivateKey{
-			PublicKey: rsa.PublicKey{
-				E: int(k.E.Int64()),
-				N: k.N,
-			},
-			D:      k.D,
-			Primes: []*big.Int{k.P, k.Q},
-		}
-		priv.Precompute()
-
-		return s.agent.Add(AddedKey{PrivateKey: &priv, Comment: k.Comments})
+		addedKey, err = parseRSAKey(req)
+	case ssh.KeyAlgoDSA:
+		addedKey, err = parseDSAKey(req)
+	case ssh.KeyAlgoECDSA256, ssh.KeyAlgoECDSA384, ssh.KeyAlgoECDSA521:
+		addedKey, err = parseECDSACert(req)
+	case ssh.CertAlgoRSAv01:
+		addedKey, err = parseRSACert(req)
+	case ssh.CertAlgoDSAv01:
+		addedKey, err = parseDSACert(req)
+	case ssh.CertAlgoECDSA256v01, ssh.CertAlgoECDSA384v01, ssh.CertAlgoECDSA521v01:
+		addedKey, err = parseECDSACert(req)
+	default:
+		return fmt.Errorf("not implemented: %s", record.Type)
 	}
-	return fmt.Errorf("not implemented: %s", record.Type)
+
+	if err != nil {
+		return err
+	}
+	return s.agent.Add(*addedKey)
 }
 
 // ServeAgent serves the agent protocol on the given connection. It
