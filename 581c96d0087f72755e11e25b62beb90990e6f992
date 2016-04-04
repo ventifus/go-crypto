@@ -159,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2ec48060_f8c5ed58",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "They are like net/http.MethodGet, etc.\nMay be useful for e.g. authorization.Status \u003d\u003d StatusPending.",
+      "parentUuid": "3c1bdab9_bb1a5bfc",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_dbf8f7d8",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -246,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "ce304415_a27fde36",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "All exported struct types are both the wire protocol and what\u0027s used by users. I could, of course, separate them, but it would be just an exact copy of exported vs unexported.\n\nWhat about this? https://godoc.org/golang.org/x/oauth2#Token",
+      "parentUuid": "3c1bdab9_7b40e312",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_bb29bb69",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -298,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "6eb2f8f7_f7fc201b",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_5b452721",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_fb3333d3",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -309,6 +363,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "all public fields needs docs",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ec48060_f5c1786c",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_fb3333d3",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -361,6 +433,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "c.httpClient().Get(url)",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eebd08cb_f3a0b015",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_db73d772",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -553,6 +643,24 @@
       "writtenOn": "2016-03-18T17:42:22Z",
       "side": 1,
       "message": "I\u0027d rather not expose RetryError at all. You can just wait here and do it for them.\n\nSo I\u0027d take a context.Context as your first parameter so the caller can cancel.",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6eb2f8f7_b749c836",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-04T18:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1bdab9_9b4f9f37",
       "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
