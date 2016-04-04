@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cebbe49e_25cc6584",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "let\u0027s not mix JSON protocol types and user-visible types.",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cebbe49e_c5af89a3",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "The returned der bytes, ...",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cebbe49e_2a7f54ec",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "Things named starting with \"Err\" are conventionally values of type \"error\", not string.\n\n(Likewise, things named ending in \"Error\" are error _types_)\n\nSo I wonder if these should be of some error type so they implement error. Or maybe they don\u0027t need to be exported.",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cebbe49e_4a840838",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "this is redundant with Response.StatusCode, right?",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cebbe49e_aa72641d",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "another advantage of giving it a named type would be comments like this would be unnecessary, since the type and their values would be interlinked in godoc.",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cebbe49e_459cf989",
+        "filename": "acme/jws.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "just use https://golang.org/pkg/crypto/sha256/#Sum256 directly?",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
