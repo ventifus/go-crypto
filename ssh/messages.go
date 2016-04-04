@@ -13,6 +13,7 @@ import (
 	"math/big"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
 // These are SSH message type numbers. They are scattered around several
@@ -268,6 +269,21 @@ func typeTag(structType reflect.Type) byte {
 	return tag
 }
 
+// typeTag returns the type byte for the given type. The type should
+// be struct.
+func multiTypeTag(structType reflect.Type) []byte {
+	var tag []byte
+	var tagStr string
+	tagStr = structType.Field(0).Tag.Get("sshtype")
+	for _, t := range strings.Split(tagStr, ",") {
+		i, err := strconv.Atoi(t)
+		if err == nil {
+			tag = append(tag, byte(i))
+		}
+	}
+	return tag
+}
+
 func fieldError(t reflect.Type, field int, problem string) error {
 	if problem != "" {
 		problem = ": " + problem
@@ -285,13 +301,20 @@ var errShortRead = errors.New("ssh: short read")
 func Unmarshal(data []byte, out interface{}) error {
 	v := reflect.ValueOf(out).Elem()
 	structType := v.Type()
-	expectedType := typeTag(structType)
+	expectedType := multiTypeTag(structType)
 	if len(data) == 0 {
-		return parseError(expectedType)
+		return multiParseError(expectedType)
 	}
-	if expectedType > 0 {
-		if data[0] != expectedType {
-			return unexpectedMessageError(expectedType, data[0])
+	if len(expectedType) > 0 {
+		goodType := false
+		for _, e := range expectedType {
+			if e > 0 && data[0] == e {
+				goodType = true
+				break
+			}
+		}
+		if !goodType {
+			return fmt.Errorf("ssh: unexpected message type %d (expected %v)", data[0], expectedType)
 		}
 		data = data[1:]
 	}
@@ -318,6 +341,12 @@ func Unmarshal(data []byte, out interface{}) error {
 				field.Index(j).Set(reflect.ValueOf(data[j]))
 			}
 			data = data[t.Len():]
+		case reflect.Int:
+			var t int
+			if t, data, ok = parseSmallInt(data); !ok {
+				return errShortRead
+			}
+			field.SetInt(int64(t))
 		case reflect.Uint64:
 			var u64 uint64
 			if u64, data, ok = parseUint64(data); !ok {
@@ -375,12 +404,12 @@ func Unmarshal(data []byte, out interface{}) error {
 				return fieldError(structType, i, "pointer to unsupported type")
 			}
 		default:
-			return fieldError(structType, i, "unsupported type")
+			return fieldError(structType, i, fmt.Sprintf("unsupported type: %v\n", t))
 		}
 	}
 
 	if len(data) != 0 {
-		return parseError(expectedType)
+		return multiParseError(expectedType)
 	}
 
 	return nil
@@ -398,9 +427,9 @@ func Marshal(msg interface{}) []byte {
 
 func marshalStruct(out []byte, msg interface{}) []byte {
 	v := reflect.Indirect(reflect.ValueOf(msg))
-	msgType := typeTag(v.Type())
-	if msgType > 0 {
-		out = append(out, msgType)
+	msgType := multiTypeTag(v.Type())
+	if len(msgType) > 0 {
+		out = append(out, msgType[0])
 	}
 
 	for i, n := 0, v.NumField(); i < n; i++ {
@@ -552,6 +581,13 @@ func parseUint64(in []byte) (uint64, []byte, bool) {
 		return 0, nil, false
 	}
 	return binary.BigEndian.Uint64(in), in[8:], true
+}
+
+func parseSmallInt(in []byte) (int, []byte, bool) {
+	if len(in) < 8 {
+		return 0, nil, false
+	}
+	return int(binary.BigEndian.Uint64(in)), in[8:], true
 }
 
 func intLength(n *big.Int) int {

@@ -317,16 +317,19 @@ func parseRSA(in []byte) (out PublicKey, rest []byte, err error) {
 	return (*rsaPublicKey)(&key), w.Rest, nil
 }
 
+// RSAPublicKey is an unmarshaled rsa publickey.
+type RSAPublicKey struct {
+	Name string
+	E    *big.Int
+	N    *big.Int
+}
+
 func (r *rsaPublicKey) Marshal() []byte {
 	e := new(big.Int).SetInt64(int64(r.E))
-	wirekey := struct {
-		Name string
-		E    *big.Int
-		N    *big.Int
-	}{
-		KeyAlgoRSA,
-		e,
-		r.N,
+	wirekey := RSAPublicKey{
+		Name: KeyAlgoRSA,
+		E:    e,
+		N:    r.N,
 	}
 	return Marshal(&wirekey)
 }
@@ -368,16 +371,19 @@ func parseDSA(in []byte) (out PublicKey, rest []byte, err error) {
 	return key, w.Rest, nil
 }
 
+// DSAPublicKey is an unmarshaled dsa public key.
+type DSAPublicKey struct {
+	Name       string
+	P, Q, G, Y *big.Int
+}
+
 func (k *dsaPublicKey) Marshal() []byte {
-	w := struct {
-		Name       string
-		P, Q, G, Y *big.Int
-	}{
-		k.Type(),
-		k.P,
-		k.Q,
-		k.G,
-		k.Y,
+	w := DSAPublicKey{
+		Name: k.Type(),
+		P:    k.P,
+		Q:    k.Q,
+		G:    k.G,
+		Y:    k.Y,
 	}
 
 	return Marshal(&w)
@@ -504,17 +510,20 @@ func parseECDSA(in []byte) (out PublicKey, rest []byte, err error) {
 	return (*ecdsaPublicKey)(key), w.Rest, nil
 }
 
+// ECDSAPublicKey is an unmarshaled public key.
+type ECDSAPublicKey struct {
+	Name string
+	ID   string
+	Key  []byte
+}
+
 func (key *ecdsaPublicKey) Marshal() []byte {
 	// See RFC 5656, section 3.1.
 	keyBytes := elliptic.Marshal(key.Curve, key.X, key.Y)
-	w := struct {
-		Name string
-		ID   string
-		Key  []byte
-	}{
-		key.Type(),
-		key.nistID(),
-		keyBytes,
+	w := ECDSAPublicKey{
+		Name: key.Type(),
+		ID:   key.nistID(),
+		Key:  keyBytes,
 	}
 
 	return Marshal(&w)

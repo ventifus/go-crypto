@@ -85,6 +85,10 @@ func parseError(tag uint8) error {
 	return fmt.Errorf("ssh: parse error in message type %d", tag)
 }
 
+func multiParseError(tag []uint8) error {
+	return fmt.Errorf("ssh: parse error in message type %v", tag)
+}
+
 func findCommon(what string, client []string, server []string) (common string, err error) {
 	for _, c := range client {
 		for _, s := range server {
