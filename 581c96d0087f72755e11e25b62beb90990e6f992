@@ -597,6 +597,24 @@
     },
     {
       "key": {
+        "uuid": "cebbe49e_25d1c517",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-04T22:25:08Z",
+      "side": 1,
+      "message": "It can be a method which takes an endpoint.\n\nBut use the http client (or default) from the *Client.",
+      "parentUuid": "bcb50adc_c02912d0",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_bb525bdd",
         "filename": "acme/acme.go",
         "patchSetId": 1
