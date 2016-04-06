@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce1da4f8_7aeb5992",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "cebbe49e_25cc6584",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cebbe49e_c5af89a3",
         "filename": "acme/acme.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-04-04T22:25:08Z",
       "side": 1,
       "message": "The returned der bytes, ...",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ec48060_583a61ab",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cebbe49e_c5af89a3",
       "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2ec48060_f8432d12",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "Yeah, agree, the \"Err\" convention bothers me as well.\n\nWe have Error which implements error, but it has Status and Detail which can be arbitrary values, not consts.\n\nIt seems making these implement error would gain little value since it\u0027s just partial error information, the rest is in Status and Detail.\n\nMaybe we could do something like this:\n\n  type BadCSRError struct {\n    Error\n  }\n\n  func (e *BadCSRError) Type() string {\n    return \"urn:acme:error:badCSR\"\n  }\n\nand the same for all other known errors. That is, have Type() method, not a field. WDYT?\n\nIn any event, go/certs-bridge uses these to handle errors. We need to surface it somehow.",
+      "parentUuid": "cebbe49e_2a7f54ec",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cebbe49e_4a840838",
         "filename": "acme/errors.go",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2016-04-04T22:25:08Z",
       "side": 1,
       "message": "this is redundant with Response.StatusCode, right?",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ec48060_b849b536",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "Well, I guess it may be redundant but it\u0027s defined in https://tools.ietf.org/html/draft-ietf-appsawg-http-problem-03#section-3.1 as a response field, too.\n\nSo, this package populates Status field only when unmarshaling JSON response failed for some reason, or the \"status\" field was missing.\n\nThe main reason for Response field is the headers. Should I just replace Response with Headers? That seems ideal: there\u0027s no other useful info for error handling.",
+      "parentUuid": "cebbe49e_4a840838",
       "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -98,6 +170,24 @@
       "writtenOn": "2016-04-04T22:25:08Z",
       "side": 1,
       "message": "just use https://golang.org/pkg/crypto/sha256/#Sum256 directly?",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ec48060_385e85f4",
+        "filename": "acme/jws.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "definitely. done.",
+      "parentUuid": "cebbe49e_459cf989",
       "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
