@@ -615,6 +615,24 @@
     },
     {
       "key": {
+        "uuid": "2ec48060_1830e9cb",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-06T11:41:31Z",
+      "side": 1,
+      "message": "Done. Also made FetchCert part of the client.",
+      "parentUuid": "cebbe49e_25d1c517",
+      "revId": "581c96d0087f72755e11e25b62beb90990e6f992",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_bb525bdd",
         "filename": "acme/acme.go",
         "patchSetId": 1
