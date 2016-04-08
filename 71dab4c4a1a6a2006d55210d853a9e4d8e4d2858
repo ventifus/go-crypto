@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0eac1c06_acdf4327",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-04-08T03:09:57Z",
+      "side": 1,
+      "message": "s/Ensure/ensure/\n\nsubject message starts with small letter. Also I would\n\ns/Windows/windows/\n\nbecause you are not talking about Windows the OS, but \"windows\" GOOS environment variable.\n\nI also think \"unaltered\" does not tell the store. What about\n\ns/unaltered/previous/\n\n?",
+      "revId": "71dab4c4a1a6a2006d55210d853a9e4d8e4d2858",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0eac1c06_ccee0fd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-04-08T03:09:57Z",
+      "side": 1,
+      "message": "Did you consider adding a test? Your http://play.golang.org/p/hc1ssZfv_o looks like a perfect start. I understand that sometimes test is not running on real terminal, but, I hope, you can check if it is a terminal and skip the test when it is not.",
+      "revId": "71dab4c4a1a6a2006d55210d853a9e4d8e4d2858",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
