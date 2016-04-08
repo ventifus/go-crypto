@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e74807a_956e048d",
+        "filename": "ssh/terminal/util_plan9.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-08T13:58:21Z",
+      "side": 1,
+      "message": "wrong year",
+      "revId": "f24137d8947ba52844c5c6af95b48f8242238fe1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e74807a_b5730078",
+        "filename": "ssh/terminal/util_plan9.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-08T13:58:21Z",
+      "side": 1,
+      "message": "you don\u0027t need this line if the file is named util_plan9.go.\n\nSee https://golang.org/pkg/go/build/#hdr-Build_Constraints and search for \"If a file\u0027s name\"",
+      "revId": "f24137d8947ba52844c5c6af95b48f8242238fe1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
