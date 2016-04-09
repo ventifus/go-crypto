@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "0b06ce0a_9c0a4541",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-09T15:16:15Z",
+      "side": 1,
+      "message": "Or we could just rename these to ProblemXxx. It\u0027s what they call it in http://tools.ietf.org/html/draft-ietf-appsawg-http-problem.\n\n  ProblemBadCSR   \u003d \"urn:acme:error:badCSR\"\n  ProblemBadNonce \u003d \"...\"\n  ...",
+      "parentUuid": "2ec48060_f8432d12",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cebbe49e_4a840838",
         "filename": "acme/errors.go",
         "patchSetId": 4
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "Well, I guess it may be redundant but it\u0027s defined in https://tools.ietf.org/html/draft-ietf-appsawg-http-problem-03#section-3.1 as a response field, too.\n\nSo, this package populates Status field only when unmarshaling JSON response failed for some reason, or the \"status\" field was missing.\n\nThe main reason for Response field is the headers. Should I just replace Response with Headers? That seems ideal: there\u0027s no other useful info for error handling.",
       "parentUuid": "cebbe49e_4a840838",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b06ce0a_5cb03db8",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-09T15:16:15Z",
+      "side": 1,
+      "message": "Replaced Response field with Header below.",
+      "parentUuid": "2ec48060_b849b536",
       "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
