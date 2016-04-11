@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e27f498_e38765d3",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11540
+      },
+      "writtenOn": "2016-04-11T05:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b06ce0a_9cd12575",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "cd25d955756642210fc50332546d0ba380d2ff87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b06ce0a_5cc39dab",
         "filename": "ssh/agent/server_test.go",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-11T03:54:23Z",
       "side": 1,
       "message": "can\u0027t you run client.call() here?",
+      "range": {
+        "startLine": 101,
+        "startChar": 20,
+        "endLine": 101,
+        "endChar": 25
+      },
+      "revId": "cd25d955756642210fc50332546d0ba380d2ff87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e27f498_83995137",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11540
+      },
+      "writtenOn": "2016-04-11T05:50:12Z",
+      "side": 1,
+      "message": "client.call() was actually one of my first attempts, but the ssh.Marshal() calls failed while trying to serialize v1 messages (specifically the responses).\n\nI briefly considered adding the v1 messages to the ssh package so the calls to ssh.Marshal() would succeed, however, I didn\u0027t feel it valuable for the v1 messages to be included in the ssh package. I opted to duplicate the first part of the client.call() method instead.",
+      "parentUuid": "0b06ce0a_5cc39dab",
       "range": {
         "startLine": 101,
         "startChar": 20,
