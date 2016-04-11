@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bfc462b_7e009127",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-11T06:08:21Z",
+      "side": 1,
+      "message": "huh?",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 3
+      },
+      "revId": "08516f6b38311e8aaaaf97bf9b6c97f81584a54f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
