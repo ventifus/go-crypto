@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b06ce0a_9cd12575",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-11T03:54:23Z",
+      "side": 1,
+      "message": "Make a separate TestV1ProtocolMessages() function. You can copy the setup from this one.\n\n(testAgentInterface is a separate function because of it is called multiple times.)",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "cd25d955756642210fc50332546d0ba380d2ff87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b06ce0a_5cc39dab",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-11T03:54:23Z",
+      "side": 1,
+      "message": "can\u0027t you run client.call() here?",
+      "range": {
+        "startLine": 101,
+        "startChar": 20,
+        "endLine": 101,
+        "endChar": 25
+      },
+      "revId": "cd25d955756642210fc50332546d0ba380d2ff87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
