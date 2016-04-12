@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b3abef4_da4805af",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "Add before this:\n\n//\n// This package is a work in progress and makes no API stability promises.",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_1a538d5d",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "StatusCode, to match the name in http.Response",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_fa4fc9b0",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "\"Problem\" instead of \"Type\" ? Or ProblemType?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_5a1cf5b2",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "human-readable (hyphenated adjective phrase) ?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_9a167d8f",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "using the\n\nAnd URL instead of url unless you\u0027re talking about the variable name, but it doesn\u0027t sound like it.",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_ba2c21dd",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "except on error, I assume?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_da2f65d0",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "Why?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_1a2a6dbf",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "If bundle is true, the ...",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_fa26a9f8",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "Reword so you can start with a capitalized word.  And what is Endpoint.CertURL? What \"typically\"? What else can it be? Is it optional?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_9a915d42",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "updates an",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_3a8c912b",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "// It returns an updated account. The provided account is not modified.",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3abef4_5a87d508",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-12T15:39:17Z",
+      "side": 1,
+      "message": "usually?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
