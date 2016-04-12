@@ -19,6 +19,41 @@
     },
     {
       "key": {
+        "uuid": "6b24aaf3_07dcf690",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_da4805af",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b1b66b8_290aa979",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Sorry, forgot I had types.go file - moved Error there, for consistency.",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_1a538d5d",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -30,6 +65,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "StatusCode, to match the name in http.Response",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b24aaf3_a7b1aa53",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_1a538d5d",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "4b1b66b8_4909e580",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_fa4fc9b0",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_5a1cf5b2",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -64,6 +135,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "human-readable (hyphenated adjective phrase) ?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbccb67f_a21b3e56",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "I\u0027m not a native speaker so, done :)",
+      "parentUuid": "8b3abef4_5a1cf5b2",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "2bed52ca_0db9b10d",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done. I was talking about the var name but your version sounds better.",
+      "parentUuid": "8b3abef4_9a167d8f",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_ba2c21dd",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -98,6 +205,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "except on error, I assume?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b24aaf3_e75d62c2",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_ba2c21dd",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "eb0fba76_439426bf",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "That\u0027s how it works by the spec. A CA may not be able to generate the cert right away so it responds with just a URL at which the cert will eventually be available - clients need to poll in that case.\n\n\"If the certificate is available at the time of the response, it is provided in the body of the response. If the CA has not yet issued the certificate, the body of this response will be empty. The client should then send a GET request to the certificate URI to poll for the certificate.\"\nhttps://ietf-wg-acme.github.io/acme/#rfc.section.6.5\n\nSo, your comment made be realize it\u0027s probably a good idea to poll here as well, just like with FetchCert which accepts cancellable context.\n\nAdded polling.",
+      "parentUuid": "8b3abef4_da2f65d0",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_1a2a6dbf",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -132,6 +275,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "If bundle is true, the ...",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bd63e0b_40a42edf",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_1a2a6dbf",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "eb0fba76_a3987af3",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done. I meant it was typically obtained from c.Discover.",
+      "parentUuid": "8b3abef4_fa26a9f8",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_9a915d42",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -166,6 +345,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "updates an",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bd63e0b_60a932b6",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_9a915d42",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -189,6 +386,24 @@
     },
     {
       "key": {
+        "uuid": "2bed52ca_0da411de",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3abef4_3a8c912b",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b3abef4_5a87d508",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -200,6 +415,24 @@
       "writtenOn": "2016-04-12T15:39:17Z",
       "side": 1,
       "message": "usually?",
+      "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b1b66b8_89d3dd1c",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T18:11:13Z",
+      "side": 1,
+      "message": "Yeah, the spec seems a bit ambiguous: you can also get authz URL from c.Discover (Directory.AuthzURL).",
+      "parentUuid": "8b3abef4_5a87d508",
       "revId": "05099fd37bddfb17d196c11d52ca2363aedfb017",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
