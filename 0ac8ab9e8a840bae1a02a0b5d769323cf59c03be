@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "6b24aaf3_878d86f6",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T13:39:26Z",
+      "side": 1,
+      "message": "Ok, so I\u0027ve just checked internal usage and turns out ErrXxx constants are not in use anymore: Error.Status + Error.Header is sufficient.\n\nRemoving ErrXxx for now. We can always come back to this in the future if needed.",
+      "parentUuid": "0b06ce0a_9c0a4541",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cebbe49e_4a840838",
         "filename": "acme/errors.go",
         "patchSetId": 4
@@ -189,6 +207,24 @@
       "writtenOn": "2016-04-04T22:25:08Z",
       "side": 1,
       "message": "another advantage of giving it a named type would be comments like this would be unnecessary, since the type and their values would be interlinked in godoc.",
+      "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bd63e0b_e04c6271",
+        "filename": "acme/errors.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-04-12T13:39:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cebbe49e_aa72641d",
       "revId": "0ac8ab9e8a840bae1a02a0b5d769323cf59c03be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
