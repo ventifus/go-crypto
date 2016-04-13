@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bcb66e2_26f5362e",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "s/Rsa/RSA/\ns/Dsa/DSA/\ns/Ecdsa/ECDSA/\n\n(see https://github.com/golang/go/wiki/CodeReviewComments#initialisms)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_06759a94",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "if k.E.BitLen() \u003e 30 {\n  return nil, errors.New(\"agent: RSA public exponent too large\")\n}",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_26437642",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "fmt.Errorf(\"agent: unknown curve %q\", k.Curve)\n\n(i.e. generally prefix errors with the package name, use %q for externally supplied values and no \\n in error messages.)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_a635a6d3",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "If either key.X or .Y are nil, I think both will be. So I\u0027d go with:\n\nerrors.New(\"agent: point not on curve\")",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_e62f9e81",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "errors.New(\"agent: bad RSA certificate\")",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_a6e00675",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "errors.New(\"agent: Unmarshal failed to parse public key: \" + err.Error())",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_c6ef0261",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "errors.New(\"agent: bad DSA certificate\")",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_66ff2e0e",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "(ditto)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_46fcb217",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "errors.New(\"agent: bad ECDSA certificate\")",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_a60766ff",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "(ditto)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_860cea24",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "(ditto)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_e6015eeb",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "remove blank line",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_06191a5e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "// RSAPublicKey represents an RSA public key for serialization.",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_a632c6d0",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "// DSAPublicKey represents a DSA public key for serialisation.\n\n(It\u0027s a shame that these become exposed API, but since you need them in agent/ perhaps that\u0027s needed.)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_8637cac0",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "(ditto.)",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_e63cbea6",
+        "filename": "ssh/messages.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "This comment should be updated to reflect the new tag format.",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_2627f691",
+        "filename": "ssh/messages.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-13T16:10:42Z",
+      "side": 1,
+      "message": "ints are 32 bits on 32-bit systems. I think handling varying-size values in this function is probably a mistake. Can you use a uint32 or uint64 wherever this was needed?",
+      "revId": "3073400165a794e8b234e60caaf027d08cbe627c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
