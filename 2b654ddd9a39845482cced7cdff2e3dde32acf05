@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bcb66e2_e6d033cd",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "do you want to do the whole nil-means-crypto/rand.Reader thing here? It seems common elsewhere.\n\nI don\u0027t care either way.",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_a6d63bc7",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "(a, b T, err error)",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_46c66719",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "just use https://golang.org/pkg/crypto/sha512/#Sum512 ?",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_26c36b09",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "No \"iff\" in docs.\n\n// Verify reports whether sig is ...",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_86c05ffb",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "(a, b, c T) bool",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_c67c1791",
+        "filename": "ed25519/internal/edwards25519/const.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T17:02:12Z",
+      "side": 1,
+      "message": "comment about how this was generated or where it came from?",
+      "revId": "2b654ddd9a39845482cced7cdff2e3dde32acf05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
