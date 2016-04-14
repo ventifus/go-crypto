@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bcb66e2_5c9f5a2b",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T19:18:24Z",
+      "side": 1,
+      "message": "drop the underscore",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcb66e2_9ca9d255",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-14T19:18:24Z",
+      "side": 1,
+      "message": "start If on its own line",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
