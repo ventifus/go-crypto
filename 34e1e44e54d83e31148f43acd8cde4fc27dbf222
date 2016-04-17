@@ -33,6 +33,57 @@
       "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4898cc33_01602c06",
+        "filename": "ed25519/internal/edwards25519/const.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-04-17T19:14:34Z",
+      "side": 1,
+      "message": "s/This/These/ values",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4898cc33_c159e463",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-04-17T19:14:34Z",
+      "side": 1,
+      "message": "Minor but please add a comma after inputs ie \"inputs, can squeeze\".",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4898cc33_a1f5b86e",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-04-17T19:14:34Z",
+      "side": 1,
+      "message": "You\u0027ll have a bug if c and b have different signs e.g with equal(0, -1), this will return 1 yet we want 0. This might even be in the case of an overflow with b or c.\n\nMaybe just keep it as\nfunc equal(b, c int32) int32 {\n     x :\u003d b ^ c\n     if x \u003d\u003d 0 {\n         return 1\n     }\n     return 0\n}\nAn extra branch but for correctness the above version works.",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
