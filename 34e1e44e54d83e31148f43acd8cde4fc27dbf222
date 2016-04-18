@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4898cc33_878bec12",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-18T21:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bcb66e2_5c9f5a2b",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bcb66e2_9ca9d255",
         "filename": "ed25519/ed25519.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-04-14T19:18:24Z",
       "side": 1,
       "message": "start If on its own line",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4898cc33_2790d83b",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-18T21:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bcb66e2_9ca9d255",
       "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4898cc33_6786e00f",
+        "filename": "ed25519/internal/edwards25519/const.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-18T21:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4898cc33_01602c06",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4898cc33_c159e463",
         "filename": "ed25519/internal/edwards25519/edwards25519.go",
         "patchSetId": 4
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "4898cc33_c727b4f5",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-18T21:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4898cc33_c159e463",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4898cc33_a1f5b86e",
         "filename": "ed25519/internal/edwards25519/edwards25519.go",
         "patchSetId": 4
@@ -81,6 +153,24 @@
       "writtenOn": "2016-04-17T19:14:34Z",
       "side": 1,
       "message": "You\u0027ll have a bug if c and b have different signs e.g with equal(0, -1), this will return 1 yet we want 0. This might even be in the case of an overflow with b or c.\n\nMaybe just keep it as\nfunc equal(b, c int32) int32 {\n     x :\u003d b ^ c\n     if x \u003d\u003d 0 {\n         return 1\n     }\n     return 0\n}\nAn extra branch but for correctness the above version works.",
+      "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4898cc33_a72aa8bc",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-18T21:31:37Z",
+      "side": 1,
+      "message": "Thanks, the non-negative requirement is a good point and I\u0027ve updated the comment to reflect that.\n\nHowever, it\u0027s critical that this function be constant-time so the branch wouldn\u0027t work. It\u0027s only called from a single location where the range of inputs is clear so I don\u0027t think the code should diverge from ref10 in this case.",
+      "parentUuid": "4898cc33_a1f5b86e",
       "revId": "34e1e44e54d83e31148f43acd8cde4fc27dbf222",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
