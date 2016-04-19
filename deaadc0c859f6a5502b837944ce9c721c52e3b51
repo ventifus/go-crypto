@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c8275cf3_b9eb8b93",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-04-19T13:05:22Z",
+      "side": 1,
+      "message": "I assumed that this was preferable to using two anonymous structs. \n\nwhen I was working on this, I spent an hour or so banging my head on the keyboard b/c the agent package was failing to validate an RSA key b/c I had swapped the order of E and N.\n\nNow that I know what the issue is, i\u0027m happy to go back to the anonymous structs though if that would make this diff more palatable.",
+      "parentUuid": "0815f483_244e526d",
+      "range": {
+        "startLine": 320,
+        "startChar": 3,
+        "endLine": 320,
+        "endChar": 15
+      },
+      "revId": "deaadc0c859f6a5502b837944ce9c721c52e3b51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08989484_ec0b6b43",
         "filename": "ssh/messages.go",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2016-04-19T12:56:24Z",
       "side": 1,
       "message": "this functionality lacks unittests.",
+      "range": {
+        "startLine": 264,
+        "startChar": 43,
+        "endLine": 264,
+        "endChar": 47
+      },
+      "revId": "deaadc0c859f6a5502b837944ce9c721c52e3b51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8275cf3_f9f5036e",
+        "filename": "ssh/messages.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-04-19T13:05:22Z",
+      "side": 1,
+      "message": "doesn\u0027t this get tested when adding certs in server_test.go since that calls insertIdentity which calls ssh.Unmarshal?\n\nor do you mean that this needs tests in the ssh package specifically for this? If so, I can add one.",
+      "parentUuid": "08989484_0caa774c",
       "range": {
         "startLine": 264,
         "startChar": 43,
