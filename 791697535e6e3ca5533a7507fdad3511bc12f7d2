@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08989484_4c58ff2b",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-19T14:14:37Z",
+      "side": 1,
+      "message": "shouldn\u0027t this type be defined somewhere?",
+      "range": {
+        "startLine": 381,
+        "startChar": 12,
+        "endLine": 381,
+        "endChar": 30
+      },
+      "revId": "791697535e6e3ca5533a7507fdad3511bc12f7d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
