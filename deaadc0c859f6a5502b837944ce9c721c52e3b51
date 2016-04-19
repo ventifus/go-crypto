@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0871741c_4490ce3c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-19T13:10:39Z",
+      "side": 1,
+      "message": "I\u0027d suggest putting this in a separate file, and then copying it into the agent package, but anon structs is fine too, as long as these types don\u0027t leak into the public API of the package.",
+      "parentUuid": "c8275cf3_b9eb8b93",
+      "range": {
+        "startLine": 320,
+        "startChar": 3,
+        "endLine": 320,
+        "endChar": 15
+      },
+      "revId": "deaadc0c859f6a5502b837944ce9c721c52e3b51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08989484_ec0b6b43",
         "filename": "ssh/messages.go",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2016-04-19T12:56:24Z",
       "side": 1,
       "message": "this is bikeshedding, but I would probably use \u0027,\u0027 instead.",
+      "range": {
+        "startLine": 260,
+        "startChar": 62,
+        "endLine": 260,
+        "endChar": 65
+      },
+      "revId": "deaadc0c859f6a5502b837944ce9c721c52e3b51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4877ec0e_6636aede",
+        "filename": "ssh/messages.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-19T13:10:39Z",
+      "side": 1,
+      "message": "(may be useful to look if there is any precedent of other marshaling code for how to separate elements.)",
+      "parentUuid": "08989484_ec0b6b43",
       "range": {
         "startLine": 260,
         "startChar": 62,
@@ -107,6 +155,30 @@
       "side": 1,
       "message": "doesn\u0027t this get tested when adding certs in server_test.go since that calls insertIdentity which calls ssh.Unmarshal?\n\nor do you mean that this needs tests in the ssh package specifically for this? If so, I can add one.",
       "parentUuid": "08989484_0caa774c",
+      "range": {
+        "startLine": 264,
+        "startChar": 43,
+        "endLine": 264,
+        "endChar": 47
+      },
+      "revId": "deaadc0c859f6a5502b837944ce9c721c52e3b51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c883dc1b_0a65fbec",
+        "filename": "ssh/messages.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-19T13:10:39Z",
+      "side": 1,
+      "message": "the latter.",
+      "parentUuid": "c8275cf3_f9f5036e",
       "range": {
         "startLine": 264,
         "startChar": 43,
