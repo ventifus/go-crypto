@@ -22,6 +22,30 @@
       "revId": "791697535e6e3ca5533a7507fdad3511bc12f7d2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08b6d404_dc716d6f",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 11540
+      },
+      "writtenOn": "2016-04-19T18:01:37Z",
+      "side": 1,
+      "message": "it is, it\u0027s defined @ ssh/agent/server.go:55\n\nI didn\u0027t add it as part of my commit, I just added the test for it :)",
+      "parentUuid": "08989484_4c58ff2b",
+      "range": {
+        "startLine": 381,
+        "startChar": 12,
+        "endLine": 381,
+        "endChar": 30
+      },
+      "revId": "791697535e6e3ca5533a7507fdad3511bc12f7d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
