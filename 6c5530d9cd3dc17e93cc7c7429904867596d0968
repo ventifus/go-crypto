@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8f8a0fc_9b0f2b87",
+        "filename": "ssh/agent/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-20T10:28:39Z",
+      "side": 1,
+      "message": "can you revert this file? Or add a separate commit for reformatting changes.",
+      "revId": "6c5530d9cd3dc17e93cc7c7429904867596d0968",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f8a0fc_bb0ae776",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-20T10:28:39Z",
+      "side": 1,
+      "message": "can you revert this file?",
+      "revId": "6c5530d9cd3dc17e93cc7c7429904867596d0968",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f8a0fc_5bdda325",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-20T10:28:39Z",
+      "side": 1,
+      "message": "Errorf",
+      "revId": "6c5530d9cd3dc17e93cc7c7429904867596d0968",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f8a0fc_1bd31b20",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-20T10:28:39Z",
+      "side": 1,
+      "message": "add a comment that the struct layouts match the ones used in the main SSH package.",
+      "revId": "6c5530d9cd3dc17e93cc7c7429904867596d0968",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f8a0fc_7be05fdf",
+        "filename": "ssh/messages_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-04-20T10:28:39Z",
+      "side": 1,
+      "message": "nit - these can be Errorf rather than Fatalf.",
+      "revId": "6c5530d9cd3dc17e93cc7c7429904867596d0968",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
