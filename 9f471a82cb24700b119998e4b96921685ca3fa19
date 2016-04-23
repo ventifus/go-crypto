@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a87f884b_27c97e98",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 13346
+      },
+      "writtenOn": "2016-04-23T13:40:50Z",
+      "side": 1,
+      "message": "This will not be able to implement crypto.Signer in future without breaking compatibility because here is already has a method called Sign but the signature is different from what crypto.Signer needs.  Also, crypto.Signer.Sign signs a digest, whereas here it signs the message.\n(I don\u0027t claim to know why crypto.Signer doesn\u0027t apply the digest internally but instead expects the caller to do so - any idea?)\nWould it make sense to call this method SignMessage instead of just \"Sign\" to avoid the clash?  (it\u0027s a shame crypto.Signer didn\u0027t call its method SignDigest, perhaps)",
+      "revId": "9f471a82cb24700b119998e4b96921685ca3fa19",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
