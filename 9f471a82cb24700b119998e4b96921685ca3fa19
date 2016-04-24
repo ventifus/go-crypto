@@ -16,6 +16,24 @@
       "revId": "9f471a82cb24700b119998e4b96921685ca3fa19",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "085974e9_0890cb78",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-04-24T17:00:28Z",
+      "side": 1,
+      "message": "This does implement crypto.Signer[1] and the test should ensure that.\n\ncrypto.Signer takes a digest and not a message because it\u0027s fairly common to hash a large amount of data for signing. That data might not be in one, convenient buffer so being able to pass the hash can be a significant optimisation.\n\nEd25519 does take the whole message, which is why opts needs to be set to zero, so indicate that no hashing has taken place. Once the CFRG signatures document[2] is ready then implementing HashEdDSA via this interface should be easy.\n\n[1] https://godoc.org/crypto#Signer\n[2] https://tools.ietf.org/html/draft-irtf-cfrg-eddsa-05#section-4",
+      "parentUuid": "a87f884b_27c97e98",
+      "revId": "9f471a82cb24700b119998e4b96921685ca3fa19",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
