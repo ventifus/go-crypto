@@ -34,6 +34,24 @@
       "revId": "9f471a82cb24700b119998e4b96921685ca3fa19",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a87f884b_6a526b5b",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 13346
+      },
+      "writtenOn": "2016-04-24T17:56:00Z",
+      "side": 1,
+      "message": "Sorry for my earlier mistake.  Thanks for the explanation of why crypto.Signer takes a digest.",
+      "parentUuid": "085974e9_0890cb78",
+      "revId": "9f471a82cb24700b119998e4b96921685ca3fa19",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
