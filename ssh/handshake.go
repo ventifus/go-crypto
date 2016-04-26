@@ -371,6 +371,8 @@ func (t *handshakeTransport) enterKeyExchangeLocked(otherInitPacket []byte) erro
 	if t.sessionID == nil {
 		t.sessionID = result.H
 		result.SessionID = result.H
+	} else {
+		result.SessionID = t.sessionID
 	}
 
 	t.conn.prepareKeyChange(algs, result)
