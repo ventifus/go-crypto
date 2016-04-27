@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8594975_6ea49767",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2016-04-27T23:09:37Z",
+      "side": 1,
+      "message": "Since this is in a subrepo, the format should\u0027ve been:\n\n    Fixes golang/go#15066.\n\nThat way https://github.com/golang/go/issues/15066 would get closed automatically when this CL is merged.",
+      "revId": "d68c3ecb62c850b645dc072a8d78006286bf81ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
