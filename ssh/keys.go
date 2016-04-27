@@ -17,6 +17,7 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"golang.org/x/crypto/ed25519"
 	"io"
 	"math/big"
 	"strings"
@@ -30,6 +31,7 @@ const (
 	KeyAlgoECDSA256 = "ecdsa-sha2-nistp256"
 	KeyAlgoECDSA384 = "ecdsa-sha2-nistp384"
 	KeyAlgoECDSA521 = "ecdsa-sha2-nistp521"
+	KeyAlgoED25519  = "ssh-ed25519"
 )
 
 // parsePubKey parses a public key of the given algorithm.
@@ -42,6 +44,8 @@ func parsePubKey(in []byte, algo string) (pubKey PublicKey, rest []byte, err err
 		return parseDSA(in)
 	case KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521:
 		return parseECDSA(in)
+	case KeyAlgoED25519:
+		return parseED25519(in)
 	case CertAlgoRSAv01, CertAlgoDSAv01, CertAlgoECDSA256v01, CertAlgoECDSA384v01, CertAlgoECDSA521v01:
 		cert, err := parseCert(in, certToPrivAlgo(algo))
 		if err != nil {
@@ -457,6 +461,51 @@ func (key *ecdsaPublicKey) nistID() string {
 		return "nistp521"
 	}
 	panic("ssh: unsupported ecdsa key size")
+}
+
+type ed25519PublicKey ed25519.PublicKey
+
+func (key *ed25519PublicKey) Type() string {
+	return "ssh-ed25519"
+}
+
+func parseED25519(in []byte) (out PublicKey, rest []byte, err error) {
+	var w struct {
+		KeyBytes []byte
+		Rest     []byte `ssh:"rest"`
+	}
+
+	if err := Unmarshal(in, &w); err != nil {
+		return nil, nil, err
+	}
+
+	key := ed25519.PublicKey(w.KeyBytes)
+
+	return (*ed25519PublicKey)(&key), w.Rest, nil
+}
+
+func (key *ed25519PublicKey) Marshal() []byte {
+	w := struct {
+		Name     string
+		KeyBytes []byte
+	}{
+		"ssh-ed25519",
+		[]byte(*key),
+	}
+	return Marshal(&w)
+}
+
+func (key *ed25519PublicKey) Verify(b []byte, sig *Signature) error {
+	if sig.Format != key.Type() {
+		return fmt.Errorf("ssh: signature type %s for key type %s", sig.Format, key.Type())
+	}
+
+	edKey := (*ed25519.PublicKey)(key)
+	if ok := ed25519.Verify(*edKey, b, sig.Blob); !ok {
+		return errors.New("ssh: signature did not verify")
+	}
+
+	return nil
 }
 
 func supportedEllipticCurve(curve elliptic.Curve) bool {
