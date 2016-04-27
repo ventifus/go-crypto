@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8fea96d_21a638d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-27T15:16:24Z",
+      "side": 1,
+      "message": "subject should start with the directory (\"ssh: \") and have a lowercase \"add client ...\"",
+      "revId": "1dcd30786f9baaee6232c1f323820d3f9850c488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8fea96d_81aba498",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-04-27T15:16:24Z",
+      "side": 1,
+      "message": "Based on",
+      "revId": "1dcd30786f9baaee6232c1f323820d3f9850c488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
