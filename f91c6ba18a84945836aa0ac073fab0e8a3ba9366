@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8fea96d_6c8837f8",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-02T09:03:33Z",
+      "side": 1,
+      "message": "use the constant you just introduced?",
+      "range": {
+        "startLine": 469,
+        "startChar": 9,
+        "endLine": 469,
+        "endChar": 12
+      },
+      "revId": "f91c6ba18a84945836aa0ac073fab0e8a3ba9366",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
