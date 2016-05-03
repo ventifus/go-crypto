@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "ed4c338d_e45e3a34",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 13346
+      },
+      "writtenOn": "2016-05-03T12:16:06Z",
+      "side": 1,
+      "message": "Other equivalent ones do not. I\u0027ve left as-is for now. Please explain further if you want me to change this.",
+      "parentUuid": "2831d982_f62a206e",
+      "revId": "a087f82e9dff856f002db787db95b8966305a316",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2831d982_b624a89f",
         "filename": "ssh/keys_test.go",
         "patchSetId": 5
