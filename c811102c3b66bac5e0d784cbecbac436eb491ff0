@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d5f63fa_f8a811ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-06T16:39:02Z",
+      "side": 1,
+      "message": "start with a lowercase verb and drop the period at the end\n\nalso, drop x/crypto. that\u0027s implicit from the repo.\n\nso, just:\n\n   ssh: fix compatibility with recent OpenSSH",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "c811102c3b66bac5e0d784cbecbac436eb491ff0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
