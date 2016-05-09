@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2fb3484_ecc1cb42",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-09T06:31:51Z",
+      "side": 1,
+      "message": "looks like a copy \u0026 paste. Can you introduce a newCBCCipher that takes the block cipher as argument and use it here and above?",
+      "revId": "0f70f332f166d13dd01a3bda610fd49c20e3705b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2fb3484_ccbe8fbc",
+        "filename": "ssh/transport.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-09T06:31:51Z",
+      "side": 1,
+      "message": "please update test/session_test.go too",
+      "revId": "0f70f332f166d13dd01a3bda610fd49c20e3705b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
