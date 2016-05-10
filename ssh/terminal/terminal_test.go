@@ -7,6 +7,7 @@ package terminal
 import (
 	"io"
 	"os"
+	"syscall"
 	"testing"
 )
 
@@ -280,9 +281,14 @@ func TestMakeRawState(t *testing.T) {
 		t.Fatalf("failed to get terminal state from GetState: %s", err)
 	}
 	defer Restore(fd, st)
+
 	raw, err := MakeRaw(fd)
 	if err != nil {
 		t.Fatalf("failed to get terminal state from MakeRaw: %s", err)
+	}
+
+	if (raw.termios.Oflag & syscall.OPOST) != syscall.OPOST {
+		t.Errorf("raw mode not being set correctly")
 	}
 
 	if *st != *raw {
