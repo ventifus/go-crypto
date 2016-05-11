@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2c414d4_07fd9849",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-11T18:31:24Z",
+      "side": 1,
+      "message": "have you tested this at all? you are doing wantReply \u003d false, ok\u003d\u003dfalse always.",
+      "revId": "79ca010fff961bf156a4d0537f27193a3ec96407",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
