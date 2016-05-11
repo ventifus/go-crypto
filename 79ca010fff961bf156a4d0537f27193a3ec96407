@@ -16,6 +16,24 @@
       "revId": "79ca010fff961bf156a4d0537f27193a3ec96407",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d25390c8_c241474e",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 13700
+      },
+      "writtenOn": "2016-05-11T19:03:19Z",
+      "side": 1,
+      "message": "I clearly wasn\u0027t testing any unhappy path.  I see now that the other cases where no reply is requested the `ok` value is just ignored.",
+      "parentUuid": "f2c414d4_07fd9849",
+      "revId": "79ca010fff961bf156a4d0537f27193a3ec96407",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
