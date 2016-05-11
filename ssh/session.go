@@ -230,6 +230,29 @@ func (s *Session) RequestSubsystem(subsystem string) error {
 	return err
 }
 
+// RFC 4254 Section 6.7.
+type windowDimensionChangeMsg struct {
+	Columns uint32
+	Rows    uint32
+	Width   uint32
+	Height  uint32
+}
+
+// WindowDimensionChange informs the remote host of a terminal size change on the client.
+func (s *Session) WindowDimensionChange(h, w int) error {
+	req := windowDimensionChangeMsg{
+		Columns: uint32(w),
+		Rows:    uint32(h),
+		Width:   uint32(w * 8),
+		Height:  uint32(h * 8),
+	}
+	ok, err := s.ch.SendRequest("window-change", false, Marshal(&req))
+	if err == nil && !ok {
+		err = errors.New("ssh: window-change failed")
+	}
+	return err
+}
+
 // RFC 4254 Section 6.9.
 type signalMsg struct {
 	Signal string
