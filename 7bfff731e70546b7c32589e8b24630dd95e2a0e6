@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1720ba90_95d8e42b",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-12T09:18:52Z",
+      "side": 1,
+      "message": "drop blank.",
+      "revId": "7bfff731e70546b7c32589e8b24630dd95e2a0e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57431250_8fd8b52b",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-12T09:18:52Z",
+      "side": 1,
+      "message": "drop",
+      "revId": "7bfff731e70546b7c32589e8b24630dd95e2a0e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
