@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1239a8b4_d10b081b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-16T23:20:32Z",
+      "side": 1,
+      "message": "start with \"ssh: \" and lowercase verb allow. And drop trailing period.",
+      "revId": "852946c607f7c0cfef84a3ee3f06c434eed325b3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1239a8b4_5102b8fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-16T23:20:32Z",
+      "side": 1,
+      "message": "Fixes golang/go#15701\n\nThe codereview tool should\u0027ve done that for you, I thought. Maybe you\u0027re using an older version?",
+      "revId": "852946c607f7c0cfef84a3ee3f06c434eed325b3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
