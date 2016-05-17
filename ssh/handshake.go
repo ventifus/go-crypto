@@ -174,14 +174,9 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 
 	t.mu.Lock()
 
-	// By default, a key exchange is hidden from higher layers by
-	// translating it into msgIgnore.
-	successPacket := []byte{msgIgnore}
+	first := false
 	if t.sessionID == nil {
-		// sendKexInit() for the first kex waits for
-		// msgNewKeys so the authentication process is
-		// guaranteed to happen over an encrypted transport.
-		successPacket = []byte{msgNewKeys}
+		first = true
 	}
 
 	err = t.enterKeyExchangeLocked(p)
@@ -192,7 +187,7 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 	}
 
 	if debugHandshake {
-		log.Printf("%s exited key exchange, err %v", t.id(), err)
+		log.Printf("%s exited key exchange (first %v), err %v", t.id(), first, err)
 	}
 
 	// Unblock writers.
@@ -207,6 +202,17 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 	}
 
 	t.readSinceKex = 0
+
+	// By default, a key exchange is hidden from higher layers by
+	// translating it into msgIgnore.
+	successPacket := []byte{msgIgnore}
+	if first {
+		// sendKexInit() for the first kex waits for
+		// msgNewKeys so the authentication process is
+		// guaranteed to happen over an encrypted transport.
+		successPacket = []byte{msgNewKeys}
+	}
+
 	return successPacket, nil
 }
 
@@ -225,16 +231,15 @@ const (
 // close the underlying transport. This function is safe for
 // concurrent use by multiple goroutines.
 func (t *handshakeTransport) sendKexInit(isFirst keyChangeCategory) error {
+	var err error
+
 	t.mu.Lock()
 	// If this is the initial key change, but we already have a sessionID,
 	// then do nothing because the key exchange has already completed
 	// asynchronously.
-	if isFirst && t.sessionID != nil {
-		t.mu.Unlock()
-		return nil
+	if !isFirst || t.sessionID == nil {
+		_, _, err = t.sendKexInitLocked(isFirst)
 	}
-
-	_, _, err := t.sendKexInitLocked(isFirst)
 	t.mu.Unlock()
 	if err != nil {
 		return err
