@@ -16,6 +16,24 @@
       "revId": "bfbb29fb000a1d68a91c3270c541ffcea42754c8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "722d8476_f7d3aae1",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-05-17T16:13:20Z",
+      "side": 1,
+      "message": "correct. This is just to improve the log statement in l.187",
+      "parentUuid": "f7a8865d_249b1275",
+      "revId": "bfbb29fb000a1d68a91c3270c541ffcea42754c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
