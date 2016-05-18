@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7721f6e1_2f0bcac8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-18T21:38:08Z",
+      "side": 1,
+      "message": "start with a lowercase verb after the colon",
+      "revId": "89577a83318ce35db3c930fe84e2efdcad85b9bb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7721f6e1_6f15c2df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-18T21:38:08Z",
+      "side": 1,
+      "message": "wants?",
+      "revId": "89577a83318ce35db3c930fe84e2efdcad85b9bb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7721f6e1_4f06fec2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-05-18T21:38:08Z",
+      "side": 1,
+      "message": "delete. we don\u0027t use these.",
+      "revId": "89577a83318ce35db3c930fe84e2efdcad85b9bb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
