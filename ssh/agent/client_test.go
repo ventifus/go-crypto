@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"testing"
+	"time"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -283,5 +284,58 @@ func testLockAgent(agent Agent, t *testing.T) {
 		t.Errorf("List: %v", err)
 	} else if len(keys) != 1 {
 		t.Errorf("Want 1 keys, got %v", keys)
+	}
+}
+
+func TestAgentLifetime(t *testing.T) {
+	agent, _, cleanup := startAgent(t)
+	defer cleanup()
+
+	testCertLifetime(agent, t)
+	testKeyLifetime(agent, t)
+}
+
+func testKeyLifetime(agent Agent, t *testing.T) {
+	for _, keyType := range []string{"rsa", "dsa", "ecdsa"} {
+		err := agent.Add(AddedKey{
+			PrivateKey:   testPrivateKeys[keyType],
+			Comment:      "comment",
+			LifetimeSecs: 1,
+		})
+		if err != nil {
+			t.Fatalf("add: %v", err)
+		}
+	}
+	time.Sleep(2 * time.Second)
+	if keys, err := agent.List(); err != nil {
+		t.Errorf("List: %v", err)
+	} else if len(keys) != 0 {
+		t.Errorf("Want 0 keys, got %v", len(keys))
+	}
+}
+
+func testCertLifetime(agent Agent, t *testing.T) {
+	for _, keyType := range []string{"rsa", "dsa", "ecdsa"} {
+		cert := &ssh.Certificate{
+			Key:         testPublicKeys[keyType],
+			ValidBefore: ssh.CertTimeInfinity,
+			CertType:    ssh.UserCert,
+		}
+		cert.SignCert(rand.Reader, testSigners[keyType])
+		err := agent.Add(AddedKey{
+			PrivateKey:   testPrivateKeys[keyType],
+			Certificate:  cert,
+			Comment:      "comment",
+			LifetimeSecs: 1,
+		})
+		if err != nil {
+			t.Fatalf("add: %v", err)
+		}
+	}
+	time.Sleep(2 * time.Second)
+	if keys, err := agent.List(); err != nil {
+		t.Errorf("List: %v", err)
+	} else if len(keys) != 0 {
+		t.Errorf("Want 0 keys, got %v", len(keys))
 	}
 }
