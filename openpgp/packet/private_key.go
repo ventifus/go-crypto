@@ -6,6 +6,7 @@ package packet
 
 import (
 	"bytes"
+	"crypto"
 	"crypto/cipher"
 	"crypto/dsa"
 	"crypto/ecdsa"
@@ -30,7 +31,7 @@ type PrivateKey struct {
 	encryptedData []byte
 	cipher        CipherFunction
 	s2k           func(out, in []byte)
-	PrivateKey    interface{} // An *rsa.PrivateKey or *dsa.PrivateKey.
+	PrivateKey    interface{} // An *rsa.PrivateKey or *dsa.PrivateKey or *ecdsa.PrivateKey or a crypto.Signer.
 	sha1Checksum  bool
 	iv            []byte
 }
@@ -60,6 +61,22 @@ func NewECDSAPrivateKey(currentTime time.Time, priv *ecdsa.PrivateKey) *PrivateK
 	pk := new(PrivateKey)
 	pk.PublicKey = *NewECDSAPublicKey(currentTime, &priv.PublicKey)
 	pk.PrivateKey = priv
+	return pk
+}
+
+// NewSignerPrivateKey creates a sign-only PrivateKey from a crypto.Signer implementing RSA or ECDSA.
+func NewSignerPrivateKey(currentTime time.Time, signer crypto.Signer) *PrivateKey {
+	pk := new(PrivateKey)
+	switch pubkey := signer.Public().(type) {
+	case rsa.PublicKey:
+		pk.PublicKey = *NewRSAPublicKey(currentTime, &pubkey)
+		pk.PubKeyAlgo = PubKeyAlgoRSASignOnly
+	case ecdsa.PublicKey:
+		pk.PublicKey = *NewECDSAPublicKey(currentTime, &pubkey)
+	default:
+		panic("unknown signer public key")
+	}
+	pk.PrivateKey = signer
 	return pk
 }
 

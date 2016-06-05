@@ -10,7 +10,9 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
+	"crypto/rsa"
 	"hash"
+	"io"
 	"testing"
 	"time"
 )
@@ -70,6 +72,49 @@ func populateHash(hashFunc crypto.Hash, msg []byte) (hash.Hash, error) {
 	return h, nil
 }
 
+func TestRSAPrivateKey(t *testing.T) {
+	rsaPriv, err := rsa.GenerateKey(rand.Reader, 1024)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var buf bytes.Buffer
+	if err := NewRSAPrivateKey(time.Now(), rsaPriv).Serialize(&buf); err != nil {
+		t.Fatal(err)
+	}
+
+	p, err := Read(&buf)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	priv, ok := p.(*PrivateKey)
+	if !ok {
+		t.Fatal("didn't parse private key")
+	}
+
+	sig := &Signature{
+		PubKeyAlgo: PubKeyAlgoRSA,
+		Hash:       crypto.SHA256,
+	}
+	msg := []byte("Hello World!")
+
+	h, err := populateHash(sig.Hash, msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := sig.Sign(h, priv, nil); err != nil {
+		t.Fatal(err)
+	}
+
+	if h, err = populateHash(sig.Hash, msg); err != nil {
+		t.Fatal(err)
+	}
+	if err := priv.VerifySignature(h, sig); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestECDSAPrivateKey(t *testing.T) {
 	ecdsaPriv, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {
@@ -89,6 +134,98 @@ func TestECDSAPrivateKey(t *testing.T) {
 	priv, ok := p.(*PrivateKey)
 	if !ok {
 		t.Fatal("didn't parse private key")
+	}
+
+	sig := &Signature{
+		PubKeyAlgo: PubKeyAlgoECDSA,
+		Hash:       crypto.SHA256,
+	}
+	msg := []byte("Hello World!")
+
+	h, err := populateHash(sig.Hash, msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := sig.Sign(h, priv, nil); err != nil {
+		t.Fatal(err)
+	}
+
+	if h, err = populateHash(sig.Hash, msg); err != nil {
+		t.Fatal(err)
+	}
+	if err := priv.VerifySignature(h, sig); err != nil {
+		t.Fatal(err)
+	}
+}
+
+type rsaSigner struct {
+	priv *rsa.PrivateKey
+}
+
+func (s *rsaSigner) Public() crypto.PublicKey {
+	return s.priv.PublicKey
+}
+
+func (s *rsaSigner) Sign(rand io.Reader, msg []byte, opts crypto.SignerOpts) ([]byte, error) {
+	return s.priv.Sign(rand, msg, opts)
+}
+
+func TestRSASignerPrivateKey(t *testing.T) {
+	rsaPriv, err := rsa.GenerateKey(rand.Reader, 1024)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	priv := NewSignerPrivateKey(time.Now(), &rsaSigner{rsaPriv})
+
+	if priv.PubKeyAlgo != PubKeyAlgoRSASignOnly {
+		t.Fatal("NewSignerPrivateKey should have made a sign-only RSA private key")
+	}
+
+	sig := &Signature{
+		PubKeyAlgo: PubKeyAlgoRSASignOnly,
+		Hash:       crypto.SHA256,
+	}
+	msg := []byte("Hello World!")
+
+	h, err := populateHash(sig.Hash, msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := sig.Sign(h, priv, nil); err != nil {
+		t.Fatal(err)
+	}
+
+	if h, err = populateHash(sig.Hash, msg); err != nil {
+		t.Fatal(err)
+	}
+	if err := priv.VerifySignature(h, sig); err != nil {
+		t.Fatal(err)
+	}
+}
+
+type ecdsaSigner struct {
+	priv *ecdsa.PrivateKey
+}
+
+func (s *ecdsaSigner) Public() crypto.PublicKey {
+	return s.priv.PublicKey
+}
+
+func (s *ecdsaSigner) Sign(rand io.Reader, msg []byte, opts crypto.SignerOpts) ([]byte, error) {
+	return s.priv.Sign(rand, msg, opts)
+}
+
+func TestECDSASignerPrivateKey(t *testing.T) {
+	ecdsaPriv, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	priv := NewSignerPrivateKey(time.Now(), &ecdsaSigner{ecdsaPriv})
+
+	if priv.PubKeyAlgo != PubKeyAlgoECDSA {
+		t.Fatal("NewSignerPrivateKey should have made a ECSDA private key")
 	}
 
 	sig := &Signature{
