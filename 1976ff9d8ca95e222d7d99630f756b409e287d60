@@ -16,6 +16,24 @@
       "revId": "1976ff9d8ca95e222d7d99630f756b409e287d60",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06188e2b_b51320aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-06-06T06:48:34Z",
+      "side": 1,
+      "message": "i agree, but brad has been asking people to strip off the x/crypto prefix. An unambiguous policy about this (enforced by a robotic commenter?) would be welcome.",
+      "parentUuid": "e647fa3c_cc40ef50",
+      "revId": "1976ff9d8ca95e222d7d99630f756b409e287d60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
