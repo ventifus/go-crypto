@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c611160b_5380e4a0",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-06-06T12:49:07Z",
+      "side": 1,
+      "message": "Can you fold both into one loop? It\u0027ll take 4 secs to run this now? Alternatively, make 2 test cases, and have them run in parallel.\n\nAlso, you could try reducing the sleep from 2 secs to 1.1 secs or similar.",
+      "range": {
+        "startLine": 335,
+        "startChar": 21,
+        "endLine": 335,
+        "endChar": 27
+      },
+      "revId": "0e6633eb0ba368313763881e2d1f25fde2b344f9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
