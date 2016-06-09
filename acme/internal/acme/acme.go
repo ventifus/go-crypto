@@ -381,15 +381,17 @@ func (c *Client) HTTP01Handler(token string) http.Handler {
 //
 // The token argument is a Challenge.Token value.
 // The returned certificate is valid for the next 24 hours.
-func (c *Client) TLSSNI01ChallengeCert(token string) (tls.Certificate, error) {
+func (c *Client) TLSSNI01ChallengeCert(token string) (cert tls.Certificate, name string, err error) {
 	ka, err := keyAuth(c.Key.Public(), token)
 	if err != nil {
-		return tls.Certificate{}, nil
+		return tls.Certificate{}, "", nil
 	}
 	b := sha256.Sum256([]byte(ka))
 	h := hex.EncodeToString(b[:])
-	name := fmt.Sprintf("%s.%s.acme.invalid", h[:32], h[32:])
-	return tlsChallengeCert(name)
+
+	name = fmt.Sprintf("%s.%s.acme.invalid", h[:32], h[32:])
+	cert, err = tlsChallengeCert(name)
+	return
 }
 
 // TLSSNI02ChallengeCert creates a certificate for TLS-SNI-02 challenge response.
@@ -399,20 +401,21 @@ func (c *Client) TLSSNI01ChallengeCert(token string) (tls.Certificate, error) {
 //
 // The token argument is a Challenge.Token value.
 // The returned certificate is valid for the next 24 hours.
-func (c *Client) TLSSNI02ChallengeCert(token string) (tls.Certificate, error) {
+func (c *Client) TLSSNI02ChallengeCert(token string) (cert tls.Certificate, name string, err error) {
 	b := sha256.Sum256([]byte(token))
 	h := hex.EncodeToString(b[:])
 	sanA := fmt.Sprintf("%s.%s.token.acme.invalid", h[:32], h[32:])
 
 	ka, err := keyAuth(c.Key.Public(), token)
 	if err != nil {
-		return tls.Certificate{}, nil
+		return tls.Certificate{}, "", nil
 	}
 	b = sha256.Sum256([]byte(ka))
 	h = hex.EncodeToString(b[:])
 	sanB := fmt.Sprintf("%s.%s.ka.acme.invalid", h[:32], h[32:])
 
-	return tlsChallengeCert(sanA, sanB)
+	cert, err = tlsChallengeCert(sanA, sanB)
+	return cert, sanA, err
 }
 
 func (c *Client) httpClient() *http.Client {
