@@ -192,8 +192,25 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 
 // Register creates a new account registration by following the "new-reg" flow.
 // It returns registered account. The a argument is not modified.
-func (c *Client) Register(a *Account) (*Account, error) {
-	return c.doReg(c.Dir.RegURL, "new-reg", a)
+//
+// The registration may require the caller to agree to the CA Terms of Service.
+// If so, and the account has not indicated the acceptance of the terms,
+// Register calls prompt with the newly registered account. Prompt should report
+// whether the caller agrees to the terms. A nil prompt func is taken to mean that the user always agrees.
+// See Account.AgreedTerms and Account.CurrentTerms for more details.
+func (c *Client) Register(a *Account, prompt func(a *Account) bool) (*Account, error) {
+	var err error
+	if a, err = c.doReg(c.Dir.RegURL, "new-reg", a); err != nil {
+		return nil, err
+	}
+	var update bool
+	if a.CurrentTerms != "" && a.CurrentTerms != a.AgreedTerms {
+		update = prompt(a)
+	}
+	if update {
+		a, err = c.UpdateReg(a.URI, a)
+	}
+	return a, err
 }
 
 // GetReg retrieves an existing registration.
