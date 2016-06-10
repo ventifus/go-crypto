@@ -279,6 +279,9 @@ type PublicKey interface {
 	// Verify that sig is a signature on the given data using this
 	// key. This function will hash the data appropriately first.
 	Verify(data []byte, sig *Signature) error
+
+	// UnderlyingKey returns the underlying key, often a crypto.PublicKey.
+	UnderlyingKey() interface{}
 }
 
 // A Signer can create signatures that verify against a public key.
@@ -348,6 +351,10 @@ func (r *rsaPublicKey) Verify(data []byte, sig *Signature) error {
 	return rsa.VerifyPKCS1v15((*rsa.PublicKey)(r), crypto.SHA1, digest, sig.Blob)
 }
 
+func (r *rsaPublicKey) UnderlyingKey() interface{} {
+	return (*rsa.PublicKey)(r)
+}
+
 type dsaPublicKey dsa.PublicKey
 
 func (r *dsaPublicKey) Type() string {
@@ -414,6 +421,10 @@ func (k *dsaPublicKey) Verify(data []byte, sig *Signature) error {
 		return nil
 	}
 	return errors.New("ssh: signature did not verify")
+}
+
+func (k *dsaPublicKey) UnderlyingKey() interface{} {
+	return (*dsa.PublicKey)(k)
 }
 
 type dsaPrivateKey struct {
@@ -509,6 +520,10 @@ func (key ed25519PublicKey) Verify(b []byte, sig *Signature) error {
 	return nil
 }
 
+func (k ed25519PublicKey) UnderlyingKey() interface{} {
+	return ed25519.PublicKey(k)
+}
+
 func supportedEllipticCurve(curve elliptic.Curve) bool {
 	return curve == elliptic.P256() || curve == elliptic.P384() || curve == elliptic.P521()
 }
@@ -602,6 +617,10 @@ func (key *ecdsaPublicKey) Verify(data []byte, sig *Signature) error {
 		return nil
 	}
 	return errors.New("ssh: signature did not verify")
+}
+
+func (k *ecdsaPublicKey) UnderlyingKey() interface{} {
+	return (*ecdsa.PublicKey)(k)
 }
 
 // NewSignerFromKey takes an *rsa.PrivateKey, *dsa.PrivateKey,

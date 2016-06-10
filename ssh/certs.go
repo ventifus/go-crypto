@@ -472,6 +472,12 @@ func (c *Certificate) Verify(data []byte, sig *Signature) error {
 	return c.Key.Verify(data, sig)
 }
 
+// UnderlyingKey returns the underlying public key used within the Certificate.
+// It is often a crypto.PublicKey.
+func (c *Certificate) UnderlyingKey() interface{} {
+	return c.Key.UnderlyingKey()
+}
+
 func parseSignatureBody(in []byte) (out *Signature, rest []byte, ok bool) {
 	format, in, ok := parseString(in)
 	if !ok {
