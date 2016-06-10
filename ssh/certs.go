@@ -472,6 +472,10 @@ func (c *Certificate) Verify(data []byte, sig *Signature) error {
 	return c.Key.Verify(data, sig)
 }
 
+func (c *Certificate) UnderlyingKey() interface{} {
+	return c.Key.UnderlyingKey()
+}
+
 func parseSignatureBody(in []byte) (out *Signature, rest []byte, ok bool) {
 	format, in, ok := parseString(in)
 	if !ok {
