@@ -190,10 +190,31 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 	}
 }
 
+// AcceptTOS always returns true to indicate the acceptance of a CA Terms of Service
+// during account registration. See Register method of Client for more details.
+func AcceptTOS(string) bool { return true }
+
 // Register creates a new account registration by following the "new-reg" flow.
 // It returns registered account. The a argument is not modified.
-func (c *Client) Register(a *Account) (*Account, error) {
-	return c.doReg(c.Dir.RegURL, "new-reg", a)
+//
+// The registration may require the caller to agree to the CA Terms of Service (TOS).
+// If so, and the account has not indicated the acceptance of the terms (see Account for details),
+// Register calls prompt with a TOS URL provided by the CA. Prompt should report
+// whether the caller agrees to the terms. To always accept the terms, the caller can use AcceptTOS.
+func (c *Client) Register(a *Account, prompt func(tos string) bool) (*Account, error) {
+	var err error
+	if a, err = c.doReg(c.Dir.RegURL, "new-reg", a); err != nil {
+		return nil, err
+	}
+	var accept bool
+	if a.CurrentTerms != "" && a.CurrentTerms != a.AgreedTerms {
+		accept = prompt(a.CurrentTerms)
+	}
+	if accept {
+		a.AgreedTerms = a.CurrentTerms
+		a, err = c.UpdateReg(a.URI, a)
+	}
+	return a, err
 }
 
 // GetReg retrieves an existing registration.

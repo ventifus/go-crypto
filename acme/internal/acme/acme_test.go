@@ -120,7 +120,7 @@ func TestRegister(t *testing.T) {
 	c := Client{Key: testKey, Dir: Directory{RegURL: ts.URL}}
 	a := &Account{Contact: contacts}
 	var err error
-	if a, err = c.Register(a); err != nil {
+	if a, err = c.Register(a, func(string) bool { return false }); err != nil {
 		t.Fatal(err)
 	}
 	if a.URI != "https://ca.tld/acme/reg/1" {
