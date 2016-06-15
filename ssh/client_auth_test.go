@@ -391,3 +391,54 @@ func TestPermissionsPassing(t *testing.T) {
 func TestNoPermissionsPassing(t *testing.T) {
 	testPermissionsPassing(false, t)
 }
+
+func TestRetryableAuth(t *testing.T) {
+	n := 0
+	passwords := []string{"WRONG", clientPassword}
+
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PasswordCallback(func() (string, error) {
+				p := passwords[n]
+				n++
+				return p, nil
+			}),
+		},
+		AllowRetryableAuth: true,
+	}
+
+	if err := tryAuth(t, config); err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+}
+
+// Verifies that we support a usecase like openssh's NumberOfPasswordPrompts
+// option
+func TestRetryableAuthStopping(t *testing.T) {
+	n := 0
+	passwords := []string{"WRONG1", "WRONG2"}
+
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PasswordCallback(func() (string, error) {
+				if n >= len(passwords) {
+					return "", ErrNotRetryable
+				}
+				p := passwords[n]
+				n++
+				return p, nil
+			}),
+			PublicKeys(testSigners["rsa"]),
+		},
+		AllowRetryableAuth: true,
+	}
+
+	if err := tryAuth(t, config); err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+	if n != 2 {
+		t.Fatalf("Did not try all passwords")
+	}
+}

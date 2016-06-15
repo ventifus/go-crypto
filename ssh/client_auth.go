@@ -11,6 +11,8 @@ import (
 	"io"
 )
 
+var ErrNotRetryable = fmt.Errorf("AuthMethod is not retryable")
+
 // clientAuthenticate authenticates with the remote server. See RFC 4252.
 func (c *connection) clientAuthenticate(config *ClientConfig) error {
 	// initiate user auth session
@@ -30,16 +32,18 @@ func (c *connection) clientAuthenticate(config *ClientConfig) error {
 	// then any untried methods suggested by the server.
 	tried := make(map[string]bool)
 	var lastMethods []string
+
 	for auth := AuthMethod(new(noneAuth)); auth != nil; {
 		ok, methods, err := auth.auth(c.transport.getSessionID(), config.User, c.transport, config.Rand)
-		if err != nil {
+		if err == ErrNotRetryable || (!config.AllowRetryableAuth && err == nil) {
+			tried[auth.method()] = true
+		} else if err != nil {
 			return err
 		}
 		if ok {
 			// success
 			return nil
 		}
-		tried[auth.method()] = true
 		if methods == nil {
 			methods = lastMethods
 		}

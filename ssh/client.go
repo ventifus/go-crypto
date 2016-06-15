@@ -210,4 +210,10 @@ type ClientConfig struct {
 	//
 	// A Timeout of zero means no timeout.
 	Timeout time.Duration
+
+	// AllowRetryableAuth specifies whether or not AuthMethods should be
+	// allowed to retry (and only stop retrying if they return
+	// ssh.ErrNotRetryable or the server terminates the session due to
+	// excessive failures
+	AllowRetryableAuth bool
 }
