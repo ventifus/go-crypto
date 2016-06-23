@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae1b1e5a_6322a24c",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 11730
+      },
+      "writtenOn": "2016-06-23T03:03:45Z",
+      "side": 1,
+      "message": "I\u0027m not sure how I managed to get the non-pointer version in my base. when I git blame in master (which my change appears to be correctly based from), I see this whole case correctly blames to 5bcd134f.\n\n¯\\_(ツ)_/¯\n\nyou want to try and re-create this change with this redirection pulled out?",
+      "parentUuid": "6e2a06c1_29ad8da0",
+      "revId": "e42ce5c9cc52751f5c40689ee5bf9945b51fe97b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee932d1_5c8edd3f",
         "filename": "ssh/agent/server.go",
         "patchSetId": 3
