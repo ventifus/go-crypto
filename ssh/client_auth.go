@@ -437,3 +437,26 @@ func (cb KeyboardInteractiveChallenge) auth(session []byte, user string, c packe
 		}
 	}
 }
+
+type retryableAuthMethod struct {
+	authMethod AuthMethod
+	maxTries   int
+}
+
+func (r *retryableAuthMethod) auth(session []byte, user string, c packetConn, rand io.Reader) (ok bool, methods []string, err error) {
+	for i := 0; r.maxTries < 0 || i < r.maxTries; i++ {
+		ok, methods, err = r.authMethod.auth(session, user, c, rand)
+		if ok || err != nil { // either success or error terminate
+			return ok, methods, err
+		}
+	}
+	return ok, methods, err
+}
+
+func (r *retryableAuthMethod) method() string {
+	return r.authMethod.method()
+}
+
+func RetryableAuthMethod(auth AuthMethod, maxTries int) AuthMethod {
+	return &retryableAuthMethod{authMethod: auth, maxTries: maxTries}
+}
