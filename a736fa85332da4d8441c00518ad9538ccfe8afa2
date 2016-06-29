@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c05823e8_c40e3e8a",
+        "filename": "acme/internal/acme/man.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-06-29T22:24:35Z",
+      "side": 1,
+      "message": "let\u0027s put this in its own package, to keep you honest about the separation and only using exported bits of the low-level acme package.",
+      "revId": "a736fa85332da4d8441c00518ad9538ccfe8afa2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c05823e8_64374a41",
+        "filename": "acme/internal/acme/man.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-06-29T22:24:35Z",
+      "side": 1,
+      "message": "too many details. The zero value of a Manager should work.",
+      "revId": "a736fa85332da4d8441c00518ad9538ccfe8afa2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c05823e8_044456a3",
+        "filename": "acme/internal/acme/man.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-06-29T22:24:35Z",
+      "side": 1,
+      "message": "too low-level.",
+      "revId": "a736fa85332da4d8441c00518ad9538ccfe8afa2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
