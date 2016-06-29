@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c05823e8_241ab2c2",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-06-29T22:27:21Z",
+      "side": 1,
+      "message": "why does this func take an Account? Why not just the TOS URL?\n\nAlso, nil should not be mean auto-acceptance at this layer. Make it be required for them to accept tos. You can make a public func like:\n\npackage acme\n\nfunc AcceptTOS(url string) bool { return true}\n\nThen they can write:\n\n   Register(..., acme.AcceptTOS)",
+      "revId": "aa496de7fd9855eee35268885b6fd540a0062583",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
