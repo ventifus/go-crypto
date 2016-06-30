@@ -33,6 +33,24 @@
       "revId": "bf5e464bf0b491c7d8a192882492f1d7472ce11c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d193675_7325600b",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-06-30T11:43:47Z",
+      "side": 1,
+      "message": "the SSH package\u0027s use of interfaces is broken (sorry).\n\nImplementing a PublicKey outside the ssh has limited use, because you cannot register key types. Hence, the SSH package cannot parse key types that were user-supplied, and you can never use these key types in e2e tests. \n\n(You could use them to authenticate against -say- an OpenSSH server, but testing that code would require spinning up sshd.)",
+      "parentUuid": "c05823e8_44824eb5",
+      "revId": "bf5e464bf0b491c7d8a192882492f1d7472ce11c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
