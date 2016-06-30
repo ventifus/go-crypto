@@ -6,6 +6,7 @@ package poly1305
 
 import (
 	"bytes"
+	"encoding/hex"
 	"testing"
 	"unsafe"
 )
@@ -49,11 +50,77 @@ func testSum(t *testing.T, unaligned bool) {
 		if !bytes.Equal(out[:], v.correct) {
 			t.Errorf("%d: expected %x, got %x", i, v.correct, out[:])
 		}
+
+		if !Verify(&out, in, &key) {
+			t.Errorf("%d: Verify failed", i)
+		}
 	}
 }
 
 func TestSum(t *testing.T)          { testSum(t, false) }
 func TestSumUnaligned(t *testing.T) { testSum(t, true) }
+
+func TestWriteAfterSum(t *testing.T) {
+	var sum [TagSize]byte
+
+	msg := make([]byte, 64)
+	for i := range msg {
+		h := New(new([32]byte))
+
+		if _, err := h.Write(msg[:i]); err != nil {
+			t.Fatalf("Iteration %d: poly1305.Hash returned unexpected error: %s", i, err)
+		}
+		h.Sum(&sum)
+		if _, err := h.Write(nil); err == nil {
+			t.Fatalf("Iteration %d: poly1305.Hash returned no error for write after sum", i)
+		}
+	}
+}
+
+func TestWrite(t *testing.T) {
+	var key [32]byte
+	for i := range key {
+		key[i] = byte(i)
+	}
+
+	h := New(&key)
+
+	var msg1 []byte
+	msg0 := make([]byte, 64)
+	for i := range msg0 {
+		h.Write(msg0[:i])
+		msg1 = append(msg1, msg0[:i]...)
+	}
+
+	var tag0, tag1 [TagSize]byte
+	h.Sum(&tag0)
+	Sum(&tag1, msg1, &key)
+
+	if tag0 != tag1 {
+		t.Fatalf("Sum differ from poly1305.Sum\n Sum: %s \n poly1305.Sum: %s", hex.EncodeToString(tag0[:]), hex.EncodeToString(tag1[:]))
+	}
+}
+
+func TestSumSelftest(t *testing.T) {
+	var key [32]byte
+	for i := range key {
+		key[i] = byte(i)
+	}
+
+	msg := make([]byte, 64)
+	var tag, sum [TagSize]byte
+	for i := range msg {
+		h := New(&key)
+		h.Write(msg[:i])
+		h.Sum(&sum)
+
+		Sum(&tag, msg[:i], &key)
+
+		if tag != sum {
+			t.Fatalf("Iteration %d: Sum differ from poly1305.Sum\n Sum: %s \n poly1305.Sum %s", i, hex.EncodeToString(sum[:]), hex.EncodeToString(tag[:]))
+		}
+	}
+}
 
 func benchmark(b *testing.B, size int, unaligned bool) {
 	var out [16]byte
@@ -73,6 +140,26 @@ func Benchmark64(b *testing.B)          { benchmark(b, 64, false) }
 func Benchmark1K(b *testing.B)          { benchmark(b, 1024, false) }
 func Benchmark64Unaligned(b *testing.B) { benchmark(b, 64, true) }
 func Benchmark1KUnaligned(b *testing.B) { benchmark(b, 1024, true) }
+
+func benchmarkWrite(b *testing.B, size int, unaligned bool) {
+	var key [32]byte
+	p := New(&key)
+
+	in := make([]byte, size)
+	if unaligned {
+		in = unalignBytes(in)
+	}
+	b.SetBytes(int64(len(in)))
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		p.Write(in)
+	}
+}
+
+func BenchmarkWrite64(b *testing.B)          { benchmark(b, 64, false) }
+func BenchmarkWrite64Unaligned(b *testing.B) { benchmark(b, 64, true) }
+func BenchmarkWrite1K(b *testing.B)          { benchmark(b, 1024, false) }
+func BenchmarkWrite1KUnaligned(b *testing.B) { benchmark(b, 1024, true) }
 
 func unalignBytes(in []byte) []byte {
 	out := make([]byte, len(in)+1)
