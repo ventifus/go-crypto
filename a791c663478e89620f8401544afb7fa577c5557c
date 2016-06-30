@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3d53ea56_784d815e",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 14120
+      },
+      "writtenOn": "2016-06-30T18:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc5d224_0e8b8b34",
+      "range": {
+        "startLine": 446,
+        "startChar": 95,
+        "endLine": 446,
+        "endChar": 117
+      },
+      "revId": "a791c663478e89620f8401544afb7fa577c5557c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdc5d224_4e819312",
         "filename": "ssh/client_auth.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3d53ea56_58523dfc",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 14120
+      },
+      "writtenOn": "2016-06-30T18:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc5d224_4e819312",
+      "range": {
+        "startLine": 450,
+        "startChar": 13,
+        "endLine": 450,
+        "endChar": 27
+      },
+      "revId": "a791c663478e89620f8401544afb7fa577c5557c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdc5d224_6e86cf2d",
         "filename": "ssh/client_auth.go",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2016-06-30T02:55:08Z",
       "side": 1,
       "message": "should a non-nil err cause an immediate return?",
+      "range": {
+        "startLine": 451,
+        "startChar": 15,
+        "endLine": 451,
+        "endChar": 18
+      },
+      "revId": "a791c663478e89620f8401544afb7fa577c5557c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d53ea56_b836f9d0",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 14120
+      },
+      "writtenOn": "2016-06-30T18:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc5d224_6e86cf2d",
       "range": {
         "startLine": 451,
         "startChar": 15,
