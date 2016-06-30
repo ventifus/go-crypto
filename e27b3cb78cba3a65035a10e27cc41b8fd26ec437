@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1db8e6a5_4a541312",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2016-06-30T15:29:54Z",
+      "side": 1,
+      "message": "The copyright date for all new files should be 2016.",
+      "revId": "e27b3cb78cba3a65035a10e27cc41b8fd26ec437",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
