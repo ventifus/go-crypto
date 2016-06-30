@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bda8ba5c_84b526de",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-06-30T11:16:02Z",
+      "side": 1,
+      "message": "needs doc.",
+      "range": {
+        "startLine": 460,
+        "startChar": 5,
+        "endLine": 460,
+        "endChar": 24
+      },
+      "revId": "4370e047103d63d17be53e40246ed5e0abecd7fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
