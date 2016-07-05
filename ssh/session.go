@@ -282,9 +282,10 @@ func (s *Session) Start(cmd string) error {
 // copying stdin, stdout, and stderr, and exits with a zero exit
 // status.
 //
-// If the command fails to run or doesn't complete successfully, the
-// error is of type *ExitError. Other error types may be
-// returned for I/O problems.
+// If the remote server does not send an exit status, an error of type
+// *ExitMissingError is returned. If the command completes
+// unsuccessfully or is interrupted by a signal, the error is of type
+// *ExitError. Other error types may be returned for I/O problems.
 func (s *Session) Run(cmd string) error {
 	err := s.Start(cmd)
 	if err != nil {
@@ -371,9 +372,10 @@ func (s *Session) start() error {
 // copying stdin, stdout, and stderr, and exits with a zero exit
 // status.
 //
-// If the command fails to run or doesn't complete successfully, the
-// error is of type *ExitError. Other error types may be
-// returned for I/O problems.
+// If the remote server does not send an exit status, an error of type
+// *ExitMissingError is returned. If the command completes
+// unsuccessfully or is interrupted by a signal, the error is of type
+// *ExitError. Other error types may be returned for I/O problems.
 func (s *Session) Wait() error {
 	if !s.started {
 		return errors.New("ssh: session not started")
@@ -431,14 +433,26 @@ func (s *Session) wait(reqs <-chan *Request) error {
 	if wm.status == -1 {
 		// exit-status was never sent from server
 		if wm.signal == "" {
-			return errors.New("wait: remote command exited without exit status or exit signal")
+			// signal was not sent either.
+			return &ExitMissingError{}
 		}
 		wm.status = 128
 		if _, ok := signals[Signal(wm.signal)]; ok {
 			wm.status += signals[Signal(wm.signal)]
 		}
 	}
+
 	return &ExitError{wm}
+}
+
+// According to RFC 4254 section 6.10, servers are allowed to omit
+// confirmation of the exit status of a command. This case is signaled
+// by returning ExitMissingError.  It is only returned if the
+// confirmation was missing in a cleanly torn down session.
+type ExitMissingError struct{}
+
+func (e *ExitMissingError) Error() string {
+	return "wait: remote command exited without exit status or exit signal"
 }
 
 func (s *Session) stdin() {
