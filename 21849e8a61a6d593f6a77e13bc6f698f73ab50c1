@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7db562d9_74d3a8e0",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2016-07-06T13:18:02Z",
+      "side": 1,
+      "message": "If you return a pointer here, which is fine, then define the Error method below on *ExitMissingError.  Or leave the method below the same and return ExitMissingError{} here.",
+      "revId": "21849e8a61a6d593f6a77e13bc6f698f73ab50c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7db562d9_94d83cfd",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2016-07-06T13:18:02Z",
+      "side": 1,
+      "message": "Since the if block still ends with a return, the more common Go style is to omit the else here, as in the original code.",
+      "revId": "21849e8a61a6d593f6a77e13bc6f698f73ab50c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7db562d9_b4dc60f0",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2016-07-06T13:18:02Z",
+      "side": 1,
+      "message": "What is the TODO here?",
+      "revId": "21849e8a61a6d593f6a77e13bc6f698f73ab50c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
