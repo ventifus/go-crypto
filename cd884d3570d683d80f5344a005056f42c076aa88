@@ -1,0 +1,8 @@
+Code-Review+2: Ian Lance Taylor <iant@golang.org>
+Run-TryBot+1: Han-Wen Nienhuys <hanwen@google.com>
+TryBot-Result+1: Gobot Gobot <gobot@golang.org>
+Submitted-by: Han-Wen Nienhuys <hanwen@google.com>
+Submitted-at: Wed, 06 Jul 2016 14:48:16 +0000
+Reviewed-on: https://go-review.googlesource.com/24726
+Project: crypto
+Branch: refs/heads/master
