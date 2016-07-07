@@ -137,6 +137,21 @@ func verifyKey(sshAgent Agent) error {
 	return nil
 }
 
+func addKeyToAgentSock(key crypto.PrivateKey) error {
+	a, b, err := netPipe()
+	if err != nil {
+		return err
+	}
+	agentServer := NewKeyring()
+	go ServeAgent(agentServer, a)
+
+	agentClient := NewClient(b)
+	if err := agentClient.Add(AddedKey{PrivateKey: key}); err != nil {
+		return fmt.Errorf("add: %v", err)
+	}
+	return verifyKey(agentClient)
+}
+
 func addKeyToAgent(key crypto.PrivateKey) error {
 	sshAgent := NewKeyring()
 	if err := sshAgent.Add(AddedKey{PrivateKey: key}); err != nil {
@@ -148,6 +163,9 @@ func addKeyToAgent(key crypto.PrivateKey) error {
 func TestKeyTypes(t *testing.T) {
 	for k, v := range testPrivateKeys {
 		if err := addKeyToAgent(v); err != nil {
+			t.Errorf("error adding key type %s, %v", k, err)
+		}
+		if err := addKeyToAgentSock(v); err != nil {
 			t.Errorf("error adding key type %s, %v", k, err)
 		}
 	}
