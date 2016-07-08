@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da2494af_2dfaed10",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T19:50:45Z",
+      "side": 1,
+      "message": "Done. Although, technically it will result in the same thing for this specific case, right.\n\nIt just seemed using defer would unnecessary slow things a bit down once c.dir is initialized.",
+      "parentUuid": "9a005cf1_cf736df8",
+      "revId": "605cc9711e3b7ebfc276ea3ad2faf465ce9cacce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a005cf1_8f5fa55e",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-07-08T16:17:43Z",
       "side": 1,
       "message": "or just make line 99 be:\n\nc.dir \u003d \u0026Directory{\n   ...\n}\nreturn *c.dir, nil",
+      "revId": "605cc9711e3b7ebfc276ea3ad2faf465ce9cacce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da4d7487_8587827a",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T19:50:45Z",
+      "side": 1,
+      "message": "good point :)\ndone.",
+      "parentUuid": "9a005cf1_8f5fa55e",
       "revId": "605cc9711e3b7ebfc276ea3ad2faf465ce9cacce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
