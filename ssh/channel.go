@@ -588,7 +588,7 @@ func (ch *channel) SendRequest(name string, wantReply bool, payload []byte) (boo
 	if wantReply {
 		m, ok := (<-ch.msg)
 		if !ok {
-			return false, io.EOF
+			return false, fmt.Errorf("ssh: never got reply for request %q", name)
 		}
 		switch m.(type) {
 		case *channelRequestFailureMsg:
