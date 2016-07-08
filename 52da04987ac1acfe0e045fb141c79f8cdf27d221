@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da4d7487_4564ea2f",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7c8257_686ef77c",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d7c8257_88541bb4",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-07-07T19:23:28Z",
       "side": 1,
       "message": "Go never uses the term \"object\". Reword.",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da4d7487_8549c2a6",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7c8257_88541bb4",
       "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "da4d7487_a54cbeb6",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7c8257_a85f1fce",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d7c8257_48713358",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2016-07-07T19:23:28Z",
       "side": 1,
       "message": "It\u0027s weird that this takes nil or non-nil. I think nil use will be too error-prone.\n\nI\u0027m not even sure we need this constructor. Can we just let users creating a \u0026Client{Key: ....} themselves?",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da4d7487_c54fbaaa",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Yeah, it was only to generate a new key, but I agree it\u0027s probably not worth it, especially now given that there will be a nice high level manager API.",
+      "parentUuid": "7d7c8257_48713358",
       "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "da4d7487_055ef25f",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7c8257_c80f03df",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d7c8257_48fcd3b9",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "9a2e9c8f_cbd8f5fa",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7c8257_48fcd3b9",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d7c8257_a831df97",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -115,6 +223,24 @@
       "writtenOn": "2016-07-07T19:23:28Z",
       "side": 1,
       "message": "Is the url field redundant with something that could be stored in *Account?",
+      "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da4d7487_a5627eed",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-07-08T14:14:58Z",
+      "side": 1,
+      "message": "Good catch. I probably just missed it. Removed.",
+      "parentUuid": "7d7c8257_a831df97",
       "revId": "52da04987ac1acfe0e045fb141c79f8cdf27d221",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
