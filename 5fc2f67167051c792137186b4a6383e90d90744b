@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a0b8c62_af2059f1",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-07-11T14:20:29Z",
+      "side": 1,
+      "message": "can\u0027t you use addCertToAgentSock with a nil cert ? \n\naddKeyToAgent should also just use the Cert flavor.",
+      "revId": "5fc2f67167051c792137186b4a6383e90d90744b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
