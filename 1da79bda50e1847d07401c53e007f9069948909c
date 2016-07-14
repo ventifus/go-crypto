@@ -1,0 +1,6 @@
+Code-Review+2: Brad Fitzpatrick <bradfitz@golang.org>
+Submitted-by: Alex Vaghin <ddos@google.com>
+Submitted-at: Thu, 14 Jul 2016 16:03:19 +0000
+Reviewed-on: https://go-review.googlesource.com/23973
+Project: crypto
+Branch: refs/heads/master
