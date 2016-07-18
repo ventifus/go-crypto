@@ -1,0 +1,9 @@
+Run-TryBot+1: Adam Langley <agl@golang.org>
+TryBot-Result+1: Gobot Gobot <gobot@golang.org>
+Code-Review+1: Faiyaz Ahmed <ahmedf@vmware.com>
+Code-Review+2: Adam Langley <agl@golang.org>
+Submitted-by: Adam Langley <agl@golang.org>
+Submitted-at: Mon, 18 Jul 2016 21:10:49 +0000
+Reviewed-on: https://go-review.googlesource.com/22964
+Project: crypto
+Branch: refs/heads/master
