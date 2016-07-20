@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a2837c6_0dd25503",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-07-20T19:04:19Z",
+      "side": 1,
+      "message": "drop the x/crypto prefix (just the directory or directories) and lowercase verb after the colon\n\nyou can just say:\n\n    chacha20, poly1305: add ChaCha20 stream cipher and ChaCha20Poly1305 AEAD\n\nwhich is nicely 72 characters.\n\nYou can elaborate in the commit message after the subject, referencing the RFC etc.",
+      "revId": "1f4bcf6f7493ef08ac77000558b70490674103b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
