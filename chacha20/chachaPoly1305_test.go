@@ -75,13 +75,13 @@ func TestAEADVectors(t *testing.T) {
 		}
 
 		buf := make([]byte, len(ciphertext))
-		c.Seal(buf, nonce, msg, data)
+		c.Seal(buf[:0], nonce, msg, data)
 
 		if !bytes.Equal(buf, ciphertext) {
 			t.Fatalf("TestVector %d Seal failed:\nFound   : %s\nExpected: %s", i, hex.EncodeToString(buf), hex.EncodeToString(ciphertext))
 		}
 
-		buf, err = c.Open(buf, nonce, buf, data)
+		buf, err = c.Open(buf[:0], nonce, buf, data)
 
 		if err != nil {
 			t.Fatalf("TestVector %d: Open failed - Cause: %s", i, err)
@@ -148,12 +148,10 @@ func TestSeal(t *testing.T) {
 
 	mustFail := func(msg string, dst, nonce, src []byte) {
 		defer recFunc(t, msg)
-		c.Seal(dst, nonce, src, nil)
+		c.Seal(dst[:0], nonce, src, nil)
 	}
 
 	mustFail("nonce size is invalid", dst[:], nonce[:NonceSize-1], src[:])
-
-	mustFail("dst length invalid", dst[:len(dst)-2], nonce[:], src[:])
 }
 
 func TestOpen(t *testing.T) {
@@ -176,16 +174,19 @@ func TestOpen(t *testing.T) {
 		t.Fatal("Open() accepted invalid ciphertext length")
 	}
 
-	mustFail := func(msg string, dst, nonce, src []byte) {
-		defer recFunc(t, msg)
-		c.Open(dst, nonce, src, nil)
+	_, err = c.Open(dst[:], nonce[:], src[:TagSize-1], nil)
+	if err == nil {
+		t.Fatal("Open() accepted invalid ciphertext length")
 	}
 
-	mustFail("dst length invalid", dst[:len(src)-TagSize-1], nonce[:], src[:])
+	_, err = c.Open(dst[:len(src)-TagSize-1], nonce[:], src[:], nil)
+	if err == nil {
+		t.Fatal("Open() accepted invalid dst length")
+	}
 
 	// Check tag verification
 	c.Seal(dst[:], nonce[:], src[:], nil)
-	dst[len(src)+1] += 1 // modify tag
+	dst[len(src)+1]++ // modify tag
 
 	_, err = c.Open(src[:], nonce[:], dst[:], nil)
 	if err == nil {
@@ -195,70 +196,42 @@ func TestOpen(t *testing.T) {
 
 // Benchmarks
 
-func BenchmarkSeal64B(b *testing.B) {
+func benchmarkSeal(b *testing.B, size int) {
 	var key [32]byte
 	var nonce [12]byte
 	c := NewChaCha20Poly1305(&key)
 
-	msg := make([]byte, 64)
+	msg := make([]byte, size)
 	dst := make([]byte, len(msg)+TagSize)
 	data := make([]byte, 32)
 
-	b.SetBytes(int64(len(msg)))
+	b.SetBytes(int64(size))
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		dst = c.Seal(dst, nonce[:], msg, data)
+		dst = c.Seal(dst[:0], nonce[:], msg, data)
 	}
 }
 
-func BenchmarkSeal16K(b *testing.B) {
+func benchmarkOpen(b *testing.B, size int) {
 	var key [32]byte
 	var nonce [12]byte
 	c := NewChaCha20Poly1305(&key)
 
-	msg := make([]byte, 16*1024)
-	dst := make([]byte, len(msg)+TagSize)
+	msg := make([]byte, size)
+	dst := make([]byte, size)
+	ciphertext := make([]byte, size+TagSize)
 	data := make([]byte, 32)
+	ciphertext = c.Seal(ciphertext[:0], nonce[:], msg, data)
 
-	b.SetBytes(int64(len(msg)))
+	b.SetBytes(int64(size))
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		dst = c.Seal(dst, nonce[:], msg, data)
+		dst, _ = c.Open(dst[:0], nonce[:], ciphertext, data)
 	}
 }
 
-func BenchmarkOpen64B(b *testing.B) {
-	var key [32]byte
-	var nonce [12]byte
-	c := NewChaCha20Poly1305(&key)
+func BenchmarkSeal64B(b *testing.B) { benchmarkSeal(b, 64) }
+func BenchmarkSeal16K(b *testing.B) { benchmarkSeal(b, 16*1024) }
 
-	msg := make([]byte, 64)
-	dst := make([]byte, len(msg))
-	ciphertext := make([]byte, len(msg)+TagSize)
-	data := make([]byte, 32)
-	ciphertext = c.Seal(ciphertext, nonce[:], msg, data)
-
-	b.SetBytes(int64(len(msg)))
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		dst, _ = c.Open(dst, nonce[:], ciphertext, data)
-	}
-}
-
-func BenchmarkOpen16K(b *testing.B) {
-	var key [32]byte
-	var nonce [12]byte
-	c := NewChaCha20Poly1305(&key)
-
-	msg := make([]byte, 16*1024)
-	dst := make([]byte, len(msg))
-	ciphertext := make([]byte, len(msg)+TagSize)
-	data := make([]byte, 32)
-	ciphertext = c.Seal(ciphertext, nonce[:], msg, data)
-
-	b.SetBytes(int64(len(msg)))
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		dst, _ = c.Open(dst, nonce[:], ciphertext, data)
-	}
-}
+func BenchmarkOpen64B(b *testing.B) { benchmarkOpen(b, 64) }
+func BenchmarkOpen16K(b *testing.B) { benchmarkOpen(b, 16*1024) }

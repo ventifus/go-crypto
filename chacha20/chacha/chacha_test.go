@@ -97,5 +97,4 @@ func TestXORKeyStreamPanic(t *testing.T) {
 	}
 
 	mustFail2(t, "len(dst) < len(src)", dst[:len(src)-1], src)
-
 }

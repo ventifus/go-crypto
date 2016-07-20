@@ -21,7 +21,7 @@ import (
 	"golang.org/x/crypto/chacha20/chacha"
 )
 
-// The size of the ChaCha20 nonce in bytes.
+// NonceSize is the size of the ChaCha20 nonce in bytes.
 const NonceSize = 12
 
 // XORKeyStream crypts bytes from src to dst using the given key, nonce and counter. Src

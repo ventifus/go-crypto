@@ -8,26 +8,18 @@ import (
 	"crypto/cipher"
 	"crypto/subtle"
 	"errors"
-	"strconv"
 
 	"golang.org/x/crypto/chacha20/chacha"
 	"golang.org/x/crypto/poly1305"
 )
 
-// The max. size of the auth. tag for the ChaCha20Poly1305 AEAD cipher in bytes.
+// TagSize is the max. size of the auth. tag for the ChaCha20Poly1305 AEAD in bytes.
 const TagSize = poly1305.TagSize
 
-type nonceSizeError int
-
-func (n nonceSizeError) Error() string {
-	return "invalid nonce size " + strconv.Itoa(int(n))
-}
-
-type authenticationError struct{}
-
-func (a authenticationError) Error() string {
-	return "authentication failed"
-}
+var (
+	errAuthFailed       = errors.New("authentication failed")
+	errInvalidNonceSize = errors.New("nonce size is invalid")
+)
 
 // NewChaCha20Poly1305 returns a cipher.AEAD implementing the
 // ChaCha20Poly1305 construction specified in RFC 7539 with a
@@ -50,7 +42,7 @@ func NewChaCha20Poly1305WithTagSize(key *[32]byte, tagsize int) (cipher.AEAD, er
 	return c, nil
 }
 
-// The AEAD cipher ChaCha20-Poly1305
+// The AEAD cipher ChaCha20Poly1305
 type aead struct {
 	key     [32]byte
 	tagsize int
@@ -62,59 +54,56 @@ func (c *aead) NonceSize() int { return NonceSize }
 
 func (c *aead) Seal(dst, nonce, plaintext, additionalData []byte) []byte {
 	if n := len(nonce); n != NonceSize {
-		panic("chacha20: invalid nonce size " + strconv.Itoa(n))
+		panic("chacha20: " + errInvalidNonceSize.Error())
 	}
-	if len(dst) < len(plaintext)+c.tagsize {
-		panic("chacha20: dst buffer to small")
-	}
-	var Nonce [12]byte
-	copy(Nonce[:], nonce)
 
 	// create the poly1305 key
+	var Nonce [12]byte
+	copy(Nonce[:], nonce)
 	var polyKey [32]byte
 	chacha.XORKeyStream(polyKey[:], polyKey[:], &Nonce, &(c.key), 0, 20)
 
 	// encrypt the plaintext
 	n := len(plaintext)
-	chacha.XORKeyStream(dst, plaintext, &Nonce, &(c.key), 1, 20)
+	ret, ciphertext := sliceForAppend(dst, n+c.tagsize)
+	chacha.XORKeyStream(ciphertext, plaintext, &Nonce, &(c.key), 1, 20)
 
 	// authenticate the ciphertext
 	var tag [poly1305.TagSize]byte
-	authenticate(&tag, dst[:n], additionalData, &polyKey)
-	return append(dst[:n], tag[:c.tagsize]...)
+	authenticate(&tag, ciphertext[:n], additionalData, &polyKey)
+	copy(ciphertext[n:], tag[:c.tagsize])
+
+	return ret
 }
 
 func (c *aead) Open(dst, nonce, ciphertext, additionalData []byte) ([]byte, error) {
 	if n := len(nonce); n != NonceSize {
-		return nil, nonceSizeError(n)
+		return nil, errInvalidNonceSize
 	}
 	if len(ciphertext) < c.tagsize {
-		return nil, authenticationError{}
+		return nil, errAuthFailed
 	}
-	if len(dst) < len(ciphertext)-c.tagsize {
-		panic("chacha20: dst buffer to small")
-	}
-	var Nonce [12]byte
-
-	copy(Nonce[:], nonce)
-
-	hash := ciphertext[len(ciphertext)-c.tagsize:]
-	ciphertext = ciphertext[:len(ciphertext)-c.tagsize]
 
 	// create the poly1305 key
+	var Nonce [12]byte
+	copy(Nonce[:], nonce)
 	var polyKey [32]byte
 	chacha.XORKeyStream(polyKey[:], polyKey[:], &Nonce, &(c.key), 0, 20)
 
 	// authenticate the ciphertext
+	n := len(ciphertext) - c.tagsize
 	var tag [poly1305.TagSize]byte
-	authenticate(&tag, ciphertext, additionalData, &polyKey)
-	if subtle.ConstantTimeCompare(tag[:c.tagsize], hash[:c.tagsize]) != 1 {
-		return nil, authenticationError{}
+	authenticate(&tag, ciphertext[:n], additionalData, &polyKey)
+	sum := ciphertext[n:]
+	if subtle.ConstantTimeCompare(tag[:c.tagsize], sum[:c.tagsize]) != 1 {
+		return nil, errAuthFailed
 	}
 
 	// decrypt ciphertext
-	chacha.XORKeyStream(dst, ciphertext, &Nonce, &(c.key), 1, 20)
-	return dst[:len(ciphertext)], nil
+	ret, plaintext := sliceForAppend(dst, n)
+	chacha.XORKeyStream(plaintext, ciphertext[:n], &Nonce, &(c.key), 1, 20)
+
+	return ret, nil
 }
 
 // authenticate calculates the poly1305 tag from
@@ -122,7 +111,7 @@ func (c *aead) Open(dst, nonce, ciphertext, additionalData []byte) ([]byte, erro
 func authenticate(out *[TagSize]byte, ciphertext, additionalData []byte, key *[32]byte) {
 	ctLen := uint64(len(ciphertext))
 	adLen := uint64(len(additionalData))
-	padAD, padCT := adLen%16, ctLen%16
+	padAD, padCT := adLen%TagSize, ctLen%TagSize
 
 	var buf [16]byte
 	buf[0] = byte(adLen)
@@ -153,4 +142,19 @@ func authenticate(out *[TagSize]byte, ciphertext, additionalData []byte, key *[3
 	}
 	poly.Write(buf[:])
 	poly.Sum(out)
+}
+
+// sliceForAppend takes a slice and a requested number of bytes. It returns a
+// slice with the contents of the given slice followed by that many bytes and a
+// second slice that aliases into it and contains only the extra bytes. If the
+// original slice has sufficient capacity then no allocation is performed.
+func sliceForAppend(in []byte, n int) (head, tail []byte) {
+	if total := len(in) + n; cap(in) >= total {
+		head = in[:total]
+	} else {
+		head = make([]byte, total)
+		copy(head, in)
+	}
+	tail = head[len(in):]
+	return
 }
