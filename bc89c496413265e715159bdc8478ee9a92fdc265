@@ -1,0 +1,8 @@
+Code-Review+2: Brad Fitzpatrick <bradfitz@golang.org>
+Run-TryBot+1: Han-Wen Nienhuys <hanwen@google.com>
+TryBot-Result+1: Gobot Gobot <gobot@golang.org>
+Submitted-by: Han-Wen Nienhuys <hanwen@google.com>
+Submitted-at: Mon, 25 Jul 2016 12:15:03 +0000
+Reviewed-on: https://go-review.googlesource.com/24820
+Project: crypto
+Branch: refs/heads/master
