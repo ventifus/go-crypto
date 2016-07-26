@@ -700,8 +700,8 @@ func (s *wrappedSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
 }
 
 // NewPublicKey takes an *rsa.PublicKey, *dsa.PublicKey, *ecdsa.PublicKey,
-// ed25519.PublicKey, or any other crypto.Signer and returns a corresponding
-// Signer instance. ECDSA keys must use P-256, P-384 or P-521.
+// ed25519.PublicKey, or any other crypto.Signer and returns the corresponding
+// PublicKey instance. ECDSA keys must use P-256, P-384 or P-521.
 func NewPublicKey(key interface{}) (PublicKey, error) {
 	switch key := key.(type) {
 	case *rsa.PublicKey:
