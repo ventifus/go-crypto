@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f473d8f_dbd013c8",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 6655
+      },
+      "writtenOn": "2016-07-26T13:15:02Z",
+      "side": 1,
+      "message": "Previously it was \"PublicKey\", changed to Signer in https://github.com/golang/crypto/commit/e74b0352e547e3830f8471e7ae9609239c52606f#diff-aab72d98d6b840106cb1ffed0390f951L548 in the https://github.com/golang/crypto/commit/e74b0352e547e3830f8471e7ae9609239c52606f commit - possibly a typo?   The return type is clearly PublicKey which  is not able to sign (only verify).",
+      "revId": "a9cde99e364053530f95c5b83ba89f4d87630368",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
