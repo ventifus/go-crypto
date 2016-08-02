@@ -5,6 +5,7 @@
 package terminal
 
 import (
+	"bytes"
 	"io"
 	"testing"
 )
@@ -264,6 +265,50 @@ func TestTerminalSetSize(t *testing.T) {
 		}
 		if string(c.received) != "Password: \r\n" {
 			t.Errorf("failed to set the temporary prompt expected %q, got %q", "Password: ", c.received)
+		}
+	}
+}
+
+func TestReadPasswordLineEnd(t *testing.T) {
+	var tests = []struct {
+		input string
+		want  string
+	}{
+		{"\n", ""},
+		{"\r\n", ""},
+		{"test\r\n", "test"},
+		{"testtesttesttes\n", "testtesttesttes"},
+		{"testtesttesttes\r\n", "testtesttesttes"},
+		{"testtesttesttesttest\n", "testtesttesttesttest"},
+		{"testtesttesttesttest\r\n", "testtesttesttesttest"},
+	}
+	for _, test := range tests {
+		buf := new(bytes.Buffer)
+		_, err := buf.WriteString(test.input)
+		if err != nil {
+			t.Fatal(err)
+		}
+		have, err := readPasswordLine(buf)
+		if err != nil {
+			t.Errorf("readPasswordLine(%q) failed: %v", test.input, err)
+			continue
+		}
+		if string(have) != test.want {
+			t.Errorf("readPasswordLine(%q) returns %q, but %q is expected", test.input, string(have), test.want)
+			continue
+		}
+		_, err = buf.WriteString(test.input)
+		if err != nil {
+			t.Fatal(err)
+		}
+		have, err = readPasswordLine(buf)
+		if err != nil {
+			t.Errorf("readPasswordLine(%q) failed: %v", test.input, err)
+			continue
+		}
+		if string(have) != test.want {
+			t.Errorf("readPasswordLine(%q) returns %q, but %q is expected", test.input, string(have), test.want)
+			continue
 		}
 	}
 }
