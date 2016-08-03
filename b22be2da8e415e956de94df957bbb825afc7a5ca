@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14d8c639_05123603",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-03T20:35:37Z",
+      "side": 1,
+      "message": "This is a little awkward and overly specific.\n\nI\u0027d drop the \"for version 2\" part. It\u0027s in the URL below.\n\nIf you want to spell out what ACME stands for, say:\n\n// Package acme provides an implementation of the\n// Automatic Certificate Management Environment (ACME) spec.\n// See ...",
+      "revId": "b22be2da8e415e956de94df957bbb825afc7a5ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
