@@ -2,8 +2,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package acme provides an ACME client implementation.
-// See https://ietf-wg-acme.github.io/acme/ for details.
+// Package acme provides an ACME client implementation for version 2
+// of Automatic Certificate Management Environment (ACME) spec.
+// See https://tools.ietf.org/html/draft-ietf-acme-acme-02 for details.
 //
 // This package is a work in progress and makes no API stability promises.
 package acme
