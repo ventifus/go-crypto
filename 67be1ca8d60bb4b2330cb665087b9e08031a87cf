@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f49092cc_3eb509c9",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "don\u0027t panic. respond with an error instead, e.g.\n\n    http.Error(w, err.Error(), http.StatusInternalServerError)",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94be7635_2391aa42",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "This seems redundant. The callers should know what keep they supplied.\n\nI\u0027d remove this and defined something like the following in types.go:\n\n    var ErrUnsupportedKey \u003d errors.New(\"acme: unknown key type; only RSA and ECDSA are supported\")",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74af42f6_32b8d0c2",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "Let\u0027s keep var names unchanged if it isn\u0027t required.\nChanging it from b to cs doesn\u0027t really do anything.",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74d822b0_6ab257e2",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "Revert this. I know it\u0027s temping, but let\u0027s keep changes to the minimum.",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34830a89_40e74edb",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "Can you find out how they obtained the values below and replace this comment: it\u0027s not really helpful to go and search through someone else\u0027s repo to understand verify the value of expected.\n\nI tried searching for \"dHri3SADZkrush5HU_50AoRhcKFryN-PI6jPBtPL55M\" in go-jose, but nothing showed up.\n\nBest is to take these values from an RFC example. Maybe one of these? https://tools.ietf.org/html/rfc7517#appendix-A.1",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4c8eee8_85d34205",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:48:24Z",
+      "side": 1,
+      "message": "s/bytes/b/\n\nbytes is also Go stdlib package name and will conflict with this in case bytes package is ever imported here in the future.",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
