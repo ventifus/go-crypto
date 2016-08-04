@@ -5,6 +5,8 @@
 package acme
 
 import (
+	"crypto/ecdsa"
+	"crypto/elliptic"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/base64"
@@ -108,7 +110,7 @@ func TestJWSEncodeJSON(t *testing.T) {
 	}
 }
 
-func TestJWKThumbprint(t *testing.T) {
+func TestJWKThumbprintRSA(t *testing.T) {
 	// Key example from RFC 7638
 	const base64N = "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4cbbfAAt" +
 		"VT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMstn6" +
@@ -119,21 +121,60 @@ func TestJWKThumbprint(t *testing.T) {
 	const base64E = "AQAB"
 	const expected = "NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs"
 
-	bytes, err := base64.RawURLEncoding.DecodeString(base64N)
+	b, err := base64.RawURLEncoding.DecodeString(base64N)
 	if err != nil {
 		t.Fatalf("Error parsing example key N: %v", err)
 	}
-	n := new(big.Int).SetBytes(bytes)
+	n := new(big.Int).SetBytes(b)
 
-	bytes, err = base64.RawURLEncoding.DecodeString(base64E)
+	b, err = base64.RawURLEncoding.DecodeString(base64E)
 	if err != nil {
 		t.Fatalf("Error parsing example key E: %v", err)
 	}
-	e := new(big.Int).SetBytes(bytes)
+	e := new(big.Int).SetBytes(b)
 
 	pub := &rsa.PublicKey{N: n, E: int(e.Uint64())}
-	th := JWKThumbprint(pub)
+	th, err := JWKThumbprint(pub)
+	if err != nil {
+		t.Error(err)
+	}
 	if th != expected {
-		t.Errorf("th = %q; want %q", th, expected)
+		t.Errorf("thumbprint = %q; want %q", th, expected)
+	}
+}
+
+func TestJWKThumbprintEC(t *testing.T) {
+	const (
+		base64X  = "MKBCTNIcKUSDii11ySs3526iDZ8AiTo7Tu6KPAqv7D4"
+		base64Y  = "4Etl6SRW2YiLUrN5vfvVHuhp7x8PxltmWWlbbM4IFyM"
+		expected = "cn-I_WNMClehiVp51i_0VpOENW1upEerA8sEam5hn-s"
+	)
+
+	b, err := base64.RawURLEncoding.DecodeString(base64X)
+	if err != nil {
+		t.Fatalf("Error parsing example key X: %v", err)
+	}
+	x := new(big.Int).SetBytes(b)
+
+	b, err = base64.RawURLEncoding.DecodeString(base64Y)
+	if err != nil {
+		t.Fatalf("Error parsing example key Y: %v", err)
+	}
+	y := new(big.Int).SetBytes(b)
+
+	pub := &ecdsa.PublicKey{elliptic.P256(), x, y}
+	th, err := JWKThumbprint(pub)
+	if err != nil {
+		t.Error(err)
+	}
+	if th != expected {
+		t.Errorf("thumbprint = %q; want %q", th, expected)
+	}
+}
+
+func TestJWKThumbprintErrUnsupportedKey(t *testing.T) {
+	_, err := JWKThumbprint(struct{}{})
+	if err != ErrUnsupportedKey {
+		t.Errorf("err = %q; want %q", err, ErrUnsupportedKey)
 	}
 }
