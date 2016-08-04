@@ -101,6 +101,23 @@
       "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94be7635_03c0ee25",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-04T09:56:11Z",
+      "side": 1,
+      "message": "I\u0027d rename th to thumbprint here and in RSA - easier to read the error when a test fails.",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
