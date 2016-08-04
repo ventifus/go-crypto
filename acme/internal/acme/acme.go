@@ -11,7 +11,7 @@ package acme
 
 import (
 	"bytes"
-	"crypto/rsa"
+	"crypto"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
@@ -45,7 +45,8 @@ type Client struct {
 	HTTPClient *http.Client
 
 	// Key is the account key used to register with a CA and sign requests.
-	Key *rsa.PrivateKey
+	// Key.Public() must return a *rsa.PublicKey or *ecdsa.PublicKey.
+	Key crypto.Signer
 
 	// DirectoryURL points to the CA directory endpoint.
 	// If empty, LetsEncryptURL is used.
@@ -311,6 +312,11 @@ func (c *Client) GetChallenge(url string) (*Challenge, error) {
 //
 // The server will then perform the validation asynchronously.
 func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
+	auth, err := keyAuth(c.Key.Public(), chal.Token)
+	if err != nil {
+		return nil, err
+	}
+
 	req := struct {
 		Resource string `json:"resource"`
 		Type     string `json:"type"`
@@ -318,7 +324,7 @@ func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
 	}{
 		Resource: "challenge",
 		Type:     chal.Type,
-		Auth:     keyAuth(&c.Key.PublicKey, chal.Token),
+		Auth:     auth,
 	}
 	res, err := c.postJWS(chal.URI, req)
 	if err != nil {
@@ -347,7 +353,11 @@ func (c *Client) HTTP01Handler(token string) http.Handler {
 			return
 		}
 		w.Header().Set("content-type", "text/plain")
-		w.Write([]byte(keyAuth(&c.Key.PublicKey, token)))
+		auth, err := keyAuth(c.Key.Public(), token)
+		if err != nil {
+			panic(err)
+		}
+		w.Write([]byte(auth))
 	})
 }
 
@@ -527,8 +537,12 @@ func retryAfter(v string) (time.Duration, error) {
 }
 
 // keyAuth generates a key authorization string for a given token.
-func keyAuth(pub *rsa.PublicKey, token string) string {
-	return fmt.Sprintf("%s.%s", token, JWKThumbprint(pub))
+func keyAuth(pub crypto.PublicKey, token string) (string, error) {
+	thumbprint, err := JWKThumbprint(pub)
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%s.%s", token, thumbprint), nil
 }
 
 // timeNow is useful for testing for fixed current time.
