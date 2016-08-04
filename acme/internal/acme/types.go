@@ -1,6 +1,7 @@
 package acme
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 )
@@ -134,6 +135,8 @@ type Error struct {
 func (e *Error) Error() string {
 	return fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
 }
+
+var ErrUnsupportedKey = errors.New("acme: unknown key type; only RSA and ECDSA are supported")
 
 // wireAuthz is ACME JSON representation of Authorization objects.
 type wireAuthz struct {
