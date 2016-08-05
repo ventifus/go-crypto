@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99186f70_334da8ca",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-05T14:00:42Z",
+      "side": 1,
+      "message": "What\u0027s the reason for changing this back to a P-521?\nIf there\u0027s none, please revert to P-256.\n\nMy arguments are:\n\n- lines are much longer now and thus harder to read\n- more computationally expensive to achieve equal effect",
+      "revId": "c09de7a28357b3c67401dfd9b0b31c4d3809f187",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
