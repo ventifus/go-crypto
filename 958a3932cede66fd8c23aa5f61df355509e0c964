@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0f7c78_01eccfc1",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "958a3932cede66fd8c23aa5f61df355509e0c964",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
