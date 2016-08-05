@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1969dfe4_f78b8019",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_7a8195f6",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "This needs documented error values for a cache miss.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_da8f811f",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "No need for a constructor, really, or even an error.\n\nIt could even just be:\n\n// DirCache implements Cache using a directory on the local filesystem.\ntype DirCache string",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_fa8cc52c",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "certificate",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_1a22d90f",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "It obtains and refreshes certificates automatically.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_9a99096a",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "newly-generated",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_9ab269e0",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "where do you cache the user registration? is that hookable?",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_ba32cd56",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "// GetCertificate implements the tls.Config.GetCertificate hook.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_7a06757a",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "including answering *.acme.invalid challenges.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_5af7f18f",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "can you implement this for this round?",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1969dfe4_1ad8991e",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-05T17:34:55Z",
+      "side": 1,
+      "message": "why?",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
