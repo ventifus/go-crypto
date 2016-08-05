@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1990ff08_ff5a7f84",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-05T12:42:11Z",
+      "side": 1,
+      "message": "please, add the comment for how to obtain expected manually. you can just copy from my previous comment.",
+      "revId": "f9d92a3be0ef213c66fcff007ecc1f86f717828e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79857bc7_22fbee69",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-05T12:42:11Z",
+      "side": 1,
+      "message": "use keyed fields. {Curve: ..., X: x, Y: y}",
+      "revId": "f9d92a3be0ef213c66fcff007ecc1f86f717828e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "593c37c0_5106f479",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-05T12:42:11Z",
+      "side": 1,
+      "message": "well, you\u0027d want to put this var at top, before type Error, obviously :)",
+      "revId": "f9d92a3be0ef213c66fcff007ecc1f86f717828e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
