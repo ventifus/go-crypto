@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b94a9396_3c7c9119",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-05T14:50:29Z",
+      "side": 1,
+      "message": "ok. sounds good. can you replace \"AHK...\" with literally \u003cbase64X\u003e and \"Ady...\" with \u003cbase64Y\u003e. \n\nthis line is really long otherwise.",
+      "revId": "a5a0f43cc1d55a818ba4b1592a0086d7a5d1695f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
