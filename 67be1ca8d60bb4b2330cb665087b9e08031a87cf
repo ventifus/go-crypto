@@ -87,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "7483c255_212cd845",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 9620
+      },
+      "writtenOn": "2016-08-05T14:15:53Z",
+      "side": 1,
+      "message": "At first I did take one of those values, but I couldn\u0027t find a test for them so I went to go-jose and got it from here: \n\nReason you couldn\u0027t find them is because they are in hex. \n\nhttps://github.com/square/go-jose/blob/master/jwk_test.go#L497\n\nYou can use http://tomeko.net/online_tools/hex_to_base64.php?lang\u003den\n\nTo verify they are the same.\n\nI can switch it to the example in the RFC but I do not have a value to test against.",
+      "parentUuid": "34830a89_40e74edb",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4c8eee8_85d34205",
         "filename": "acme/internal/acme/jws_test.go",
         "patchSetId": 2
@@ -98,6 +116,24 @@
       "writtenOn": "2016-08-04T09:48:24Z",
       "side": 1,
       "message": "s/bytes/b/\n\nbytes is also Go stdlib package name and will conflict with this in case bytes package is ever imported here in the future.",
+      "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7483c255_4129dc34",
+        "filename": "acme/internal/acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 9620
+      },
+      "writtenOn": "2016-08-05T14:15:53Z",
+      "side": 1,
+      "message": "bytes is used in the RSA tests as well. I\u0027ll rename both.",
+      "parentUuid": "d4c8eee8_85d34205",
       "revId": "67be1ca8d60bb4b2330cb665087b9e08031a87cf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
