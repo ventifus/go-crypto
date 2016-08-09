@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b9a53384_04a93629",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_f78b8019",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_7a8195f6",
         "filename": "acme/internal/manager/cache.go",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-05T17:34:55Z",
       "side": 1,
       "message": "This needs documented error values for a cache miss.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9a53384_e7289cec",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_7a8195f6",
       "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "39b223c6_88d1b7ca",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "sometimes I just forget there\u0027s a simpler way. done.",
+      "parentUuid": "1969dfe4_da8f811f",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_fa8cc52c",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-05T17:34:55Z",
       "side": 1,
       "message": "certificate",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9a53384_c4a23e45",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_fa8cc52c",
       "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "b9a53384_e49f3af4",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_1a22d90f",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_9a99096a",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 7
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-05T17:34:55Z",
       "side": 1,
       "message": "newly-generated",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19239fed_c79bfeb5",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_9a99096a",
       "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "19239fed_aa57afce",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "we don\u0027t have to: if you try to register an existing key, they will respond with a distinct error, 409 conflict.\n\nI actually use 409 now, in Manager.client method.",
+      "parentUuid": "1969dfe4_9ab269e0",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_ba32cd56",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 7
@@ -132,6 +258,24 @@
       "writtenOn": "2016-08-05T17:34:55Z",
       "side": 1,
       "message": "// GetCertificate implements the tls.Config.GetCertificate hook.",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "990eaf7b_c3af7678",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_ba32cd56",
       "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "b9a53384_a4994210",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_7a06757a",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_5af7f18f",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 7
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "b9a53384_4701705f",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1969dfe4_5af7f18f",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1969dfe4_1ad8991e",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 7
@@ -183,6 +363,24 @@
       "writtenOn": "2016-08-05T17:34:55Z",
       "side": 1,
       "message": "why?",
+      "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9a53384_24aeb232",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-09T00:13:22Z",
+      "side": 1,
+      "message": "sorry, forgot to remove. it was earlier, when I just wanted to dump a \"state\" of the manager somewhere. removed.",
+      "parentUuid": "1969dfe4_1ad8991e",
       "revId": "1b9ac5c6976085c2632fd28992231067898d3133",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
