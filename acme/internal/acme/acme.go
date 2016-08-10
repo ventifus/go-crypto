@@ -32,6 +32,7 @@ import (
 	"time"
 
 	"golang.org/x/net/context"
+	"golang.org/x/net/context/ctxhttp"
 )
 
 // LetsEncryptURL is the Directory endpoint of Let's Encrypt CA.
@@ -160,7 +161,7 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 		return cert, curl, err
 	}
 	// slurp issued cert and ca, if requested
-	cert, err := responseCert(c.httpClient(), res, bundle)
+	cert, err := responseCert(ctx, c.httpClient(), res, bundle)
 	return cert, curl, err
 }
 
@@ -177,7 +178,7 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 		}
 		defer res.Body.Close()
 		if res.StatusCode == http.StatusOK {
-			return responseCert(c.httpClient(), res, bundle)
+			return responseCert(ctx, c.httpClient(), res, bundle)
 		}
 		if res.StatusCode > 299 {
 			return nil, responseError(res)
@@ -480,18 +481,26 @@ func (c *Client) doReg(url string, typ string, acct *Account) (*Account, error) 
 	if err := json.NewDecoder(res.Body).Decode(&v); err != nil {
 		return nil, fmt.Errorf("Decode: %v", err)
 	}
+	var tos string
+	if v := linkHeader(res.Header, "terms-of-service"); len(v) > 0 {
+		tos = v[0]
+	}
+	var authz string
+	if v := linkHeader(res.Header, "next"); len(v) > 0 {
+		authz = v[0]
+	}
 	return &Account{
 		URI:            res.Header.Get("Location"),
 		Contact:        v.Contact,
 		AgreedTerms:    v.Agreement,
-		CurrentTerms:   linkHeader(res.Header, "terms-of-service"),
-		Authz:          linkHeader(res.Header, "next"),
+		CurrentTerms:   tos,
+		Authz:          authz,
 		Authorizations: v.Authorizations,
 		Certificates:   v.Certificates,
 	}, nil
 }
 
-func responseCert(client *http.Client, res *http.Response, bundle bool) ([][]byte, error) {
+func responseCert(ctx context.Context, client *http.Client, res *http.Response, bundle bool) ([][]byte, error) {
 	b, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, fmt.Errorf("ReadAll: %v", err)
@@ -501,24 +510,21 @@ func responseCert(client *http.Client, res *http.Response, bundle bool) ([][]byt
 		return cert, nil
 	}
 
-	// append ca cert
+	// Append CA chain cert(s).
+	// At least one is required according to the spec:
+	// https://tools.ietf.org/html/draft-ietf-acme-acme-03#section-6.3.1
 	up := linkHeader(res.Header, "up")
-	if up == "" {
+	if len(up) == 0 {
 		return nil, errors.New("rel=up link not found")
 	}
-	res, err = client.Get(up)
-	if err != nil {
-		return nil, err
+	for _, url := range up {
+		cc, err := chainCert(ctx, client, url)
+		if err != nil {
+			return nil, err
+		}
+		cert = append(cert, cc...)
 	}
-	defer res.Body.Close()
-	if res.StatusCode != http.StatusOK {
-		return nil, responseError(res)
-	}
-	b, err = ioutil.ReadAll(res.Body)
-	if err != nil {
-		return nil, err
-	}
-	return append(cert, b), nil
+	return cert, nil
 }
 
 // responseError creates an error of Error type from resp.
@@ -550,6 +556,30 @@ func responseError(resp *http.Response) error {
 	}
 }
 
+func chainCert(ctx context.Context, client *http.Client, url string) ([][]byte, error) {
+	res, err := ctxhttp.Get(ctx, client, url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		return nil, responseError(res)
+	}
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+	chain := [][]byte{b}
+	for _, up := range linkHeader(res.Header, "up") {
+		cc, err := chainCert(ctx, client, up)
+		if err != nil {
+			return nil, err
+		}
+		chain = append(chain, cc...)
+	}
+	return chain, nil
+}
+
 func fetchNonce(client *http.Client, url string) (string, error) {
 	resp, err := client.Head(url)
 	if err != nil {
@@ -563,7 +593,11 @@ func fetchNonce(client *http.Client, url string) (string, error) {
 	return enc, nil
 }
 
-func linkHeader(h http.Header, rel string) string {
+// linkHeader returns URI-Reference values of all Link headers
+// with relation-type rel.
+// See https://tools.ietf.org/html/rfc5988#section-5 for details.
+func linkHeader(h http.Header, rel string) []string {
+	var links []string
 	for _, v := range h["Link"] {
 		parts := strings.Split(v, ";")
 		for _, p := range parts {
@@ -572,11 +606,11 @@ func linkHeader(h http.Header, rel string) string {
 				continue
 			}
 			if v := strings.Trim(p[4:], `"`); v == rel {
-				return strings.Trim(parts[0], "<>")
+				links = append(links, strings.Trim(parts[0], "<>"))
 			}
 		}
 	}
-	return ""
+	return links
 }
 
 func retryAfter(v string) (time.Duration, error) {
