@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d92e6726_fef67092",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T20:28:45Z",
+      "side": 1,
+      "message": "write it in Github style so it auto-closes and auto-links:\n\nAlso fixes google/acme#26",
+      "revId": "7b1020aedd8b6d0fd3c8f22f369ba2ddb3d28dd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_3ee5c8d2",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T20:28:45Z",
+      "side": 1,
+      "message": "capitalize CA if it\u0027s an acronym. I\u0027d also start with a capital on both this line and the next.",
+      "revId": "7b1020aedd8b6d0fd3c8f22f369ba2ddb3d28dd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_be21d80c",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T20:28:45Z",
+      "side": 1,
+      "message": "take a context here.\n\n(use golang.org/x/net/context for now, to support things before Go 1.7)",
+      "revId": "7b1020aedd8b6d0fd3c8f22f369ba2ddb3d28dd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_1e1d6cc8",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T20:28:45Z",
+      "side": 1,
+      "message": "use golang.org/x/net/context/ctxhttp instead and use ctxhttp.Get",
+      "revId": "7b1020aedd8b6d0fd3c8f22f369ba2ddb3d28dd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
