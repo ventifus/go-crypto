@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d92e6726_a4854c04",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "low-level",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_4986d113",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "why pointers to fixed-sized arrays instead of just fixed-size arrays?",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_848db028",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "Drop parens and add a period afterwards. Then I\u0027d say \"The src and dst ...\" so you don\u0027t have to capitalize src.",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_e47b4421",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "likewise",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_44979834",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "no need to say it\u0027s a struct.\n\n// Cipher implements ChaCha/X for a given number of rounds X.\n\n?\n\nOr say which crypto.* interface(s) it implements.",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_249a9c5d",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "Go generally avoids i.e. e.g. N.B. etc in docs.",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_c4a3a899",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "rounds int // 20 for ChaCha20, etc",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_e4cd8464",
+        "filename": "chacha20/chacha/chacha_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "performing the provided number of rounds and writes them to dst",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_44b0f8d7",
+        "filename": "chacha20/chacha/chacha_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "drop quotes around \u0027rounds\u0027 here and elsewhere.",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_a4d78cf0",
+        "filename": "chacha20/chacha20.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "why pointers?",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d92e6726_c4dc0815",
+        "filename": "chacha20/chacha20.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-10T16:36:20Z",
+      "side": 1,
+      "message": "why pointers?",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
