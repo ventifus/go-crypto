@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "39b5c344_d024dc6b",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_a4854c04",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d92e6726_4986d113",
         "filename": "chacha20/chacha/chacha.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-10T16:36:20Z",
       "side": 1,
       "message": "why pointers to fixed-sized arrays instead of just fixed-size arrays?",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39b5c344_5078ec56",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "To avoid copying the arrays, but this won\u0027t be significant.\nThat\u0027s very subjective - What\u0027s better: pass a copy of small array or a pointer...\nI decided to be similar to the salsa20 package - but both both approaches are applicable",
+      "parentUuid": "d92e6726_4986d113",
       "revId": "e19d943889247b46556c691908d03123f43a6455",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "39b5c344_300a88d1",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_848db028",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d92e6726_e47b4421",
         "filename": "chacha20/chacha/chacha.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-10T16:36:20Z",
       "side": 1,
       "message": "likewise",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39b5c344_100784c9",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_e47b4421",
       "revId": "e19d943889247b46556c691908d03123f43a6455",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "39b5c344_701410f1",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_44979834",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d92e6726_249a9c5d",
         "filename": "chacha20/chacha/chacha.go",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-10T16:36:20Z",
       "side": 1,
       "message": "Go generally avoids i.e. e.g. N.B. etc in docs.",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39b5c344_50110cff",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_249a9c5d",
       "revId": "e19d943889247b46556c691908d03123f43a6455",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "39b5c344_b03e7870",
+        "filename": "chacha20/chacha/chacha.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_c4a3a899",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d92e6726_e4cd8464",
         "filename": "chacha20/chacha/chacha_ref.go",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2016-08-10T16:36:20Z",
       "side": 1,
       "message": "performing the provided number of rounds and writes them to dst",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39b5c344_f0380086",
+        "filename": "chacha20/chacha/chacha_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_e4cd8464",
       "revId": "e19d943889247b46556c691908d03123f43a6455",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "39b5c344_90437400",
+        "filename": "chacha20/chacha/chacha_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92e6726_44b0f8d7",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d92e6726_a4d78cf0",
         "filename": "chacha20/chacha20.go",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2016-08-10T16:36:20Z",
       "side": 1,
       "message": "why pointers?",
+      "revId": "e19d943889247b46556c691908d03123f43a6455",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39b5c344_d06b3c88",
+        "filename": "chacha20/chacha20.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-10T20:13:58Z",
+      "side": 1,
+      "message": "The idea was to keep the API similar to the salsa20 package...\nArrays would lead to \"unnecessary\" copying, but I don\u0027t think this would be significant",
+      "parentUuid": "d92e6726_a4d78cf0",
       "revId": "e19d943889247b46556c691908d03123f43a6455",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
