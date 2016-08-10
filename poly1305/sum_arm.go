@@ -6,7 +6,7 @@
 
 package poly1305
 
-// This function is implemented in poly1305_arm.s
+// This function is implemented in sum_arm.s
 
 //go:noescape
 
