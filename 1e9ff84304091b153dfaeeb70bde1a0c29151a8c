@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fe531125_061a7a76",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T23:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "991a2f56_acfe47cf",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "991a2f56_2c4fb768",
         "filename": "acme/autocert/man.go",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-11T17:07:27Z",
       "side": 1,
       "message": "my concern is that this generates a new RSA key every time the program starts up.\n\nthis also provides no place for you to put your email address, so LetsEncrypt can send you warning emails.",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_1f8aa714",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T23:17:21Z",
+      "side": 1,
+      "message": "Added Contact field for registration. So, if you wanted to keep and re-use an account key picked elsewhere:\n\n    Manager{\n      Client: \u0026acme.Client{Key: myKey},\n      Contact: []string{\"mailto:user@example.org\"},\n      Prompt: autocert.AcceptTOS,\n    }\n\nOr we could also add a method to Cache, like you were suggesting earlier.",
+      "parentUuid": "991a2f56_2c4fb768",
       "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "def9ed3d_1dcd138c",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T23:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "991a2f56_0cbcbb1c",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "991a2f56_ecb67f3f",
         "filename": "acme/autocert/man.go",
         "patchSetId": 9
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-11T17:07:27Z",
       "side": 1,
       "message": "the auto-accept TOS stuff I think should be more explicit by the user.\n\nI know the LetsEncrypt folk don\u0027t like that the TOS is there (it\u0027s a requirement by the CAB forum), but we shouldn\u0027t totally ignore it.\n\nAt minimum we need to say something in the package doc like, \"Use of this package implies agreement with the LetsEncrypt TOS located at ...\".\n\nBut I think Manager probably needs this TOC verification callback, so the user has to write autocert.AcceptTOS (we can mirror the variable in the autocert package so the user doesn\u0027t need to import the acme guts package too?)",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_3f856304",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T23:17:21Z",
+      "side": 1,
+      "message": "Sounds reasonable. An issue with \"TOS located at ...\" could be that the location actually changes over time.\n\nI added AcceptTOS, as well as Prompt to the Manager\u0027s fields. Let\u0027s see how it looks now.",
+      "parentUuid": "991a2f56_ecb67f3f",
       "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
