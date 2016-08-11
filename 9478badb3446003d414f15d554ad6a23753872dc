@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "991a2f56_ccd703f0",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:32:04Z",
+      "side": 1,
+      "message": "also fail if this is too large. see comment below.",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_6cb0cfd8",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:32:04Z",
+      "side": 1,
+      "message": "this is a DoS vector from a malicious server.\n\nYou\u0027ll want to bound this. ioutil.ReadAll(io.LimitReader(res.Body, 1\u003c\u003c20)) ?",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_acd2c700",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:32:04Z",
+      "side": 1,
+      "message": "should we also bound this (at like 3? 5? 10? 20?), so a server can\u0027t make us do thousands of requests?",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
