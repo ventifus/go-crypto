@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "be0279f5_9c0b65d4",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "fixed in https://go-review.googlesource.com/26852",
+      "parentUuid": "99930fda_3b07d7c9",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_5b14a3f0",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "avoid naked returns 99% of the time. they\u0027re rarely good style.\n\nAlso, do an explicit error check here anyway to return zeros for the other return values on error:\n\n   if err !\u003d nil {\n        return tls.Certificate{}, \"\", err\n   }",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_7c389984",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "fixed in https://go-review.googlesource.com/26852",
+      "parentUuid": "99930fda_5b14a3f0",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "be0279f5_5c3ddd72",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "fixed in https://go-review.googlesource.com/26852",
+      "parentUuid": "99930fda_7b115fff",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_9b3e2b71",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "likewise",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_3c3211a3",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "fixed in https://go-review.googlesource.com/26852",
+      "parentUuid": "99930fda_9b3e2b71",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "be0279f5_5ce95d0c",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "I wasn\u0027t going to. It is a single round-trip on the very first client call.\n\nI can see it being useful when you use a zero-value Manager and want to capture/store user registration for future records. Is that the main use case for caching user registration?",
+      "parentUuid": "99930fda_5b7bc354",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_1b813b2d",
         "filename": "acme/internal/manager/cache.go",
         "patchSetId": 8
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "drop the word \"error\" at the end.\n\nI\u0027d also say \"is not in the cache\" or \"is not cached\".",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_3cde916c",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99930fda_1b813b2d",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "be0279f5_1ce3d52c",
+        "filename": "acme/internal/manager/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99930fda_3b7ef745",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_bbfe87cf",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 8
@@ -132,6 +258,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "Mention LetsEncrypt in the package comment.\n\nAlso, move this up a level already out of internal.\n\nActually I think it could even be in the top-level package: acme.Manager sounds much better than manager.Manager. But I imagine you want to use \"acme\" for the low-level guts once we expose those.\n\nSo, how about package \"autocert\":\n\n   golang.org/x/crypto/acme/autocert\n\nSo then this is:\n\n   // Package autocert provides automatic access to certificates from LetsEncrypt\n   // and any other ACME-based CA.\n\nAnd the type is \"autocert.Manager\".",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_3c4d7145",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "I wouldn\u0027t mind acme.Manager but then it mixes up with acme.Client, like you said. And most usages will be either one or the other, not both.\n\nI like autocert!",
+      "parentUuid": "99930fda_bbfe87cf",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "be0279f5_dc532de6",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99930fda_bb71277c",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_5bf823e0",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 8
@@ -166,6 +328,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "you can\u0027t have a private field guard a public field. that\u0027s asking to be misused.",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_7c11b90a",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "true. added a private client field.",
+      "parentUuid": "99930fda_5bf823e0",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "def9ed3d_ddd44b49",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "done. actually, removed in favor of private client field.",
+      "parentUuid": "99930fda_fb080ffb",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99930fda_1bd77b48",
         "filename": "acme/internal/manager/man.go",
         "patchSetId": 8
@@ -200,6 +398,24 @@
       "writtenOn": "2016-08-10T21:58:21Z",
       "side": 1,
       "message": "document what the keys are when it\u0027s not 100% obvious like these strings.",
+      "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0279f5_5c16fd04",
+        "filename": "acme/internal/manager/man.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-11T16:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99930fda_1bd77b48",
       "revId": "e69dcecf0d3565b7e7af7eb3c8fc3cd2e8e53991",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
