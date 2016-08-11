@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "991a2f56_ec8aff10",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:14:10Z",
+      "side": 1,
+      "message": "the server name",
+      "revId": "bb308d647df95089b9f520f54d64ec4f74f2e052",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_8c7b4b22",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:14:10Z",
+      "side": 1,
+      "message": "nil instead of err",
+      "revId": "bb308d647df95089b9f520f54d64ec4f74f2e052",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_0c903b3e",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:14:10Z",
+      "side": 1,
+      "message": "the server name",
+      "revId": "bb308d647df95089b9f520f54d64ec4f74f2e052",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_ac8007f5",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T15:14:10Z",
+      "side": 1,
+      "message": "nil instead of err",
+      "revId": "bb308d647df95089b9f520f54d64ec4f74f2e052",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
