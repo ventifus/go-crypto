@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "991a2f56_acfe47cf",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T17:07:27Z",
+      "side": 1,
+      "message": "time to implement these?",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_2c4fb768",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T17:07:27Z",
+      "side": 1,
+      "message": "my concern is that this generates a new RSA key every time the program starts up.\n\nthis also provides no place for you to put your email address, so LetsEncrypt can send you warning emails.",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_0cbcbb1c",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T17:07:27Z",
+      "side": 1,
+      "message": "and a newly-generated 2048-bit RSA key.",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991a2f56_ecb67f3f",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-11T17:07:27Z",
+      "side": 1,
+      "message": "the auto-accept TOS stuff I think should be more explicit by the user.\n\nI know the LetsEncrypt folk don\u0027t like that the TOS is there (it\u0027s a requirement by the CAB forum), but we shouldn\u0027t totally ignore it.\n\nAt minimum we need to say something in the package doc like, \"Use of this package implies agreement with the LetsEncrypt TOS located at ...\".\n\nBut I think Manager probably needs this TOC verification callback, so the user has to write autocert.AcceptTOS (we can mirror the variable in the autocert package so the user doesn\u0027t need to import the acme guts package too?)",
+      "revId": "1e9ff84304091b153dfaeeb70bde1a0c29151a8c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
