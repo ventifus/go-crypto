@@ -1,0 +1,276 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ded2cd43_55e1acbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Maybe split this CL in 3:\n1)Add ChaCha\n2)Speed-up poly1305\n3)Add ChaCha20Poly1305",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "becb5993_b4bc807f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "What about chacha performance?\nBtw I recommend https://github.com/rsc/benchstat\nFor comparing Benchmarks results",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_d5cdbc66",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Can\u0027t you just use VINSERTI128 ?\nIt has higher throughput in mem case, and should avoid troubles in 16 \u003c len \u003c 32 case",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ec2c172_da23a50c",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Looks like BP is not used, replacing R8 with BP will save 1 byte",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_f51e78cc",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "As far as I understand one\u003c\u003e may  be not aligned on 32-byte,\nSo this should be VMOVDQU",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_95ee24b3",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Add VZEROUPPER",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_35b070d5",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "You can just return   runtime·support_avx2(SB)",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be943951_cc130fb5",
+        "filename": "chacha20/chacha/chachaSSE_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Using e. g. BP will make this 1 byte shorter",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_d50a5c7e",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Why \u003d\u003d1 ?",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_f505586e",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Please comment  \u0026 (^(8 - 1)), this is  not obvious at all.",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_9504e46f",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Please mention, that this also checks for plain SSE3",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_b5ffe052",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "Usually this is checked inside asm function",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_751a68cf",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "bool?",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_55176ca3",
+        "filename": "chacha20/chacha/chacha_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "It would be nice to test AMD64 implementation against generic one. You can have something like core_generic and in chacha_ref just call core_generic from core. This  way core_generic will also be available on amd64 for testing",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_b576c004",
+        "filename": "poly1305/poly1305_ref.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "be used",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "becb5993_f4b2f8ab",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-12T12:21:11Z",
+      "side": 1,
+      "message": "IIRC we don\u0027t update Copyright year.",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
