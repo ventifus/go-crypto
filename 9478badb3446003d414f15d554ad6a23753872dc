@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ded2cd43_d5dedcdb",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-12T13:50:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "991a2f56_ccd703f0",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "991a2f56_6cb0cfd8",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ded2cd43_75bdc8a7",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-12T13:50:54Z",
+      "side": 1,
+      "message": "thanks for catching this.\n1\u003c\u003c20 seems reasonable.",
+      "parentUuid": "991a2f56_6cb0cfd8",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "991a2f56_acd2c700",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-11T15:32:04Z",
       "side": 1,
       "message": "should we also bound this (at like 3? 5? 10? 20?), so a server can\u0027t make us do thousands of requests?",
+      "revId": "9478badb3446003d414f15d554ad6a23753872dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded2cd43_55baccb1",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-12T13:50:54Z",
+      "side": 1,
+      "message": "bound to 5 for now, even though I don\u0027t think anyone will have a chain with depth \u003e 3, but just to cover a hypothetically very large one.",
+      "parentUuid": "991a2f56_acd2c700",
       "revId": "9478badb3446003d414f15d554ad6a23753872dc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
