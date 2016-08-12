@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ded2cd43_55c08c98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_55e1acbf",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "becb5993_b4bc807f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "What about chacha performance?\nBtw I recommend https://github.com/rsc/benchstat\nFor comparing Benchmarks results",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fed5d12a_76195090",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "becb5993_b4bc807f",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5eec1d0a_7152983e",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "I don\u0027t see how I can replace the VPERM2I128 at the BROADCASTI128 makro:\nIf I replace it with VINSERTI128:\n\nVINSERTI128 $0x1, src, src, dst\n\nI won\u0027t be able to use a mem location for source.\nDo I miss something?",
+      "parentUuid": "ded2cd43_d5cdbc66",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ec2c172_da23a50c",
         "filename": "chacha20/chacha/chachaAVX2_amd64.s",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "Looks like BP is not used, replacing R8 with BP will save 1 byte",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ec7bd81_9933fb0d",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ec2c172_da23a50c",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ded2cd43_357510c6",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_f51e78cc",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ded2cd43_95ee24b3",
         "filename": "chacha20/chacha/chachaAVX2_amd64.s",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "Add VZEROUPPER",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be943951_cce78fa3",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_95ee24b3",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "becb5993_54fd2c06",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_35b070d5",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be943951_cc130fb5",
         "filename": "chacha20/chacha/chachaSSE_amd64.s",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "Using e. g. BP will make this 1 byte shorter",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eaf75ac_7b481fbb",
+        "filename": "chacha20/chacha/chachaSSE_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be943951_cc130fb5",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "1ef2a5e6_efa7c150",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Caused by supportAVX2 asm function\nFixed now",
+      "parentUuid": "ded2cd43_d50a5c7e",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ded2cd43_f505586e",
         "filename": "chacha20/chacha/chacha_amd64.go",
         "patchSetId": 3
@@ -166,6 +328,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "Please comment  \u0026 (^(8 - 1)), this is  not obvious at all.",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be943951_0c8197a9",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_f505586e",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "becb5993_14f7b426",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Is there any CPU that supports SSSE3 but not SSE3?\nOr the other way around: Can this check fail (return false in case true is correct)?",
+      "parentUuid": "ded2cd43_9504e46f",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ded2cd43_b5ffe052",
         "filename": "chacha20/chacha/chacha_amd64.go",
         "patchSetId": 3
@@ -200,6 +398,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "Usually this is checked inside asm function",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3eeda907_706bb0ec",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_b5ffe052",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "becb5993_d40ffc34",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_751a68cf",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ded2cd43_55176ca3",
         "filename": "chacha20/chacha/chacha_test.go",
         "patchSetId": 3
@@ -234,6 +468,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "It would be nice to test AMD64 implementation against generic one. You can have something like core_generic and in chacha_ref just call core_generic from core. This  way core_generic will also be available on amd64 for testing",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ef2a5e6_6f463160",
+        "filename": "chacha20/chacha/chacha_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_55176ca3",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "9eaf75ac_db85f3b5",
+        "filename": "poly1305/poly1305_ref.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded2cd43_b576c004",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "becb5993_f4b2f8ab",
         "filename": "poly1305/sum_ref.go",
         "patchSetId": 3
@@ -268,6 +538,24 @@
       "writtenOn": "2016-08-12T12:21:11Z",
       "side": 1,
       "message": "IIRC we don\u0027t update Copyright year.",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eaf75ac_fb80afa7",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-12T20:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "becb5993_f4b2f8ab",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
