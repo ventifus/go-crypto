@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_3833895e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_54d98c4c",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_14ba24d5",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 12
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "preface any error strings with \"acme/autocert: \"",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_38e429d1",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_14ba24d5",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_18e165c1",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_b4bed8c5",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_d4c35c56",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 12
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "no need for RemoveAll. it shouldn\u0027t be a directory. both these could be Remove.",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_78dea108",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "but os.Remove will also return non-nil err if the file doesn\u0027t exist, so I\u0027d need to check with os.IsNotExist. I guess I was lazy. done.",
+      "parentUuid": "3e3be95b_d4c35c56",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5e0fbde2_79b067d6",
+        "filename": "acme/autocert/cache_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_f4b460e9",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_74a9308a",
         "filename": "acme/autocert/man.go",
         "patchSetId": 12
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "name the string: \"tosURL string\" or \"termsOfServiceURL\" if you prefer.",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fef4f103_fed2a105",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_74a9308a",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "1eec653b_5fad8b7a",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_94a634b8",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_54b0acec",
         "filename": "acme/autocert/man.go",
         "patchSetId": 12
@@ -132,6 +258,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "why a slice? why is mailto: required?",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ee76958_60ad527b",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "last time I tried Let\u0027s Encrypt did return an error without mailto: prefix. they also give it in the examples with mailto: and tel: - https://tools.ietf.org/html/draft-ietf-acme-acme-02#section-6.3\n\nthey do say \"array of URIs\" when describing contact info:\nhttps://tools.ietf.org/html/draft-ietf-acme-acme-02#section-6.1.1\n\nClarified in the doc.",
+      "parentUuid": "3e3be95b_54b0acec",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_9823b50d",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_f49b0074",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_34b3a8fc",
         "filename": "acme/autocert/man.go",
         "patchSetId": 12
@@ -166,6 +328,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "tosURL",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "def1ed14_bdc81f58",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_34b3a8fc",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "5e0fbde2_59ada37a",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_14a1c49c",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_b495783f",
         "filename": "acme/autocert/man.go",
         "patchSetId": 12
@@ -206,6 +404,24 @@
     },
     {
       "key": {
+        "uuid": "def1ed14_9dcd6368",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_b495783f",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_d49a7c6e",
         "filename": "acme/autocert/man.go",
         "patchSetId": 12
@@ -217,6 +433,24 @@
       "writtenOn": "2016-08-13T18:58:01Z",
       "side": 1,
       "message": "Why the loop? I\u0027m afraid this could get into a state where it loops forever.",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_f828f1ea",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-13T20:00:27Z",
+      "side": 1,
+      "message": "Yeah, it could loop forever if m.Cache.Delete kept returning errors. The spec suggests to remove token certs whenever possible, so I wanted to make sure we do that.\n\nThis method is always called from a separate goroutine, though, so it won\u0027t block other things.\nAdded a doc comment to clarify.",
+      "parentUuid": "3e3be95b_d49a7c6e",
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
