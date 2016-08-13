@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3be95b_0f721114",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:22:07Z",
+      "side": 1,
+      "message": "I think it should just fail if any limits are hit. Partial results sound scary and error-prone.",
+      "revId": "786f1e3f0e75c67f1efe76d78300525da4b90c08",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_ef6c8d38",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:22:07Z",
+      "side": 1,
+      "message": "has the expected features",
+      "revId": "786f1e3f0e75c67f1efe76d78300525da4b90c08",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_cf7bc9ed",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:22:07Z",
+      "side": 1,
+      "message": "I\u0027d make the LimitReader maxCertSize+1 and then after this:\n\n   if len(b) \u003e maxCertSize {\n       return an error\n   }",
+      "revId": "786f1e3f0e75c67f1efe76d78300525da4b90c08",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_af768504",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:22:07Z",
+      "side": 1,
+      "message": "I\u0027d probably use separate error messages for the two cases",
+      "revId": "786f1e3f0e75c67f1efe76d78300525da4b90c08",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
