@@ -454,6 +454,24 @@
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_8f1701a3",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:13:33Z",
+      "side": 1,
+      "message": "I still don\u0027t think it should loop forever. If a Cache.Delete fails, it\u0027s pretty likely it\u0027s going to fail again.",
+      "parentUuid": "3e0049b2_f828f1ea",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
