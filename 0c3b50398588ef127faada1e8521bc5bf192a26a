@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3be95b_2f14b59c",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:13:33Z",
+      "side": 1,
+      "message": "rename this file to \"manager.go\".\n\nor just to \"autocert.go\", which is probably better.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_afff6552",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:13:33Z",
+      "side": 1,
+      "message": "awkward sentence. And \"termination\" isn\u0027t a common concept or word we use when describing Go APIs.\n\nMaybe we just say:\n\n// Cache optionally stores and retrieves previously-obtained certificates.\n// If nil, certs will only be cached for the lifetime of the Manager.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_6f1abdcf",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-13T22:13:33Z",
+      "side": 1,
+      "message": "Let\u0027s just call make this \"Email string\" and don\u0027t mention the URI part or the \"mailto:\" part:\n\n   // Email optionally specifies a contact email address.\n   // This is used by CAs (such as LetsEncrypt.org) to notify you\n   // if there are problems with your certificates.\n   Email string\n\nIf we need to add \"Contacts []string\" later, we can. But let\u0027s start with just the common case.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
