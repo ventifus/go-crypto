@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3be95b_cf68a98a",
+        "filename": "nacl/secretbox/secretbox_example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5055
+      },
+      "writtenOn": "2016-08-14T19:11:35Z",
+      "side": 1,
+      "message": "this is really a bad example to set.\n\nIf you want deterministic results, use a hash (or HMAC)\nof the plaintext message (possibly salted) as nonce\ninstead. [Or just use crypto/rand, and output the\ndecryption result rather than the ciphertext)\n\nThis is example, it\u0027s meant to be copied and pasted\ninto real code, so we need to make it safe enough.\n\nThe example also doesn\u0027t teach people how to get nonce\nto the receiver end. I\u0027d suggest to actually package\nthe nonce and ciphertext into a []byte and then unpack\nit immediately for Open.",
+      "revId": "4d0419bd95aa80f4c288200bd7878cca80afb88c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
