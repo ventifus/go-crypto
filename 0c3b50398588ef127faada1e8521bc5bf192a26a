@@ -277,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "def1ed14_dd8febd2",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T14:54:39Z",
+      "side": 1,
+      "message": "Yes, I\u0027m worried about the clients. Detecting the support in ClientHelloInfo will be too late. Unless you\u0027re alluding to 2 certs per domain, presenting one or the other based on the client. Either way, I think it could be added in the next round of changes, once this is submitted.",
+      "parentUuid": "fef4f103_fe28e1ea",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_cf3c29e8",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
