@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "3ee76958_80c7b63f",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "It would require for the Manager to use some intermediate encoding (e.g. PEM or Go\u0027s gob, or custom) to be able to split the value back into a pair. Is that what you mean?",
+      "parentUuid": "3e3be95b_8f4f0192",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f4cb59b",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 13
@@ -48,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_98b7359b",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_2f4cb59b",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f14b59c",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
@@ -59,6 +95,24 @@
       "writtenOn": "2016-08-13T22:13:33Z",
       "side": 1,
       "message": "rename this file to \"manager.go\".\n\nor just to \"autocert.go\", which is probably better.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "befa79f0_dceecdb3",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_2f14b59c",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -82,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "def1ed14_bd05bf6f",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_afff6552",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_6f1abdcf",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
@@ -93,6 +165,24 @@
       "writtenOn": "2016-08-13T22:13:33Z",
       "side": 1,
       "message": "Let\u0027s just call make this \"Email string\" and don\u0027t mention the URI part or the \"mailto:\" part:\n\n   // Email optionally specifies a contact email address.\n   // This is used by CAs (such as LetsEncrypt.org) to notify you\n   // if there are problems with your certificates.\n   Email string\n\nIf we need to add \"Contacts []string\" later, we can. But let\u0027s start with just the common case.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_b8b2f9aa",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "sounds good. done.",
+      "parentUuid": "3e3be95b_6f1abdcf",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -116,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "befa79f0_5cdbdd16",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "It\u0027s a good point but how would you handle a case where in-memory cert is expired or revoked (either by the user or CA). Well, expired is probably easy, but not the rest, where a cert state is changed externally.\n\nThe current Manager implementation is weak on renewal side. I would expect a future improved version kick off a goroutine which would renew the certs preemptively. It could also then re-populate in-memory certs safely.",
+      "parentUuid": "3e3be95b_af376501",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_6f52bd3e",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
@@ -127,6 +235,24 @@
       "writtenOn": "2016-08-14T02:50:39Z",
       "side": 1,
       "message": "Out of curiosity, is there any reason to default to rsa? Not an expert, but my understanding is ECC certs are 10x smaller with equivalent (or higher) security levels.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_f8bc7180",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "True. Historically though, Let\u0027s Encrypt only supported RSA: https://community.letsencrypt.org/t/elliptic-curve-cryptography-ecc-support/34\nPlus, I was afraid ECC certs are not as widely supported, yet.\n\nIdeally, I\u0027d love for the future Manager to have a key generator hook so that users can decide for themselves.",
+      "parentUuid": "3e3be95b_6f52bd3e",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -150,6 +276,24 @@
         "endLine": 243,
         "endChar": 17
       },
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be135910_b4efa0b2",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "thanks for catching this. moved locking/unlocking into a separate method to make it less error-prone.",
+      "parentUuid": "3e3be95b_cf3c29e8",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
