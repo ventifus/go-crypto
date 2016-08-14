@@ -472,6 +472,24 @@
       "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be135910_54c44c3a",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-14T11:40:40Z",
+      "side": 1,
+      "message": "done. removed the loop.",
+      "parentUuid": "3e3be95b_8f1701a3",
+      "revId": "5a7a9287c3f5c7c6b80d4cadf78e815a6509d75e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
