@@ -362,22 +362,16 @@ func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
 	return v.challenge(), nil
 }
 
-// HTTP01Handler creates a new handler which responds to a http-01 challenge.
-// The token argument is a Challenge.Token value.
-func (c *Client) HTTP01Handler(token string) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if !strings.HasSuffix(r.URL.Path, token) {
-			w.WriteHeader(http.StatusNotFound)
-			return
-		}
-		w.Header().Set("content-type", "text/plain")
-		auth, err := keyAuth(c.Key.Public(), token)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		w.Write([]byte(auth))
-	})
+// HTTP01ChallengeToken returns the value for http-01 challenge response.
+// Servers can provision the token value at the indicated URL path
+// to validate the challenge and prove control over a domain name.
+func (c *Client) HTTP01ChallengeToken(token string) (value, path string, err error) {
+	value, err = keyAuth(c.Key.Public(), token)
+	if err != nil {
+		return "", "", err
+	}
+	path = fmt.Sprintf(".well-known/acme-challenge/%s", token)
+	return value, path, nil
 }
 
 // TLSSNI01ChallengeCert creates a certificate for TLS-SNI-01 challenge response.

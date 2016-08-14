@@ -834,3 +834,22 @@ func TestTLSSNI02ChallengeCert(t *testing.T) {
 		t.Errorf("%v doesn't have %q", cert.DNSNames, name)
 	}
 }
+
+func TestHTTP01ChallengeToken(t *testing.T) {
+	const (
+		in       = "xxx"
+		out      = in + "." + testKeyThumbprint
+		location = ".well-known/acme-challenge/" + in
+	)
+	client := &Client{Key: testKey}
+	tok, loc, err := client.HTTP01ChallengeToken(in)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if tok != out {
+		t.Errorf("tok = %q; want %q", tok, out)
+	}
+	if loc != location {
+		t.Errorf("loc = %q; want %q", loc, location)
+	}
+}
