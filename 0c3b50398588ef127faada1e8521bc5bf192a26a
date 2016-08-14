@@ -259,6 +259,24 @@
     },
     {
       "key": {
+        "uuid": "fef4f103_fe28e1ea",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 14880
+      },
+      "writtenOn": "2016-08-14T13:55:28Z",
+      "side": 1,
+      "message": "ECC certs are widely supported, for example, rsc.io uses ECC certs and ssllabs.com reports wide support[0]. If you are worried about clients without ECC support, you can detect that in the ClientHelloInfo and serve a RSA cert, that way clients that support ECC reap the benefits (faster validation, less bytes on the wire) while continuing to support the rare clients that can talk to TLS 1.0 but don\u0027t support ECC.\n\n[0]: https://www.ssllabs.com/ssltest/analyze.html?d\u003drsc.io",
+      "parentUuid": "3e0049b2_f8bc7180",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_cf3c29e8",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
