@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "3e3be95b_8f4f0192",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-14T02:50:39Z",
+      "side": 1,
+      "message": "Why not just have a single opaque \"value []byte\", instead of a pair of values?\n\nThis formulation will make each implementation deal with two values, where instead we could have just have this package encode both into a single buffer, and simplify all implementations of this interface (including the DirCache below).",
+      "range": {
+        "startLine": 21,
+        "startChar": 19,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_2f4cb59b",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-14T02:50:39Z",
+      "side": 1,
+      "message": "This feels racy if two binaries are pointed at the same directory. Consider writing to a tempfile and renaming into place.\n\nWith the current thing, I think its possible to end up with a file with the concatenation of both keys, where with renaming, you\u0027ll end up with exactly one of them.",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f14b59c",
         "filename": "acme/autocert/man.go",
         "patchSetId": 13
@@ -47,6 +93,63 @@
       "writtenOn": "2016-08-13T22:13:33Z",
       "side": 1,
       "message": "Let\u0027s just call make this \"Email string\" and don\u0027t mention the URI part or the \"mailto:\" part:\n\n   // Email optionally specifies a contact email address.\n   // This is used by CAs (such as LetsEncrypt.org) to notify you\n   // if there are problems with your certificates.\n   Email string\n\nIf we need to add \"Contacts []string\" later, we can. But let\u0027s start with just the common case.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_af376501",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-14T02:50:39Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this method be checking m.certState first? To avoid deserializing the cert repeatedly during the happy path.\n\nI imagine the overall flow should be something like:\na) check in memory certs, if its there, block on verification completing, then return it.\nb) try and load from the cache; if found, populate the in-memory certs, and return it.\nc) check in memory certs again, if its there, block on verification completing and return it. If its not there, create it, and kickoff acme.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_6f52bd3e",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-14T02:50:39Z",
+      "side": 1,
+      "message": "Out of curiosity, is there any reason to default to rsa? Not an expert, but my understanding is ECC certs are 10x smaller with equivalent (or higher) security levels.",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_cf3c29e8",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-14T02:50:39Z",
+      "side": 1,
+      "message": "In this case (admittedly implausible) error case, m.certStateMu is left locked.",
+      "range": {
+        "startLine": 243,
+        "startChar": 2,
+        "endLine": 243,
+        "endChar": 17
+      },
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
