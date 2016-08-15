@@ -43,6 +43,24 @@
     },
     {
       "key": {
+        "uuid": "3e3be95b_5a11b5ab",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-15T03:33:47Z",
+      "side": 1,
+      "message": "Yep, pretty much. AFAICT, we don\u0027t really gain anything from having the data split into two pieces, and it complicates the cache implementations. I imagine it\u0027d always be slightly trickier to implement a cache API for a pair of values on top of most kv-stores, rather than just a single value.\n\nConsider using json (or some non-binary encoding), so that clients who use the DirCache without an encrypting wrapper will be able to inspect what\u0027s being stored.\n\nIf you don\u0027t want to encode, another option is to just have cacheGet() just call Get/Set twice with the two values under different keys (maybe \"pub:foo.com\", and \"crt:foo.com\"). But I think encoding is better (for caches that are making RPCs to remote services).",
+      "parentUuid": "3ee76958_80c7b63f",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f4cb59b",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 13
@@ -218,6 +236,24 @@
       "side": 1,
       "message": "It\u0027s a good point but how would you handle a case where in-memory cert is expired or revoked (either by the user or CA). Well, expired is probably easy, but not the rest, where a cert state is changed externally.\n\nThe current Manager implementation is weak on renewal side. I would expect a future improved version kick off a goroutine which would renew the certs preemptively. It could also then re-populate in-memory certs safely.",
       "parentUuid": "3e3be95b_af376501",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_1a724d14",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-15T03:33:47Z",
+      "side": 1,
+      "message": "I see, you\u0027re thinking of a case where another instance of the Manager renews (or otherwise updates) the cache. Interesting.\n\nI still think we shouldn\u0027t pay the cost of parsing the cert on every connection creation (even  worse if the Cache implementation the client is using goes to the disk or network).\n\nThere\u0027s probably some compromise like having a background goroutine that periodically syncs the cache state for recently accessed domains with the in-memory map, but this is an implementation detail that can probably wait for a different CL.",
+      "parentUuid": "befa79f0_5cdbdd16",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
