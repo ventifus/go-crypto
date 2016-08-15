@@ -61,6 +61,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_d819ad83",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T13:58:36Z",
+      "side": 1,
+      "message": "Sounds good. Wanted to confirm.\nI used PEM since it\u0027s what is normally used to encode certificates and will be compatible with other tools like openssl.",
+      "parentUuid": "3e3be95b_5a11b5ab",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f4cb59b",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 13
@@ -254,6 +272,24 @@
       "side": 1,
       "message": "I see, you\u0027re thinking of a case where another instance of the Manager renews (or otherwise updates) the cache. Interesting.\n\nI still think we shouldn\u0027t pay the cost of parsing the cert on every connection creation (even  worse if the Cache implementation the client is using goes to the disk or network).\n\nThere\u0027s probably some compromise like having a background goroutine that periodically syncs the cache state for recently accessed domains with the in-memory map, but this is an implementation detail that can probably wait for a different CL.",
       "parentUuid": "befa79f0_5cdbdd16",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_9ba60fa4",
+        "filename": "acme/autocert/man.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T13:58:36Z",
+      "side": 1,
+      "message": "I didn\u0027t like reading from disk every time either, tbh.\nAgree, I guess it can wait for another CL.\nDone.",
+      "parentUuid": "3e3be95b_1a724d14",
       "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
