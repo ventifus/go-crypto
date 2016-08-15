@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fecb11e0_663d6e26",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T14:53:08Z",
+      "side": 1,
+      "message": "the method is named Token as if it returns a Token, but it takes a token instead, and returns a \"value\".\n\nAre they both \"tokens\"?\n\nNote that the TLSSNI0xChallengeCert methods below are named \"Cert\" and return a Cert.",
+      "revId": "35077bdc79777e48e13abfd7dbb5fac86fd7efa6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
