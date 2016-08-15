@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_bbc83358",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T14:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_babc817f",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_dac14500",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_5bad977a",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T14:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_dac14500",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_1ab80d8b",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-15T03:22:30Z",
       "side": 1,
       "message": "shouldn\u0027t path start with /?",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e0049b2_3bb6e3d4",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T14:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_1ab80d8b",
       "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
