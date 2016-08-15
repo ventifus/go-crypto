@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b186770_7ce52d32",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-08-15T21:54:11Z",
+      "side": 1,
+      "message": "I fear this encourages people to derive keys directly from passphrases. Could you say:\n\n// Load your secret key from a safe place and reuse it across multiple Seal calls. (Obviously don\u0027t use this example key for anything real.)\nsecretKeyBytes, err :\u003d hex.DecodeString(\"299bfa8069c0f8baacc77c78f2d6acda8495c8d54c18c1d9311840ca0349f3d2\")\nif err !\u003d nil {\n  panic(err)\n}\n\nvar secretKey [32]byte\ncopy(secretKey[:], secretKeyBytes)",
+      "revId": "023f385889e1be8d94141a1bb2e6947215244a1f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b186770_bcf985e3",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-08-15T21:54:11Z",
+      "side": 1,
+      "message": "I fear this encourages people to derive keys directly from passphrases. Could you say:\n\n// Load your secret key from a safe place and reuse it across multiple Seal calls. (Obviously don\u0027t use this example key for anything real.)\nsecretKeyBytes, err :\u003d hex.DecodeString(\"299bfa8069c0f8baacc77c78f2d6acda8495c8d54c18c1d9311840ca0349f3d2\")\nif err !\u003d nil {\n  panic(err)\n}\n\nvar secretKey [32]byte\ncopy(secretKey[:], secretKeyBytes)",
+      "revId": "023f385889e1be8d94141a1bb2e6947215244a1f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b186770_fcd81d7d",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-08-15T21:54:11Z",
+      "side": 1,
+      "message": "// You must use a different nonce for each message you encrypt with the same key.",
+      "revId": "023f385889e1be8d94141a1bb2e6947215244a1f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
