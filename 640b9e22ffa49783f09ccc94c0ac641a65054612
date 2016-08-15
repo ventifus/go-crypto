@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e6641d2_a07ade1b",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:33:07Z",
+      "side": 1,
+      "message": "contain the CA (issuer) certificate",
+      "revId": "640b9e22ffa49783f09ccc94c0ac641a65054612",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_e084d609",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:33:07Z",
+      "side": 1,
+      "message": "... if the CA\u0027s response or chain was unreasonably large.",
+      "revId": "640b9e22ffa49783f09ccc94c0ac641a65054612",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_1d90574b",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:33:07Z",
+      "side": 1,
+      "message": "close",
+      "revId": "640b9e22ffa49783f09ccc94c0ac641a65054612",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_fd9ac36d",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:33:07Z",
+      "side": 1,
+      "message": "close",
+      "revId": "640b9e22ffa49783f09ccc94c0ac641a65054612",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_bda04b9a",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:33:07Z",
+      "side": 1,
+      "message": "you need to close all these servers afterwards.\n\ndefer ts.Close()",
+      "revId": "640b9e22ffa49783f09ccc94c0ac641a65054612",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
