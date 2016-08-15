@@ -16,6 +16,24 @@
       "revId": "4d0419bd95aa80f4c288200bd7878cca80afb88c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_3ab071d5",
+        "filename": "nacl/secretbox/secretbox_example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2016-08-15T00:18:24Z",
+      "side": 1,
+      "message": "\u003e this is really a bad example to set.\n\nAgreed, though I wasn\u0027t sure the best way to do this, and figured if a fixed seed was good enough for https://play.golang.org/p/aQCz4IlhQI, it\u0027d be good enough here. Thanks for the advice on how to do this. \n\n \u003e If you want deterministic results, use a hash (or HMAC)\n \u003e of the plaintext message (possibly salted) as nonce\n \u003e instead. (Or just use crypto/rand, and output the\n \u003e decryption result rather than the ciphertext)\n\nFor the latter, do you mean a \"more random\" string like this? https://gist.github.com/kevinburke/a05da378bbe639ebb87910802ee9c214\n\nOtherwise I think I\u0027ll just give up on printing the encrypted text.\n \n \u003e This is example, it\u0027s meant to be copied and pasted\n \u003e into real code, so we need to make it safe enough.\n \u003e \n \u003e The example also doesn\u0027t teach people how to get nonce\n \u003e to the receiver end. I\u0027d suggest to actually package\n \u003e the nonce and ciphertext into a []byte and then unpack\n \u003e it immediately for Open.",
+      "parentUuid": "3e3be95b_cf68a98a",
+      "revId": "4d0419bd95aa80f4c288200bd7878cca80afb88c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
