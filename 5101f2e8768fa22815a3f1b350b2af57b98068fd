@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3be95b_babc817f",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T03:22:30Z",
+      "side": 1,
+      "message": "the response answer value for an http-01 challenge.",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_dac14500",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T03:22:30Z",
+      "side": 1,
+      "message": "Please explain token more. It\u0027s not clear who makes it.",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_1ab80d8b",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T03:22:30Z",
+      "side": 1,
+      "message": "shouldn\u0027t path start with /?",
+      "revId": "5101f2e8768fa22815a3f1b350b2af57b98068fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
