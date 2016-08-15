@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7e6641d2_1ac77d13",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2016-08-15T16:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_da0aa52c",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_7a00390a",
         "filename": "nacl/secretbox/example_test.go",
         "patchSetId": 4
@@ -65,6 +83,24 @@
       "writtenOn": "2016-08-15T05:54:15Z",
       "side": 1,
       "message": "encrypted :\u003d Seal(nonce[:], []byte(\"hello world\"), \u0026nonce, \u0026secretkey)",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_fac1e9ff",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2016-08-15T16:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3be95b_9afdfd09",
       "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
