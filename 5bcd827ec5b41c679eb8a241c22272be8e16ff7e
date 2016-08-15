@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3be95b_da0aa52c",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5055
+      },
+      "writtenOn": "2016-08-15T05:54:15Z",
+      "side": 1,
+      "message": "check err (panic is fine), see below.",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_7a00390a",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5055
+      },
+      "writtenOn": "2016-08-15T05:54:15Z",
+      "side": 1,
+      "message": "No need to make a slice and also allocate a byte array:\n\nvar nonce [24]byte\nerr :\u003d io.ReadFull(rand.Reader, nonce[:])\nif err !\u003d nil {\n    panic(err)\n}",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e3be95b_9afdfd09",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5055
+      },
+      "writtenOn": "2016-08-15T05:54:15Z",
+      "side": 1,
+      "message": "encrypted :\u003d Seal(nonce[:], []byte(\"hello world\"), \u0026nonce, \u0026secretkey)",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
