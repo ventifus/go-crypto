@@ -16,6 +16,24 @@
       "revId": "35077bdc79777e48e13abfd7dbb5fac86fd7efa6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1eec653b_9f10b360",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-15T14:58:49Z",
+      "side": 1,
+      "message": "Good point. It does takes a token and returns another token. I was thinking  maybe name it HTTP01ChallengeResponse instead?\n\nThen for dns-01 challenge (not in this CL) it could be DNS01ChallengeRecord, keeping it consistent, because the method would return a TXT record name/value.\n\nSounds good?",
+      "parentUuid": "fecb11e0_663d6e26",
+      "revId": "35077bdc79777e48e13abfd7dbb5fac86fd7efa6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
