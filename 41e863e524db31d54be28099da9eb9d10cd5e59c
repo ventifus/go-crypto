@@ -16,6 +16,40 @@
       "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_9dfc67da",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:17:22Z",
+      "side": 1,
+      "message": "I\u0027m not sure how useful these goroutines to respect ctx.Done() are. If os.Remove(name) actually blocks for a long time (say, hung NFS filesystem, etc) and the timeout expires, then you\u0027re leaving a goroutine outstanding still trying to delete a file.\n\nYou might write that file in the meantime (after the context expires), and then this goroutine might finally delete it (a later version of the file) later.\n\nThat\u0027s fine for Delete (it\u0027s just a cache after all), but it\u0027s a little scarier for Put.\n\nOn line 86 above, you might want to re-check the context is still valid before doing the os.Rename step:\n\n    // In case the steps above took awhile, recheck the context\n    // to minimize the chance we overwrite something Put later:\n   select {\n   case \u003c-ctx.Done():\n            err \u003d ctx.Err()\n   default:\n            err \u003d os.Rename(tmp, name)\n    }",
+      "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e6641d2_7dca33ba",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-15T18:17:22Z",
+      "side": 1,
+      "message": "f.Close?",
+      "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
