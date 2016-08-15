@@ -79,6 +79,24 @@
     },
     {
       "key": {
+        "uuid": "3e0049b2_7b6b3b1a",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14880
+      },
+      "writtenOn": "2016-08-15T17:12:09Z",
+      "side": 1,
+      "message": "If you are implementing ECC and RSA certs then you will need the key to contain the cert type too.",
+      "parentUuid": "3e0049b2_d819ad83",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f4cb59b",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 13
