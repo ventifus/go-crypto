@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7e6641d2_bab7719a",
+        "filename": "nacl/secretbox/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2016-08-15T16:53:29Z",
+      "side": 1,
+      "message": "That\u0027s much nicer! Thank you!",
+      "parentUuid": "3e3be95b_7a00390a",
+      "revId": "5bcd827ec5b41c679eb8a241c22272be8e16ff7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_9afdfd09",
         "filename": "nacl/secretbox/example_test.go",
         "patchSetId": 4
