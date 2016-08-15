@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e0fbde2_5923e34f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 14880
+      },
+      "writtenOn": "2016-08-15T17:12:09Z",
+      "side": 1,
+      "message": "As far as I can tell there is no way presently to prevent the sort of attack described by rsc:\n\n\nBy default, if GetCertificate is asked for a certificate it does not have,\nit will in turn ask LetsEncrypt.org for that certificate. This opens a\npotential attack where attackers connect to a server by IP address and\npretend to be asking for an incorrect host name. Then GetCertificate will\nattempt to obtain a certificate for that host, incorrectly, eventually\nhitting LetsEncrypt.org\u0027s rate limit for certificate requests and making it\nimpossible to obtain actual certificates. Because servers hold certificates\nfor months at a time, however, an attack would need to be sustained over a\ntime period of at least a month in order to cause real problems.\n\nTo mitigate this kind of attack, a given Manager limits itself to an average\nof one certificate request for a new host every three hours, with an initial\nallowed burst of up to 20 requests. Long-running servers will therefore stay\nwithin the LetsEncrypt.org limit of 300 failed requests per month.\nCertificate refreshes are not subject to this limit.\n\nTo eliminate the attack entirely, call m.SetHosts to enumerate the exact set\nof hosts that are allowed in certificate requests.",
+      "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
