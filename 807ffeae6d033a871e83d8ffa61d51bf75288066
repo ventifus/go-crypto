@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bbc9397_fe43494c",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T17:03:47Z",
+      "side": 1,
+      "message": "btw, can you add this line \"// This package is a work in progress and makes no API stability promises.\" to the autocert package as well?",
+      "revId": "807ffeae6d033a871e83d8ffa61d51bf75288066",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
