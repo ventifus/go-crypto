@@ -78,7 +78,9 @@ type Client struct {
 // It caches successful result. So, subsequent calls will not result in
 // a network round-trip. This also means mutating c.DirectoryURL after successful call
 // of this method will have no effect.
-func (c *Client) Discover() (Directory, error) {
+//
+// Callers can cancel the discovery request with ctx.
+func (c *Client) Discover(ctx context.Context) (Directory, error) {
 	c.dirMu.Lock()
 	defer c.dirMu.Unlock()
 	if c.dir != nil {
@@ -89,7 +91,7 @@ func (c *Client) Discover() (Directory, error) {
 	if dirURL == "" {
 		dirURL = LetsEncryptURL
 	}
-	res, err := c.httpClient().Get(dirURL)
+	res, err := ctxhttp.Get(ctx, c.HTTPClient, dirURL)
 	if err != nil {
 		return Directory{}, err
 	}
@@ -136,7 +138,7 @@ func (c *Client) Discover() (Directory, error) {
 // CreateCert returns an error if the CA's response or chain was unreasonably large.
 // Callers are encouraged to parse the returned value to ensure the certificate is valid and has the expected features.
 func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, bundle bool) (der [][]byte, certURL string, err error) {
-	if _, err := c.Discover(); err != nil {
+	if _, err := c.Discover(ctx); err != nil {
 		return nil, "", err
 	}
 
@@ -155,7 +157,7 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 		req.NotAfter = now.Add(exp).Format(time.RFC3339)
 	}
 
-	res, err := c.postJWS(c.dir.CertURL, req)
+	res, err := postJWS(ctx, c.HTTPClient, c.Key, c.dir.CertURL, req)
 	if err != nil {
 		return nil, "", err
 	}
@@ -171,7 +173,7 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 		return cert, curl, err
 	}
 	// slurp issued cert and CA chain, if requested
-	cert, err := responseCert(ctx, c.httpClient(), res, bundle)
+	cert, err := responseCert(ctx, c.HTTPClient, res, bundle)
 	return cert, curl, err
 }
 
@@ -186,13 +188,13 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 // and has expected features.
 func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]byte, error) {
 	for {
-		res, err := ctxhttp.Get(ctx, c.httpClient(), url)
+		res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
 		if err != nil {
 			return nil, err
 		}
 		defer res.Body.Close()
 		if res.StatusCode == http.StatusOK {
-			return responseCert(ctx, c.httpClient(), res, bundle)
+			return responseCert(ctx, c.HTTPClient, res, bundle)
 		}
 		if res.StatusCode > 299 {
 			return nil, responseError(res)
@@ -221,13 +223,15 @@ func AcceptTOS(tosURL string) bool { return true }
 // If so, and the account has not indicated the acceptance of the terms (see Account for details),
 // Register calls prompt with a TOS URL provided by the CA. Prompt should report
 // whether the caller agrees to the terms. To always accept the terms, the caller can use AcceptTOS.
-func (c *Client) Register(a *Account, prompt func(tosURL string) bool) (*Account, error) {
-	if _, err := c.Discover(); err != nil {
+//
+// Callers can cancel the registration request with ctx.
+func (c *Client) Register(ctx context.Context, a *Account, prompt func(tosURL string) bool) (*Account, error) {
+	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
 
 	var err error
-	if a, err = c.doReg(c.dir.RegURL, "new-reg", a); err != nil {
+	if a, err = c.doReg(ctx, c.dir.RegURL, "new-reg", a); err != nil {
 		return nil, err
 	}
 	var accept bool
@@ -236,15 +240,17 @@ func (c *Client) Register(a *Account, prompt func(tosURL string) bool) (*Account
 	}
 	if accept {
 		a.AgreedTerms = a.CurrentTerms
-		a, err = c.UpdateReg(a)
+		a, err = c.UpdateReg(ctx, a)
 	}
 	return a, err
 }
 
 // GetReg retrieves an existing registration.
 // The url argument is an Account URI.
-func (c *Client) GetReg(url string) (*Account, error) {
-	a, err := c.doReg(url, "reg", nil)
+//
+// Callers can cancel the request with ctx.
+func (c *Client) GetReg(ctx context.Context, url string) (*Account, error) {
+	a, err := c.doReg(ctx, url, "reg", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -254,9 +260,11 @@ func (c *Client) GetReg(url string) (*Account, error) {
 
 // UpdateReg updates an existing registration.
 // It returns an updated account copy. The provided account is not modified.
-func (c *Client) UpdateReg(a *Account) (*Account, error) {
+//
+// Callers can cancel the update request with ctx.
+func (c *Client) UpdateReg(ctx context.Context, a *Account) (*Account, error) {
 	uri := a.URI
-	a, err := c.doReg(uri, "reg", a)
+	a, err := c.doReg(ctx, uri, "reg", a)
 	if err != nil {
 		return nil, err
 	}
@@ -267,8 +275,10 @@ func (c *Client) UpdateReg(a *Account) (*Account, error) {
 // Authorize performs the initial step in an authorization flow.
 // The caller will then need to choose from and perform a set of returned
 // challenges using c.Accept in order to successfully complete authorization.
-func (c *Client) Authorize(domain string) (*Authorization, error) {
-	if _, err := c.Discover(); err != nil {
+//
+// Callers can cancel the request with ctx.
+func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, error) {
+	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
 
@@ -283,7 +293,7 @@ func (c *Client) Authorize(domain string) (*Authorization, error) {
 		Resource:   "new-authz",
 		Identifier: authzID{Type: "dns", Value: domain},
 	}
-	res, err := c.postJWS(c.dir.AuthzURL, req)
+	res, err := postJWS(ctx, c.HTTPClient, c.Key, c.dir.AuthzURL, req)
 	if err != nil {
 		return nil, err
 	}
@@ -303,10 +313,11 @@ func (c *Client) Authorize(domain string) (*Authorization, error) {
 }
 
 // GetAuthz retrieves the current status of an authorization flow.
-//
 // A client typically polls an authz status using this method.
-func (c *Client) GetAuthz(url string) (*Authorization, error) {
-	res, err := c.httpClient().Get(url)
+//
+// The request can be cancelled with ctx.
+func (c *Client) GetAuthz(ctx context.Context, url string) (*Authorization, error) {
+	res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
 	if err != nil {
 		return nil, err
 	}
@@ -322,10 +333,11 @@ func (c *Client) GetAuthz(url string) (*Authorization, error) {
 }
 
 // GetChallenge retrieves the current status of an challenge.
-//
 // A client typically polls a challenge status using this method.
-func (c *Client) GetChallenge(url string) (*Challenge, error) {
-	res, err := c.httpClient().Get(url)
+//
+// The request can be cancelled with ctx.
+func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, error) {
+	res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
 	if err != nil {
 		return nil, err
 	}
@@ -342,9 +354,10 @@ func (c *Client) GetChallenge(url string) (*Challenge, error) {
 
 // Accept informs the server that the client accepts one of its challenges
 // previously obtained with c.Authorize.
-//
 // The server will then perform the validation asynchronously.
-func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
+//
+// Callers can cancel the accept request with ctx.
+func (c *Client) Accept(ctx context.Context, chal *Challenge) (*Challenge, error) {
 	auth, err := keyAuth(c.Key.Public(), chal.Token)
 	if err != nil {
 		return nil, err
@@ -359,7 +372,7 @@ func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
 		Type:     chal.Type,
 		Auth:     auth,
 	}
-	res, err := c.postJWS(chal.URI, req)
+	res, err := postJWS(ctx, c.HTTPClient, c.Key, chal.URI, req)
 	if err != nil {
 		return nil, err
 	}
@@ -452,31 +465,6 @@ func (c *Client) TLSSNI02ChallengeCert(token string) (cert tls.Certificate, name
 	return cert, sanA, nil
 }
 
-func (c *Client) httpClient() *http.Client {
-	if c.HTTPClient != nil {
-		return c.HTTPClient
-	}
-	return http.DefaultClient
-}
-
-// postJWS signs body and posts it to the provided url.
-// The body argument must be JSON-serializable.
-func (c *Client) postJWS(url string, body interface{}) (*http.Response, error) {
-	nonce, err := fetchNonce(c.httpClient(), url)
-	if err != nil {
-		return nil, err
-	}
-	b, err := jwsEncodeJSON(body, c.Key, nonce)
-	if err != nil {
-		return nil, err
-	}
-	req, err := http.NewRequest("POST", url, bytes.NewReader(b))
-	if err != nil {
-		return nil, err
-	}
-	return c.httpClient().Do(req)
-}
-
 // doReg sends all types of registration requests.
 // The type of request is identified by typ argument, which is a "resource"
 // in the ACME spec terms.
@@ -484,10 +472,7 @@ func (c *Client) postJWS(url string, body interface{}) (*http.Response, error) {
 // A non-nil acct argument indicates whether the intention is to mutate data
 // of the Account. Only Contact and Agreement of its fields are used
 // in such cases.
-//
-// The fields of acct will be populate with the server response
-// and may be overwritten.
-func (c *Client) doReg(url string, typ string, acct *Account) (*Account, error) {
+func (c *Client) doReg(ctx context.Context, url string, typ string, acct *Account) (*Account, error) {
 	req := struct {
 		Resource  string   `json:"resource"`
 		Contact   []string `json:"contact,omitempty"`
@@ -499,7 +484,7 @@ func (c *Client) doReg(url string, typ string, acct *Account) (*Account, error) 
 		req.Contact = acct.Contact
 		req.Agreement = acct.AgreedTerms
 	}
-	res, err := c.postJWS(url, req)
+	res, err := postJWS(ctx, c.HTTPClient, c.Key, url, req)
 	if err != nil {
 		return nil, err
 	}
@@ -640,8 +625,22 @@ func chainCert(ctx context.Context, client *http.Client, url string, depth int) 
 	return chain, nil
 }
 
-func fetchNonce(client *http.Client, url string) (string, error) {
-	resp, err := client.Head(url)
+// postJWS signs the body with the given key and POSTs it to the provided url.
+// The body argument must be JSON-serializable.
+func postJWS(ctx context.Context, client *http.Client, key crypto.Signer, url string, body interface{}) (*http.Response, error) {
+	nonce, err := fetchNonce(ctx, client, url)
+	if err != nil {
+		return nil, err
+	}
+	b, err := jwsEncodeJSON(body, key, nonce)
+	if err != nil {
+		return nil, err
+	}
+	return ctxhttp.Post(ctx, client, url, "application/jose+json", bytes.NewReader(b))
+}
+
+func fetchNonce(ctx context.Context, client *http.Client, url string) (string, error) {
+	resp, err := ctxhttp.Head(ctx, client, url)
 	if err != nil {
 		return "", nil
 	}
