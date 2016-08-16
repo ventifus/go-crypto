@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bbc9397_be75d15f",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T17:24:22Z",
+      "side": 1,
+      "message": "no need for this line once there are docs on the type (see other comments)",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbc9397_de7e8544",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T17:24:22Z",
+      "side": 1,
+      "message": "\"reason int\" doesn\u0027t look good. Make a type for that.",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbc9397_be0ab1cd",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T17:24:22Z",
+      "side": 1,
+      "message": "closing the body without reading to EOF will end up killing the whole TCP connection at least for HTTP/1.1. Is there a body to read here? Maybe io.CopyN(ioutil.Discard, res.Body, 1\u003c\u003c10) before the \"return nil\"?  Or put it in a new function like \"ignoreSmallBody(*Response)\" ?",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbc9397_1e65fdb0",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T17:24:22Z",
+      "side": 1,
+      "message": "make a type for these",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
