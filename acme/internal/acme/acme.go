@@ -155,7 +155,7 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 		req.NotAfter = now.Add(exp).Format(time.RFC3339)
 	}
 
-	res, err := c.postJWS(c.dir.CertURL, req)
+	res, err := postJWS(c.httpClient(), c.Key, c.dir.CertURL, req)
 	if err != nil {
 		return nil, "", err
 	}
@@ -283,7 +283,7 @@ func (c *Client) Authorize(domain string) (*Authorization, error) {
 		Resource:   "new-authz",
 		Identifier: authzID{Type: "dns", Value: domain},
 	}
-	res, err := c.postJWS(c.dir.AuthzURL, req)
+	res, err := postJWS(c.httpClient(), c.Key, c.dir.AuthzURL, req)
 	if err != nil {
 		return nil, err
 	}
@@ -359,7 +359,7 @@ func (c *Client) Accept(chal *Challenge) (*Challenge, error) {
 		Type:     chal.Type,
 		Auth:     auth,
 	}
-	res, err := c.postJWS(chal.URI, req)
+	res, err := postJWS(c.httpClient(), c.Key, chal.URI, req)
 	if err != nil {
 		return nil, err
 	}
@@ -459,24 +459,6 @@ func (c *Client) httpClient() *http.Client {
 	return http.DefaultClient
 }
 
-// postJWS signs body and posts it to the provided url.
-// The body argument must be JSON-serializable.
-func (c *Client) postJWS(url string, body interface{}) (*http.Response, error) {
-	nonce, err := fetchNonce(c.httpClient(), url)
-	if err != nil {
-		return nil, err
-	}
-	b, err := jwsEncodeJSON(body, c.Key, nonce)
-	if err != nil {
-		return nil, err
-	}
-	req, err := http.NewRequest("POST", url, bytes.NewReader(b))
-	if err != nil {
-		return nil, err
-	}
-	return c.httpClient().Do(req)
-}
-
 // doReg sends all types of registration requests.
 // The type of request is identified by typ argument, which is a "resource"
 // in the ACME spec terms.
@@ -499,7 +481,7 @@ func (c *Client) doReg(url string, typ string, acct *Account) (*Account, error) 
 		req.Contact = acct.Contact
 		req.Agreement = acct.AgreedTerms
 	}
-	res, err := c.postJWS(url, req)
+	res, err := postJWS(c.httpClient(), c.Key, url, req)
 	if err != nil {
 		return nil, err
 	}
@@ -638,6 +620,20 @@ func chainCert(ctx context.Context, client *http.Client, url string, depth int) 
 	}
 
 	return chain, nil
+}
+
+// postJWS signs the body with the given key and POSTs it to the provided url.
+// The body argument must be JSON-serializable.
+func postJWS(client *http.Client, key crypto.Signer, url string, body interface{}) (*http.Response, error) {
+	nonce, err := fetchNonce(client, url)
+	if err != nil {
+		return nil, err
+	}
+	b, err := jwsEncodeJSON(body, key, nonce)
+	if err != nil {
+		return nil, err
+	}
+	return http.Post(url, "application/jose+json", bytes.NewReader(b))
 }
 
 func fetchNonce(client *http.Client, url string) (string, error) {
