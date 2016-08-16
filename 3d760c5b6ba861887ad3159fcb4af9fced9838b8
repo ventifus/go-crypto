@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b2813c6_8d1765a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T20:00:27Z",
+      "side": 1,
+      "message": "start the subject with a verb, like:\n\n   acme: add Client.RevokeCert\n   acme: add Client.RevokeCert for certificate revocation\n   acme: implement certificate revocation\n\nSee https://golang.org/doc/contribute.html#change and the part which says:\n\n  It should complete the sentence \"This change modifies Go to _____.\"",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b2813c6_6d015160",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T20:00:27Z",
+      "side": 1,
+      "message": "rename \"code\" to \"reason\" for the argument?",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b2813c6_4d060d7a",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T20:00:27Z",
+      "side": 1,
+      "message": "you need to repeat \"CRLReasonCode\" on each line.\n\nSee https://play.golang.org/p/7-TX0v-sjj",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
