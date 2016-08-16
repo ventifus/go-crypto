@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7b8573c7_224f6ec6",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T12:40:33Z",
+      "side": 1,
+      "message": "Yeah, I was worried about NFS and other such potentially blocking fs, but agree this is a bit scary for Put.\n\nBut isn\u0027t what I\u0027m already doing equivalent to the select in this specific case with:\n\n    if ctx.Err() !\u003d nil {\n        return\n    }\n\nIf the ctx was cancelled, Put will return without waiting for the goroutine to finish. But the goroutine won\u0027t replace the file because ctx.Err() is guaranteed to return non-nil in that case.",
+      "parentUuid": "7e6641d2_9dfc67da",
+      "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e6641d2_7dca33ba",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 16
@@ -47,6 +65,24 @@
       "writtenOn": "2016-08-15T18:17:22Z",
       "side": 1,
       "message": "f.Close?",
+      "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b5b9740_278a1ac5",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T12:40:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e6641d2_7dca33ba",
       "revId": "41e863e524db31d54be28099da9eb9d10cd5e59c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
