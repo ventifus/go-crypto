@@ -34,6 +34,24 @@
       "revId": "8bedf3a5d5e8bb3a91df83161aa5709b694e3197",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbc9397_930d66ea",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T15:07:36Z",
+      "side": 1,
+      "message": "For any method making network requests, seems like a good idea.\n\nDon\u0027t add a context \"just because\". Only do it if it makes sense and the context needs to flow.",
+      "parentUuid": "fb8163c9_960d6cea",
+      "revId": "8bedf3a5d5e8bb3a91df83161aa5709b694e3197",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
