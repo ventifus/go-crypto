@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "db501f1e_a5cb9ebb",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bbc9397_be75d15f",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bbc9397_de7e8544",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-16T17:24:22Z",
       "side": 1,
       "message": "\"reason int\" doesn\u0027t look good. Make a type for that.",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db501f1e_85c8a2bf",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bbc9397_de7e8544",
       "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1b69d7e4_f7a700fd",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:32:24Z",
+      "side": 1,
+      "message": "ACME spec says the CA responds with 0-length body on success. If there was an error, responseError will read all body.\n\nIt should be fine for 0-length body, right?",
+      "parentUuid": "7bbc9397_be0ab1cd",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bbc9397_1e65fdb0",
         "filename": "acme/internal/acme/types.go",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-16T17:24:22Z",
       "side": 1,
       "message": "make a type for these",
+      "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db7e5f9c_d88d512b",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bbc9397_1e65fdb0",
       "revId": "0f6d8044592d91d48f43ee2955eaa42fca439b06",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
