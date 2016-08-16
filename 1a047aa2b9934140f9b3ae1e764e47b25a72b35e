@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "db501f1e_c5a7bafd",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:51:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b2813c6_cac2e32f",
+      "revId": "1a047aa2b9934140f9b3ae1e764e47b25a72b35e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b2813c6_2af1ff98",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-16T17:42:03Z",
       "side": 1,
       "message": "\"can\" or \"should\"? Probably should.\n\n\"... with the returned string value to ... \"",
+      "revId": "1a047aa2b9934140f9b3ae1e764e47b25a72b35e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b64db09_785d2126",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T19:51:27Z",
+      "side": 1,
+      "message": "yeah, \"should\" is better. done.",
+      "parentUuid": "7b2813c6_2af1ff98",
       "revId": "1a047aa2b9934140f9b3ae1e764e47b25a72b35e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
