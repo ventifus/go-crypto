@@ -115,6 +115,24 @@
     },
     {
       "key": {
+        "uuid": "9b9b0733_9bf90be4",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14880
+      },
+      "writtenOn": "2016-08-16T17:38:52Z",
+      "side": 1,
+      "message": "But if there is a rsa certificate for example.com, and a ecc certificate for example.com, you will need to store both of them in the cache and that won\u0027t work if they share the key example.com",
+      "parentUuid": "bb77ebbf_b47ae0c3",
+      "revId": "0c3b50398588ef127faada1e8521bc5bf192a26a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e3be95b_2f4cb59b",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 13
