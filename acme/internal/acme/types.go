@@ -16,6 +16,21 @@ const (
 	StatusRevoked    = "revoked"
 )
 
+// OCSP reason codes for a certificate revocation.
+const (
+	OCSPReasonUnspecified          = 0
+	OCSPReasonKeyCompromise        = 1
+	OCSPReasonCACompromise         = 2
+	OCSPReasonAffiliationChanged   = 3
+	OCSPReasonSuperseded           = 4
+	OCSPReasonCessationOfOperation = 5
+	OCSPReasonCertificateHold      = 6
+
+	OCSPReasonRemoveFromCRL      = 8
+	OCSPReasonPrivilegeWithdrawn = 9
+	OCSPReasonAACompromise       = 10
+)
+
 // ErrUnsupportedKey is returned when an unsupported key type is encountered.
 var ErrUnsupportedKey = errors.New("acme: unknown key type; only RSA and ECDSA are supported")
 
