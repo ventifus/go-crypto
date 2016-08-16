@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7b8573c7_82443a7b",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T16:09:43Z",
+      "side": 1,
+      "message": "you mean it\u0027s ok not to say anything about ctx or that \"discovery\" is redundant in that phrase?",
+      "parentUuid": "7bbc9397_9ec56d3b",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "8238bd968c214258fbadb214915ba40fb265811d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bbc9397_bec2b12e",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 2
