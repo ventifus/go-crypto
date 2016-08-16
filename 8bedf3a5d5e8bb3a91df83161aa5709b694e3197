@@ -52,6 +52,24 @@
       "revId": "8bedf3a5d5e8bb3a91df83161aa5709b694e3197",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b8573c7_4265d216",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T15:47:45Z",
+      "side": 1,
+      "message": "Right. Only those which make network requests. Done.",
+      "parentUuid": "7bbc9397_930d66ea",
+      "revId": "8bedf3a5d5e8bb3a91df83161aa5709b694e3197",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
