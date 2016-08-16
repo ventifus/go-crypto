@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bbc9397_9ec56d3b",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T15:58:50Z",
+      "side": 1,
+      "message": "unnecessary documentation",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "8238bd968c214258fbadb214915ba40fb265811d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbc9397_bec2b12e",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-16T15:58:50Z",
+      "side": 1,
+      "message": "etc",
+      "range": {
+        "startLine": 227,
+        "startChar": 26,
+        "endLine": 227,
+        "endChar": 38
+      },
+      "revId": "8238bd968c214258fbadb214915ba40fb265811d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
