@@ -52,6 +52,24 @@
       "revId": "35077bdc79777e48e13abfd7dbb5fac86fd7efa6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb028bf5_7c7ad91d",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-16T13:09:47Z",
+      "side": 1,
+      "message": "HTTP01ChallengePath looks nice. Added.\n\nI then thought we could split TLSSNI0xChallengeCert in the same way, but a TLSSNI01ChallengeCertName (note: only tls-sni-01) doesn\u0027t seem to be as much convenient because it would still need to return a (string, error) pair vs just string for other XxxName and XxxPath methods.",
+      "parentUuid": "fecb11e0_66428e9a",
+      "revId": "35077bdc79777e48e13abfd7dbb5fac86fd7efa6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
