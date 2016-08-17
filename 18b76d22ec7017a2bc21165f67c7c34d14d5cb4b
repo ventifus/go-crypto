@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb944b51_d35c8389",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-17T21:51:04Z",
+      "side": 1,
+      "message": "I suggest only calling the HostPolicy check when starting the ACME process (and documenting that).\n\nIt\u0027ll be cheaper, and it\u0027ll let someone point a binary at a prepopulated cache with a RejectAllHosts() policy and have that do something useful.",
+      "range": {
+        "startLine": 96,
+        "startChar": 28,
+        "endLine": 96,
+        "endChar": 62
+      },
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb944b51_f3425f98",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-17T21:51:04Z",
+      "side": 1,
+      "message": "optional: s/any host name is/all host names are/ seems better to me, but I don\u0027t know why I think that.",
+      "range": {
+        "startLine": 134,
+        "startChar": 25,
+        "endLine": 134,
+        "endChar": 41
+      },
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
