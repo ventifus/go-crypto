@@ -17,8 +17,8 @@ import (
 	"math/big"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
+	"testing/quick"
 	"time"
 
 	"golang.org/x/crypto/acme/internal/acme"
@@ -274,15 +274,31 @@ func TestCache(t *testing.T) {
 	}
 }
 
-func TestDNSNames(t *testing.T) {
-	man := Manager{
-		DNSNames: []string{"example.com"},
-		// prevent network round-trips, just in case
-		Client: &acme.Client{DirectoryURL: "dummy"},
+func TestRejectAllHosts(t *testing.T) {
+	policy := RejectAllHosts()
+	f := func(host string) bool {
+		return !policy(nil, host)
 	}
-	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
-	_, err := man.GetCertificate(hello)
-	if err == nil || !strings.Contains(err.Error(), "not allowed") {
-		t.Errorf("err = %v; want 'not allowed'", err)
+	if err := quick.Check(f, nil); err != nil {
+		t.Error(err)
+	}
+}
+
+func TestHostWhitelist(t *testing.T) {
+	policy := HostWhitelist("example.com", "example.org")
+	tt := []struct {
+		host  string
+		allow bool
+	}{
+		{"example.com", true},
+		{"example.org", true},
+		{"one.example.com", false},
+		{"two.example.org", false},
+		{"dummy", false},
+	}
+	for i, test := range tt {
+		if allow := policy(nil, test.host); allow != test.allow {
+			t.Errorf("%d: policy(%q): %v; want %v", i, test.host, allow, test.allow)
+		}
 	}
 }

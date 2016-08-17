@@ -31,9 +31,37 @@ import (
 	"golang.org/x/net/context"
 )
 
+// ErrHostRejected is returned by Manager.GetCertificate in the case where
+// its HostPolicy does not allow requesting a certificate for a specific domain name.
+var ErrHostRejected = errors.New("acme/autocert: host not allowed")
+
 // AcceptTOS always returns true to indicate the acceptance of a CA Terms of Service
 // during account registration.
 func AcceptTOS(tosURL string) bool { return true }
+
+// HostPolicy specifies which domain names the Manager is allowed to respond to.
+// It returns false if the host should be rejected.
+// See Manager.HostPolicy field description for details.
+type HostPolicy func(ctx context.Context, host string) bool
+
+// RejectAllHosts returns a HostPolicy which rejects all hosts.
+func RejectAllHosts() HostPolicy {
+	return func(context.Context, string) bool {
+		return false
+	}
+}
+
+// HostWhitelist returns a policy where only the specified host names are allowed.
+// Only exact matches are supported. Subdomains, regexp or wildcard will not match.
+func HostWhitelist(hosts ...string) HostPolicy {
+	whitelist := make(map[string]bool, len(hosts))
+	for _, h := range hosts {
+		whitelist[h] = true
+	}
+	return func(_ context.Context, host string) bool {
+		return whitelist[host]
+	}
+}
 
 // Manager is a stateful certificate manager built on top of acme.Client.
 // It obtains and refreshes certificates automatically,
@@ -41,7 +69,10 @@ func AcceptTOS(tosURL string) bool { return true }
 //
 // A simple usage example:
 //
-//	m := autocert.Manager{Prompt: autocert.AcceptTOS}
+//	m := autocert.Manager{
+//		Prompt: autocert.AcceptTOS,
+//		HostPolicy: autocert.HostWhitelist("example.org"),
+//	}
 //	s := &http.Server{
 //		Addr: ":https",
 //		TLSConfig: &tls.Config{GetCertificate: m.GetCertificate},
@@ -66,11 +97,13 @@ type Manager struct {
 	// parts combined in a single Cache.Put call, private key first.
 	Cache Cache
 
-	// DNSNames restricts Manager to work with only the specified domain names.
-	// If the field is nil or empty, any domain name is allowed.
-	// The elements of DNSNames must be sorted in lexical order.
-	// Only exact matches are supported, no regexp or wildcard.
-	DNSNames []string
+	// HostPolicy controls which domains the Manager will attempt
+	// to retrieve new certificates for. It does not affect cached certs.
+	//
+	// If nil, all hosts are allowed.
+	// If non-nil, HostPolicy is called before requesting a new cert.
+	// If it returns false, GetCertificate responds with ErrHostRejected.
+	HostPolicy HostPolicy
 
 	// Client is used to perform low-level operations, such as account registration
 	// and requesting new certificates.
@@ -102,23 +135,10 @@ type Manager struct {
 // GetCertificate implements the tls.Config.GetCertificate hook.
 // It provides a TLS certificate for hello.ServerName host, including answering
 // *.acme.invalid (TLS-SNI) challenges. All other fields of hello are ignored.
-//
-// A simple usage can be shown as follows:
-//
-//	s := &http.Server{
-//		Addr: ":https",
-//		TLSConfig: &tls.Config{
-//			GetCertificate: m.GetCertificate,
-//		},
-//	}
-//	s.ListenAndServeTLS("", "")
-//
-// If m.DNSNames is not empty and none of its elements match hello.ServerName exactly,
-// GetCertificate returns an error.
 func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 	name := hello.ServerName
 	if name == "" {
-		return nil, errors.New("acme/autocert: missing server name")
+		return nil, ErrHostRejected
 	}
 
 	// check whether this is a token cert requested for TLS-SNI challenge
@@ -135,14 +155,6 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 		return nil, fmt.Errorf("acme/autocert: no token cert for %q", name)
 	}
 
-	// check against allowed set of host names
-	if len(m.DNSNames) > 0 {
-		i := sort.SearchStrings(m.DNSNames, name)
-		if i >= len(m.DNSNames) || m.DNSNames[i] != name {
-			return nil, fmt.Errorf("acme/autocert: %q is not allowed", name)
-		}
-	}
-
 	// regular domain
 	cert, err := m.cert(name)
 	if err == nil {
@@ -154,6 +166,9 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 
 	// first-time
 	ctx := context.Background() // TODO: use a deadline?
+	if m.HostPolicy != nil && !m.HostPolicy(ctx, name) {
+		return nil, ErrHostRejected
+	}
 	cert, err = m.createCert(ctx, name)
 	if err != nil {
 		return nil, err
