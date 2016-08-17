@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "9bc8679a_932cfcfb",
+        "filename": "chacha20/chacha/chachaAVX2_amd64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-17T12:32:35Z",
+      "side": 1,
+      "message": "My bad, you are right.",
+      "parentUuid": "5eec1d0a_7152983e",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ec2c172_da23a50c",
         "filename": "chacha20/chacha/chachaAVX2_amd64.s",
         "patchSetId": 3
@@ -381,6 +399,24 @@
       "side": 1,
       "message": "Is there any CPU that supports SSSE3 but not SSE3?\nOr the other way around: Can this check fail (return false in case true is correct)?",
       "parentUuid": "ded2cd43_9504e46f",
+      "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbcb6b93_f454385e",
+        "filename": "chacha20/chacha/chacha_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-08-17T12:32:35Z",
+      "side": 1,
+      "message": "As far as I know there are none.\nI was just surprised that 2 comments are saying different things \"supports SSSE3\" vs \"SSE3 \u0026\u0026 SSSE3\"",
+      "parentUuid": "becb5993_14f7b426",
       "revId": "124005390e8c5e46361d1f24e03f5fa90ae99544",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
