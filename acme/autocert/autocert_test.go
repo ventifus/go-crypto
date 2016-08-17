@@ -19,6 +19,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"testing/quick"
 	"time"
 
 	"golang.org/x/crypto/acme/internal/acme"
@@ -66,7 +67,10 @@ func dummyCert(san ...string) ([]byte, error) {
 
 func TestGetCertificate(t *testing.T) {
 	const domain = "example.org"
-	man := &Manager{Prompt: AcceptTOS}
+	man := &Manager{
+		Prompt:     AcceptTOS,
+		HostPolicy: AllowAllHosts,
+	}
 
 	// echo token-02 | shasum -a 256
 	// then divide result in 2 parts separated by dot
@@ -274,15 +278,46 @@ func TestCache(t *testing.T) {
 	}
 }
 
-func TestDNSNames(t *testing.T) {
+func TestNoHostPolicy(t *testing.T) {
 	man := Manager{
-		DNSNames: []string{"example.com"},
 		// prevent network round-trips, just in case
 		Client: &acme.Client{DirectoryURL: "dummy"},
 	}
 	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
 	_, err := man.GetCertificate(hello)
-	if err == nil || !strings.Contains(err.Error(), "not allowed") {
+	if err == nil || !strings.Contains(err.Error(), "no host policy") {
 		t.Errorf("err = %v; want 'not allowed'", err)
+	}
+}
+
+func TestAllowAllHosts(t *testing.T) {
+	f := func(host string) bool {
+		return AllowAllHosts(nil, host) == nil
+	}
+	if err := quick.Check(f, nil); err != nil {
+		t.Error(err)
+	}
+}
+
+func TestHostWhitelist(t *testing.T) {
+	policy := HostWhitelist("example.com", "example.org")
+	tt := []struct {
+		host  string
+		allow bool
+	}{
+		{"example.com", true},
+		{"example.org", true},
+		{"one.example.com", false},
+		{"two.example.org", false},
+		{"dummy", false},
+	}
+	for i, test := range tt {
+		err := policy(nil, test.host)
+		if err != nil && test.allow {
+			t.Errorf("%d: policy(%q): %v", i, test.host, err)
+		}
+		if err == nil && !test.allow {
+			t.Errorf("%d: policy(%q): nil; want error", i, test.host)
+		}
 	}
 }
