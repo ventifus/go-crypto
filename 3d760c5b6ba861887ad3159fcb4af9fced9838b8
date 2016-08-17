@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dbd73f3a_4dfed904",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-17T13:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b2813c6_8d1765a4",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b2813c6_6d015160",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "dbd73f3a_2dfb8d14",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-17T13:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b2813c6_6d015160",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b2813c6_4d060d7a",
         "filename": "acme/internal/acme/types.go",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-16T20:00:27Z",
       "side": 1,
       "message": "you need to repeat \"CRLReasonCode\" on each line.\n\nSee https://play.golang.org/p/7-TX0v-sjj",
+      "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbd73f3a_ad13fd62",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-17T13:55:14Z",
+      "side": 1,
+      "message": "oh, I was fooled! somehow believed I had iota on the right-hand side.\n\nhow about now, if I removed the values and used iota instead?",
+      "parentUuid": "7b2813c6_4d060d7a",
       "revId": "3d760c5b6ba861887ad3159fcb4af9fced9838b8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
