@@ -2,6 +2,125 @@
   "comments": [
     {
       "key": {
+        "uuid": "db2e5f26_b5a1008e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "What happens to the error? Is it returned to the user? Logged? Returned from something else?\n\nIf none of those, bool would work.\n\nIf one of those, you should probably say, especially if the error has private information and might be made public.",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_15b1d4da",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "drop the _ and just don\u0027t name them.",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_95eac49f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "At least mention subdomains explicitly for now.\n\nLater: maybe \"*.foo.com\" should just work as the only wildcard accepted?",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_95d16405",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "how does this end up looking like in godoc? It\u0027ll be under HostPolicy probably, but AllowAllHosts won\u0027t be. Maybe AllowAllHosts should return a HostPolicy too?",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_b5d6e0f8",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "just use a bool. we\u0027re not counting bytes here. idiomatic is more important.",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_55bc2cab",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "true",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_35c3b036",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "if whitelist[host] {",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb944b51_d35c8389",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -25,6 +144,41 @@
     },
     {
       "key": {
+        "uuid": "db2e5f26_5560ac36",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "I\u0027m fine with that too, even though our Cache interface as-is isn\u0027t suitable for pre-populating anything, since it\u0027s so opaque.\n\nBut for performance, no need to check the policy func for a cert we have cached.\n\nAlso, start by documenting what it does (\"controls access\"), not immediately jumping to how it does so (\"is evaluated\").\n\n  // HostPolicy controls which domains the Manager will attempt\n  // to retrieve new certs for. It does not affect cached certs.\n  // If nil, ....\n  // If non-nil, HostPolicy is called before retrieving a new cert.\n  // If it returns an error, XXXX.",
+      "parentUuid": "bb944b51_d35c8389",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_3512d0b3",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "Really? So this is a required field and it should be above Cache.\n\nBut this might be an overly-strict policy. I think a better default policy would be to check the machine\u0027s hostname, and/or check that the domain name\u0027s DNS points to this machine\u0027s local IP. Or even allow everything, maybe rate-limited.\n\nI don\u0027t like the idea of this being a required field for most casual users. (but I do think we need some sort of default protection)",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb944b51_f3425f98",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -42,6 +196,23 @@
         "endLine": 134,
         "endChar": 41
       },
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_754608b0",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T22:54:22Z",
+      "side": 1,
+      "message": "this is kinda weird. Is the idea that we\u0027d use a better context later?",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
