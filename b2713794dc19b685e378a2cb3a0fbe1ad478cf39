@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbe083e2_c78db432",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-17T14:22:18Z",
+      "side": 1,
+      "message": "Only use iota when the numbers don\u0027t matter.\n\nThe numbers appear to matter here (if you care about 7), so write them out explicitly on each line.",
+      "revId": "b2713794dc19b685e378a2cb3a0fbe1ad478cf39",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
