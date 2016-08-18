@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db2e5f26_6aa85b86",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "mixing of the words \"Host\" and \"domain\". Stick to host?",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_be831801",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "so now my concern is that ctx can return an error (canceled / deadline) but then you can\u0027t propagate it. But I guess it has nowhere to propagate? But it feels a bit weird.\n\nI think I\u0027d do either:\n\n    func(ctx context.Context, host string) error\nor\n    func(host string) bool\n\nBut even host bool means that some temporary error contacting a database to do a lookup can\u0027t be reported, or canceled.\n\nSo I do like the context, but I\u0027m thinking error might be the better return value. You\u0027d just have to document that it should never be sent to users. That gives us the possibility of introducing special error values in the future with different behaviors too?",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_7e8ee027",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "how is this useful? wouldn\u0027t you just not use this package?\n\nalso, isn\u0027t this redundant with HostWhitelist()? (the empty list of hosts)",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_5e952430",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "warn about the threat here? And that changes are coming? \"all hosts are currently allowed. This is not recommended, as .... (attack model).\"",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_1ea80c70",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "hm, what does GetCertificate do with the error? Reading..\n\noh, it propagates up crypto/tls serverHandshake() and is user-accessible.\n\nThis is more reason for the hook to return an error.",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db2e5f26_deeff4ad",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-18T18:32:33Z",
+      "side": 1,
+      "message": "instead of checking HostPolicy !\u003d nil, I\u0027d make a \"hostPolicy() HostPolicy\" method wrapper which always returns a non-nil func.\n\n   if err :\u003d m.hostPolicy()(ctx, name); err !\u003d nil {\n         return nil, err\n   }",
+      "revId": "32837aac292b84c376cd6fbb85a62fcdf774dea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
