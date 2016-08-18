@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db2e5f26_de6a9982",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5080
+      },
+      "writtenOn": "2016-08-18T03:03:12Z",
+      "side": 0,
+      "message": "As a side note, this is incorrect. (Don\u0027t use this same logic elsewhere). SearchStrings expects a sorted slice, if not it may return not found where it should be present. I see you are now using a map[string]bool. Great.\nhttps://play.golang.org/p/D_w6ZyZVYF",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 43
+      },
+      "revId": "a8a4eedf8c97852389ea5f2c252660d3616af041",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
