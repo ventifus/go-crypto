@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fba24310_4e94d3dd",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "You\u0027re right. I guess it doesn\u0027t have to return an error.\nIt also works nicer with whitelist map[string]bool.\nSanjay, did you want it to return an error for some specific reason?\n\nSwitched to bool for now.",
+      "parentUuid": "db2e5f26_b5a1008e",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_15b1d4da",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-17T22:54:22Z",
       "side": 1,
       "message": "drop the _ and just don\u0027t name them.",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_0eec8b87",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "sometimes I feel like my brain is dead.",
+      "parentUuid": "db2e5f26_15b1d4da",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fba24310_8e435b72",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done. Will create another CL for wildcard.",
+      "parentUuid": "db2e5f26_95eac49f",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_95d16405",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-17T22:54:22Z",
       "side": 1,
       "message": "how does this end up looking like in godoc? It\u0027ll be under HostPolicy probably, but AllowAllHosts won\u0027t be. Maybe AllowAllHosts should return a HostPolicy too?",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_6ee9cf77",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "true. haven\u0027t thought about godoc. replaced AllowAllHosts with RejectAllHosts returning a HostPolicy.",
+      "parentUuid": "db2e5f26_95d16405",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fba24310_8e84fbba",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2e5f26_b5d6e0f8",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_55bc2cab",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "fba24310_ee893fd1",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2e5f26_55bc2cab",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_35c3b036",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -115,6 +223,24 @@
       "writtenOn": "2016-08-17T22:54:22Z",
       "side": 1,
       "message": "if whitelist[host] {",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_ce8e03d7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2e5f26_35c3b036",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -162,6 +288,48 @@
     },
     {
       "key": {
+        "uuid": "fba24310_cea7234f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2e5f26_5560ac36",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_8ead1b33",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb944b51_d35c8389",
+      "range": {
+        "startLine": 96,
+        "startChar": 28,
+        "endLine": 96,
+        "endChar": 62
+      },
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_3512d0b3",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -173,6 +341,24 @@
       "writtenOn": "2016-08-17T22:54:22Z",
       "side": 1,
       "message": "Really? So this is a required field and it should be above Cache.\n\nBut this might be an overly-strict policy. I think a better default policy would be to check the machine\u0027s hostname, and/or check that the domain name\u0027s DNS points to this machine\u0027s local IP. Or even allow everything, maybe rate-limited.\n\nI don\u0027t like the idea of this being a required field for most casual users. (but I do think we need some sort of default protection)",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_4e7b33ca",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Ok. Switched to \"allow all hosts\" default policy.\nWill create another CL for rate-limiting.\nNot sure about hostname. DNS often points to a load balancer, doesn\u0027t it.",
+      "parentUuid": "db2e5f26_3512d0b3",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -202,6 +388,30 @@
     },
     {
       "key": {
+        "uuid": "fba24310_6e4d4f97",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "good point but I removed mentions of HostPolicy from here. Felt like it was only duplicating HostPolicy field doc.\n\nThere\u0027s also Manager usage example which includes HostPolicy. I think it should be enough to draw attention.",
+      "parentUuid": "bb944b51_f3425f98",
+      "range": {
+        "startLine": 134,
+        "startChar": 25,
+        "endLine": 134,
+        "endChar": 41
+      },
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db2e5f26_754608b0",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -213,6 +423,24 @@
       "writtenOn": "2016-08-17T22:54:22Z",
       "side": 1,
       "message": "this is kinda weird. Is the idea that we\u0027d use a better context later?",
+      "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba24310_2e74e7db",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-18T14:45:17Z",
+      "side": 1,
+      "message": "Yeah, I imagined the Manager having a Deadline time.Duration field. Also, maybe one more for cache get/put.\nWill create another CL for this.",
+      "parentUuid": "db2e5f26_754608b0",
       "revId": "18b76d22ec7017a2bc21165f67c7c34d14d5cb4b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
