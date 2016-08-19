@@ -424,7 +424,7 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 	}
 	// wait for the CA to validate
 	for {
-		a, err := client.GetAuthz(ctx, authz.URI)
+		a, err := client.GetAuthorization(ctx, authz.URI)
 		if err == nil {
 			if a.Status == acme.StatusValid {
 				break

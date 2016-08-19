@@ -26,6 +26,7 @@ import (
 	"io"
 	"io/ioutil"
 	"math/big"
+	mathrand "math/rand"
 	"net/http"
 	"strconv"
 	"strings"
@@ -197,10 +198,7 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 		if res.StatusCode > 299 {
 			return nil, responseError(res)
 		}
-		d, err := retryAfter(res.Header.Get("retry-after"))
-		if err != nil {
-			d = 3 * time.Second
-		}
+		d := retryAfter(res.Header.Get("retry-after"), 3*time.Second)
 		select {
 		case <-time.After(d):
 			// retry
@@ -336,10 +334,11 @@ func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, 
 	return v.authorization(res.Header.Get("Location")), nil
 }
 
-// GetAuthz retrieves the current status of an authorization flow.
+// GetAuthorization retrieves an authorization identified by the given URL.
 //
-// A client typically polls an authz status using this method.
-func (c *Client) GetAuthz(ctx context.Context, url string) (*Authorization, error) {
+// If a caller needs to poll an authorization until its status is final,
+// the recommended way is to use WaitAuthorization method.
+func (c *Client) GetAuthorization(ctx context.Context, url string) (*Authorization, error) {
 	res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
 	if err != nil {
 		return nil, err
@@ -353,6 +352,65 @@ func (c *Client) GetAuthz(ctx context.Context, url string) (*Authorization, erro
 		return nil, fmt.Errorf("acme: invalid response: %v", err)
 	}
 	return v.authorization(url), nil
+}
+
+// WaitAuthorization polls an authorization at the given URL
+// until it is in one of the final states, StatusValid or StatusInvalid,
+// or the context is done.
+//
+// It returns a non-nil Authorization only if its Status is StatusValid.
+// In all other cases WaitAuthorization returns an error.
+// If the Status is StatusInvalid, the returned error is ErrAuthorizationFailed.
+func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorization, error) {
+	mathrand.Seed(timeNow().UnixNano())
+	var count uint
+	sleep := func(v string, inc uint) error {
+		count += inc
+		d := backoff(count, 10*time.Second)
+		d = retryAfter(v, d)
+		wakeup := time.NewTimer(d)
+		defer wakeup.Stop()
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-wakeup.C:
+			return nil
+		}
+	}
+
+	for {
+		res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
+		if err != nil {
+			// ctx is canceled, url is invalid or memory issues
+			return nil, err
+		}
+		retry := res.Header.Get("retry-after")
+		if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusAccepted {
+			res.Body.Close()
+			if err := sleep(retry, 1); err != nil {
+				return nil, err
+			}
+			continue
+		}
+		var raw wireAuthz
+		err = json.NewDecoder(res.Body).Decode(&raw)
+		res.Body.Close()
+		if err != nil {
+			if err := sleep(retry, 0); err != nil {
+				return nil, err
+			}
+			continue
+		}
+		if raw.Status == StatusValid {
+			return raw.authorization(url), nil
+		}
+		if raw.Status == StatusInvalid {
+			return nil, ErrAuthorizationFailed
+		}
+		if err := sleep(retry, 0); err != nil {
+			return nil, err
+		}
+	}
 }
 
 // GetChallenge retrieves the current status of an challenge.
@@ -694,15 +752,35 @@ func linkHeader(h http.Header, rel string) []string {
 	return links
 }
 
-func retryAfter(v string) (time.Duration, error) {
+// retryAfter parses a Retry-After HTTP header value,
+// trying to convert v into an int (seconds) or use http.ParseTime otherwise.
+// It returns d if v cannot be parsed.
+func retryAfter(v string, d time.Duration) time.Duration {
 	if i, err := strconv.Atoi(v); err == nil {
-		return time.Duration(i) * time.Second, nil
+		return time.Duration(i) * time.Second
 	}
 	t, err := http.ParseTime(v)
 	if err != nil {
-		return 0, err
+		return d
 	}
-	return t.Sub(timeNow()), nil
+	return t.Sub(timeNow())
+}
+
+// backoff computes a duration after which an n+1 retry iteration should occur
+// using truncated exponential backoff algorithm.
+//
+// The n argument is always bounded at 30.
+// The max argument defines upper bound for the returned value.
+// Default random generator of math/rand needs to be seeded before calling backoff.
+func backoff(n uint, max time.Duration) time.Duration {
+	if n > 30 {
+		n = 30
+	}
+	d := time.Duration(1<<n)*time.Second + time.Duration(mathrand.Intn(1000))*time.Millisecond
+	if d > max {
+		d = max
+	}
+	return d
 }
 
 // keyAuth generates a key authorization string for a given token.
