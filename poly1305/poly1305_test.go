@@ -35,6 +35,30 @@ var testData = []struct {
 	},
 }
 
+func TestWrite(t *testing.T) {
+	var key [32]byte
+	for i := range key {
+		key[i] = byte(i)
+	}
+
+	h := New(&key)
+
+	var msg1 []byte
+	msg0 := make([]byte, 64)
+	for i := range msg0 {
+		h.Write(msg0[:i])
+		msg1 = append(msg1, msg0[:i]...)
+	}
+
+	var tag0, tag1 [TagSize]byte
+	h.Sum(&tag0)
+	Sum(&tag1, msg1, &key)
+
+	if tag0 != tag1 {
+		t.Fatalf("Sum differ from poly1305.Sum\n Sum: %sv\n poly1305.Sum: %v", tag0[:], tag1[:])
+	}
+}
+
 func testSum(t *testing.T, unaligned bool) {
 	var out [16]byte
 	var key [32]byte
