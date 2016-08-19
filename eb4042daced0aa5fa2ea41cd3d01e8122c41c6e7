@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db249f97_9d1fee70",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-19T22:29:36Z",
+      "side": 1,
+      "message": "not just cancelled but also expired. You can say \"context is done\".\n\nBtw, we always spell canceled and cancelation with a single \"l\": https://golang.org/pkg/context/ (there are multiple valid spellings)",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db249f97_3d535a43",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-19T22:29:36Z",
+      "side": 1,
+      "message": "let\u0027s not mix Authz and Authorization. Let\u0027s just use the long form in both places.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db249f97_dd116665",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-19T22:29:36Z",
+      "side": 1,
+      "message": "you want to cancel this timer in the ctx.Done case? I don\u0027t know how long \"retry-after\" typically is.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db249f97_fd062228",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-19T22:29:36Z",
+      "side": 1,
+      "message": "public error value for this? I don\u0027t know. Seems like something people would want to program against without looking at err.Error() text.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_6c947b92",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-19T22:29:36Z",
+      "side": 1,
+      "message": "you don\u0027t say how v is parsed.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
