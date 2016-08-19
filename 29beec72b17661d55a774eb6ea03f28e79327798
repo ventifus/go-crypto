@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db249f97_b9468728",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-08-19T13:06:11Z",
+      "side": 1,
+      "message": "s/authrization/authorization\n\nmaybe s/url/URL",
+      "revId": "29beec72b17661d55a774eb6ea03f28e79327798",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
