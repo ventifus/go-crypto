@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28b72fb7_e72d02f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-19T10:54:34Z",
+      "side": 1,
+      "message": "Oh, okay - No there\u0027s no reason to keep them in 1, but i\u0027m not sure how to do this correctly - If i split the commit into 3 seperate commits, git-codereview tells me:\n\ngit-codereview: cannot mail: multiple changes pending; must specify commit on command line:\n\t226af1c chacha20: Add ChaCha20Poly1305 AEAD\n\td54a38c chacha20: Add ChaCha stream cipher\n\t7a0a220 poly1305: Speed-up poly1305\n\nMaybe I miss something - I\u0027m not so familiar with gerrit.",
+      "parentUuid": "dbd73f3a_0d7b31cb",
+      "revId": "008450da3299d520b148bbdb570853bee11f8377",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bedbb07_3015289b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-17T12:32:35Z",
       "side": 1,
       "message": "Looks like you didn\u0027t have enough runs, hence ~",
+      "revId": "008450da3299d520b148bbdb570853bee11f8377",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_873a062c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-08-19T10:54:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bedbb07_3015289b",
       "revId": "008450da3299d520b148bbdb570853bee11f8377",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
