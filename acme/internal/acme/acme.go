@@ -197,10 +197,7 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 		if res.StatusCode > 299 {
 			return nil, responseError(res)
 		}
-		d, err := retryAfter(res.Header.Get("retry-after"))
-		if err != nil {
-			d = 3 * time.Second
-		}
+		d := retryAfter(res.Header.Get("retry-after"), 3*time.Second)
 		select {
 		case <-time.After(d):
 			// retry
@@ -338,7 +335,8 @@ func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, 
 
 // GetAuthz retrieves the current status of an authorization flow.
 //
-// A client typically polls an authz status using this method.
+// If a caller needs to poll an authorization until its status is final,
+// the recommended way is to use WaitAuthz method.
 func (c *Client) GetAuthz(ctx context.Context, url string) (*Authorization, error) {
 	res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
 	if err != nil {
@@ -353,6 +351,58 @@ func (c *Client) GetAuthz(ctx context.Context, url string) (*Authorization, erro
 		return nil, fmt.Errorf("acme: invalid response: %v", err)
 	}
 	return v.authorization(url), nil
+}
+
+// WaitAuthz polls an authrization at the given url
+// until it is in one of the final states, StatusValid or StatusInvalid,
+// or the context is cancelled.
+//
+// It returns a non-nil Authorization only if its Status is StatusValid.
+// In all other cases WaitAuthz returns an error.
+func (c *Client) WaitAuthz(ctx context.Context, url string) (*Authorization, error) {
+	sleep := func(v string) error {
+		d := retryAfter(v, 500*time.Millisecond)
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-time.After(d):
+			return nil
+		}
+	}
+
+	for {
+		res, err := ctxhttp.Get(ctx, c.HTTPClient, url)
+		if err != nil {
+			// ctx is cancelled, url is invalid or memory issues
+			return nil, err
+		}
+		retry := res.Header.Get("retry-after")
+		if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusAccepted {
+			res.Body.Close()
+			if err := sleep(retry); err != nil {
+				return nil, err
+			}
+			continue
+		}
+		var raw wireAuthz
+		err = json.NewDecoder(res.Body).Decode(&raw)
+		res.Body.Close()
+		if err != nil {
+			if err := sleep(retry); err != nil {
+				return nil, err
+			}
+			continue
+		}
+		if raw.Status == StatusValid {
+			return raw.authorization(url), nil
+		}
+		if raw.Status == StatusInvalid {
+			return nil, fmt.Errorf("acme: identifier authorization failed")
+		}
+		if err := sleep(retry); err != nil {
+			return nil, err
+		}
+	}
 }
 
 // GetChallenge retrieves the current status of an challenge.
@@ -694,15 +744,16 @@ func linkHeader(h http.Header, rel string) []string {
 	return links
 }
 
-func retryAfter(v string) (time.Duration, error) {
+// retryAfter returns d if v cannot be parsed.
+func retryAfter(v string, d time.Duration) time.Duration {
 	if i, err := strconv.Atoi(v); err == nil {
-		return time.Duration(i) * time.Second, nil
+		return time.Duration(i) * time.Second
 	}
 	t, err := http.ParseTime(v)
 	if err != nil {
-		return 0, err
+		return d
 	}
-	return t.Sub(timeNow()), nil
+	return t.Sub(timeNow())
 }
 
 // keyAuth generates a key authorization string for a given token.

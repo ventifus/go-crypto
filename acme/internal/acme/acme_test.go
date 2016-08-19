@@ -379,7 +379,7 @@ func TestAuthorize(t *testing.T) {
 	}
 }
 
-func TestPollAuthz(t *testing.T) {
+func TestGetAuthz(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != "GET" {
 			t.Errorf("r.Method = %q; want GET", r.Method)
@@ -452,6 +452,95 @@ func TestPollAuthz(t *testing.T) {
 	combs := [][]int{{0}, {1}}
 	if !reflect.DeepEqual(auth.Combinations, combs) {
 		t.Errorf("auth.Combinations: %+v\nwant: %+v\n", auth.Combinations, combs)
+	}
+}
+
+func TestWaitAuthz(t *testing.T) {
+	var count int
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		count++
+		w.Header().Set("retry-after", "0")
+		if count > 1 {
+			fmt.Fprintf(w, `{"status":"valid"}`)
+			return
+		}
+		fmt.Fprintf(w, `{"status":"pending"}`)
+	}))
+	defer ts.Close()
+
+	type res struct {
+		authz *Authorization
+		err   error
+	}
+	done := make(chan res)
+	defer close(done)
+	go func() {
+		var client Client
+		a, err := client.WaitAuthz(context.Background(), ts.URL)
+		done <- res{a, err}
+	}()
+
+	select {
+	case <-time.After(5 * time.Second):
+		t.Fatal("WaitAuthz took too long to return")
+	case res := <-done:
+		if res.err != nil {
+			t.Fatalf("res.err =  %v", res.err)
+		}
+		if res.authz == nil {
+			t.Fatal("res.authz is nil")
+		}
+	}
+}
+
+func TestWaitAuthzInvalid(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, `{"status":"invalid"}`)
+	}))
+	defer ts.Close()
+
+	res := make(chan error)
+	defer close(res)
+	go func() {
+		var client Client
+		_, err := client.WaitAuthz(context.Background(), ts.URL)
+		res <- err
+	}()
+
+	select {
+	case <-time.After(3 * time.Second):
+		t.Fatal("WaitAuthz took too long to return")
+	case err := <-res:
+		if err == nil {
+			t.Error("err is nil")
+		}
+	}
+}
+
+func TestWaitAuthzCancel(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("retry-after", "60")
+		fmt.Fprintf(w, `{"status":"pending"}`)
+	}))
+	defer ts.Close()
+
+	res := make(chan error)
+	defer close(res)
+	go func() {
+		var client Client
+		ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
+		defer cancel()
+		_, err := client.WaitAuthz(ctx, ts.URL)
+		res <- err
+	}()
+
+	select {
+	case <-time.After(time.Second):
+		t.Fatal("WaitAuthz took too long to return")
+	case err := <-res:
+		if err == nil {
+			t.Error("err is nil")
+		}
 	}
 }
 
