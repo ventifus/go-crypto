@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c83053eb_3b6223ab",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T23:16:30Z",
+      "side": 1,
+      "message": "!sha.Available() should be a panic or something, since it\u0027s a programmer error, no?",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_fb7b7b51",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T23:16:30Z",
+      "side": 1,
+      "message": "document this return value",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_1b6767bb",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T23:16:30Z",
+      "side": 1,
+      "message": "Missing article (either \"an\" or \"the\" works for \"empty string\") and a period at the end. But you also don\u0027t say what crypto.Hash is, so I\u0027d just say:\n\n// It returns (\"\", 0) if the key is not supported.",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
