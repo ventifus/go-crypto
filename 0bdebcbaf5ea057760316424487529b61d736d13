@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28b72fb7_0a9a9b5d",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T18:37:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_40c61e74",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_20cb127c",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-21T16:37:23Z",
       "side": 1,
       "message": "you concerned about losing information here?",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_cab323e1",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T18:37:22Z",
+      "side": 1,
+      "message": "not really, I think invariant error is the best we can do - ACME spec doesn\u0027t provide anything else to indicate why it failed.",
+      "parentUuid": "c83053eb_20cb127c",
       "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "28b72fb7_8aad2b81",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T18:37:22Z",
+      "side": 1,
+      "message": "sounds good. I added exp. backoff in the case where retry-after header is missing and we get an unexpected response code.",
+      "parentUuid": "c83053eb_c0d9ee4d",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_80cc0696",
         "filename": "acme/internal/acme/types.go",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-21T16:37:23Z",
       "side": 1,
       "message": "But why did it fail? Do we ever get that info back via the ACME protocol? If so, it seems that a type makes more sense than a var.",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_2a9f5f4e",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T18:37:22Z",
+      "side": 1,
+      "message": "Not really, there\u0027s not much more than \"invalid\" in its status field. If you re-fetched authorization again, it would list challenges which failed, but again, not much info - only \"invalid\" value. If you\u0027re doing only one challenge, e.g. tls-sni-x, there\u0027s literally nothing else you\u0027ll know.",
+      "parentUuid": "c83053eb_80cc0696",
       "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
