@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c83053eb_40c61e74",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T16:37:23Z",
+      "side": 1,
+      "message": "let\u0027s rename this GetAuthorization too.",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_20cb127c",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T16:37:23Z",
+      "side": 1,
+      "message": "you concerned about losing information here?",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_c0d9ee4d",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T16:37:23Z",
+      "side": 1,
+      "message": "on a 500 server error, we probably shouldn\u0027t be hammering them every 500 milliseconds. There should be some exponential backoff to some max point.",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_80cc0696",
+        "filename": "acme/internal/acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-21T16:37:23Z",
+      "side": 1,
+      "message": "But why did it fail? Do we ever get that info back via the ACME protocol? If so, it seems that a type makes more sense than a var.",
+      "revId": "0bdebcbaf5ea057760316424487529b61d736d13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
