@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28b72fb7_4a797325",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T13:48:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db249f97_9d1fee70",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db249f97_3d535a43",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-19T22:29:36Z",
       "side": 1,
       "message": "let\u0027s not mix Authz and Authorization. Let\u0027s just use the long form in both places.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_6a7eb710",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T13:48:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db249f97_3d535a43",
       "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a8a23f7a_a36cdaca",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T13:48:54Z",
+      "side": 1,
+      "message": "yeah, the spec doesn\u0027t define anything and I would imagine an arbitrary value. done.",
+      "parentUuid": "db249f97_dd116665",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db249f97_fd062228",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "6873e7d0_79b2074b",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T13:48:54Z",
+      "side": 1,
+      "message": "sounds like a good idea. I think we could use that error in other places as well, in autocert.",
+      "parentUuid": "db249f97_fd062228",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_6c947b92",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2016-08-19T22:29:36Z",
       "side": 1,
       "message": "you don\u0027t say how v is parsed.",
+      "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_0a837b03",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T13:48:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_6c947b92",
       "revId": "eb4042daced0aa5fa2ea41cd3d01e8122c41c6e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
