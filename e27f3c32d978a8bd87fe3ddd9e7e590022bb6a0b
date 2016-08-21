@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28b72fb7_279d5a64",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T12:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_a03a62c2",
+      "revId": "e27f3c32d978a8bd87fe3ddd9e7e590022bb6a0b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_805be632",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-21T01:25:25Z",
       "side": 1,
       "message": "the second part of this may or may not be true. You don\u0027t know.\n\nHow about:\n\n   // The returned error is accessible via tls.Conn.Handshake and its callers.",
+      "revId": "e27f3c32d978a8bd87fe3ddd9e7e590022bb6a0b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_c791de4e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-21T12:25:12Z",
+      "side": 1,
+      "message": "I\u0027ve traced it back to tls.Conn by looking at Go source code but never actually tried running a server to verify. So, I may very well be wrong.\nDone.",
+      "parentUuid": "c83053eb_805be632",
       "revId": "e27f3c32d978a8bd87fe3ddd9e7e590022bb6a0b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
