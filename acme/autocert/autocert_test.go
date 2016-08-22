@@ -5,16 +5,19 @@
 package autocert
 
 import (
-	"bytes"
+	"crypto"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
+	"crypto/rsa"
 	"crypto/tls"
 	"crypto/x509"
 	"crypto/x509/pkix"
-	"encoding/pem"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"html/template"
+	"io"
 	"math/big"
 	"net/http"
 	"net/http/httptest"
@@ -47,7 +50,31 @@ var authzTmpl = template.Must(template.New("authz").Parse(`{
 	]
 }`))
 
-func dummyCert(san ...string) ([]byte, error) {
+type memCache map[string][]byte
+
+func (m memCache) Get(ctx context.Context, key string) ([]byte, error) {
+	v, ok := m[key]
+	if !ok {
+		return nil, ErrCacheMiss
+	}
+	return v, nil
+}
+
+func (m memCache) Put(ctx context.Context, key string, data []byte) error {
+	m[key] = data
+	return nil
+}
+
+func (m memCache) Delete(ctx context.Context, key string) error {
+	delete(m, key)
+	return nil
+}
+
+func dummyCert(pub interface{}, san ...string) ([]byte, error) {
+	return dateDummyCert(pub, time.Now(), time.Now().Add(90*24*time.Hour), san...)
+}
+
+func dateDummyCert(pub interface{}, start, end time.Time, san ...string) ([]byte, error) {
 	// use EC key to run faster on 386
 	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {
@@ -55,13 +82,28 @@ func dummyCert(san ...string) ([]byte, error) {
 	}
 	t := &x509.Certificate{
 		SerialNumber:          big.NewInt(1),
-		NotBefore:             time.Now(),
-		NotAfter:              time.Now().Add(24 * time.Hour),
+		NotBefore:             start,
+		NotAfter:              end,
 		BasicConstraintsValid: true,
 		KeyUsage:              x509.KeyUsageKeyEncipherment,
 		DNSNames:              san,
 	}
-	return x509.CreateCertificate(rand.Reader, t, t, &key.PublicKey, key)
+	if pub == nil {
+		pub = &key.PublicKey
+	}
+	return x509.CreateCertificate(rand.Reader, t, t, pub, key)
+}
+
+func decodePayload(v interface{}, r io.Reader) error {
+	var req struct{ Payload string }
+	if err := json.NewDecoder(r).Decode(&req); err != nil {
+		return err
+	}
+	payload, err := base64.RawURLEncoding.DecodeString(req.Payload)
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(payload, v)
 }
 
 func TestGetCertificate(t *testing.T) {
@@ -84,6 +126,11 @@ func TestGetCertificate(t *testing.T) {
 	var ca *httptest.Server
 	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("replay-nonce", "nonce")
+		if r.Method == "HEAD" {
+			// a nonce request
+			return
+		}
+
 		switch r.URL.Path {
 		// discovery
 		case "/":
@@ -109,7 +156,16 @@ func TestGetCertificate(t *testing.T) {
 			w.Write([]byte(`{"status": "valid"}`))
 		// cert request
 		case "/new-cert":
-			der, err := dummyCert(domain)
+			var req struct {
+				CSR string `json:"csr"`
+			}
+			decodePayload(&req, r.Body)
+			b, _ := base64.RawURLEncoding.DecodeString(req.CSR)
+			csr, err := x509.ParseCertificateRequest(b)
+			if err != nil {
+				t.Fatalf("new-cert: CSR: %v", err)
+			}
+			der, err := dummyCert(csr.PublicKey, domain)
 			if err != nil {
 				t.Fatalf("new-cert: dummyCert: %v", err)
 			}
@@ -119,7 +175,7 @@ func TestGetCertificate(t *testing.T) {
 			w.Write(der)
 		// CA chain cert
 		case "/ca-cert":
-			der, err := dummyCert("ca")
+			der, err := dummyCert(nil, "ca")
 			if err != nil {
 				t.Fatalf("ca-cert: dummyCert: %v", err)
 			}
@@ -131,9 +187,9 @@ func TestGetCertificate(t *testing.T) {
 	defer ca.Close()
 
 	// use EC key to run faster on 386
-	key, kerr := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
-	if kerr != nil {
-		t.Fatal(kerr)
+	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
 	}
 	man.Client = &acme.Client{
 		Key:          key,
@@ -141,11 +197,8 @@ func TestGetCertificate(t *testing.T) {
 	}
 
 	// simulate tls.Config.GetCertificate
-	var (
-		tlscert *tls.Certificate
-		err     error
-		done    = make(chan struct{})
-	)
+	var tlscert *tls.Certificate
+	done := make(chan struct{})
 	go func() {
 		hello := &tls.ClientHelloInfo{ServerName: domain}
 		tlscert, err = man.GetCertificate(hello)
@@ -191,26 +244,6 @@ func TestGetCertificate(t *testing.T) {
 	}
 }
 
-type memCache map[string][]byte
-
-func (m memCache) Get(ctx context.Context, key string) ([]byte, error) {
-	v, ok := m[key]
-	if !ok {
-		return nil, ErrCacheMiss
-	}
-	return v, nil
-}
-
-func (m memCache) Put(ctx context.Context, key string, data []byte) error {
-	m[key] = data
-	return nil
-}
-
-func (m memCache) Delete(ctx context.Context, key string) error {
-	delete(m, key)
-	return nil
-}
-
 func TestCache(t *testing.T) {
 	privKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {
@@ -242,39 +275,6 @@ func TestCache(t *testing.T) {
 	if res == nil {
 		t.Fatal("res is nil")
 	}
-
-	priv, err := x509.MarshalECPrivateKey(privKey)
-	if err != nil {
-		t.Fatalf("MarshalECPrivateKey: %v", err)
-	}
-	dummy, err := dummyCert("dummy")
-	if err != nil {
-		t.Fatalf("dummyCert: %v", err)
-	}
-	tt := []struct {
-		key      string
-		prv, pub []byte
-	}{
-		{"dummy", priv, dummy},
-		{"bad1", priv, []byte{1}},
-		{"bad2", []byte{1}, pub},
-	}
-	for i, test := range tt {
-		var buf bytes.Buffer
-		pb := &pem.Block{Type: "RSA PRIVATE KEY", Bytes: test.prv}
-		if err := pem.Encode(&buf, pb); err != nil {
-			t.Errorf("%d: pem.Encode: %v", i, err)
-		}
-		pb = &pem.Block{Type: "CERTIFICATE", Bytes: test.pub}
-		if err := pem.Encode(&buf, pb); err != nil {
-			t.Errorf("%d: pem.Encode: %v", i, err)
-		}
-
-		cache.Put(nil, test.key, buf.Bytes())
-		if _, err := man.cacheGet(test.key); err == nil {
-			t.Errorf("%d: err is nil", i)
-		}
-	}
 }
 
 func TestHostWhitelist(t *testing.T) {
@@ -298,5 +298,238 @@ func TestHostWhitelist(t *testing.T) {
 		if err == nil && !test.allow {
 			t.Errorf("%d: policy(%q): nil; want an error", i, test.host)
 		}
+	}
+}
+
+func TestValidCert(t *testing.T) {
+	key1, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	key2, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	key3, err := rsa.GenerateKey(rand.Reader, 512)
+	if err != nil {
+		t.Fatal(err)
+	}
+	cert1, err := dummyCert(key1.Public(), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+	cert2, err := dummyCert(key2.Public(), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+	cert3, err := dummyCert(key3.Public(), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+	now := time.Now()
+	early, err := dateDummyCert(key1.Public(), now.Add(time.Hour), now.Add(2*time.Hour), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+	expired, err := dateDummyCert(key1.Public(), now.Add(-2*time.Hour), now.Add(-time.Hour), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	tt := []struct {
+		domain string
+		key    crypto.Signer
+		cert   [][]byte
+		ok     bool
+	}{
+		{"example.org", key1, [][]byte{cert1}, true},
+		{"example.org", key3, [][]byte{cert3}, true},
+		{"example.org", key1, [][]byte{cert1, cert2, cert3}, true},
+		{"example.org", key1, [][]byte{cert1, {1}}, false},
+		{"example.org", key1, [][]byte{{1}}, false},
+		{"example.org", key1, [][]byte{cert2}, false},
+		{"example.org", key2, [][]byte{cert1}, false},
+		{"example.org", key1, [][]byte{cert3}, false},
+		{"example.org", key3, [][]byte{cert1}, false},
+		{"example.net", key1, [][]byte{cert1}, false},
+		{"example.org", key1, [][]byte{early}, false},
+		{"example.org", key1, [][]byte{expired}, false},
+	}
+	for i, test := range tt {
+		leaf, err := validCert(test.domain, test.cert, test.key)
+		if err != nil && test.ok {
+			t.Errorf("%d: err = %v", i, err)
+		}
+		if err == nil && !test.ok {
+			t.Errorf("%d: err is nil", i)
+		}
+		if err == nil && test.ok && leaf == nil {
+			t.Errorf("%d: leaf is nil", i)
+		}
+	}
+}
+
+func TestNextRenew(t *testing.T) {
+	now := time.Now()
+	timeNow = func() time.Time { return now }
+	defer func() { timeNow = time.Now }()
+
+	man := &Manager{RenewBefore: 7 * 24 * time.Hour}
+	tt := []struct {
+		expiry   time.Time
+		min, max time.Duration
+	}{
+		{now.Add(90 * 24 * time.Hour), 83*24*time.Hour - maxRandRenew, 83 * 24 * time.Hour},
+		{now.Add(time.Hour), 0, 1},
+		{now, 0, 1},
+		{now.Add(-time.Hour), 0, 1},
+	}
+	for i, test := range tt {
+		next := man.nextRenew(test.expiry)
+		if next < test.min || test.max < next {
+			t.Errorf("%d: next = %v; want between %v and %v", i, next, test.min, test.max)
+		}
+	}
+}
+
+func TestRenewFromCache(t *testing.T) {
+	const domain = "example.org"
+
+	// ACME CA server stub
+	var ca *httptest.Server
+	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("replay-nonce", "nonce")
+		if r.Method == "HEAD" {
+			// a nonce request
+			return
+		}
+
+		switch r.URL.Path {
+		// discovery
+		case "/":
+			if err := discoTmpl.Execute(w, ca.URL); err != nil {
+				t.Fatalf("discoTmpl: %v", err)
+			}
+		// client key registration
+		case "/new-reg":
+			w.Write([]byte("{}"))
+		// domain authorization
+		case "/new-authz":
+			w.Header().Set("location", ca.URL+"/authz/1")
+			w.WriteHeader(http.StatusCreated)
+			w.Write([]byte(`{"status": "valid"}`))
+		// cert request
+		case "/new-cert":
+			var req struct {
+				CSR string `json:"csr"`
+			}
+			decodePayload(&req, r.Body)
+			b, _ := base64.RawURLEncoding.DecodeString(req.CSR)
+			csr, err := x509.ParseCertificateRequest(b)
+			if err != nil {
+				t.Fatalf("new-cert: CSR: %v", err)
+			}
+			der, err := dummyCert(csr.PublicKey, domain)
+			if err != nil {
+				t.Fatalf("new-cert: dummyCert: %v", err)
+			}
+			chainUp := fmt.Sprintf("<%s/ca-cert>; rel=up", ca.URL)
+			w.Header().Set("link", chainUp)
+			w.WriteHeader(http.StatusCreated)
+			w.Write(der)
+		// CA chain cert
+		case "/ca-cert":
+			der, err := dummyCert(nil, "ca")
+			if err != nil {
+				t.Fatalf("ca-cert: dummyCert: %v", err)
+			}
+			w.Write(der)
+		default:
+			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
+		}
+	}))
+	defer ca.Close()
+
+	// use EC key to run faster on 386
+	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	man := &Manager{
+		Prompt:      AcceptTOS,
+		Cache:       make(memCache),
+		RenewBefore: 24 * time.Hour,
+		Client: &acme.Client{
+			Key:          key,
+			DirectoryURL: ca.URL,
+		},
+	}
+
+	// cache an almost expired cert
+	now := time.Now()
+	cert, err := dateDummyCert(key.Public(), now.Add(-2*time.Hour), now.Add(time.Minute), domain)
+	if err != nil {
+		t.Fatal(err)
+	}
+	tlscert := &tls.Certificate{PrivateKey: key, Certificate: [][]byte{cert}}
+	if err := man.cachePut(domain, tlscert); err != nil {
+		t.Fatal(err)
+	}
+
+	// veriy the renewal happened
+	defer func() {
+		testDidRenewLoop = func(next time.Duration, err error) {}
+	}()
+	done := make(chan struct{})
+	testDidRenewLoop = func(next time.Duration, err error) {
+		defer close(done)
+		if err != nil {
+			t.Errorf("testDidRenewLoop: %v", err)
+		}
+		// Next should be about 90 days:
+		// dummyCert creates 90days expiry + account for man.RenewBefore.
+		// Previous expiration was within 1 min.
+		future := 88 * 24 * time.Hour
+		if next < future {
+			t.Errorf("testDidRenewLoop: next = %v; want >= %v", next, future)
+		}
+
+		// ensure the new cert is cached
+		after := time.Now().Add(future)
+		tlscert, err := man.cacheGet(domain)
+		if err != nil {
+			t.Fatalf("man.cacheGet: %v", err)
+		}
+		if !tlscert.Leaf.NotAfter.After(after) {
+			t.Errorf("cache leaf.NotAfter = %v; want > %v", tlscert.Leaf.NotAfter, after)
+		}
+
+		// verify the old cert is also replaced in memory
+		man.stateMu.Lock()
+		defer man.stateMu.Unlock()
+		s := man.state[domain]
+		if s == nil {
+			t.Fatalf("m.state[%q] is nil", domain)
+		}
+		tlscert, err = s.tlscert()
+		if err != nil {
+			t.Fatalf("s.tlscert: %v", err)
+		}
+		if !tlscert.Leaf.NotAfter.After(after) {
+			t.Errorf("state leaf.NotAfter = %v; want > %v", tlscert.Leaf.NotAfter, after)
+		}
+	}
+
+	// trigger renew
+	hello := &tls.ClientHelloInfo{ServerName: domain}
+	if _, err := man.GetCertificate(hello); err != nil {
+		t.Fatal(err)
+	}
+
+	// wait for renew loop
+	select {
+	case <-time.After(10 * time.Second):
+		t.Fatal("renew took too long to occur")
+	case <-done:
 	}
 }
