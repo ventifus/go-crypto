@@ -20,8 +20,8 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"math/big"
 	"net/http"
-	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -110,6 +110,16 @@ type Manager struct {
 	// See GetCertificate for more details.
 	HostPolicy HostPolicy
 
+	// RenewBefore defines the latest a certificate is to be renewed
+	// with respect to its expiration date (NotAfter).
+	// The renewal process may occur up to 1 hour prior to the computed renew deadline.
+	//
+	// For instance, if a certificate expires in 90 days and RenewBefore is 10 days,
+	// the next renew will occur between (80days-1hour) and 80days from now.
+	//
+	// If RenewBefore is less than or equal to one hour, 1 week is used instead.
+	RenewBefore time.Duration
+
 	// Client is used to perform low-level operations, such as account registration
 	// and requesting new certificates.
 	// If Client is nil, a zero-value acme.Client is used with acme.LetsEncryptURL
@@ -135,6 +145,11 @@ type Manager struct {
 	// of ClientHello. Keys always have ".acme.invalid" suffix.
 	tokenCertMu sync.RWMutex
 	tokenCert   map[string]*tls.Certificate
+
+	// renewal helps running at most one renew loop per domain.
+	// It is keyed by domain name.
+	renewalMu sync.Mutex
+	renewal   map[string]bool
 }
 
 // GetCertificate implements the tls.Config.GetCertificate hook.
@@ -192,8 +207,7 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 // with the cached value.
 func (m *Manager) cert(name string) (*tls.Certificate, error) {
 	m.stateMu.Lock()
-	s, ok := m.state[name]
-	if ok {
+	if s, ok := m.state[name]; ok {
 		m.stateMu.Unlock()
 		s.RLock()
 		defer s.RUnlock()
@@ -211,11 +225,13 @@ func (m *Manager) cert(name string) (*tls.Certificate, error) {
 	if m.state == nil {
 		m.state = make(map[string]*certState)
 	}
-	m.state[name] = &certState{
+	s := &certState{
 		key:  signer,
 		cert: cert.Certificate,
 		leaf: cert.Leaf,
 	}
+	m.state[name] = s
+	go m.renewLoop(name, s.key, s.leaf.NotAfter)
 	return cert, nil
 }
 
@@ -242,64 +258,28 @@ func (m *Manager) cacheGet(domain string) (*tls.Certificate, error) {
 	}
 
 	// public
-	var pubDER []byte
+	var pubDER [][]byte
 	for len(pub) > 0 {
 		var b *pem.Block
 		b, pub = pem.Decode(pub)
 		if b == nil {
 			break
 		}
-		pubDER = append(pubDER, b.Bytes...)
+		pubDER = append(pubDER, b.Bytes)
 	}
 	if len(pub) > 0 {
 		return nil, errors.New("acme/autocert: invalid public key")
 	}
 
-	// parse public part(s) and verify the leaf is not expired
-	// and corresponds to the private key
-	x509Cert, err := x509.ParseCertificates(pubDER)
-	if len(x509Cert) == 0 {
-		return nil, errors.New("acme/autocert: no public key found in cache")
+	// verify and create TLS cert
+	leaf, err := validCert(domain, pubDER, privKey)
+	if err != nil {
+		return nil, err
 	}
-	leaf := x509Cert[0]
-	now := time.Now()
-	if now.Before(leaf.NotBefore) {
-		return nil, errors.New("acme/autocert: certificate is not valid yet")
-	}
-	if now.After(leaf.NotAfter) {
-		return nil, errors.New("acme/autocert: expired certificate")
-	}
-	if !domainMatch(leaf, domain) {
-		return nil, errors.New("acme/autocert: certificate does not match domain name")
-	}
-	switch pub := leaf.PublicKey.(type) {
-	case *rsa.PublicKey:
-		prv, ok := privKey.(*rsa.PrivateKey)
-		if !ok {
-			return nil, errors.New("acme/autocert: private key type does not match public key type")
-		}
-		if pub.N.Cmp(prv.N) != 0 {
-			return nil, errors.New("acme/autocert: private key does not match public key")
-		}
-	case *ecdsa.PublicKey:
-		prv, ok := privKey.(*ecdsa.PrivateKey)
-		if !ok {
-			return nil, errors.New("acme/autocert: private key type does not match public key type")
-		}
-		if pub.X.Cmp(prv.X) != 0 || pub.Y.Cmp(prv.Y) != 0 {
-			return nil, errors.New("acme/autocert: private key does not match public key")
-		}
-	default:
-		return nil, errors.New("acme/autocert: unknown public key algorithm")
-	}
-
 	tlscert := &tls.Certificate{
-		Certificate: make([][]byte, len(x509Cert)),
+		Certificate: pubDER,
 		PrivateKey:  privKey,
 		Leaf:        leaf,
-	}
-	for i, crt := range x509Cert {
-		tlscert.Certificate[i] = crt.Raw
 	}
 	return tlscert, nil
 }
@@ -368,24 +348,63 @@ func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certifica
 	// Unblock the readers when domain ownership is verified
 	// and the we got the cert or the process failed.
 	defer state.Unlock()
-	// TODO: make m.verify retry or retry m.verify calls here
-	if err := m.verify(ctx, domain); err != nil {
-		return nil, err
-	}
-	client, err := m.acmeClient(ctx)
-	if err != nil {
-		return nil, err
-	}
-	csr, err := certRequest(state.key, domain)
-	if err != nil {
-		return nil, err
-	}
-	der, _, err := client.CreateCert(ctx, csr, 0, true)
+	der, leaf, err := m.authorizedCert(ctx, state.key, domain)
 	if err != nil {
 		return nil, err
 	}
 	state.cert = der
+	state.leaf = leaf
+	go m.renewLoop(domain, state.key, state.leaf.NotAfter)
 	return state.tlscert()
+}
+
+// certState returns existing state or creates a new one locked for read/write.
+// The boolean return value indicates whether the state was found in m.state.
+func (m *Manager) certState(domain string) (*certState, bool, error) {
+	m.stateMu.Lock()
+	defer m.stateMu.Unlock()
+	if m.state == nil {
+		m.state = make(map[string]*certState)
+	}
+	// existing state
+	if state, ok := m.state[domain]; ok {
+		return state, true, nil
+	}
+	// new locked state
+	key, err := rsa.GenerateKey(rand.Reader, 2048)
+	if err != nil {
+		return nil, false, err
+	}
+	state := &certState{key: key}
+	state.Lock()
+	m.state[domain] = state
+	return state, false, nil
+}
+
+// authorizedCert starts domain ownership verification process and requests a new cert upon success.
+// The key argument is the certificate private key.
+func (m *Manager) authorizedCert(ctx context.Context, key crypto.Signer, domain string) (der [][]byte, leaf *x509.Certificate, err error) {
+	// TODO: make m.verify retry or retry m.verify calls here
+	if err := m.verify(ctx, domain); err != nil {
+		return nil, nil, err
+	}
+	client, err := m.acmeClient(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+	csr, err := certRequest(key, domain)
+	if err != nil {
+		return nil, nil, err
+	}
+	der, _, err = client.CreateCert(ctx, csr, 0, true)
+	if err != nil {
+		return nil, nil, err
+	}
+	leaf, err = validCert(domain, der, key)
+	if err != nil {
+		return nil, nil, err
+	}
+	return der, leaf, nil
 }
 
 // verify starts a new identifier (domain) authorization flow.
@@ -457,29 +476,6 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 	return err
 }
 
-// certState returns existing state or creates a new one locked for read/write.
-// The boolean return value indicates whether the state was found in m.state.
-func (m *Manager) certState(domain string) (*certState, bool, error) {
-	m.stateMu.Lock()
-	defer m.stateMu.Unlock()
-	if m.state == nil {
-		m.state = make(map[string]*certState)
-	}
-	// existing state
-	if state, ok := m.state[domain]; ok {
-		return state, true, nil
-	}
-	// new locked state
-	key, err := rsa.GenerateKey(rand.Reader, 2048)
-	if err != nil {
-		return nil, false, err
-	}
-	state := &certState{key: key}
-	state.Lock()
-	m.state[domain] = state
-	return state, false, nil
-}
-
 // putTokenCert stores the cert under the named key in both m.tokenCert map
 // and m.Cache.
 func (m *Manager) putTokenCert(name string, cert *tls.Certificate) {
@@ -501,6 +497,115 @@ func (m *Manager) deleteTokenCert(name string) {
 	if m.Cache != nil {
 		m.Cache.Delete(context.Background(), name)
 	}
+}
+
+// renewLoop starts an infinite cert renewal loop.
+// It returns immediately if another renewal goroutine is already running
+// for the specified domain.
+//
+// renewLoop is scheduled in two cases:
+// - a cert was fetched from cache for the first time (wasn't in m.state)
+// - a new cert was created by m.createCert
+//
+// The key argument is a certificate private key.
+// The exp argument is the cert expiration time (NotAfter).
+func (m *Manager) renewLoop(domain string, key crypto.Signer, exp time.Time) {
+	if !m.lockRenew(domain) {
+		// another goroutine is already on it
+		return
+	}
+
+	next := m.nextRenew(exp)
+	for {
+		time.Sleep(next)
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+		// TODO: rotate the key at some point?
+		var err error
+		next, err = m.renew(ctx, domain, key)
+		cancel()
+		if err != nil {
+			next = maxRandRenew / 2
+			if n, err := rand.Int(rand.Reader, big.NewInt(int64(next))); err == nil {
+				next += time.Duration(n.Int64())
+			}
+		}
+		testDidRenewLoop()
+	}
+}
+
+// renew is similar to m.createCert but it doesn't lock an m.state item.
+// Instead, it requests a new certificate independently and, upon success,
+// replaces m.state item with a new one and updates cache for the given domain.
+//
+// It may return immediately if the expiration date of the currently cached cert
+// is far enough in the future.
+//
+// The returned value is a time interval after which the renewal should occur again.
+// The key argument is the certificate private key.
+func (m *Manager) renew(ctx context.Context, domain string, key crypto.Signer) (time.Duration, error) {
+	// a race is likely unavoidable in a distributed environment
+	// but we try nonetheless
+	if tlscert, err := m.cacheGet(domain); err == nil {
+		next := m.nextRenew(tlscert.Leaf.NotAfter)
+		if next > m.renewBefore()+maxRandRenew {
+			return next, nil
+		}
+	}
+
+	der, leaf, err := m.authorizedCert(ctx, key, domain)
+	if err != nil {
+		return 0, err
+	}
+	state := &certState{
+		key:  key,
+		cert: der,
+		leaf: leaf,
+	}
+	tlscert, err := state.tlscert()
+	if err != nil {
+		return 0, err
+	}
+	m.cachePut(domain, tlscert)
+	m.stateMu.Lock()
+	defer m.stateMu.Unlock()
+	// m.state is guaranteed to be non-nil at this point
+	m.state[domain] = state
+	return m.nextRenew(leaf.NotAfter), nil
+}
+
+func (m *Manager) lockRenew(domain string) bool {
+	m.renewalMu.Lock()
+	defer m.renewalMu.Unlock()
+	if m.renewal == nil {
+		m.renewal = make(map[string]bool)
+	}
+	if m.renewal[domain] {
+		return false
+	}
+	m.renewal[domain] = true
+	return true
+}
+
+// maximum deviation from Manager.RenewBefore
+const maxRandRenew = time.Hour
+
+func (m *Manager) nextRenew(expiry time.Time) time.Duration {
+	d := expiry.Sub(timeNow()) - m.renewBefore()
+	// add a bit of randomness to renew deadline
+	if n, err := rand.Int(rand.Reader, big.NewInt(int64(maxRandRenew))); err == nil {
+		d -= time.Duration(n.Int64())
+	}
+	if d < 0 {
+		return 0
+	}
+	return d
+}
+
+func (m *Manager) renewBefore() time.Duration {
+	if m.RenewBefore > maxRandRenew {
+		return m.RenewBefore
+	}
+	return 7 * 24 * time.Hour // 1 week
 }
 
 func (m *Manager) acmeClient(ctx context.Context) (*acme.Client, error) {
@@ -547,7 +652,7 @@ type certState struct {
 	sync.RWMutex
 	key  crypto.Signer
 	cert [][]byte          // DER encoding
-	leaf *x509.Certificate // parsed cert[0]; may be nil
+	leaf *x509.Certificate // parsed cert[0]; always non-nil if cert != nil
 }
 
 // tlscert creates a tls.Certificate from s.key and s.cert.
@@ -559,7 +664,6 @@ func (s *certState) tlscert() (*tls.Certificate, error) {
 	if len(s.cert) == 0 {
 		return nil, errors.New("acme/autocert: missing certificate")
 	}
-	// TODO: compare pub.N with key.N or pub.{X,Y} for ECDSA?
 	return &tls.Certificate{
 		PrivateKey:  s.key,
 		Certificate: s.cert,
@@ -581,17 +685,19 @@ func certRequest(key crypto.Signer, cn string, san ...string) ([]byte, error) {
 // PKCS#1 private keys by default, while OpenSSL 1.0.0 generates PKCS#8 keys.
 // OpenSSL ecparam generates SEC1 EC private keys for ECDSA. We try all three.
 //
-// Copied from crypto/tls/tls.go.
-func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
+// Inspired by parsePrivateKey in crypto/tls/tls.go.
+func parsePrivateKey(der []byte) (crypto.Signer, error) {
 	if key, err := x509.ParsePKCS1PrivateKey(der); err == nil {
 		return key, nil
 	}
 	if key, err := x509.ParsePKCS8PrivateKey(der); err == nil {
 		switch key := key.(type) {
-		case *rsa.PrivateKey, *ecdsa.PrivateKey:
+		case *rsa.PrivateKey:
+			return key, nil
+		case *ecdsa.PrivateKey:
 			return key, nil
 		default:
-			return nil, errors.New("acme/autocert: found unknown private key type in PKCS#8 wrapping")
+			return nil, errors.New("acme/autocert: unknown private key type in PKCS#8 wrapping")
 		}
 	}
 	if key, err := x509.ParseECPrivateKey(der); err == nil {
@@ -601,15 +707,60 @@ func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
 	return nil, errors.New("acme/autocert: failed to parse private key")
 }
 
-// domainMatch matches cert against the specified domain name.
-// It doesn't support wildcard.
-func domainMatch(cert *x509.Certificate, name string) bool {
-	if cert.Subject.CommonName == name {
-		return true
+// validCert parses a cert chain provided as der argument and verifies the leaf, der[0],
+// corresponds to the private key, as well as the domain match and expiration dates.
+// It doesn't do any revocation checking.
+//
+// The returned value is the verified leaf cert.
+func validCert(domain string, der [][]byte, key crypto.Signer) (leaf *x509.Certificate, err error) {
+	// parse public part(s)
+	var n int
+	for _, b := range der {
+		n += len(b)
 	}
-	sort.Strings(cert.DNSNames)
-	i := sort.SearchStrings(cert.DNSNames, name)
-	return i < len(cert.DNSNames) && cert.DNSNames[i] == name
+	pub := make([]byte, n)
+	n = 0
+	for _, b := range der {
+		n += copy(pub[n:], b)
+	}
+	x509Cert, err := x509.ParseCertificates(pub)
+	if len(x509Cert) == 0 {
+		return nil, errors.New("acme/autocert: no public key found")
+	}
+	// verify the leaf is not expired and matches the domain name
+	leaf = x509Cert[0]
+	now := timeNow()
+	if now.Before(leaf.NotBefore) {
+		return nil, errors.New("acme/autocert: certificate is not valid yet")
+	}
+	if now.After(leaf.NotAfter) {
+		return nil, errors.New("acme/autocert: expired certificate")
+	}
+	if err := leaf.VerifyHostname(domain); err != nil {
+		return nil, err
+	}
+	// ensure the leaf corresponds to the private key
+	switch pub := leaf.PublicKey.(type) {
+	case *rsa.PublicKey:
+		prv, ok := key.(*rsa.PrivateKey)
+		if !ok {
+			return nil, errors.New("acme/autocert: private key type does not match public key type")
+		}
+		if pub.N.Cmp(prv.N) != 0 {
+			return nil, errors.New("acme/autocert: private key does not match public key")
+		}
+	case *ecdsa.PublicKey:
+		prv, ok := key.(*ecdsa.PrivateKey)
+		if !ok {
+			return nil, errors.New("acme/autocert: private key type does not match public key type")
+		}
+		if pub.X.Cmp(prv.X) != 0 || pub.Y.Cmp(prv.Y) != 0 {
+			return nil, errors.New("acme/autocert: private key does not match public key")
+		}
+	default:
+		return nil, errors.New("acme/autocert: unknown public key algorithm")
+	}
+	return leaf, nil
 }
 
 func retryAfter(v string) time.Duration {
@@ -617,7 +768,15 @@ func retryAfter(v string) time.Duration {
 		return time.Duration(i) * time.Second
 	}
 	if t, err := http.ParseTime(v); err == nil {
-		return t.Sub(time.Now())
+		return t.Sub(timeNow())
 	}
 	return time.Second
 }
+
+// for easier testing
+func nop() {}
+
+var (
+	timeNow          = time.Now
+	testDidRenewLoop = nop
+)
