@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6873e7d0_9cad8981",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_93833bb4",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_d380a3a3",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-22T17:49:17Z",
       "side": 1,
       "message": "don\u0027t do this on every call. Actually just delete it. It\u0027s not important to seed.\n\nOr, do it once a \"func init()\" block, but then you\u0027re messing with other program\u0027s mathrand state in your init.\n\nI\u0027d just delete it.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8a23f7a_8643ec9d",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "done. removed.",
+      "parentUuid": "c83053eb_d380a3a3",
       "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a846bf69_c60344be",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_f39a7f09",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_13698bf4",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-22T17:49:17Z",
       "side": 1,
       "message": "\"or memory issues\"? I\u0027d just delete the comment. This is normal behavior.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08542b0d_e9df3132",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_13698bf4",
       "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "08542b0d_c9dc7540",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "I didn\u0027t like using math/rand here at all, tbh. thanks for pushing me switch to crypto/rand.",
+      "parentUuid": "c83053eb_53a4b34d",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_d39783df",
         "filename": "acme/internal/acme/acme.go",
         "patchSetId": 7
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-22T17:49:17Z",
       "side": 1,
       "message": "int instead of uint\n\nYou can use uint internally if you want, but not in a function signature.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a846bf69_a6104800",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_d39783df",
       "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "a8a23f7a_a6406891",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "I\u0027ll cap it at 0.",
+      "parentUuid": "c83053eb_735a0f60",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_53d273cd",
         "filename": "acme/internal/acme/acme_test.go",
         "patchSetId": 7
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "48b2a3c6_4b041974",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_53d273cd",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_33d7e7bd",
         "filename": "acme/internal/acme/acme_test.go",
         "patchSetId": 7
@@ -149,6 +293,24 @@
       "writtenOn": "2016-08-22T17:49:17Z",
       "side": 1,
       "message": "etc",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8c95f46_ab0d89eb",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T20:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_33d7e7bd",
       "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
