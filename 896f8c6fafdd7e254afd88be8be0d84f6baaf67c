@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a8a23f7a_23930aa9",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T06:43:50Z",
+      "side": 1,
+      "message": "Not sure. I don\u0027t think it should. Otherwise, we would panic everywhere else where the key type is unknown.\n\nA programmer will most likely always provide a valid key, enforced by the crypto.Signer interface (indirectly, to the Client). It\u0027s just we don\u0027t support it. Also, this function is invoked inside Manager.GetCertificate call stack...",
+      "parentUuid": "c83053eb_3b6223ab",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_fb7b7b51",
         "filename": "acme/internal/acme/jws.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a8c95f46_0b65bde9",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T06:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_fb7b7b51",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83053eb_1b6767bb",
         "filename": "acme/internal/acme/jws.go",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-21T23:16:30Z",
       "side": 1,
       "message": "Missing article (either \"an\" or \"the\" works for \"empty string\") and a period at the end. But you also don\u0027t say what crypto.Hash is, so I\u0027d just say:\n\n// It returns (\"\", 0) if the key is not supported.",
+      "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28b72fb7_cabec3a3",
+        "filename": "acme/internal/acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-22T06:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83053eb_1b6767bb",
       "revId": "896f8c6fafdd7e254afd88be8be0d84f6baaf67c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
