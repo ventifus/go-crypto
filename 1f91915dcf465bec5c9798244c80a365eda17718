@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c83053eb_93833bb4",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "replace this whole line with just:\n\n// see the WaitAuthorization method.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_d380a3a3",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "don\u0027t do this on every call. Actually just delete it. It\u0027s not important to seed.\n\nOr, do it once a \"func init()\" block, but then you\u0027re messing with other program\u0027s mathrand state in your init.\n\nI\u0027d just delete it.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_f39a7f09",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "just use int instead of uint. uint is weird in Go and not normally used.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_13698bf4",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "\"or memory issues\"? I\u0027d just delete the comment. This is normal behavior.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_53a4b34d",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "naah. If you really want better random, use crypto/rand.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_d39783df",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "int instead of uint\n\nYou can use uint internally if you want, but not in a function signature.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_735a0f60",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "and if it\u0027s less than 0, you can panic or cap it at zero, or not check at all. your choice.",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_53d273cd",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "not Authz",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83053eb_33d7e7bd",
+        "filename": "acme/internal/acme/acme_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-22T17:49:17Z",
+      "side": 1,
+      "message": "etc",
+      "revId": "1f91915dcf465bec5c9798244c80a365eda17718",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
