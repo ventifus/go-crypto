@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8f6bfe3_f708a832",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:14:19Z",
+      "side": 1,
+      "message": "Do we really need this config?\n\nIf you want it, let\u0027s reword a bit:\n\n   // RenewBefore optionally specifies how early certificates should\n   // be renewed before they expire.\n   //\n   // If zero, they\u0027re renewed 1 week before expiration.\n\nDo we really need to say more?",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f6bfe3_77027816",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:14:19Z",
+      "side": 1,
+      "message": "all the code \"helps\".\n\n// renewal tracks the set of domains currently running renewal goroutines.\n\n(by saying \"set\", you\u0027re also documenting that the bool is always true)",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
