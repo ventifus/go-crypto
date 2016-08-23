@@ -33,6 +33,74 @@
       "revId": "0263c243544694c717497015a589e2e451263e67",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f6bfe3_721846d3",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:45:41Z",
+      "side": 1,
+      "message": "Why is the bool necessary? Is it not certState !\u003d nil?\n\nIf you need it, name the result parameter. Bools look weird unnamed mixed with other stuff.",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f6bfe3_929e224f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:45:41Z",
+      "side": 1,
+      "message": "this works for now, but this won\u0027t work as well with tons of domains, if people want to do virtual hosting or something thousands of domains.\n\nInstead of time.Sleep, you could use time.AfterFunc to register a func to run at a certain point in the future.",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f6bfe3_d2213a08",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:45:41Z",
+      "side": 1,
+      "message": "maybe make this test hook take (err error) ? Or take (next, error)?",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f6bfe3_52e30acc",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-23T22:45:41Z",
+      "side": 1,
+      "message": "not a great name? If you tried to document this, you\u0027d probably not like the name either.\n\nstartDomainRenewal(domain string) bool?",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
