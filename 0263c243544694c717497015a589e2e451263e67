@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c8cbf392_742ee83e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "don\u0027t know why I tend to unwillingly complicate things. replaced with yours.\n\nyeah, I thought having this will at least give a chance to a multi-Manager cluster where you\u0027d set a greater RenewBefore (e.g. 10 days) in only one instance and the others will catch up from cache later.",
+      "parentUuid": "a8f6bfe3_f708a832",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8f6bfe3_77027816",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-08-23T22:14:19Z",
       "side": 1,
       "message": "all the code \"helps\".\n\n// renewal tracks the set of domains currently running renewal goroutines.\n\n(by saying \"set\", you\u0027re also documenting that the bool is always true)",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88c2db6f_3d817ba6",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8f6bfe3_77027816",
       "revId": "0263c243544694c717497015a589e2e451263e67",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "c8b21311_5cff9dfe",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "The returned certState is always non-nil. Hopefully clarified that in the doc comment now.\n\nNote: this is not new. I just moved it closer to where it\u0027s used, out of renew-related methods.",
+      "parentUuid": "a8f6bfe3_721846d3",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8f6bfe3_929e224f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2016-08-23T22:45:41Z",
       "side": 1,
       "message": "this works for now, but this won\u0027t work as well with tons of domains, if people want to do virtual hosting or something thousands of domains.\n\nInstead of time.Sleep, you could use time.AfterFunc to register a func to run at a certain point in the future.",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68c76782_f9fe77ce",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "done. interesting though, didn\u0027t know that. what\u0027s the difference? I thought both Sleep and AfterFunc use the same runtimeTimer internally. probably need to go read src/runtime/time.go...",
+      "parentUuid": "a8f6bfe3_929e224f",
       "revId": "0263c243544694c717497015a589e2e451263e67",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "68c76782_39a2afef",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "useful! added.",
+      "parentUuid": "a8f6bfe3_d2213a08",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8f6bfe3_52e30acc",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2016-08-23T22:45:41Z",
       "side": 1,
       "message": "not a great name? If you tried to document this, you\u0027d probably not like the name either.\n\nstartDomainRenewal(domain string) bool?",
+      "revId": "0263c243544694c717497015a589e2e451263e67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8b21311_bc12215b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-24T07:46:45Z",
+      "side": 1,
+      "message": "yeah, bad name. inlined it in renewLoop. didn\u0027t seem useful enough for a separate function after all.",
+      "parentUuid": "a8f6bfe3_52e30acc",
       "revId": "0263c243544694c717497015a589e2e451263e67",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
