@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8f19714_83d4e244",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-24T20:05:51Z",
+      "side": 1,
+      "message": "With the AfterFunc-based solution, it isn\u0027t really tracking running goroutines, but I\u0027m not sure what to say instead, so maybe this is best.",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 74
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f19714_c381ca65",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-24T20:05:51Z",
+      "side": 1,
+      "message": "Accessing m.renewal before trying to create it.",
+      "range": {
+        "startLine": 513,
+        "startChar": 1,
+        "endLine": 518,
+        "endChar": 22
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8f19714_837342e0",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-24T20:05:51Z",
+      "side": 1,
+      "message": "Using crypto/rand for this kind of thing strikes me as a bit overkill (it\u0027ll go to the os if there isn\u0027t enough randomness buffered), consider just using math/rand for this kind of thing.",
+      "range": {
+        "startLine": 532,
+        "startChar": 16,
+        "endLine": 532,
+        "endChar": 20
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
