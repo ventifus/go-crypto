@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e59542fc_5da13b8f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-25T10:06:35Z",
+      "side": 1,
+      "message": "replaced \"goroutines\" with \"timers\".",
+      "parentUuid": "e8f19714_83d4e244",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 74
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8f19714_c381ca65",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e59542fc_fd88471c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-25T10:06:35Z",
+      "side": 1,
+      "message": "Ah that\u0027s fine: https://golang.org/ref/spec#Map_types\n\n\u003e A nil map is equivalent to an empty map except that no elements may be added\n\nWanted to do one less check/allocation if it returns immediately. But can move before accessing.",
+      "parentUuid": "e8f19714_c381ca65",
+      "range": {
+        "startLine": 513,
+        "startChar": 1,
+        "endLine": 518,
+        "endChar": 22
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8f19714_837342e0",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-24T20:05:51Z",
       "side": 1,
       "message": "Using crypto/rand for this kind of thing strikes me as a bit overkill (it\u0027ll go to the os if there isn\u0027t enough randomness buffered), consider just using math/rand for this kind of thing.",
+      "range": {
+        "startLine": 532,
+        "startChar": 16,
+        "endLine": 532,
+        "endChar": 20
+      },
+      "revId": "7a9fcef79ce547f4b9d0a9e6767dbd5b2a1390f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e59542fc_bd92bf46",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-25T10:06:35Z",
+      "side": 1,
+      "message": "I wanted to use math/rand but it needs to be seeded first and rand.Rand is not safe for concurrent use + we didn\u0027t want to mess with math/rand default generator (which can be used concurrently).\n\nSo, created a lockedMathRand now, for cases like this.",
+      "parentUuid": "e8f19714_837342e0",
       "range": {
         "startLine": 532,
         "startChar": 16,
