@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45d9ae0c_93955e33",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-25T17:24:41Z",
+      "side": 1,
+      "message": "Some systems? Like which type?",
+      "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45d9ae0c_73cf9a60",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-25T17:24:41Z",
+      "side": 1,
+      "message": "this is less readable. I don\u0027t like nil (or bool) literals in calls. They\u0027re harder to read.\n\nYou could at least pull this out into a variable for documentation, before the switch:\n\n   var signer crypto.Signer \u003d nil // automatic\n\nOr put a new variable in the acme package equal to a nil crypto.Signer:\n\n    cert, name, err \u003d client.TLSSNI01ChallengeCert(acme.AutomaticSigner, chal.Token)\n\nOr TLSSNI01ChallengeCert could take opts, like:\n\n    type TLSSNIOpt interface{ privateTLSSNIOpt() }\n\n    func WithSigner(signer crypto.Signer) TLSSNIOpt { ... }\n\n    func (c *Client) TLSSNI02ChallengeCert(token string, opt ...TLSSNIOpt) (cert tls.Certificate, name string, err error) {",
+      "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
