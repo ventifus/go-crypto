@@ -432,9 +432,9 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 	)
 	switch chal.Type {
 	case "tls-sni-01":
-		cert, name, err = client.TLSSNI01ChallengeCert(chal.Token)
+		cert, name, err = client.TLSSNI01ChallengeCert(nil, chal.Token)
 	case "tls-sni-02":
-		cert, name, err = client.TLSSNI02ChallengeCert(chal.Token)
+		cert, name, err = client.TLSSNI02ChallengeCert(nil, chal.Token)
 	default:
 		err = fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
 	}
