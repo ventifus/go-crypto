@@ -33,6 +33,24 @@
       "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "858566ca_e22e663c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-25T20:48:12Z",
+      "side": 1,
+      "message": "What if I make TLSSNIOpt useful for some other methods as well? For instance:\n\n    type Option interface { privateOpt() }\n    func WithKey(key crypto.Signer) Option { ... }\n    func WithExpiration(exp time.Duration) Option { ... }\n    func WithBundle() Option { ... }\n\nthen:\n\n    client.TLSSNI02ChallengeCert(token, WithKey(key))\n    client.RevokeCert(ctx, cert, reason, WithKey(key))\n    client.CreateCert(ctx, csr, WithExpiration(time.Hour))\n    client.FetchCert(ctx, url, WithBundle())\n\nbut I would only add Option and WithKey in this CL.",
+      "parentUuid": "45d9ae0c_73cf9a60",
+      "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
