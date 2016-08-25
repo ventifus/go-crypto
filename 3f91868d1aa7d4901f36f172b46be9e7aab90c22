@@ -51,6 +51,24 @@
       "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0545f683_9ed79d4a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-25T20:51:13Z",
+      "side": 1,
+      "message": "You can do both. You can make all \"type Option\" also be a valid \"type TLSSNIOption\" by embedding the Option interface in the TLSSNIOption option.\n\nJust be careful not to create Options which don\u0027t apply to everything that take an Option. That would be unfortunate, even if you rejected it at runtime with an error. I\u0027d prefer it to not compile.",
+      "parentUuid": "858566ca_e22e663c",
+      "revId": "3f91868d1aa7d4901f36f172b46be9e7aab90c22",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
