@@ -42,6 +42,29 @@
     },
     {
       "key": {
+        "uuid": "45b8cef5_8154a0cf",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-26T23:21:58Z",
+      "side": 1,
+      "message": "Why name these? AFAICT, its not used below (and some of these are shadowed).",
+      "range": {
+        "startLine": 370,
+        "startChar": 44,
+        "endLine": 370,
+        "endChar": 83
+      },
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0545f683_650f9541",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -59,6 +82,24 @@
     },
     {
       "key": {
+        "uuid": "45b8cef5_61ef4c18",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-26T23:21:58Z",
+      "side": 1,
+      "message": "I believe its on purpose, and its a singleflight-like construction to have other callers wait for verification to complete when they get this cert. Now that I\u0027m thinking about it, a sync.Once might be clearer (and less importantly, faster).",
+      "parentUuid": "0545f683_650f9541",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0545f683_25fd8d04",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -70,6 +111,29 @@
       "writtenOn": "2016-08-26T16:17:16Z",
       "side": 1,
       "message": "maybe promote this to a method instead?\n\nI guess you\u0027d need a new type to curry the \"domain\" and \"key\" parameters, since time.AfterFunc only want a niladic func, but that\u0027s okay.\n\n// domainRenewal tracks the state used by the periodic timers\n// renewing a single domain\u0027s cert.\ntype domainRenewal struct {\n    m      *Manager\n    domain string\n    key    crypto.Signer\n    exp    time.Time\n}\n\nfunc (dr *domainRenewal) renew() {\n   ...\n   time.AfterFunc(next, dr.renew)\n}\n\n\nIt\u0027s okay how you have it now too, but I fear it getting more hairy as that code grows (TODO: rotate key, etc).",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45b8cef5_e1b0fc43",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-08-26T23:21:58Z",
+      "side": 1,
+      "message": "Sorry, I didn\u0027t think this\u0027d be this annoying :(\n\nI had assumed that math/rand exposed its locked Rand instance, so you could just do something like \nvar rnd interface { Int63n(int64) int64} \u003d mathrand.GlobalRand\n\nBut it doesn\u0027t expose the global locked rand for some reason. Odd.",
+      "range": {
+        "startLine": 774,
+        "startChar": 5,
+        "endLine": 774,
+        "endChar": 19
+      },
       "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
