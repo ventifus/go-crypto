@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0545f683_6582f5b2",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-26T15:30:16Z",
+      "side": 1,
+      "message": "well, the cert doesn\u0027t hold the private key.\n\ntell the user what the option ends up doing too.",
+      "revId": "c33fba1b76d90d4bcf9ec9a66474a6ef8d0c1e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0545f683_a58cfde2",
+        "filename": "acme/internal/acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-08-26T15:30:16Z",
+      "side": 1,
+      "message": "put this in a type switch with a default to return an error:\n\n   switch o :\u003d o.(type) {\n   case *certOptKey:\n       if key !\u003d nil {\n              return nil, errors.New(\"duplicate certificate key set\")\n       }\n       key \u003d o.key\n   default:\n       // package\u0027s fault, if we let this happen:\n       panic(fmt.Sprintf(\"unsupported option type %T\", o))\n   }",
+      "revId": "c33fba1b76d90d4bcf9ec9a66474a6ef8d0c1e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
