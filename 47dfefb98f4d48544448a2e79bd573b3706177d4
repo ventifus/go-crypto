@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "65e6b25b_41e772d9",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0545f683_a5099d3b",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0545f683_c516695e",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -42,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "112b7d7f_ce38032e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "moved exist into certState.",
+      "parentUuid": "0545f683_c516695e",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45b8cef5_8154a0cf",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -59,6 +95,24 @@
         "endLine": 370,
         "endChar": 83
       },
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "112b7d7f_ee3bbf27",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "it was only to document \"exist\" but I removed \"exist\" from return args now and so removed all names.",
+      "parentUuid": "45b8cef5_8154a0cf",
       "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -100,6 +154,24 @@
     },
     {
       "key": {
+        "uuid": "112b7d7f_ae35b733",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "yeah, it\u0027s what sanjay said. absolutely agree, the code could\u0027ve been more clear.\nadded a comment for state.Lock() for the moment but will take the advice and maybe rewrited this piece using sync.Once in a next cl - added a todo.",
+      "parentUuid": "0545f683_650f9541",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0545f683_25fd8d04",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -111,6 +183,24 @@
       "writtenOn": "2016-08-26T16:17:16Z",
       "side": 1,
       "message": "maybe promote this to a method instead?\n\nI guess you\u0027d need a new type to curry the \"domain\" and \"key\" parameters, since time.AfterFunc only want a niladic func, but that\u0027s okay.\n\n// domainRenewal tracks the state used by the periodic timers\n// renewing a single domain\u0027s cert.\ntype domainRenewal struct {\n    m      *Manager\n    domain string\n    key    crypto.Signer\n    exp    time.Time\n}\n\nfunc (dr *domainRenewal) renew() {\n   ...\n   time.AfterFunc(next, dr.renew)\n}\n\n\nIt\u0027s okay how you have it now too, but I fear it getting more hairy as that code grows (TODO: rotate key, etc).",
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "112b7d7f_2e654714",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "done. replaced this with domainRenewal and moved renewal-related code into a new file, autocert/renewal.go.",
+      "parentUuid": "0545f683_25fd8d04",
       "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -134,6 +224,24 @@
         "endLine": 774,
         "endChar": 19
       },
+      "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5f91ed7_e4535a4a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-08-30T14:00:40Z",
+      "side": 1,
+      "message": "np! I actually wanted to get rid of rand.Reader in those cases. first brad (in a different cl), then you. it was a good call :)",
+      "parentUuid": "45b8cef5_e1b0fc43",
       "revId": "47dfefb98f4d48544448a2e79bd573b3706177d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
