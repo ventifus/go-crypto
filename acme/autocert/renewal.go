@@ -86,3 +86,5 @@ func (dr *domainRenewal) next(expiry time.Time) time.Duration {
 	}
 	return d
 }
+
+var testDidRenewLoop = func(next time.Duration, err error) {}

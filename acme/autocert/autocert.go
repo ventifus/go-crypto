@@ -719,7 +719,4 @@ func (r *lockedMathRand) int63n(max int64) int64 {
 }
 
 // for easier testing
-var (
-	timeNow          = time.Now
-	testDidRenewLoop = func(next time.Duration, err error) {}
-)
+var timeNow = time.Now
