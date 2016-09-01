@@ -22,15 +22,14 @@ import (
 
 func TestRenewalNext(t *testing.T) {
 	now := time.Now()
-	timeNow = func() time.Time { return now }
-	defer func() { timeNow = time.Now }()
-
 	man := &Manager{RenewBefore: 7 * 24 * time.Hour}
 	tt := []struct {
 		expiry   time.Time
 		min, max time.Duration
 	}{
-		{now.Add(90 * 24 * time.Hour), 83*24*time.Hour - maxRandRenew, 83 * 24 * time.Hour},
+		// max is 1 hour more than expected to account for time.Now() difference
+		// between now and when dr.next is called.
+		{now.Add(90 * 24 * time.Hour), 83*24*time.Hour - maxRandRenew, 83 * 25 * time.Hour},
 		{now.Add(time.Hour), 0, 1},
 		{now, 0, 1},
 		{now.Add(-time.Hour), 0, 1},
