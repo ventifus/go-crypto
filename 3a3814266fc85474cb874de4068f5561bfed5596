@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1c1e5c3_aa41eb5f",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T01:01:49Z",
+      "side": 1,
+      "message": "Although it simplify following code, this is not appropriate buffer size. might be 32?",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_2a569b24",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T01:01:49Z",
+      "side": 1,
+      "message": "preallocate buffer.",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_0a1abf88",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T01:01:49Z",
+      "side": 1,
+      "message": "It affects not only Windows, but also Unix.\nAnd, I\u0027m not sure \"pass\\rwd\\r\\nignored\" should be parsed as \"passwd\", \"pass\\rwd\" or \"pass\\rwd\\r\".\nIs there the basis for this approach?",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_ea2763ba",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T01:01:49Z",
+      "side": 1,
+      "message": "You might want to move code to between 285 and 286, then add buf.Reset() here.",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_6a2533b7",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T01:01:49Z",
+      "side": 1,
+      "message": "Why do you test it twice? remove 301-313?",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
