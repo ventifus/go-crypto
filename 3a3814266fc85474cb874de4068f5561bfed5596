@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d1c1e5c3_585c8d79",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-02T06:47:10Z",
+      "side": 1,
+      "message": "I disagree. Why having buffer of 1 is not appropriate? I do want this code to be simple. We have to fix bug in this code, because it is not simple.",
+      "parentUuid": "d1c1e5c3_aa41eb5f",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_2a569b24",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-02T01:01:49Z",
       "side": 1,
       "message": "preallocate buffer.",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_b84781a1",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-02T06:47:10Z",
+      "side": 1,
+      "message": "How large should I make this buffer?",
+      "parentUuid": "d1c1e5c3_2a569b24",
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d1c1e5c3_f841f98c",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-02T06:47:10Z",
+      "side": 1,
+      "message": "The basis is original code. I was confused myself. The input from people who wrote this will be welcome. If you noticed, this function did not have any documentation, so I am just guessing here. As best as I can.",
+      "parentUuid": "d1c1e5c3_0a1abf88",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_ea2763ba",
         "filename": "ssh/terminal/terminal_test.go",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "d1c1e5c3_18397530",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-02T06:47:10Z",
+      "side": 1,
+      "message": "This is a test. I don\u0027t care about performance. I want it to be simple to read for next person who reads this.",
+      "parentUuid": "d1c1e5c3_ea2763ba",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_6a2533b7",
         "filename": "ssh/terminal/terminal_test.go",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2016-09-02T01:01:49Z",
       "side": 1,
       "message": "Why do you test it twice? remove 301-313?",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_7836a93f",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-02T06:47:10Z",
+      "side": 1,
+      "message": "Because that is how I can reproduce original problem. See issue #16552 for details.",
+      "parentUuid": "d1c1e5c3_6a2533b7",
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
