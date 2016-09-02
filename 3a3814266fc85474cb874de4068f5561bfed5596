@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d1c1e5c3_f8d1f94e",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T11:47:27Z",
+      "side": 1,
+      "message": "reader \u003d\u003e r?",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_aa41eb5f",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 2
@@ -31,6 +48,24 @@
       "side": 1,
       "message": "I disagree. Why having buffer of 1 is not appropriate? I do want this code to be simple. We have to fix bug in this code, because it is not simple.",
       "parentUuid": "d1c1e5c3_aa41eb5f",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_18c975a2",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T11:47:27Z",
+      "side": 1,
+      "message": "If you want to simplify code, How about following change?\n\n1. read from the reader and append to the buffer until reaching EOF.\n2. parse the buffer and return the result.\n\nSo there are no needs to worry about comments on 904 and 907.",
+      "parentUuid": "d1c1e5c3_585c8d79",
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -72,6 +107,23 @@
     },
     {
       "key": {
+        "uuid": "d1c1e5c3_988e0585",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T11:47:27Z",
+      "side": 1,
+      "message": "Can you guarantee that there are no \u0027\\n\u0027 except input[len(input)-1]?\n\nI\u0027m not sure but what happen if the user type LF (Alt+10) before CRLF.\n\nhttp://tools.oratory.com/altcodes.html",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_0a1abf88",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 2
@@ -101,6 +153,24 @@
       "side": 1,
       "message": "The basis is original code. I was confused myself. The input from people who wrote this will be welcome. If you noticed, this function did not have any documentation, so I am just guessing here. As best as I can.",
       "parentUuid": "d1c1e5c3_0a1abf88",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_f8fa99d6",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T11:47:27Z",
+      "side": 1,
+      "message": "Yes, no documentation is confusing.\nMy argument above is wrong. On unix, it set syscall.ICRNL, so I think there are no \u0027\\r\u0027.",
+      "parentUuid": "d1c1e5c3_f841f98c",
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -171,6 +241,24 @@
       "side": 1,
       "message": "Because that is how I can reproduce original problem. See issue #16552 for details.",
       "parentUuid": "d1c1e5c3_6a2533b7",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1c1e5c3_58676ddf",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-02T11:47:27Z",
+      "side": 1,
+      "message": "Oh, I see. but it is still confusing.\nHow about\n\nif buf.Len() !\u003d 0 {\n  t.Errorf(\"readPasswordLine should consume all bytes of %q, but %d bytes are remaining\", test.input, buf.Len())\n}\n\nor something?\n\nIf you agree that, you might also want to change bytes.Buffer \u003d\u003e strings.Reader.\n\nAt least, better error message for second one is nice.",
+      "parentUuid": "d1c1e5c3_7836a93f",
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
