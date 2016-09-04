@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "1191bdce_9ed7fd43",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-04T09:03:12Z",
+      "side": 1,
+      "message": "Well, the existing timers won\u0027t restart because the certState(s) will be in the in-memory map so the Manager won\u0027t call m.renew(domain, ...) for those.\n\nIf a new cert is created or fetched from cache, the timers for those certs will be created and started.",
+      "parentUuid": "1654530d_a92ff9f7",
+      "revId": "ce0131fff36e1764f747d99b7c99d5928eb9c32f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96e9236c_62a7d617",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
