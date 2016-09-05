@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "1654530d_69b8e1e7",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 11631
+      },
+      "writtenOn": "2016-09-05T02:38:38Z",
+      "side": 1,
+      "message": "I don\u0027t think so. The old code only see whether last input byte is \u0027\\n\u0027 or not if input buffer has enough size.\nI think that behavior means \"consuming bytes until reaching EOF\".\nThis CL is behavior changing.",
+      "parentUuid": "1654530d_0944cdfa",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_2a569b24",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 2
