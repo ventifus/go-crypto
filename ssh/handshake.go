@@ -371,7 +371,7 @@ func (t *handshakeTransport) enterKeyExchangeLocked(otherInitPacket []byte) erro
 	}
 
 	// We don't send FirstKexFollows, but we handle receiving it.
-	if otherInit.FirstKexFollows && algs.kex != otherInit.KexAlgos[0] {
+	if otherInit.FirstKexFollows && (algs.kex != otherInit.KexAlgos[0] || algs.hostKey != otherInit.ServerHostKeyAlgos[0]) {
 		// other side sent a kex message for the wrong algorithm,
 		// which we have to ignore.
 		if _, err := t.conn.readPacket(); err != nil {
