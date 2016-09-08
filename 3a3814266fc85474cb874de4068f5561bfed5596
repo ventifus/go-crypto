@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "6b176638_19208b0b",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-09-08T06:08:04Z",
+      "side": 1,
+      "message": "\u003e The old code only see whether last input byte is\n \u003e \u0027\\n\u0027 or not if input buffer has enough size.\n \u003e I think that behavior means \"consuming bytes until reaching EOF\".\n\nImagine user typing (slowly) when prompted for password:\n\na\nb\nc\n\u003center-key\u003e\nd\ne\nf\n\nThe ReadPassword function (both old and new) will read \"abc\" and then exit. ReadPassword will leave \"def\" inside of OS for someone else to read. Do you suggest that ReadPassword reads both \"abc\" and \"def\" and then blocks waiting for more?\n\n \u003e This CL is behavior changing.\n\nSure. This CL fixes bug in current behavior (see issue #16552). It is \"behavior changing\" in that regard.\n\nAlex",
+      "parentUuid": "1654530d_69b8e1e7",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c1e5c3_2a569b24",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 2
