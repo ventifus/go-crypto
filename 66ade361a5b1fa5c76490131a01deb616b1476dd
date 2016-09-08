@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b176638_593163f7",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 15255
+      },
+      "writtenOn": "2016-09-08T22:55:57Z",
+      "side": 1,
+      "message": "should be clientInit.ServerHostKeyAlgos[0]",
+      "range": {
+        "startLine": 374,
+        "startChar": 86,
+        "endLine": 374,
+        "endChar": 108
+      },
+      "revId": "66ade361a5b1fa5c76490131a01deb616b1476dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
