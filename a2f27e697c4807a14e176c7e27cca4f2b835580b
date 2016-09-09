@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb63f225_f4da38dc",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-09T11:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "966683cf_3d199b93",
+      "revId": "a2f27e697c4807a14e176c7e27cca4f2b835580b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "966683cf_1d1cd782",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-08T03:01:55Z",
       "side": 1,
       "message": "If successful,",
+      "revId": "a2f27e697c4807a14e176c7e27cca4f2b835580b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb63f225_14e9b47b",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-09T11:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "966683cf_1d1cd782",
       "revId": "a2f27e697c4807a14e176c7e27cca4f2b835580b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
