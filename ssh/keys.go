@@ -11,6 +11,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rsa"
+	"crypto/sha256"
 	"crypto/x509"
 	"encoding/asn1"
 	"encoding/base64"
@@ -265,6 +266,15 @@ func MarshalAuthorizedKey(key PublicKey) []byte {
 	e.Close()
 	b.WriteByte('\n')
 	return b.Bytes()
+}
+
+// Fingerprint returns the SHA256 fingerprint of the public key in the same format that
+// `ssh-add -l` does.
+func Fingerprint(key PublicKey) string {
+	h := sha256.New()
+	h.Write(key.Marshal())
+	hashStr := base64.StdEncoding.EncodeToString(h.Sum(nil))
+	return strings.TrimRight(fmt.Sprintf("SHA256:%s", hashStr), "=")
 }
 
 // PublicKey is an abstraction of different types of public keys.
