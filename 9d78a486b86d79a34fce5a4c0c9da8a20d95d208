@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abbcfece_a76c3202",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-09-10T03:00:04Z",
+      "side": 1,
+      "message": "For cross-repo github issue references, this needs to be:\n\n    Fixes golang/go#17046",
+      "revId": "9d78a486b86d79a34fce5a4c0c9da8a20d95d208",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
