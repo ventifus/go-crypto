@@ -6,12 +6,24 @@ package agent
 
 import (
 	"testing"
+	"time"
 )
 
 func addTestKey(t *testing.T, a Agent, keyName string) {
 	err := a.Add(AddedKey{
 		PrivateKey: testPrivateKeys[keyName],
 		Comment:    keyName,
+	})
+	if err != nil {
+		t.Fatalf("failed to add key %q: %v", keyName, err)
+	}
+}
+
+func addTestKeyConstrained(t *testing.T, a Agent, keyName string, ttl uint32) {
+	err := a.Add(AddedKey{
+		PrivateKey:   testPrivateKeys[keyName],
+		Comment:      keyName,
+		LifetimeSecs: ttl,
 	})
 	if err != nil {
 		t.Fatalf("failed to add key %q: %v", keyName, err)
@@ -75,4 +87,26 @@ func TestKeyringAddingAndRemoving(t *testing.T) {
 		t.Fatalf("failed to remove all keys: %v", err)
 	}
 	validateListedKeys(t, k, []string{})
+}
+
+func TestExpire(t *testing.T) {
+	k := NewKeyring()
+	keys, err := k.List()
+	if err != nil {
+		t.Fatalf("listing keys: %v", err)
+	}
+	if len(keys) != 0 {
+		t.Fatalf("keyring not empty")
+	}
+
+	addTestKeyConstrained(t, k, "rsa", 1)
+	time.Sleep((1 * time.Second) + (time.Millisecond * 100))
+
+	keys, err = k.List()
+	if err != nil {
+		t.Fatalf("listing keys: %v", err)
+	}
+	if len(keys) != 0 {
+		t.Fatalf("key should be expired")
+	}
 }
