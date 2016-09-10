@@ -11,6 +11,7 @@ import (
 	"errors"
 	"fmt"
 	"sync"
+	"time"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -18,6 +19,8 @@ import (
 type privKey struct {
 	signer  ssh.Signer
 	comment string
+	expire  uint32
+	confirm bool // Ingored.
 }
 
 type keyring struct {
@@ -28,7 +31,10 @@ type keyring struct {
 	passphrase []byte
 }
 
-var errLocked = errors.New("agent: locked")
+var (
+	errLocked = errors.New("agent: locked")
+	askPass   = "/usr/libexec/ssh-askpass"
+)
 
 // NewKeyring returns an Agent that holds keys in memory.  It is safe
 // for concurrent use by multiple goroutines.
@@ -48,15 +54,9 @@ func (r *keyring) RemoveAll() error {
 	return nil
 }
 
-// Remove removes all identities with the given public key.
-func (r *keyring) Remove(key ssh.PublicKey) error {
-	r.mu.Lock()
-	defer r.mu.Unlock()
-	if r.locked {
-		return errLocked
-	}
-
-	want := key.Marshal()
+// doRemove does the actual key removal. The caller must already be holding the
+// keyring mutex.
+func (r *keyring) doRemove(want []byte) error {
 	found := false
 	for i := 0; i < len(r.keys); {
 		if bytes.Equal(r.keys[i].signer.PublicKey().Marshal(), want) {
@@ -73,6 +73,17 @@ func (r *keyring) Remove(key ssh.PublicKey) error {
 		return errors.New("agent: key not found")
 	}
 	return nil
+}
+
+// Remove removes all identities with the given public key.
+func (r *keyring) Remove(key ssh.PublicKey) error {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	if r.locked {
+		return errLocked
+	}
+
+	return r.doRemove(key.Marshal())
 }
 
 // Lock locks the agent. Sign and Remove will fail, and List will empty an empty list.
@@ -104,6 +115,16 @@ func (r *keyring) Unlock(passphrase []byte) error {
 	return nil
 }
 
+// expired removes a key from the keyring if the key was added with a lifetimesecs
+// contraint and more than lifetimesecs seconds have ellapsed. The caller *must*
+// be holding the keyring mutex.
+func (r *keyring) expired(k privKey) bool {
+	if k.expire > 0 && uint32(time.Now().Unix()) >= k.expire {
+		return r.doRemove(k.signer.PublicKey().Marshal()) == nil
+	}
+	return false
+}
+
 // List returns the identities known to the agent.
 func (r *keyring) List() ([]*Key, error) {
 	r.mu.Lock()
@@ -115,6 +136,9 @@ func (r *keyring) List() ([]*Key, error) {
 
 	var ids []*Key
 	for _, k := range r.keys {
+		if r.expired(k) {
+			continue
+		}
 		pub := k.signer.PublicKey()
 		ids = append(ids, &Key{
 			Format:  pub.Type(),
@@ -146,7 +170,17 @@ func (r *keyring) Add(key AddedKey) error {
 		}
 	}
 
-	r.keys = append(r.keys, privKey{signer, key.Comment})
+	p := privKey{
+		signer:  signer,
+		comment: key.Comment,
+		confirm: key.ConfirmBeforeUse,
+	}
+
+	if key.LifetimeSecs > 0 {
+		p.expire = uint32(time.Now().Unix()) + key.LifetimeSecs
+	}
+
+	r.keys = append(r.keys, p)
 
 	return nil
 }
@@ -161,6 +195,9 @@ func (r *keyring) Sign(key ssh.PublicKey, data []byte) (*ssh.Signature, error) {
 
 	wanted := key.Marshal()
 	for _, k := range r.keys {
+		if r.expired(k) {
+			continue
+		}
 		if bytes.Equal(k.signer.PublicKey().Marshal(), wanted) {
 			return k.signer.Sign(rand.Reader, data)
 		}
@@ -178,6 +215,9 @@ func (r *keyring) Signers() ([]ssh.Signer, error) {
 
 	s := make([]ssh.Signer, 0, len(r.keys))
 	for _, k := range r.keys {
+		if r.expired(k) {
+			continue
+		}
 		s = append(s, k.signer)
 	}
 	return s, nil
