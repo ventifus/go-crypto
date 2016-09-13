@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "abbcfece_0bfa43a2",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-13T16:20:33Z",
+      "side": 1,
+      "message": "happy to remove it. ssh-agent calls SSH_ASKPASS if the confirmbeforeuse constraint is set. I was trying to have feature-parity with that, but really only for the sake of completeness.",
+      "parentUuid": "cb4e920b_bfd8f370",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4e920b_5fce8fae",
         "filename": "ssh/keys.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-13T15:05:28Z",
       "side": 1,
       "message": "needs public documentation.\n\nAlso, md5 is still the (broken) de facto standard for this, right?",
+      "range": {
+        "startLine": 271,
+        "startChar": 5,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abbcfece_6bbbb7e3",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-13T16:20:33Z",
+      "side": 1,
+      "message": "\u003e needs public documentation.\n \ndone.\n\n \u003e Also, md5 is still the (broken) de facto standard for this, right?\n\nsha256 as of https://github.com/openssh/openssh-portable/commit/56d1c83cdd1ac76f1c6bd41e01e80dad834f3994, so as of 6.8p1\n\nI can make this take an algo arg if you\u0027d prefer, so it can return either md5 or sha256.\n\nlet me know if you\u0027d like me to do that.",
+      "parentUuid": "cb4e920b_5fce8fae",
       "range": {
         "startLine": 271,
         "startChar": 5,
