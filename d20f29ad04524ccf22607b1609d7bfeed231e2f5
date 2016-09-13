@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab523ec4_693ba127",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-09-13T21:08:28Z",
+      "side": 1,
+      "message": "do these need to be exported?",
+      "revId": "d20f29ad04524ccf22607b1609d7bfeed231e2f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab523ec4_a948b9b2",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-09-13T21:08:28Z",
+      "side": 1,
+      "message": "Parse2 is a poor name for an exported function.",
+      "revId": "d20f29ad04524ccf22607b1609d7bfeed231e2f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
