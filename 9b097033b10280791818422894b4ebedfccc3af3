@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bad0ab1_61863015",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "maybe just accountKey(..) ?",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb4e920b_3fb623f4",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "It is possible for a future domain to exist with that exact name. Maybe prepend a hyphen or use some other character.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb74360d_abca2d96",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "I fear this and the one above, where m.Cache \u003d\u003d nil, might unwillingly diverge in the future: updated one, missed/forgot the other.\n\nMaybe have a func() { ecdsa.GenerateKey(elliptic.P256(), rand.Reader) }",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb6db244_64a14aa8",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "I\u0027d prefer:\n\nif err \u003d\u003d ErrCacheMiss {\n  ...\n  return key, nil\n}\nif err !\u003d nil {\n  return nil, err\n}\n\nbut I guess it\u0027s a matter of taste.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ba48eca_e5a01299",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "I\u0027d rather have a separate test which verifies just what the comment says.\n\nTestGetCertificate is already too \"overloaded\". It was meant to be like a general \"smoke test\".\n\nI would imagine the new test to be small, similar to the TestCache below.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb4e920b_dfa13fad",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2016-09-13T20:09:36Z",
+      "side": 1,
+      "message": "If this was a separate test, it would sufficient to call man.getAccountKey a couple times and verify (1) the key is cached, and (2) client has the same key.\n\nAnother test would be to pre-populate the cache and verify man.getAccountKey results in the client with the expected key.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
