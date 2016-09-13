@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6b9e867e_4a4ea78c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bad0ab1_61863015",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4e920b_3fb623f4",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-13T20:09:36Z",
       "side": 1,
       "message": "It is possible for a future domain to exist with that exact name. Maybe prepend a hyphen or use some other character.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b9e867e_2a4b637c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Makes sense, I switched the hyphen to an underscore which is invalid in DNS hostname labels.",
+      "parentUuid": "cb4e920b_3fb623f4",
       "revId": "9b097033b10280791818422894b4ebedfccc3af3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6b9e867e_0a2bffa6",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb74360d_abca2d96",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb6db244_64a14aa8",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2016-09-13T20:09:36Z",
       "side": 1,
       "message": "I\u0027d prefer:\n\nif err \u003d\u003d ErrCacheMiss {\n  ...\n  return key, nil\n}\nif err !\u003d nil {\n  return nil, err\n}\n\nbut I guess it\u0027s a matter of taste.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b9e867e_ea2fbbae",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb6db244_64a14aa8",
       "revId": "9b097033b10280791818422894b4ebedfccc3af3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6b9e867e_ca34f701",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ba48eca_e5a01299",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4e920b_dfa13fad",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2016-09-13T20:09:36Z",
       "side": 1,
       "message": "If this was a separate test, it would sufficient to call man.getAccountKey a couple times and verify (1) the key is cached, and (2) client has the same key.\n\nAnother test would be to pre-populate the cache and verify man.getAccountKey results in the client with the expected key.",
+      "revId": "9b097033b10280791818422894b4ebedfccc3af3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b9e867e_aa39b3f9",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2016-09-13T22:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb4e920b_dfa13fad",
       "revId": "9b097033b10280791818422894b4ebedfccc3af3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
