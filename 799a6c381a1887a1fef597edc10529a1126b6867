@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb4e920b_bfd8f370",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-13T15:05:28Z",
+      "side": 1,
+      "message": "this looks wrong. The objective of this package is to be independent of external programs, and most certainly of where on the FS some tool might be installed. \n\nIf you want to add interactive querying into the flow, we have to find a way to inject this behavior.",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb4e920b_5fce8fae",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-13T15:05:28Z",
+      "side": 1,
+      "message": "needs public documentation.\n\nAlso, md5 is still the (broken) de facto standard for this, right?",
+      "range": {
+        "startLine": 271,
+        "startChar": 5,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
