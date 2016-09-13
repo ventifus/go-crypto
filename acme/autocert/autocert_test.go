@@ -21,6 +21,7 @@ import (
 	"math/big"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"testing"
 	"time"
 
@@ -108,7 +109,11 @@ func decodePayload(v interface{}, r io.Reader) error {
 
 func TestGetCertificate(t *testing.T) {
 	const domain = "example.org"
-	man := &Manager{Prompt: AcceptTOS}
+	cache := make(memCache)
+	man := &Manager{
+		Prompt: AcceptTOS,
+		Cache:  cache,
+	}
 	defer man.stopRenew()
 
 	// echo token-02 | shasum -a 256
@@ -166,7 +171,7 @@ func TestGetCertificate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("new-cert: CSR: %v", err)
 			}
-			der, err := dummyCert(csr.PublicKey, domain)
+			der, err := dummyCert(csr.PublicKey, csr.Subject.CommonName)
 			if err != nil {
 				t.Fatalf("new-cert: dummyCert: %v", err)
 			}
@@ -187,34 +192,33 @@ func TestGetCertificate(t *testing.T) {
 	}))
 	defer ca.Close()
 
-	// use EC key to run faster on 386
-	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
-	if err != nil {
-		t.Fatal(err)
-	}
-	man.Client = &acme.Client{
-		Key:          key,
+	ac := &acme.Client{
 		DirectoryURL: ca.URL,
 	}
+	man.Client = ac
 
 	// simulate tls.Config.GetCertificate
 	var tlscert *tls.Certificate
-	done := make(chan struct{})
-	go func() {
-		hello := &tls.ClientHelloInfo{ServerName: domain}
-		tlscert, err = man.GetCertificate(hello)
-		close(done)
-	}()
-	select {
-	case <-time.After(time.Minute):
-		t.Fatal("man.GetCertificate took too long to return")
-	case <-done:
-	}
-	if err != nil {
-		t.Fatalf("man.GetCertificate: %v", err)
+	getCert := func(d string) {
+		done := make(chan struct{})
+		var err error
+		go func() {
+			hello := &tls.ClientHelloInfo{ServerName: d}
+			tlscert, err = man.GetCertificate(hello)
+			close(done)
+		}()
+		select {
+		case <-time.After(time.Minute):
+			t.Fatal("man.GetCertificate took too long to return")
+		case <-done:
+		}
+		if err != nil {
+			t.Fatalf("man.GetCertificate: %v", err)
+		}
 	}
 
 	// verify the tlscert is the same we responded with from the CA stub
+	getCert(domain)
 	if len(tlscert.Certificate) == 0 {
 		t.Fatal("len(tlscert.Certificate) is 0")
 	}
@@ -227,7 +231,7 @@ func TestGetCertificate(t *testing.T) {
 	}
 
 	// make sure token cert was removed
-	done = make(chan struct{})
+	done := make(chan struct{})
 	go func() {
 		for {
 			hello := &tls.ClientHelloInfo{ServerName: tokenCertName}
@@ -242,6 +246,18 @@ func TestGetCertificate(t *testing.T) {
 	case <-time.After(5 * time.Second):
 		t.Error("token cert was not removed")
 	case <-done:
+	}
+
+	// make sure ACME account key is cached by creating a new Manager and
+	// acme.Client with the same cache
+	man = &Manager{
+		Prompt: AcceptTOS,
+		Cache:  cache,
+		Client: &acme.Client{DirectoryURL: ca.URL},
+	}
+	getCert("test." + domain)
+	if !reflect.DeepEqual(man.Client.Key, ac.Key) {
+		t.Errorf("client key = %#v; want %#v", man.Client.Key, ac.Key)
 	}
 }
 
