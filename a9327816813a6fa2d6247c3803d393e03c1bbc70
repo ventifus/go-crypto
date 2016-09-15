@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0b28aa68_c6e7e2d4",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b5c6205_b8d4d90d",
+      "range": {
+        "startLine": 22,
+        "startChar": 9,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "a9327816813a6fa2d6247c3803d393e03c1bbc70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bdda69f_6c5553eb",
         "filename": "ssh/agent/keyring.go",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-15T13:07:30Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 24
+      },
+      "revId": "a9327816813a6fa2d6247c3803d393e03c1bbc70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b28aa68_06e2dac4",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdda69f_6c5553eb",
       "range": {
         "startLine": 23,
         "startChar": 17,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2b61eebb_162bcd8b",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdda69f_ac7d8b78",
+      "range": {
+        "startLine": 59,
+        "startChar": 18,
+        "endLine": 59,
+        "endChar": 26
+      },
+      "revId": "a9327816813a6fa2d6247c3803d393e03c1bbc70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb9692c8_bfe83379",
         "filename": "ssh/agent/keyring.go",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2016-09-15T13:07:30Z",
       "side": 1,
       "message": "this reads a bit odd - it\u0027s both inspecting and modifying the list. \n\nHow about inserting an expireKeys() method before the real work that trims the expired keys?\n\nOr\n\n func liveKeys() []*Key\n\n(which updates keys member) and then iterate over those in the loops?",
+      "range": {
+        "startLine": 121,
+        "startChar": 18,
+        "endLine": 121,
+        "endChar": 25
+      },
+      "revId": "a9327816813a6fa2d6247c3803d393e03c1bbc70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b28aa68_a6fca65a",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "did the former.",
+      "parentUuid": "cb9692c8_bfe83379",
       "range": {
         "startLine": 121,
         "startChar": 18,
