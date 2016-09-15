@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6bdda69f_4c696fb5",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-15T13:07:30Z",
+      "side": 1,
+      "message": "yeah, leave it out for now. If need be, we can provide a \n\n\n  RequiresConfirm(key PublicKey) bool\n\nmethod that can be used for callers to implement confirmation.",
+      "parentUuid": "abbcfece_0bfa43a2",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4e920b_5fce8fae",
         "filename": "ssh/keys.go",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "\u003e needs public documentation.\n \ndone.\n\n \u003e Also, md5 is still the (broken) de facto standard for this, right?\n\nsha256 as of https://github.com/openssh/openssh-portable/commit/56d1c83cdd1ac76f1c6bd41e01e80dad834f3994, so as of 6.8p1\n\nI can make this take an algo arg if you\u0027d prefer, so it can return either md5 or sha256.\n\nlet me know if you\u0027d like me to do that.",
       "parentUuid": "cb4e920b_5fce8fae",
+      "range": {
+        "startLine": 271,
+        "startChar": 5,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bdda69f_0c6f77bd",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-15T13:07:30Z",
+      "side": 1,
+      "message": "on 2nd thought, we should probably strongly discourage md5. I think we can leave this as is.",
+      "parentUuid": "abbcfece_6bbbb7e3",
       "range": {
         "startLine": 271,
         "startChar": 5,
