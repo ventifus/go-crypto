@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0b28aa68_a6f2e693",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdda69f_4c696fb5",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4e920b_5fce8fae",
         "filename": "ssh/keys.go",
         "patchSetId": 1
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "on 2nd thought, we should probably strongly discourage md5. I think we can leave this as is.",
       "parentUuid": "abbcfece_6bbbb7e3",
+      "range": {
+        "startLine": 271,
+        "startChar": 5,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "799a6c381a1887a1fef597edc10529a1126b6867",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b28aa68_e6713e08",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-15T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdda69f_0c6f77bd",
       "range": {
         "startLine": 271,
         "startChar": 5,
