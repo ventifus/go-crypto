@@ -12,6 +12,13 @@ import (
 	"testing"
 )
 
+func TestDHGroupMaximumBits(t *testing.T) {
+	// Ensure that dhGroupMaximumBits <= dhGroup18.bits()
+	if dhGroupMaximumBits > dhGroup18.bits() {
+		t.Errorf("dhGroupMaximumBits > dhGroup18.bits(), which means chooseDHGroup may panic")
+	}
+}
+
 func TestKexes(t *testing.T) {
 	type kexResultErr struct {
 		result *kexResult
