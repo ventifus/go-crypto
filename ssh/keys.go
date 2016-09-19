@@ -11,6 +11,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rsa"
+	"crypto/sha256"
 	"crypto/x509"
 	"encoding/asn1"
 	"encoding/base64"
@@ -81,6 +82,15 @@ func parseAuthorizedKey(in []byte) (out PublicKey, comment string, err error) {
 	}
 	comment = string(bytes.TrimSpace(in[i:]))
 	return out, comment, nil
+}
+
+// Fingerprint returns the SHA256 fingerprint of the public key in the same format that
+// `ssh-add -l` does.
+func Fingerprint(key PublicKey) string {
+	h := sha256.New()
+	h.Write(key.Marshal())
+	hashStr := base64.StdEncoding.EncodeToString(h.Sum(nil))
+	return strings.TrimRight(fmt.Sprintf("SHA256:%s", hashStr), "=")
 }
 
 // ParseKnownHosts parses an entry in the format of the known_hosts file.

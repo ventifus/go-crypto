@@ -86,6 +86,16 @@ func TestNewPublicKey(t *testing.T) {
 	}
 }
 
+func TestKeyFingerprints(t *testing.T) {
+	for ktype, key := range testPublicKeys {
+		fp := Fingerprint(key)
+		if fp != testFingerPrints[ktype] {
+			t.Errorf("fingerprint for %s, expected %, got %s",
+				ktype, testFingerPrints[ktype], fp)
+		}
+	}
+}
+
 func TestKeySignVerify(t *testing.T) {
 	for _, priv := range testSigners {
 		pub := priv.PublicKey()
@@ -309,14 +319,14 @@ func TestInvalidEntry(t *testing.T) {
 }
 
 var knownHostsParseTests = []struct {
-	input     string
-	err       string
+	input string
+	err   string
 
-	marker   string
-	comment  string
-	hosts    []string
-	rest     string
-} {
+	marker  string
+	comment string
+	hosts   []string
+	rest    string
+}{
 	{
 		"",
 		"EOF",
@@ -375,13 +385,13 @@ var knownHostsParseTests = []struct {
 		"localhost,[host2:123]\tssh-rsa {RSAPUB}\tcomment comment",
 		"",
 
-		"", "comment comment", []string{"localhost","[host2:123]"}, "",
+		"", "comment comment", []string{"localhost", "[host2:123]"}, "",
 	},
 	{
 		"@marker \tlocalhost,[host2:123]\tssh-rsa {RSAPUB}",
 		"",
 
-		"marker", "", []string{"localhost","[host2:123]"}, "",
+		"marker", "", []string{"localhost", "[host2:123]"}, "",
 	},
 	{
 		"@marker \tlocalhost,[host2:123]\tssh-rsa aabbccdd",
