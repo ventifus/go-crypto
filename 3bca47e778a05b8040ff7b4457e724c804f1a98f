@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "508b33e0_43715806",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 10961
+      },
+      "writtenOn": "2016-09-19T14:10:13Z",
+      "side": 1,
+      "message": "Don\u0027t think it fixes that issue.  @adg said it would be reasonable to add a standards compliant format method, but the cited RFC uses MD5, so that\u0027s useless.  Then the issue was closed.  Think a resolution what to do on the issue should precede approval this change, e.g. is this worth adding, is there a better RFC to cite.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "508b33e0_236c5431",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 10961
+      },
+      "writtenOn": "2016-09-19T14:10:13Z",
+      "side": 1,
+      "message": "...as `ssh-add -l`.\n\nThough I suspect others will want to see the format described, and not a punt to an external program as the definition.  :-)",
+      "range": {
+        "startLine": 87,
+        "startChar": 83,
+        "endLine": 88,
+        "endChar": 21
+      },
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "508b33e0_63625c43",
         "filename": "ssh/keys.go",
         "patchSetId": 1
