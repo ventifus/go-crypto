@@ -95,6 +95,24 @@
     },
     {
       "key": {
+        "uuid": "508b33e0_a3386428",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:32:27Z",
+      "side": 1,
+      "message": "meh. we have had a feature request for this for a while; I\u0027m a little afraid that for convenience\u0027 sake people people will then want the Md5 one.",
+      "parentUuid": "0b28aa68_c87d1d78",
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b28aa68_c82b5d8c",
         "filename": "ssh/keys.go",
         "patchSetId": 1
