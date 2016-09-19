@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "508b33e0_63625c43",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:06:46Z",
+      "side": 1,
+      "message": "now that we dropped the confirmation from the agent, does this have any use?",
+      "range": {
+        "startLine": 89,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 16
+      },
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b28aa68_c82b5d8c",
         "filename": "ssh/keys.go",
         "patchSetId": 1
