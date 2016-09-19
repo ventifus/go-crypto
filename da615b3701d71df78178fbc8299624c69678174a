@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90d3ebea_d23e8416",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "I hadn\u0027t heard of contributing to golang/example. Although it is the size of the example on _passwordKeyAuth, or smaller.",
+      "parentUuid": "90d3ebea_32711008",
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f050a71d_8518a22b",
         "filename": "ssh/example_test.go",
         "patchSetId": 2
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "90d3ebea_52eff4b0",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "Done, thanks.",
+      "parentUuid": "b0462f6a_63412260",
+      "range": {
+        "startLine": 124,
+        "startChar": 30,
+        "endLine": 124,
+        "endChar": 39
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10545b0d_e6175e4e",
         "filename": "ssh/example_test.go",
         "patchSetId": 2
@@ -82,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "90d3ebea_324a70aa",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "Good point.\n\nHowever, IMO, the problem with the reference though is that most people copy and paste examples verbatim and a reference from here on to the other example would require them to actually go through the code and perhaps make it a little harder for them to get the example working.",
+      "parentUuid": "10545b0d_e6175e4e",
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "708af7dc_01158a45",
         "filename": "ssh/example_test.go",
         "patchSetId": 2
@@ -93,6 +153,30 @@
       "writtenOn": "2016-09-19T14:18:06Z",
       "side": 1,
       "message": "print err here and below.",
+      "range": {
+        "startLine": 151,
+        "startChar": 13,
+        "endLine": 151,
+        "endChar": 19
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90d3ebea_f220680d",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "708af7dc_01158a45",
       "range": {
         "startLine": 151,
         "startChar": 13,
@@ -128,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "90d3ebea_d223e417",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "Done, thanks.",
+      "parentUuid": "10545b0d_260e963f",
+      "range": {
+        "startLine": 162,
+        "startChar": 21,
+        "endLine": 162,
+        "endChar": 23
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10545b0d_06139a65",
         "filename": "ssh/example_test.go",
         "patchSetId": 2
@@ -139,6 +247,30 @@
       "writtenOn": "2016-09-19T14:18:06Z",
       "side": 1,
       "message": "for req :\u003d .. {\n     req.Reply(req.Type \u003d\u003d \"shell\", nil)\n  }",
+      "range": {
+        "startLine": 185,
+        "startChar": 15,
+        "endLine": 185,
+        "endChar": 19
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90d3ebea_321fd0c9",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-19T16:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10545b0d_06139a65",
       "range": {
         "startLine": 185,
         "startChar": 15,
