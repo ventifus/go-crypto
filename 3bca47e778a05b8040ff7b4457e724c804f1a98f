@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "0b28aa68_c87d1d78",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-19T14:29:12Z",
+      "side": 1,
+      "message": "I suspect that it\u0027s a useful addition to the ssh library. If eg. one uses this library to add ssh keys to an openssh ssh-agent, it\u0027s useful to be able to have both print the same key fingeprint to be able to compare.",
+      "parentUuid": "508b33e0_63625c43",
+      "range": {
+        "startLine": 89,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 16
+      },
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b28aa68_c82b5d8c",
         "filename": "ssh/keys.go",
         "patchSetId": 1
@@ -118,6 +142,24 @@
       "side": 1,
       "message": "Third time\u0027s the charm… sorry for the noise.\n\nhashStr :\u003d base64.RawStdEncoding.EncodeToString(h.Sum(nil))",
       "parentUuid": "0b28aa68_082655c2",
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b28aa68_e882d96a",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2016-09-19T14:29:12Z",
+      "side": 1,
+      "message": "thanks for the suggestion.",
+      "parentUuid": "0b28aa68_48404d38",
       "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
