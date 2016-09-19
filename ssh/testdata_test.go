@@ -16,9 +16,10 @@ import (
 )
 
 var (
-	testPrivateKeys map[string]interface{}
-	testSigners     map[string]Signer
-	testPublicKeys  map[string]PublicKey
+	testPrivateKeys  map[string]interface{}
+	testSigners      map[string]Signer
+	testPublicKeys   map[string]PublicKey
+	testFingerPrints map[string]string
 )
 
 func init() {
@@ -28,6 +29,7 @@ func init() {
 	testPrivateKeys = make(map[string]interface{}, n)
 	testSigners = make(map[string]Signer, n)
 	testPublicKeys = make(map[string]PublicKey, n)
+	testFingerPrints = make(map[string]string, n)
 	for t, k := range testdata.PEMBytes {
 		testPrivateKeys[t], err = ParseRawPrivateKey(k)
 		if err != nil {
@@ -38,6 +40,7 @@ func init() {
 			panic(fmt.Sprintf("Unable to create signer for test key %s: %v", t, err))
 		}
 		testPublicKeys[t] = testSigners[t].PublicKey()
+		testFingerPrints[t] = Fingerprint(testPublicKeys[t])
 	}
 
 	// Create a cert and sign it for use in tests.
