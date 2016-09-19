@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "508b33e0_e33e6c16",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:17:53Z",
+      "side": 1,
+      "message": "Thanks for the background. Can you add the exact RFC ref here?",
+      "range": {
+        "startLine": 374,
+        "startChar": 133,
+        "endLine": 374,
+        "endChar": 151
+      },
+      "revId": "52554f1405191a881d0d76efd55a7bda8476f337",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
