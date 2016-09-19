@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f050a71d_8518a22b",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "use bool here, so you can do \n\n  if authorizedKeys[..] {\n\n  }",
+      "range": {
+        "startLine": 124,
+        "startChar": 40,
+        "endLine": 124,
+        "endChar": 46
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0462f6a_63412260",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "this is fragile. Use string(pk.Marshal()) as key instead.",
+      "range": {
+        "startLine": 124,
+        "startChar": 30,
+        "endLine": 124,
+        "endChar": 39
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10545b0d_e6175e4e",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "from here on it\u0027s the same as the previous one. Can\u0027t we refer to the previous example? The rest of the code isn\u0027t especially relevant to different auth-types.\n\nMaybe leave it at\n\n  log.Println(\"authenticated user %s\", sshConn.User())\n  // service {chans, reqs} to accept sessions, see ExampleBla",
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "708af7dc_01158a45",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "print err here and below.",
+      "range": {
+        "startLine": 151,
+        "startChar": 13,
+        "endLine": 151,
+        "endChar": 19
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10545b0d_260e963f",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "handshake failed: %v",
+      "range": {
+        "startLine": 162,
+        "startChar": 21,
+        "endLine": 162,
+        "endChar": 23
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10545b0d_06139a65",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T14:18:06Z",
+      "side": 1,
+      "message": "for req :\u003d .. {\n     req.Reply(req.Type \u003d\u003d \"shell\", nil)\n  }",
+      "range": {
+        "startLine": 185,
+        "startChar": 15,
+        "endLine": 185,
+        "endChar": 19
+      },
+      "revId": "da615b3701d71df78178fbc8299624c69678174a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
