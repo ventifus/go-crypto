@@ -16,6 +16,24 @@
       "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b28aa68_082655c2",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11106
+      },
+      "writtenOn": "2016-09-19T14:06:01Z",
+      "side": 1,
+      "message": "or even:\n\nhashStr :\u003d base64.RawStdEncoding.WithPadding(base64.NoPadding).EncodeToString(h.Sum(nil))",
+      "parentUuid": "0b28aa68_c82b5d8c",
+      "revId": "3bca47e778a05b8040ff7b4457e724c804f1a98f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
