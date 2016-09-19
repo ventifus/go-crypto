@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "305b1f41_477aae4e",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T07:00:51Z",
+      "side": 1,
+      "message": "maybe add 100ms extra to be sure?",
+      "range": {
+        "startLine": 148,
+        "startChar": 17,
+        "endLine": 148,
+        "endChar": 18
+      },
+      "revId": "a0955e6a0f6343798283752d8cf8fd12fb3a5126",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "508b33e0_80d67615",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T07:00:51Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 9
+      },
+      "revId": "a0955e6a0f6343798283752d8cf8fd12fb3a5126",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "508b33e0_60d1f21d",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T07:00:51Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 36,
+        "startChar": 38,
+        "endLine": 36,
+        "endChar": 39
+      },
+      "revId": "a0955e6a0f6343798283752d8cf8fd12fb3a5126",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d049e37c_4779901f",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-19T07:00:51Z",
+      "side": 1,
+      "message": "can you split this into a separate CL? There is an open issue for this that should be ref\u0027d from the commit description.",
+      "range": {
+        "startLine": 271,
+        "startChar": 3,
+        "endLine": 271,
+        "endChar": 14
+      },
+      "revId": "a0955e6a0f6343798283752d8cf8fd12fb3a5126",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
