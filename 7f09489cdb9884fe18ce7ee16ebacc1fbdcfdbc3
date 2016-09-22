@@ -49,6 +49,24 @@
     },
     {
       "key": {
+        "uuid": "508b33e0_03cd9026",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-22T16:45:03Z",
+      "side": 1,
+      "message": "you mean precedence? The parens look odd to my eyes because they suggest something besides the default is used.",
+      "parentUuid": "0b28aa68_886c05c8",
+      "revId": "7f09489cdb9884fe18ce7ee16ebacc1fbdcfdbc3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "508b33e0_634b3cb1",
         "filename": "ssh/agent/keyring_test.go",
         "patchSetId": 4
