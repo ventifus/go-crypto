@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2ff5921_db269322",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-28T09:18:35Z",
+      "side": 1,
+      "message": "got error %q, want substring %q",
+      "range": {
+        "startLine": 145,
+        "startChar": 25,
+        "endLine": 145,
+        "endChar": 33
+      },
+      "revId": "d3bb96377976f1e3ba0b8fa23c92f7e5065d3aec",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
