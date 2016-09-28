@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25ccbff8_1a1e8d80",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-28T03:48:44Z",
+      "side": 1,
+      "message": "Oversight on my part. Done, thanks.",
+      "parentUuid": "a5850fca_c250022b",
+      "range": {
+        "startLine": 141,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 11
+      },
+      "revId": "dcb2d86ae5b0f3c386d7d2de5595f92d7229c683",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5850fca_a2537e35",
         "filename": "ssh/keys_test.go",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "25ccbff8_7a2b419a",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-28T03:48:44Z",
+      "side": 1,
+      "message": "Good plan. Done, thanks.",
+      "parentUuid": "a5850fca_a2537e35",
+      "range": {
+        "startLine": 144,
+        "startChar": 44,
+        "endLine": 144,
+        "endChar": 50
+      },
+      "revId": "dcb2d86ae5b0f3c386d7d2de5595f92d7229c683",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "658b17e1_c098fecb",
         "filename": "ssh/testdata/keys.go",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2016-09-26T08:23:58Z",
       "side": 1,
       "message": "record the encryption key used here, so we can test decryption if we ever add it.",
+      "revId": "dcb2d86ae5b0f3c386d7d2de5595f92d7229c683",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25ccbff8_3a21c9ba",
+        "filename": "ssh/testdata/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-09-28T03:48:44Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "658b17e1_c098fecb",
       "revId": "dcb2d86ae5b0f3c386d7d2de5595f92d7229c683",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
