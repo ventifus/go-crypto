@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e2029df6_9c09258d",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-09-28T09:18:35Z",
+      "side": 1,
+      "message": "drop this link, and add a reference to the official description of the key format.",
+      "range": {
+        "startLine": 737,
+        "startChar": 13,
+        "endLine": 737,
+        "endChar": 54
+      },
+      "revId": "dcb2d86ae5b0f3c386d7d2de5595f92d7229c683",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5850fca_c250022b",
         "filename": "ssh/keys_test.go",
         "patchSetId": 1
