@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25ccbff8_7237dd35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-09-29T15:13:43Z",
+      "side": 1,
+      "message": "drop the \"x/crypto/\" part and start with a lowercase verb after the colon.\n\nalso, typo: improvement\n\nMaybe:\n\n   poly1305: optimize amd64 assembly performance",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25ccbff8_72607d2b",
+        "filename": "poly1305/poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-09-29T15:13:43Z",
+      "side": 1,
+      "message": "Generally we use tabs for indentation and spaces for alignment. Maybe we\u0027re less strict in assembly, but still.",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25ccbff8_b2503560",
+        "filename": "poly1305/poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-09-29T15:13:43Z",
+      "side": 1,
+      "message": "we don\u0027t use ALLCAPS labels in assembly. It looks like we use all lowercase.",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
