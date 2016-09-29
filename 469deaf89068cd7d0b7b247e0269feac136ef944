@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6264ed0a_18950537",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-09-29T22:08:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25ccbff8_7237dd35",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25ccbff8_72607d2b",
         "filename": "poly1305/poly1305_amd64.s",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6264ed0a_389a4966",
+        "filename": "poly1305/poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-09-29T22:08:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25ccbff8_72607d2b",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25ccbff8_b2503560",
         "filename": "poly1305/poly1305_amd64.s",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2016-09-29T15:13:43Z",
       "side": 1,
       "message": "we don\u0027t use ALLCAPS labels in assembly. It looks like we use all lowercase.",
+      "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6264ed0a_f8ab716f",
+        "filename": "poly1305/poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-09-29T22:08:56Z",
+      "side": 1,
+      "message": "Hm, I quickly looked at the standard packages and I couldn\u0027t see a clear asm label guideline: \n\nthe crypto/aes use upper-lower, the x/crypto/salsa20 use upper and the arm code in poly1305 use lower case...\n\nIf you prefer lower case, I\u0027ll change it.",
+      "parentUuid": "25ccbff8_b2503560",
       "revId": "469deaf89068cd7d0b7b247e0269feac136ef944",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
