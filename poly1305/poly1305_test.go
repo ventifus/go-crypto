@@ -10,6 +10,18 @@ import (
 	"unsafe"
 )
 
+func generateTestData(size int) (tag [16]byte, m []byte, key [32]byte) {
+	for i := range key {
+		key[i] = 0xff
+	}
+	m = make([]byte, size)
+	for i := range m {
+		m[i] = 0xff
+	}
+	poly1305Generic(&tag, m, &key)
+	return
+}
+
 var testData = []struct {
 	in, k, correct []byte
 }{
@@ -48,6 +60,14 @@ func testSum(t *testing.T, unaligned bool) {
 		Sum(&out, in, &key)
 		if !bytes.Equal(out[:], v.correct) {
 			t.Errorf("%d: expected %x, got %x", i, v.correct, out[:])
+		}
+	}
+
+	for size := 0; size < 1000; size++ {
+		correct, m, key := generateTestData(size)
+		Sum(&out, m, &key)
+		if !bytes.Equal(out[:], correct[:]) {
+			t.Errorf("Size %d: expected %x, got %x", size, correct[:], out[:])
 		}
 	}
 }
