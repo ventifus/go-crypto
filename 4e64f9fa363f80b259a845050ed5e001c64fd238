@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e29e1d21_e28f3027",
+        "filename": "poly1305/poly1305_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-03T18:15:51Z",
+      "side": 1,
+      "message": "wrong year",
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e29e1d21_b4472677",
         "filename": "poly1305/poly1305_generic.go",
         "patchSetId": 1
@@ -25,6 +42,40 @@
     },
     {
       "key": {
+        "uuid": "e29e1d21_62956036",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-03T18:15:51Z",
+      "side": 1,
+      "message": "s/correct/want/",
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e29e1d21_22af5880",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-03T18:15:51Z",
+      "side": 1,
+      "message": "put got first, then want.",
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e29e1d21_d463d20c",
         "filename": "poly1305/sum_ref.go",
         "patchSetId": 1
@@ -36,6 +87,30 @@
       "writtenOn": "2016-10-03T14:10:09Z",
       "side": 1,
       "message": "I think the policy is not to update the copyright year in existing files.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e29e1d21_e2a89075",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-03T18:15:51Z",
+      "side": 1,
+      "message": "Correct. Don\u0027t touch existing ones, but use the correct year on new files.",
+      "parentUuid": "e29e1d21_d463d20c",
       "range": {
         "startLine": 1,
         "startChar": 16,
