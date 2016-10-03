@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e29e1d21_b4472677",
+        "filename": "poly1305/poly1305_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2016-10-03T14:10:09Z",
+      "side": 1,
+      "message": "s/Sum/poly1305Generic/ ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e29e1d21_d463d20c",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2016-10-03T14:10:09Z",
+      "side": 1,
+      "message": "I think the policy is not to update the copyright year in existing files.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e29e1d21_f47b6eb0",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2016-10-03T14:10:09Z",
+      "side": 1,
+      "message": "I think you still need the gccgo and appengine tags here.",
+      "revId": "4e64f9fa363f80b259a845050ed5e001c64fd238",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
