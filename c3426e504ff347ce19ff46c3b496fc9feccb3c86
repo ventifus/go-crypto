@@ -189,6 +189,24 @@
     },
     {
       "key": {
+        "uuid": "e24a9d97_22f3cad1",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2016-10-03T20:23:08Z",
+      "side": 1,
+      "message": "Changing \u0027buf :\u003d\u0027 to \u0027var buf \u003d\u0027 doesn\u0027t change anything in this respect, but it\u0027s fine. The allocation here is not likely to be a bottleneck in any meaningful way.",
+      "parentUuid": "4ef89d38_a0bf149c",
+      "revId": "c3426e504ff347ce19ff46c3b496fc9feccb3c86",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6126549e_3a09a94d",
         "filename": "otr/otr.go",
         "patchSetId": 1
