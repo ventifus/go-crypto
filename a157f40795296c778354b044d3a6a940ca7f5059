@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "e24a9d97_22946a9b",
+        "filename": "ssh/terminal/util_solaris.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2016-10-03T20:00:17Z",
+      "side": 1,
+      "message": "This line of the comment belongs inside the function body.\nIt\u0027s about implementation, not something callers need to know.\n(It\u0027s not part of the API.)",
+      "revId": "a157f40795296c778354b044d3a6a940ca7f5059",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e24a9d97_8289fe81",
+        "filename": "ssh/terminal/util_solaris.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2016-10-03T20:00:17Z",
+      "side": 1,
+      "message": "Same.",
+      "revId": "a157f40795296c778354b044d3a6a940ca7f5059",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e24a9d97_428ff686",
+        "filename": "ssh/terminal/util_solaris.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2016-10-03T20:00:17Z",
+      "side": 1,
+      "message": "The other OS implementations seem not to worry about this, so I\u0027m not worried either. That can be a separate issue from Solaris support.",
+      "revId": "a157f40795296c778354b044d3a6a940ca7f5059",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c1bdab9_6cb5cf44",
         "filename": "ssh/terminal/util_solaris.go",
         "patchSetId": 2
