@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22ad95b1_212708ce",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-10-04T07:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02017189_058d522e",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "20728f69ad59364e002e0f0dc420e3bca2219b2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2204b597_66864e19",
         "filename": "ssh/example_test.go",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "22ad95b1_01152c58",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-10-04T07:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2204b597_66864e19",
+      "range": {
+        "startLine": 29,
+        "startChar": 31,
+        "endLine": 29,
+        "endChar": 32
+      },
+      "revId": "20728f69ad59364e002e0f0dc420e3bca2219b2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2204b597_46835207",
         "filename": "ssh/example_test.go",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2016-10-04T07:29:45Z",
       "side": 1,
       "message": "can you put the shorter idiom here?",
+      "range": {
+        "startLine": 114,
+        "startChar": 11,
+        "endLine": 114,
+        "endChar": 14
+      },
+      "revId": "20728f69ad59364e002e0f0dc420e3bca2219b2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22ad95b1_e1192094",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-10-04T07:39:24Z",
+      "side": 1,
+      "message": "Done, thanks.",
+      "parentUuid": "2204b597_46835207",
       "range": {
         "startLine": 114,
         "startChar": 11,
