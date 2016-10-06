@@ -77,11 +77,11 @@ type kexAlgorithm interface {
 
 // dhGroup is a multiplicative group suitable for implementing Diffie-Hellman key agreement.
 type dhGroup struct {
-	g, p *big.Int
+	g, p, pMinus1 *big.Int
 }
 
 func (group *dhGroup) diffieHellman(theirPublic, myPrivate *big.Int) (*big.Int, error) {
-	if theirPublic.Sign() <= 0 || theirPublic.Cmp(group.p) >= 0 {
+	if theirPublic.Cmp(bigOne) <= 0 || theirPublic.Cmp(group.pMinus1) >= 0 {
 		return nil, errors.New("ssh: DH parameter out of bounds")
 	}
 	return new(big.Int).Exp(theirPublic, myPrivate, group.p), nil
@@ -373,6 +373,7 @@ func init() {
 	kexAlgoMap[kexAlgoDH1SHA1] = &dhGroup{
 		g: new(big.Int).SetInt64(2),
 		p: p,
+		pMinus1: new(big.Int).Sub(p, bigOne),
 	}
 
 	// This is the group called diffie-hellman-group14-sha1 in RFC
@@ -382,6 +383,7 @@ func init() {
 	kexAlgoMap[kexAlgoDH14SHA1] = &dhGroup{
 		g: new(big.Int).SetInt64(2),
 		p: p,
+		pMinus1: new(big.Int).Sub(p, bigOne),
 	}
 
 	kexAlgoMap[kexAlgoECDH521] = &ecdh{elliptic.P521()}
