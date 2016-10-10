@@ -59,7 +59,7 @@ DATA poly1305Mask<>+0x08(SB)/8, $0x0FFFFFFC0FFFFFFC
 GLOBL poly1305Mask<>(SB), RODATA, $16
 
 // func poly1305(out *[16]byte, m *byte, mlen uint64, key *[32]key)
-TEXT ·poly1305(SB), $0-32
+TEXT ·poly1305(SB), $0-48
 	MOVQ out+0(FP), DI
 	MOVQ m+8(FP), SI
 	MOVQ mlen+16(FP), R15
