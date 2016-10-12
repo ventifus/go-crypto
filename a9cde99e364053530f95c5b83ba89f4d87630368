@@ -16,6 +16,24 @@
       "revId": "a9cde99e364053530f95c5b83ba89f4d87630368",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c99da37_8133dc15",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2016-10-12T02:54:38Z",
+      "side": 1,
+      "message": "Indeed. The mention of crypto.Signer as an input is wrong too (copied from NewSigner probably). Removed.",
+      "parentUuid": "8f473d8f_dbd013c8",
+      "revId": "a9cde99e364053530f95c5b83ba89f4d87630368",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
