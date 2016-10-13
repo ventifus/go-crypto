@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// This file was originally from https://golang.org/cl/24717 by Vlad Krasnov of CloudFlare.
+
 // +build go1.7
 
 #include "textflag.h"
