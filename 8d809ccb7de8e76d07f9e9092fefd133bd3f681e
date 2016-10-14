@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcc102c4_24ad3288",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-14T05:55:52Z",
+      "side": 1,
+      "message": "while I appreciate that we\u0027re doing this because there wasn\u0027t enough attribution in the Git history, keep in mind that we don\u0027t normally do this. It becomes a maintenance burden; most files are touched by many people over time.\n\nI\u0027d at least drop the word \"originally\" or similar in here, so we don\u0027t need to maintain it.\n\nMaybe just:\n\n   // This file was originally from https://golang.org/cl/XXXX by Vlad Krasnov of CloudFlare.",
+      "revId": "8d809ccb7de8e76d07f9e9092fefd133bd3f681e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
