@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c82d683_e4cb1449",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-10-16T21:49:22Z",
+      "side": 1,
+      "message": "Add:\n\nFixes golang/go#17464",
+      "revId": "169dda8c0aed1005fca320aed68929edc0153686",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
