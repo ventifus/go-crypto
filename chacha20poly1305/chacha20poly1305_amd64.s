@@ -2684,13 +2684,18 @@ sealAVX2Tail512LoopB:
 
 	JMP sealAVX2SealHash
 
-// func haveSSSE3() bool
-TEXT ·haveSSSE3(SB), NOSPLIT, $0
-	XORQ AX, AX
-	INCL AX
+// func haveNeededCPU() bool
+TEXT ·haveNeededCPU(SB), NOSPLIT, $0
+	MOVQ $1, AX
 	CPUID
-	SHRQ $9, CX
+	MOVQ CX, AX
+	// Bit 9 indicates SSSE3 support.
+	SHRQ $9, AX
+	ANDQ $1, AX
+	// Bit 19 indicates SSE4.1 support.
+	SHRQ $19, CX
 	ANDQ $1, CX
+	ANDQ AX, CX
 	MOVB CX, ret+0(FP)
 	RET
 

@@ -15,12 +15,12 @@ func chacha20Poly1305Open(dst []byte, key []uint32, src, ad []byte) bool
 func chacha20Poly1305Seal(dst []byte, key []uint32, src, ad []byte)
 
 //go:noescape
-func haveSSSE3() bool
+func haveNeededCPU() bool
 
 var canUseASM bool
 
 func init() {
-	canUseASM = haveSSSE3()
+	canUseASM = haveNeededCPU()
 }
 
 // setupState writes a ChaCha20 input matrix to state. See
