@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c730bd0_82fd2002",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1914,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-17T00:06:32Z",
+      "side": 1,
+      "message": "I suspect that an XMM register could still be used as the accumulator since PSLLDQ is safe to use and the bytes could be XORed into T0. But it\u0027s not immediately obvious which other registers are free here so this LGTM.",
+      "revId": "0be7184a6a3727550b2254fdc121adfbcbf0c0d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
