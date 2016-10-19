@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fcf8878b_04405cfc",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-19T18:40:04Z",
+      "side": 1,
+      "message": "Ack. (Will leave for a follow-up CL. Is there authoritative documentation for the Go ARM ABI that lists the caller-saved registers?)",
+      "parentUuid": "5c2353ec_6a3ad730",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c2353ec_0a451bb1",
         "filename": "poly1305/sum_arm.s",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-19T18:17:31Z",
       "side": 1,
       "message": "for future reference, no need to save R9, R11, R14.",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fcf8878b_443a648c",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-19T18:40:04Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "5c2353ec_0a451bb1",
       "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fcf8878b_243758a3",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-19T18:40:04Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "5c2353ec_4a3f131f",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c2353ec_ea56c771",
         "filename": "poly1305/sum_arm.s",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "fcf8878b_c446541c",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-19T18:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c2353ec_ea56c771",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ca6f3c4_437286c8",
         "filename": "poly1305/sum_arm.s",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2016-10-19T18:17:31Z",
       "side": 1,
       "message": "Saving and restoring SP is not necessary, given that the functions it calls restores SP before return. Also it is bad for the assembler and the runtime to determine the per-PC SP delta.\nJust subtract 168 from SP at the end.",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fcf8878b_a44b4823",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-19T18:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ca6f3c4_437286c8",
       "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
