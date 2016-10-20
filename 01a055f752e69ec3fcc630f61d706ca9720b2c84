@@ -16,6 +16,24 @@
       "revId": "01a055f752e69ec3fcc630f61d706ca9720b2c84",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf74308_dec9a1b5",
+        "filename": "curve25519/mul_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5167
+      },
+      "writtenOn": "2016-10-20T20:37:58Z",
+      "side": 1,
+      "message": "No. See the follow-up CL.",
+      "parentUuid": "dcf74308_fe761db9",
+      "revId": "01a055f752e69ec3fcc630f61d706ca9720b2c84",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
