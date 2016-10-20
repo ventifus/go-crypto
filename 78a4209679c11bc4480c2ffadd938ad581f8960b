@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5c19930d_d7583ca7",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2016-10-20T01:17:17Z",
+      "side": 1,
+      "message": "Go ABI (currently) has all registers caller-save (except SP). Callee can change any registers, except PC (R15), LR (R14), SP (R13), and g (R10). You could even use g in NOSPLIT function, as long as you restore it before return.\n\nFor assembly calling assembly, you don\u0027t have to strictly follow the ABI, e.g. you could have registers live across function boundary (there are runtime functions that does this). But it may be better not to change SP manually. For example, if SP is not changed inside the function, the arguments in poly1305_auth_armv6 (R4-R7) are always available at the arguments slots.",
+      "parentUuid": "fcf8878b_04405cfc",
+      "revId": "78a4209679c11bc4480c2ffadd938ad581f8960b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c2353ec_0a451bb1",
         "filename": "poly1305/sum_arm.s",
         "patchSetId": 2
