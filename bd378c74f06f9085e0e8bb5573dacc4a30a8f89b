@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcf74308_3de9a23e",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2016-10-23T04:01:51Z",
+      "side": 1,
+      "message": "no need to save R8 now. (in the previous version R8 was used to save R13, but it is no longer this case now)",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf74308_9de6f66a",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2016-10-23T04:01:51Z",
+      "side": 1,
+      "message": "no need to save R8.",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf74308_7d3a0ae4",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2016-10-23T04:01:51Z",
+      "side": 1,
+      "message": "This is nice!",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf74308_7de32a5c",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2016-10-23T04:01:51Z",
+      "side": 1,
+      "message": "This can be at the beginning, then you don\u0027t have to save/restore g in poly1305_blocks_armv6.",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
