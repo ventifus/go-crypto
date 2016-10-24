@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a1d8a809_7129d84f",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-24T20:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcf74308_3de9a23e",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcf74308_9de6f66a",
         "filename": "poly1305/sum_arm.s",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-23T04:01:51Z",
       "side": 1,
       "message": "no need to save R8.",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1d8a809_b11e6020",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-24T20:33:38Z",
+      "side": 1,
+      "message": "R8 needs to be saved because it\u0027s written at line 283 and used at line 412, which spans a call to this function.",
+      "parentUuid": "dcf74308_9de6f66a",
       "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2016-10-23T04:01:51Z",
       "side": 1,
       "message": "This can be at the beginning, then you don\u0027t have to save/restore g in poly1305_blocks_armv6.",
+      "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1d8a809_b13740a2",
+        "filename": "poly1305/sum_arm.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-10-24T20:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcf74308_7de32a5c",
       "revId": "bd378c74f06f9085e0e8bb5573dacc4a30a8f89b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
