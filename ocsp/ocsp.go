@@ -13,7 +13,6 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/rsa"
-	"crypto/sha1"
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
@@ -606,13 +605,12 @@ func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte
 // itself is provided alongside the OCSP response signature.
 //
 // The issuer cert is used to puplate the IssuerNameHash and IssuerKeyHash fields.
-// (SHA-1 is used for the hash function; this is not configurable.)
 //
 // The template is used to populate the SerialNumber, RevocationStatus, RevokedAt,
 // RevocationReason, ThisUpdate, and NextUpdate fields.
 //
 // The ProducedAt date is automatically set to the current date, to the nearest minute.
-func CreateResponse(issuer, responderCert *x509.Certificate, template Response, priv crypto.Signer) ([]byte, error) {
+func CreateResponse(issuer, responderCert *x509.Certificate, template Response, priv crypto.Signer, hash crypto.Hash) ([]byte, error) {
 	var publicKeyInfo struct {
 		Algorithm pkix.AlgorithmIdentifier
 		PublicKey asn1.BitString
@@ -621,7 +619,12 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		return nil, err
 	}
 
-	h := sha1.New()
+	hashOID := getOIDFromHashAlgorithm(hash)
+	if hashOID == nil {
+		return nil, errors.New("Unknown hash algorithm")
+	}
+
+	h := hash.New()
 	h.Write(publicKeyInfo.PublicKey.RightAlign())
 	issuerKeyHash := h.Sum(nil)
 
@@ -632,7 +635,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 	innerResponse := singleResponse{
 		CertID: certID{
 			HashAlgorithm: pkix.AlgorithmIdentifier{
-				Algorithm:  hashOIDs[crypto.SHA1],
+				Algorithm:  hashOID,
 				Parameters: asn1.RawValue{Tag: 5 /* ASN.1 NULL */},
 			},
 			NameHash:      issuerNameHash,

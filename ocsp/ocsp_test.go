@@ -222,46 +222,53 @@ func TestOCSPResponse(t *testing.T) {
 		ExtraExtensions:  extensions,
 	}
 
-	responseBytes, err := CreateResponse(issuer, responder, template, responderPrivateKey)
-	if err != nil {
-		t.Fatal(err)
+	_, err = CreateResponse(issuer, responder, template, responderPrivateKey, crypto.Hash(100))
+	if err == nil {
+		t.Fatal("CreateResponse didn't fail with non-valid hash argument")
 	}
 
-	resp, err := ParseResponse(responseBytes, nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	for _, hashFunc := range []crypto.Hash{crypto.SHA1, crypto.SHA256, crypto.SHA384, crypto.SHA512} {
+		responseBytes, err := CreateResponse(issuer, responder, template, responderPrivateKey, hashFunc)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if !reflect.DeepEqual(resp.ThisUpdate, template.ThisUpdate) {
-		t.Errorf("resp.ThisUpdate: got %d, want %d", resp.ThisUpdate, template.ThisUpdate)
-	}
+		resp, err := ParseResponse(responseBytes, nil)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if !reflect.DeepEqual(resp.NextUpdate, template.NextUpdate) {
-		t.Errorf("resp.NextUpdate: got %d, want %d", resp.NextUpdate, template.NextUpdate)
-	}
+		if !reflect.DeepEqual(resp.ThisUpdate, template.ThisUpdate) {
+			t.Errorf("resp.ThisUpdate: got %d, want %d", resp.ThisUpdate, template.ThisUpdate)
+		}
 
-	if !reflect.DeepEqual(resp.RevokedAt, template.RevokedAt) {
-		t.Errorf("resp.RevokedAt: got %d, want %d", resp.RevokedAt, template.RevokedAt)
-	}
+		if !reflect.DeepEqual(resp.NextUpdate, template.NextUpdate) {
+			t.Errorf("resp.NextUpdate: got %d, want %d", resp.NextUpdate, template.NextUpdate)
+		}
 
-	if !reflect.DeepEqual(resp.Extensions, template.ExtraExtensions) {
-		t.Errorf("resp.Extensions: got %v, want %v", resp.Extensions, template.ExtraExtensions)
-	}
+		if !reflect.DeepEqual(resp.RevokedAt, template.RevokedAt) {
+			t.Errorf("resp.RevokedAt: got %d, want %d", resp.RevokedAt, template.RevokedAt)
+		}
 
-	if !resp.ProducedAt.Equal(producedAt) {
-		t.Errorf("resp.ProducedAt: got %d, want %d", resp.ProducedAt, producedAt)
-	}
+		if !reflect.DeepEqual(resp.Extensions, template.ExtraExtensions) {
+			t.Errorf("resp.Extensions: got %v, want %v", resp.Extensions, template.ExtraExtensions)
+		}
 
-	if resp.Status != template.Status {
-		t.Errorf("resp.Status: got %d, want %d", resp.Status, template.Status)
-	}
+		if !resp.ProducedAt.Equal(producedAt) {
+			t.Errorf("resp.ProducedAt: got %d, want %d", resp.ProducedAt, producedAt)
+		}
 
-	if resp.SerialNumber.Cmp(template.SerialNumber) != 0 {
-		t.Errorf("resp.SerialNumber: got %x, want %x", resp.SerialNumber, template.SerialNumber)
-	}
+		if resp.Status != template.Status {
+			t.Errorf("resp.Status: got %d, want %d", resp.Status, template.Status)
+		}
 
-	if resp.RevocationReason != template.RevocationReason {
-		t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, template.RevocationReason)
+		if resp.SerialNumber.Cmp(template.SerialNumber) != 0 {
+			t.Errorf("resp.SerialNumber: got %x, want %x", resp.SerialNumber, template.SerialNumber)
+		}
+
+		if resp.RevocationReason != template.RevocationReason {
+			t.Errorf("resp.RevocationReason: got %d, want %d", resp.RevocationReason, template.RevocationReason)
+		}
 	}
 }
 
