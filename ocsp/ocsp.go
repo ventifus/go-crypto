@@ -13,7 +13,6 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/rsa"
-	"crypto/sha1"
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
@@ -355,6 +354,11 @@ type Response struct {
 	Signature          []byte
 	SignatureAlgorithm x509.SignatureAlgorithm
 
+	// IssuerHash is the hash used to compute the IssuerNameHash and IssuerKeyHash.
+	// If not set crypto.SHA1 will be used by default. Valid values are crypto.SHA1,
+	// crypto.SHA256, crypto.SHA384, and crypto.SHA512.
+	IssuerHash crypto.Hash
+
 	// Extensions contains raw X.509 extensions from the singleExtensions field
 	// of the OCSP response. When parsing certificates, this can be used to
 	// extract non-critical extensions that are not parsed by this package. When
@@ -524,6 +528,16 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 
 	ret.SerialNumber = r.CertID.SerialNumber
 
+	for h, oid := range hashOIDs {
+		if r.CertID.HashAlgorithm.Algorithm.Equal(oid) {
+			ret.IssuerHash = h
+			break
+		}
+	}
+	if ret.IssuerHash == crypto.Hash(0) {
+		return nil, ParseError("unsupported issuer hash algorithm")
+	}
+
 	switch {
 	case bool(r.Good):
 		ret.Status = Good
@@ -606,10 +620,10 @@ func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte
 // itself is provided alongside the OCSP response signature.
 //
 // The issuer cert is used to puplate the IssuerNameHash and IssuerKeyHash fields.
-// (SHA-1 is used for the hash function; this is not configurable.)
 //
 // The template is used to populate the SerialNumber, RevocationStatus, RevokedAt,
-// RevocationReason, ThisUpdate, and NextUpdate fields.
+// RevocationReason, ThisUpdate, and NextUpdate fields. If template.IssuerHash is
+// not set SHA1 will be used by default.
 //
 // The ProducedAt date is automatically set to the current date, to the nearest minute.
 func CreateResponse(issuer, responderCert *x509.Certificate, template Response, priv crypto.Signer) ([]byte, error) {
@@ -621,7 +635,15 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		return nil, err
 	}
 
-	h := sha1.New()
+	if template.IssuerHash == 0 {
+		template.IssuerHash = crypto.SHA1
+	}
+	hashOID := getOIDFromHashAlgorithm(template.IssuerHash)
+	if hashOID == nil {
+		return nil, errors.New("unsupported issuer hash algorithm")
+	}
+
+	h := template.IssuerHash.New()
 	h.Write(publicKeyInfo.PublicKey.RightAlign())
 	issuerKeyHash := h.Sum(nil)
 
@@ -632,7 +654,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 	innerResponse := singleResponse{
 		CertID: certID{
 			HashAlgorithm: pkix.AlgorithmIdentifier{
-				Algorithm:  hashOIDs[crypto.SHA1],
+				Algorithm:  hashOID,
 				Parameters: asn1.RawValue{Tag: 5 /* ASN.1 NULL */},
 			},
 			NameHash:      issuerNameHash,
