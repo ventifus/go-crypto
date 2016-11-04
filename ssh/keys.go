@@ -10,7 +10,9 @@ import (
 	"crypto/dsa"
 	"crypto/ecdsa"
 	"crypto/elliptic"
+	"crypto/md5"
 	"crypto/rsa"
+	"crypto/sha256"
 	"crypto/x509"
 	"encoding/asn1"
 	"encoding/base64"
@@ -877,4 +879,30 @@ func parseOpenSSHPrivateKey(key []byte) (*ed25519.PrivateKey, error) {
 	pk := ed25519.PrivateKey(make([]byte, ed25519.PrivateKeySize))
 	copy(pk, pk1.Priv)
 	return &pk, nil
+}
+
+// FingerprintLegacyMD5 returns the user presentation of the key's
+// fingerprint as described by RFC 4716 section 4.
+func FingerprintLegacyMD5(pubKey PublicKey) string {
+	md5sum := md5.Sum(pubKey.Marshal())
+	return rfc4716hex(md5sum[:])
+}
+
+// FingerprintSHA256 returns the user presentation of the key's
+// fingerprint as base64 sha256 hash with the trailing equal sign removed.
+func FingerprintSHA256(pubKey PublicKey) string {
+	hash := sha256.Sum256(pubKey.Marshal())
+	b64hash := base64.StdEncoding.EncodeToString(hash[:])
+	return strings.TrimRight(b64hash, "=")
+}
+
+func rfc4716hex(data []byte) string {
+	var out string
+	for i := 0; i < len(data); i++ {
+		out = fmt.Sprintf("%s%0.2x", out, data[i])
+		if i != len(data)-1 {
+			out = out + ":"
+		}
+	}
+	return out
 }

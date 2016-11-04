@@ -454,3 +454,19 @@ func TestKnownHostsParsing(t *testing.T) {
 		}
 	}
 }
+
+func TestFingerprintLegacyMD5(t *testing.T) {
+	pub, _ := getTestKey()
+	fingerprint := FingerprintLegacyMD5(pub)
+	if fingerprint != "fb:61:6d:1a:e3:f0:95:45:3c:a0:79:be:4a:93:63:66" { // ssh-keygetn -lf -E md5 rsa
+		t.Errorf("got invalid MD5 fingerprint: %s", fingerprint)
+	}
+}
+
+func TestFingerprintSHA256(t *testing.T) {
+	pub, _ := getTestKey()
+	fingerprint := FingerprintSHA256(pub)
+	if fingerprint != "Anr3LjZK8YVpjrxu79myrW9Hrb/wpcMNpVvTq/RcBm8" { // ssh-keygetn -lf rsa
+		t.Errorf("got invalid SHA256 fingerprint: %s", fingerprint)
+	}
+}
