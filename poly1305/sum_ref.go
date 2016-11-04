@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build !amd64,!arm gccgo appengine nacl
+// +build !amd64,!arm,!s390x gccgo appengine nacl s390x,!go1.8
 
 package poly1305
 
