@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b12739d_a419a23b",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-11-07T08:11:58Z",
+      "side": 1,
+      "message": "add reference to appropriate RFC/specification.",
+      "range": {
+        "startLine": 892,
+        "startChar": 18,
+        "endLine": 892,
+        "endChar": 24
+      },
+      "revId": "1face90e2214527f8e7584a77af244319ad3015f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bf9938d_0c17f76b",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-11-07T08:11:58Z",
+      "side": 1,
+      "message": "this is quadratic in the length of the data, and fmt.Sprintf is quite expensive. Can you use strconv.AppendInt() instead?",
+      "range": {
+        "startLine": 902,
+        "startChar": 19,
+        "endLine": 902,
+        "endChar": 22
+      },
+      "revId": "1face90e2214527f8e7584a77af244319ad3015f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b64332d_94b14430",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-11-07T08:11:58Z",
+      "side": 1,
+      "message": "did you check this? I get SHA256: as a prefix.",
+      "range": {
+        "startLine": 469,
+        "startChar": 20,
+        "endLine": 469,
+        "endChar": 46
+      },
+      "revId": "1face90e2214527f8e7584a77af244319ad3015f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
