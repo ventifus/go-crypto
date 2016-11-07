@@ -70,25 +70,34 @@ func TestIterated(t *testing.T) {
 
 var parseTests = []struct {
 	spec, in, out string
+	missingKey    bool
 }{
 	/* Simple with SHA1 */
-	{"0002", "hello", "aaf4c61d"},
+	{"0002", "hello", "aaf4c61d", false},
 	/* Salted with SHA1 */
-	{"01020102030405060708", "hello", "f4f7d67e"},
+	{"01020102030405060708", "hello", "f4f7d67e", false},
 	/* Iterated with SHA1 */
-	{"03020102030405060708f1", "hello", "f2a57b7c"},
+	{"03020102030405060708f1", "hello", "f2a57b7c", false},
+	/* GNU dummy S2K */
+	{"6502474e5501", "", "", true},
 }
 
 func TestParse(t *testing.T) {
 	for i, test := range parseTests {
 		spec, _ := hex.DecodeString(test.spec)
 		buf := bytes.NewBuffer(spec)
-		f, err := Parse(buf)
+		f, missingKey, err := Parse(buf)
 		if err != nil {
 			t.Errorf("%d: Parse returned error: %s", i, err)
 			continue
 		}
-
+		if test.missingKey != missingKey {
+			t.Errorf("%d: missingKey should be %t, but got the opposite", i, test.missingKey)
+			continue
+		}
+		if missingKey {
+			continue
+		}
 		expected, _ := hex.DecodeString(test.out)
 		out := make([]byte, len(expected))
 		f(out, []byte(test.in))
@@ -124,7 +133,7 @@ func testSerializeConfig(t *testing.T, c *Config) {
 		return
 	}
 
-	f, err := Parse(buf)
+	f, _, err := Parse(buf)
 	if err != nil {
 		t.Errorf("failed to reparse: %s", err)
 		return

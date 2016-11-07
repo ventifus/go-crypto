@@ -28,6 +28,7 @@ import (
 type PrivateKey struct {
 	PublicKey
 	Encrypted     bool // if true then the private key is unavailable until Decrypt has been called.
+	Stub          bool // indicates that the private key is a stub. This is a GNU extension.
 	encryptedData []byte
 	cipher        CipherFunction
 	s2k           func(out, in []byte)
@@ -104,11 +105,15 @@ func (pk *PrivateKey) parse(r io.Reader) (err error) {
 			return
 		}
 		pk.cipher = CipherFunction(buf[0])
-		pk.Encrypted = true
-		pk.s2k, err = s2k.Parse(r)
-		if err != nil {
+		var missingKey bool
+		if pk.s2k, missingKey, err = s2k.Parse(r); err != nil {
 			return
 		}
+		if missingKey {
+			pk.Stub = true
+			return
+		}
+		pk.Encrypted = true
 		if s2kType == 254 {
 			pk.sha1Checksum = true
 		}
@@ -233,7 +238,10 @@ func serializeECDSAPrivateKey(w io.Writer, priv *ecdsa.PrivateKey) error {
 
 // Decrypt decrypts an encrypted private key using a passphrase.
 func (pk *PrivateKey) Decrypt(passphrase []byte) error {
-	if !pk.Encrypted {
+	if pk.Stub {
+		return errors.ErrStubPrivateKey
+	}
+	if !pk.Encrypted || pk.s2k == nil {
 		return nil
 	}
 
