@@ -151,9 +151,13 @@ func Iterated(out []byte, h hash.Hash, in []byte, salt []byte, count int) {
 	}
 }
 
-// Parse reads a binary specification for a string-to-key transformation from r
-// and returns a function which performs that transform.
-func Parse(r io.Reader) (f func(out, in []byte), err error) {
+// Parse reads a binary specification for a string-to-key transformation from r.
+// It returns either:
+//   nil, false, err — on error.
+//   nil, true, nil  — if the S2K is a special GNU extension that indicates that
+//                     the private key is missing.
+//   f, false, nil   — f is a function that performs the S2K transformation.
+func Parse(r io.Reader) (f func(out, in []byte), keyIsMissing bool, err error) {
 	var buf [9]byte
 
 	_, err = io.ReadFull(r, buf[:2])
@@ -161,12 +165,24 @@ func Parse(r io.Reader) (f func(out, in []byte), err error) {
 		return
 	}
 
+	if buf[0] == 101 {
+		// This is a GNU extension. See
+		// https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=blob;f=doc/DETAILS;h=fe55ae16ab4e26d8356dc574c9e8bc935e71aef1;hb=23191d7851eae2217ecdac6484349849a24fd94a#l1109
+		if _, err = io.ReadFull(r, buf[:4]); err != nil {
+			return nil, false, err
+		}
+		if buf[0] == 'G' && buf[1] == 'N' && buf[2] == 'U' && buf[3] == 1 {
+			return nil, true, nil
+		}
+		return nil, false, errors.UnsupportedError("GNU S2K extension")
+	}
+
 	hash, ok := HashIdToHash(buf[1])
 	if !ok {
-		return nil, errors.UnsupportedError("hash for S2K function: " + strconv.Itoa(int(buf[1])))
+		return nil, false, errors.UnsupportedError("hash for S2K function: " + strconv.Itoa(int(buf[1])))
 	}
 	if !hash.Available() {
-		return nil, errors.UnsupportedError("hash not available: " + strconv.Itoa(int(hash)))
+		return nil, false, errors.UnsupportedError("hash not available: " + strconv.Itoa(int(hash)))
 	}
 	h := hash.New()
 
@@ -175,7 +191,7 @@ func Parse(r io.Reader) (f func(out, in []byte), err error) {
 		f := func(out, in []byte) {
 			Simple(out, h, in)
 		}
-		return f, nil
+		return f, false, nil
 	case 1:
 		_, err = io.ReadFull(r, buf[:8])
 		if err != nil {
@@ -184,7 +200,7 @@ func Parse(r io.Reader) (f func(out, in []byte), err error) {
 		f := func(out, in []byte) {
 			Salted(out, h, in, buf[:8])
 		}
-		return f, nil
+		return f, false, nil
 	case 3:
 		_, err = io.ReadFull(r, buf[:9])
 		if err != nil {
@@ -194,10 +210,10 @@ func Parse(r io.Reader) (f func(out, in []byte), err error) {
 		f := func(out, in []byte) {
 			Iterated(out, h, in, buf[:8], count)
 		}
-		return f, nil
+		return f, false, nil
 	}
 
-	return nil, errors.UnsupportedError("S2K function")
+	return nil, false, errors.UnsupportedError("S2K function")
 }
 
 // Serialize salts and stretches the given passphrase and writes the
