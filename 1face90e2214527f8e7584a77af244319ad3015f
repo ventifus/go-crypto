@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6b3ccff2_7f9bafac",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 9722
+      },
+      "writtenOn": "2016-11-07T14:56:07Z",
+      "side": 1,
+      "message": "Thank you for the review.\n\nI\u0027m confused now.\n\nI couldn\u0027t find any RFC/Specification for this base64 encoded SHA256 hash format.\nThis format originaly from OpenSSH 6.8.\nhttp://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/sshkey.c.diff?r1\u003d1.6\u0026r2\u003d1.7\u0026f\u003dh\n\nAs you said, the OpenSSH\u0027s format has \"SHA256:\" prefix and trim a trailing \"\u003d\".\n\nOn the other hand, Twisted Conch has fingerprint method for public key and their format is different from the format of OpenSSH.\nhttps://github.com/twisted/twisted/blob/twisted-16.5.0/src/twisted/conch/ssh/keys.py#L813-L851\nTheir format doesn\u0027t have \"SHA256:\" prefix and doesn\u0027t trim a trailing \"\u003d\".\n\nShould we follow the OpenSSH format? And if so, what should we add as reference for this function?\n\nThanks!",
+      "parentUuid": "0b12739d_a419a23b",
+      "range": {
+        "startLine": 892,
+        "startChar": 18,
+        "endLine": 892,
+        "endChar": 24
+      },
+      "revId": "1face90e2214527f8e7584a77af244319ad3015f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0bf9938d_0c17f76b",
         "filename": "ssh/keys.go",
         "patchSetId": 1
