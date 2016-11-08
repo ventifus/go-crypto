@@ -79,6 +79,26 @@ type keyEnvelopePair struct {
 	encryptedKey *packet.EncryptedKey
 }
 
+// decryptPacketPrivateKey try to decrypt an encrypted packet using a private key
+func decryptPacketPrivateKey(k Key, encryptedKey *packet.EncryptedKey, se *packet.SymmetricallyEncrypted, md *MessageDetails, config *packet.Config) (io.ReadCloser, error) {
+	if len(encryptedKey.Key) == 0 {
+		encryptedKey.Decrypt(k.PrivateKey, config)
+		// handle error ?
+	}
+	if len(encryptedKey.Key) == 0 {
+		return nil, nil
+	}
+	decrypted, err := se.Decrypt(encryptedKey.CipherFunc, encryptedKey.Key)
+	if err != nil && err != errors.ErrKeyIncorrect {
+		return nil, err
+	}
+	if decrypted != nil {
+		md.DecryptedWith = k
+		return decrypted, nil
+	}
+	return nil, errors.ErrKeyIncorrect
+}
+
 // ReadMessage parses an OpenPGP message that may be signed and/or encrypted.
 // The given KeyRing should contain both public keys (for signature
 // verification) and, possibly encrypted, private keys for decrypting.
@@ -157,18 +177,11 @@ FindKey:
 				continue
 			}
 			if !pk.key.PrivateKey.Encrypted {
-				if len(pk.encryptedKey.Key) == 0 {
-					pk.encryptedKey.Decrypt(pk.key.PrivateKey, config)
-				}
-				if len(pk.encryptedKey.Key) == 0 {
-					continue
-				}
-				decrypted, err = se.Decrypt(pk.encryptedKey.CipherFunc, pk.encryptedKey.Key)
-				if err != nil && err != errors.ErrKeyIncorrect {
-					return nil, err
-				}
-				if decrypted != nil {
-					md.DecryptedWith = pk.key
+				if decrypted, err = decryptPacketPrivateKey(pk.key, pk.encryptedKey, se, md, config); err != nil {
+					if err != errors.ErrKeyIncorrect {
+						return nil, err
+					}
+				} else {
 					break FindKey
 				}
 			} else {
@@ -194,8 +207,12 @@ FindKey:
 			return nil, err
 		}
 
+		if passphrase == nil {
+			continue
+		}
+
 		// Try the symmetric passphrase first
-		if len(symKeys) != 0 && passphrase != nil {
+		if len(symKeys) != 0 {
 			for _, s := range symKeys {
 				key, cipherFunc, err := s.Decrypt(passphrase)
 				if err == nil {
@@ -208,6 +225,27 @@ FindKey:
 					}
 				}
 
+			}
+		}
+
+		// Then try to decrypt private key and decrypt packet with it
+		if len(candidates) != 0 {
+			for _, candidate := range candidates {
+				if err = candidate.PrivateKey.Decrypt(passphrase); err != nil {
+					// can't decrypt private key, do not use it
+					continue
+				}
+				for _, pk := range pubKeys {
+					if pk.key.PrivateKey.KeyId == candidate.PrivateKey.KeyId {
+						if decrypted, err = decryptPacketPrivateKey(candidate, pk.encryptedKey, se, md, config); err != nil {
+							if err != errors.ErrKeyIncorrect {
+								return nil, err
+							}
+						} else {
+							break FindKey
+						}
+					}
+				}
 			}
 		}
 	}

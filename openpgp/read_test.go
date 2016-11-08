@@ -478,6 +478,60 @@ func TestSignatureV3Message(t *testing.T) {
 	return
 }
 
+func TestEncryptionCryptedPrivateKey(t *testing.T) {
+	prompt := func(keys []Key, symmetric bool) ([]byte, error) {
+		return []byte("passphrase"), nil
+	}
+	const message = "testing"
+	var encryptedPrivateKeys int
+	for i, test := range testEncryptionTests {
+		kring, _ := ReadKeyRing(readerFromHex(test.keyRingHex))
+		for _, entity := range kring {
+			if entity.PrivateKey != nil && entity.PrivateKey.Encrypted {
+				encryptedPrivateKeys++
+				break
+			}
+		}
+
+		buf := new(bytes.Buffer)
+		w, err := Encrypt(buf, kring[:1], nil, nil, nil)
+		if err != nil {
+			t.Errorf("#%d: error in Encrypt: %s", i, err)
+			continue
+		}
+
+		_, err = w.Write([]byte(message))
+		if err != nil {
+			t.Errorf("#%d: error writing plaintext: %s", i, err)
+			continue
+		}
+		err = w.Close()
+		if err != nil {
+			t.Errorf("#%d: error closing WriteCloser: %s", i, err)
+			continue
+		}
+
+		md, err := ReadMessage(buf, kring, prompt, nil)
+		if err != nil {
+			t.Errorf("#%d: error reading message: %s", i, err)
+			continue
+		}
+
+		plaintext, err := ioutil.ReadAll(md.UnverifiedBody)
+		if err != nil {
+			t.Errorf("#%d: error reading encrypted contents: %s", i, err)
+			continue
+		}
+
+		if string(plaintext) != message {
+			t.Errorf("#%d: got: %s, want: %s", i, string(plaintext), message)
+		}
+	}
+	if encryptedPrivateKeys == 0 {
+		t.Error("Couldn't test any private key password protected")
+	}
+}
+
 const testKey1KeyId = 0xA34D7E18C20C31BB
 const testKey3KeyId = 0x338934250CCC0360
 const testKeyP256KeyId = 0xd44a2c495918513e
