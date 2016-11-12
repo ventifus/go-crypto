@@ -352,6 +352,23 @@
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b8e57b3_5fb55d19",
+        "filename": "ssh/terminal/util.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-11-12T07:53:03Z",
+      "side": 1,
+      "message": "Could we use bufio like this:\n\nbuf :\u003d bufio.NewReader(fd)\nb, _, err :\u003d bufio.ReadLine()\nreturn b, err",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
