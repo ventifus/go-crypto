@@ -369,6 +369,24 @@
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b2f6f71_879ec6ec",
+        "filename": "ssh/terminal/util.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-11-13T03:44:27Z",
+      "side": 1,
+      "message": "I do not see how what you propose is possible, because bufio.NewReader input parameter has to be io.Reader, but fd is int (it is not io.Reader).",
+      "parentUuid": "2b8e57b3_5fb55d19",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
