@@ -387,6 +387,24 @@
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b8e57b3_a599f061",
+        "filename": "ssh/terminal/util.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-11-14T07:08:25Z",
+      "side": 1,
+      "message": "Gotcha, thanks for the correction. I meant to say:\nbuf :\u003d bufio.NewReader(passwordReader(fd))\nb, _, err :\u003d buf.ReadLine()\nreturn b, err",
+      "parentUuid": "6b2f6f71_879ec6ec",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
