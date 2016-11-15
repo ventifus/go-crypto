@@ -405,6 +405,24 @@
       "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500a5c5e_0ffb6559",
+        "filename": "ssh/terminal/util.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2016-11-15T09:12:45Z",
+      "side": 1,
+      "message": "Why would you think readPasswordLine can be replaced with  buf.ReadLine? You can try it yourself, and see if tests pass.",
+      "parentUuid": "2b8e57b3_a599f061",
+      "revId": "3a3814266fc85474cb874de4068f5561bfed5596",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
