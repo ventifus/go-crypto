@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "30b088be_9bd7bfaa",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 9722
+      },
+      "writtenOn": "2016-11-15T03:10:51Z",
+      "side": 1,
+      "message": "I\u0027ve updated to use a range loop in latest change.\nThanks!",
+      "parentUuid": "2b8e57b3_a5d570ce",
+      "revId": "7b9efa31f3d7440aa94b3d57845e35193b76a2e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b8e57b3_c5d27ce4",
         "filename": "ssh/keys.go",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "30b088be_fb8833b3",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 9722
+      },
+      "writtenOn": "2016-11-15T03:10:51Z",
+      "side": 1,
+      "message": "I\u0027ve asked about this format in OpenSSH mailing list and confirmed they use unpadded base64 encoding for this format.\n\nPlease refer the thread from here:\nhttp://lists.mindrot.org/pipermail/openssh-unix-dev/2016-November/035484.html\n\nSo I\u0027ve changed to use base64.RawStdEncoding instead of  base64.StdEncoding and updated the document here.",
+      "parentUuid": "2b8e57b3_c5d27ce4",
+      "range": {
+        "startLine": 898,
+        "startChar": 46,
+        "endLine": 898,
+        "endChar": 54
+      },
+      "revId": "7b9efa31f3d7440aa94b3d57845e35193b76a2e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b8e57b3_e507788b",
         "filename": "ssh/keys_test.go",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2016-11-13T18:02:46Z",
       "side": 1,
       "message": "print both of them, eg.\n\nif want :\u003d \"...\"; want !- fingerprint {\n\n  errorf(\"got fingerprint %q want %q\" ..",
+      "range": {
+        "startLine": 462,
+        "startChar": 16,
+        "endLine": 462,
+        "endChar": 23
+      },
+      "revId": "7b9efa31f3d7440aa94b3d57845e35193b76a2e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30b088be_9b857f9a",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 9722
+      },
+      "writtenOn": "2016-11-15T03:10:51Z",
+      "side": 1,
+      "message": "I\u0027ve changed here to print both of them.\nThanks!",
+      "parentUuid": "2b8e57b3_e507788b",
       "range": {
         "startLine": 462,
         "startChar": 16,
