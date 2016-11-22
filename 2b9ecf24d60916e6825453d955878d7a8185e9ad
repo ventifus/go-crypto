@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d0c80c9b_59532330",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2016-11-22T13:50:25Z",
+      "side": 1,
+      "message": "why would you use strings.Join to join 2 strings? The \u0027+\u0027 operator is shorter and more efficient.",
+      "parentUuid": "b010f8cf_357f4956",
+      "range": {
+        "startLine": 904,
+        "startChar": 23,
+        "endLine": 904,
+        "endChar": 29
+      },
+      "revId": "2b9ecf24d60916e6825453d955878d7a8185e9ad",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30496802_bedc7932",
         "filename": "ssh/keys_test.go",
         "patchSetId": 3
