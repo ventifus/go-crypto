@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d8afbd9_1605ca31",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-11-28T23:13:20Z",
+      "side": 1,
+      "message": "This breaks code using the old signature.\n\nIt\u0027s probably best to create a new function instead, and then this one could be a wrapper for the new one.\n\nBut 5 arguments is getting a bit unwieldy. Are any optional?",
+      "revId": "6b759d13a8e5c72051d0c7dbd1766e085301829a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}

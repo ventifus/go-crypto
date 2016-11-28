@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d8afbd9_d60e8253",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-11-28T23:13:20Z",
+      "side": 0,
+      "message": "document valid values of hash?",
+      "revId": "ca7e7f10cb9fd9c1a6ff7f60436c086d73714180",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
