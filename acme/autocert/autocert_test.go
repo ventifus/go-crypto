@@ -108,7 +108,15 @@ func decodePayload(v interface{}, r io.Reader) error {
 }
 
 func TestGetCertificate(t *testing.T) {
-	const domain = "example.org"
+	testGetCertificate(t, false)
+}
+
+func TestGetCertificate_trailingDot(t *testing.T) {
+	testGetCertificate(t, true)
+}
+
+func testGetCertificate(t *testing.T, trailingDot bool) {
+	domain := "example.org"
 	man := &Manager{Prompt: AcceptTOS}
 	defer man.stopRenew()
 
@@ -167,6 +175,9 @@ func TestGetCertificate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("new-cert: CSR: %v", err)
 			}
+			if csr.Subject.CommonName != domain {
+				t.Errorf("CommonName in CSR = %q; want %q", csr.Subject.CommonName, domain)
+			}
 			der, err := dummyCert(csr.PublicKey, domain)
 			if err != nil {
 				t.Fatalf("new-cert: dummyCert: %v", err)
@@ -202,6 +213,10 @@ func TestGetCertificate(t *testing.T) {
 	var tlscert *tls.Certificate
 	done := make(chan struct{})
 	go func() {
+		domain := domain
+		if trailingDot {
+			domain += "."
+		}
 		hello := &tls.ClientHelloInfo{ServerName: domain}
 		tlscert, err = man.GetCertificate(hello)
 		close(done)
