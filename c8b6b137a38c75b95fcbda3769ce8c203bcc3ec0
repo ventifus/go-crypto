@@ -16,6 +16,24 @@
       "revId": "c8b6b137a38c75b95fcbda3769ce8c203bcc3ec0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "702a0062_f020fb63",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-11-30T18:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d82efcd_b6398802",
+      "revId": "c8b6b137a38c75b95fcbda3769ce8c203bcc3ec0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
