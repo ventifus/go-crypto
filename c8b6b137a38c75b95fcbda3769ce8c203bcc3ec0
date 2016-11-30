@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d82efcd_b6398802",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2016-11-30T18:12:58Z",
+      "side": 1,
+      "message": "idk if this matters but could we just pass in the domain as an argument to the goroutine, to avoid surprises later on:\ngo func(serverName string) {\n      if trailingDot {\n            serverName +\u003d \".\"\n      }\n      hello :\u003d \u0026tls.ClientHelloInfo{ServerName: serverName}\n      ...\n}(domain)\n\nand we can keep const domain at the beginning of the function.",
+      "revId": "c8b6b137a38c75b95fcbda3769ce8c203bcc3ec0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
