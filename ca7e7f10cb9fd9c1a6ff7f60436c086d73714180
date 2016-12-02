@@ -16,6 +16,23 @@
       "revId": "ca7e7f10cb9fd9c1a6ff7f60436c086d73714180",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_be399e94",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 0,
+      "message": "You still need to import it so it\u0027s linked into the binary.\n\n   _ \"crypto/sha1\"\n\nOtherwise https://golang.org/pkg/crypto/#Hash.Available could return false and you couldn\u0027t instantiate one.\n\nThere\u0027s an argument you only need to do that for sha1, but I\u0027d just do that to all the types valid here.",
+      "revId": "ca7e7f10cb9fd9c1a6ff7f60436c086d73714180",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

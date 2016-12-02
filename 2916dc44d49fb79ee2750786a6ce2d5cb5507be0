@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adffbf6a_fe3326b0",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "// Valid values are ...\n// If zero, the default is crypto.SHA1.",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_5ef6b2ba",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "\u003d\u003d 0",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_3efbeea0",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "not set,\n\nand drop \"by default\" (redundant).\n\nAnd start \"If\" on its own line.",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_9e001ab6",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "this can panic if the hash isn\u0027t linked in. Another reason to link the ones you expect to read.",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_3ee48ef5",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "what is 100? Comment or named constant.\n\n   const someHashType \u003d 100  // fake\n\nAlso, don\u0027t need crypto.Hash(...)",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_9ed93a44",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "just 0 again",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_9ece5a6f",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "these don\u0027t fail nicely. See https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures\n\nIn particular, there\u0027s no context: which hashAlg were we on when it failed?\n\nYou could use subtests (my preference), so the context is in the subtest name, but you\u0027d need to make this test file have tag +build go1.7 so they don\u0027t fail on the Go 1.6 builders which don\u0027t have subtest support.",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_1e142af6",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T04:11:02Z",
+      "side": 1,
+      "message": "\u003d\u003d 0",
+      "revId": "2916dc44d49fb79ee2750786a6ce2d5cb5507be0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
