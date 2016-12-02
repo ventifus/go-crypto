@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adffbf6a_63983a57",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T06:06:59Z",
+      "side": 1,
+      "message": "fmt.Errorf and say which one?",
+      "revId": "78804d18fd25790d819dbfd975a6c957437c6105",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_83939e3c",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T06:06:59Z",
+      "side": 1,
+      "message": "you should still probably check IsAvailable() before calling New(), so you can return a nice error instead of exploding?\n\nthoughts?",
+      "revId": "78804d18fd25790d819dbfd975a6c957437c6105",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adffbf6a_a3922234",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-02T06:06:59Z",
+      "side": 1,
+      "message": "you still have like 9 error lines without context.\n\nSo I\u0027d do the subtest thing.",
+      "revId": "78804d18fd25790d819dbfd975a6c957437c6105",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
