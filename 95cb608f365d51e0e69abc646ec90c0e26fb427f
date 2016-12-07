@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd24f349_86436f7f",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-07T22:28:21Z",
+      "side": 1,
+      "message": "got :\u003d buf.String()",
+      "revId": "95cb608f365d51e0e69abc646ec90c0e26fb427f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd24f349_463d57ec",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-07T22:28:21Z",
+      "side": 1,
+      "message": "want",
+      "revId": "95cb608f365d51e0e69abc646ec90c0e26fb427f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
