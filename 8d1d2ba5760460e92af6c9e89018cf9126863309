@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd24f349_2ec4ad51",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-08T16:56:58Z",
+      "side": 1,
+      "message": "even without a test, why not:\n\n   if !template.IssuerHash.Available() {\n       return nil, fmt.Errorf(\"issuer hash algorithm %v not linked into binary\", template.IssuerHash)\n   }\n   h :\u003d template.IssuerHash.New()",
+      "revId": "8d1d2ba5760460e92af6c9e89018cf9126863309",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
