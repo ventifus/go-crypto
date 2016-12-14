@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a756307_5d7df658",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-12-14T22:36:09Z",
+      "side": 1,
+      "message": "CHOICE.\n\n(And wrap comments at 80 chars.)",
+      "range": {
+        "startLine": 500,
+        "startChar": 91,
+        "endLine": 500,
+        "endChar": 96
+      },
+      "revId": "8e2122fcaa7ee1bc7b584e328a61b4fade60894e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a756307_bd16ea0c",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-12-14T22:36:09Z",
+      "side": 1,
+      "message": "\"neither responder name nor key hash present\"",
+      "range": {
+        "startLine": 501,
+        "startChar": 26,
+        "endLine": 501,
+        "endChar": 68
+      },
+      "revId": "8e2122fcaa7ee1bc7b584e328a61b4fade60894e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a756307_5de176e5",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2016-12-14T22:36:09Z",
+      "side": 1,
+      "message": "This is unfortunate because we shouldn\u0027t round-trip via a pkix.Name. You might need to duplicate the responseData in order to have a RawResponderName in a version for serialisation, or else just have the RawResponderName and parse the RDNs from it after asn1.Unmarshal.",
+      "revId": "8e2122fcaa7ee1bc7b584e328a61b4fade60894e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
