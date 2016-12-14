@@ -113,12 +113,12 @@ type basicResponse struct {
 }
 
 type responseData struct {
-	Raw              asn1.RawContent
-	Version          int           `asn1:"optional,default:0,explicit,tag:0"`
-	RawResponderName asn1.RawValue `asn1:"optional,explicit,tag:1"`
-	KeyHash          []byte        `asn1:"optional,explicit,tag:2"`
-	ProducedAt       time.Time     `asn1:"generalized"`
-	Responses        []singleResponse
+	Raw           asn1.RawContent
+	Version       int              `asn1:"optional,default:0,explicit,tag:0"`
+	ResponderName pkix.RDNSequence `asn1:"optional,explicit,tag:1"`
+	KeyHash       []byte           `asn1:"optional,explicit,tag:2"`
+	ProducedAt    time.Time        `asn1:"generalized"`
+	Responses     []singleResponse
 }
 
 type singleResponse struct {
@@ -355,6 +355,12 @@ type Response struct {
 	Signature          []byte
 	SignatureAlgorithm x509.SignatureAlgorithm
 
+	// ResponderName may contain the name of the signer certificate.
+	ResponderName pkix.Name
+	// ResponderKeyHash may contain the SHA-1 hash of the signer certificate
+	// public key.
+	ResponderKeyHash []byte
+
 	// Extensions contains raw X.509 extensions from the singleExtensions field
 	// of the OCSP response. When parsing certificates, this can be used to
 	// extract non-critical extensions that are not parsed by this package. When
@@ -484,6 +490,16 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 		TBSResponseData:    basicResp.TBSResponseData.Raw,
 		Signature:          basicResp.Signature.RightAlign(),
 		SignatureAlgorithm: getSignatureAlgorithmFromOID(basicResp.SignatureAlgorithm.Algorithm),
+	}
+
+	if len(basicResp.TBSResponseData.ResponderName) > 0 {
+		ret.ResponderName.FillFromRDNSequence(&basicResp.TBSResponseData.ResponderName)
+	} else if len(basicResp.TBSResponseData.KeyHash) > 0 {
+		ret.ResponderKeyHash = basicResp.TBSResponseData.KeyHash
+	} else {
+		// This is really an unmarshaling error but this is hidden by asn1's
+		// missing support for CHOICE.
+		return nil, ParseError("neither responder name nor key hash present")
 	}
 
 	if len(basicResp.Certificates) > 0 {
@@ -656,17 +672,11 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		}
 	}
 
-	responderName := asn1.RawValue{
-		Class:      2, // context-specific
-		Tag:        1, // explicit tag
-		IsCompound: true,
-		Bytes:      responderCert.RawSubject,
-	}
 	tbsResponseData := responseData{
-		Version:          0,
-		RawResponderName: responderName,
-		ProducedAt:       time.Now().Truncate(time.Minute).UTC(),
-		Responses:        []singleResponse{innerResponse},
+		Version:       0,
+		ResponderName: responderCert.Subject.ToRDNSequence(),
+		ProducedAt:    time.Now().Truncate(time.Minute).UTC(),
+		Responses:     []singleResponse{innerResponse},
 	}
 
 	tbsResponseDataDER, err := asn1.Marshal(tbsResponseData)
