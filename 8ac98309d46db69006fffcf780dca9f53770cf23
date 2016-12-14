@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba837754_d2684467",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-12-14T18:31:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a756307_3ac20598",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a756307_ba5b553d",
         "filename": "blake2b/blake2bAVX2_amd64.s",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-12-14T17:10:56Z",
       "side": 1,
       "message": "This should probably be Vpinsrq, to avoid avx-sse transition penalty",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a149fd4_f8945122",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-12-14T18:31:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a756307_ba5b553d",
       "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a887374_f16d4874",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-12-14T18:31:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a756307_9a53f92d",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a756307_5a3a61da",
         "filename": "blake2b/blake2bAVX2_amd64.s",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2016-12-14T17:10:56Z",
       "side": 1,
       "message": "We have runtime·support_avx, so do the same thing as in supportAVX2()?",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da24ab49_f36d5074",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2016-12-14T18:31:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a756307_5a3a61da",
       "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
