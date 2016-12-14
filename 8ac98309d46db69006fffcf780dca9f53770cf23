@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a756307_3ac20598",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-12-14T17:10:56Z",
+      "side": 1,
+      "message": "Benchmarks vs AVX2 and vs SSE4.1 versions?",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a756307_ba5b553d",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-12-14T17:10:56Z",
+      "side": 1,
+      "message": "This should probably be Vpinsrq, to avoid avx-sse transition penalty",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a756307_9a53f92d",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-12-14T17:10:56Z",
+      "side": 1,
+      "message": "VZEROUPPER",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a756307_5a3a61da",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2016-12-14T17:10:56Z",
+      "side": 1,
+      "message": "We have runtime·support_avx, so do the same thing as in supportAVX2()?",
+      "revId": "8ac98309d46db69006fffcf780dca9f53770cf23",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
