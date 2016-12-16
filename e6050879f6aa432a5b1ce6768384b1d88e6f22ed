@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5073f1_5aef4440",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-16T22:36:29Z",
+      "side": 1,
+      "message": "Fixes golang/go#18357",
+      "revId": "e6050879f6aa432a5b1ce6768384b1d88e6f22ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5073f1_ba3f50ca",
+        "filename": "acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-16T22:36:29Z",
+      "side": 1,
+      "message": "Why don\u0027t you add a table-driven test for this jwsHasher function in jws_test.go?\n\nhttps://github.com/golang/go/wiki/TableDrivenTests",
+      "revId": "e6050879f6aa432a5b1ce6768384b1d88e6f22ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
