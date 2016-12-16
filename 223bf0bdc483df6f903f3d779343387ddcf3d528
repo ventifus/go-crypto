@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5073f1_45b20a97",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-16T16:09:25Z",
+      "side": 1,
+      "message": "// ForceRSA makes the Manager generate\n// certificates with 2048-bit RSA keys.\n//\n// If false, a default is used. Currently the default\n// is EC-based keys using the P-256 curve.",
+      "revId": "223bf0bdc483df6f903f3d779343387ddcf3d528",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
