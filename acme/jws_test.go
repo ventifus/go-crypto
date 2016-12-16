@@ -58,19 +58,44 @@ AwEHoUQDQgAE5lhEug5xK4xBDZ2nAbaxLtaLiv85bxJ7ePd1dkO23HThqIrvawF5
 QAaS/RNouybCiRhRjI3EaxLkQwgrCw0gqQ==
 -----END EC PRIVATE KEY-----
 `
+	// openssl ecparam -name secp384r1 -genkey -noout
+	testKeyECPEM384 = `
+-----BEGIN EC PRIVATE KEY-----
+MIGkAgEBBDAQ4lNtXRORWr1bgKR1CGysr9AJ9SyEk4jiVnlUWWUChmSNL+i9SLSD
+Oe/naPqXJ6CgBwYFK4EEACKhZANiAAQzKtj+Ms0vHoTX5dzv3/L5YMXOWuI5UKRj
+JigpahYCqXD2BA1j0E/2xt5vlPf+gm0PL+UHSQsCokGnIGuaHCsJAp3ry0gHQEke
+WYXapUUFdvaK1R2/2hn5O+eiQM8YzCg=
+-----END EC PRIVATE KEY-----
+`
+	testKeyECPEM512 = `
+-----BEGIN EC PRIVATE KEY-----
+MIHcAgEBBEIBSNZKFcWzXzB/aJClAb305ibalKgtDA7+70eEkdPt28/3LZMM935Z
+KqYHh/COcxuu3Kt8azRAUz3gyr4zZKhlKUSgBwYFK4EEACOhgYkDgYYABAHUNKbx
+7JwC7H6pa2sV0tERWhHhB3JmW+OP6SUgMWryvIKajlx73eS24dy4QPGrWO9/ABsD
+FqcRSkNVTXnIv6+0mAF25knqIBIg5Q8M9BnOu9GGAchcwt3O7RDHmqewnJJDrbjd
+GGnm6rb+NnWR9DIopM0nKNkToWoF/hzopxu4Ae/GsQ==
+-----END EC PRIVATE KEY-----
+`
 	// 1. opnessl ec -in key.pem -noout -text
 	// 2. remove first byte, 04 (the header); the rest is X and Y
-	// 3. covert each with: echo <val> | xxd -r -p | base64 | tr -d '=' | tr '/+' '_-'
-	testKeyECPubX = "5lhEug5xK4xBDZ2nAbaxLtaLiv85bxJ7ePd1dkO23HQ"
-	testKeyECPubY = "4aiK72sBeUAGkv0TaLsmwokYUYyNxGsS5EMIKwsNIKk"
+	// 3. covert each with: echo <val> | xxd -r -p | base64 -w 100 | tr -d '=' | tr '/+' '_-'
+	testKeyECPubX    = "5lhEug5xK4xBDZ2nAbaxLtaLiv85bxJ7ePd1dkO23HQ"
+	testKeyECPubY    = "4aiK72sBeUAGkv0TaLsmwokYUYyNxGsS5EMIKwsNIKk"
+	testKeyEC384PubX = "MyrY_jLNLx6E1-Xc79_y-WDFzlriOVCkYyYoKWoWAqlw9gQNY9BP9sbeb5T3_oJt"
+	testKeyEC384PubY = "Dy_lB0kLAqJBpyBrmhwrCQKd68tIB0BJHlmF2qVFBXb2itUdv9oZ-TvnokDPGMwo"
+	testKeyEC512PubX = "AdQ0pvHsnALsfqlraxXS0RFaEeEHcmZb44_pJSAxavK8gpqOXHvd5Lbh3LhA8atY738AGwMWpxFKQ1VNeci_r7SY"
+	testKeyEC512PubY = "AXbmSeogEiDlDwz0Gc670YYByFzC3c7tEMeap7CckkOtuN0Yaebqtv42dZH0MiikzSco2ROhagX-HOinG7gB78ax"
+
 	// echo -n '{"crv":"P-256","kty":"EC","x":"<testKeyECPubX>","y":"<testKeyECPubY>"}' | \
 	// openssl dgst -binary -sha256 | base64 | tr -d '=' | tr '/+' '_-'
 	testKeyECThumbprint = "zedj-Bd1Zshp8KLePv2MB-lJ_Hagp7wAwdkA0NUTniU"
 )
 
 var (
-	testKey   *rsa.PrivateKey
-	testKeyEC *ecdsa.PrivateKey
+	testKey      *rsa.PrivateKey
+	testKeyEC    *ecdsa.PrivateKey
+	testKeyEC384 *ecdsa.PrivateKey
+	testKeyEC512 *ecdsa.PrivateKey
 )
 
 func init() {
@@ -88,6 +113,22 @@ func init() {
 		panic("no block found in testKeyECPEM")
 	}
 	testKeyEC, err = x509.ParseECPrivateKey(d.Bytes)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if d, _ = pem.Decode([]byte(testKeyECPEM384)); d == nil {
+		panic("no block found in testKeyECPEM384")
+	}
+	testKeyEC384, err = x509.ParseECPrivateKey(d.Bytes)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if d, _ = pem.Decode([]byte(testKeyECPEM512)); d == nil {
+		panic("no block found in testKeyECPEM512")
+	}
+	testKeyEC512, err = x509.ParseECPrivateKey(d.Bytes)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -140,10 +181,10 @@ func TestJWSEncodeJSON(t *testing.T) {
 	}
 }
 
-func TestJWSEncodeJSONEC(t *testing.T) {
+func testJWSEncodeJSONECWithKey(t *testing.T, key *ecdsa.PrivateKey, pubX, pubY, alg, crv string) {
 	claims := struct{ Msg string }{"Hello JWS"}
 
-	b, err := jwsEncodeJSON(claims, testKeyEC, "nonce")
+	b, err := jwsEncodeJSON(claims, key, "nonce")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -168,24 +209,36 @@ func TestJWSEncodeJSONEC(t *testing.T) {
 	if err := json.Unmarshal(b, &head); err != nil {
 		t.Fatalf("jws.Protected: %v", err)
 	}
-	if head.Alg != "ES256" {
-		t.Errorf("head.Alg = %q; want ES256", head.Alg)
+	if head.Alg != alg {
+		t.Errorf("head.Alg = %q; want %q", head.Alg, alg)
 	}
 	if head.Nonce != "nonce" {
 		t.Errorf("head.Nonce = %q; want nonce", head.Nonce)
 	}
-	if head.JWK.Crv != "P-256" {
-		t.Errorf("head.JWK.Crv = %q; want P-256", head.JWK.Crv)
+	if head.JWK.Crv != crv {
+		t.Errorf("head.JWK.Crv = %q; want %q", head.JWK.Crv, crv)
 	}
 	if head.JWK.Kty != "EC" {
 		t.Errorf("head.JWK.Kty = %q; want EC", head.JWK.Kty)
 	}
-	if head.JWK.X != testKeyECPubX {
-		t.Errorf("head.JWK.X = %q; want %q", head.JWK.X, testKeyECPubX)
+	if head.JWK.X != pubX {
+		t.Errorf("head.JWK.X = %q; want %q", head.JWK.X, pubX)
 	}
-	if head.JWK.Y != testKeyECPubY {
-		t.Errorf("head.JWK.Y = %q; want %q", head.JWK.Y, testKeyECPubY)
+	if head.JWK.Y != pubY {
+		t.Errorf("head.JWK.Y = %q; want %q", head.JWK.Y, pubY)
 	}
+}
+
+func TestJWSEncodeJSONEC256(t *testing.T) {
+	testJWSEncodeJSONECWithKey(t, testKeyEC, testKeyECPubX, testKeyECPubY, "ES256", "P-256")
+}
+
+func TestJWSEncodeJSONEC384(t *testing.T) {
+	testJWSEncodeJSONECWithKey(t, testKeyEC384, testKeyEC384PubX, testKeyEC384PubY, "ES384", "P-384")
+}
+
+func TestJWSEncodeJSONEC512(t *testing.T) {
+	testJWSEncodeJSONECWithKey(t, testKeyEC512, testKeyEC512PubX, testKeyEC512PubY, "ES512", "P-521")
 }
 
 func TestJWKThumbprintRSA(t *testing.T) {
