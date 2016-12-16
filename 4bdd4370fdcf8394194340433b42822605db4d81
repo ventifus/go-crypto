@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5073f1_5102d473",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2016-12-16T02:16:45Z",
+      "side": 1,
+      "message": "This currently fails under the new signature check because the the responder key hash doesn\u0027t match the certificate embedded in the response.",
+      "range": {
+        "startLine": 305,
+        "startChar": 14,
+        "endLine": 305,
+        "endChar": 34
+      },
+      "revId": "4bdd4370fdcf8394194340433b42822605db4d81",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
