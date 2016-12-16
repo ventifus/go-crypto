@@ -141,6 +141,11 @@ type Manager struct {
 	// If the Client's account key is already registered, Email is not used.
 	Email string
 
+	// ForceRSA, if true, makes the Manager generate RSA-based keys when requesting
+	// new certificates, using 2048 bit length.
+	// Otherwise, EC-based keys are generated using P-256 curve.
+	ForceRSA bool
+
 	clientMu sync.Mutex
 	client   *acme.Client // initialized by acmeClient method
 
@@ -385,11 +390,21 @@ func (m *Manager) certState(domain string) (*certState, error) {
 	if state, ok := m.state[domain]; ok {
 		return state, nil
 	}
+
 	// new locked state
-	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	var (
+		err error
+		key crypto.Signer
+	)
+	if m.ForceRSA {
+		key, err = rsa.GenerateKey(rand.Reader, 2048)
+	} else {
+		key, err = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	}
 	if err != nil {
 		return nil, err
 	}
+
 	state := &certState{
 		key:    key,
 		locked: true,
