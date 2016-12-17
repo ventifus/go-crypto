@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5073f1_d07795ef",
+        "filename": "acme/jws_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2016-12-17T00:45:34Z",
+      "side": 1,
+      "message": "you wrapped a loop around a test, but didn\u0027t update any of the existing test failures to say which loop iteration failed. \n\nSee https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures\n\nI personally would use subtests here, rather than prefacing all test failures with context. They were new in Go 1.7, though, (https://golang.org/doc/go1.7#testing) so you\u0027d need to disable tests here for Go 1.6 and below. I think that\u0027s acceptable. Normally we\u0027d stop our builders testing Go 1.6 when Go 1.8 is releases (Feb 1st), but that\u0027s not too far away.\n\nAlternative, if you prefer, you can write a lowercase testFoo(t *testing.T, ...) func and call it from three capital TestFoo_a, TestFoo_b, TestFoo_c funcs. But that is basically all subtests automate for you.",
+      "revId": "ffa22ed0c5a1edd90d4bdc42bac9c8732f1ea476",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
