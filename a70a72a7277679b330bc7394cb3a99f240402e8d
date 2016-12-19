@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "3a9147cf_9e3ffdca",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1694,
+      "author": {
+        "id": 5076
+      },
+      "writtenOn": "2016-12-19T07:28:56Z",
+      "side": 1,
+      "message": "yay",
+      "parentUuid": "9ab4f348_54e90239",
+      "revId": "a70a72a7277679b330bc7394cb3a99f240402e8d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ad35b96_ca77033e",
         "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
         "patchSetId": 2
