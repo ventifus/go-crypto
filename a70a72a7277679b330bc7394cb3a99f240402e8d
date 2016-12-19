@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab4f348_54e90239",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1694,
+      "author": {
+        "id": 6825
+      },
+      "writtenOn": "2016-12-19T06:23:34Z",
+      "side": 1,
+      "message": "s/prevsiosly/previously/",
+      "range": {
+        "startLine": 1694,
+        "startChar": 45,
+        "endLine": 1694,
+        "endChar": 55
+      },
+      "revId": "a70a72a7277679b330bc7394cb3a99f240402e8d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad35b96_ca77033e",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 6825
+      },
+      "writtenOn": "2016-12-19T06:23:34Z",
+      "side": 1,
+      "message": "s/prevsiosly/previously/",
+      "range": {
+        "startLine": 1728,
+        "startChar": 45,
+        "endLine": 1728,
+        "endChar": 55
+      },
+      "revId": "a70a72a7277679b330bc7394cb3a99f240402e8d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab4f348_b4182e90",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 6825
+      },
+      "writtenOn": "2016-12-19T06:23:34Z",
+      "side": 1,
+      "message": "s/prevsiosly/previously/",
+      "range": {
+        "startLine": 1774,
+        "startChar": 45,
+        "endLine": 1774,
+        "endChar": 55
+      },
+      "revId": "a70a72a7277679b330bc7394cb3a99f240402e8d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
