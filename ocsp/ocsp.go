@@ -453,18 +453,42 @@ func ParseRequest(bytes []byte) (*Request, error) {
 // Invalid signatures or parse failures will result in a ParseError. Error
 // responses will result in a ResponseError.
 func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
-	return ParseResponseForCert(bytes, nil, issuer)
+	return ParseResponseForCert(bytes, ParseResponseOptions{
+		InsecureIgnoreValidity: true,
+	})
 }
 
-// ParseResponseForCert parses an OCSP response in DER form and searches for a
-// Response relating to cert. If such a Response is found and the OCSP response
-// contains a certificate then the signature over the response is checked. If
-// issuer is not nil then it will be used to validate the signature or embedded
-// certificate.
+// ParseResponseOptions contains parameters for ParseResponseForCert.
+type ParseResponseOptions struct {
+	// ForCert specifies the certificate that the response should cover. If
+	// the response covers multiple certificates then only the information
+	// relating to ForCert will be parsed. If ForCert is nil, the response
+	// must contain information about a single certificate.
+	ForCert *x509.Certificate
+
+	// If not nil, Issuer specifies the CA certificate that should have
+	// issued the response. This certificate must either sign the response
+	// directly or else have issued the OCSP responder certificate that is
+	// embedded in the response.
+	Issuer *x509.Certificate
+
+	// CurrentTime specifies the time at which the response must be valid.
+	// If zero the current time is used.
+	CurrentTime time.Time
+
+	// InsecureIgnoreValidity, if true, causes validity checks on the
+	// response and on any embedded responder certificate to be skipped.
+	InsecureIgnoreValidity bool
+}
+
+// ParseResponseForCert parses an OCSP response in DER form using the given
+// options. See the comments for ParseResponseOptions for details of the
+// behaviour.
 //
-// Invalid signatures or parse failures will result in a ParseError. Error
-// responses will result in a ResponseError.
-func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Response, error) {
+// Invalid signatures, missing EKUs in an embedded certificate or parse
+// failures will result in a ParseError. Error responses will result in a
+// ResponseError.
+func ParseResponseForCert(bytes []byte, options ParseResponseOptions) (*Response, error) {
 	var resp responseASN1
 	rest, err := asn1.Unmarshal(bytes, &resp)
 	if err != nil {
@@ -492,7 +516,7 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 		return nil, ParseError("OCSP response contains bad number of certificates")
 	}
 
-	if n := len(basicResp.TBSResponseData.Responses); n == 0 || cert == nil && n > 1 {
+	if n := len(basicResp.TBSResponseData.Responses); n == 0 || options.ForCert == nil && n > 1 {
 		return nil, ParseError("OCSP response contains bad number of responses")
 	}
 
@@ -521,30 +545,54 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 		return nil, ParseError("invalid responder id tag")
 	}
 
+	now := options.CurrentTime
+	if now.IsZero() {
+		now = time.Now()
+	}
+
 	if len(basicResp.Certificates) > 0 {
 		ret.Certificate, err = x509.ParseCertificate(basicResp.Certificates[0].FullBytes)
 		if err != nil {
 			return nil, err
 		}
 
+		ekuFound := false
+		for _, eku := range ret.Certificate.ExtKeyUsage {
+			if eku == x509.ExtKeyUsageOCSPSigning {
+				ekuFound = true
+				break
+			}
+		}
+
+		if !ekuFound {
+			return nil, ParseError("no OCSP EKU in responder certificate")
+		}
+
+		if !options.InsecureIgnoreValidity && ret.Certificate.NotBefore.After(now) {
+			return nil, ParseError("responder certificate is not yet valid")
+		}
+		if !options.InsecureIgnoreValidity && ret.Certificate.NotAfter.Before(now) {
+			return nil, ParseError("responder certificate has expired")
+		}
+
 		if err := ret.CheckSignatureFrom(ret.Certificate); err != nil {
 			return nil, ParseError("bad signature on embedded certificate: " + err.Error())
 		}
 
-		if issuer != nil {
-			if err := issuer.CheckSignature(ret.Certificate.SignatureAlgorithm, ret.Certificate.RawTBSCertificate, ret.Certificate.Signature); err != nil {
+		if options.Issuer != nil {
+			if err := options.Issuer.CheckSignature(ret.Certificate.SignatureAlgorithm, ret.Certificate.RawTBSCertificate, ret.Certificate.Signature); err != nil {
 				return nil, ParseError("bad OCSP signature: " + err.Error())
 			}
 		}
-	} else if issuer != nil {
-		if err := ret.CheckSignatureFrom(issuer); err != nil {
+	} else if options.Issuer != nil {
+		if err := ret.CheckSignatureFrom(options.Issuer); err != nil {
 			return nil, ParseError("bad OCSP signature: " + err.Error())
 		}
 	}
 
 	var r singleResponse
 	for _, resp := range basicResp.TBSResponseData.Responses {
-		if cert == nil || cert.SerialNumber.Cmp(resp.CertID.SerialNumber) == 0 {
+		if options.ForCert == nil || options.ForCert.SerialNumber.Cmp(resp.CertID.SerialNumber) == 0 {
 			r = resp
 			break
 		}
@@ -581,6 +629,13 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 	}
 
 	ret.ProducedAt = basicResp.TBSResponseData.ProducedAt
+
+	if !options.InsecureIgnoreValidity && r.ThisUpdate.After(now) {
+		return nil, ParseError("response is not yet valid")
+	}
+	if !options.InsecureIgnoreValidity && r.NextUpdate.Before(now) {
+		return nil, ParseError("response has expired")
+	}
 	ret.ThisUpdate = r.ThisUpdate
 	ret.NextUpdate = r.NextUpdate
 
