@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d72d6695_1ffe33f4",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2016-12-21T18:19:37Z",
+      "side": 1,
+      "message": "Should we add a SignatureValidationError?",
+      "range": {
+        "startLine": 489,
+        "startChar": 29,
+        "endLine": 489,
+        "endChar": 39
+      },
+      "revId": "342f741631b4960e51541be760fa529c79324c82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
