@@ -22,6 +22,23 @@
       "revId": "342f741631b4960e51541be760fa529c79324c82",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7a2c67b_1bf3c12c",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 10927
+      },
+      "writtenOn": "2016-12-21T18:36:10Z",
+      "side": 1,
+      "message": "I generally like to order these clauses in a way that works naturally with the field names:\n\nif ... now.Before(ret.Certificate.NotBefore) {\n\nif ... now.After(ret.Certificate.NotAfter) {",
+      "revId": "342f741631b4960e51541be760fa529c79324c82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
