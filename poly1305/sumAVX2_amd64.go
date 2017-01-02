@@ -1,12 +1,12 @@
-// Copyright 2012 The Go Authors. All rights reserved.
+// Copyright 2017 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build amd64,!go1.7,!gccgo,!appengine
+// +build go1.7,amd64,!gccgo,!appengine
 
 package poly1305
 
-// This function is implemented in sum_amd64.s
+// This function is implemented in sumAVX2_amd64.s
 //go:noescape
 func poly1305(out *[16]byte, m *byte, mlen uint64, key *[32]byte)
 

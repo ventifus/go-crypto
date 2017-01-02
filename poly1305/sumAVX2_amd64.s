@@ -1,8 +1,8 @@
-// Copyright 2012 The Go Authors. All rights reserved.
+// Copyright 2017 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build amd64,!go1.7,!gccgo,!appengine
+// +build go1.7,amd64,!gccgo,!appengine
 
 #include "textflag.h"
 
@@ -54,6 +54,39 @@
 	ADCQ  t3, h1;                  \
 	ADCQ  $0, h2
 
+#define POLY1305_MUL_AVX2(h0, h1, h2, r0, r1, t0, t1, t2, t3, t4) \
+	MOVQ  r0, DX;                  \
+	MULXQ h0, t0, t1;              \
+	MULXQ h1, t3, t2;              \
+	IMULQ h2, DX;                  \
+	ADDQ  t3, t1;                  \
+	ADCQ  DX, t2;                  \
+	                               \
+	MOVQ  r1, DX;                  \
+	MULXQ h0, t3, t4;              \
+	ADDQ  t3, t1;                  \
+	ADCQ  t4, t2;                  \
+	MULXQ h1, t3, t4;              \
+	IMULQ h2, DX;                  \
+	ADDQ  t3, t2;                  \
+	ADCQ  t4, DX;                  \
+	ADCQ  $0, DX;                  \
+	                               \
+	MOVQ  t0, h0;                  \
+	MOVQ  t1, h1;                  \
+	MOVQ  t2, h2;                  \
+	ANDQ  $3, h2;                  \
+	MOVQ  t2, t0;                  \
+	ANDQ  $0XFFFFFFFFFFFFFFFC, t0; \
+	ADDQ  t0, h0;                  \
+	ADCQ  DX, h1;                  \
+	ADCQ  $0, h2;                  \
+	SHRQ  $2, DX, t2;              \
+	SHRQ  $2, DX;                  \
+	ADDQ  t2, h0;                  \
+	ADCQ  DX, h1;                  \
+	ADCQ  $0, h2
+
 DATA poly1305Mask<>+0x00(SB)/8, $0x0FFFFFFC0FFFFFFF
 DATA poly1305Mask<>+0x08(SB)/8, $0x0FFFFFFC0FFFFFFC
 GLOBL poly1305Mask<>(SB), RODATA, $16
@@ -73,8 +106,25 @@ TEXT ·poly1305(SB), $0-32
 	XORQ R9, R9                    // h1
 	XORQ R10, R10                  // h2
 
+	//MOVQ runtime·support_avx2(SB), BP
+	XORQ BP, BP
+
 	CMPQ R15, $16
 	JB   bytes_between_0_and_15
+
+	TESTQ BP, BP
+	JZ   loop
+
+loop_avx2:
+	POLY1305_ADD(SI, R8, R9, R10)
+
+multiply_avx2:
+	POLY1305_MUL_AVX2(R8, R9, R10, R11, R12, BX, CX, R13, R14, BP)
+	SUBQ $16, R15
+	CMPQ R15, $16
+	JAE  loop_avx2
+	MOVQ $1, BP                 // set AVX2 to true again
+	JMP  bytes_between_0_and_15
 
 loop:
 	POLY1305_ADD(SI, R8, R9, R10)
@@ -102,11 +152,13 @@ flush_buffer:
 	DECQ R15
 	JNZ  flush_buffer
 
-	ADDQ BX, R8
-	ADCQ CX, R9
-	ADCQ $0, R10
-	MOVQ $16, R15
-	JMP  multiply
+	ADDQ  BX, R8
+	ADCQ  CX, R9
+	ADCQ  $0, R10
+	MOVQ  $16, R15
+	TESTQ BP, BP
+	JNZ   multiply_avx2
+	JMP   multiply
 
 done:
 	MOVQ    R8, AX
