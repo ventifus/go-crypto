@@ -11,10 +11,11 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/des"
-	"golang.org/x/crypto/cast5"
-	"golang.org/x/crypto/openpgp/errors"
 	"io"
 	"math/big"
+
+	"golang.org/x/crypto/cast5"
+	"golang.org/x/crypto/openpgp/errors"
 )
 
 // readFull is the same as io.ReadFull except that reading zero bytes returns
@@ -273,8 +274,6 @@ func consumeAll(r io.Reader) (n int64, err error) {
 			return
 		}
 	}
-
-	panic("unreachable")
 }
 
 // packetType represents the numeric ids of the different OpenPGP packet types. See
