@@ -279,8 +279,11 @@ TEXT ·chacha20Poly1305Open(SB), 0, $288-97
 
 	// Check for AVX2 support
 	CMPB runtime·support_avx2(SB), $1
-	JE   chacha20Poly1305Open_AVX2
-
+	JNE  noavx2bmi2Open
+	CMPB runtime·support_bmi2(SB), $1  // for MULXQ
+	JNE  noavx2bmi2Open
+	JMP   chacha20Poly1305Open_AVX2
+noavx2bmi2Open:
 	// Special optimization, for very short buffers
 	CMPQ inl, $128
 	JBE  openSSE128 // About 16% faster
@@ -1486,8 +1489,11 @@ TEXT ·chacha20Poly1305Seal(SB), 0, $288-96
 
 	// Check for AVX2 support
 	CMPB runtime·support_avx2(SB), $1
-	JE   chacha20Poly1305Seal_AVX2
-
+	JNE  noavx2bmi2Seal
+	CMPB runtime·support_bmi2(SB), $1  // for MULXQ
+	JNE  noavx2bmi2Seal
+	JMP  chacha20Poly1305Seal_AVX2
+noavx2bmi2Seal:
 	// Special optimization, for very short buffers
 	CMPQ inl, $128
 	JBE  sealSSE128 // About 15% faster
