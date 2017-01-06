@@ -16,6 +16,24 @@
       "revId": "94d650baa3f1f8d116a6fe601e5c840c535a5ccb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "171b7e2a_b5f4c067",
+        "filename": "poly1305/sumAVX2_amd64.s",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2017-01-06T20:19:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7e3a6ee_4447dfc1",
+      "revId": "94d650baa3f1f8d116a6fe601e5c840c535a5ccb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
