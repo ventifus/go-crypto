@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7e3a6ee_f327b47a",
+        "filename": "ssh/transport.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-09T18:31:24Z",
+      "side": 1,
+      "message": "Name the return values and avoid declaring them in the first two lines? (No need to make the |return| bare if you do.)",
+      "revId": "fdc2f67f831834f293b49afe6738882ced98fa68",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
