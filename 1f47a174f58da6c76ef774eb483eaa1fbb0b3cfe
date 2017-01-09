@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7e3a6ee_88c1da3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-01-09T22:50:50Z",
+      "side": 1,
+      "message": "delete the ```\n\nWe don\u0027t use markdown in commit messages.\n\nUse https://godoc.org/rsc.io/benchstat to produce the standard commit message format.",
+      "revId": "1f47a174f58da6c76ef774eb483eaa1fbb0b3cfe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
