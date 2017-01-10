@@ -241,24 +241,13 @@ func (c *channel) WriteExtended(data []byte, extendedCode uint32) (n int, err er
 		opCode = msgChannelExtendedData
 	}
 
-	c.writeMu.Lock()
-	packet := c.packetPool[extendedCode]
-	// We don't remove the buffer from packetPool, so
-	// WriteExtended calls from different goroutines will be
-	// flagged as errors by the race detector.
-	c.writeMu.Unlock()
-
 	for len(data) > 0 {
 		space := min(c.maxRemotePayload, len(data))
 		if space, err = c.remoteWin.reserve(space); err != nil {
 			return n, err
 		}
-		if want := headerLength + space; uint32(cap(packet)) < want {
-			packet = make([]byte, want)
-		} else {
-			packet = packet[:want]
-		}
 
+		packet := make([]byte, headerLength+space)
 		todo := data[:space]
 
 		packet[0] = opCode
@@ -275,10 +264,6 @@ func (c *channel) WriteExtended(data []byte, extendedCode uint32) (n int, err er
 		n += len(todo)
 		data = data[len(todo):]
 	}
-
-	c.writeMu.Lock()
-	c.packetPool[extendedCode] = packet
-	c.writeMu.Unlock()
 
 	return n, err
 }
