@@ -53,6 +53,17 @@ type handshakeTransport struct {
 	incoming  chan []byte
 	readError error
 
+	mu         sync.Mutex
+	writeError error
+	outgoing   chan []byte
+
+	// If we receive a packet here, send out a kex message.
+	requestKex chan struct{}
+
+	// If the other side requests or confirms a kex, its kexInit
+	// packet is sent here.
+	startKex chan *pendingKex
+
 	// data for host key checking
 	hostKeyCallback func(hostname string, remote net.Addr, key PublicKey) error
 	dialAddress     string
@@ -60,16 +71,17 @@ type handshakeTransport struct {
 
 	readSinceKex uint64
 
-	// Protects the writing side of the connection
-	mu              sync.Mutex
-	cond            *sync.Cond
 	sentInitPacket  []byte
 	sentInitMsg     *kexInitMsg
 	writtenSinceKex uint64
-	writeError      error
 
 	// The session ID or nil if first kex did not complete yet.
 	sessionID []byte
+}
+
+type pendingKex struct {
+	otherInit []byte
+	done      chan error
 }
 
 func newHandshakeTransport(conn keyingTransport, config *Config, clientVersion, serverVersion []byte) *handshakeTransport {
@@ -78,9 +90,12 @@ func newHandshakeTransport(conn keyingTransport, config *Config, clientVersion, 
 		serverVersion: serverVersion,
 		clientVersion: clientVersion,
 		incoming:      make(chan []byte, 16),
-		config:        config,
+		outgoing:      make(chan []byte, 16),
+		requestKex:    make(chan struct{}, 1),
+		startKex:      make(chan *pendingKex, 1),
+
+		config: config,
 	}
-	t.cond = sync.NewCond(&t.mu)
 	return t
 }
 
@@ -95,6 +110,7 @@ func newClientTransport(conn keyingTransport, clientVersion, serverVersion []byt
 		t.hostKeyAlgorithms = supportedHostKeyAlgos
 	}
 	go t.readLoop()
+	go t.writeLoop()
 	return t
 }
 
@@ -102,6 +118,7 @@ func newServerTransport(conn keyingTransport, clientVersion, serverVersion []byt
 	t := newHandshakeTransport(conn, &config.Config, clientVersion, serverVersion)
 	t.hostKeys = config.hostKeys
 	go t.readLoop()
+	go t.writeLoop()
 	return t
 }
 
@@ -109,11 +126,38 @@ func (t *handshakeTransport) getSessionID() []byte {
 	return t.sessionID
 }
 
+// waitSession waits for the session to be established. This should be
+// the first thing to call after instantiating handshakeTransport.
+func (t *handshakeTransport) waitSession() error {
+	p, err := t.readPacket()
+	if err != nil {
+		return err
+	}
+	if p[0] != msgNewKeys {
+		return fmt.Errorf("ssh: first packet should be msgNewKeys")
+	}
+
+	return nil
+}
+
 func (t *handshakeTransport) id() string {
 	if len(t.hostKeys) > 0 {
 		return "server"
 	}
 	return "client"
+}
+
+func (t *handshakeTransport) printPacket(p []byte, write bool) {
+	action := "got"
+	if write {
+		action = "sent"
+	}
+	if p[0] == msgChannelData || p[0] == msgChannelExtendedData {
+		log.Printf("%s %s data (packet %d bytes)", t.id(), action, len(p))
+	} else {
+		msg, err := decode(p)
+		log.Printf("%s %s %T %v (%v)", t.id(), action, msg, msg, err)
+	}
 }
 
 func (t *handshakeTransport) readPacket() ([]byte, error) {
@@ -125,8 +169,10 @@ func (t *handshakeTransport) readPacket() ([]byte, error) {
 }
 
 func (t *handshakeTransport) readLoop() {
+	first := true
 	for {
-		p, err := t.readOnePacket()
+		p, err := t.readOnePacket(first)
+		first = false
 		if err != nil {
 			t.readError = err
 			close(t.incoming)
@@ -138,20 +184,161 @@ func (t *handshakeTransport) readLoop() {
 		t.incoming <- p
 	}
 
-	// If we can't read, declare the writing part dead too.
-	t.mu.Lock()
-	defer t.mu.Unlock()
-	if t.writeError == nil {
-		t.writeError = t.readError
-	}
-	t.cond.Broadcast()
+	// Stop writers too.
+	t.recordWriteError(t.readError)
+
+	// Unblock the writer should it wait for this.
+	close(t.requestKex)
+	close(t.startKex)
 }
 
-func (t *handshakeTransport) readOnePacket() ([]byte, error) {
-	if t.readSinceKex > t.config.RekeyThreshold {
-		if err := t.requestKeyChange(); err != nil {
-			return nil, err
+func (t *handshakeTransport) pushPacket(p []byte) error {
+	if debugHandshake {
+		t.printPacket(p, true)
+	}
+	return t.conn.writePacket(p)
+}
+
+func (t *handshakeTransport) hasWriteError() bool {
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	return t.writeError != nil
+}
+
+func (t *handshakeTransport) recordWriteError(err error) {
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	if t.writeError == nil && err != nil {
+		t.writeError = err
+	}
+}
+
+func (t *handshakeTransport) requestKeyExchange() {
+	t.requestKex <- struct{}{}
+}
+
+func (t *handshakeTransport) writeLoop() {
+	// We always start with the mandatory key exchange.
+	if _, _, err := t.sendKexInit(); err != nil {
+		t.recordWriteError(err)
+	}
+
+write:
+	for !t.hasWriteError() {
+		var request *pendingKex
+
+		if t.sentInitMsg == nil {
+			select {
+			case request = <-t.startKex:
+				break
+			case <-t.requestKex:
+				_, _, err := t.sendKexInit()
+				t.recordWriteError(err)
+				break
+			case p := <-t.outgoing:
+				if p == nil {
+					// error.
+					break write
+				}
+				if err := t.pushPacket(p); err != nil {
+					t.recordWriteError(err)
+					break
+				}
+				t.writtenSinceKex += uint64(len(p))
+				if t.writtenSinceKex > t.config.RekeyThreshold {
+					_, _, t.writeError = t.sendKexInit()
+				}
+			}
 		}
+
+		if request == nil && t.sentInitMsg == nil {
+			continue write
+		}
+
+		// Blocking writers can lead to deadlock, since the
+		// writers may be driven from our read loop. To avoid
+		// deadlock, keep collecting outgoing packets.
+		var pendingPackets [][]byte
+		stopCollecting := make(chan struct{}, 1)
+		collectionDone := make(chan struct{}, 1)
+		go func() {
+			defer close(collectionDone)
+			for {
+				select {
+				case p := <-t.outgoing:
+					if p == nil {
+						return
+					}
+					pendingPackets = append(pendingPackets, p)
+				case <-t.requestKex:
+					// Keep draining the
+					// requestKex channel, just to
+					// avoid deadlocks.
+				case <-stopCollecting:
+					return
+				}
+			}
+		}()
+
+		// Something wants to start a key exchange. If it's
+		// us, wait for the remote side to acknowledge.
+		if request == nil {
+			request = <-t.startKex
+			if request == nil {
+				stopCollecting <- struct{}{}
+				break
+			}
+		}
+
+		// The read side received a kex packet, which means
+		// that the read loop has stopped reading from t.conn,
+		// so we can freely use it to execute the kex.
+
+		t.recordWriteError(t.enterKeyExchange(request.otherInit))
+		t.sentInitPacket = nil
+		t.sentInitMsg = nil
+		t.writtenSinceKex = 0
+		request.done <- t.writeError
+
+		stopCollecting <- struct{}{}
+		<-collectionDone
+
+		// kex finished. Push packets that we received while
+		// the kex was in progress. Don't look at t.startKex
+		// and don't increment writtenSinceKex: if we trigger
+		// another kex while we are still busy with the last
+		// one, things will become very confusing.
+		for _, p := range pendingPackets {
+			if t.writeError != nil {
+				break write
+			}
+			if err := t.pushPacket(p); err != nil {
+				t.recordWriteError(err)
+			}
+		}
+	}
+
+	// drain channels.
+	go func() {
+		for range t.outgoing {
+		}
+	}()
+	go func() {
+		for range t.requestKex {
+		}
+	}()
+	go func() {
+		for init := range t.startKex {
+			init.done <- t.writeError
+		}
+	}()
+
+	t.conn.Close()
+}
+
+func (t *handshakeTransport) readOnePacket(first bool) ([]byte, error) {
+	if t.readSinceKex > t.config.RekeyThreshold {
+		t.requestKex <- struct{}{}
 	}
 
 	p, err := t.conn.readPacket()
@@ -161,38 +348,29 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 
 	t.readSinceKex += uint64(len(p))
 	if debugHandshake {
-		if p[0] == msgChannelData || p[0] == msgChannelExtendedData {
-			log.Printf("%s got data (packet %d bytes)", t.id(), len(p))
-		} else {
-			msg, err := decode(p)
-			log.Printf("%s got %T %v (%v)", t.id(), msg, msg, err)
-		}
+		t.printPacket(p, false)
 	}
+
+	if first && p[0] != msgKexInit {
+		return nil, fmt.Errorf("ssh: first packet should be msgKexInit")
+	}
+
 	if p[0] != msgKexInit {
 		return p, nil
 	}
 
-	t.mu.Lock()
-
 	firstKex := t.sessionID == nil
 
-	err = t.enterKeyExchangeLocked(p)
-	if err != nil {
-		// drop connection
-		t.conn.Close()
-		t.writeError = err
+	kex := pendingKex{
+		done:      make(chan error, 1),
+		otherInit: p,
 	}
+	t.startKex <- &kex
+	err = <-kex.done
 
 	if debugHandshake {
 		log.Printf("%s exited key exchange (first %v), err %v", t.id(), firstKex, err)
 	}
-
-	// Unblock writers.
-	t.sentInitMsg = nil
-	t.sentInitPacket = nil
-	t.cond.Broadcast()
-	t.writtenSinceKex = 0
-	t.mu.Unlock()
 
 	if err != nil {
 		return nil, err
@@ -213,55 +391,8 @@ func (t *handshakeTransport) readOnePacket() ([]byte, error) {
 	return successPacket, nil
 }
 
-// keyChangeCategory describes whether a key exchange is the first on a
-// connection, or a subsequent one.
-type keyChangeCategory bool
-
-const (
-	firstKeyExchange      keyChangeCategory = true
-	subsequentKeyExchange keyChangeCategory = false
-)
-
-// sendKexInit sends a key change message, and returns the message
-// that was sent. After initiating the key change, all writes will be
-// blocked until the change is done, and a failed key change will
-// close the underlying transport. This function is safe for
-// concurrent use by multiple goroutines.
-func (t *handshakeTransport) sendKexInit(isFirst keyChangeCategory) error {
-	var err error
-
-	t.mu.Lock()
-	// If this is the initial key change, but we already have a sessionID,
-	// then do nothing because the key exchange has already completed
-	// asynchronously.
-	if !isFirst || t.sessionID == nil {
-		_, _, err = t.sendKexInitLocked(isFirst)
-	}
-	t.mu.Unlock()
-	if err != nil {
-		return err
-	}
-	if isFirst {
-		if packet, err := t.readPacket(); err != nil {
-			return err
-		} else if packet[0] != msgNewKeys {
-			return unexpectedMessageError(msgNewKeys, packet[0])
-		}
-	}
-	return nil
-}
-
-func (t *handshakeTransport) requestInitialKeyChange() error {
-	return t.sendKexInit(firstKeyExchange)
-}
-
-func (t *handshakeTransport) requestKeyChange() error {
-	return t.sendKexInit(subsequentKeyExchange)
-}
-
-// sendKexInitLocked sends a key change message. t.mu must be locked
-// while this happens.
-func (t *handshakeTransport) sendKexInitLocked(isFirst keyChangeCategory) (*kexInitMsg, []byte, error) {
+// sendKexInitLocked sends a key change message.
+func (t *handshakeTransport) sendKexInit() (*kexInitMsg, []byte, error) {
 	// kexInits may be sent either in response to the other side,
 	// or because our side wants to initiate a key change, so we
 	// may have already sent a kexInit. In that case, don't send a
@@ -295,7 +426,7 @@ func (t *handshakeTransport) sendKexInitLocked(isFirst keyChangeCategory) (*kexI
 	packetCopy := make([]byte, len(packet))
 	copy(packetCopy, packet)
 
-	if err := t.conn.writePacket(packetCopy); err != nil {
+	if err := t.pushPacket(packetCopy); err != nil {
 		return nil, nil, err
 	}
 
@@ -305,40 +436,34 @@ func (t *handshakeTransport) sendKexInitLocked(isFirst keyChangeCategory) (*kexI
 }
 
 func (t *handshakeTransport) writePacket(p []byte) error {
-	t.mu.Lock()
-	defer t.mu.Unlock()
-
-	if t.writtenSinceKex > t.config.RekeyThreshold {
-		t.sendKexInitLocked(subsequentKeyExchange)
-	}
-	for t.sentInitMsg != nil && t.writeError == nil {
-		t.cond.Wait()
-	}
-	if t.writeError != nil {
-		return t.writeError
-	}
-	t.writtenSinceKex += uint64(len(p))
-
 	switch p[0] {
 	case msgKexInit:
 		return errors.New("ssh: only handshakeTransport can send kexInit")
 	case msgNewKeys:
 		return errors.New("ssh: only handshakeTransport can send newKeys")
-	default:
-		return t.conn.writePacket(p)
 	}
+
+	t.mu.Lock()
+	if t.writeError != nil {
+		t.mu.Unlock()
+		return t.writeError
+	}
+	t.mu.Unlock()
+
+	t.outgoing <- p
+	return nil
 }
 
 func (t *handshakeTransport) Close() error {
-	return t.conn.Close()
+	close(t.outgoing)
+	return nil
 }
 
-// enterKeyExchange runs the key exchange. t.mu must be held while running this.
-func (t *handshakeTransport) enterKeyExchangeLocked(otherInitPacket []byte) error {
+func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 	if debugHandshake {
 		log.Printf("%s entered key exchange", t.id())
 	}
-	myInit, myInitPacket, err := t.sendKexInitLocked(subsequentKeyExchange)
+	myInit, myInitPacket, err := t.sendKexInit()
 	if err != nil {
 		return err
 	}

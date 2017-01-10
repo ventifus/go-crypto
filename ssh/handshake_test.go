@@ -110,6 +110,13 @@ func handshakePair(clientConf *ClientConfig, addr string, noise bool) (client *h
 	serverConf.SetDefaults()
 	server = newServerTransport(trS, v, v, serverConf)
 
+	if err := server.waitSession(); err != nil {
+		return nil, nil, fmt.Errorf("server.waitSession: %v", err)
+	}
+	if err := client.waitSession(); err != nil {
+		return nil, nil, fmt.Errorf("client.waitSession: %v", err)
+	}
+
 	return client, server, nil
 }
 
@@ -118,7 +125,7 @@ func TestHandshakeBasic(t *testing.T) {
 		t.Skip("see golang.org/issue/7237")
 	}
 	checker := &testChecker{}
-	trC, trS, err := handshakePair(&ClientConfig{HostKeyCallback: checker.Check}, "addr", true)
+	trC, trS, err := handshakePair(&ClientConfig{HostKeyCallback: checker.Check}, "addr", false)
 	if err != nil {
 		t.Fatalf("handshakePair: %v", err)
 	}
@@ -127,6 +134,7 @@ func TestHandshakeBasic(t *testing.T) {
 	defer trS.Close()
 
 	clientDone := make(chan int, 0)
+	gotHalf := make(chan int, 0)
 	go func() {
 		defer close(clientDone)
 		// Client writes a bunch of stuff, and does a key
@@ -138,33 +146,30 @@ func TestHandshakeBasic(t *testing.T) {
 				t.Fatalf("sendPacket: %v", err)
 			}
 			if i == 5 {
+				<-gotHalf
 				// halfway through, we request a key change.
-				err := trC.sendKexInit(subsequentKeyExchange)
-				if err != nil {
-					t.Fatalf("sendKexInit: %v", err)
-				}
+				trC.requestKeyExchange()
 			}
 		}
-		trC.Close()
 	}()
 
 	// Server checks that client messages come in cleanly
 	i := 0
 	err = nil
-	for {
+	for ; i < 10; i++ {
 		var p []byte
 		p, err = trS.readPacket()
 		if err != nil {
 			break
 		}
-		if p[0] == msgNewKeys {
-			continue
+		if i == 5 {
+			gotHalf <- 1
 		}
+
 		want := []byte{msgRequestSuccess, byte(i)}
 		if bytes.Compare(p, want) != 0 {
 			t.Errorf("message %d: got %q, want %q", i, p, want)
 		}
-		i++
 	}
 	<-clientDone
 	if err != nil && err != io.EOF {
@@ -174,9 +179,11 @@ func TestHandshakeBasic(t *testing.T) {
 		t.Errorf("received %d messages, want 10.", i)
 	}
 
-	// If all went well, we registered exactly 1 key change.
-	if len(checker.calls) != 1 {
-		t.Fatalf("got %d host key checks, want 1", len(checker.calls))
+	// If all went well, we registered exactly 2 key changes: one
+	// that establishes the session, and one that we requested
+	// additionally.
+	if len(checker.calls) != 2 {
+		t.Fatalf("got %d host key checks, want 2", len(checker.calls))
 	}
 
 	pub := testSigners["ecdsa"].PublicKey()
@@ -184,135 +191,46 @@ func TestHandshakeBasic(t *testing.T) {
 	if want != checker.calls[0] {
 		t.Errorf("got %q want %q for host key check", checker.calls[0], want)
 	}
-
-}
-
-func TestHandshakeError(t *testing.T) {
-	checker := &testChecker{}
-	trC, trS, err := handshakePair(&ClientConfig{HostKeyCallback: checker.Check}, "bad", false)
-	if err != nil {
-		t.Fatalf("handshakePair: %v", err)
-	}
-	defer trC.Close()
-	defer trS.Close()
-
-	// send a packet
-	packet := []byte{msgRequestSuccess, 42}
-	if err := trC.writePacket(packet); err != nil {
-		t.Errorf("writePacket: %v", err)
-	}
-
-	// Now request a key change.
-	err = trC.sendKexInit(subsequentKeyExchange)
-	if err != nil {
-		t.Errorf("sendKexInit: %v", err)
-	}
-
-	// the key change will fail, and afterwards we can't write.
-	if err := trC.writePacket([]byte{msgRequestSuccess, 43}); err == nil {
-		t.Errorf("writePacket after botched rekey succeeded.")
-	}
-
-	readback, err := trS.readPacket()
-	if err != nil {
-		t.Fatalf("server closed too soon: %v", err)
-	}
-	if bytes.Compare(readback, packet) != 0 {
-		t.Errorf("got %q want %q", readback, packet)
-	}
-	readback, err = trS.readPacket()
-	if err == nil {
-		t.Errorf("got a message %q after failed key change", readback)
-	}
 }
 
 func TestForceFirstKex(t *testing.T) {
+	// like handshakePair, but must access the keyingTransport.
 	checker := &testChecker{}
-	trC, trS, err := handshakePair(&ClientConfig{HostKeyCallback: checker.Check}, "addr", false)
+	clientConf := &ClientConfig{HostKeyCallback: checker.Check}
+	a, b, err := netPipe()
 	if err != nil {
-		t.Fatalf("handshakePair: %v", err)
+		t.Fatalf("netPipe: %v", err)
 	}
 
-	defer trC.Close()
-	defer trS.Close()
+	var trC, trS keyingTransport
 
+	trC = newTransport(a, rand.Reader, true)
+
+	// This is the disallowed packet:
 	trC.writePacket(Marshal(&serviceRequestMsg{serviceUserAuth}))
+
+	// Rest of the setup.
+	trS = newTransport(b, rand.Reader, false)
+	clientConf.SetDefaults()
+
+	v := []byte("version")
+	client := newClientTransport(trC, v, v, clientConf, "addr", a.RemoteAddr())
+
+	serverConf := &ServerConfig{}
+	serverConf.AddHostKey(testSigners["ecdsa"])
+	serverConf.AddHostKey(testSigners["rsa"])
+	serverConf.SetDefaults()
+	server := newServerTransport(trS, v, v, serverConf)
+
+	defer client.Close()
+	defer server.Close()
 
 	// We setup the initial key exchange, but the remote side
 	// tries to send serviceRequestMsg in cleartext, which is
 	// disallowed.
 
-	err = trS.sendKexInit(firstKeyExchange)
-	if err == nil {
+	if err := server.waitSession(); err == nil {
 		t.Errorf("server first kex init should reject unexpected packet")
-	}
-}
-
-func TestHandshakeTwice(t *testing.T) {
-	checker := &testChecker{}
-	trC, trS, err := handshakePair(&ClientConfig{HostKeyCallback: checker.Check}, "addr", false)
-	if err != nil {
-		t.Fatalf("handshakePair: %v", err)
-	}
-
-	defer trC.Close()
-	defer trS.Close()
-
-	// Both sides should ask for the first key exchange first.
-	err = trS.sendKexInit(firstKeyExchange)
-	if err != nil {
-		t.Errorf("server sendKexInit: %v", err)
-	}
-
-	err = trC.sendKexInit(firstKeyExchange)
-	if err != nil {
-		t.Errorf("client sendKexInit: %v", err)
-	}
-
-	sent := 0
-	// send a packet
-	packet := make([]byte, 5)
-	packet[0] = msgRequestSuccess
-	if err := trC.writePacket(packet); err != nil {
-		t.Errorf("writePacket: %v", err)
-	}
-	sent++
-
-	// Send another packet. Use a fresh one, since writePacket destroys.
-	packet = make([]byte, 5)
-	packet[0] = msgRequestSuccess
-	if err := trC.writePacket(packet); err != nil {
-		t.Errorf("writePacket: %v", err)
-	}
-	sent++
-
-	// 2nd key change.
-	err = trC.sendKexInit(subsequentKeyExchange)
-	if err != nil {
-		t.Errorf("sendKexInit: %v", err)
-	}
-
-	packet = make([]byte, 5)
-	packet[0] = msgRequestSuccess
-	if err := trC.writePacket(packet); err != nil {
-		t.Errorf("writePacket: %v", err)
-	}
-	sent++
-
-	packet = make([]byte, 5)
-	packet[0] = msgRequestSuccess
-	for i := 0; i < sent; i++ {
-		msg, err := trS.readPacket()
-		if err != nil {
-			t.Fatalf("server closed too soon: %v", err)
-		}
-
-		if bytes.Compare(msg, packet) != 0 {
-			t.Errorf("packet %d: got %q want %q", i, msg, packet)
-		}
-	}
-	if len(checker.calls) != 2 {
-		t.Errorf("got %d key changes, want 2", len(checker.calls))
 	}
 }
 
@@ -399,6 +317,7 @@ type errorKeyingTransport struct {
 func (n *errorKeyingTransport) prepareKeyChange(*algorithms, *kexResult) error {
 	return nil
 }
+
 func (n *errorKeyingTransport) getSessionID() []byte {
 	return nil
 }
@@ -439,7 +358,6 @@ func TestHandshakeErrorHandlingWrite(t *testing.T) {
 // handshakeTransport deadlocks, the go runtime will detect it and
 // panic.
 func testHandshakeErrorHandlingN(t *testing.T, readLimit, writeLimit int) {
-	msg := Marshal(&serviceRequestMsg{strings.Repeat("x", int(minRekeyThreshold)/4)})
 
 	a, b := memPipe()
 	defer a.Close()
@@ -451,25 +369,29 @@ func testHandshakeErrorHandlingN(t *testing.T, readLimit, writeLimit int) {
 	serverConn := newHandshakeTransport(&errorKeyingTransport{a, readLimit, writeLimit}, &serverConf, []byte{'a'}, []byte{'b'})
 	serverConn.hostKeys = []Signer{key}
 	go serverConn.readLoop()
+	go serverConn.writeLoop()
 
 	clientConf := Config{RekeyThreshold: 10 * minRekeyThreshold}
 	clientConf.SetDefaults()
 	clientConn := newHandshakeTransport(&errorKeyingTransport{b, -1, -1}, &clientConf, []byte{'a'}, []byte{'b'})
 	clientConn.hostKeyAlgorithms = []string{key.PublicKey().Type()}
 	go clientConn.readLoop()
+	go clientConn.writeLoop()
 
 	var wg sync.WaitGroup
 	wg.Add(4)
 
 	for _, hs := range []packetConn{serverConn, clientConn} {
 		go func(c packetConn) {
-			for {
-				err := c.writePacket(msg)
+			for i := 0; ; i++ {
+				str := fmt.Sprintf("%08x", i) + strings.Repeat("x", int(minRekeyThreshold)/4-8)
+				err := c.writePacket(Marshal(&serviceRequestMsg{str}))
 				if err != nil {
 					break
 				}
 			}
 			wg.Done()
+			c.Close()
 		}(hs)
 		go func(c packetConn) {
 			for {
