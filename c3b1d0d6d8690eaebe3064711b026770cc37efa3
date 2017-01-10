@@ -16,6 +16,24 @@
       "revId": "c3b1d0d6d8690eaebe3064711b026770cc37efa3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d752c6c5_46b49482",
+        "filename": "blake2b/blake2bAVX2_amd64.s",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2017-01-10T17:38:47Z",
+      "side": 0,
+      "message": "Thanks, removed while editing and forgotten to add again",
+      "parentUuid": "e3e9cd6a_7cef798f",
+      "revId": "c3b1d0d6d8690eaebe3064711b026770cc37efa3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
