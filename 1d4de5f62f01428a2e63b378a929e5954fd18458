@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8342d14a_ef47410d",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-01-11T16:26:11Z",
+      "side": 1,
+      "message": "maybe it would be better to have a nonce param as a function? for instance:\n\n    func postJWS(ctx, ... nonce func(context.Context) (string, error)) {\n       n, err :\u003d nonce(ctx)\n       if err !\u003d nil {\n         return nil, err\n       }\n       ...\n    }\n\nthat way the Client can supply an unexported method to postJWS, which would try get a nonce stored from a prev. response or fetch a new one from a known url.\n\nit would just seem easier to improve/modify later on.",
+      "revId": "1d4de5f62f01428a2e63b378a929e5954fd18458",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
