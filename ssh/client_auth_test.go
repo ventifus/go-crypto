@@ -76,8 +76,6 @@ func tryAuth(t *testing.T, config *ClientConfig) error {
 			}
 			return nil, errors.New("keyboard-interactive failed")
 		},
-		AuthLogCallback: func(conn ConnMetadata, method string, err error) {
-		},
 	}
 	serverConfig.AddHostKey(testSigners["rsa"])
 
@@ -480,5 +478,112 @@ func TestClientAuthNone(t *testing.T) {
 	}
 	if serverConn.User() != user {
 		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
+	}
+}
+
+// Test if authentication attempts are limited on server when MaxAuthTries is set
+func TestClientAuthMaxAuthTries(t *testing.T) {
+	passwords := []string{"wrong1", "wrong2", "right"}
+	n := 0
+	user := "testuser"
+
+	serverConfig := &ServerConfig{
+		MaxAuthTries: 2,
+		PasswordCallback: func(conn ConnMetadata, pass []byte) (*Permissions, error) {
+			if conn.User() == "testuser" && string(pass) == "right" {
+				return nil, nil
+			}
+			return nil, errors.New("password auth failed")
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	clientConfig := &ClientConfig{
+		User: user,
+		Auth: []AuthMethod{
+			RetryableAuthMethod(PasswordCallback(func() (string, error) {
+				p := passwords[n]
+				n++
+				return p, nil
+			}), 3),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	expectedErr := fmt.Errorf("ssh: handshake failed: %v", &disconnectMsg{
+		Reason:  2,
+		Message: "too many authentication failures",
+	})
+	go newServer(c1, serverConfig)
+	_, _, _, err = NewClientConn(c2, "", clientConfig)
+	if err == nil {
+		t.Fatalf("client: got no error, want %s", expectedErr)
+	} else if err.Error() != expectedErr.Error() {
+		t.Fatalf("client: got %s, want %s", err, expectedErr)
+	}
+
+	passwords = []string{"wrong2", "right"}
+	n = 0
+	c3, c4, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c3.Close()
+	defer c4.Close()
+	clientConfig.Auth = []AuthMethod{
+		RetryableAuthMethod(PasswordCallback(func() (string, error) {
+			p := passwords[n]
+			n++
+			return p, nil
+		}), 2),
+	}
+	go newServer(c3, serverConfig)
+	_, _, _, err = NewClientConn(c4, "", clientConfig)
+	if err != nil {
+		t.Fatalf("client: got %s, want no error", err)
+	}
+}
+
+// Test if authentication attempts are correctly limited on server
+// when more public keys are provided then MaxAuthTries
+func TestClientAuthMaxAuthTriesPublicKey(t *testing.T) {
+	signers := []Signer{}
+	for i := 0; i < 6; i++ {
+		signers = append(signers, testSigners["dsa"])
+	}
+
+	validConfig := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(append([]Signer{testSigners["rsa"]}, signers...)...),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	if err := tryAuth(t, validConfig); err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+
+	expectedErr := fmt.Errorf("ssh: handshake failed: %v", &disconnectMsg{
+		Reason:  2,
+		Message: "too many authentication failures",
+	})
+	invalidConfig := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(append(signers, testSigners["rsa"])...),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	if err := tryAuth(t, invalidConfig); err == nil {
+		t.Fatalf("client: got no error, want %s", expectedErr)
+	} else if err.Error() != expectedErr.Error() {
+		t.Fatalf("client: got %s, want %s", err, expectedErr)
 	}
 }
