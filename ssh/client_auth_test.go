@@ -470,3 +470,75 @@ func TestClientAuthNone(t *testing.T) {
 		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
 	}
 }
+
+// Test if authentication attempts are limited on server when MaxAuthTries is set
+func TestClientAuthMaxAuthTries(t *testing.T) {
+	passwords := []string{"wrong1", "wrong2", "right"}
+	n := 0
+	user := "testuser"
+
+	serverConfig := &ServerConfig{
+		MaxAuthTries: 2,
+		PasswordCallback: func(conn ConnMetadata, pass []byte) (*Permissions, error) {
+			if conn.User() == "testuser" && string(pass) == "right" {
+				return nil, nil
+			}
+			return nil, errors.New("password auth failed")
+		},
+		AuthLogCallback: func(conn ConnMetadata, method string, err error) {
+			t.Logf("user %q, method %q: %v", conn.User(), method, err)
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	clientConfig := &ClientConfig{
+		User: user,
+		Auth: []AuthMethod{
+			RetryableAuthMethod(PasswordCallback(func() (string, error) {
+				p := passwords[n]
+				n++
+				return p, nil
+			}), 3),
+		},
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	expectedErr := fmt.Errorf("ssh: handshake failed: %v", &disconnectMsg{
+		Reason:  2,
+		Message: "too many authentication failures",
+	})
+	go newServer(c1, serverConfig)
+	_, _, _, err = NewClientConn(c2, "", clientConfig)
+	if err == nil {
+		t.Fatalf("client: got no error, want %s", err, expectedErr)
+	} else if err.Error() != expectedErr.Error() {
+		t.Fatalf("client: got %s, want %s", err, expectedErr)
+	}
+
+	passwords = []string{"wrong2", "right"}
+	n = 0
+	c3, c4, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c3.Close()
+	defer c4.Close()
+	clientConfig.Auth = []AuthMethod{
+		RetryableAuthMethod(PasswordCallback(func() (string, error) {
+			p := passwords[n]
+			n++
+			return p, nil
+		}), 2),
+	}
+	go newServer(c3, serverConfig)
+	_, _, _, err = NewClientConn(c4, "", clientConfig)
+	if err != nil {
+		t.Fatalf("client: got %s, want no error", err)
+	}
+}
