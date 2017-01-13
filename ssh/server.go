@@ -44,6 +44,11 @@ type ServerConfig struct {
 	// authenticating.
 	NoClientAuth bool
 
+	// MaxAuthTries specifies the maximum number of authentication attempts
+	// permitted per connection. If not set or set less than 0 the number of
+	// attempts are unlimited.
+	MaxAuthTries int
+
 	// PasswordCallback, if non-nil, is called when a user
 	// attempts to authenticate using a password.
 	PasswordCallback func(conn ConnMetadata, password []byte) (*Permissions, error)
@@ -264,8 +269,12 @@ func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, err
 	var cache pubKeyCache
 	var perms *Permissions
 
+	authAttempts := 0
+
 userAuthLoop:
 	for {
+		authAttempts++
+
 		var userAuthReq userAuthRequestMsg
 		if packet, err := s.transport.readPacket(); err != nil {
 			return nil, err
@@ -285,6 +294,11 @@ userAuthLoop:
 		case "none":
 			if config.NoClientAuth {
 				authErr = nil
+			}
+
+			// allow initial attempt of 'none' without penalty
+			if authAttempts == 1 {
+				authAttempts--
 			}
 		case "password":
 			if config.PasswordCallback == nil {
@@ -419,6 +433,10 @@ userAuthLoop:
 
 		if len(failureMsg.Methods) == 0 {
 			return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+		}
+
+		if authAttempts >= config.MaxAuthTries && config.MaxAuthTries > 0 {
+			return nil, errors.New("ssh: Too many authentication failures")
 		}
 
 		if err = s.transport.writePacket(Marshal(&failureMsg)); err != nil {
