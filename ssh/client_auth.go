@@ -179,19 +179,55 @@ func (cb publicKeyCallback) method() string {
 }
 
 func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand io.Reader) (bool, []string, error) {
-	// Authentication is performed in two stages. The first stage sends an
-	// enquiry to test if each key is acceptable to the remote. The second
-	// stage attempts to authenticate with the valid keys obtained in the
-	// first stage.
+	// Authentication is performed by sending an enquiry to test if a key is
+	// acceptable to the remote. If the key is acceptable, the client will
+	// attempt to authenticate with the valid key.  If not the client will repeat
+	// the process with the remaining keys.
 
 	signers, err := cb()
 	if err != nil {
 		return false, nil, err
 	}
-	var validKeys []Signer
+	var methods []string
 	for _, signer := range signers {
 		if ok, err := validateKey(signer.PublicKey(), user, c); ok {
-			validKeys = append(validKeys, signer)
+			pub := signer.PublicKey()
+
+			pubKey := pub.Marshal()
+			sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
+				User:    user,
+				Service: serviceSSH,
+				Method:  cb.method(),
+			}, []byte(pub.Type()), pubKey))
+			if err != nil {
+				return false, nil, err
+			}
+
+			// manually wrap the serialized signature in a string
+			s := Marshal(sign)
+			sig := make([]byte, stringLength(len(s)))
+			marshalString(sig, s)
+			msg := publickeyAuthMsg{
+				User:     user,
+				Service:  serviceSSH,
+				Method:   cb.method(),
+				HasSig:   true,
+				Algoname: pub.Type(),
+				PubKey:   pubKey,
+				Sig:      sig,
+			}
+			p := Marshal(&msg)
+			if err := c.writePacket(p); err != nil {
+				return false, nil, err
+			}
+			var success bool
+			success, methods, err = handleAuthResponse(c)
+			if err != nil {
+				return false, nil, err
+			}
+			if success {
+				return success, methods, err
+			}
 		} else {
 			if err != nil {
 				return false, nil, err
@@ -199,47 +235,6 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 		}
 	}
 
-	// methods that may continue if this auth is not successful.
-	var methods []string
-	for _, signer := range validKeys {
-		pub := signer.PublicKey()
-
-		pubKey := pub.Marshal()
-		sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
-			User:    user,
-			Service: serviceSSH,
-			Method:  cb.method(),
-		}, []byte(pub.Type()), pubKey))
-		if err != nil {
-			return false, nil, err
-		}
-
-		// manually wrap the serialized signature in a string
-		s := Marshal(sign)
-		sig := make([]byte, stringLength(len(s)))
-		marshalString(sig, s)
-		msg := publickeyAuthMsg{
-			User:     user,
-			Service:  serviceSSH,
-			Method:   cb.method(),
-			HasSig:   true,
-			Algoname: pub.Type(),
-			PubKey:   pubKey,
-			Sig:      sig,
-		}
-		p := Marshal(&msg)
-		if err := c.writePacket(p); err != nil {
-			return false, nil, err
-		}
-		var success bool
-		success, methods, err = handleAuthResponse(c)
-		if err != nil {
-			return false, nil, err
-		}
-		if success {
-			return success, methods, err
-		}
-	}
 	return false, methods, nil
 }
 
