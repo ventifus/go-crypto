@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23c0454e_3a43d956",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-13T19:55:07Z",
+      "side": 1,
+      "message": "Superfluous?",
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23c0454e_fa5fa11c",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-13T19:55:07Z",
+      "side": 1,
+      "message": "Elsewhere I believe len(p) \u003e 0 has been checked first. Not needed here?",
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23c0454e_5a86d56d",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-13T19:55:07Z",
+      "side": 1,
+      "message": "extra space.",
+      "range": {
+        "startLine": 174,
+        "startChar": 53,
+        "endLine": 174,
+        "endChar": 54
+      },
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
