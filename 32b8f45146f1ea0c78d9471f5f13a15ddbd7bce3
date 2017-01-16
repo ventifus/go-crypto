@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8342d14a_3880ed1e",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-16T11:27:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c0454e_3a43d956",
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23c0454e_fa5fa11c",
         "filename": "ssh/handshake.go",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2017-01-13T19:55:07Z",
       "side": 1,
       "message": "Elsewhere I believe len(p) \u003e 0 has been checked first. Not needed here?",
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8342d14a_588bb146",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-16T11:27:52Z",
+      "side": 1,
+      "message": "I updated the doc for packetConn. I\u0027m assuming readPacket always returns non-empty if err\u003d\u003dnil.",
+      "parentUuid": "23c0454e_fa5fa11c",
       "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -53,6 +89,24 @@
         "endLine": 174,
         "endChar": 54
       },
+      "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8342d14a_78867540",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-16T11:27:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c0454e_5a86d56d",
       "revId": "32b8f45146f1ea0c78d9471f5f13a15ddbd7bce3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
