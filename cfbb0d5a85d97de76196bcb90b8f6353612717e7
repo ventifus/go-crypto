@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83bd71e8_faaf8585",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2017-01-17T00:27:32Z",
+      "side": 1,
+      "message": "I think you are mistaken here. There might be some data in the buf (returned by the Read along with returning the error), but you are discarding this data. You should return that data to the readPasswordLine caller instead.\n\nSee from io.Reader documentation:\n```\nWhen Read encounters an error or end-of-file condition after successfully reading n \u003e 0 bytes, it returns the number of bytes read. It may return the (non-nil) error from the same call or return the error (and n \u003d\u003d 0) from a subsequent call. An instance of this general case is that a Reader returning a non-zero number of bytes at the end of the input stream may return either err \u003d\u003d EOF or err \u003d\u003d nil. The next Read should return 0, EOF.\n\nCallers should always process the n \u003e 0 bytes returned before considering the error err. Doing so correctly handles I/O errors that happen after reading some bytes and also both of the allowed EOF behaviors.\n```",
+      "revId": "cfbb0d5a85d97de76196bcb90b8f6353612717e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
