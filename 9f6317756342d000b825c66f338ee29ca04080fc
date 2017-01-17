@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23c0454e_c6dbe4fc",
+        "filename": "ssh/handshake_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-17T17:09:20Z",
+      "side": 1,
+      "message": "This value (5) is appearing three times in this function now. That\u0027s worth a local const numMessages \u003d 5.",
+      "range": {
+        "startLine": 256,
+        "startChar": 12,
+        "endLine": 256,
+        "endChar": 13
+      },
+      "revId": "9f6317756342d000b825c66f338ee29ca04080fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23c0454e_66dcd0f9",
+        "filename": "ssh/handshake_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-17T17:09:20Z",
+      "side": 1,
+      "message": "(nit) this if can be merged with the previous line.",
+      "revId": "9f6317756342d000b825c66f338ee29ca04080fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
