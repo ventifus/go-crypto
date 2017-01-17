@@ -16,6 +16,24 @@
       "revId": "cfbb0d5a85d97de76196bcb90b8f6353612717e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23c0454e_6fce6a68",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 13430
+      },
+      "writtenOn": "2017-01-17T00:42:39Z",
+      "side": 1,
+      "message": "Good point. Please see https://go-review.googlesource.com/#/c/35242/.",
+      "parentUuid": "83bd71e8_faaf8585",
+      "revId": "cfbb0d5a85d97de76196bcb90b8f6353612717e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
