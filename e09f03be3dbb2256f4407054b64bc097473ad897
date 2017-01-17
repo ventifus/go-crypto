@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23c0454e_0f9faf41",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-01-17T20:12:53Z",
+      "side": 1,
+      "message": "I agree with Ivan\u0027s email: this function is too long for naked returns.\n\nSee golang.org/s/style#naked-returns\n\nI\u0027d change this to:\n\n     return nil, nil, errors.New(....)\n\nAlso on the few above.\n\nEven if the shadow checker catches it, explicit is more readable.",
+      "range": {
+        "startLine": 946,
+        "startChar": 4,
+        "endLine": 946,
+        "endChar": 10
+      },
+      "revId": "e09f03be3dbb2256f4407054b64bc097473ad897",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
