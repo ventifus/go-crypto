@@ -22,6 +22,30 @@
       "revId": "e09f03be3dbb2256f4407054b64bc097473ad897",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63915dce_07db9cff",
+        "filename": "otr/otr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-18T18:35:32Z",
+      "side": 1,
+      "message": "Agreed, but will slate that for a future change and land this to stop the bleeding first.",
+      "parentUuid": "23c0454e_0f9faf41",
+      "range": {
+        "startLine": 946,
+        "startChar": 4,
+        "endLine": 946,
+        "endChar": 10
+      },
+      "revId": "e09f03be3dbb2256f4407054b64bc097473ad897",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
