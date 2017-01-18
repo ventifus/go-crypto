@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0847de68_6916a16b",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-18T23:27:03Z",
+      "side": 1,
+      "message": "(1 \u003c\u003c 32) - 1? (Otherwise it looks like the code will emit 2^31 packets, which exceeds the range of an int32 by one.)",
+      "revId": "79383f32d8d680bd8a1548e12dcc2c3abb3c85ba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
