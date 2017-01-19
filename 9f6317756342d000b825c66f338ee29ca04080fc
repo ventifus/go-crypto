@@ -57,6 +57,24 @@
       "revId": "9f6317756342d000b825c66f338ee29ca04080fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c88a26db_811bda8e",
+        "filename": "ssh/handshake_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-19T11:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c0454e_66dcd0f9",
+      "revId": "9f6317756342d000b825c66f338ee29ca04080fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
