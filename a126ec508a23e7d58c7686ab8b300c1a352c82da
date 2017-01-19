@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "883caef3_820a9c06",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-19T22:38:12Z",
+      "side": 1,
+      "message": "I would leave this line out. There is also arm64 and the mips* family and potentially other architectures too going forward.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0847de68_36d6b9a7",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-19T22:38:12Z",
+      "side": 1,
+      "message": "I don\u0027t think this h %\u003d p operation is necessary. h has already been reduced enough to safely feed into the h + -p operation. h0, h2, h3 and h4 are 26-bits and h1 is 27-bits.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0847de68_96d7ada5",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-19T22:38:12Z",
+      "side": 1,
+      "message": "I think is possible to simplify the subtraction and selection a little bit if you want. The end result is something like this:\n\n// h + -p\nt0 :\u003d h0 + 5\nt1 :\u003d h1 + (t0 \u003e\u003e 26)\nt0 \u0026\u003d 0x3ffffff\nt2 :\u003d h2 + (t1 \u003e\u003e 26)\nt3 :\u003d h3 + (t2 \u003e\u003e 26)\nt4 :\u003d h4 + (t3 \u003e\u003e 26)\n\n// select h if h \u003c p else h + -p\nh_mask :\u003d (t4 \u003e\u003e 26) - 1\nt_mask :\u003d ^h_mask\nh0 \u003d (h0 \u0026 h_mask) | (t0 \u0026 t_mask)\nh1 \u003d (h1 \u0026 h_mask)\nh2 \u003d (h2 \u0026 h_mask)\nh3 \u003d (h3 \u0026 h_mask)\nh4 \u003d (h4 \u0026 h_mask)\n\nThis change relies on two observations:\n\n1. t will only be selected if it is in the range [0,5) (since h has been reduced to 130 bits already).\n2. h + (-p%(2^130)) can only carry 1 bit, which will end up in position 26 of h4.",
+      "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
