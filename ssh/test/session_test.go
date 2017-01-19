@@ -320,6 +320,29 @@ func TestMACs(t *testing.T) {
 	}
 }
 
+func TestMACsEtM(t *testing.T) {
+	var config ssh.Config
+	config.SetDefaults()
+	macOrder := []string{}
+	for _, mac := range config.MACs {
+		if len(mac) > 16 && mac[len(mac)-16:] == "-etm@openssh.com" {
+			macOrder = append(macOrder, mac)
+		}
+	}
+
+	for _, mac := range macOrder {
+		server := newServer(t)
+		defer server.Shutdown()
+		conf := clientConfig()
+		conf.MACs = []string{mac}
+		if conn, err := server.TryDial(conf); err == nil {
+			conn.Close()
+		} else {
+			t.Fatalf("failed for MAC %q", mac)
+		}
+	}
+}
+
 func TestKeyExchanges(t *testing.T) {
 	var config ssh.Config
 	config.SetDefaults()

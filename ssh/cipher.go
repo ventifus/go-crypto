@@ -135,6 +135,7 @@ const prefixLen = 5
 type streamPacketCipher struct {
 	mac    hash.Hash
 	cipher cipher.Stream
+	etm    bool
 
 	// The following members are to avoid per-packet allocations.
 	prefix      [prefixLen]byte
@@ -150,7 +151,15 @@ func (s *streamPacketCipher) readPacket(seqNum uint32, r io.Reader) ([]byte, err
 		return nil, err
 	}
 
-	s.cipher.XORKeyStream(s.prefix[:], s.prefix[:])
+	var encryptedPaddingLength []byte
+	if s.mac != nil && s.etm {
+		encryptedPaddingLength = make([]byte, 1)
+		copy(encryptedPaddingLength[:], s.prefix[4:5])
+		s.cipher.XORKeyStream(s.prefix[4:5], s.prefix[4:5])
+	} else {
+		s.cipher.XORKeyStream(s.prefix[:], s.prefix[:])
+	}
+
 	length := binary.BigEndian.Uint32(s.prefix[0:4])
 	paddingLength := uint32(s.prefix[4])
 
@@ -159,7 +168,13 @@ func (s *streamPacketCipher) readPacket(seqNum uint32, r io.Reader) ([]byte, err
 		s.mac.Reset()
 		binary.BigEndian.PutUint32(s.seqNumBytes[:], seqNum)
 		s.mac.Write(s.seqNumBytes[:])
-		s.mac.Write(s.prefix[:])
+		if s.etm {
+			s.mac.Write(s.prefix[:4])
+			s.mac.Write(encryptedPaddingLength)
+
+		} else {
+			s.mac.Write(s.prefix[:])
+		}
 		macSize = uint32(s.mac.Size())
 	}
 
@@ -184,10 +199,17 @@ func (s *streamPacketCipher) readPacket(seqNum uint32, r io.Reader) ([]byte, err
 	}
 	mac := s.packetData[length-1:]
 	data := s.packetData[:length-1]
+
+	if s.mac != nil && s.etm {
+		s.mac.Write(data)
+	}
+
 	s.cipher.XORKeyStream(data, data)
 
 	if s.mac != nil {
-		s.mac.Write(data)
+		if !s.etm {
+			s.mac.Write(data)
+		}
 		s.macResult = s.mac.Sum(s.macResult[:0])
 		if subtle.ConstantTimeCompare(s.macResult, mac) != 1 {
 			return nil, errors.New("ssh: MAC failure")
@@ -203,7 +225,13 @@ func (s *streamPacketCipher) writePacket(seqNum uint32, w io.Writer, rand io.Rea
 		return errors.New("ssh: packet too large")
 	}
 
-	paddingLength := packetSizeMultiple - (prefixLen+len(packet))%packetSizeMultiple
+	aadlen := 0
+	if s.mac != nil && s.etm {
+		// packet length is not encrypted for EtM modes
+		aadlen = 4
+	}
+
+	paddingLength := packetSizeMultiple - (prefixLen+len(packet)-aadlen)%packetSizeMultiple
 	if paddingLength < 4 {
 		paddingLength += packetSizeMultiple
 	}
@@ -216,7 +244,14 @@ func (s *streamPacketCipher) writePacket(seqNum uint32, w io.Writer, rand io.Rea
 		return err
 	}
 
-	if s.mac != nil {
+	if s.mac != nil && !s.etm {
+		// After key exchange, the 'mac' for the selected MAC
+		// algorithm will be computed before encryption from the concatenation
+		// of packet data:
+		//	mac = MAC(key, sequence_number || unencrypted_packet)
+		// where unencrypted_packet is the entire packet without 'mac' (the
+		// length fields, 'payload' and 'random padding'), and sequence_number
+		// is an implicit packet sequence number represented as uint32.
 		s.mac.Reset()
 		binary.BigEndian.PutUint32(s.seqNumBytes[:], seqNum)
 		s.mac.Write(s.seqNumBytes[:])
@@ -225,9 +260,35 @@ func (s *streamPacketCipher) writePacket(seqNum uint32, w io.Writer, rand io.Rea
 		s.mac.Write(padding)
 	}
 
-	s.cipher.XORKeyStream(s.prefix[:], s.prefix[:])
+	if s.mac != nil && s.etm {
+		// Specifically, the "-etm" MAC algorithms modify the transport protocol
+		// to calculate the MAC over the packet ciphertext and to send the packet
+		// length unencrypted. This is necessary for the transport to obtain the
+		// length of the packet and location of the MAC tag so that it may be
+		// verified without decrypting unauthenticated data.
+		// As such, the MAC covers:
+		// 	mac = MAC(key, sequence_number || packet_length || encrypted_packet)
+		// where "packet_length" is encoded as a uint32.
+		s.mac.Reset()
+		binary.BigEndian.PutUint32(s.seqNumBytes[:], seqNum)
+		s.mac.Write(s.seqNumBytes[:])
+		s.cipher.XORKeyStream(s.prefix[4:5], s.prefix[4:5])
+		s.mac.Write(s.prefix[:])
+	} else {
+		s.cipher.XORKeyStream(s.prefix[:], s.prefix[:])
+	}
+
 	s.cipher.XORKeyStream(packet, packet)
 	s.cipher.XORKeyStream(padding, padding)
+
+	if s.mac != nil && s.etm {
+		// "encrypted_packet" contains:
+		// 	byte      padding_length
+		// 	byte[n1]  payload; n1 = packet_length - padding_length - 1
+		// 	byte[n2]  random padding; n2 = padding_length
+		s.mac.Write(packet)
+		s.mac.Write(padding)
+	}
 
 	if _, err := w.Write(s.prefix[:]); err != nil {
 		return err

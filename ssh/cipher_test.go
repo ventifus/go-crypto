@@ -63,6 +63,45 @@ func TestPacketCiphers(t *testing.T) {
 	}
 }
 
+func TestPacketMacs(t *testing.T) {
+	for mac := range macModes {
+		kr := &kexResult{Hash: crypto.SHA1}
+		algs := directionAlgorithms{
+			Cipher:      "aes256-ctr",
+			MAC:         mac,
+			Compression: "none",
+		}
+		client, err := newPacketCipher(clientKeys, algs, kr)
+		if err != nil {
+			t.Errorf("newPacketCipher(client, %q): %v", mac, err)
+			continue
+		}
+		server, err := newPacketCipher(clientKeys, algs, kr)
+		if err != nil {
+			t.Errorf("newPacketCipher(client, %q): %v", mac, err)
+			continue
+		}
+
+		want := "bla bla"
+		input := []byte(want)
+		buf := &bytes.Buffer{}
+		if err := client.writePacket(0, buf, rand.Reader, input); err != nil {
+			t.Errorf("writePacket(%q): %v", mac, err)
+			continue
+		}
+
+		packet, err := server.readPacket(0, buf)
+		if err != nil {
+			t.Errorf("readPacket(%q): %v", mac, err)
+			continue
+		}
+
+		if string(packet) != want {
+			t.Errorf("roundtrip(%q): got %q, want %q", mac, packet, want)
+		}
+	}
+}
+
 func TestCBCOracleCounterMeasure(t *testing.T) {
 	cipherModes[aes128cbcID] = &streamCipherMode{16, aes.BlockSize, 0, nil}
 	defer delete(cipherModes, aes128cbcID)
