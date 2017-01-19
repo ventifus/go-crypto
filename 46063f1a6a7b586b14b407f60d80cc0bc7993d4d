@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0847de68_c28327f0",
+        "filename": "ssh/handshake_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-01-19T17:38:43Z",
+      "side": 1,
+      "message": "(nit: const)",
+      "revId": "46063f1a6a7b586b14b407f60d80cc0bc7993d4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
