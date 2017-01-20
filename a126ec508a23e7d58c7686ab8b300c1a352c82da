@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "0847de68_7e751e35",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-20T14:27:21Z",
+      "side": 1,
+      "message": "On second thought I think you probably still need to carry h1 -\u003e h4 so that h0 -\u003e h3 are all 26-bit and only h4 is 27-bit. My thinking is that while the (h - p) operation is safe, the h %\u003d 2^128 operation isn\u0027t since h1 could still be 27-bits.\n\nI think the other changes are still valid however.",
+      "parentUuid": "c87306cf_dc522121",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0847de68_96d7ada5",
         "filename": "poly1305/sum_ref.go",
         "patchSetId": 1
@@ -125,6 +149,24 @@
       "side": 1,
       "message": "\u003e This change relies on two observations:\n \u003e \n \u003e 1. t will only be selected if it is in the range [0,5) (since h has\n \u003e been reduced to 130 bits already).\n \u003e 2. h + (-p%(2^130)) can only carry 1 bit, which will end up in\n \u003e position 26 of h4.\n\nI thought about this, and I think your also right about it. Do you have a test case to capture the edge case t4 \u003e 1\u003c\u003c26? On all my tests this never happened...",
       "parentUuid": "0847de68_96d7ada5",
+      "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0847de68_de8f7211",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-20T14:27:21Z",
+      "side": 1,
+      "message": "I don\u0027t have a test case unfortunately, I\u0027ll put some thought into it.",
+      "parentUuid": "c87306cf_fc4fe573",
       "revId": "a126ec508a23e7d58c7686ab8b300c1a352c82da",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
