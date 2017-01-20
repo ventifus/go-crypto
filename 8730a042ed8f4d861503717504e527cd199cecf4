@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "883caef3_0534d6fd",
+        "filename": "poly1305/sum_ref.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-20T17:14:21Z",
+      "side": 1,
+      "message": "I\u0027m now thinking that t1 may also be non-zero. The NEON crypto paper states that after the carries h1 is below (2^26 + 2^13). Assuming this is true here, the range of h is really something like:\n\n [0, 2^130 + 2^39)\n\nSo the range of t (if it is positive) would be:\n\n [0, 2^39 + 5)\n\nI think it is still ok to use bit 26 of t4 as a carry indication.",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 19
+      },
+      "revId": "8730a042ed8f4d861503717504e527cd199cecf4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
