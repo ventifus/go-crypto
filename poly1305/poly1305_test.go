@@ -75,7 +75,7 @@ var testData = []struct {
 	},
 }
 
-func testSum(t *testing.T, unaligned bool) {
+func testSum(t *testing.T, unaligned bool, sumImpl func(tag *[TagSize]byte, msg []byte, key *[32]byte)) {
 	var out [16]byte
 	var key [32]byte
 
@@ -85,7 +85,7 @@ func testSum(t *testing.T, unaligned bool) {
 			in = unalignBytes(in)
 		}
 		copy(key[:], v.k)
-		Sum(&out, in, &key)
+		sumImpl(&out, in, &key)
 		if !bytes.Equal(out[:], v.correct) {
 			t.Errorf("%d: expected %x, got %x", i, v.correct, out[:])
 		}
@@ -125,8 +125,10 @@ func TestBurnin(t *testing.T) {
 	}
 }
 
-func TestSum(t *testing.T)          { testSum(t, false) }
-func TestSumUnaligned(t *testing.T) { testSum(t, true) }
+func TestSum(t *testing.T)                 { testSum(t, false, Sum) }
+func TestSumUnaligned(t *testing.T)        { testSum(t, true, Sum) }
+func TestSumGeneric(t *testing.T)          { testSum(t, false, sumGeneric) }
+func TestSumGenericUnaligned(t *testing.T) { testSum(t, true, sumGeneric) }
 
 func benchmark(b *testing.B, size int, unaligned bool) {
 	var out [16]byte
