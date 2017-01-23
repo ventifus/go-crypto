@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a88b32df_6316dc6b",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-23T10:04:30Z",
+      "side": 1,
+      "message": "this and previous look very similar.\n\ncan this be simplified if you do\n\n if s.mac !\u003d nil {\n\n\n     if s.etm {\n\n    } else {\n\n   }\n }",
+      "revId": "87b8127516d402fa52db41f0172890f4b12af23e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68993a37_e19ae08f",
+        "filename": "ssh/cipher_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-23T10:04:30Z",
+      "side": 1,
+      "message": "this looks  dup with the previous test. Can you just add an extra  (nested) for loop to cover all macs with all ciphers?",
+      "range": {
+        "startLine": 69,
+        "startChar": 10,
+        "endLine": 69,
+        "endChar": 29
+      },
+      "revId": "87b8127516d402fa52db41f0172890f4b12af23e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c87306cf_02091050",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-23T10:04:30Z",
+      "side": 1,
+      "message": "Why isn\u0027t this covered by TestMACs ?",
+      "range": {
+        "startLine": 323,
+        "startChar": 5,
+        "endLine": 323,
+        "endChar": 16
+      },
+      "revId": "87b8127516d402fa52db41f0172890f4b12af23e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
