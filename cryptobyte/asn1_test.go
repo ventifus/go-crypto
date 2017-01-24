@@ -6,17 +6,19 @@ package cryptobyte
 
 import (
 	"bytes"
-	"encoding/asn1"
+	encoding_asn1 "encoding/asn1"
 	"math/big"
 	"reflect"
 	"testing"
 	"time"
+
+	"golang.org/x/crypto/cryptobyte/asn1"
 )
 
 type readASN1Test struct {
 	name string
 	in   []byte
-	tag  Tag
+	tag  asn1.Tag
 	ok   bool
 	out  interface{}
 }
@@ -212,7 +214,7 @@ func TestReadASN1ObjectIdentifier(t *testing.T) {
 
 	for i, test := range testData {
 		in := String(test.in)
-		var out asn1.ObjectIdentifier
+		var out encoding_asn1.ObjectIdentifier
 		ok := in.ReadASN1ObjectIdentifier(&out)
 		if ok != test.ok || ok && !out.Equal(test.out) {
 			t.Errorf("#%d: in.ReadASN1ObjectIdentifier() = %v, want %v; out = %v, want %v", i, ok, test.ok, out, test.out)
@@ -250,7 +252,7 @@ func TestReadASN1GeneralizedTime(t *testing.T) {
 		{"201001020304-10Z", false, time.Time{}},
 	}
 	for i, test := range testData {
-		in := String(append([]byte{asn1.TagGeneralizedTime, byte(len(test.in))}, test.in...))
+		in := String(append([]byte{byte(asn1.TagGeneralizedTime), byte(len(test.in))}, test.in...))
 		var out time.Time
 		ok := in.ReadASN1GeneralizedTime(&out)
 		if ok != test.ok || ok && !reflect.DeepEqual(out, test.out) {
@@ -263,20 +265,20 @@ func TestReadASN1BitString(t *testing.T) {
 	testData := []struct {
 		in  []byte
 		ok  bool
-		out asn1.BitString
+		out encoding_asn1.BitString
 	}{
-		{[]byte{}, false, asn1.BitString{}},
-		{[]byte{0x00}, true, asn1.BitString{}},
-		{[]byte{0x07, 0x00}, true, asn1.BitString{Bytes: []byte{0}, BitLength: 1}},
-		{[]byte{0x07, 0x01}, false, asn1.BitString{}},
-		{[]byte{0x07, 0x40}, false, asn1.BitString{}},
-		{[]byte{0x08, 0x00}, false, asn1.BitString{}},
-		{[]byte{0xff}, false, asn1.BitString{}},
-		{[]byte{0xfe, 0x00}, false, asn1.BitString{}},
+		{[]byte{}, false, encoding_asn1.BitString{}},
+		{[]byte{0x00}, true, encoding_asn1.BitString{}},
+		{[]byte{0x07, 0x00}, true, encoding_asn1.BitString{Bytes: []byte{0}, BitLength: 1}},
+		{[]byte{0x07, 0x01}, false, encoding_asn1.BitString{}},
+		{[]byte{0x07, 0x40}, false, encoding_asn1.BitString{}},
+		{[]byte{0x08, 0x00}, false, encoding_asn1.BitString{}},
+		{[]byte{0xff}, false, encoding_asn1.BitString{}},
+		{[]byte{0xfe, 0x00}, false, encoding_asn1.BitString{}},
 	}
 	for i, test := range testData {
 		in := String(append([]byte{3, byte(len(test.in))}, test.in...))
-		var out asn1.BitString
+		var out encoding_asn1.BitString
 		ok := in.ReadASN1BitString(&out)
 		if ok != test.ok || ok && (!bytes.Equal(out.Bytes, test.out.Bytes) || out.BitLength != test.out.BitLength) {
 			t.Errorf("#%d: in.ReadASN1BitString() = %v, want %v; out = %v, want %v", i, ok, test.ok, out, test.out)
