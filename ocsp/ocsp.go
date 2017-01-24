@@ -9,6 +9,7 @@ package ocsp // import "golang.org/x/crypto/ocsp"
 
 import (
 	"crypto"
+	"crypto/cryptobyte"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
@@ -27,6 +28,8 @@ import (
 )
 
 var idPKIXOCSPBasic = asn1.ObjectIdentifier([]int{1, 3, 6, 1, 5, 5, 7, 48, 1, 1})
+
+var asn1Sequence = cryptobyte.Tag(asn1.TagSequence).Constructed()
 
 // ResponseStatus contains the result of an OCSP request. See
 // https://tools.ietf.org/html/rfc6960#section-2.3
@@ -63,7 +66,7 @@ func (r ResponseStatus) String() string {
 }
 
 // ResponseError is an error that may be returned by ParseResponse to indicate
-// that the response itself is an error, not just that its indicating that a
+// that the response itself is an error, not just that it's indicating that a
 // certificate is revoked, unknown, etc.
 type ResponseError struct {
 	Status ResponseStatus
@@ -76,6 +79,11 @@ func (r ResponseError) Error() string {
 // These are internal structures that reflect the ASN.1 structure of an OCSP
 // response. See RFC 2560, section 4.2.
 
+// CertID          ::=     SEQUENCE {
+//     hashAlgorithm       AlgorithmIdentifier,
+//     issuerNameHash      OCTET STRING, -- Hash of Issuer's DN
+//     issuerKeyHash       OCTET STRING, -- Hash of Issuers public key
+//     serialNumber        CertificateSerialNumber }
 type certID struct {
 	HashAlgorithm pkix.AlgorithmIdentifier
 	NameHash      []byte
@@ -83,59 +91,478 @@ type certID struct {
 	SerialNumber  *big.Int
 }
 
-// https://tools.ietf.org/html/rfc2560#section-4.1.1
+func (c *certID) unmarshal(b *cryptobyte.String) bool {
+	var cert cryptobyte.String
+	c.SerialNumber = new(big.Int)
+	if !b.ReadASN1(&cert, asn1Sequence) ||
+		!readAlgorithmIdentifier(&cert, &c.HashAlgorithm) ||
+		!cert.ReadASN1((*cryptobyte.String)(&c.NameHash), asn1.TagOctetString) ||
+		!cert.ReadASN1((*cryptobyte.String)(&c.IssuerKeyHash), asn1.TagOctetString) ||
+		!cert.ReadASN1Integer(c.SerialNumber) ||
+		!cert.Empty() {
+		return false
+	}
+	return true
+}
+
+func (c *certID) Marshal(b *cryptobyte.Builder) error {
+	// TODO(martinkr): Make pkix use cryptobyte.
+	b.AddASN1(asn1Sequence, func(cert *cryptobyte.Builder) {
+		cert.MarshalASN1(c.HashAlgorithm)
+		cert.AddASN1(asn1.TagOctetString, func(nameHash *cryptobyte.Builder) {
+			nameHash.AddBytes(c.NameHash)
+		})
+		cert.AddASN1(asn1.TagOctetString, func(keyHash *cryptobyte.Builder) {
+			keyHash.AddBytes(c.IssuerKeyHash)
+		})
+		cert.AddASN1BigInt(c.SerialNumber)
+	})
+	return nil
+}
+
+// OCSPRequest     ::=     SEQUENCE {
+//     tbsRequest                  TBSRequest,
+//     optionalSignature   [0]     EXPLICIT Signature OPTIONAL }
 type ocspRequest struct {
 	TBSRequest tbsRequest
 }
 
-type tbsRequest struct {
-	Version       int              `asn1:"explicit,tag:0,default:0,optional"`
-	RequestorName pkix.RDNSequence `asn1:"explicit,tag:1,optional"`
-	RequestList   []request
+func (r *ocspRequest) unmarshal(b *cryptobyte.String) bool {
+	var ocsp, sigIgnored cryptobyte.String
+	if !b.ReadASN1(&ocsp, asn1Sequence) ||
+		!r.TBSRequest.unmarshal(&ocsp) ||
+		!ocsp.ReadOptionalASN1(&sigIgnored, nil /* present */, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		!ocsp.Empty() {
+		return false
+	}
+	return true
 }
 
-type request struct {
+func (r *ocspRequest) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(ocsp *cryptobyte.Builder) {
+		ocsp.AddValue(&r.TBSRequest)
+	})
+	return nil
+}
+
+// TBSRequest      ::=     SEQUENCE {
+//     version             [0]     EXPLICIT Version DEFAULT v1,
+//     requestorName       [1]     EXPLICIT GeneralName OPTIONAL,
+//     requestList                 SEQUENCE OF Request,  /* exactly one must be given */
+//     requestExtensions   [2]     EXPLICIT Extensions OPTIONAL }
+//
+// Request         ::=     SEQUENCE {
+//     reqCert                     CertID,
+//     singleRequestExtensions     [0] EXPLICIT Extensions OPTIONAL }
+type tbsRequest struct {
+	Version       int
+	RequestorName pkix.RDNSequence
+	// Exactly one request must be given, so we flatten the Request SEQUENCE.
 	Cert certID
 }
 
-type responseASN1 struct {
-	Status   asn1.Enumerated
-	Response responseBytes `asn1:"explicit,tag:0,optional"`
+func (r *tbsRequest) unmarshal(b *cryptobyte.String) bool {
+	var tbs, requestorName, requestList, ignoredExtensions cryptobyte.String
+	var reqNamePresent bool
+	if !b.ReadASN1(&tbs, asn1Sequence) ||
+		!tbs.ReadOptionalASN1Integer(&r.Version, cryptobyte.Tag(0).ContextSpecific().Constructed(), 0) ||
+		!tbs.ReadOptionalASN1(&requestorName, &reqNamePresent, cryptobyte.Tag(1).ContextSpecific().Constructed()) ||
+		!tbs.ReadASN1(&requestList, asn1Sequence) ||
+		!requestList.Empty() && (!r.unmarshalRequestList(&requestList) || !requestList.Empty()) ||
+		!tbs.ReadOptionalASN1(&ignoredExtensions, nil /* present */, cryptobyte.Tag(2).ContextSpecific().Constructed()) ||
+		!tbs.Empty() {
+		return false
+	}
+	if reqNamePresent {
+		// TODO(martinkr): Make pkix use cryptobyte.
+		if rest, err := asn1.Unmarshal(requestorName, &r.RequestorName); err != nil || len(rest) > 0 {
+			return false
+		}
+	}
+	return true
 }
 
+func (r *tbsRequest) unmarshalRequestList(s *cryptobyte.String) bool {
+	// requestList must have exactly one Request
+	var reqList, extIgnored cryptobyte.String
+	if !s.ReadASN1(&reqList, asn1Sequence) ||
+		!r.Cert.unmarshal(&reqList) ||
+		!reqList.ReadOptionalASN1(&extIgnored, nil /* present */, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		!reqList.Empty() {
+		return false
+	}
+	return true
+}
+
+func (r *tbsRequest) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(tbs *cryptobyte.Builder) {
+		if r.Version != 0 {
+			tbs.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(version *cryptobyte.Builder) {
+				version.AddASN1Int64(int64(r.Version))
+			})
+		}
+		if len(r.RequestorName) > 0 {
+			tbs.AddASN1(cryptobyte.Tag(1).ContextSpecific().Constructed(), func(requestor *cryptobyte.Builder) {
+				requestor.MarshalASN1(&r.RequestorName)
+			})
+		}
+		// requestList contains exactly one value.
+		tbs.AddASN1(asn1Sequence, func(requestList *cryptobyte.Builder) {
+			requestList.AddASN1(asn1Sequence, func(req *cryptobyte.Builder) {
+				req.AddValue(&r.Cert)
+			})
+		})
+	})
+	return nil
+}
+
+// OCSPResponse ::= SEQUENCE {
+//    responseStatus         OCSPResponseStatus,
+//    responseBytes          [0] EXPLICIT ResponseBytes OPTIONAL }
+type responseASN1 struct {
+	Status   asn1.Enumerated // TODO(martinkr): change into ResponseStatus
+	Response responseBytes
+}
+
+func (r *responseASN1) unmarshal(b *cryptobyte.String) bool {
+	var ocsp, respBytes cryptobyte.String
+	var respPresent bool
+	if !b.ReadASN1(&ocsp, asn1Sequence) ||
+		!ocsp.ReadASN1Enum((*int)(&r.Status)) ||
+		!ocsp.ReadOptionalASN1(&respBytes, &respPresent, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		(respPresent && !r.Response.unmarshal(&respBytes)) ||
+		!respBytes.Empty() ||
+		!ocsp.Empty() {
+		return false
+	}
+	return true
+}
+
+func (r *responseASN1) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(ocsp *cryptobyte.Builder) {
+		ocsp.AddASN1Enum(int64(r.Status))
+		if len(r.Response.Response) > 0 {
+			ocsp.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(resp *cryptobyte.Builder) {
+				resp.AddValue(&r.Response)
+			})
+		}
+	})
+	return nil
+}
+
+// ResponseBytes ::=       SEQUENCE {
+//     responseType   OBJECT IDENTIFIER,
+//     response       OCTET STRING }
 type responseBytes struct {
 	ResponseType asn1.ObjectIdentifier
 	Response     []byte
 }
 
+func (r *responseBytes) unmarshal(b *cryptobyte.String) bool {
+	var resp cryptobyte.String
+	if !b.ReadASN1(&resp, asn1Sequence) ||
+		!resp.ReadASN1ObjectIdentifier(&r.ResponseType) ||
+		!resp.ReadASN1((*cryptobyte.String)(&r.Response), asn1.TagOctetString) ||
+		!resp.Empty() {
+		return false
+	}
+	return true
+}
+
+func (r *responseBytes) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(resp *cryptobyte.Builder) {
+		resp.MarshalASN1(r.ResponseType)
+		resp.AddASN1OctetString(r.Response)
+	})
+	return nil
+}
+
+// BasicOCSPResponse       ::= SEQUENCE {
+//    tbsResponseData      ResponseData,
+//    signatureAlgorithm   AlgorithmIdentifier,
+//    signature            BIT STRING,
+//    certs                [0] EXPLICIT SEQUENCE OF Certificate OPTIONAL }
 type basicResponse struct {
 	TBSResponseData    responseData
 	SignatureAlgorithm pkix.AlgorithmIdentifier
 	Signature          asn1.BitString
-	Certificates       []asn1.RawValue `asn1:"explicit,tag:0,optional"`
+	Certificates       []asn1.RawValue
 }
 
+func (r *basicResponse) unmarshal(b *cryptobyte.String) bool {
+	var resp, certs cryptobyte.String
+	var certsPresent bool
+	if !b.ReadASN1(&resp, asn1Sequence) ||
+		!r.TBSResponseData.unmarshal(&resp) ||
+		!readAlgorithmIdentifier(&resp, &r.SignatureAlgorithm) ||
+		!resp.ReadASN1BitString(&r.Signature) ||
+		!resp.ReadOptionalASN1(&certs, &certsPresent, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		!resp.Empty() {
+		return false
+	}
+	if certsPresent {
+		// TODO(martinkr): Add ReadASN1RawValue?
+		if rest, err := asn1.Unmarshal(certs, &r.Certificates); err != nil || len(rest) > 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func (r *basicResponse) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(resp *cryptobyte.Builder) {
+		resp.AddValue(&r.TBSResponseData)
+		resp.MarshalASN1(r.SignatureAlgorithm)
+		resp.AddASN1BitString(r.Signature)
+		if len(r.Certificates) > 0 {
+			resp.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(certs *cryptobyte.Builder) {
+				certs.MarshalASN1(r.Certificates)
+			})
+		}
+	})
+	return nil
+}
+
+// ResponseData ::= SEQUENCE {
+//    version              [0] EXPLICIT Version DEFAULT v1,
+//    responderID              ResponderID,
+//    producedAt               GeneralizedTime,
+//    responses                SEQUENCE OF SingleResponse,
+//    responseExtensions   [1] EXPLICIT Extensions OPTIONAL }
+//
+// ResponderID ::= CHOICE {
+//    byName               [1] Name,
+//    byKey                [2] KeyHash }
 type responseData struct {
-	Raw            asn1.RawContent
-	Version        int `asn1:"optional,default:0,explicit,tag:0"`
-	RawResponderID asn1.RawValue
-	ProducedAt     time.Time `asn1:"generalized"`
-	Responses      []singleResponse
+	Raw              []byte
+	Version          int
+	RawResponderName []byte
+	ResponderKeyHash []byte
+	ProducedAt       time.Time
+	Responses        []singleResponse
 }
 
+func (r *responseData) unmarshal(b *cryptobyte.String) bool {
+	var raw, resp, responderID, responses, extIgnored cryptobyte.String
+	if !b.ReadASN1Element(&raw, asn1Sequence) {
+		return false
+	}
+	r.Raw = raw
+	if !raw.ReadASN1(&resp, asn1Sequence) || !raw.Empty() ||
+		!resp.ReadOptionalASN1Integer(&r.Version, cryptobyte.Tag(0).ContextSpecific().Constructed(), 0) ||
+		!resp.ReadAnyASN1Element(&responderID, nil /* tag */) ||
+		!r.unmarshalResponderID(&responderID) ||
+		!responderID.Empty() ||
+		!resp.ReadASN1GeneralizedTime(&r.ProducedAt) ||
+		!resp.ReadASN1(&responses, asn1Sequence) ||
+		!resp.ReadOptionalASN1(&extIgnored, nil, cryptobyte.Tag(1).ContextSpecific().Constructed()) ||
+		!resp.Empty() {
+		return false
+	}
+	for !responses.Empty() {
+		var sr singleResponse
+		if !sr.unmarshal(&responses) {
+			return false
+		}
+		r.Responses = append(r.Responses, sr)
+	}
+	return true
+}
+
+func (r *responseData) unmarshalResponderID(s *cryptobyte.String) bool {
+	var (
+		content cryptobyte.String
+		tag     cryptobyte.Tag
+	)
+	if !s.ReadAnyASN1(&content, &tag) {
+		panic("1")
+		return false
+	}
+	switch tag {
+	case cryptobyte.Tag(1).ContextSpecific().Constructed(): // Name
+		var rdn pkix.RDNSequence
+		// TODO(martinkr): Make pkix use cryptobyte.
+		if rest, err := asn1.Unmarshal(content, &rdn); err != nil || len(rest) != 0 {
+			panic("2")
+			return false
+		}
+		r.RawResponderName = content
+	case cryptobyte.Tag(2).ContextSpecific().Constructed(): // KeyHash
+		if !content.ReadASN1Bytes(&r.ResponderKeyHash, asn1.TagOctetString) ||
+			!content.Empty() {
+			panic("3")
+			return false
+		}
+	default:
+		return false
+	}
+	return true
+}
+
+func (r *responseData) Marshal(b *cryptobyte.Builder) error {
+	var err error
+	b.AddASN1(asn1Sequence, func(resp *cryptobyte.Builder) {
+		if r.Version != 0 {
+			resp.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(version *cryptobyte.Builder) {
+				version.AddASN1Int64(int64(r.Version))
+			})
+		}
+		if (r.RawResponderName == nil) == (r.ResponderKeyHash == nil) {
+			err = errors.New("exactly one of RawReponderName and ResponderKeyHash must be set")
+			return
+		}
+		if r.RawResponderName != nil {
+			resp.AddASN1(cryptobyte.Tag(1).ContextSpecific().Constructed(), func(name *cryptobyte.Builder) {
+				name.AddBytes(r.RawResponderName)
+			})
+		} else {
+			resp.AddASN1(cryptobyte.Tag(2).ContextSpecific().Constructed(), func(keyHash *cryptobyte.Builder) {
+				keyHash.AddASN1OctetString(r.ResponderKeyHash)
+			})
+		}
+		resp.AddASN1GeneralizedTime(r.ProducedAt)
+		resp.AddASN1(asn1Sequence, func(responses *cryptobyte.Builder) {
+			for _, resp := range r.Responses {
+				responses.AddValue(&resp)
+			}
+		})
+	})
+	return err
+}
+
+// SingleResponse ::= SEQUENCE {
+//    certID                       CertID,
+//    certStatus                   CertStatus,
+//    thisUpdate                   GeneralizedTime,
+//    nextUpdate         [0]       EXPLICIT GeneralizedTime OPTIONAL,
+//    singleExtensions   [1]       EXPLICIT Extensions OPTIONAL }
 type singleResponse struct {
 	CertID           certID
-	Good             asn1.Flag        `asn1:"tag:0,optional"`
-	Revoked          revokedInfo      `asn1:"tag:1,optional"`
-	Unknown          asn1.Flag        `asn1:"tag:2,optional"`
-	ThisUpdate       time.Time        `asn1:"generalized"`
-	NextUpdate       time.Time        `asn1:"generalized,explicit,tag:0,optional"`
-	SingleExtensions []pkix.Extension `asn1:"explicit,tag:1,optional"`
+	Good             asn1.Flag
+	Revoked          revokedInfo
+	Unknown          asn1.Flag
+	ThisUpdate       time.Time
+	NextUpdate       time.Time
+	SingleExtensions []pkix.Extension
+}
+
+func (r *singleResponse) unmarshal(b *cryptobyte.String) bool {
+	var resp, certID, nextUpdate, ext cryptobyte.String
+	var nextUpdatePresent, extPresent bool
+	if !b.ReadASN1(&resp, asn1Sequence) ||
+		!resp.ReadASN1Element(&certID, asn1Sequence) ||
+		!r.CertID.unmarshal(&certID) ||
+		!certID.Empty() ||
+		!r.unmarshalCertStatusChoice(&resp) ||
+		!resp.ReadASN1GeneralizedTime(&r.ThisUpdate) ||
+		!resp.ReadOptionalASN1(&nextUpdate, &nextUpdatePresent, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		(nextUpdatePresent && !nextUpdate.ReadASN1GeneralizedTime(&r.NextUpdate)) ||
+		!nextUpdate.Empty() ||
+		!resp.ReadOptionalASN1(&ext, &extPresent, cryptobyte.Tag(1).ContextSpecific().Constructed()) ||
+		!resp.Empty() {
+		return false
+	}
+	if extPresent {
+		// TODO(martinkr): Make pkix use cryptobyte.
+		if rest, err := asn1.Unmarshal(ext, &r.SingleExtensions); err != nil || len(rest) > 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// CertStatus ::= CHOICE {
+//     good        [0]     IMPLICIT NULL,
+//     revoked     [1]     IMPLICIT RevokedInfo,
+//     unknown     [2]     IMPLICIT UnknownInfo }
+var (
+	certStatusGood    = cryptobyte.Tag(0).ContextSpecific()
+	certStatusRevoked = cryptobyte.Tag(1).ContextSpecific().Constructed()
+	certStatusUnknown = cryptobyte.Tag(2).ContextSpecific()
+)
+
+func (r *singleResponse) unmarshalCertStatusChoice(b *cryptobyte.String) bool {
+	var status cryptobyte.String
+	var tag cryptobyte.Tag
+	if !b.ReadAnyASN1(&status, &tag) {
+		return false
+	}
+	switch tag {
+	case certStatusGood:
+		r.Good = true
+	case certStatusRevoked:
+		// TODO(martinkr): N.B. the IMPLICIT tag has already been stripped. Figure
+		// out how unmarshal should handle leading tags.
+		if !r.Revoked.unmarshal(&status) {
+			return false
+		}
+	case certStatusUnknown:
+		r.Unknown = true
+	default:
+		return false
+	}
+	return status.Empty()
+}
+
+func (r *singleResponse) Marshal(b *cryptobyte.Builder) error {
+	b.AddASN1(asn1Sequence, func(resp *cryptobyte.Builder) {
+		resp.AddValue(&r.CertID)
+		// CertStatus CHOICE
+		if r.Good {
+			resp.AddBytes([]byte{byte(certStatusGood)})
+		} else if (r.Revoked != revokedInfo{}) {
+			resp.AddASN1(certStatusRevoked, func(revoked *cryptobyte.Builder) {
+				revoked.AddValue(&r.Revoked) // N.B. Revoked.Marshal strips the tag.
+			})
+		} else if r.Unknown {
+			resp.AddBytes([]byte{byte(certStatusUnknown)})
+		}
+
+		resp.AddASN1GeneralizedTime(r.ThisUpdate)
+		if (r.NextUpdate != time.Time{}) {
+			resp.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(nextUpdate *cryptobyte.Builder) {
+				nextUpdate.AddASN1GeneralizedTime(r.NextUpdate)
+			})
+		}
+
+		if len(r.SingleExtensions) > 0 {
+			resp.AddASN1(cryptobyte.Tag(1).ContextSpecific().Constructed(), func(ext *cryptobyte.Builder) {
+				ext.MarshalASN1(r.SingleExtensions)
+			})
+		}
+	})
+	return nil
 }
 
 type revokedInfo struct {
-	RevocationTime time.Time       `asn1:"generalized"`
-	Reason         asn1.Enumerated `asn1:"explicit,tag:0,optional"`
+	RevocationTime time.Time
+	Reason         asn1.Enumerated
+}
+
+// RevokedInfo ::= SEQUENCE {
+//     revocationTime              GeneralizedTime,
+//     revocationReason    [0]     EXPLICIT CRLReason OPTIONAL }
+func (r *revokedInfo) unmarshal(b *cryptobyte.String) bool {
+	var reason cryptobyte.String
+	var reasonPresent bool
+	// N.B. the leading tag has already been stripped because it was IMPLICIT.
+	if !b.ReadASN1GeneralizedTime(&r.RevocationTime) ||
+		!b.ReadOptionalASN1(&reason, &reasonPresent, cryptobyte.Tag(0).ContextSpecific().Constructed()) ||
+		(reasonPresent && !reason.ReadASN1Enum((*int)(&r.Reason))) {
+		return false
+	}
+	return true
+}
+
+func (r *revokedInfo) Marshal(b *cryptobyte.Builder) error {
+	// N.B. the sequence tag is omitted because RevokedInfo occurs implicit.
+	b.AddASN1GeneralizedTime(r.RevocationTime)
+	if r.Reason != 0 {
+		b.AddASN1(cryptobyte.Tag(0).ContextSpecific().Constructed(), func(reason *cryptobyte.Builder) {
+			reason.AddASN1Enum(int64(r.Reason))
+		})
+	}
+	return nil
 }
 
 var (
@@ -322,24 +749,22 @@ func (req *Request) Marshal() ([]byte, error) {
 	if hashAlg == nil {
 		return nil, errors.New("Unknown hash algorithm")
 	}
-	return asn1.Marshal(ocspRequest{
+	var b cryptobyte.Builder
+	b.AddValue(&ocspRequest{
 		tbsRequest{
 			Version: 0,
-			RequestList: []request{
-				{
-					Cert: certID{
-						pkix.AlgorithmIdentifier{
-							Algorithm:  hashAlg,
-							Parameters: asn1.RawValue{Tag: 5 /* ASN.1 NULL */},
-						},
-						req.IssuerNameHash,
-						req.IssuerKeyHash,
-						req.SerialNumber,
-					},
+			Cert: certID{
+				pkix.AlgorithmIdentifier{
+					Algorithm:  hashAlg,
+					Parameters: asn1.RawValue{Tag: 5 /* ASN.1 NULL */},
 				},
+				req.IssuerNameHash,
+				req.IssuerKeyHash,
+				req.SerialNumber,
 			},
 		},
 	})
+	return b.Bytes()
 }
 
 // Response represents an OCSP response containing a single SingleResponse. See
@@ -419,29 +844,24 @@ func (p ParseError) Error() string {
 // If a request includes a signature, it will result in a ParseError.
 func ParseRequest(bytes []byte) (*Request, error) {
 	var req ocspRequest
-	rest, err := asn1.Unmarshal(bytes, &req)
-	if err != nil {
-		return nil, err
+	s := cryptobyte.String(bytes)
+	if !req.unmarshal(&s) {
+		return nil, ParseError("failed to parse OCSP request")
 	}
-	if len(rest) > 0 {
+	if !s.Empty() {
 		return nil, ParseError("trailing data in OCSP request")
 	}
 
-	if len(req.TBSRequest.RequestList) == 0 {
-		return nil, ParseError("OCSP request contains no request body")
-	}
-	innerRequest := req.TBSRequest.RequestList[0]
-
-	hashFunc := getHashAlgorithmFromOID(innerRequest.Cert.HashAlgorithm.Algorithm)
+	hashFunc := getHashAlgorithmFromOID(req.TBSRequest.Cert.HashAlgorithm.Algorithm)
 	if hashFunc == crypto.Hash(0) {
 		return nil, ParseError("OCSP request uses unknown hash function")
 	}
 
 	return &Request{
 		HashAlgorithm:  hashFunc,
-		IssuerNameHash: innerRequest.Cert.NameHash,
-		IssuerKeyHash:  innerRequest.Cert.IssuerKeyHash,
-		SerialNumber:   innerRequest.Cert.SerialNumber,
+		IssuerNameHash: req.TBSRequest.Cert.NameHash,
+		IssuerKeyHash:  req.TBSRequest.Cert.IssuerKeyHash,
+		SerialNumber:   req.TBSRequest.Cert.SerialNumber,
 	}, nil
 }
 
@@ -465,12 +885,12 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 // Invalid signatures or parse failures will result in a ParseError. Error
 // responses will result in a ResponseError.
 func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Response, error) {
+	b := cryptobyte.String(bytes)
 	var resp responseASN1
-	rest, err := asn1.Unmarshal(bytes, &resp)
-	if err != nil {
-		return nil, err
+	if !resp.unmarshal(&b) {
+		return nil, ParseError("failed to parse OCSP response")
 	}
-	if len(rest) > 0 {
+	if !b.Empty() {
 		return nil, ParseError("trailing data in OCSP response")
 	}
 
@@ -483,9 +903,12 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 	}
 
 	var basicResp basicResponse
-	rest, err = asn1.Unmarshal(resp.Response.Response, &basicResp)
-	if err != nil {
-		return nil, err
+	basicRespBytes := cryptobyte.String(resp.Response.Response)
+	if !basicResp.unmarshal(&basicRespBytes) {
+		return nil, ParseError("failed to parse OCSP response")
+	}
+	if !basicRespBytes.Empty() {
+		return nil, ParseError("OCSP response has trailing bytes")
 	}
 
 	if len(basicResp.Certificates) > 1 {
@@ -500,27 +923,11 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 		TBSResponseData:    basicResp.TBSResponseData.Raw,
 		Signature:          basicResp.Signature.RightAlign(),
 		SignatureAlgorithm: getSignatureAlgorithmFromOID(basicResp.SignatureAlgorithm.Algorithm),
+		RawResponderName:   basicResp.TBSResponseData.RawResponderName,
+		ResponderKeyHash:   basicResp.TBSResponseData.ResponderKeyHash,
 	}
 
-	// Handle the ResponderID CHOICE tag. ResponderID can be flattened into
-	// TBSResponseData once https://go-review.googlesource.com/34503 has been
-	// released.
-	rawResponderID := basicResp.TBSResponseData.RawResponderID
-	switch rawResponderID.Tag {
-	case 1: // Name
-		var rdn pkix.RDNSequence
-		if rest, err := asn1.Unmarshal(rawResponderID.Bytes, &rdn); err != nil || len(rest) != 0 {
-			return nil, ParseError("invalid responder name")
-		}
-		ret.RawResponderName = rawResponderID.Bytes
-	case 2: // KeyHash
-		if rest, err := asn1.Unmarshal(rawResponderID.Bytes, &ret.ResponderKeyHash); err != nil || len(rest) != 0 {
-			return nil, ParseError("invalid responder key hash")
-		}
-	default:
-		return nil, ParseError("invalid responder id tag")
-	}
-
+	var err error
 	if len(basicResp.Certificates) > 0 {
 		ret.Certificate, err = x509.ParseCertificate(basicResp.Certificates[0].FullBytes)
 		if err != nil {
@@ -602,6 +1009,22 @@ func (opts *RequestOptions) hash() crypto.Hash {
 	return opts.Hash
 }
 
+type subjectPublicKeyInfo struct {
+	Algorithm pkix.AlgorithmIdentifier
+	PublicKey asn1.BitString
+}
+
+func (s *subjectPublicKeyInfo) unmarshal(b *cryptobyte.String) bool {
+	var spki cryptobyte.String
+	if !b.ReadASN1(&spki, asn1Sequence) ||
+		!readAlgorithmIdentifier(&spki, &s.Algorithm) ||
+		!spki.ReadASN1BitString(&s.PublicKey) ||
+		!spki.Empty() {
+		return false
+	}
+	return true
+}
+
 // CreateRequest returns a DER-encoded, OCSP request for the status of cert. If
 // opts is nil then sensible defaults are used.
 func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte, error) {
@@ -620,15 +1043,13 @@ func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte
 	}
 	h := opts.hash().New()
 
-	var publicKeyInfo struct {
-		Algorithm pkix.AlgorithmIdentifier
-		PublicKey asn1.BitString
-	}
-	if _, err := asn1.Unmarshal(issuer.RawSubjectPublicKeyInfo, &publicKeyInfo); err != nil {
-		return nil, err
+	rawSPKI := cryptobyte.String(issuer.RawSubjectPublicKeyInfo)
+	var spki subjectPublicKeyInfo
+	if !spki.unmarshal(&rawSPKI) || !rawSPKI.Empty() {
+		return nil, errors.New("failed to parse issuer Certificate SubjectPublicKeyInfo")
 	}
 
-	h.Write(publicKeyInfo.PublicKey.RightAlign())
+	h.Write(spki.PublicKey.RightAlign())
 	issuerKeyHash := h.Sum(nil)
 
 	h.Reset()
@@ -659,12 +1080,10 @@ func CreateRequest(cert, issuer *x509.Certificate, opts *RequestOptions) ([]byte
 //
 // The ProducedAt date is automatically set to the current date, to the nearest minute.
 func CreateResponse(issuer, responderCert *x509.Certificate, template Response, priv crypto.Signer) ([]byte, error) {
-	var publicKeyInfo struct {
-		Algorithm pkix.AlgorithmIdentifier
-		PublicKey asn1.BitString
-	}
-	if _, err := asn1.Unmarshal(issuer.RawSubjectPublicKeyInfo, &publicKeyInfo); err != nil {
-		return nil, err
+	rawSPKI := cryptobyte.String(issuer.RawSubjectPublicKeyInfo)
+	var spki subjectPublicKeyInfo
+	if !spki.unmarshal(&rawSPKI) || !rawSPKI.Empty() {
+		return nil, errors.New("failed to parse issuer Certificate SubjectPublicKeyInfo")
 	}
 
 	if template.IssuerHash == 0 {
@@ -679,7 +1098,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		return nil, fmt.Errorf("issuer hash algorithm %v not linked into binary", template.IssuerHash)
 	}
 	h := template.IssuerHash.New()
-	h.Write(publicKeyInfo.PublicKey.RightAlign())
+	h.Write(spki.PublicKey.RightAlign())
 	issuerKeyHash := h.Sum(nil)
 
 	h.Reset()
@@ -713,20 +1132,16 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		}
 	}
 
-	rawResponderID := asn1.RawValue{
-		Class:      2, // context-specific
-		Tag:        1, // Name (explicit tag)
-		IsCompound: true,
-		Bytes:      responderCert.RawSubject,
-	}
 	tbsResponseData := responseData{
-		Version:        0,
-		RawResponderID: rawResponderID,
-		ProducedAt:     time.Now().Truncate(time.Minute).UTC(),
-		Responses:      []singleResponse{innerResponse},
+		Version:          0,
+		RawResponderName: responderCert.RawSubject,
+		ProducedAt:       time.Now().Truncate(time.Minute).UTC(),
+		Responses:        []singleResponse{innerResponse},
 	}
 
-	tbsResponseDataDER, err := asn1.Marshal(tbsResponseData)
+	var tbsBuilder cryptobyte.Builder
+	tbsBuilder.AddValue(&tbsResponseData)
+	tbsResponseDataDER, err := tbsBuilder.Bytes()
 	if err != nil {
 		return nil, err
 	}
@@ -756,16 +1171,34 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 			asn1.RawValue{FullBytes: template.Certificate.Raw},
 		}
 	}
-	responseDER, err := asn1.Marshal(response)
+
+	var basicResponseBuilder cryptobyte.Builder
+	basicResponseBuilder.AddValue(&response)
+	responseDER, err := basicResponseBuilder.Bytes()
 	if err != nil {
 		return nil, err
 	}
 
-	return asn1.Marshal(responseASN1{
+	var responseBuilder cryptobyte.Builder
+	resp := responseASN1{
 		Status: asn1.Enumerated(Success),
 		Response: responseBytes{
 			ResponseType: idPKIXOCSPBasic,
 			Response:     responseDER,
 		},
-	})
+	}
+	responseBuilder.AddValue(&resp)
+	return responseBuilder.Bytes()
+}
+
+func readAlgorithmIdentifier(b *cryptobyte.String, out *pkix.AlgorithmIdentifier) bool {
+	var alg cryptobyte.String
+	if !b.ReadASN1Element(&alg, asn1Sequence) {
+		return false
+	}
+	// TODO(martinkr): Make pkix use cryptobyte.
+	if rest, err := asn1.Unmarshal(alg, out); err != nil || len(rest) != 0 {
+		return false
+	}
+	return true
 }
