@@ -5,9 +5,10 @@
 package cryptobyte_test
 
 import (
-	"encoding/asn1"
 	"fmt"
+
 	"golang.org/x/crypto/cryptobyte"
+	"golang.org/x/crypto/cryptobyte/asn1"
 )
 
 func ExampleString_lengthPrefixed() {
@@ -51,12 +52,12 @@ func ExampleString_asn1() {
 		data, inner, versionBytes cryptobyte.String
 		haveVersion               bool
 	)
-	if !input.ReadASN1(&inner, cryptobyte.Tag(asn1.TagSequence).Constructed()) ||
+	if !input.ReadASN1(&inner, asn1.SEQUENCE) ||
 		!input.Empty() ||
-		!inner.ReadOptionalASN1(&versionBytes, &haveVersion, cryptobyte.Tag(6).Constructed().ContextSpecific()) ||
+		!inner.ReadOptionalASN1(&versionBytes, &haveVersion, asn1.Tag(6).Constructed().ContextSpecific()) ||
 		(haveVersion && !versionBytes.ReadASN1Integer(&version)) ||
 		(haveVersion && !versionBytes.Empty()) ||
-		!inner.ReadASN1(&data, asn1.TagOctetString) ||
+		!inner.ReadASN1(&data, asn1.OCTET_STRING) ||
 		!inner.Empty() {
 		panic("bad format")
 	}
@@ -77,9 +78,9 @@ func ExampleBuilder_asn1() {
 	const defaultVersion = 0
 
 	var b cryptobyte.Builder
-	b.AddASN1(cryptobyte.Tag(asn1.TagSequence).Constructed(), func(b *cryptobyte.Builder) {
+	b.AddASN1(asn1.SEQUENCE, func(b *cryptobyte.Builder) {
 		if version != defaultVersion {
-			b.AddASN1(cryptobyte.Tag(6).Constructed().ContextSpecific(), func(b *cryptobyte.Builder) {
+			b.AddASN1(asn1.Tag(6).Constructed().ContextSpecific(), func(b *cryptobyte.Builder) {
 				b.AddASN1Int64(version)
 			})
 		}

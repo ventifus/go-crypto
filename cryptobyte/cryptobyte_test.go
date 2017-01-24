@@ -6,6 +6,7 @@ package cryptobyte
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"testing"
 )
@@ -16,6 +17,42 @@ func builderBytesEq(b *Builder, want ...byte) error {
 		return fmt.Errorf("Bytes() = %v, want %v", got, want)
 	}
 	return nil
+}
+
+func TestContinuationError(t *testing.T) {
+	const errorStr = "TestContinuationError"
+	var b Builder
+	b.AddUint8LengthPrefixed(func(b *Builder) {
+		b.AddUint8(1)
+		panic(errors.New(errorStr))
+	})
+
+	ret, err := b.Bytes()
+	if ret != nil {
+		t.Error("expected nil result")
+	}
+	if err == nil {
+		t.Fatal("unexpected nil error")
+	}
+	if s := err.Error(); s != errorStr {
+		t.Errorf("expected error %q, got %v", errorStr, s)
+	}
+}
+
+func TestContinuationNonError(t *testing.T) {
+	var b Builder
+	b.AddUint8LengthPrefixed(func(b *Builder) {
+		b.AddUint8(1)
+		panic(1)
+	})
+
+	ret, err := b.Bytes()
+	if ret != nil {
+		t.Error("expected nil result")
+	}
+	if err == nil {
+		t.Fatal("unexpected nil error")
+	}
 }
 
 func TestBytes(t *testing.T) {
