@@ -102,6 +102,9 @@ func (b *Builder) AddBytes(v []byte) {
 // length prefix. After the continuation returns, the child must be considered
 // invalid, i.e. users must not store any copies or references of the child
 // that outlive the continuation.
+//
+// If the child panics with an error then that will be returned as the error
+// from Bytes. If the child otherwise panics Bytes will return a generic error.
 type BuilderContinuation func(child *Builder)
 
 // AddUint8LengthPrefixed adds a 8-bit length-prefixed byte sequence.
@@ -117,6 +120,25 @@ func (b *Builder) AddUint16LengthPrefixed(f BuilderContinuation) {
 // AddUint24LengthPrefixed adds a big-endian, 24-bit length-prefixed byte sequence.
 func (b *Builder) AddUint24LengthPrefixed(f BuilderContinuation) {
 	b.addLengthPrefixed(3, false, f)
+}
+
+func callContinuation(f BuilderContinuation, arg *Builder) (err error) {
+	defer func() {
+		r := recover()
+		if r == nil {
+			return
+		}
+
+		var ok bool
+		if err, ok = r.(error); ok {
+			return
+		}
+
+		err = fmt.Errorf("cryptobyte: builder panicked with non-error: %v", r)
+	}()
+
+	f(arg)
+	return err
 }
 
 func (b *Builder) addLengthPrefixed(lenLen int, isASN1 bool, f BuilderContinuation) {
@@ -136,7 +158,7 @@ func (b *Builder) addLengthPrefixed(lenLen int, isASN1 bool, f BuilderContinuati
 		pendingIsASN1: isASN1,
 	}
 
-	f(b.child)
+	b.err = callContinuation(f, b.child)
 	b.flushChild()
 	if b.child != nil {
 		panic("cryptobyte: internal error")
