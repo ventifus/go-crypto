@@ -9,6 +9,7 @@ package ocsp // import "golang.org/x/crypto/ocsp"
 
 import (
 	"crypto"
+	"crypto/cryptobyte"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
@@ -28,6 +29,10 @@ import (
 
 var idPKIXOCSPBasic = asn1.ObjectIdentifier([]int{1, 3, 6, 1, 5, 5, 7, 48, 1, 1})
 
+const asn1ContextSpecific = 0x80
+const asn1Constructed = 0x20
+const asn1Sequence = asn1.TagSequence | asn1Constructed
+
 // ResponseStatus contains the result of an OCSP request. See
 // https://tools.ietf.org/html/rfc6960#section-2.3
 type ResponseStatus int
@@ -42,6 +47,13 @@ const (
 	SignatureRequired ResponseStatus = 5
 	Unauthorized      ResponseStatus = 6
 )
+
+func responseStatus(i int64) (ResponseStatus, bool) {
+	if i < int64(Success) || i > int64(Unauthorized) {
+		return Unauthorized, false
+	}
+	return ResponseStatus(i), true
+}
 
 func (r ResponseStatus) String() string {
 	switch r {
@@ -76,6 +88,13 @@ func (r ResponseError) Error() string {
 // These are internal structures that reflect the ASN.1 structure of an OCSP
 // response. See RFC 2560, section 4.2.
 
+/*
+   CertID          ::=     SEQUENCE {
+       hashAlgorithm       AlgorithmIdentifier,
+       issuerNameHash      OCTET STRING, -- Hash of Issuer's DN
+       issuerKeyHash       OCTET STRING, -- Hash of Issuers public key
+       serialNumber        CertificateSerialNumber }
+*/
 type certID struct {
 	HashAlgorithm pkix.AlgorithmIdentifier
 	NameHash      []byte
@@ -83,29 +102,186 @@ type certID struct {
 	SerialNumber  *big.Int
 }
 
-// https://tools.ietf.org/html/rfc2560#section-4.1.1
+func (c *certID) unmarshal(b *cryptobyte.String) error {
+	var cert, alg, nameHash, keyHash cryptobyte.String
+	serial := new(big.Int)
+	if !b.ReadASN1(&cert, asn1Sequence) ||
+		!cert.ReadASN1Element(&alg, asn1Sequence) ||
+		!cert.ReadASN1(&nameHash, asn1.TagOctetString) ||
+		!cert.ReadASN1(&keyHash, asn1.TagOctetString) ||
+		!cert.ReadASN1BigInt(serial) {
+		return ParseError("failed to decode CertID")
+	}
+	if !cert.Empty() {
+		return ParseError("failed to decode CertID: trailing data")
+	}
+	// TODO(martinkr): Add crypobyte unmarshaling for pkix.HashAlgorithm.
+	if rest, err := asn1.Unmarshal(alg, &c.HashAlgorithm); err != nil || len(rest) != 0 {
+		return ParseError(fmt.Sprintf("faled to decode HashAlgorithm: %v", err.Error()))
+	}
+	c.NameHash = nameHash
+	c.IssuerKeyHash = keyHash
+	c.SerialNumber = serial
+
+	return nil
+}
+
+/*
+   OCSPRequest     ::=     SEQUENCE {
+       tbsRequest                  TBSRequest,
+       optionalSignature   [0]     EXPLICIT Signature OPTIONAL }
+*/
 type ocspRequest struct {
 	TBSRequest tbsRequest
 }
 
+func (r *ocspRequest) unmarshal(b *cryptobyte.String) error {
+	var ocsp, sigIgnored cryptobyte.String
+	if !b.ReadASN1(&ocsp, asn1Sequence) {
+		return ParseError(fmt.Sprintf("failed to decode OCSPRequest: leading SEQUENCE tag expected %2x", asn1Sequence))
+	}
+	if err := r.TBSRequest.unmarshal(&ocsp); err != nil {
+		return err
+	}
+	if !ocsp.ReadOptionalASN1(&sigIgnored, nil /* present */, 0) {
+		return ParseError("failed to decode OCSPRequest: signature")
+	}
+	if !ocsp.Empty() {
+		return ParseError("failed to decode OCSPRequest: trailing data")
+	}
+	return nil
+}
+
+/*
+   TBSRequest      ::=     SEQUENCE {
+       version             [0]     EXPLICIT Version DEFAULT v1,
+       requestorName       [1]     EXPLICIT GeneralName OPTIONAL,
+       requestList                 SEQUENCE OF Request,
+       requestExtensions   [2]     EXPLICIT Extensions OPTIONAL }
+*/
 type tbsRequest struct {
 	Version       int              `asn1:"explicit,tag:0,default:0,optional"`
 	RequestorName pkix.RDNSequence `asn1:"explicit,tag:1,optional"`
 	RequestList   []request
 }
 
+func (r *tbsRequest) unmarshal(b *cryptobyte.String) error {
+	var tbs, requestorName, requestList, ignoredExtensions cryptobyte.String
+	var version uint64
+	var reqNamePresent bool
+	if !b.ReadASN1(&tbs, asn1Sequence) ||
+		!tbs.ReadOptionalASN1Uint64(&version, 0, 0) ||
+		!tbs.ReadOptionalASN1(&requestorName, &reqNamePresent, 1) ||
+		!tbs.ReadASN1(&requestList, asn1Sequence) ||
+		!tbs.ReadOptionalASN1(&ignoredExtensions, nil /* present */, 2) {
+		return ParseError("failed to decode TBSRequest")
+	}
+	if !tbs.Empty() {
+		return ParseError("failed to decode TBSRequest: trailing data")
+	}
+
+	r.Version = int(version)
+
+	if reqNamePresent {
+		// TODO(martinkr): Add cryptobyte unmarshaling to pkix.RDNSequence.
+		if rest, err := asn1.Unmarshal(requestorName, &r.RequestorName); err != nil || len(rest) > 0 {
+			return err
+		}
+	}
+
+	for !requestList.Empty() {
+		var req request
+		if err := req.unmarshal(&requestList); err != nil {
+			return err
+		}
+		r.RequestList = append(r.RequestList, req)
+	}
+
+	return nil
+}
+
+/*
+   Request         ::=     SEQUENCE {
+       reqCert                     CertID,
+       singleRequestExtensions     [0] EXPLICIT Extensions OPTIONAL }
+*/
 type request struct {
 	Cert certID
 }
 
-type responseASN1 struct {
-	Status   asn1.Enumerated
-	Response responseBytes `asn1:"explicit,tag:0,optional"`
+func (r *request) unmarshal(b *cryptobyte.String) error {
+	var cert, extIgnored cryptobyte.String
+	if !b.ReadASN1(&cert, asn1Sequence) {
+		return ParseError("failed to decode Request")
+	}
+	if err := r.Cert.unmarshal(&cert); err != nil {
+		return err
+	}
+	if !cert.ReadOptionalASN1(&extIgnored, nil /* present */, 0) {
+		return ParseError("failed to decode Request: extensions")
+	}
+	if !cert.Empty() {
+		return ParseError("failed to decode Request: trailing data")
+	}
+	return nil
 }
 
+/*
+   OCSPResponse ::= SEQUENCE {
+      responseStatus         OCSPResponseStatus,
+      responseBytes          [0] EXPLICIT ResponseBytes OPTIONAL }
+*/
+type responseASN1 struct {
+	Status   asn1.Enumerated // TODO(martinkr): change into ResponseStatus
+	Response responseBytes   `asn1:"explicit,tag:0,optional"`
+}
+
+func (r *responseASN1) unmarshal(b *cryptobyte.String) error {
+	var ocsp, respBytes cryptobyte.String
+	var status int64
+	var respPresent bool
+	const tagResponseBytes = 0 | asn1ContextSpecific | asn1Constructed
+	if !b.ReadASN1(&ocsp, asn1Sequence) || !ocsp.ReadASN1Enum(&status) ||
+		!ocsp.ReadOptionalASN1(&respBytes, &respPresent, tagResponseBytes) {
+		return ParseError("failed to decode OCSPResponse")
+	}
+	if !ocsp.Empty() {
+		return ParseError("failed to decode OCSPResponse: trailing bytes")
+	}
+	s, ok := responseStatus(status)
+	if !ok {
+		return ParseError(fmt.Sprintf("failed to decode OCSPResponse: invalid status %d", status))
+	}
+	r.Status = asn1.Enumerated(s)
+	if respPresent {
+		if err := r.Response.unmarshal(&respBytes); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+/*
+   ResponseBytes ::=       SEQUENCE {
+       responseType   OBJECT IDENTIFIER,
+       response       OCTET STRING }
+*/
 type responseBytes struct {
 	ResponseType asn1.ObjectIdentifier
 	Response     []byte
+}
+
+func (r *responseBytes) unmarshal(b *cryptobyte.String) error {
+	var resp cryptobyte.String
+	if !b.ReadASN1(&resp, asn1Sequence) ||
+		!resp.ReadASN1ObjectIdentifier(&r.ResponseType) ||
+		!resp.ReadASN1((*cryptobyte.String)(&r.Response), asn1.TagOctetString) {
+		return ParseError("failed to decode ResponseBytes")
+	}
+	if !resp.Empty() {
+		return ParseError("failed to decode ResponseBytes: trailing bytes")
+	}
+	return nil
 }
 
 type basicResponse struct {
@@ -419,11 +595,11 @@ func (p ParseError) Error() string {
 // If a request includes a signature, it will result in a ParseError.
 func ParseRequest(bytes []byte) (*Request, error) {
 	var req ocspRequest
-	rest, err := asn1.Unmarshal(bytes, &req)
-	if err != nil {
-		return nil, err
+	s := cryptobyte.String(bytes)
+	if err := req.unmarshal(&s); err != nil {
+		return nil, ParseError(err.Error())
 	}
-	if len(rest) > 0 {
+	if !s.Empty() {
 		return nil, ParseError("trailing data in OCSP request")
 	}
 
@@ -465,12 +641,12 @@ func ParseResponse(bytes []byte, issuer *x509.Certificate) (*Response, error) {
 // Invalid signatures or parse failures will result in a ParseError. Error
 // responses will result in a ResponseError.
 func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Response, error) {
+	b := cryptobyte.String(bytes)
 	var resp responseASN1
-	rest, err := asn1.Unmarshal(bytes, &resp)
-	if err != nil {
+	if err := resp.unmarshal(&b); err != nil {
 		return nil, err
 	}
-	if len(rest) > 0 {
+	if !b.Empty() {
 		return nil, ParseError("trailing data in OCSP response")
 	}
 
@@ -483,9 +659,12 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 	}
 
 	var basicResp basicResponse
-	rest, err = asn1.Unmarshal(resp.Response.Response, &basicResp)
+	rest, err := asn1.Unmarshal(resp.Response.Response, &basicResp)
 	if err != nil {
 		return nil, err
+	}
+	if len(rest) > 0 {
+		return nil, ParseError("OCSP response has trailing bytes")
 	}
 
 	if len(basicResp.Certificates) > 1 {
