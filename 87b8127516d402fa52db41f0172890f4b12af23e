@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c87306cf_e252dc20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-01-25T12:50:04Z",
+      "side": 1,
+      "message": "ssh: ...",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "87b8127516d402fa52db41f0172890f4b12af23e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a88b32df_6316dc6b",
         "filename": "ssh/cipher.go",
         "patchSetId": 1
