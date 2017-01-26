@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06664b5e_f80f3fa4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-01-26T20:06:43Z",
+      "side": 1,
+      "message": "In the future, omit the crypto/ prefix.\n\nI didn\u0027t notice until after I submitted.",
+      "revId": "854ae91cdcbf914b499b1d7641d07859f3653481",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
