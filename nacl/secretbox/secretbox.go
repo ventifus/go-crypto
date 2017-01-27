@@ -13,6 +13,11 @@ example, by using nonce 1 for the first message, nonce 2 for the second
 message, etc. Nonces are long enough that randomly generated nonces have
 negligible risk of collision.
 
+Messages should be small because authenticating one requires the whole message
+and because APIs that release unauthenticated plaintext are dangerous. Thus
+large messages push memory-limited implementations into error-prone designs.
+Prefer chunking messages (e.g. at 16KB) to doing that.
+
 This package is interoperable with NaCl: https://nacl.cr.yp.to/secretbox.html.
 */
 package secretbox // import "golang.org/x/crypto/nacl/secretbox"

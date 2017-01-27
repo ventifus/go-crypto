@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-Package box authenticates and encrypts messages using public-key cryptography.
+Package box authenticates and encrypts small messages using public-key cryptography.
 
 Box uses Curve25519, XSalsa20 and Poly1305 to encrypt and authenticate
 messages. The length of messages is not hidden.
@@ -12,6 +12,11 @@ It is the caller's responsibility to ensure the uniqueness of nonces—for
 example, by using nonce 1 for the first message, nonce 2 for the second
 message, etc. Nonces are long enough that randomly generated nonces have
 negligible risk of collision.
+
+Messages should be small because authenticating one requires the whole message
+and because APIs that release unauthenticated plaintext are dangerous. Thus
+large messages push memory-limited implementations into error-prone designs.
+Prefer chunking messages (e.g. at 16KB) to doing that.
 
 This package is interoperable with NaCl: https://nacl.cr.yp.to/box.html.
 */
