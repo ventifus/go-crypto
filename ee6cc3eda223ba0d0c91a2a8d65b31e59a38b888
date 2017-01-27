@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cae54c27_fdfcf528",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "openpgp: fix encrypted session key length comparison for AES192",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b8d1f7_542a8132",
+        "filename": "openpgp/packet/symmetric_key_encrypted.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "Let\u0027s document the need for this check. Without reading the commit message it seemed out of place\n\n// Issue https://golang.org/issues/17060. We should check that the plaintextKey\n// length is equal to the cipherFunc keysize to account for AES192.\nif keyLen, keySize :\u003d len(plaintextKey), cipherFunc.KeySize(); keyLen !\u003d keySize {\n    return nil, cipherFunc, errors.StructuralError(fmt.Sprintf(\"incorrect key size %d expected %d\", keySize, keyLen))\n}\n\nAlso the past checks seemed to work for the other ciphers, is there a reason why we should entirely remove\nthe condition:\nl \u003d\u003d 0 || l %cipherFunc.blockSize() !\u003d 0 {",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c05e0c5_7a183b14",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "Since we are testing multiple ciphers, let\u0027s also make it easier to diagnose\nwhich tests failed by using a test table like this:\n\nvar tests \u003d [...]struct{\n    fn CipherFunction\n    name string\n} {\n    0: {Cipher3DES, \"Cipher3DES\"},\n    1: {CipherCAST5, \"CipherCAST5\"},\n    // and so forth\n}\n\nand then on failures\n\nfor i, tt :\u003d range tests {\n   t.Errorf(\"#%d cipher(%s) err\u003d%v\", i, tt.fn, err)\n   ...\n}",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500da0b3_989ce0fb",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "You probably want a continue instead of return as a return will skip all the following tests",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "888110f3_e23c8882",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9c87b27_29e5e895",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d397fb9_ed5a8b4f",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-01-27T07:23:43Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
