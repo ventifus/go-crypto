@@ -88,10 +88,12 @@ func (ske *SymmetricKeyEncrypted) Decrypt(passphrase []byte) ([]byte, CipherFunc
 		return nil, ske.CipherFunc, errors.UnsupportedError("unknown cipher: " + strconv.Itoa(int(cipherFunc)))
 	}
 	plaintextKey = plaintextKey[1:]
-	if l := len(plaintextKey); l == 0 || l%cipherFunc.blockSize() != 0 {
-		return nil, cipherFunc, errors.StructuralError("length of decrypted key not a multiple of block size")
+	l, cipherKeySize, cipherBlockSize := len(plaintextKey), cipherFunc.KeySize(), cipherFunc.blockSize()
+	if !(l == cipherKeySize || l%cipherBlockSize == 0) {
+		return nil, cipherFunc, errors.StructuralError("length of decrypted key (" + strconv.Itoa(l) + ") " +
+			"not a multiple of block size (" + strconv.Itoa(cipherBlockSize) + ") " +
+			"nor equal the cipher keysize (" + strconv.Itoa(cipherKeySize) + ")")
 	}
-
 	return plaintextKey, cipherFunc, nil
 }
 
