@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4060a34_a7d5cdea",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5055
+      },
+      "writtenOn": "2017-01-28T09:32:38Z",
+      "side": 1,
+      "message": "What is \"error-prone\" designs?\n\nI think this comment raises more question than it answers.\nBetter give more explanations or leave a reference to existing discussion on message size.",
+      "range": {
+        "startLine": 18,
+        "startChar": 56,
+        "endLine": 18,
+        "endChar": 76
+      },
+      "revId": "3943afff92c9ef7e2f316c778fef827061e7c299",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
