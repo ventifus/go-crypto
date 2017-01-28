@@ -22,6 +22,40 @@
       "revId": "5eee391ea613438da72d0915237ad6cae367262e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92440b1e_7166dd63",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2017-01-28T17:28:06Z",
+      "side": 1,
+      "message": "IMHO definitely not, in particular if this is to be vendored into the stdlib and used by the crypto/tls package, which is essentially in all Go binaries.",
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8e4fb8_f05f697d",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2017-01-28T17:28:06Z",
+      "side": 1,
+      "message": "\"String\" is a confusing name for a byte slice. Bytes? Slice?",
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
