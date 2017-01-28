@@ -2,6 +2,103 @@
   "comments": [
     {
       "key": {
+        "uuid": "11ed8850_75e999ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "Generally summaries are lower case and omit the full stop. I would also make it clear this is a new package. Perhaps something as simple as:\n\ncryptobyte: add new package",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2edf1bdb_10119e68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "Drop the \u0027crypto/\u0027 prefix, it isn\u0027t necessary for commits to the crypto repo (I made this mistake yesterday).",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c1e53ef_2f8465a1",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "Needs a copyright header.",
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45b36979_b6881ac6",
+        "filename": "cryptobyte/cryptobyte_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "Needs a copyright header.",
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2c3444f_89db49cd",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "Needs a copyright header (and make sure to leave a gap between the copyright header and the package comment).",
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "093e319c_ec2fc80d",
         "filename": "cryptobyte/string.go",
         "patchSetId": 1
@@ -56,6 +153,52 @@
       "revId": "5eee391ea613438da72d0915237ad6cae367262e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cb6ab57_8ec72a54",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "I\u0027d be inclined to get rid of this function and simply do this work inline instead.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec125b25_6a28e6ae",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-01-28T19:14:57Z",
+      "side": 1,
+      "message": "I would change 4 things about these functions.\n\n1. return an error, not a bool\n2. s/U8/Uint8/ (like the binary/encoding package)\n3. return the output directly\n4. s/Get/Read/ to indicate the forward movement\n\nSo this function signature would instead look like:\n\nfunc (s *String) ReadUint8() (uint8, error)",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "5eee391ea613438da72d0915237ad6cae367262e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
