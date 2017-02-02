@@ -148,6 +148,18 @@ func TestParseEncryptedPrivateKeysFails(t *testing.T) {
 	}
 }
 
+// See Issue https://github.com/golang/go/issues/6650.
+func TestParseEncryptedPrivateKeysWithPassphrase(t *testing.T) {
+	const wantSubstring = "encrypted"
+	for _, tt := range testdata.PEMEncryptedKeys {
+		_, err := ParsePrivateKeyWithPassphrase(tt.PEMBytes, []byte(tt.EncryptionKey))
+		if err != nil {
+			t.Fatalf("ParsePrivateKeyWithPassphrase returned error: %s", err)
+			continue
+		}
+	}
+}
+
 func TestParseDSA(t *testing.T) {
 	// We actually exercise the ParsePrivateKey codepath here, as opposed to
 	// using the ParseRawPrivateKey+NewSignerFromKey path that testdata_test.go
