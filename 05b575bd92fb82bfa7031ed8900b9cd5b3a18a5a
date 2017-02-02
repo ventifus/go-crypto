@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "393460bc_8a9cbde4",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-02-02T00:19:32Z",
+      "side": 1,
+      "message": "Returning an error via Bytes() seems pretty reasonable, but do we really want this option? I suspect this code should have a stronger opinion.",
+      "revId": "05b575bd92fb82bfa7031ed8900b9cd5b3a18a5a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "138757b7_eff21baf",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-02-02T00:19:32Z",
+      "side": 1,
+      "message": "Ape a copyright header from some other .go file in x/crypto. (And for the other files in this change.)",
+      "revId": "05b575bd92fb82bfa7031ed8900b9cd5b3a18a5a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7502bd46_27cf2c56",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-02-02T00:19:32Z",
+      "side": 1,
+      "message": "I\u0027d search-and-replace with \"read\", just to be consistent.",
+      "revId": "05b575bd92fb82bfa7031ed8900b9cd5b3a18a5a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5287b6ed_cf29761f",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-02-02T00:19:32Z",
+      "side": 1,
+      "message": "s/itself/s/\n\n(Same for other instances of \"itself\".)",
+      "range": {
+        "startLine": 18,
+        "startChar": 58,
+        "endLine": 18,
+        "endChar": 64
+      },
+      "revId": "05b575bd92fb82bfa7031ed8900b9cd5b3a18a5a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b304849_76c182e9",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-02-02T00:19:32Z",
+      "side": 1,
+      "message": "uint32",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 15
+      },
+      "revId": "05b575bd92fb82bfa7031ed8900b9cd5b3a18a5a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
