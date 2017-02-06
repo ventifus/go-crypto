@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cdab640_d3269493",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2017-02-06T15:53:49Z",
+      "side": 1,
+      "message": "Is the blank comment intentional?\n\nI\u0027m used to seeing `// Do nothing.` when a comment tries to communicate that a code block is empty on purpose. Is that what this is doing, or is this something else? But I\u0027ve never seen empty comments like this.",
+      "range": {
+        "startLine": 305,
+        "startChar": 4,
+        "endLine": 305,
+        "endChar": 6
+      },
+      "revId": "77014cf7f9bde4925afeed52b7bf676d5f5b4285",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
