@@ -22,6 +22,24 @@
       "revId": "77014cf7f9bde4925afeed52b7bf676d5f5b4285",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db7b7fc7_faaf1d2b",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-02-06T15:55:52Z",
+      "side": 1,
+      "message": "oversight; the comment moved to l.295, I think.",
+      "parentUuid": "5cdab640_d3269493",
+      "revId": "77014cf7f9bde4925afeed52b7bf676d5f5b4285",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
