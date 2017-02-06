@@ -8,10 +8,12 @@
 // +build amd64,!gccgo,!appengine
 
 // func mul(dest, a, b *[5]uint64)
-TEXT ·mul(SB),0,$16-24
+TEXT ·mul(SB),0,$24-24
 	MOVQ dest+0(FP), DI
 	MOVQ a+8(FP), SI
 	MOVQ b+16(FP), DX
+	MOVQ ·REDMASK51(SB), AX // clobbers R15 in -dynlink mode
+	MOVQ AX, 16(SP)
 
 	MOVQ DX,CX
 	MOVQ 24(SI),DX
@@ -121,7 +123,7 @@ TEXT ·mul(SB),0,$16-24
 	MULQ 32(CX)
 	ADDQ AX,R14
 	ADCQ DX,R15
-	MOVQ ·REDMASK51(SB),SI
+	MOVQ 16(SP),SI // ·REDMASK51(SB)
 	SHLQ $13,R9:R8
 	ANDQ SI,R8
 	SHLQ $13,R11:R10

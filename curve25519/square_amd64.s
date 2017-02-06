@@ -8,9 +8,11 @@
 // +build amd64,!gccgo,!appengine
 
 // func square(out, in *[5]uint64)
-TEXT ·square(SB),7,$0-16
+TEXT ·square(SB),7,$8-16
 	MOVQ out+0(FP), DI
 	MOVQ in+8(FP), SI
+	MOVQ ·REDMASK51(SB),AX // clobbers R15 in -dynlink mode
+	MOVQ AX, 0(SP)
 
 	MOVQ 0(SI),AX
 	MULQ 0(SI)
@@ -84,7 +86,7 @@ TEXT ·square(SB),7,$0-16
 	MULQ 32(SI)
 	ADDQ AX,R13
 	ADCQ DX,R14
-	MOVQ ·REDMASK51(SB),SI
+	MOVQ 0(SP),SI // ·REDMASK51(SB)
 	SHLQ $13,R8:CX
 	ANDQ SI,CX
 	SHLQ $13,R10:R9
