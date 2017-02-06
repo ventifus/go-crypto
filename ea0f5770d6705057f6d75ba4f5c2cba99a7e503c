@@ -22,6 +22,24 @@
       "revId": "ea0f5770d6705057f6d75ba4f5c2cba99a7e503c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06f576d3_1254a217",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-02-06T09:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d8b8b86_6abfbfad",
+      "revId": "ea0f5770d6705057f6d75ba4f5c2cba99a7e503c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
