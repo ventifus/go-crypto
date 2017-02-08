@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1b7cd69_5456f416",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T16:27:44Z",
+      "side": 1,
+      "message": "here you take it from the beginning, but generally removing from the end is more efficient (so when you grow later, you don\u0027t waste the unreachable array elements at the beginning)",
+      "range": {
+        "startLine": 722,
+        "startChar": 2,
+        "endLine": 723,
+        "endChar": 25
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a82679e_e38ef0ce",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T16:27:44Z",
+      "side": 1,
+      "message": "instead of this linear search, maybe you should just use a map[nonce]struct{} set instead?",
+      "range": {
+        "startLine": 737,
+        "startChar": 1,
+        "endLine": 741,
+        "endChar": 2
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d99acb7d_acf5aa7b",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T16:27:44Z",
+      "side": 1,
+      "message": "What is this trying to do? The underlying array is still there and wasted. You\u0027d need to copy things down to the case.\n\nI think a map is probably easier.",
+      "range": {
+        "startLine": 742,
+        "startChar": 1,
+        "endLine": 745,
+        "endChar": 2
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
