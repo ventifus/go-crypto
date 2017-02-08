@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "330cf657_4392e40c",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T16:57:15Z",
+      "side": 1,
+      "message": "Yeah, I thought about using a map, which would\u0027ve been easier indeed, but then I believe I loose the order?\n\nI need to keep it like a FIFO queue because that\u0027s what Let\u0027s Encrypt is doing. They only keep N most issued nonce values and consider the older ones as invalid.\n\nHere\u0027s their code: https://github.com/letsencrypt/boulder/blob/affa0e92cd1bae31dcdfb6ae41c13a8b82e499b7/nonce/nonce.go#L150\n\nUnless I\u0027m missing something?",
+      "parentUuid": "0a82679e_e38ef0ce",
+      "range": {
+        "startLine": 737,
+        "startChar": 1,
+        "endLine": 741,
+        "endChar": 2
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d99acb7d_acf5aa7b",
         "filename": "acme/acme.go",
         "patchSetId": 2
