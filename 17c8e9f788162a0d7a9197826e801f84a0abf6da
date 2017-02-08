@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "231eae63_f14043b4",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T21:24:07Z",
+      "side": 1,
+      "message": "Looking at their usage it seems as if it was a global service? Check this out:\nhttps://github.com/letsencrypt/boulder/blob/6ba8aadfd7599a1fff049e5cc937cef999ae63ee/wfe/wfe.go#L149\n\nI think we can handle multiple requests. The nonce values could come in a slightly different order, like you said, but they should all be valid.\n\nUnless, of course, we\u0027ll be handling like 65k requests at a time, which is highly unlikely.\nI see they\u0027ve defined MaxUsed \u003d 65536:\nhttps://github.com/letsencrypt/boulder/blob/affa0e92cd1bae31dcdfb6ae41c13a8b82e499b7/nonce/nonce.go#L18\n\nOr did I misunderstood?",
+      "parentUuid": "f7f2b839_1eb5330b",
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d99acb7d_acf5aa7b",
         "filename": "acme/acme.go",
         "patchSetId": 2
