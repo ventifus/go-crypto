@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2d71b592_94dd0868",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T22:56:22Z",
+      "side": 1,
+      "message": "ah right, good point. not sure why I did that.\nmoved to using a map anyway.",
+      "parentUuid": "b1b7cd69_5456f416",
+      "range": {
+        "startLine": 722,
+        "startChar": 2,
+        "endLine": 723,
+        "endChar": 25
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a82679e_e38ef0ce",
         "filename": "acme/acme.go",
         "patchSetId": 2
@@ -126,6 +150,24 @@
     },
     {
       "key": {
+        "uuid": "c92eb8e5_54f68b49",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T22:56:22Z",
+      "side": 1,
+      "message": "Agreed! I\u0027d rather use spec, too. Maybe I read the boulder code incorrectly. Anyway, switched to a map.",
+      "parentUuid": "3db34c17_98ab0963",
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d99acb7d_acf5aa7b",
         "filename": "acme/acme.go",
         "patchSetId": 2
@@ -137,6 +179,30 @@
       "writtenOn": "2017-02-08T16:27:44Z",
       "side": 1,
       "message": "What is this trying to do? The underlying array is still there and wasted. You\u0027d need to copy things down to the case.\n\nI think a map is probably easier.",
+      "range": {
+        "startLine": 742,
+        "startChar": 1,
+        "endLine": 745,
+        "endChar": 2
+      },
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bccf956_c366ca7c",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T22:56:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d99acb7d_acf5aa7b",
       "range": {
         "startLine": 742,
         "startChar": 1,
