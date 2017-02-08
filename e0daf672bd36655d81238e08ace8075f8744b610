@@ -16,6 +16,24 @@
       "revId": "e0daf672bd36655d81238e08ace8075f8744b610",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e60aacdf_80d6d2e2",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T23:56:46Z",
+      "side": 1,
+      "message": "ok. left 100 for now and added the comment.",
+      "parentUuid": "e0436157_7cafcbd0",
+      "revId": "e0daf672bd36655d81238e08ace8075f8744b610",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
