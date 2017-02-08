@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b289b74d_bf551ddd",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T23:01:48Z",
+      "side": 1,
+      "message": "any reason to think this would ever get much more than, 1 or 2?\n\nonly one nonce is returned per various action, right? And everything requires one?\n\nThis is fine, but I don\u0027t understand how it can get to 100.",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d25b265f_b23344de",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T23:01:48Z",
+      "side": 1,
+      "message": "why add to the map if it\u0027s full just to delete an item?\n\nYou could instead:\n\n    if len(c.nonces) \u003e\u003d maxNonces {  // or \u003d\u003d if you prefer\n          return\n    }\n     if c.nonces \u003d\u003d nil {\n\t  c.nonces \u003d make(map[string]struct{})\n     }\n     c.nonces[v] \u003d struct{}{}",
+      "range": {
+        "startLine": 744,
+        "startChar": 1,
+        "endLine": 745,
+        "endChar": 27
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f82361e_d2043d4c",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T23:01:48Z",
+      "side": 1,
+      "message": "h.Get(\"Replay-Nonce\") to save some work (allocations)",
+      "range": {
+        "startLine": 769,
+        "startChar": 15,
+        "endLine": 769,
+        "endChar": 23
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
