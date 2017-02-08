@@ -16,6 +16,23 @@
       "revId": "979e13e12f35a4ba03044bff9dbdeffede8a4a43",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23095dd7_03695fe9",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-02-08T21:07:42Z",
+      "side": 1,
+      "message": "Instead of just returning maybe it would be better to set the number of iterations to something low (with the current value commented out) to prevent bitrot?\n\nSomething like:\n\nN :\u003d uint64(1e4)\n// N \u003d 1e10\n\n...\n\nfor i :\u003d uint64(0); i \u003c N; i++ {",
+      "revId": "979e13e12f35a4ba03044bff9dbdeffede8a4a43",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
