@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65c32ec5_dc976393",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7860
+      },
+      "writtenOn": "2017-02-08T21:07:38Z",
+      "side": 1,
+      "message": "Perhaps worth an explicit t.Skip instead so that message can be shown when \u0027go test\u0027 is run?",
+      "revId": "979e13e12f35a4ba03044bff9dbdeffede8a4a43",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
