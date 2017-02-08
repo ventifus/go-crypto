@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "3db34c17_98ab0963",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T21:36:17Z",
+      "side": 1,
+      "message": "I see nothing in the spec about the order you must use nonces in:\n\nhttps://letsencrypt.github.io/acme-spec/#rfc.section.5.5\n\nI\u0027d rather not go read boulder code when there\u0027s a spec available.\n\nIf you\u0027re implying that we have to use nonces in a particular order (which I find hard to believe), that implies that we have to serialize all our HTTP requests, which you said we don\u0027t need to do, which isn\u0027t consistent.\n\nOr I don\u0027t understand.\n\nWhy can\u0027t we use a map?",
+      "parentUuid": "231eae63_f14043b4",
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d99acb7d_acf5aa7b",
         "filename": "acme/acme.go",
         "patchSetId": 2
