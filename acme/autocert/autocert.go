@@ -142,6 +142,15 @@ type Manager struct {
 	// is EC-based keys using the P-256 curve.
 	ForceRSA bool
 
+	// Extensions are used when generating a new CSR (Certificate Request),
+	// thus allowing to customize the resulting certificate.
+	// For instance, TLS Feature Extension (RFC 7633) can be used
+	// to prevent an OCSP downgrade attack.
+	//
+	// If empty, a default extensions set is used.
+	// See x509.CertificateRequest, particularly ExtraExtensions field.
+	Extensions []pkix.Extension
+
 	clientMu sync.Mutex
 	client   *acme.Client // initialized by acmeClient method
 
@@ -441,7 +450,7 @@ func (m *Manager) authorizedCert(ctx context.Context, key crypto.Signer, domain 
 	if err != nil {
 		return nil, nil, err
 	}
-	csr, err := certRequest(key, domain)
+	csr, err := certRequest(key, domain, m.Extensions)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -690,12 +699,12 @@ func (s *certState) tlscert() (*tls.Certificate, error) {
 	}, nil
 }
 
-// certRequest creates a certificate request for the given common name cn
-// and optional SANs.
-func certRequest(key crypto.Signer, cn string, san ...string) ([]byte, error) {
+// certRequest generates a CSR for the given common name cn and optional SANs.
+func certRequest(key crypto.Signer, cn string, ext []pkix.Extension, san ...string) ([]byte, error) {
 	req := &x509.CertificateRequest{
-		Subject:  pkix.Name{CommonName: cn},
-		DNSNames: san,
+		Subject:         pkix.Name{CommonName: cn},
+		DNSNames:        san,
+		ExtraExtensions: ext,
 	}
 	return x509.CreateCertificateRequest(rand.Reader, req, key)
 }
