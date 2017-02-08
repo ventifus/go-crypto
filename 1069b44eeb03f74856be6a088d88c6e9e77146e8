@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7b18a725_f45311bd",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T23:44:32Z",
+      "side": 1,
+      "message": "exactly. most likely it\u0027ll be low but imagine 50-100 goroutines using the same client concurrently. for instance, renewing 50 or 100 domains almost at the same time.\n\nI\u0027m not really sure, maybe 1024 or 10 would be a better number? I picked 100 kind of randomly.",
+      "parentUuid": "b289b74d_bf551ddd",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d25b265f_b23344de",
         "filename": "acme/acme.go",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ac26a438_e32ca1c7",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T23:44:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d25b265f_b23344de",
+      "range": {
+        "startLine": 744,
+        "startChar": 1,
+        "endLine": 745,
+        "endChar": 27
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f82361e_d2043d4c",
         "filename": "acme/acme.go",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2017-02-08T23:01:48Z",
       "side": 1,
       "message": "h.Get(\"Replay-Nonce\") to save some work (allocations)",
+      "range": {
+        "startLine": 769,
+        "startChar": 15,
+        "endLine": 769,
+        "endChar": 23
+      },
+      "revId": "1069b44eeb03f74856be6a088d88c6e9e77146e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eef19f14_b3d33a7b",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-02-08T23:44:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f82361e_d2043d4c",
       "range": {
         "startLine": 769,
         "startChar": 15,
