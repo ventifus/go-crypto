@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "f7f2b839_1eb5330b",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T17:25:57Z",
+      "side": 1,
+      "message": "Is that NonceService per user or global?\n\nIn any case, does this mean you can only have 1 HTTP request in flight at a time just in case they get ordered wrong?",
+      "parentUuid": "330cf657_4392e40c",
+      "revId": "17c8e9f788162a0d7a9197826e801f84a0abf6da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d99acb7d_acf5aa7b",
         "filename": "acme/acme.go",
         "patchSetId": 2
