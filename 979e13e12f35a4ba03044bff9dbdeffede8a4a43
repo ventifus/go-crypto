@@ -33,6 +33,24 @@
       "revId": "979e13e12f35a4ba03044bff9dbdeffede8a4a43",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233da4db_2747bdf8",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-02-08T21:10:50Z",
+      "side": 1,
+      "message": "I\u0027d add a flag.Bool(\"stress\", false, \"run slow stress tests\")\n\nif !*stressFlag {\n     t.Skip(\"skipping without -stress\")\n}",
+      "parentUuid": "23095dd7_03695fe9",
+      "revId": "979e13e12f35a4ba03044bff9dbdeffede8a4a43",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
