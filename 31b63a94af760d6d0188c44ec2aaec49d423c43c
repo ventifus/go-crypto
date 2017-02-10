@@ -62,6 +62,30 @@
       "revId": "31b63a94af760d6d0188c44ec2aaec49d423c43c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0db9800_8786b3d4",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 16895
+      },
+      "writtenOn": "2017-02-10T02:05:20Z",
+      "side": 1,
+      "message": "If my benchmarks are correct (https://github.com/MiLk/crypto/commit/d359e47050c805a16b3d4b51ae3c18c7f531fee4),\nsha2-512 is 25 to 35% faster than sha2-256 on 64 bits platforms.\nWhile the number of rounds is slightly higher, there are only half the amount of operations per round, because sha2-512 is working with 64 bits words while sha2-256 is working with 32 bits words.",
+      "parentUuid": "01bb00a0_96b9a87c",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "31b63a94af760d6d0188c44ec2aaec49d423c43c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
