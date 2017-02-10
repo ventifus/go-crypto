@@ -86,6 +86,30 @@
       "revId": "31b63a94af760d6d0188c44ec2aaec49d423c43c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0966fa9a_01ac4a75",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-02-10T17:00:16Z",
+      "side": 1,
+      "message": "Yep, SHA-512 will be faster than SHA-256 on a 64-bit system. But if you want to go fast, we have AES-GCM support.",
+      "parentUuid": "c0db9800_8786b3d4",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "31b63a94af760d6d0188c44ec2aaec49d423c43c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
