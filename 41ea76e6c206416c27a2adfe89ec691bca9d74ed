@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52e1a263_7e36556b",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "s/try/tries/",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caa15938_3e7d980c",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "k Key -\u003e key Key\n\nI also don\u0027t see any usage of k except below, after decryption but that looks false\nbecause we actually used encryptedKey.Key instead of k",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12c4718a_1e78bb02",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "k Key -\u003e key Key\n\nI also don\u0027t see any usage of k except below, after decryption but that looks false\nbecause we actually used encryptedKey.Key instead of k",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "142cb184_d3036765",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "Am not that familiar with the code in here but perhaps this should return such an error since we should never get to this point\n\nif len(encryptedKey.key) \u003d\u003d 0 {\n       nil, errors.ErrKeyIncorrect\n}\n\nand that should handle the case below as well.",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "816a4bce_e7d44533",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "Let\u0027s perhaps invert this logic to make an early return, and then the rest of the code can flow normally ie:\nif decrypted \u003d\u003d nil {\n    return nil, errors.ErrKeyIncorrect\n}\n\nmd.DecryptedWith \u003d key\nreturn decrypted, nil",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adcad468_029ddf63",
+        "filename": "openpgp/read_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-02-18T06:52:10Z",
+      "side": 1,
+      "message": "if err :\u003d w.Close(); err !\u003d nil {",
+      "revId": "41ea76e6c206416c27a2adfe89ec691bca9d74ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
