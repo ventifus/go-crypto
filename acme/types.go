@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
+	"time"
 )
 
 // ACME server response statuses used to describe Authorization and Challenge states.
@@ -58,6 +60,30 @@ type Error struct {
 
 func (e *Error) Error() string {
 	return fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
+}
+
+// IsRateLimited reports whether a request rate limit is exceeded.
+// If the provided argument does not indicate a rate limit exhaustion error,
+// false is returned.
+//
+// An ACME CA server may also indicate when a request can be retried.
+// If such information is present and can be parsed, IsRateLimited returns
+// a duration after which the client should retry. Otherwise, 0 is returned.
+//
+// See the following for more details on rate limiting:
+// https://tools.ietf.org/html/draft-ietf-acme-acme-05#section-5.6
+func IsRateLimited(err error) (time.Duration, bool) {
+	e, ok := err.(*Error)
+	if !ok {
+		return 0, false
+	}
+	if !strings.HasSuffix(strings.ToLower(e.ProblemType), ":ratelimited") {
+		return 0, false
+	}
+	if e.Header == nil {
+		return 0, true
+	}
+	return retryAfter(e.Header.Get("Retry-After"), 0), true
 }
 
 // Account is a user account. It is associated with a private key.
