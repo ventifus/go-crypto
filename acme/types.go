@@ -1,9 +1,15 @@
+// Copyright 2017 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 package acme
 
 import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 // ACME server response statuses used to describe Authorization and Challenge states.
@@ -42,6 +48,25 @@ var (
 	ErrUnsupportedKey = errors.New("acme: unknown key type; only RSA and ECDSA are supported")
 )
 
+// IsRateLimited inspects an error to see
+// if it was caused by a rate limit.
+// It returns false if the error doesn't
+// include the RetryAfter function.
+func IsRateLimited(err error) (time.Time, bool) {
+	r, ok := err.(interface {
+		RetryAfter() (time.Time, error)
+	})
+	if ok {
+		t, err := r.RetryAfter()
+		if err != nil {
+			return time.Time{}, false
+		}
+		return t, true
+	}
+
+	return time.Time{}, false
+}
+
 // Error is an ACME error, defined in Problem Details for HTTP APIs doc
 // http://tools.ietf.org/html/draft-ietf-appsawg-http-problem.
 type Error struct {
@@ -58,6 +83,28 @@ type Error struct {
 
 func (e *Error) Error() string {
 	return fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
+}
+
+// RetryAfter translates the Retry-After header value to a time.Time object.
+// Clients should use this value to delay requests in cases of rate limiting.
+// https://tools.ietf.org/html/draft-ietf-acme-acme-05#section-5.6
+//
+// The time returned is nil if the header value is empty.
+//
+// RetryAfter returns an error If the header value is not an integer
+// nor it's formatted according to the RFC1123 time format.
+func (e *Error) RetryAfter() (time.Time, error) {
+	r := e.Header.Get("Retry-After")
+	if r == "" {
+		return time.Time{}, nil
+	}
+
+	i, err := strconv.ParseInt(r, 10, 64)
+	if err == nil {
+		return time.Now().Add(time.Duration(i) * time.Second), nil
+	}
+
+	return time.Parse(time.RFC1123, r)
 }
 
 // Account is a user account. It is associated with a private key.
