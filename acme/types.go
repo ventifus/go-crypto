@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 // ACME server response statuses used to describe Authorization and Challenge states.
@@ -42,6 +44,21 @@ var (
 	ErrUnsupportedKey = errors.New("acme: unknown key type; only RSA and ECDSA are supported")
 )
 
+type rateLimited interface {
+	RetryAfter() time.Duration
+}
+
+// IsRateLimited inspects an error to see
+// if it was caused by a rate limit.
+func IsRateLimited(err error) (time.Duration, bool) {
+	r, ok := err.(rateLimited)
+	if ok {
+		return r.RetryAfter(), true
+	}
+
+	return time.Duration(0), false
+}
+
 // Error is an ACME error, defined in Problem Details for HTTP APIs doc
 // http://tools.ietf.org/html/draft-ietf-appsawg-http-problem.
 type Error struct {
@@ -58,6 +75,28 @@ type Error struct {
 
 func (e *Error) Error() string {
 	return fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
+}
+
+// RetryAfter translates the Retry-After header value to a duration.
+// Clients should use this value to delay requests in cases of rate limiting.
+// https://tools.ietf.org/html/draft-ietf-acme-acme-05#section-5.6
+func (e *Error) RetryAfter() time.Duration {
+	r := e.Header.Get("Retry-After")
+	if r == "" {
+		return time.Duration(0)
+	}
+
+	i, err := strconv.ParseInt(r, 10, 64)
+	if err == nil {
+		return time.Duration(i) * time.Second
+	}
+
+	t, err := time.Parse(time.RFC1123, r)
+	if err != nil {
+		return time.Duration(0)
+	}
+
+	return time.Until(t)
 }
 
 // Account is a user account. It is associated with a private key.
