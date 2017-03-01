@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "768e11f2_6adb4319",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9d3e4d0_8f55fa9b",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4354a3c8_ff0d4603",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-01T00:08:14Z",
       "side": 1,
       "message": "Fine to copy-paste this out of encoding/asn1.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83e0d056_b10ce84c",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "I was trying to understand why asn1 doesn\u0027t call time.Time.Format instead, but couldn\u0027t come up with a good reason. Any idea?",
+      "parentUuid": "4354a3c8_ff0d4603",
       "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "804b6a7b_abb67fb2",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "I first had only Read{Ui,Int}64, but ocsp has some struct fields that are int and so I ended up checking overflows there - or ignoring them, so I figured it\u0027s better to do just it centrally.",
+      "parentUuid": "64a66b5d_f676d50c",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aaac5aa7_b01a2277",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 10
@@ -81,6 +135,24 @@
       "writtenOn": "2017-03-01T00:08:14Z",
       "side": 1,
       "message": "This check appears to be duplicated in signed() and unsigned(). Might be better to leave it to them.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31b1f678_f4c100d4",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Done. These should probably be renamed too since it\u0027s the same namespace as the rest of cryptobyte.",
+      "parentUuid": "aaac5aa7_b01a2277",
       "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "5a981c5c_7c17b344",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a50d80a_2ffddc7e",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9895fda_883a8b2a",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 10
@@ -115,6 +205,24 @@
       "writtenOn": "2017-03-01T00:08:14Z",
       "side": 1,
       "message": "I don\u0027t think so.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e84c66a_30ee8e3c",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9895fda_883a8b2a",
       "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "ceb82312_8ae2cc5a",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Did I mention I need to write tests? :p",
+      "parentUuid": "e8a04255_a5a92d3e",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83756940_7124d9d4",
         "filename": "cryptobyte/builder.go",
         "patchSetId": 10
@@ -149,6 +275,24 @@
       "writtenOn": "2017-03-01T00:08:14Z",
       "side": 1,
       "message": "no need to break lines in Go.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "044976e3_c05e41dc",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-01T01:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83756940_7124d9d4",
       "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
