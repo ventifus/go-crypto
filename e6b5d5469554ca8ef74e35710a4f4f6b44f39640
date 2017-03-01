@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9d3e4d0_8f55fa9b",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "return?",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4354a3c8_ff0d4603",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "Fine to copy-paste this out of encoding/asn1.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "915548d4_b24435a3",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "Ok for now. The only real use of non-octet-length bit strings is the KeyUsage extension in a certificate. It might be worth having AddASN1BitString(data []byte) and AddASN1BitStringFlags(data []byte) where the former writes a string of len(data)*8 and the latter copies asn1BitLength from x509.go.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64a66b5d_f676d50c",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "I\u0027m wondering how useful this is in general. Certainly if people are going to be storing values from ASN.1 into various sizes of integer, it\u0027s good to centralise overflow checking. But is that a sufficiently common use?\n\n(Fine to include this for now and see how useful it is in practice.)",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aaac5aa7_b01a2277",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "This check appears to be duplicated in signed() and unsigned(). Might be better to leave it to them.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a50d80a_2ffddc7e",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "I would copy-paste the implementation from encoding/asn1.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9895fda_883a8b2a",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "I don\u0027t think so.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8a04255_a5a92d3e",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "This is the same as NewBuilder so something is wrong :)",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83756940_7124d9d4",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "no need to break lines in Go.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c95d3c00_67135c77",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-01T00:08:14Z",
+      "side": 1,
+      "message": "some changes may be needed in the future to avoid allocations, but this is good for now.",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
