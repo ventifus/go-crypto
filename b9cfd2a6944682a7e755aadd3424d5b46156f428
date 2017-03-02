@@ -1,0 +1,702 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "317556fb_806832ec",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "based on the OCSP package, it looks like these need to be exported?\n\nIn order to cut down the amount of prefix needed, maybe call them CONTEXT_SPECIFIC and CONSTRUCTED (i.e. to drop the ASN.1).",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e75ffc36_dc79109b",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "I would drop this here and elsewhere in this file where it appears at the end of a sentence. (Or maybe replace with \"to b\".)",
+      "range": {
+        "startLine": 25,
+        "startChar": 51,
+        "endLine": 25,
+        "endChar": 70
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54d971f3_843bc05b",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "This isn\u0027t done consistently for other AddASN1Foo functions. However, if this check is done in AddASN1 then I think they\u0027ll all pick it up.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd2a8881_ff47a215",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "None of the functions in math.big avoid panicking with a nil *big.Int, so I don\u0027t think this package needs to.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09391200_479b6ceb",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "delete. Impossible I think.",
+      "range": {
+        "startLine": 86,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39eca2c6_1734de03",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "byte(0), to be consistent with other uses of add() in this function. (Or else change them to match this.)",
+      "range": {
+        "startLine": 92,
+        "startChar": 9,
+        "endLine": 92,
+        "endChar": 10
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eda213cb_b20dd80c",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "delete. Always true, I think.",
+      "range": {
+        "startLine": 95,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "746d9182_208e1173",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "delete.",
+      "range": {
+        "startLine": 96,
+        "startChar": 9,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0fff6d6b_b33d7dc4",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "This is duplicated elsewhere in this file. Move to package scope.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "053641a7_7b3e0797",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 149,
+        "startChar": 31,
+        "endLine": 149,
+        "endChar": 50
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7f61aca_c7a052fc",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "appends",
+      "range": {
+        "startLine": 149,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 15
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f633b9a_cb174262",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "\"the low five bits\"",
+      "range": {
+        "startLine": 154,
+        "startChar": 21,
+        "endLine": 154,
+        "endChar": 26
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7dfbba0_1ce6b495",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "*big.Int",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 48
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6d771d4_49c5d1cd",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "Combine with last if using ||.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b98350b_846e1fff",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "Combine with last if using ||.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e571d03a_52242e46",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "either drop these parens or have them on both sides of the disjunction.",
+      "range": {
+        "startLine": 213,
+        "startChar": 43,
+        "endLine": 213,
+        "endChar": 44
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "483a9849_20637b12",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "for i, b :\u003d range bytes {\n  neg[i] \u003d ^b\n}",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e73dc7f8_610736df",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "this would typically be called readASN1Int64",
+      "range": {
+        "startLine": 242,
+        "startChar": 17,
+        "endLine": 242,
+        "endChar": 38
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c1c6ec4_16304836",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "why change the return-value style with this function?",
+      "range": {
+        "startLine": 255,
+        "startChar": 26,
+        "endLine": 255,
+        "endChar": 39
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79e2355a_24997eab",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "likewise, would typically be readASN1Uint64",
+      "range": {
+        "startLine": 274,
+        "startChar": 17,
+        "endLine": 274,
+        "endChar": 40
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d108031f_d1f861c4",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "ditto about changing the return-value form (i.e. not just returning bool).",
+      "range": {
+        "startLine": 287,
+        "startChar": 28,
+        "endLine": 287,
+        "endChar": 42
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd4d61ee_ee0e676b",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "(here\u0027s the other copy of this.)",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20a0c900_f118e9a9",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "into",
+      "range": {
+        "startLine": 424,
+        "startChar": 35,
+        "endLine": 424,
+        "endChar": 38
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb2671b6_a4ec6f13",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 479,
+        "startChar": 66,
+        "endLine": 479,
+        "endChar": 75
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d336b44_cda395b4",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "present :\u003d s.PeekASN1Tag(tag)\nif present \u0026\u0026 !s.ReadASN1(out, tag) {\n  return false\n}",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0127cf59_379e8da3",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "elsewhere \"advances\" is always followed by \"over the element\".",
+      "range": {
+        "startLine": 497,
+        "startChar": 43,
+        "endLine": 497,
+        "endChar": 51
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d42a54db_3074c469",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "*big.Int",
+      "range": {
+        "startLine": 499,
+        "startChar": 36,
+        "endLine": 499,
+        "endChar": 43
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27d67d3d_52c7ae2b",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 499,
+        "startChar": 21,
+        "endLine": 499,
+        "endChar": 24
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdbe6db3_7d2155b8",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "nil",
+      "range": {
+        "startLine": 555,
+        "startChar": 9,
+        "endLine": 555,
+        "endChar": 24
+      },
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10f1c604_d895da1c",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "join with previous line.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afd63a71_b03071e0",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "tag, lenByte :\u003d (*s)[0], (*s)[1]",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2166ba0_dabbbe98",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "need to check that len(*s) is sufficient before slicing, I think.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1337ea12_4599bdbf",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "need to check for overflow on this operation.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a42b57d5_e4348e07",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-02T22:36:37Z",
+      "side": 1,
+      "message": "need to check that casting to int doesn\u0027t result in a negative number.",
+      "revId": "b9cfd2a6944682a7e755aadd3424d5b46156f428",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
