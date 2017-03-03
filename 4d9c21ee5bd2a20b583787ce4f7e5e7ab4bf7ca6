@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82e916a1_cbb06fbc",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-03T01:34:31Z",
+      "side": 1,
+      "message": "Should we make tag a uint? In case we ever need to support high-tag-number form.",
+      "range": {
+        "startLine": 449,
+        "startChar": 39,
+        "endLine": 449,
+        "endChar": 48
+      },
+      "revId": "4d9c21ee5bd2a20b583787ce4f7e5e7ab4bf7ca6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}

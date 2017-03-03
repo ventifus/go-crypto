@@ -159,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "b442017b_07a01f76",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-03T01:34:31Z",
+      "side": 1,
+      "message": "Ended up refactoring this again. This makes it a bit clearer IMO.",
+      "parentUuid": "31b1f678_f4c100d4",
+      "revId": "e6b5d5469554ca8ef74e35710a4f4f6b44f39640",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a50d80a_2ffddc7e",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 10
