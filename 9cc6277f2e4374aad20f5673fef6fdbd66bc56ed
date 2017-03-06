@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87eeb436_db32289d",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:33:39Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 23,
+        "startChar": 56,
+        "endLine": 23,
+        "endChar": 60
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55d98bfc_0bf45323",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:33:39Z",
+      "side": 1,
+      "message": "… Like append(), the slice will be reallocated if its capacity is exceeded. Use Bytes to get the final buffer.",
+      "range": {
+        "startLine": 23,
+        "startChar": 77,
+        "endLine": 23,
+        "endChar": 78
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2465bf5a_7d0ac271",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:33:39Z",
+      "side": 1,
+      "message": "buffer\u0027s",
+      "range": {
+        "startLine": 32,
+        "startChar": 20,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4aea6ab3_fc72573c",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:33:39Z",
+      "side": 1,
+      "message": "I\u0027d delete this for now. It\u0027s only got one, obscure use in BoringSSL and it\u0027s a complex function. I suspect that we can do without out and it\u0027s much easier to add later than to remove.",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ceb89ea_2d1c32a3",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:33:39Z",
+      "side": 1,
+      "message": "if len(b.result) + len(bytes) \u003c len(bytes) {\n  b.err \u003d errors.New(\"cryptobyte: length overflow\")\n}",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
