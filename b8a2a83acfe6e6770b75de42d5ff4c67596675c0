@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebd20400_557bb467",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-06T17:59:50Z",
+      "side": 0,
+      "message": "Note that some of these structs were broken out because encoding/asn1 demanded it. Since it\u0027s not public API, it\u0027s much less important, but it\u0027s worth pondering whether merging some of them might save some complexity.",
+      "revId": "b8a2a83acfe6e6770b75de42d5ff4c67596675c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
