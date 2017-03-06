@@ -16,6 +16,24 @@
       "revId": "b8a2a83acfe6e6770b75de42d5ff4c67596675c0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5564e03_e4bed787",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 0,
+      "message": "Hmm, maybe. Although I found it valuable to have the structs match up with the EBNF.",
+      "parentUuid": "ebd20400_557bb467",
+      "revId": "b8a2a83acfe6e6770b75de42d5ff4c67596675c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

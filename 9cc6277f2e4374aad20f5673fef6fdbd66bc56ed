@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "40078c7e_043e9304",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55d98bfc_0bf45323",
+      "range": {
+        "startLine": 23,
+        "startChar": 77,
+        "endLine": 23,
+        "endChar": 78
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2465bf5a_7d0ac271",
         "filename": "cryptobyte/builder.go",
         "patchSetId": 13
@@ -59,6 +83,30 @@
       "writtenOn": "2017-03-06T17:33:39Z",
       "side": 1,
       "message": "buffer\u0027s",
+      "range": {
+        "startLine": 32,
+        "startChar": 20,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb18dbef_b9f4e8f4",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2465bf5a_7d0ac271",
       "range": {
         "startLine": 32,
         "startChar": 20,
@@ -88,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "5aa03997_8bb0a7e6",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Yeah, I was thinking the same thing. Done.",
+      "parentUuid": "4aea6ab3_fc72573c",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ceb89ea_2d1c32a3",
         "filename": "cryptobyte/builder.go",
         "patchSetId": 13
@@ -99,6 +165,24 @@
       "writtenOn": "2017-03-06T17:33:39Z",
       "side": 1,
       "message": "if len(b.result) + len(bytes) \u003c len(bytes) {\n  b.err \u003d errors.New(\"cryptobyte: length overflow\")\n}",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35d8ba36_705e8485",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ceb89ea_2d1c32a3",
       "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -122,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "b4af8670_e6481a46",
+        "filename": "cryptobyte/string.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef570d49_a7df6b21",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d188b8e_5b2ad3ce",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 13
@@ -133,6 +235,24 @@
       "writtenOn": "2017-03-06T17:59:50Z",
       "side": 1,
       "message": "Obviously these don\u0027t want to live in ocsp/. Probably cryptobyte wants to export at least some of them. (Perhaps duplicate the Tag* values from encoding/asn1 into cryptobyte or just include the ContextSpecific and Constructed values.)",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40ef97da_92949143",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Added cryptobyte.Tag instead.",
+      "parentUuid": "2d188b8e_5b2ad3ce",
       "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -179,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "7a8e5bdd_3cb7a5c7",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "Removed the comment.",
+      "parentUuid": "b608b9aa_e5fe5477",
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcd18ad7_8b573ec1",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 13
@@ -190,6 +328,30 @@
       "writtenOn": "2017-03-06T17:59:50Z",
       "side": 1,
       "message": "drop parens in Go.",
+      "range": {
+        "startLine": 526,
+        "startChar": 5,
+        "endLine": 526,
+        "endChar": 6
+      },
+      "revId": "9cc6277f2e4374aad20f5673fef6fdbd66bc56ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a721d6a_0ad8e3bc",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-03-06T18:56:55Z",
+      "side": 1,
+      "message": "The struct initialization otherwise makes the parser barf.",
+      "parentUuid": "dcd18ad7_8b573ec1",
       "range": {
         "startLine": 526,
         "startChar": 5,
