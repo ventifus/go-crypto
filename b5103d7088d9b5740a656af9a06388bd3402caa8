@@ -1,0 +1,227 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec0518ad_defa426b",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "The fact that this is used so often suggests that it might want to be a const in cryptobyte.",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f3c68c2_8f1d5487",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "it\u0027s",
+      "range": {
+        "startLine": 69,
+        "startChar": 55,
+        "endLine": 69,
+        "endChar": 58
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cc53a5c_635a857a",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "I think all these blocks should use \"// \" at the start of each line rather than /* */ block comments.",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c6542ff_e8f22dbc",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "All these tags for encoding/asn1 can probably be dropped now. (Here and in other structs.)",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 74
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f76037_39afd3f9",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "Exactly one request must be given, but it was a slice because of the needs of encoding/asn1. The `request` struct could be folded into this.",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f11a9dc2_97ad8b72",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "should cryptobyte support passing nil here to implicitly discard the result?",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 42
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf9e423d_2f5a46dd",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "(another case where it could be nil.)",
+      "range": {
+        "startLine": 229,
+        "startChar": 25,
+        "endLine": 229,
+        "endChar": 36
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38638da8_9a87f38a",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "can just be a []byte now?",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 24
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fb1442f_661278fd",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "Yep. Do you think this best placed in a subsequent CL?",
+      "range": {
+        "startLine": 367,
+        "startChar": 20,
+        "endLine": 367,
+        "endChar": 39
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d8f93f9_1f97650a",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "can just return status.Empty()",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5be1284_4fb08419",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-07T21:41:09Z",
+      "side": 1,
+      "message": "This comment should be updated/removed.",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
