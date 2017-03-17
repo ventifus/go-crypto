@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94c7a203_a15a0476",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-17T16:28:05Z",
+      "side": 1,
+      "message": "Start with the package name in the repo, not the repo name. And \"improve\" is redundant, since all changes are by definition improvements. Just say what changed:\n\npkcs12: fix ToPEM to not ignore non-nil error from getSafeContents\n\n...or something",
+      "revId": "7f2cff365d944b2a6a63bbec7acb19c6c0fa1104",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
