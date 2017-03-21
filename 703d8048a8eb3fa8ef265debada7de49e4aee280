@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28c6a815_d7fa37d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "just \"acme: add ...\"\n\n(drop \"crypto/\" and lowercase verb)",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "706e2b8b_688ed0ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "put this at the end, where your Signed-off line is",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2275645_dd4ac528",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "we don\u0027t use these in Go. Gerrit checks the CLA instead.",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87caf59a_d7e636c3",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "if you only need this in the IsRateLimited func below, move it down there inside the func.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9923cf0c_92cd128a",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "just 0",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 25
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c815d2da_073072c3",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "also say what happens if it\u0027s not that type of error.",
+      "range": {
+        "startLine": 80,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c06555b5_6c7409a9",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "why Duration instead of a time.Time?\n\nseems like a time.Time is more flexible and true to the underlying API.",
+      "range": {
+        "startLine": 83,
+        "startChar": 29,
+        "endLine": 83,
+        "endChar": 42
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6007c89_42b70503",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "just 0",
+      "range": {
+        "startLine": 96,
+        "startChar": 9,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9792b2e1_9b643f1f",
+        "filename": "acme/types_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b303fc6_75daf224",
+        "filename": "acme/types_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-21T00:27:00Z",
+      "side": 1,
+      "message": "just 120",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 26
+      },
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
