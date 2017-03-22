@@ -12,8 +12,8 @@ import (
 	"golang.org/x/net/context"
 )
 
-// maxRandRenew is a maximum deviation from Manager.RenewBefore.
-const maxRandRenew = time.Hour
+// renewJitter is the maximum deviation from Manager.RenewBefore.
+const renewJitter = time.Hour
 
 // domainRenewal tracks the state used by the periodic timers
 // renewing a single domain's cert.
@@ -65,7 +65,7 @@ func (dr *domainRenewal) renew() {
 	// TODO: rotate dr.key at some point?
 	next, err := dr.do(ctx)
 	if err != nil {
-		next = maxRandRenew / 2
+		next = renewJitter / 2
 		next += time.Duration(pseudoRand.int63n(int64(next)))
 	}
 	dr.timer = time.AfterFunc(next, dr.renew)
@@ -85,7 +85,7 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 	// but we try nonetheless
 	if tlscert, err := dr.m.cacheGet(dr.domain); err == nil {
 		next := dr.next(tlscert.Leaf.NotAfter)
-		if next > dr.m.renewBefore()+maxRandRenew {
+		if next > dr.m.renewBefore()+renewJitter {
 			return next, nil
 		}
 	}
@@ -114,7 +114,7 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 func (dr *domainRenewal) next(expiry time.Time) time.Duration {
 	d := expiry.Sub(timeNow()) - dr.m.renewBefore()
 	// add a bit of randomness to renew deadline
-	n := pseudoRand.int63n(int64(maxRandRenew))
+	n := pseudoRand.int63n(int64(renewJitter))
 	d -= time.Duration(n)
 	if d < 0 {
 		return 0
