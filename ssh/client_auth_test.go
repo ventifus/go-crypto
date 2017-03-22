@@ -469,3 +469,56 @@ func TestClientAuthNone(t *testing.T) {
 		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
 	}
 }
+
+// Test if username is received on server side when NoClientAuthCallback is used
+func TestSelectiveClientAuthNone(t *testing.T) {
+	user := "testuser"
+	serverConfig := &ServerConfig{
+		NoClientAuthCallback: func(conn ConnMetadata) (*Permissions, error) {
+			if conn.User() == "testuser" {
+				return nil, nil
+			}
+			return nil, errors.New("password auth failed")
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	clientConfig := &ClientConfig{
+		User: user,
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+
+	go NewClientConn(c2, "", clientConfig)
+	serverConn, err := newServer(c1, serverConfig)
+	if err != nil {
+		t.Fatalf("newServer: %v", err)
+	}
+	if serverConn.User() != user {
+		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
+	}
+
+	// test again with an unauthorized username
+	c1.Close()
+	c2.Close()
+
+	c1, c2, err = netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	clientConfig = &ClientConfig{
+		User: user + user,
+	}
+
+	go NewClientConn(c2, "", clientConfig)
+	serverConn, err = newServer(c1, serverConfig)
+	if err == nil {
+		t.Fatalf("newServer: got %q, want nothing", serverConn.User())
+	}
+}
