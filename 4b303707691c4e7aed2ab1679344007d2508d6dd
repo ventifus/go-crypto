@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d49a3f32_f5c6197a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-03-22T10:01:30Z",
+      "side": 1,
+      "message": "sorry, I had a bit of hard time understanding my own code so renamed this for (hopefully) better readability.",
+      "revId": "4b303707691c4e7aed2ab1679344007d2508d6dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
