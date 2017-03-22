@@ -145,6 +145,40 @@
     },
     {
       "key": {
+        "uuid": "d2526ac7_138e0fa5",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-03-22T08:26:25Z",
+      "side": 1,
+      "message": "just 0",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc89d219_6dfbd7a5",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-03-22T08:26:25Z",
+      "side": 1,
+      "message": "why rfc1123 only? I\u0027d use http.ParseTime(r) instead:\nhttps://golang.org/pkg/net/http/#ParseTime",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6007c89_42b70503",
         "filename": "acme/types.go",
         "patchSetId": 2
@@ -179,6 +213,23 @@
       "writtenOn": "2017-03-21T00:27:00Z",
       "side": 1,
       "message": "missing copyright header",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da59d783_ad62c1c2",
+        "filename": "acme/types_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-03-22T08:26:25Z",
+      "side": 1,
+      "message": "this doesn\u0027t test for different value formats. would be nice to have a table-driven test.\nhttps://github.com/golang/go/wiki/TableDrivenTests",
       "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
