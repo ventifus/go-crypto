@@ -52,7 +52,7 @@ type ServerConfig struct {
 
 	hostKeys []Signer
 
-	// NoClientAuth is true if clients are allowed to connect without
+	// NoClientAuth is true if all clients are allowed to connect without
 	// authenticating.
 	NoClientAuth bool
 
@@ -61,6 +61,10 @@ type ServerConfig struct {
 	// attempts are unlimited. If set to zero, the number of attempts are limited
 	// to 6.
 	MaxAuthTries int
+
+	// NoClientAuthCallback, if non-nil, is called when NoClientAuth is false
+	// and a user attempts to authenticate without a password.
+	NoClientAuthCallback func(conn ConnMetadata) (*Permissions, error)
 
 	// PasswordCallback, if non-nil, is called when a user
 	// attempts to authenticate using a password.
@@ -204,7 +208,7 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 		return nil, errors.New("ssh: server has no host keys")
 	}
 
-	if !config.NoClientAuth && config.PasswordCallback == nil && config.PublicKeyCallback == nil && config.KeyboardInteractiveCallback == nil {
+	if !config.NoClientAuth && config.NoClientAuthCallback == nil && config.PasswordCallback == nil && config.PublicKeyCallback == nil && config.KeyboardInteractiveCallback == nil {
 		return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
 	}
 
@@ -380,6 +384,12 @@ userAuthLoop:
 		case "none":
 			if config.NoClientAuth {
 				authErr = nil
+			} else if config.NoClientAuthCallback != nil {
+				payload := userAuthReq.Payload
+				if len(payload) != 0 {
+					return nil, parseError(msgUserAuthRequest)
+				}
+				perms, authErr = config.NoClientAuthCallback(s)
 			}
 
 			// allow initial attempt of 'none' without penalty
@@ -512,6 +522,9 @@ userAuthLoop:
 		authFailures++
 
 		var failureMsg userAuthFailureMsg
+		if config.NoClientAuthCallback != nil {
+			failureMsg.Methods = append(failureMsg.Methods, "none")
+		}
 		if config.PasswordCallback != nil {
 			failureMsg.Methods = append(failureMsg.Methods, "password")
 		}
