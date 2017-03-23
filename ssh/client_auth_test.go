@@ -469,3 +469,51 @@ func TestClientAuthNone(t *testing.T) {
 		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
 	}
 }
+
+func TestAuthPasswordRetries(t *testing.T) {
+	authTries := make(map[ConnMetadata]int)
+
+	serverConfig := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, pass []byte) (*Permissions, error) {
+			if conn.User() == "testuser" && string(pass) == clientPassword {
+				return nil, nil
+			}
+			authTries[conn]++
+			if authTries[conn] > 2 {
+				return nil, &ForceDisconnectError{Msg: "too many tries"}
+			} else {
+				return nil, errors.New("password auth failed")
+			}
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	clientConfig := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			RetryableAuthMethod(PasswordCallback(func() (string, error) {
+				return "bad", nil
+			}), 3),
+		},
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	expectedErr := fmt.Errorf("ssh: handshake failed: %v", &disconnectMsg{
+		Reason:  2,
+		Message: "too many tries",
+	})
+
+	go newServer(c1, serverConfig)
+	_, _, _, err = NewClientConn(c2, "", clientConfig)
+	if err == nil {
+		t.Fatalf("client: got no error, want %s", expectedErr)
+	} else if err.Error() != expectedErr.Error() {
+		t.Fatalf("client: got %s, want %s", err, expectedErr)
+	}
+}
