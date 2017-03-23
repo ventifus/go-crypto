@@ -45,13 +45,16 @@ type ServerConfig struct {
 	// authenticating.
 	NoClientAuth bool
 
-	// PasswordCallback, if non-nil, is called when a user
-	// attempts to authenticate using a password.
+	// PasswordCallback, if non-nil, is called when a user attempts to
+	// authenticate using a password.  If error is a ForceDisconnectError, the
+	// authentication loop will abort and the connection will be closed.
 	PasswordCallback func(conn ConnMetadata, password []byte) (*Permissions, error)
 
 	// PublicKeyCallback, if non-nil, is called when a client attempts public
 	// key authentication. It must return true if the given public key is
 	// valid for the given user. For example, see CertChecker.Authenticate.
+	// If error is a ForceDisconnectError, the authentication loop will abort
+	// and the connection will be closed.
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
 
 	// KeyboardInteractiveCallback, if non-nil, is called when
@@ -61,6 +64,8 @@ type ServerConfig struct {
 	// Challenge rounds. To avoid information leaks, the client
 	// should be presented a challenge even if the user is
 	// unknown.
+	// If error is a ForceDisconnectError, the authentication loop will abort
+	// and the connection will be closed.
 	KeyboardInteractiveCallback func(conn ConnMetadata, client KeyboardInteractiveChallenge) (*Permissions, error)
 
 	// AuthLogCallback, if non-nil, is called to log all authentication
@@ -262,6 +267,17 @@ func checkSourceAddress(addr net.Addr, sourceAddrs string) error {
 	return fmt.Errorf("ssh: remote address %v is not allowed because of source-address restriction", addr)
 }
 
+// ForceDisconnectError will be handled in the authentication loop as a signal
+// to abort the loop and disconnect
+type ForceDisconnectError struct {
+	Msg    string
+	Reason RejectionReason
+}
+
+func (e *ForceDisconnectError) Error() string {
+	return fmt.Sprintf("%s: %s", e.Reason, e.Msg)
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
@@ -422,6 +438,22 @@ userAuthLoop:
 
 		if len(failureMsg.Methods) == 0 {
 			return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+		}
+
+		if fde, ok := authErr.(*ForceDisconnectError); ok {
+			if fde.Reason == 0 {
+				fde.Reason = ConnectionFailed
+			}
+			discMsg := &disconnectMsg{
+				Reason:  uint32(fde.Reason),
+				Message: fde.Error(),
+			}
+
+			if err := s.transport.writePacket(Marshal(discMsg)); err != nil {
+				return nil, err
+			}
+
+			return nil, discMsg
 		}
 
 		if err := s.transport.writePacket(Marshal(&failureMsg)); err != nil {

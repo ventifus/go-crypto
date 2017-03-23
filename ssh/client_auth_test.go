@@ -469,3 +469,34 @@ func TestClientAuthNone(t *testing.T) {
 		t.Fatalf("server: got %q, want %q", serverConn.User(), user)
 	}
 }
+
+func TestAuthPasswordRetries(t *testing.T) {
+	serverConfig := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, pass []byte) (*Permissions, error) {
+			return nil, &ForceDisconnectError{Msg: "too many tries"}
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	clientConfig := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			Password("bad"),
+		},
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	go newServer(c1, serverConfig)
+	_, _, _, err = NewClientConn(c2, "", clientConfig)
+	if err == nil {
+		t.Fatalf("client: got no error")
+	} else if !strings.Contains(err.Error(), "too many tries") {
+		t.Fatalf("client: got %s, want 'too many tries'", err)
+	}
+}
