@@ -262,6 +262,17 @@ func checkSourceAddress(addr net.Addr, sourceAddrs string) error {
 	return fmt.Errorf("ssh: remote address %v is not allowed because of source-address restriction", addr)
 }
 
+// ForceDisconnectError will be handled in the authentication loop as a signal
+// to abort the loop and disconnect
+type ForceDisconnectError struct {
+	Msg    string
+	Reason RejectionReason
+}
+
+func (e *ForceDisconnectError) Error() string {
+	return e.Msg
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
@@ -422,6 +433,23 @@ userAuthLoop:
 
 		if len(failureMsg.Methods) == 0 {
 			return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+		}
+
+		if fde, ok := authErr.(*ForceDisconnectError); ok {
+			reason := fde.Reason
+			if reason == 0 {
+				reason = ConnectionFailed
+			}
+			discMsg := &disconnectMsg{
+				Reason:  uint32(reason),
+				Message: fde.Error(),
+			}
+
+			if err := s.transport.writePacket(Marshal(discMsg)); err != nil {
+				return nil, err
+			}
+
+			return nil, discMsg
 		}
 
 		if err := s.transport.writePacket(Marshal(&failureMsg)); err != nil {
