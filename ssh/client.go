@@ -13,7 +13,7 @@ import (
 )
 
 // Client implements a traditional SSH client that supports shells,
-// subprocesses, port forwarding and tunneled dialing.
+// subprocesses, TCP port/streamlocal forwarding and tunneled dialing.
 type Client struct {
 	Conn
 
@@ -59,6 +59,7 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 		conn.forwards.closeAll()
 	}()
 	go conn.forwards.handleChannels(conn.HandleChannelOpen("forwarded-tcpip"))
+	go conn.forwards.handleChannels(conn.HandleChannelOpen("forwarded-streamlocal@openssh.com"))
 	return conn
 }
 
