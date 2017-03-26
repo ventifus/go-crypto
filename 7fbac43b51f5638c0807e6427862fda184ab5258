@@ -33,6 +33,24 @@
       "revId": "7fbac43b51f5638c0807e6427862fda184ab5258",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0c83b70_9a75458e",
+        "filename": "chacha20poly1305/internal/chacha20/asm_s390x.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2017-03-26T02:12:19Z",
+      "side": 1,
+      "message": "Yeah it would be nice... https://github.com/golang/go/issues/15403 is relevant, but it wouldn\u0027t help here as-is since it describes an internal package.",
+      "parentUuid": "8a273f6e_87f09730",
+      "revId": "7fbac43b51f5638c0807e6427862fda184ab5258",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
