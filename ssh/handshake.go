@@ -64,9 +64,10 @@ type handshakeTransport struct {
 	sentInitMsg    *kexInitMsg
 	pendingPackets [][]byte // Used when a key exchange is in progress.
 
-	// If the read loop wants to schedule a kex, it pings this
-	// channel, and the write loop will send out a kex
-	// message.
+	// If we have sent or received too many packets or too much
+	// data, we can signal the kex loop by posting on this
+	// channel. Sends should be done with requestKeyExchange,
+	// which avoids unnecessarily blocking.
 	requestKex chan struct{}
 
 	// If the other side requests or confirms a kex, its kexInit
@@ -109,9 +110,6 @@ func newHandshakeTransport(conn keyingTransport, config *Config, clientVersion, 
 	}
 	t.resetReadThresholds()
 	t.resetWriteThresholds()
-
-	// We always start with a mandatory key exchange.
-	t.requestKex <- struct{}{}
 	return t
 }
 
@@ -251,6 +249,8 @@ func (t *handshakeTransport) resetWriteThresholds() {
 }
 
 func (t *handshakeTransport) kexLoop() {
+	initialKex := make(chan struct{}, 1)
+	initialKex <- struct{}{}
 
 write:
 	for t.getWriteError() == nil {
@@ -265,7 +265,7 @@ write:
 					break write
 				}
 			case <-t.requestKex:
-				break
+			case <-initialKex:
 			}
 
 			if !sent {
@@ -303,10 +303,9 @@ write:
 
 		// we have completed the key exchange. Since the
 		// reader is still blocked, it is safe to clear out
-		// the requestKex channel. This avoids the situation
-		// where: 1) we consumed our own request for the
-		// initial kex, and 2) the kex from the remote side
-		// caused another send on the requestKex channel,
+		// the requestKex channel. This avoids doing two key
+		// exchanges in succession if both read and write
+		// sides cross rekey thresholds at the same time.
 	clear:
 		for {
 			select {
