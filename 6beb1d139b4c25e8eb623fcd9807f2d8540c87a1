@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abb5d705_79fa6ab4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "Fixes golang/go#19767\n\n(required when closing bugs cross-repo)",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee5a74b2_8f2d6469",
+        "filename": "ssh/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "or errors.New",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21cc2dad_4c11e9dc",
+        "filename": "ssh/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "missing period at end. But looks like you forgot to finish typing the sentence.\n\n\"supply a HostKeyCallback.\" ?\n\nAlso reference the common helper funcs below.",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f732101d_c0cf3a35",
+        "filename": "ssh/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "docs",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fffa541f_d44abea2",
+        "filename": "ssh/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "docs",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51c2a3f_f5cd4515",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-03-29T18:14:27Z",
+      "side": 1,
+      "message": "conventionally, the testcase variable is spelled \"tt\". No clue why.",
+      "revId": "6beb1d139b4c25e8eb623fcd9807f2d8540c87a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
