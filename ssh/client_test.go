@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"net"
+	"strings"
 	"testing"
 )
 
@@ -13,6 +14,7 @@ func testClientVersion(t *testing.T, config *ClientConfig, expected string) {
 	clientConn, serverConn := net.Pipe()
 	defer clientConn.Close()
 	receivedVersion := make(chan string, 1)
+	config.HostKeyCallback = InsecureIgnoreHostKey
 	go func() {
 		version, err := readVersion(serverConn)
 		if err != nil {
@@ -36,4 +38,45 @@ func TestCustomClientVersion(t *testing.T) {
 
 func TestDefaultClientVersion(t *testing.T) {
 	testClientVersion(t, &ClientConfig{}, packageVersion)
+}
+
+func TestHostKeyCheck(t *testing.T) {
+
+	for _, testcase := range []struct {
+		name      string
+		wantError string
+		key       PublicKey
+	}{
+		{"no callback", "must specify HostKeyCallback", nil},
+		{"correct key", "", testSigners["rsa"].PublicKey()},
+		{"mismatch", "mismatch", testSigners["ecdsa"].PublicKey()},
+	} {
+		c1, c2, err := netPipe()
+		if err != nil {
+			t.Fatalf("netPipe: %v", err)
+		}
+		defer c1.Close()
+		defer c2.Close()
+		serverConf := &ServerConfig{
+			NoClientAuth: true,
+		}
+		serverConf.AddHostKey(testSigners["rsa"])
+
+		go NewServerConn(c1, serverConf)
+		clientConf := ClientConfig{
+			User: "user",
+		}
+		if testcase.key != nil {
+			clientConf.HostKeyCallback = FixedHostKey(testcase.key)
+		}
+
+		_, _, _, err = NewClientConn(c2, "", &clientConf)
+		if err != nil {
+			if testcase.wantError == "" || !strings.Contains(err.Error(), testcase.wantError) {
+				t.Errorf("%s: got error %q, missing %q", err.Error(), testcase.wantError)
+			}
+		} else if testcase.wantError != "" {
+			t.Errorf("%s: succeeded, but want error string %q", testcase.name, testcase.wantError)
+		}
+	}
 }
