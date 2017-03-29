@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e861bd9_61c17cc1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-29T11:25:34Z",
+      "side": 1,
+      "message": "Fixes #19567.",
+      "revId": "a853e6c26b4e2e09e77c0ac814b625274a6bbf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
