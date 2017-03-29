@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "512eb71c_db3f3425",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-29T10:50:28Z",
+      "side": 1,
+      "message": "negative number",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d1fc24_524e8363",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-29T10:50:28Z",
+      "side": 1,
+      "message": "I think this might cause a user that has more than maxAuthTries pubkeys to be denied entry, which would be wrong. Can you add a test and verifies that this still works?",
+      "range": {
+        "startLine": 393,
+        "startChar": 14,
+        "endLine": 393,
+        "endChar": 26
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
