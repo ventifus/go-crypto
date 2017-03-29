@@ -5,6 +5,7 @@
 package ssh
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"net"
@@ -68,6 +69,11 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan NewChannel, <-chan *Request, error) {
 	fullConf := *config
 	fullConf.SetDefaults()
+	if fullConf.HostKeyCallback == nil {
+		c.Close()
+		return nil, nil, nil, fmt.Errorf("ssh: must specify HostKeyCallback")
+	}
+
 	conn := &connection{
 		sshConn: sshConn{conn: c},
 	}
@@ -188,9 +194,9 @@ type ClientConfig struct {
 	// be used during authentication.
 	Auth []AuthMethod
 
-	// HostKeyCallback, if not nil, is called during the cryptographic
-	// handshake to validate the server's host key. A nil HostKeyCallback
-	// implies that all host keys are accepted.
+	// HostKeyCallback is called during the cryptographic
+	// handshake to validate the server's host key. The client
+	// configuration must supply a host
 	HostKeyCallback func(hostname string, remote net.Addr, key PublicKey) error
 
 	// ClientVersion contains the version identification string that will
@@ -208,4 +214,27 @@ type ClientConfig struct {
 	//
 	// A Timeout of zero means no timeout.
 	Timeout time.Duration
+}
+
+func InsecureIgnoreHostKey(hostname string, remote net.Addr, key PublicKey) error {
+	return nil
+}
+
+type fixedHostKey struct {
+	key PublicKey
+}
+
+func (f *fixedHostKey) check(hostname string, remote net.Addr, key PublicKey) error {
+	if f.key == nil {
+		return fmt.Errorf("ssh: required host key was nil")
+	}
+	if !bytes.Equal(key.Marshal(), f.key.Marshal()) {
+		return fmt.Errorf("ssh: host key mismatch")
+	}
+	return nil
+}
+
+func FixedHostKey(key PublicKey) func(hostname string, remote net.Addr, key PublicKey) error {
+	hk := &fixedHostKey{key}
+	return hk.check
 }
