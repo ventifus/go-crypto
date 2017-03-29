@@ -614,11 +614,9 @@ func (t *handshakeTransport) client(kex kexAlgorithm, algs *algorithms, magics *
 		return nil, err
 	}
 
-	if t.hostKeyCallback != nil {
-		err = t.hostKeyCallback(t.dialAddress, t.remoteAddr, hostKey)
-		if err != nil {
-			return nil, err
-		}
+	err = t.hostKeyCallback(t.dialAddress, t.remoteAddr, hostKey)
+	if err != nil {
+		return nil, err
 	}
 
 	return result, nil
