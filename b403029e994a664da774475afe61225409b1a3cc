@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d3b270d_2ec2087b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-30T09:41:45Z",
+      "side": 1,
+      "message": "describe impact of this change (speed?)\n\ndoes this impact clients logging into openssh with lots of keys (due to maxauthcount) ?",
+      "revId": "b403029e994a664da774475afe61225409b1a3cc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f7d7ca6_f157e3e1",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-30T09:41:45Z",
+      "side": 1,
+      "message": "invert logic:\n\n  if err !\u003d nil { .. } else if !ok {\n    continue\n  }\n\nto decrease indent.",
+      "range": {
+        "startLine": 193,
+        "startChar": 44,
+        "endLine": 193,
+        "endChar": 45
+      },
+      "revId": "b403029e994a664da774475afe61225409b1a3cc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
