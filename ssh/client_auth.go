@@ -179,68 +179,77 @@ func (cb publicKeyCallback) method() string {
 }
 
 func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand io.Reader) (bool, []string, error) {
-	// Authentication is performed in two stages. The first stage sends an
-	// enquiry to test if each key is acceptable to the remote. The second
-	// stage attempts to authenticate with the valid keys obtained in the
-	// first stage.
+	// Authentication is performed by sending an enquiry to test if a key is
+	// acceptable to the remote. If the key is acceptable, the client will
+	// attempt to authenticate with the valid key.  If not the client will repeat
+	// the process with the remaining keys.
 
 	signers, err := cb()
 	if err != nil {
 		return false, nil, err
 	}
-	var validKeys []Signer
+	var methods []string
 	for _, signer := range signers {
-		if ok, err := validateKey(signer.PublicKey(), user, c); ok {
-			validKeys = append(validKeys, signer)
-		} else {
+		if ok, err := validateKey(signer.PublicKey(), user, c); err != nil {
+			return false, nil, err
+		} else if ok {
+			pub := signer.PublicKey()
+
+			pubKey := pub.Marshal()
+			sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
+				User:    user,
+				Service: serviceSSH,
+				Method:  cb.method(),
+			}, []byte(pub.Type()), pubKey))
 			if err != nil {
 				return false, nil, err
+			}
+
+			// manually wrap the serialized signature in a string
+			s := Marshal(sign)
+			sig := make([]byte, stringLength(len(s)))
+			marshalString(sig, s)
+			msg := publickeyAuthMsg{
+				User:     user,
+				Service:  serviceSSH,
+				Method:   cb.method(),
+				HasSig:   true,
+				Algoname: pub.Type(),
+				PubKey:   pubKey,
+				Sig:      sig,
+			}
+			p := Marshal(&msg)
+			if err := c.writePacket(p); err != nil {
+				return false, nil, err
+			}
+			var success bool
+			success, methods, err = handleAuthResponse(c)
+			if err != nil {
+				return false, nil, err
+			}
+			if success {
+				return success, methods, err
+			} else if !containsMethod(methods, cb.method()) {
+				// If the list of available methods does not contain the "publickey"
+				// method, do not attempt to authenticate with any other keys.
+				// According to RFC 4252 Section 7 this can be the case when additional
+				// authentication methods are required.
+				return success, methods, err
 			}
 		}
 	}
 
-	// methods that may continue if this auth is not successful.
-	var methods []string
-	for _, signer := range validKeys {
-		pub := signer.PublicKey()
+	return false, methods, nil
+}
 
-		pubKey := pub.Marshal()
-		sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
-			User:    user,
-			Service: serviceSSH,
-			Method:  cb.method(),
-		}, []byte(pub.Type()), pubKey))
-		if err != nil {
-			return false, nil, err
-		}
-
-		// manually wrap the serialized signature in a string
-		s := Marshal(sign)
-		sig := make([]byte, stringLength(len(s)))
-		marshalString(sig, s)
-		msg := publickeyAuthMsg{
-			User:     user,
-			Service:  serviceSSH,
-			Method:   cb.method(),
-			HasSig:   true,
-			Algoname: pub.Type(),
-			PubKey:   pubKey,
-			Sig:      sig,
-		}
-		p := Marshal(&msg)
-		if err := c.writePacket(p); err != nil {
-			return false, nil, err
-		}
-		var success bool
-		success, methods, err = handleAuthResponse(c)
-		if err != nil {
-			return false, nil, err
-		}
-		if success {
-			return success, methods, err
+func containsMethod(methods []string, method string) bool {
+	for _, m := range methods {
+		if m == method {
+			return true
 		}
 	}
-	return false, methods, nil
+
+	return false
 }
 
 // validateKey validates the key provided is acceptable to the server.
