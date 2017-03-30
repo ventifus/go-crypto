@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f540190d_759112f6",
+        "filename": "ssh/client.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-30T15:25:48Z",
+      "side": 1,
+      "message": "Up to you, but this sentence didn\u0027t read well to be. I might say \"The given hostname is one given to Dial/NewClientConn.\"",
+      "range": {
+        "startLine": 184,
+        "startChar": 26,
+        "endLine": 184,
+        "endChar": 51
+      },
+      "revId": "b4b098e00382a474ab6792a1a8c4bd91c2d9ec1d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6729f71c_5da63a8c",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-30T15:25:48Z",
+      "side": 1,
+      "message": "Use filepath for building paths?",
+      "revId": "b4b098e00382a474ab6792a1a8c4bd91c2d9ec1d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5747b754_e4b76235",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-30T15:25:48Z",
+      "side": 1,
+      "message": "There\u0027s a scanner.Bytes() for getting a []byte.",
+      "revId": "b4b098e00382a474ab6792a1a8c4bd91c2d9ec1d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
