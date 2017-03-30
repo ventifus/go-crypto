@@ -117,6 +117,30 @@
       "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a6a63b_0829ad70",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-03-30T08:40:44Z",
+      "side": 1,
+      "message": "that sounds like a sensible change, and a speed up as well.\n\nI want to double check with AGL, though.",
+      "parentUuid": "2238963a_9c64d0df",
+      "range": {
+        "startLine": 393,
+        "startChar": 14,
+        "endLine": 393,
+        "endChar": 26
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
