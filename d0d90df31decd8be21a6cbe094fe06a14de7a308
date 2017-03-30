@@ -93,6 +93,30 @@
       "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2238963a_9c64d0df",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-03-30T05:29:41Z",
+      "side": 1,
+      "message": "After further review, this change appeared to be simple enough so I went ahead an added it to this change set along with a more explicit test of this functionality.\n\nIf deemed out of scope for this change set, I can always walk the changes back and start the conversation elsewhere.",
+      "parentUuid": "fcbb2e0c_610b7290",
+      "range": {
+        "startLine": 393,
+        "startChar": 14,
+        "endLine": 393,
+        "endChar": 26
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
