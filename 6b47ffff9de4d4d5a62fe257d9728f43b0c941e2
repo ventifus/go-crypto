@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82bc7265_cf61dd00",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-30T15:31:53Z",
+      "side": 1,
+      "message": "Rather than have a large range in this if body, prefer something like:\n\nok, err :\u003d validateKey(signer.PublicKey(), user, c)\nif err !\u003d nil {\n  return false, nil, err\n}\nif !ok {\n  continue\n}\n\n…",
+      "revId": "6b47ffff9de4d4d5a62fe257d9728f43b0c941e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ffc61d_a6f5969b",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-03-30T15:31:53Z",
+      "side": 1,
+      "message": "if success || !containsMethod(methods, cb.method())",
+      "revId": "6b47ffff9de4d4d5a62fe257d9728f43b0c941e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
