@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e897ec72_d9ad72c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-03-30T04:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512eb71c_db3f3425",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16d1fc24_524e8363",
         "filename": "ssh/server.go",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-29T10:50:28Z",
       "side": 1,
       "message": "I think this might cause a user that has more than maxAuthTries pubkeys to be denied entry, which would be wrong. Can you add a test and verifies that this still works?",
+      "range": {
+        "startLine": 393,
+        "startChar": 14,
+        "endLine": 393,
+        "endChar": 26
+      },
+      "revId": "d0d90df31decd8be21a6cbe094fe06a14de7a308",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcbb2e0c_610b7290",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-03-30T04:49:18Z",
+      "side": 1,
+      "message": "I think this behavior is actually correct as it represents an authentication attempt.\n\nI believe the real issue is the public key authentication implementation for the golang client. Currently, the client queries all available keys before actually performing authentication, even if a valid key has already been found. Thus if you have more than MaxAuthTries keys loaded, it will result in a \"too many authentication attempts failure\", regardless of the position of the valid key in the keychain.\n\nA different implementation, that would hopefully be more efficient, would be to short circuit and immediately authenticate with the first valid key found. This is a simple change in the `auth` method of the `publicKeyCallback`.\n\nSince this change would involve modifying the client authentication code, I have gone ahead and made the change to ignore public key queries as authentication attempts and added a subsequent test. We should consider removing that logic if client public key authentication is changed to reflect the behavior above.",
+      "parentUuid": "16d1fc24_524e8363",
       "range": {
         "startLine": 393,
         "startChar": 14,
