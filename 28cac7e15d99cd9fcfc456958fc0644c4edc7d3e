@@ -16,6 +16,24 @@
       "revId": "28cac7e15d99cd9fcfc456958fc0644c4edc7d3e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "748240a1_e7dbcf8c",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-02T20:12:41Z",
+      "side": 1,
+      "message": "The Go build dashboard only tests Go 1.7+ now (the past two releases + tip), so we can use the standard library context now.\n\nBut I\u0027ll do this in the next commit.",
+      "parentUuid": "84acf2b4_715bc212",
+      "revId": "28cac7e15d99cd9fcfc456958fc0644c4edc7d3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
