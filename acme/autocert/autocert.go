@@ -41,8 +41,9 @@ func init() {
 	pseudoRand = &lockedMathRand{rnd: mathrand.New(src)}
 }
 
-// AcceptTOS always returns true to indicate the acceptance of a CA Terms of Service
-// during account registration.
+// AcceptTOS is a Manager.Prompt function that always returns true to
+// indicate acceptance of the CA's Terms of Service during account
+// registration.
 func AcceptTOS(tosURL string) bool { return true }
 
 // HostPolicy specifies which host names the Manager is allowed to respond to.
@@ -211,7 +212,7 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	if err != nil {
 		return nil, err
 	}
-	m.cachePut(name, cert)
+	m.cachePut(ctx, name, cert)
 	return cert, nil
 }
 
@@ -297,7 +298,7 @@ func (m *Manager) cacheGet(domain string) (*tls.Certificate, error) {
 	return tlscert, nil
 }
 
-func (m *Manager) cachePut(domain string, tlscert *tls.Certificate) error {
+func (m *Manager) cachePut(ctx context.Context, domain string, tlscert *tls.Certificate) error {
 	if m.Cache == nil {
 		return nil
 	}
@@ -329,8 +330,6 @@ func (m *Manager) cachePut(domain string, tlscert *tls.Certificate) error {
 		}
 	}
 
-	// TODO: might want to define a cache timeout on m
-	ctx := context.Background()
 	return m.Cache.Put(ctx, domain, buf.Bytes())
 }
 
@@ -494,7 +493,7 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 	if err != nil {
 		return err
 	}
-	m.putTokenCert(name, &cert)
+	m.putTokenCert(ctx, name, &cert)
 	defer func() {
 		// verification has ended at this point
 		// don't need token cert anymore
@@ -512,14 +511,14 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 
 // putTokenCert stores the cert under the named key in both m.tokenCert map
 // and m.Cache.
-func (m *Manager) putTokenCert(name string, cert *tls.Certificate) {
+func (m *Manager) putTokenCert(ctx context.Context, name string, cert *tls.Certificate) {
 	m.tokenCertMu.Lock()
 	defer m.tokenCertMu.Unlock()
 	if m.tokenCert == nil {
 		m.tokenCert = make(map[string]*tls.Certificate)
 	}
 	m.tokenCert[name] = cert
-	m.cachePut(name, cert)
+	m.cachePut(ctx, name, cert)
 }
 
 // deleteTokenCert removes the token certificate for the specified domain name
