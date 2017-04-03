@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb2b94b6_57490128",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 13,
+        "startChar": 7,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052d44ab_7770ca25",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "drop - we use separate CLAs instead.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f782bcdc_35facb46",
+        "filename": "ssh/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "add streamlocal to the list of features here",
+      "range": {
+        "startLine": 16,
+        "startChar": 22,
+        "endLine": 16,
+        "endChar": 32
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a7f067_273c06df",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": ".. a Unix ..",
+      "range": {
+        "startLine": 33,
+        "startChar": 47,
+        "endLine": 33,
+        "endChar": 51
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "885efff5_eb5866a8",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "add \u0027.\u0027 at end.",
+      "range": {
+        "startLine": 33,
+        "startChar": 60,
+        "endLine": 33,
+        "endChar": 65
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba44cb4e_cdfdb5f2",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "why is this her? Wouldn\u0027t there need to be a port number for the TCP case?",
+      "range": {
+        "startLine": 152,
+        "startChar": 1,
+        "endLine": 152,
+        "endChar": 11
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "378ab72a_660d111f",
+        "filename": "ssh/test/dial_unix_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-03T10:52:06Z",
+      "side": 1,
+      "message": "shouldn\u0027t this test something about the address similar to the Unix case?",
+      "range": {
+        "startLine": 71,
+        "startChar": 1,
+        "endLine": 71,
+        "endChar": 0
+      },
+      "revId": "a89623764df0e170bd76aa363383e7b930728183",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
