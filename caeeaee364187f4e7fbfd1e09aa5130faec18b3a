@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "003909f5_f37716e2",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 18327
+      },
+      "writtenOn": "2017-04-03T02:54:25Z",
+      "side": 1,
+      "message": "Typo: \"neede\".",
+      "revId": "caeeaee364187f4e7fbfd1e09aa5130faec18b3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
