@@ -15,8 +15,18 @@ import (
 const (
 	// The blocksize of BLAKE2s in bytes.
 	BlockSize = 64
+
 	// The hash size of BLAKE2s-256 in bytes.
 	Size = 32
+
+	// The hash size of BLAKE2s-244 in bytes
+	Size224 = 28
+
+	// The hash size of BLAKE2s-160 in bytes
+	Size160 = 20
+
+	// The hash size of BLAKE2s-128 in bytes
+	Size128 = 16
 )
 
 var errKeySize = errors.New("blake2s: invalid key size")
@@ -33,9 +43,48 @@ func Sum256(data []byte) [Size]byte {
 	return sum
 }
 
-// New256 returns a new hash.Hash computing the BLAKE2s-256 checksum. A non-nil
-// key turns the hash into a MAC. The key must between zero and 32 bytes long.
+// Sum224 returns the BLAKE2s-224 checksum of the data.
+func Sum224(data []byte) [Size224]byte {
+	var sum [Size]byte
+	var sum224 [Size224]byte
+	checkSum(&sum, Size224, data)
+	copy(sum224[:], sum[:Size224])
+	return sum224
+}
+
+// Sum160 returns the BLAKE2s-160checksum of the data.
+func Sum160(data []byte) [Size160]byte {
+	var sum [Size]byte
+	var sum160 [Size160]byte
+	checkSum(&sum, Size160, data)
+	copy(sum160[:], sum[:Size160])
+	return sum160
+}
+
+// Sum128 returns the BLAKE2s-128 checksum of the data.
+func Sum128(data []byte) [Size128]byte {
+	var sum [Size]byte
+	var sum128 [Size128]byte
+	checkSum(&sum, Size128, data)
+	copy(sum128[:], sum[:Size128])
+	return sum128
+}
+
+// New256 returns a new hash.Hash computing the BLAKE2s-256 checksum.
+// A non-nil key turns the hash into a MAC. The key must between 0 and 32 byte.
 func New256(key []byte) (hash.Hash, error) { return newDigest(Size, key) }
+
+// New224 returns a new hash.Hash computing the BLAKE2s-224 checksum.
+// A non-nil key turns the hash into a MAC. The key must between 0 and 32 byte.
+func New224(key []byte) (hash.Hash, error) { return newDigest(Size224, key) }
+
+// New160 returns a new hash.Hash computing the BLAKE2s-160 checksum.
+// A non-nil key turns the hash into a MAC. The key must between 0 and 32 byte.
+func New160(key []byte) (hash.Hash, error) { return newDigest(Size160, key) }
+
+// New128 returns a new hash.Hash computing the BLAKE2s-128 checksum.
+// A non-nil key turns the hash into a MAC. The key must between 0 and 32 byte.
+func New128(key []byte) (hash.Hash, error) { return newDigest(Size128, key) }
 
 func newDigest(hashSize int, key []byte) (*digest, error) {
 	if len(key) > Size {
