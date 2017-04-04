@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a716598_65b8e301",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-04T07:51:03Z",
+      "side": 1,
+      "message": "I think this is the only log usage within the acme and acme/autocert pkgs.\nMaybe we could also use it for https://github.com/golang/go/issues/19800 then.",
+      "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ff8865f_db77ae6e",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-04T07:51:03Z",
+      "side": 1,
+      "message": "But you also support windows in the homeDir func. Why not use that instead?\nIf you remove this panic, it\u0027ll go fall through \u0027till the last return where it\u0027s already using homeDir().",
+      "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
