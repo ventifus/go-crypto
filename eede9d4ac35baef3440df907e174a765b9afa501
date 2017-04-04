@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "12c2e2d0_04221687",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-04-04T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caefe98e_ddf44438",
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "124e8e0c_9297771c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 9
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "ffe3f9d3_94574480",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-04-04T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "124e8e0c_9297771c",
+      "range": {
+        "startLine": 12,
+        "startChar": 19,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49bd79a6_ed533296",
         "filename": "/COMMIT_MSG",
         "patchSetId": 9
@@ -85,6 +127,30 @@
       "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7bc5f5a_f22a73ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16855
+      },
+      "writtenOn": "2017-04-04T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49bd79a6_ed533296",
+      "range": {
+        "startLine": 15,
+        "startChar": 45,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
