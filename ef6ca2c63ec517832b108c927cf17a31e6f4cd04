@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "afe4d231_e649074f",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-04T23:41:27Z",
+      "side": 1,
+      "message": "Let\u0027s evaluate them on a case-by-case basis.\n\nIn this case I\u0027m fine with it.\n\nIt\u0027s a warning. People can check their logs to see those.\n\nIf they don\u0027t like it, they can use Manager + Manager.Listener by hand.",
+      "parentUuid": "6a716598_65b8e301",
+      "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25739458_6366e9df",
         "filename": "acme/autocert/listener.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "72f577ee_c11d9f34",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-04T23:41:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25739458_6366e9df",
+      "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ff8865f_db77ae6e",
         "filename": "acme/autocert/listener.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-04-04T07:51:03Z",
       "side": 1,
       "message": "But you also support windows in the homeDir func. Why not use that instead?\nIf you remove this panic, it\u0027ll go fall through \u0027till the last return where it\u0027s already using homeDir().",
+      "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5725d044_ecce24f5",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-04T23:41:27Z",
+      "side": 1,
+      "message": "These funcs were copy/pasted from another one of my projects.\n\nBut fixed.",
+      "parentUuid": "2ff8865f_db77ae6e",
       "revId": "ef6ca2c63ec517832b108c927cf17a31e6f4cd04",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
