@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "caefe98e_ddf44438",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "(separate line)\n\nThis changes breaks backward compatiblity.",
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124e8e0c_9297771c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "start new paragraph here",
+      "range": {
+        "startLine": 12,
+        "startChar": 19,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0f3688f_946d7d34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": ", which is an backwards incompatible change.",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49bd79a6_ed533296",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "move this to l.10",
+      "range": {
+        "startLine": 15,
+        "startChar": 45,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8909e96_36dabc5a",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "can you make this use a loop ?\n\nfor tries :\u003d 2 ;  tries \u003c 4; tries ++ {\n..\n\n  if tries \u003d\u003d 2 {  .. check failures } else {  check success }\n}",
+      "range": {
+        "startLine": 532,
+        "startChar": 1,
+        "endLine": 532,
+        "endChar": 10
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f615ee05_035d291e",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "can you check for just this substring?",
+      "range": {
+        "startLine": 575,
+        "startChar": 21,
+        "endLine": 575,
+        "endChar": 35
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c458cfa7_365cf8b6",
+        "filename": "ssh/server.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-04T14:49:04Z",
+      "side": 1,
+      "message": "maybe \"If it\u0027s zero, we limit number of authentication attempts to 6.\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 50,
+        "endChar": 31
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
