@@ -22,6 +22,30 @@
       "revId": "6979536004f29a04fd782072a4e0dc5f55bff465",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21ce702f_2fb1a37c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-04-05T15:05:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b35ee598_08dff076",
+      "range": {
+        "startLine": 882,
+        "startChar": 4,
+        "endLine": 882,
+        "endChar": 5
+      },
+      "revId": "6979536004f29a04fd782072a4e0dc5f55bff465",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
