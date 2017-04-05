@@ -177,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "72037a52_41ac462d",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-05T14:48:58Z",
+      "side": 1,
+      "message": "ping?",
+      "parentUuid": "c8909e96_36dabc5a",
+      "range": {
+        "startLine": 532,
+        "startChar": 1,
+        "endLine": 532,
+        "endChar": 10
+      },
+      "revId": "eede9d4ac35baef3440df907e174a765b9afa501",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f615ee05_035d291e",
         "filename": "ssh/client_auth_test.go",
         "patchSetId": 9
