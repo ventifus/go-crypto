@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aac33440_2f826afd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-05T10:47:39Z",
+      "side": 1,
+      "message": ".. extension, providing the equivalent of ..",
+      "range": {
+        "startLine": 9,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "ea2a420e394b5cc78a77c64a72978d3dd1ba91fa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03e9c680_d1a02433",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-05T10:47:39Z",
+      "side": 1,
+      "message": "move to use",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "ea2a420e394b5cc78a77c64a72978d3dd1ba91fa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
