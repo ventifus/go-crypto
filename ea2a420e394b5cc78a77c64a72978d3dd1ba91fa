@@ -45,6 +45,30 @@
       "revId": "ea2a420e394b5cc78a77c64a72978d3dd1ba91fa",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60919294_4e676aab",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 13030
+      },
+      "writtenOn": "2017-04-06T02:17:22Z",
+      "side": 1,
+      "message": "Sorry, could you elaborate what you meant?",
+      "parentUuid": "03e9c680_d1a02433",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "ea2a420e394b5cc78a77c64a72978d3dd1ba91fa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
