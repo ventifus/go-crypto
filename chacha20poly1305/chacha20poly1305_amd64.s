@@ -2711,11 +2711,9 @@ sealAVX2Tail512LoopB:
 
 // func haveSSSE3() bool
 TEXT ·haveSSSE3(SB), NOSPLIT, $0
-	XORQ AX, AX
-	INCL AX
-	CPUID
-	SHRQ $9, CX
-	ANDQ $1, CX
-	MOVB CX, ret+0(FP)
+	MOVL runtime·cpuid_edx(SB), AX
+	SHRQ $9, AX
+	ANDQ $1, AX
+	MOVB AX, ret+0(FP)
 	RET
 
