@@ -436,12 +436,11 @@ loop:
 
 // func supportSSSE3() bool
 TEXT ·supportSSSE3(SB), 4, $0-1
-	MOVL $1, AX
-	CPUID
-	MOVL CX, BX
-	ANDL $0x1, BX      // supports SSE3
+	MOVL runtime·cpuid_ecx(SB), BX
+	MOVL BX, CX
+	ANDL $0x1, BX      // Bit zero indicates SSE3 support.
 	JZ   FALSE
-	ANDL $0x200, CX    // supports SSSE3
+	ANDL $0x200, CX    // Bit nine indicates SSSE3 support.
 	JZ   FALSE
 	MOVB $1, ret+0(FP)
 	RET
@@ -452,9 +451,8 @@ FALSE:
 
 // func supportSSE2() bool
 TEXT ·supportSSE2(SB), 4, $0-1
-	MOVL $1, AX
-	CPUID
-	SHRL $26, DX
-	ANDL $1, DX        // DX != 0 if support SSE2
-	MOVB DX, ret+0(FP)
+	MOVL runtime·cpuid_edx(SB), AX
+	SHRL $26, AX	   // Bit 26 indicates SSE2 support.
+	ANDL $1, AX
+	MOVB AX, ret+0(FP)
 	RET
