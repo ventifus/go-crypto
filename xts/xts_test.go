@@ -83,3 +83,28 @@ func TestXTS(t *testing.T) {
 		}
 	}
 }
+
+// This test verifies correct length checking. See https://go-review.googlesource.com/c/39954/
+func TestLengthCheck(t *testing.T) {
+	defer func() {
+		if err := recover(); err != nil {
+			t.Errorf("should not panic, instead got: %v", err)
+		}
+	}()
+
+	c, err := NewCipher(aes.NewCipher, make([]byte, 32))
+	if err != nil {
+		t.Fatalf("NewCipher failed: %s", err)
+	}
+
+	plaintext := make([]byte, 32)
+	encrypted := make([]byte, 48)
+	decrypted := make([]byte, 48)
+
+	c.Encrypt(encrypted, plaintext, 0)
+	c.Decrypt(decrypted, encrypted[:len(plaintext)], 0)
+
+	if !bytes.Equal(plaintext, decrypted[:len(plaintext)]) {
+		t.Errorf("En/Decryption is not inverse")
+	}
+}
