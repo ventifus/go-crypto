@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e6c2ef2_be7eb5e0",
+        "filename": "xts/xts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-04-08T00:41:21Z",
+      "side": 1,
+      "message": "Here\u0027s how we can test to ensure the test doesn\u0027t panic anymore:\n\ndefer func() {\n  if err :\u003d recover(); err !\u003d nil {\n     t.Errorf(\"should not panic, instead got: %v\", err)\n  }\n}()",
+      "revId": "1776a858a1edd979d8ef1f83ea83f93baf096546",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
