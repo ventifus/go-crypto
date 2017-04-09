@@ -697,7 +697,11 @@ func (c *Client) doReg(ctx context.Context, url string, typ string, acct *Accoun
 
 // postJWS signs the body with the given key and POSTs it to the provided url.
 // The body argument must be JSON-serializable.
+// If the response was 4XX-5XX, then responseError is called on the body and
+// returned.
 func (c *Client) postJWS(ctx context.Context, key crypto.Signer, url string, body interface{}) (*http.Response, error) {
+	shouldRetry := true
+RetryBlock:
 	nonce, err := c.popNonce(ctx, url)
 	if err != nil {
 		return nil, err
@@ -711,7 +715,23 @@ func (c *Client) postJWS(ctx context.Context, key crypto.Signer, url string, bod
 		return nil, err
 	}
 	c.addNonce(res.Header)
-	return res, nil
+	// handle errors 4XX-5XX with responseError
+	if res.StatusCode >= 400 && res.StatusCode <= 599 {
+		defer res.Body.Close()
+		err = responseError(res)
+		// according to spec badNonce is urn:ietf:params:acme:error:badNonce
+		// however, acme servers in the wild return their own prefixes
+		// https://tools.ietf.org/html/draft-ietf-acme-acme-02#section-5.4
+		if ae, ok := err.(*Error); shouldRetry && ok && strings.HasSuffix(ae.ProblemType, ":badNonce") {
+			// clear any nonces that we might've stored that might now be
+			// considered bad
+			c.clearNonces()
+			shouldRetry = false
+			goto RetryBlock
+		}
+		return nil, err
+	}
+	return res, err
 }
 
 // popNonce returns a nonce value previously stored with c.addNonce
@@ -728,6 +748,13 @@ func (c *Client) popNonce(ctx context.Context, url string) (string, error) {
 		break
 	}
 	return nonce, nil
+}
+
+// clearNonces clears any stored nonces
+func (c *Client) clearNonces() {
+	c.noncesMu.Lock()
+	defer c.noncesMu.Unlock()
+	c.nonces = make(map[string]struct{})
 }
 
 // addNonce stores a nonce value found in h (if any) for future use.
