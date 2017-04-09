@@ -33,6 +33,24 @@
       "revId": "8a342e696260272f790869f795ad55e11773a264",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee85803e_19bc78ba",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2017-04-09T19:49:02Z",
+      "side": 1,
+      "message": "The spec didn\u0027t seem to indicate that a Reply-After would ever be returned in an error response. Is that something we want to support?",
+      "parentUuid": "6e89e97a_12a5b5c8",
+      "revId": "8a342e696260272f790869f795ad55e11773a264",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
