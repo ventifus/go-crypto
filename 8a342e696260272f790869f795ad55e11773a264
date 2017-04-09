@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9178d4eb_005ac1de",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-09T18:57:28Z",
+      "side": 1,
+      "message": "I have to say it\u0027s a bit hard to read with a shouldRetry bool and RetryBlock goto.\nWouldn\u0027t it be simpler to leave postJWS as is and have a new method, something like \"retryPostJWS\" which keeps calling postJWS over again until a successful response is received or the error is not badNonce?",
+      "revId": "8a342e696260272f790869f795ad55e11773a264",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e89e97a_12a5b5c8",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-09T18:57:28Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be taking a possible \"retry-after\" into account.\nSee WaitAuthorization for an example.",
+      "revId": "8a342e696260272f790869f795ad55e11773a264",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
