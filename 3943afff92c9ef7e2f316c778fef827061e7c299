@@ -22,6 +22,29 @@
       "revId": "3943afff92c9ef7e2f316c778fef827061e7c299",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a906570c_9e565dd7",
+        "filename": "nacl/secretbox/secretbox.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 18685
+      },
+      "writtenOn": "2017-04-10T21:51:43Z",
+      "side": 1,
+      "message": "I am currently experimenting with the NaCl suite. My use case is a small tool to create compressed and encrypted messages, that aims to do just that: chunking the message, so that the memory of whatever is used, does not get exhausted. At the moment I use 4 MB chunks as a default. My introductory comment to the tool (unpublished, as of yet), is at the brink of turning into a rant:\n[...] The NaCl crypto suite promises to give developers a robust foundation\nto build strong encryption into their software without the pitfalls\nof encouraging implementation errors by an overly complicated interface.\nSomewhat misleadingly, the Go package documentation for secretbox states:\n\"Package secretbox encrypts and authenticates small messages.\" - What\nthe author supposedly meant by that, is: because the secretbox\nimplementation works in memory, the message size is restricted to a part\nof the available memory. If used blindly, huge messages may lead to swapping,\nor worse, the whole program crashing.\nTo avoid this, the encryption can be done in chunks and\nlikewise, the decryption. [...]\n\nI understand that the package documentation needs to stay concise. Would it be possible to write something like an elaborate blog article about that topic and refer to it in the package documentation?\nWhat I understood so far, was, beware of sarcasm: NaCl provides an easy interface for programmers to implement secure encryption. To safely implement it, you need to be aware of the restrictions of your users\u0027 hardware, be a cryptographer and restrict your message size to the overhead for storing the nonces, plus a few KB.\n\n\nOn a modern consumer-grade piece of hardware, be it a laptop or cell phone, I would expect at least 100MB of free memory for the execution of my program. How large can a message chunk be? Is it necessary to load the whole message, i.e. all chunks, into memory for authenticating?\n\nCheers, MI",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 54
+      },
+      "revId": "3943afff92c9ef7e2f316c778fef827061e7c299",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
