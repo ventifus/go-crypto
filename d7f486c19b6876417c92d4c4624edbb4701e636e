@@ -1,0 +1,277 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8392bc9c_e2db3f6b",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Needs the standard license header.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "444abc7f_01f02f98",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Is this too strong a statement? It looks like some features (e.g. wildcards and hashed hosts) are not implemented. It might be worth noting these omissions in the package comment.",
+      "range": {
+        "startLine": 1,
+        "startChar": 35,
+        "endLine": 1,
+        "endChar": 47
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81c9642f_577d2711",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Maybe reference http://man.openbsd.org/sshd#SSH_KNOWN_HOSTS_FILE_FORMAT, which seems to be the canonical source.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "354eaec4_9576b24a",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "// wildcards are rejected when parsing and so this should never happen.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "614738c6_4d8d431a",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Require that the marker be followed by a space? (Otherwise a future \"@cert-authority-foo\" would also be matched.)",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbe7ece7_1d2e8d74",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "break? Otherwise multiple markers would be accepted and all but the last would be ignored.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fddf444e_53d21ca0",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "prefer errors.New for constant errors. (Here and elsewhere.)",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91707d81_40075bc2",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Need to catch and reject the case where |p| is empty here.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2770ecc6_557d0363",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "I think the convention is that values that are intended to be returned as |error|s be named FooError. Thus this would be RevokedError or KeyRevokedError.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "719d067d_b73ff91b",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "I do wonder whether Marshal is strict enough for this to be effective, but don\u0027t have time to investigate at the moment.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6f160ad_5d9b3283",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "prefix error with the package name.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15511c81_70fb2387",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "prefix error with the package name.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b0ec945_1fecc3fd",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Just highlighting this for you.",
+      "range": {
+        "startLine": 303,
+        "startChar": 52,
+        "endLine": 303,
+        "endChar": 60
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b02a91f_352e4602",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "should this be l.key?",
+      "range": {
+        "startLine": 312,
+        "startChar": 30,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae493d40_57aa738a",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-04-11T16:15:35Z",
+      "side": 1,
+      "message": "Is this the correct condition? Isn\u0027t [ ] for IPv6 addresses that contain colons?",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
