@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f882555_cafe3c52",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-12T15:16:01Z",
+      "side": 1,
+      "message": "Can you add a TODO here, to refactor this sleep with the one in WaitAuthorization. They look identical.\nUnless you want to take a stab at it.",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3b493a9_3b1cd93d",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-12T15:16:01Z",
+      "side": 1,
+      "message": "if ProblemType may be different, maybe also do string.ToLower?",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70fec7b8_39dcb200",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-12T15:16:01Z",
+      "side": 1,
+      "message": "A more interesting part is that in case of an error the body is closed.\nAnyway, I would move it to retryPostJWS.",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5edde78b_d441644a",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-12T15:16:01Z",
+      "side": 1,
+      "message": "Why not do this in retryPostJWS? That\u0027s what it\u0027s for, right. \nThis was a simple method: encode the payload and fire off a request, return response.\nFeels more complicated now.",
+      "range": {
+        "startLine": 755,
+        "startChar": 0,
+        "endLine": 759,
+        "endChar": 2
+      },
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
