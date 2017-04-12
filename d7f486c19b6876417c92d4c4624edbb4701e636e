@@ -42,6 +42,48 @@
     },
     {
       "key": {
+        "uuid": "25b5f926_557b9895",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "444abc7f_01f02f98",
+      "range": {
+        "startLine": 1,
+        "startChar": 35,
+        "endLine": 1,
+        "endChar": 47
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "738d724f_bac74736",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8392bc9c_e2db3f6b",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81c9642f_577d2711",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -56,6 +98,24 @@
       "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a0d0e9a_ade973c1",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81c9642f_577d2711",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "f4e81dc7_d30e7d10",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "354eaec4_9576b24a",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "614738c6_4d8d431a",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -90,6 +168,24 @@
       "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c5958e6_7fa857f9",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "614738c6_4d8d431a",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "ab018418_82e59f60",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbe7ece7_1d2e8d74",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fddf444e_53d21ca0",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -124,6 +238,24 @@
       "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a00d8e5_6bfa0d44",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fddf444e_53d21ca0",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -144,6 +276,24 @@
     },
     {
       "key": {
+        "uuid": "028a9aa8_6f8c3965",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91707d81_40075bc2",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2770ecc6_557d0363",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -161,6 +311,24 @@
     },
     {
       "key": {
+        "uuid": "90b9cb43_c53b4e4b",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2770ecc6_557d0363",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "719d067d_b73ff91b",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -172,6 +340,24 @@
       "writtenOn": "2017-04-11T16:15:35Z",
       "side": 1,
       "message": "I do wonder whether Marshal is strict enough for this to be effective, but don\u0027t have time to investigate at the moment.",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f2dd5ea_6347595d",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "the keys are uniquely identified by their serialization. What makes you wonder?",
+      "parentUuid": "719d067d_b73ff91b",
       "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -195,6 +381,24 @@
     },
     {
       "key": {
+        "uuid": "2e8649c6_fd29d68e",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6f160ad_5d9b3283",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15511c81_70fb2387",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -212,6 +416,24 @@
     },
     {
       "key": {
+        "uuid": "d0d6d805_c82655cb",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15511c81_70fb2387",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b0ec945_1fecc3fd",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -223,6 +445,30 @@
       "writtenOn": "2017-04-11T16:15:35Z",
       "side": 1,
       "message": "Just highlighting this for you.",
+      "range": {
+        "startLine": 303,
+        "startChar": 52,
+        "endLine": 303,
+        "endChar": 60
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de083b41_f877a8d5",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "Removed the NOSUBMIT.\n\nWe can leave this for a follow-up, as it doesn\u0027t impact the API.",
+      "parentUuid": "4b0ec945_1fecc3fd",
       "range": {
         "startLine": 303,
         "startChar": 52,
@@ -258,6 +504,30 @@
     },
     {
       "key": {
+        "uuid": "ab0e53eb_d93037b6",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "ouch.\n\nAdded a test; renamed key \u003d\u003e remote throughout to avoid confusion.",
+      "parentUuid": "4b02a91f_352e4602",
+      "range": {
+        "startLine": 312,
+        "startChar": 30,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae493d40_57aa738a",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6
@@ -269,6 +539,24 @@
       "writtenOn": "2017-04-11T16:15:35Z",
       "side": 1,
       "message": "Is this the correct condition? Isn\u0027t [ ] for IPv6 addresses that contain colons?",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d5cabc_50f73afb",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-12T12:22:41Z",
+      "side": 1,
+      "message": "my local file has \n\n[127.0.0.1]:22022 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA3HH3M4Zv1Myr3m0YGZ7O8fCSsYrDBwbGbnEPbXAw1I0f16C+vbnqFz5X8NWK79MO2jDd+4wEeYZxslu6GrLBOvxzQohUK1OPPtRcQXH8cMtx56D7xvCMQh/TIC5OTuf7O5\n\nLet me add a  test case for IPv6, though.",
+      "parentUuid": "ae493d40_57aa738a",
       "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
