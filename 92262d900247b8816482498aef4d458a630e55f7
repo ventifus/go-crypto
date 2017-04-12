@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2c3aa1d0_1437a4a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2017-04-12T15:43:35Z",
+      "side": 1,
+      "message": "Is that why the gopherbot never posted on the issue? I was confused but I couldn\u0027t find an example of what I did wrong. I\u0027ll update it to this to see if that fixes it.",
+      "parentUuid": "ac6d4bf7_6bc3fd1e",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f882555_cafe3c52",
         "filename": "acme/acme.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-12T15:16:01Z",
       "side": 1,
       "message": "Can you add a TODO here, to refactor this sleep with the one in WaitAuthorization. They look identical.\nUnless you want to take a stab at it.",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7605eaca_66d13f6c",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2017-04-12T15:43:35Z",
+      "side": 1,
+      "message": "I made a sleeper function to reduce the duplicate code in these 2 cases. Let me know what you think. Thanks!",
+      "parentUuid": "2f882555_cafe3c52",
       "revId": "92262d900247b8816482498aef4d458a630e55f7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -81,6 +117,30 @@
       "writtenOn": "2017-04-12T15:16:01Z",
       "side": 1,
       "message": "Why not do this in retryPostJWS? That\u0027s what it\u0027s for, right. \nThis was a simple method: encode the payload and fire off a request, return response.\nFeels more complicated now.",
+      "range": {
+        "startLine": 755,
+        "startChar": 0,
+        "endLine": 759,
+        "endChar": 2
+      },
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf96c0e3_9a3a6f5f",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2017-04-12T15:43:35Z",
+      "side": 1,
+      "message": "Yeah, good point. I\u0027ll move this into retry.",
+      "parentUuid": "5edde78b_d441644a",
       "range": {
         "startLine": 755,
         "startChar": 0,
