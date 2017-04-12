@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ac6d4bf7_6bc3fd1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-12T15:20:08Z",
+      "side": 1,
+      "message": "Ah, also try this: Fixes golang/go#19703.",
+      "revId": "92262d900247b8816482498aef4d458a630e55f7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f882555_cafe3c52",
         "filename": "acme/acme.go",
         "patchSetId": 3
