@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31c3c33f_811c25d7",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-13T08:00:17Z",
+      "side": 1,
+      "message": "ah, this can be just \"return res, nil\" because we already checked for err !\u003d nil above.",
+      "revId": "9141fd1253a7926302a059b646c35425024dd09a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
