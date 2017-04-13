@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3afd389_725871d0",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-13T12:10:18Z",
+      "side": 1,
+      "message": "I\u0027d use \"err :\u003d ...\" here, overwriting the err var within the if { } scope.",
+      "revId": "5634fde6a2c376aa208a2ef9866a3c421dc69db7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "521b9f3c_eb820438",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-13T12:10:18Z",
+      "side": 1,
+      "message": "It\u0027s better to have this as \"return res, nil\" - fewer chances to return a random err value, and easier to understand when reading.",
+      "revId": "5634fde6a2c376aa208a2ef9866a3c421dc69db7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
