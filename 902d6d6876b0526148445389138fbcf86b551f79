@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9373ae62_1f0a8a0c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-13T15:25:07Z",
+      "side": 1,
+      "message": "why two functions? Since the return value is a key (rather than a signer) this doesn\u0027t have to be exported?",
+      "range": {
+        "startLine": 805,
+        "startChar": 5,
+        "endLine": 805,
+        "endChar": 37
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
