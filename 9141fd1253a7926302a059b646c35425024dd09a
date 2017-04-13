@@ -16,6 +16,23 @@
       "revId": "9141fd1253a7926302a059b646c35425024dd09a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "611bcb89_cd056471",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-13T08:03:52Z",
+      "side": 1,
+      "message": "I think you just to add w.WriteHeader(http.StatusBadRequest) or something like that, for the test to pass.",
+      "revId": "9141fd1253a7926302a059b646c35425024dd09a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
