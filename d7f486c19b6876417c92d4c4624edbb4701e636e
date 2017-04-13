@@ -382,6 +382,24 @@
     },
     {
       "key": {
+        "uuid": "29860df0_91bfa47c",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-13T07:39:16Z",
+      "side": 1,
+      "message": "you mean f(x) \u003d f(y) \u003d\u003e x \u003d y, right?\n\nif that were not the case, the unittest of the ssh/ package would start barfing.",
+      "parentUuid": "ef360b80_7054defd",
+      "revId": "d7f486c19b6876417c92d4c4624edbb4701e636e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6f160ad_5d9b3283",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 6

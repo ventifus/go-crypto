@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ed9e5dc_a243210e",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-13T07:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cef3301a_56f071fb",
+      "range": {
+        "startLine": 5,
+        "startChar": 46,
+        "endLine": 5,
+        "endChar": 49
+      },
+      "revId": "e88b86678b480fa39fecacaf5ba9561ba285434f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a39a5ff_ab09272d",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-13T00:30:20Z",
       "side": 1,
       "message": "host-key, I think.",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "e88b86678b480fa39fecacaf5ba9561ba285434f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da8adf8d_dadedf1d",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-13T07:39:16Z",
+      "side": 1,
+      "message": "the man page says \"host key\" everywhere.",
+      "parentUuid": "8a39a5ff_ab09272d",
       "range": {
         "startLine": 6,
         "startChar": 15,
@@ -68,6 +116,30 @@
       "revId": "e88b86678b480fa39fecacaf5ba9561ba285434f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "551396a2_768f85e6",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-13T07:39:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bc05ef3a_531e8785",
+      "range": {
+        "startLine": 53,
+        "startChar": 21,
+        "endLine": 53,
+        "endChar": 49
+      },
+      "revId": "e88b86678b480fa39fecacaf5ba9561ba285434f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
