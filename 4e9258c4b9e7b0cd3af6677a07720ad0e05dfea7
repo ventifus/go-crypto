@@ -52,6 +52,24 @@
       "revId": "4e9258c4b9e7b0cd3af6677a07720ad0e05dfea7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d41e7bd_7fe7c209",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-18T21:10:58Z",
+      "side": 1,
+      "message": "See comment. I would say Manager.Prompt.",
+      "parentUuid": "9f29f19d_b880d3f8",
+      "revId": "4e9258c4b9e7b0cd3af6677a07720ad0e05dfea7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
