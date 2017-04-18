@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b29e15ed_e6ab2ef7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13550
+      },
+      "writtenOn": "2017-04-18T10:20:25Z",
+      "side": 1,
+      "message": "wording seems off, perhaps \"fix line matching with multiple lines\"",
+      "revId": "834662de55b839550a2487ea4440e14b9dc7d2f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "391db3f3_7dc64939",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 13550
+      },
+      "writtenOn": "2017-04-18T10:20:25Z",
+      "side": 1,
+      "message": "\"doesn\u0027t validate match\"? does this mean \"doesn\u0027t validate that they match any host\"?",
+      "revId": "834662de55b839550a2487ea4440e14b9dc7d2f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "712ae0cf_2f822ac1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 13550
+      },
+      "writtenOn": "2017-04-18T10:20:25Z",
+      "side": 1,
+      "message": "fix -\u003e fixes",
+      "revId": "834662de55b839550a2487ea4440e14b9dc7d2f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
