@@ -604,6 +604,10 @@ func (m *Manager) accountKey(ctx context.Context) (crypto.Signer, error) {
 }
 
 func (m *Manager) acmeClient(ctx context.Context) (*acme.Client, error) {
+	if m.Prompt == nil {
+		return errors.New("acme/autocert: manager prompt not set")
+	}
+
 	m.clientMu.Lock()
 	defer m.clientMu.Unlock()
 	if m.client != nil {
