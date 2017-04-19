@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "851b273f_e894b410",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb568082_40b5b060",
+      "range": {
+        "startLine": 209,
+        "startChar": 36,
+        "endLine": 209,
+        "endChar": 42
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbcbbec8_e591f1df",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "d3e0f744_b30eda87",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "I realize this is drastic, but I\u0027m sure we\u0027ll get bug reports quickly if something is off. Also, in emergencies, people could write a little filter that takes out the unknown lines.",
+      "parentUuid": "bbcbbec8_e591f1df",
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae7266b6_ac97b50f",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2017-04-19T17:55:01Z",
       "side": 1,
       "message": "Is there a case where someone wouldn\u0027t want the name normalised before hashing?",
+      "range": {
+        "startLine": 499,
+        "startChar": 43,
+        "endLine": 500,
+        "endChar": 29
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de80ef19_d09135b1",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Let me doublecheck and run my current known_hosts through SSH and x/crypto/ssh.",
+      "parentUuid": "ae7266b6_ac97b50f",
       "range": {
         "startLine": 499,
         "startChar": 43,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "1851d7a2_2a38e4d3",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d025ca4e_06e7ff32",
+      "range": {
+        "startLine": 502,
+        "startChar": 23,
+        "endLine": 502,
+        "endChar": 39
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cf400f1_7ea3cc6b",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -99,6 +189,30 @@
       "writtenOn": "2017-04-19T17:55:01Z",
       "side": 1,
       "message": "should this be crypto/rand? It looks like it\u0027s math/rand at the moment.",
+      "range": {
+        "startLine": 504,
+        "startChar": 11,
+        "endLine": 504,
+        "endChar": 26
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b672a3aa_379042ba",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "ouch\n\n(trusting on goimports too much)",
+      "parentUuid": "0cf400f1_7ea3cc6b",
       "range": {
         "startLine": 504,
         "startChar": 11,
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "484faf23_eef75c21",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94cf2f6d_7e1dd180",
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "723ef2e8_0712fd76",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "5b0a4070_56887ff4",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "723ef2e8_0712fd76",
+      "range": {
+        "startLine": 523,
+        "startChar": 12,
+        "endLine": 523,
+        "endChar": 18
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "270287b7_dd685685",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -168,6 +324,24 @@
     },
     {
       "key": {
+        "uuid": "49611f58_39c7aa60",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "270287b7_dd685685",
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce034506_4a41fc3b",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 3
@@ -179,6 +353,24 @@
       "writtenOn": "2017-04-19T17:55:01Z",
       "side": 1,
       "message": "ditto.",
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f433af7_41f66023",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce034506_4a41fc3b",
       "revId": "cd8b41385051f520352033ab493f2106c748b388",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -208,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "7767aaa1_fc2f1cf2",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62efbabb_8d0337fd",
+      "range": {
+        "startLine": 564,
+        "startChar": 11,
+        "endLine": 564,
+        "endChar": 14
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b54505a0_72aaad42",
         "filename": "ssh/knownhosts/knownhosts_test.go",
         "patchSetId": 3
@@ -219,6 +435,30 @@
       "writtenOn": "2017-04-19T17:55:01Z",
       "side": 1,
       "message": "a?",
+      "range": {
+        "startLine": 239,
+        "startChar": 27,
+        "endLine": 239,
+        "endChar": 28
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e043c08_9865881f",
+        "filename": "ssh/knownhosts/knownhosts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "it\u0027s phonetic in Dutch :)\n\nDone.",
+      "parentUuid": "b54505a0_72aaad42",
       "range": {
         "startLine": 239,
         "startChar": 27,
@@ -248,6 +488,24 @@
     },
     {
       "key": {
+        "uuid": "d9eebea4_6ee63241",
+        "filename": "ssh/knownhosts/knownhosts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c868705_69c182f0",
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ecff84b_84b5c633",
         "filename": "ssh/knownhosts/knownhosts_test.go",
         "patchSetId": 3
@@ -259,6 +517,30 @@
       "writtenOn": "2017-04-19T17:55:01Z",
       "side": 1,
       "message": "(another place for that possible constant.)",
+      "range": {
+        "startLine": 264,
+        "startChar": 11,
+        "endLine": 264,
+        "endChar": 14
+      },
+      "revId": "cd8b41385051f520352033ab493f2106c748b388",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45b0346e_86c2f335",
+        "filename": "ssh/knownhosts/knownhosts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-19T19:29:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ecff84b_84b5c633",
       "range": {
         "startLine": 264,
         "startChar": 11,
