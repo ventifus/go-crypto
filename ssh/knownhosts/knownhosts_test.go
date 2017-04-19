@@ -195,11 +195,12 @@ func TestWildcard(t *testing.T) {
 
 func TestLine(t *testing.T) {
 	for in, want := range map[string]string{
-		"server.org":                             "server.org " + edKeyStr,
-		"server.org:22":                          "server.org " + edKeyStr,
-		"server.org:23":                          "[server.org]:23 " + edKeyStr,
-		"[c629:1ec4:102:304:102:304:102:304]:22": "[c629:1ec4:102:304:102:304:102:304] " + edKeyStr,
-		"[c629:1ec4:102:304:102:304:102:304]:23": "[c629:1ec4:102:304:102:304:102:304]:23 " + edKeyStr,
+		"server.org":                                                   "server.org " + edKeyStr,
+		"server.org:22":                                                "server.org " + edKeyStr,
+		"server.org:23":                                                "[server.org]:23 " + edKeyStr,
+		"[c629:1ec4:102:304:102:304:102:304]:22":                       "[c629:1ec4:102:304:102:304:102:304] " + edKeyStr,
+		"[c629:1ec4:102:304:102:304:102:304]:23":                       "[c629:1ec4:102:304:102:304:102:304]:23 " + edKeyStr,
+		"|1|fcv94jl+ZO9yR71XEGhjMxtN7o8=|rPoWQatVJ+WZHLc2DWbynk8Z36U=": "|1|fcv94jl+ZO9yR71XEGhjMxtN7o8=|rPoWQatVJ+WZHLc2DWbynk8Z36U= " + edKeyStr,
 	} {
 		if got := Line([]string{in}, edKey); got != want {
 			t.Errorf("Line(%q) = %q, want %q", in, got, want)
@@ -232,6 +233,39 @@ func TestWildcardMatch(t *testing.T) {
 		}
 
 	}
+}
+
+func TestHashed(t *testing.T) {
+	db := testDB(t, `|1|fcv94jl+ZO9yR71XEGhjMxtN7o8=|rPoWQatVJ+WZHLc2DWbynk8Z36U= `+edKeyStr)
+
+	if err := db.check("github.com:22", &net.TCPAddr{}, edKey); err != nil {
+		t.Errorf("got error %v, want none", err)
+	}
+
+}
+
+func TestHashedIPV4(t *testing.T) {
+	db := testDB(t, `|1|NEI1C46u1VViMAIZp2fEH8RvdGA=|TpAGRQ5L3ArSPnNkoFWXfRUlWak= `+edKeyStr)
+
+	if err := db.check("", &net.TCPAddr{
+		IP:   net.IP{192, 30, 252, 0},
+		Port: 22,
+	}, edKey); err != nil {
+		t.Errorf("got error %v, want none", err)
+	}
+
+}
+
+func TestHashedIPV6(t *testing.T) {
+	db := testDB(t, `|1|LPWvYDMas6gV6mhQJz8zvCoTWtI=|XOEuOV1bkS9AQo4MiX5Ps1QutFw= `+edKeyStr)
+
+	if err := db.check("", &net.TCPAddr{
+		IP:   net.ParseIP("2401:1d80:1010::150"),
+		Port: 22,
+	}, edKey); err != nil {
+		t.Errorf("got error %v, want none", err)
+	}
+
 }
 
 // TODO(hanwen): test coverage for certificates.
