@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82011355_ad6750b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-19T03:19:25Z",
+      "side": 1,
+      "message": "ssh/knownhosts: add ...\n\n* add ssh/\n* s/added/add/\n* and drop the final period\n\n(Sorry, nitpicks.)",
+      "revId": "fd735b8866b69c47e0f2d12bd3de0994accf1d20",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
