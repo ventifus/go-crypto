@@ -9,6 +9,8 @@ package knownhosts
 import (
 	"bufio"
 	"bytes"
+	"crypto/hmac"
+	"crypto/sha1"
 	"encoding/base64"
 	"errors"
 	"fmt"
@@ -24,6 +26,11 @@ import (
 // (http://man.openbsd.org/sshd#SSH_KNOWN_HOSTS_FILE_FORMAT) for
 // background.
 
+const (
+	hashMagic     = "|1|"
+	hashDelimiter = "|"
+)
+
 type addr struct{ host, port string }
 
 func (a *addr) String() string {
@@ -32,6 +39,12 @@ func (a *addr) String() string {
 
 func (a *addr) eq(b addr) bool {
 	return a.host == b.host && a.port == b.port
+}
+
+type dbPattern interface {
+	match(a addr) bool
+	negated() bool
+	String() string
 }
 
 type hostPattern struct {
@@ -86,9 +99,41 @@ func (l *hostPattern) match(a addr) bool {
 	return wildcardMatch([]byte(l.addr.host), []byte(a.host)) && l.addr.port == a.port
 }
 
+func (l *hostPattern) negated() bool {
+	return l.negate
+}
+
+type hashedPattern struct {
+	salt []byte
+	hash []byte
+}
+
+func (hp *hashedPattern) String() string {
+	return hashMagic + string(hp.salt) + hashDelimiter + string(hp.hash)
+}
+
+func (hp *hashedPattern) match(a addr) bool {
+	hasher := hmac.New(sha1.New, hp.salt)
+	hasher.Write(hashInput(a))
+	return hmac.Equal(hp.hash, hasher.Sum(nil))
+}
+
+func (hp *hashedPattern) negated() bool {
+	return false
+}
+
+func hashInput(a addr) []byte {
+	if a.port == "22" {
+		return []byte(a.host)
+	}
+
+	return []byte("[" + a.host + "]:" + a.port)
+
+}
+
 type keyDBLine struct {
 	cert     bool
-	patterns []*hostPattern
+	patterns []dbPattern
 	knownKey KnownKey
 }
 
@@ -115,7 +160,7 @@ func (l *keyDBLine) match(addrs []addr) bool {
 	for _, p := range l.patterns {
 		for _, a := range addrs {
 			m := p.match(a)
-			if p.negate {
+			if p.negated() {
 				if m {
 					return false
 				} else {
@@ -201,11 +246,11 @@ func parseLine(line []byte) (marker string, pattern []string, key ssh.PublicKey,
 		return "", nil, nil, errors.New("knownhosts: missing host pattern")
 	}
 
-	if len(hostPart) > 0 && hostPart[0] == '|' {
-		return "", nil, nil, errors.New("knownhosts: hashed hostnames not implemented")
+	if len(hostPart) > 2 && strings.HasPrefix(hostPart, hashMagic) {
+		pattern = strings.Split(hostPart, hashDelimiter)[1:]
+	} else {
+		pattern = strings.Split(hostPart, ",")
 	}
-
-	pattern = strings.Split(hostPart, ",")
 
 	// ignore the keytype as it's in the key blob anyway.
 	_, line = nextWord(line)
@@ -252,43 +297,70 @@ func (db *hostKeyDB) parseLine(line []byte, filename string, linenum int) error 
 		},
 	}
 
-	for _, p := range patterns {
-		if len(p) == 0 {
-			continue
+	if len(patterns) == 3 && patterns[0] == "1" {
+		salt, err := base64.StdEncoding.DecodeString(patterns[1])
+
+		if err != nil {
+			return err
 		}
 
-		var a addr
-		var negate bool
-		if p[0] == '!' {
-			negate = true
-			p = p[1:]
+		hash, err := base64.StdEncoding.DecodeString(patterns[2])
+
+		if err != nil {
+			return err
 		}
 
-		if len(p) == 0 {
-			return errors.New("knownhosts: negation without following hostname")
-		}
+		entry.patterns = append(entry.patterns, &hashedPattern{
+			salt: salt,
+			hash: hash,
+		})
+	} else {
+		for _, p := range patterns {
+			if len(p) == 0 {
+				continue
+			}
+			pattern, err := createHostPattern(p)
 
-		if p[0] == '[' {
-			a.host, a.port, err = net.SplitHostPort(p)
 			if err != nil {
 				return err
 			}
-		} else {
-			a.host, a.port, err = net.SplitHostPort(p)
-			if err != nil {
-				a.host = p
-				a.port = "22"
-			}
+			entry.patterns = append(entry.patterns, pattern)
 		}
-
-		entry.patterns = append(entry.patterns, &hostPattern{
-			negate: negate,
-			addr:   a,
-		})
 	}
-
 	db.lines = append(db.lines, entry)
 	return nil
+}
+
+func createHostPattern(p string) (*hostPattern, error) {
+	var a addr
+	var negate bool
+	var err error
+	if p[0] == '!' {
+		negate = true
+		p = p[1:]
+	}
+
+	if len(p) == 0 {
+		return nil, errors.New("knownhosts: negation without following hostname")
+	}
+
+	if p[0] == '[' {
+		a.host, a.port, err = net.SplitHostPort(p)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		a.host, a.port, err = net.SplitHostPort(p)
+		if err != nil {
+			a.host = p
+			a.port = "22"
+		}
+	}
+
+	return &hostPattern{
+		negate: negate,
+		addr:   a,
+	}, nil
 }
 
 // KnownKey represents a key declared in a known_hosts file.
