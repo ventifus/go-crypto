@@ -33,6 +33,24 @@
       "revId": "0cb7abb72abac78e33f2c68b91c28f63f5dbb9be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8005affb_13e4d6cd",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 11106
+      },
+      "writtenOn": "2017-04-19T20:23:40Z",
+      "side": 1,
+      "message": "Sorry, disregard, this makes no sense given the previous place I commented exists.",
+      "parentUuid": "66737da4_673ef4ce",
+      "revId": "0cb7abb72abac78e33f2c68b91c28f63f5dbb9be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
