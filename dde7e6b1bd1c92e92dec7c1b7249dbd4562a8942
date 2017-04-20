@@ -16,6 +16,24 @@
       "revId": "dde7e6b1bd1c92e92dec7c1b7249dbd4562a8942",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38897a44_8f040844",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-20T15:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "985bb308_b7b49e4a",
+      "revId": "dde7e6b1bd1c92e92dec7c1b7249dbd4562a8942",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
