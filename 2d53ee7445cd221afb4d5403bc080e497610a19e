@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "2214b842_ca1fc626",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-20T11:08:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9615c9ed_f21d082b",
+      "revId": "2d53ee7445cd221afb4d5403bc080e497610a19e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0d122f2_2f98b119",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 4
@@ -136,6 +154,24 @@
       "writtenOn": "2017-04-19T20:16:34Z",
       "side": 1,
       "message": "I really doubt it matters since there is probably a network and lots of other timing interference and non-determinism in the way but since we are comparing potentially sensitive information (I may not want someone to know all the people authorized to my service) should this be a constant time comparison?",
+      "revId": "2d53ee7445cd221afb4d5403bc080e497610a19e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e68c1853_6285bd8a",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-20T11:08:40Z",
+      "side": 1,
+      "message": "the remote end doesn\u0027t know the salt,  or the order of your known_hosts file, so I don\u0027t think any info is leaked here.",
+      "parentUuid": "bd8a1419_5bf105a2",
       "revId": "2d53ee7445cd221afb4d5403bc080e497610a19e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
