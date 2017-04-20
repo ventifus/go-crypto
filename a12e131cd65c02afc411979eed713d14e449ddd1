@@ -16,6 +16,24 @@
       "revId": "a12e131cd65c02afc411979eed713d14e449ddd1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da097e90_1bba9280",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-20T10:34:55Z",
+      "side": 1,
+      "message": "wireError isn\u0027t meant to be exposed, just like other wireXxx types.\nNot sure why a Cause method is better than \"a, ok :\u003d err.(*AuthorizationError)\". It isn\u0027t limiting you to inspect the error.",
+      "parentUuid": "280f3940_a20b6d21",
+      "revId": "a12e131cd65c02afc411979eed713d14e449ddd1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
