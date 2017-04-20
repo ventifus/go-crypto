@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "280f3940_a20b6d21",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 12645
+      },
+      "writtenOn": "2017-04-20T01:58:41Z",
+      "side": 1,
+      "message": "Why implement the error on the Authorization struct instead of exposing wireError?\n\nMaybe add a Cause method which would return the original Error?\n\nThe current implementation would solve the open issue, but still reduces the error to a string, limiting our ability to inspect the error from inside the GetCertificate callback.",
+      "revId": "a12e131cd65c02afc411979eed713d14e449ddd1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
