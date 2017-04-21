@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "775c5ca3_84737fc6",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-21T01:01:47Z",
+      "side": 1,
+      "message": "I would move the word \"type\" one word earlier:\n\n   is of type AuthorizationError.",
+      "range": {
+        "startLine": 439,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 84
+      },
+      "revId": "3d670f96fb83e9852e140ce62670bf531d55b357",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b59805b_6b515ac4",
+        "filename": "acme/types.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-21T01:01:47Z",
+      "side": 1,
+      "message": "any prefix before this?\n\n\"acme authorization error for %s: %s\"\n\n?",
+      "range": {
+        "startLine": 78,
+        "startChar": 20,
+        "endLine": 78,
+        "endChar": 24
+      },
+      "revId": "3d670f96fb83e9852e140ce62670bf531d55b357",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8df9c9f5_13371fec",
+        "filename": "acme/types.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-21T01:01:47Z",
+      "side": 1,
+      "message": "The type of this makes me nervous that people will misuse it and do:\n\n    return chal.Something, chal.Error\n\nAnd up returning non-nil error values (e.g. https://golang.org/doc/faq#nil_error).\n\nMaybe make it \"Error error\" instead and just document the type when it\u0027s non-nil, like the os package does for *os.PathError and *LinkError etc?",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 13
+      },
+      "revId": "3d670f96fb83e9852e140ce62670bf531d55b357",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
