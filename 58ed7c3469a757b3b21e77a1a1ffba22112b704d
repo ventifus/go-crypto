@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "21e47f1d_179db534",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T15:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1aa3c5d7_980fa467",
+      "revId": "58ed7c3469a757b3b21e77a1a1ffba22112b704d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c505c0a5_b59d5d43",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "58ed7c3469a757b3b21e77a1a1ffba22112b704d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1d3fe8_ecb6499a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T15:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c505c0a5_b59d5d43",
+      "revId": "58ed7c3469a757b3b21e77a1a1ffba22112b704d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
