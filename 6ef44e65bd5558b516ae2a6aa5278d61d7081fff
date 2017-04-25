@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "644e0c0f_49bf33ff",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T19:57:35Z",
+      "side": 1,
+      "message": "s/return true if/report whether/  (per normal Go documentation style)",
+      "range": {
+        "startLine": 259,
+        "startChar": 30,
+        "endLine": 259,
+        "endChar": 44
+      },
+      "revId": "6ef44e65bd5558b516ae2a6aa5278d61d7081fff",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c8d58d4_34d25c9b",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T19:57:35Z",
+      "side": 1,
+      "message": "// If nil, (explain default behavior).",
+      "revId": "6ef44e65bd5558b516ae2a6aa5278d61d7081fff",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
