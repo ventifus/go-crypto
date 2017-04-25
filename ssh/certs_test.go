@@ -94,6 +94,39 @@ func TestParseCertWithOptions(t *testing.T) {
 	}
 }
 
+func TestValidateCertPrincipal(t *testing.T) {
+	cert := &Certificate{
+		ValidPrincipals: []string{"hostname"},
+		Key:             testPublicKeys["rsa"],
+		ValidBefore:     CertTimeInfinity,
+		CertType:        HostCert,
+	}
+	cert.SignCert(rand.Reader, testSigners["ecdsa"])
+
+	checker := CertChecker{}
+	checker.IsHostAuthority = func(k PublicKey, h string) bool {
+		return h == "hostname" && bytes.Equal(k.Marshal(), testPublicKeys["ecdsa"].Marshal())
+	}
+
+	if err := checker.CheckCert("hostname", cert); err != nil {
+		t.Errorf("CheckCert hostname: %v", err)
+	}
+
+	// Reset the public key in the CertChecker. This has the effect of changing the
+	// key that's allowed to sign for "hostname".
+	checker.IsHostAuthority = func(k PublicKey, h string) bool {
+		return h == "hostname" && bytes.Equal(k.Marshal(), testPublicKeys["rsa"].Marshal())
+	}
+
+	if err := checker.CheckCert("hostname", cert); err == nil {
+		t.Error("CheckCert hostname with different signer")
+	}
+
+	if err := checker.CheckCert("", cert); err == nil {
+		t.Error("CheckCert empty hostname")
+	}
+}
+
 func TestValidateCert(t *testing.T) {
 	key, _, _, _, err := ParseAuthorizedKey([]byte(exampleSSHCert))
 	if err != nil {
@@ -104,7 +137,7 @@ func TestValidateCert(t *testing.T) {
 		t.Fatalf("got %v (%T), want *Certificate", key, key)
 	}
 	checker := CertChecker{}
-	checker.IsAuthority = func(k PublicKey) bool {
+	checker.IsUserAuthority = func(k PublicKey) bool {
 		return bytes.Equal(k.Marshal(), validCert.SignatureKey.Marshal())
 	}
 
@@ -142,7 +175,7 @@ func TestValidateCertTime(t *testing.T) {
 		checker := CertChecker{
 			Clock: func() time.Time { return time.Unix(ts, 0) },
 		}
-		checker.IsAuthority = func(k PublicKey) bool {
+		checker.IsUserAuthority = func(k PublicKey) bool {
 			return bytes.Equal(k.Marshal(),
 				testPublicKeys["ecdsa"].Marshal())
 		}
@@ -168,7 +201,7 @@ func TestHostKeyCert(t *testing.T) {
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
 
 	checker := &CertChecker{
-		IsAuthority: func(p PublicKey) bool {
+		IsUserAuthority: func(p PublicKey) bool {
 			return bytes.Equal(testPublicKeys["ecdsa"].Marshal(), p.Marshal())
 		},
 	}
