@@ -361,6 +361,14 @@ func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certifica
 
 	der, leaf, err := m.authorizedCert(ctx, state.key, domain)
 	if err != nil {
+		// Remove the failed state after some time,
+		// making the manager call createCert again on the following TLS hello.
+		time.AfterFunc(createCertRetryAfter, func() {
+			m.stateMu.Lock()
+			defer m.stateMu.Unlock()
+			delete(m.state, domain)
+			testDidRemoveState(domain)
+		})
 		return nil, err
 	}
 	state.cert = der
@@ -409,7 +417,6 @@ func (m *Manager) certState(domain string) (*certState, error) {
 // authorizedCert starts domain ownership verification process and requests a new cert upon success.
 // The key argument is the certificate private key.
 func (m *Manager) authorizedCert(ctx context.Context, key crypto.Signer, domain string) (der [][]byte, leaf *x509.Certificate, err error) {
-	// TODO: make m.verify retry or retry m.verify calls here
 	if err := m.verify(ctx, domain); err != nil {
 		return nil, nil, err
 	}
@@ -780,5 +787,13 @@ func (r *lockedMathRand) int63n(max int64) int64 {
 	return n
 }
 
-// for easier testing
-var timeNow = time.Now
+// For easier testing.
+var (
+	timeNow = time.Now
+
+	// If a createCert call fails, remove the state entry
+	// after this amount of time.
+	createCertRetryAfter = time.Minute
+	// Called when a state is removed.
+	testDidRemoveState = func(domain string) {}
+)
