@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73094a51_6f69a2f7",
+        "filename": "acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T17:09:06Z",
+      "side": 1,
+      "message": "// RateLimit returns whether err represents a rate limit error and\n// any Retry-After duration returned by the server.\n\n?",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 62
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af40c954_54df59cf",
+        "filename": "acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T17:09:06Z",
+      "side": 1,
+      "message": "Can this sometimes end in \":RaTeLimited\" or something?\n\nNot sure why the ToLower here otherwise.",
+      "range": {
+        "startLine": 80,
+        "startChar": 23,
+        "endLine": 80,
+        "endChar": 54
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d65a210_abb9a7be",
+        "filename": "acme/types_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T17:09:06Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "593c40a4_30c50871",
+        "filename": "acme/types_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T17:09:06Z",
+      "side": 1,
+      "message": "is this case real or hypothetical?",
+      "range": {
+        "startLine": 33,
+        "startChar": 43,
+        "endLine": 33,
+        "endChar": 54
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
