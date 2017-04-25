@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d049e7fc_6ea2f74e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:10:05Z",
+      "side": 1,
+      "message": "yeah, absolutely agree. i really want to simplify it, just thought i\u0027d fix the bug first.\nit\u0027s next on my todo.",
+      "parentUuid": "9dd253b5_4720695d",
+      "range": {
+        "startLine": 344,
+        "startChar": 1,
+        "endLine": 360,
+        "endChar": 21
+      },
+      "revId": "2afd8e41ce9c58a97c9dae6089b8c2a077bbfac9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70757331_101ff8df",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4b59a9dd_340dc3e7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:10:05Z",
+      "side": 1,
+      "message": "nice suggestion. added some checks.",
+      "parentUuid": "70757331_101ff8df",
+      "range": {
+        "startLine": 369,
+        "startChar": 0,
+        "endLine": 369,
+        "endChar": 26
+      },
+      "revId": "2afd8e41ce9c58a97c9dae6089b8c2a077bbfac9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bb9e275_c9e0c113",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-04-25T16:03:17Z",
       "side": 1,
       "message": "kinda burying this down here in the weeds.",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 35
+      },
+      "revId": "2afd8e41ce9c58a97c9dae6089b8c2a077bbfac9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2b78876_202f7df2",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:10:05Z",
+      "side": 1,
+      "message": "moved to the top.",
+      "parentUuid": "1bb9e275_c9e0c113",
       "range": {
         "startLine": 796,
         "startChar": 0,
