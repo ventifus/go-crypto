@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08d6cb30_3e134910",
+        "filename": "acme/types.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T16:34:44Z",
+      "side": 1,
+      "message": "A function named \"Is\" sounds like it should only return a bool. I can\u0027t find any other \"IsFoo\" func that returns two things.\n\nBut the bool is pretty redundant with the time.Duration too.\n\nI think we need either a different name or a different signature.",
+      "revId": "579e07ce32e8f44c105a76fda735aaa17ea3c766",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
