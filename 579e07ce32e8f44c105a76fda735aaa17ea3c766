@@ -34,6 +34,24 @@
       "revId": "579e07ce32e8f44c105a76fda735aaa17ea3c766",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88fac1de_97eb1ba5",
+        "filename": "acme/types.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-04-25T16:50:01Z",
+      "side": 1,
+      "message": "Just renaming it RateLimit sounds good.",
+      "parentUuid": "7be32315_123da037",
+      "revId": "579e07ce32e8f44c105a76fda735aaa17ea3c766",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
