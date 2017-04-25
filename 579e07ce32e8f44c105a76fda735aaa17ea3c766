@@ -16,6 +16,24 @@
       "revId": "579e07ce32e8f44c105a76fda735aaa17ea3c766",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7be32315_123da037",
+        "filename": "acme/types.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T16:48:48Z",
+      "side": 1,
+      "message": "I had the same feeling since the beginning.\nHow about changing the name to just RateLimit ?\nIf you don\u0027t have bool, then you don\u0027t know what time.Duration(0) means: either no retry-after header or not a rate limit error.\nUnless you mean to maybe have 2 functions?",
+      "parentUuid": "08d6cb30_3e134910",
+      "revId": "579e07ce32e8f44c105a76fda735aaa17ea3c766",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
