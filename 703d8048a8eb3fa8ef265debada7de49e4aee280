@@ -76,6 +76,23 @@
     },
     {
       "key": {
+        "uuid": "799b533e_f4dec35b",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T14:53:13Z",
+      "side": 1,
+      "message": "So, which one should be used, acme.IsRateLimited(err) or err.RetryAfter() ?\nThere seems to be a duplication here.",
+      "revId": "703d8048a8eb3fa8ef265debada7de49e4aee280",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9923cf0c_92cd128a",
         "filename": "acme/types.go",
         "patchSetId": 2
