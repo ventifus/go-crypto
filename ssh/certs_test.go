@@ -94,6 +94,33 @@ func TestParseCertWithOptions(t *testing.T) {
 	}
 }
 
+func TestValidateCertPrincipal(t *testing.T) {
+	cert := &Certificate{
+		ValidPrincipals: []string{"hostname"},
+		Key:             testPublicKeys["rsa"],
+		ValidBefore:     CertTimeInfinity,
+		CertType:        HostCert,
+	}
+	cert.SignCert(rand.Reader, testSigners["ecdsa"])
+
+	checker := CertChecker{}
+	checker.IsAuthority = func(k PublicKey) bool {
+		return bytes.Equal(k.Marshal(), testPublicKeys["ecdsa"].Marshal())
+	}
+
+	checker.IsAuthorityForHost = func(k PublicKey, h string) bool {
+		return h == "hostname" && bytes.Equal(k.Marshal(), testPublicKeys["ecdsa"].Marshal())
+	}
+
+	if err := checker.CheckCert("hostname", cert); err != nil {
+		t.Errorf("CheckCert hostname: %v", err)
+	}
+
+	if err := checker.CheckCert("not-hostname", cert); err == nil {
+		t.Error("CheckCert not-hostname")
+	}
+}
+
 func TestValidateCert(t *testing.T) {
 	key, _, _, _, err := ParseAuthorizedKey([]byte(exampleSSHCert))
 	if err != nil {
