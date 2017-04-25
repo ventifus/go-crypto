@@ -178,6 +178,54 @@ func TestGetCertificate_nilPrompt(t *testing.T) {
 	}
 }
 
+func TestGetCertificate_failedAttempt(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusBadRequest)
+	}))
+	defer ts.Close()
+
+	const example = "example.org"
+	d := createCertRetryAfter
+	f := testDidRemoveState
+	defer func() {
+		createCertRetryAfter = d
+		testDidRemoveState = f
+	}()
+	createCertRetryAfter = 0
+	done := make(chan struct{})
+	testDidRemoveState = func(domain string) {
+		if domain != example {
+			t.Errorf("testDidRemoveState: domain = %q; want %q", domain, example)
+		}
+		close(done)
+	}
+
+	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	man := &Manager{
+		Prompt: AcceptTOS,
+		Client: &acme.Client{
+			Key:          key,
+			DirectoryURL: ts.URL,
+		},
+	}
+	defer man.stopRenew()
+	hello := &tls.ClientHelloInfo{ServerName: example}
+	if _, err := man.GetCertificate(hello); err == nil {
+		t.Error("GetCertificate: err is nil")
+	}
+	select {
+	case <-time.After(time.Second):
+		t.Errorf("took too long to remove the %q state", example)
+	case <-done:
+		if v, exist := man.state[example]; exist {
+			t.Errorf("state exists for %q: %+v", example, v)
+		}
+	}
+}
+
 // startACMEServerStub runs an ACME server
 // The domain argument is the expected domain name of a certificate request.
 func startACMEServerStub(t *testing.T, man *Manager, domain string) (url string, finish func()) {
