@@ -58,6 +58,16 @@ func testDB(t *testing.T, s string) *hostKeyDB {
 	return db
 }
 
+func TestPrincipals(t *testing.T) {
+	db := testDB(t, "\n\n@cert-authority localhost "+edKeyStr+"\n")
+	if err := db.check("localhost:22", &net.TCPAddr{Port: 42}, edKey); err != nil {
+		t.Fatalf("got error %v, want none", err)
+	}
+	if err := db.check("ssh.example.com:22", &net.TCPAddr{Port: 42}, edKey); err == nil {
+		t.Fatalf("no error for bad principal")
+	}
+}
+
 func TestRevoked(t *testing.T) {
 	db := testDB(t, "\n\n@revoked * "+edKeyStr+"\n")
 	want := &RevokedError{

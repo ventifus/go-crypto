@@ -155,6 +155,22 @@ func (db *hostKeyDB) IsAuthority(remote ssh.PublicKey) bool {
 	return false
 }
 
+// IsAuthorityForHost can be used as a callback in ssh.CertChecker
+func (db *hostKeyDB) IsAuthorityForHost(remote ssh.PublicKey, hostname string) bool {
+	h, p, err := net.SplitHostPort(hostname)
+	if err != nil {
+		return false
+	}
+	a := addr{host: h, port: p}
+
+	for _, l := range db.lines {
+		if l.cert && keyEq(l.knownKey.Key, remote) && l.match([]addr{a}) {
+			return true
+		}
+	}
+	return false
+}
+
 // IsRevoked can be used as a callback in ssh.CertChecker
 func (db *hostKeyDB) IsRevoked(key *ssh.Certificate) bool {
 	_, ok := db.revoked[string(key.Marshal())]
@@ -431,6 +447,7 @@ func New(files ...string) (ssh.HostKeyCallback, error) {
 
 	var certChecker ssh.CertChecker
 	certChecker.IsAuthority = db.IsAuthority
+	certChecker.IsAuthorityForHost = db.IsAuthorityForHost
 	certChecker.IsRevoked = db.IsRevoked
 	certChecker.HostKeyFallback = db.check
 

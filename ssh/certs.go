@@ -256,6 +256,12 @@ type CertChecker struct {
 	// certificates.
 	IsAuthority func(auth PublicKey) bool
 
+	// IsAuthorityForHost should return true if the key is recognized
+	// as an authority for this host. This allows for certificates to be
+	// signed by other keys, and for those other keys to only be valid
+	// signers for particular hostnames.
+	IsAuthorityForHost func(auth PublicKey, hostname string) bool
+
 	// Clock is used for verifying time stamps. If nil, time.Now
 	// is used.
 	Clock func() time.Time
@@ -353,6 +359,14 @@ func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 		}
 		if !found {
 			return fmt.Errorf("ssh: principal %q not in the set of valid principals for given certificate: %q", principal, cert.ValidPrincipals)
+		}
+	}
+
+	// if this is a host cert, principal is the remote hostname as passed
+	// to CheckHostCert.
+	if cert.CertType == HostCert && c.IsAuthorityForHost != nil {
+		if !c.IsAuthorityForHost(cert.SignatureKey, principal) {
+			return errors.New("ssh: no valid authorities for this certificate")
 		}
 	}
 
