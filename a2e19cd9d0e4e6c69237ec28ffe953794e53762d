@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2cf3a65c_bae4ad3e",
+        "filename": "acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:30:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73094a51_6f69a2f7",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 62
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af40c954_54df59cf",
         "filename": "acme/types.go",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-25T17:09:06Z",
       "side": 1,
       "message": "Can this sometimes end in \":RaTeLimited\" or something?\n\nNot sure why the ToLower here otherwise.",
+      "range": {
+        "startLine": 80,
+        "startChar": 23,
+        "endLine": 80,
+        "endChar": 54
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f98d775_aa8a3332",
+        "filename": "acme/types.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:30:31Z",
+      "side": 1,
+      "message": "I\u0027m afraid it might. We have a similar case of \"badNonce\" error, where I\u0027ve been told some implementations have it as \"badnonce\", all lower case: https://github.com/golang/crypto/blob/141c762c16f10ba7daaac32541e4f703e53afb13/acme/acme.go#L699-L702\n\nSo, I thought I\u0027d do the same here, just to be sure.\nAdded a comment.",
+      "parentUuid": "af40c954_54df59cf",
       "range": {
         "startLine": 80,
         "startChar": 23,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "30230184_d26d096d",
+        "filename": "acme/types_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:30:31Z",
+      "side": 1,
+      "message": "damn, i miss it ever time.\ntypes.go didn\u0027t have it either. added to both.",
+      "parentUuid": "9d65a210_abb9a7be",
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "593c40a4_30c50871",
         "filename": "acme/types_test.go",
         "patchSetId": 4
@@ -76,6 +142,30 @@
       "writtenOn": "2017-04-25T17:09:06Z",
       "side": 1,
       "message": "is this case real or hypothetical?",
+      "range": {
+        "startLine": 33,
+        "startChar": 43,
+        "endLine": 33,
+        "endChar": 54
+      },
+      "revId": "a2e19cd9d0e4e6c69237ec28ffe953794e53762d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1958fe8_b445272e",
+        "filename": "acme/types_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-25T17:30:31Z",
+      "side": 1,
+      "message": "no no, this is real. i mean, it\u0027s defined in the spec:\nhttps://tools.ietf.org/html/draft-ietf-acme-acme-03#section-5.6",
+      "parentUuid": "593c40a4_30c50871",
       "range": {
         "startLine": 33,
         "startChar": 43,
