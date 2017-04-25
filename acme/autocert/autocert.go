@@ -227,13 +227,10 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 // with the cached value.
 func (m *Manager) cert(ctx context.Context, name string) (*tls.Certificate, error) {
 	m.stateMu.Lock()
+	defer m.stateMu.Unlock()
 	if s, ok := m.state[name]; ok {
-		m.stateMu.Unlock()
-		s.RLock()
-		defer s.RUnlock()
 		return s.tlscert()
 	}
-	defer m.stateMu.Unlock()
 	cert, err := m.cacheGet(ctx, name)
 	if err != nil {
 		return nil, err
@@ -350,58 +347,33 @@ func encodeECDSAKey(w io.Writer, key *ecdsa.PrivateKey) error {
 
 // createCert starts the domain ownership verification and returns a certificate
 // for that domain upon success.
-//
-// If the domain is already being verified, it waits for the existing verification to complete.
-// Either way, createCert blocks for the duration of the whole process.
 func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certificate, error) {
-	// TODO: maybe rewrite this whole piece using sync.Once
 	state, err := m.certState(domain)
 	if err != nil {
 		return nil, err
 	}
-	// state may exist if another goroutine is already working on it
-	// in which case just wait for it to finish
-	if !state.locked {
-		state.RLock()
-		defer state.RUnlock()
-		return state.tlscert()
-	}
 
-	// We are the first; state is locked.
-	// Unblock the readers when domain ownership is verified
-	// and the we got the cert or the process failed.
-	defer state.Unlock()
-	state.locked = false
-
-	der, leaf, err := m.authorizedCert(ctx, state.key, domain)
-	if err != nil {
-		// Remove the failed state after some time,
-		// making the manager call createCert again on the following TLS hello.
-		time.AfterFunc(createCertRetryAfter, func() {
-			defer testDidRemoveState(domain)
-			m.stateMu.Lock()
-			defer m.stateMu.Unlock()
-			// Verify the state hasn't changed and it's still invalid
-			// before deleting.
-			s, ok := m.state[domain]
-			if !ok {
-				return
-			}
-			if _, err := validCert(domain, s.cert, s.key); err == nil {
-				return
-			}
-			delete(m.state, domain)
-		})
-		return nil, err
+	var zErr error
+	state.once.Do(func() {
+		der, leaf, err := m.authorizedCert(ctx, state.key, domain)
+		if err != nil {
+			zErr = err
+			// Schedule failed state removal, making the manager call createCert again
+			// on the next TLS hello.
+			m.deleteFailedCertState(domain)
+			return
+		}
+		state.cert = der
+		state.leaf = leaf
+		go m.renew(domain, state.key, state.leaf.NotAfter)
+	})
+	if zErr != nil {
+		return nil, zErr
 	}
-	state.cert = der
-	state.leaf = leaf
-	go m.renew(domain, state.key, state.leaf.NotAfter)
 	return state.tlscert()
 }
 
 // certState returns a new or existing certState.
-// If a new certState is returned, state.exist is false and the state is locked.
 // The returned error is non-nil only in the case where a new state could not be created.
 func (m *Manager) certState(domain string) (*certState, error) {
 	m.stateMu.Lock()
@@ -409,16 +381,12 @@ func (m *Manager) certState(domain string) (*certState, error) {
 	if m.state == nil {
 		m.state = make(map[string]*certState)
 	}
-	// existing state
 	if state, ok := m.state[domain]; ok {
 		return state, nil
 	}
 
-	// new locked state
-	var (
-		err error
-		key crypto.Signer
-	)
+	var key crypto.Signer
+	var err error
 	if m.ForceRSA {
 		key, err = rsa.GenerateKey(rand.Reader, 2048)
 	} else {
@@ -428,13 +396,30 @@ func (m *Manager) certState(domain string) (*certState, error) {
 		return nil, err
 	}
 
-	state := &certState{
-		key:    key,
-		locked: true,
-	}
-	state.Lock() // will be unlocked by m.certState caller
+	state := &certState{key: key}
 	m.state[domain] = state
 	return state, nil
+}
+
+// deleteFailedCertState schedules a cert state removal from m.state.
+// It deletes the state only if it's in an invalid state and cannot provide
+// a usable certificate.
+func (m *Manager) deleteFailedCertState(domain string) {
+	time.AfterFunc(createCertRetryAfter, func() {
+		defer testDidRemoveState(domain)
+		m.stateMu.Lock()
+		defer m.stateMu.Unlock()
+		// Verify the state hasn't changed and it's still invalid
+		// before deleting.
+		s, ok := m.state[domain]
+		if !ok {
+			return
+		}
+		if _, err := validCert(domain, s.cert, s.key); err == nil {
+			return
+		}
+		delete(m.state, domain)
+	})
 }
 
 // authorizedCert starts domain ownership verification process and requests a new cert upon success.
@@ -671,17 +656,15 @@ func (m *Manager) renewBefore() time.Duration {
 	return 720 * time.Hour // 30 days
 }
 
-// certState is ready when its mutex is unlocked for reading.
+// certState represents a single domain certificate acquisition flow.
 type certState struct {
-	sync.RWMutex
-	locked bool              // locked for read/write
-	key    crypto.Signer     // private key for cert
-	cert   [][]byte          // DER encoding
-	leaf   *x509.Certificate // parsed cert[0]; always non-nil if cert != nil
+	once sync.Once         // synchronizes initial domain authorization flow
+	key  crypto.Signer     // private key for cert
+	cert [][]byte          // DER encoding
+	leaf *x509.Certificate // parsed cert[0]; always non-nil if cert != nil
 }
 
 // tlscert creates a tls.Certificate from s.key and s.cert.
-// Callers should wrap it in s.RLock() and s.RUnlock().
 func (s *certState) tlscert() (*tls.Certificate, error) {
 	if s.key == nil {
 		return nil, errors.New("acme/autocert: missing signer")
