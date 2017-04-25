@@ -361,6 +361,13 @@ func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certifica
 
 	der, leaf, err := m.authorizedCert(ctx, state.key, domain)
 	if err != nil {
+		// Remove the failed state after some time,
+		// making the manager call createCert again on the following TLS hello.
+		time.AfterFunc(createCertRetryAfter, func() {
+			m.stateMu.Lock()
+			defer m.stateMu.Unlock()
+			delete(m.state, domain)
+		})
 		return nil, err
 	}
 	state.cert = der
@@ -780,5 +787,8 @@ func (r *lockedMathRand) int63n(max int64) int64 {
 	return n
 }
 
-// for easier testing
+// For easier testing.
 var timeNow = time.Now
+
+// If a createCert failed, remove the state entry after this amount of time.
+var createCertRetryAfter = time.Minute
