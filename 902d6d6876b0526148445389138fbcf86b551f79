@@ -22,6 +22,30 @@
       "revId": "902d6d6876b0526148445389138fbcf86b551f79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af6ce35_49d937c2",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-04-26T01:35:19Z",
+      "side": 1,
+      "message": "I just worry about breaking compatibility.",
+      "parentUuid": "9373ae62_1f0a8a0c",
+      "range": {
+        "startLine": 805,
+        "startChar": 5,
+        "endLine": 805,
+        "endChar": 37
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
