@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fea7ee86_1d0afa8e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-04-26T15:01:06Z",
+      "side": 1,
+      "message": "btw, simplification is here: https://go-review.googlesource.com/41731.",
+      "parentUuid": "d049e7fc_6ea2f74e",
+      "range": {
+        "startLine": 344,
+        "startChar": 1,
+        "endLine": 360,
+        "endChar": 21
+      },
+      "revId": "2afd8e41ce9c58a97c9dae6089b8c2a077bbfac9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70757331_101ff8df",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
