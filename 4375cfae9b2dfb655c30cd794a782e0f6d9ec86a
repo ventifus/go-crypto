@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae9651b0_9aa2a735",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "doesn\u0027t this rather validate the authority?",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 54
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba4b0ae2_54f4b38c",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "don\u0027t need this if body, right?",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 108,
+        "endChar": 14
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c6f14e_7afd5242",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "CheckCert(\"hostname\": %v",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 18
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7d1dab_dc1fc528",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "CheckCert(\"not-hostname\"): %v",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 9
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5757363f_585b892d",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "address?",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 40
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e379917_e31f564c",
+        "filename": "ssh/knownhosts/knownhosts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "TestAuthority?",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85fda321_0398ab77",
+        "filename": "ssh/knownhosts/knownhosts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:58:10Z",
+      "side": 1,
+      "message": "you didn\u0027t modify this function, so are you adding test coverage here?",
+      "range": {
+        "startLine": 63,
+        "startChar": 14,
+        "endLine": 63,
+        "endChar": 19
+      },
+      "revId": "4375cfae9b2dfb655c30cd794a782e0f6d9ec86a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
