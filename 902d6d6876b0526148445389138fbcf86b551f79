@@ -46,6 +46,30 @@
       "revId": "902d6d6876b0526148445389138fbcf86b551f79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e94a2e7c_b38c512f",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-26T06:49:48Z",
+      "side": 1,
+      "message": "compatibility with what? How could a new function break anything?",
+      "parentUuid": "4af6ce35_49d937c2",
+      "range": {
+        "startLine": 805,
+        "startChar": 5,
+        "endLine": 805,
+        "endChar": 37
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
