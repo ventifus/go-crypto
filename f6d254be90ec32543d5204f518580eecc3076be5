@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7776f77a_22840fd9",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 2711,
+      "author": {
+        "id": 8585
+      },
+      "writtenOn": "2017-04-27T16:19:43Z",
+      "side": 1,
+      "message": "XGETBV is supported by asm",
+      "revId": "f6d254be90ec32543d5204f518580eecc3076be5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
