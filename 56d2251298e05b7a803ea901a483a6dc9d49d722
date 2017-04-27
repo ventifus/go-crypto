@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bc51ecd0_9d854bce",
+        "filename": "ssh/certs.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-27T15:59:36Z",
+      "side": 1,
+      "message": "I actually hadn\u0027t seen the commotion about the golang hostcert checking until last night. I had written something similar to the knownhosts package for ussh, uber\u0027s ssh cert auth system, and I decided last week to contribute it upstream. That\u0027s when I noticed that the library already had knownhosts parsing but was just missing the principal checking.\n\nand here we are.",
+      "parentUuid": "9a3b64b5_3932b505",
+      "range": {
+        "startLine": 262,
+        "startChar": 46,
+        "endLine": 262,
+        "endChar": 57
+      },
+      "revId": "56d2251298e05b7a803ea901a483a6dc9d49d722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad3d0fe5_401d05ab",
         "filename": "ssh/certs.go",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-27T08:51:58Z",
       "side": 1,
       "message": "since IsAuthority has no use for hosts, can we rename this to IsUserAuthority. As a nit, also rename the other as IsHostAuthority.\n\nAdd a line that this is a breaking change to commit message.",
+      "range": {
+        "startLine": 374,
+        "startChar": 7,
+        "endLine": 374,
+        "endChar": 18
+      },
+      "revId": "56d2251298e05b7a803ea901a483a6dc9d49d722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c46a8c9c_9b5d968b",
+        "filename": "ssh/certs.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-27T15:59:36Z",
+      "side": 1,
+      "message": "done.\n\nI\u0027ve also made it required for CertCheckers checking host certs and updated the comment to reflect this requirement.",
+      "parentUuid": "ad3d0fe5_401d05ab",
       "range": {
         "startLine": 374,
         "startChar": 7,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0e2ef0ee_8db167fc",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-27T15:59:36Z",
+      "side": 1,
+      "message": "good call.",
+      "parentUuid": "c2976a16_89916b39",
+      "range": {
+        "startLine": 119,
+        "startChar": 30,
+        "endLine": 119,
+        "endChar": 33
+      },
+      "revId": "56d2251298e05b7a803ea901a483a6dc9d49d722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a0b3d24_0355bd33",
         "filename": "ssh/knownhosts/knownhosts.go",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "56d2251298e05b7a803ea901a483a6dc9d49d722",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35889ca2_225c1bfb",
+        "filename": "ssh/knownhosts/knownhosts.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-27T15:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a0b3d24_0355bd33",
+      "range": {
+        "startLine": 443,
+        "startChar": 30,
+        "endLine": 443,
+        "endChar": 41
+      },
+      "revId": "56d2251298e05b7a803ea901a483a6dc9d49d722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
