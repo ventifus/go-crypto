@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9dc92b79_574e5a41",
+        "filename": "ssh/certs.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-28T16:11:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97b4dc5f_117b3991",
+      "range": {
+        "startLine": 370,
+        "startChar": 56,
+        "endLine": 370,
+        "endChar": 67
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a680d019_1bcfc257",
         "filename": "ssh/certs_test.go",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "7704340bd260c80761304eb38d36530f2442f61a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4df9f1a_555d4e21",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-28T16:11:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a680d019_1bcfc257",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8ded4fb2_c9418f20",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-28T16:11:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39337960_0c7dc3bc",
+      "range": {
+        "startLine": 126,
+        "startChar": 11,
+        "endLine": 126,
+        "endChar": 20
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "faced945_72693fe1",
         "filename": "ssh/certs_test.go",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "4ab1a06e_9ceb995a",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-28T16:11:23Z",
+      "side": 1,
+      "message": "it does. I would\u0027ve sworn I ran the tests before mailed the last update.",
+      "parentUuid": "faced945_72693fe1",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 17
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46ba9cad_589b8af8",
         "filename": "ssh/certs_test.go",
         "patchSetId": 7
@@ -105,6 +201,30 @@
       "writtenOn": "2017-04-28T08:18:59Z",
       "side": 1,
       "message": "doesn\u0027t this test exercise the same code that you added?",
+      "range": {
+        "startLine": 214,
+        "startChar": 32,
+        "endLine": 214,
+        "endChar": 40
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4f8a24_1c230395",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-04-28T16:11:23Z",
+      "side": 1,
+      "message": "it doesn\u0027t include the negative test b/c the ValidPrincipals in the cert are checked against hostname before IsHostAuthority is called.\n\nI\u0027ve added \"otherhost\" to the test host cert\u0027s valid principals but kept the IsHostAuthority of h \u003d\u003d \"hostname\", and it makes TestValidateCertPrincipal superfluous.",
+      "parentUuid": "46ba9cad_589b8af8",
       "range": {
         "startLine": 214,
         "startChar": 32,
