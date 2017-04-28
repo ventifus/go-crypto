@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f6e63e9_25cdcb99",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T16:16:10Z",
+      "side": 1,
+      "message": "with this, I think you lose coverage for the code that checks the Dial address against ValidPrincipal.",
+      "revId": "3c307116034b4265392e21a6308804dee098a354",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
