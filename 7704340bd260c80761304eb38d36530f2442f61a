@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97b4dc5f_117b3991",
+        "filename": "ssh/certs.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T08:18:59Z",
+      "side": 1,
+      "message": "hostname. Add the hostname in the message.",
+      "range": {
+        "startLine": 370,
+        "startChar": 56,
+        "endLine": 370,
+        "endChar": 67
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a680d019_1bcfc257",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T08:18:59Z",
+      "side": 1,
+      "message": "CheckCert(hostname) succeeded ..",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39337960_0c7dc3bc",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T08:18:59Z",
+      "side": 1,
+      "message": "CheckCert(\"\") succeeded",
+      "range": {
+        "startLine": 126,
+        "startChar": 11,
+        "endLine": 126,
+        "endChar": 20
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faced945_72693fe1",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T08:18:59Z",
+      "side": 1,
+      "message": "huh? doesn\u0027t this crash now?",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 17
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46ba9cad_589b8af8",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-04-28T08:18:59Z",
+      "side": 1,
+      "message": "doesn\u0027t this test exercise the same code that you added?",
+      "range": {
+        "startLine": 214,
+        "startChar": 32,
+        "endLine": 214,
+        "endChar": 40
+      },
+      "revId": "7704340bd260c80761304eb38d36530f2442f61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
