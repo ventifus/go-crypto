@@ -76,6 +76,32 @@ func TestRevoked(t *testing.T) {
 	}
 }
 
+func TestHostAuthority(t *testing.T) {
+	// the configured key has the default port 22
+	db := testDB(t, `@cert-authority localhost `+edKeyStr)
+	if ok := db.IsHostAuthority(db.lines[0].knownKey.Key, "localhost"); ok {
+		t.Errorf("IsHostAuthority should not have permitted malformed address 'localhost'")
+	}
+
+	if ok := db.IsHostAuthority(db.lines[0].knownKey.Key, "localhost:22"); !ok {
+		t.Errorf("IsHostAuthority should have permitted 'localhost:22'")
+	}
+
+	if ok := db.IsHostAuthority(db.lines[0].knownKey.Key, "localhost:1234"); ok {
+		t.Errorf("IsHostAuthority should not have permitted 'localhost:1234'")
+	}
+
+	// now the configured key has a specific, non-standard port.
+	db = testDB(t, `@cert-authority [localhost]:1234 `+edKeyStr)
+	if ok := db.IsHostAuthority(db.lines[0].knownKey.Key, "localhost:1234"); !ok {
+		t.Errorf("IsHostAuthority should have permitted 'localhost:1234'")
+	}
+
+	if ok := db.IsHostAuthority(db.lines[0].knownKey.Key, "localhost:22"); ok {
+		t.Errorf("IsHostAuthority should not have permitted 'localhost:22'")
+	}
+}
+
 func TestBracket(t *testing.T) {
 	db := testDB(t, `[git.eclipse.org]:29418,[198.41.30.196]:29418 `+edKeyStr)
 
