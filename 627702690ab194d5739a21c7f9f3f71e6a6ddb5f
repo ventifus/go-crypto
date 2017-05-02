@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4be620c4_1db2a44b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-05-02T15:12:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8df67ea1_aa2702d7",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 30
+      },
+      "revId": "627702690ab194d5739a21c7f9f3f71e6a6ddb5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b2a20ad_c8829db7",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a031dc5c_99b458dc",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-05-02T15:12:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b2a20ad_c8829db7",
+      "range": {
+        "startLine": 252,
+        "startChar": 19,
+        "endLine": 252,
+        "endChar": 30
+      },
+      "revId": "627702690ab194d5739a21c7f9f3f71e6a6ddb5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b55d7e68_c289c85c",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2017-04-28T17:52:34Z",
       "side": 1,
       "message": "don\u0027t you need a mutex to access this?",
+      "range": {
+        "startLine": 255,
+        "startChar": 17,
+        "endLine": 255,
+        "endChar": 26
+      },
+      "revId": "627702690ab194d5739a21c7f9f3f71e6a6ddb5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9cb2d34_b0ea44f2",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-05-02T15:12:39Z",
+      "side": 1,
+      "message": "technically yes :)\ndone",
+      "parentUuid": "b55d7e68_c289c85c",
       "range": {
         "startLine": 255,
         "startChar": 17,
