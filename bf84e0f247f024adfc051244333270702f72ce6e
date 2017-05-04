@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee591e3f_0b2afc1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-05-04T15:13:47Z",
+      "side": 1,
+      "message": "acme/autocert?",
+      "revId": "bf84e0f247f024adfc051244333270702f72ce6e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
