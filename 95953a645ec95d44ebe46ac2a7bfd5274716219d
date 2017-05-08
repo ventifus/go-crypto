@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d111e72_0eeacab0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-05-08T15:25:35Z",
+      "side": 1,
+      "message": "\"ssh: \" prefix instead of \"crypto: \". (package name is the prefix, not the repo)\n\nBut while we\u0027re here, other Go style nits: lowercase initial verb after the colon, and drop the final period.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 74
+      },
+      "revId": "95953a645ec95d44ebe46ac2a7bfd5274716219d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
