@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "716b5fb9_dd729594",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "How about we make crypto/cryptobyte/asn1 to hold the Tag type and ASN.1-related constants? \n\nWe\u0027d have a name conflict with encoding/asn1 (which would go away as we phase out encoding/asn1), but it would be shorter than something like \"cryptobyte.ASN1TagSequence\". We could even add all the constants to it that cryptobyte currently imports from encoding/asn1.",
+      "parentUuid": "ec0518ad_defa426b",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f3c68c2_8f1d5487",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "79924539_cda4d196",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f3c68c2_8f1d5487",
+      "range": {
+        "startLine": 69,
+        "startChar": 55,
+        "endLine": 69,
+        "endChar": 58
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3cc53a5c_635a857a",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -56,6 +98,24 @@
       "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "731ea112_546be205",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cc53a5c_635a857a",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "9b42920a_638685e8",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c6542ff_e8f22dbc",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 74
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57f76037_39afd3f9",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "5deb6632_a48905b0",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57f76037_39afd3f9",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f11a9dc2_97ad8b72",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -110,6 +212,30 @@
       "writtenOn": "2017-03-07T21:41:09Z",
       "side": 1,
       "message": "should cryptobyte support passing nil here to implicitly discard the result?",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 42
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb079493_010450ed",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "I thought about that. I thought that if it did pass nil, I would probably add a comment about what it is parsing (the ignored extensions), so why not make it explicit? Don\u0027t feel strongly about it though.",
+      "parentUuid": "f11a9dc2_97ad8b72",
       "range": {
         "startLine": 172,
         "startChar": 24,
@@ -145,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "5e7a4190_f24ad94d",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Here the struct is simple enough that it doesn\u0027t really warrant a comment, so we should probably change it, yes.",
+      "parentUuid": "bf9e423d_2f5a46dd",
+      "range": {
+        "startLine": 229,
+        "startChar": 25,
+        "endLine": 229,
+        "endChar": 36
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38638da8_9a87f38a",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -156,6 +306,30 @@
       "writtenOn": "2017-03-07T21:41:09Z",
       "side": 1,
       "message": "can just be a []byte now?",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 24
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "311d376f_371a7156",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Yup. Done.",
+      "parentUuid": "38638da8_9a87f38a",
       "range": {
         "startLine": 365,
         "startChar": 9,
@@ -191,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "202376f0_ead5d059",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fb1442f_661278fd",
+      "range": {
+        "startLine": 367,
+        "startChar": 20,
+        "endLine": 367,
+        "endChar": 39
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d8f93f9_1f97650a",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -208,6 +406,24 @@
     },
     {
       "key": {
+        "uuid": "0995438a_a48af589",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d8f93f9_1f97650a",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5be1284_4fb08419",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -222,6 +438,24 @@
       "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e9131c5_cade6b9c",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-05-16T21:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5be1284_4fb08419",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
