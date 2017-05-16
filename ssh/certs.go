@@ -350,6 +350,25 @@ func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 		}
 	}
 
+	// if this is a host cert, principal is the remote hostname as passed
+	// to CheckHostCert.
+	switch cert.CertType {
+	case HostCert:
+		if !c.IsHostAuthority(cert.SignatureKey, principal) {
+			return fmt.Errorf("ssh: no authorities for hostname: %v", principal)
+		}
+		// this is so we can check the principal on the cert against just
+		// the hostname.
+		h, _, err := net.SplitHostPort(principal)
+		if err == nil {
+			principal = h
+		}
+	case UserCert:
+		if !c.IsUserAuthority(cert.SignatureKey) {
+			return fmt.Errorf("ssh: certificate signed by unrecognized authority")
+		}
+	}
+
 	if len(cert.ValidPrincipals) > 0 {
 		// By default, certs are valid for all users/hosts.
 		found := false
@@ -362,16 +381,6 @@ func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 		if !found {
 			return fmt.Errorf("ssh: principal %q not in the set of valid principals for given certificate: %q", principal, cert.ValidPrincipals)
 		}
-	}
-
-	// if this is a host cert, principal is the remote hostname as passed
-	// to CheckHostCert.
-	if cert.CertType == HostCert && !c.IsHostAuthority(cert.SignatureKey, principal) {
-		return fmt.Errorf("ssh: no authorities for hostname: %v", principal)
-	}
-
-	if cert.CertType == UserCert && !c.IsUserAuthority(cert.SignatureKey) {
-		return fmt.Errorf("ssh: certificate signed by unrecognized authority")
 	}
 
 	clock := c.Clock

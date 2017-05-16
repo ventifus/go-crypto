@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 )
@@ -169,7 +170,7 @@ func TestHostKeyCert(t *testing.T) {
 
 	checker := &CertChecker{
 		IsHostAuthority: func(p PublicKey, h string) bool {
-			return h == "hostname" && bytes.Equal(testPublicKeys["ecdsa"].Marshal(), p.Marshal())
+			return strings.HasPrefix(h, "hostname") && bytes.Equal(testPublicKeys["ecdsa"].Marshal(), p.Marshal())
 		},
 	}
 
@@ -178,7 +179,7 @@ func TestHostKeyCert(t *testing.T) {
 		t.Errorf("NewCertSigner: %v", err)
 	}
 
-	for _, name := range []string{"hostname", "otherhost", "lasthost"} {
+	for _, name := range []string{"hostname", "hostname:1234", "otherhost", "lasthost"} {
 		c1, c2, err := netPipe()
 		if err != nil {
 			t.Fatalf("netPipe: %v", err)
@@ -203,7 +204,7 @@ func TestHostKeyCert(t *testing.T) {
 		}
 		_, _, _, err = NewClientConn(c2, name, config)
 
-		succeed := name == "hostname"
+		succeed := strings.HasPrefix(name, "hostname")
 		if (err == nil) != succeed {
 			t.Fatalf("NewClientConn(%q): %v", name, err)
 		}
