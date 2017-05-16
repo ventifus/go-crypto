@@ -178,7 +178,7 @@ func TestHostKeyCert(t *testing.T) {
 		t.Errorf("NewCertSigner: %v", err)
 	}
 
-	for _, name := range []string{"hostname", "otherhost", "lasthost"} {
+	for _, name := range []string{"hostname:22", "otherhost:22", "lasthost:22"} {
 		c1, c2, err := netPipe()
 		if err != nil {
 			t.Fatalf("netPipe: %v", err)
