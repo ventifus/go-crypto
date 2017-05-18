@@ -22,6 +22,30 @@
       "revId": "585b2e260e69ccb5b236a0206113d29b035749af",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d74708_a16b363c",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 19787
+      },
+      "writtenOn": "2017-05-18T01:22:57Z",
+      "side": 1,
+      "message": "Thanks - that was clearly wrong. Have restructured test/",
+      "parentUuid": "f07591b4_a4f4db50",
+      "range": {
+        "startLine": 206,
+        "startChar": 22,
+        "endLine": 206,
+        "endChar": 30
+      },
+      "revId": "585b2e260e69ccb5b236a0206113d29b035749af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
