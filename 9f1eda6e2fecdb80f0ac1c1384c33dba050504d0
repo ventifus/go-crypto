@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "364e51f5_75d8caca",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-05-19T16:53:30Z",
+      "side": 1,
+      "message": "These docs are not sufficient for an exported function.",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 67
+      },
+      "revId": "9f1eda6e2fecdb80f0ac1c1384c33dba050504d0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
