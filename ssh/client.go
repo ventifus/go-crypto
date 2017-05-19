@@ -130,7 +130,7 @@ func (c *Client) NewSession() (*Session, error) {
 	if err != nil {
 		return nil, err
 	}
-	return newSession(ch, in)
+	return NewSession(ch, in)
 }
 
 func (c *Client) handleGlobalRequests(incoming <-chan *Request) {

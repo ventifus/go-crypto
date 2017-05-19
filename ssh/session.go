@@ -563,8 +563,8 @@ func (s *Session) StderrPipe() (io.Reader, error) {
 	return s.ch.Stderr(), nil
 }
 
-// newSession returns a new interactive session on the remote host.
-func newSession(ch Channel, reqs <-chan *Request) (*Session, error) {
+// NewSession returns a new interactive session on the remote host.
+func NewSession(ch Channel, reqs <-chan *Request) (*Session, error) {
 	s := &Session{
 		ch: ch,
 	}
