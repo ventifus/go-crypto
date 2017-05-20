@@ -224,3 +224,22 @@ func BenchmarkGeneration(b *testing.B) {
 		GenerateFromPassword(passwd, 10)
 	}
 }
+
+// See Issue https://github.com/golang/go/issues/20425.
+func TestNoSideEffectsFromCompare(t *testing.T) {
+	source := []byte("passw0rd123456")
+	password := source[:len(source)-6]
+	token := source[len(source)-6:]
+	want := make([]byte, len(source))
+	copy(want, source)
+
+	wantHash := []byte("$2a$10$LK9XRuhNxHHCvjX3tdkRKei1QiCDUKrJRhZv7WWZPuQGRUM92rOUa")
+	if err := CompareHashAndPassword(wantHash, password); err != nil {
+		t.Errorf("password does not match hash: %s", err)
+	}
+
+	got := bytes.Join([][]byte{password, token}, []byte(""))
+	if !bytes.Equal(got, want) {
+		t.Errorf("got=(%q) want=(%q)", got, want)
+	}
+}
