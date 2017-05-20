@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "464f0835_4f381d76",
+        "filename": "bcrypt/bcrypt_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2017-05-20T21:15:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t test much as we are checking for the side-effect more so,\nbut that\u0027s okay :)",
+      "revId": "8d4c107fc9002502753bf7570a2467a00a0c8e0c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
