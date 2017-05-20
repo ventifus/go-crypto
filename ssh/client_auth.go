@@ -184,6 +184,14 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 	// attempt to authenticate with the valid key.  If not the client will repeat
 	// the process with the remaining keys.
 
+	if cb == nil {
+		// Check for a nil publicKeyCallback function. The authentication
+		// logic dictates that an attempted publicKeyCallback can fail.
+		// In this case a nil function will always fail, which is expected.
+		// So we do not return an error.
+		return false, nil, nil
+	}
+
 	signers, err := cb()
 	if err != nil {
 		return false, nil, err
