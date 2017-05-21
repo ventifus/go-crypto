@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8da05162_8be9ac9b",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-05-21T17:37:37Z",
+      "side": 0,
+      "message": "another way to do this would be:\n\n   ckey :\u003d append(key[:len(key):len(key)], 0)\n\n... to cap the capacity and force append to do the re-size/copy on its own.",
+      "range": {
+        "startLine": 216,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 19
+      },
+      "revId": "0fe963104e9d1877082f8fb38f816fcd97eb1d10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
