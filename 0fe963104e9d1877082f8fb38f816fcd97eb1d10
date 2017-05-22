@@ -22,6 +22,30 @@
       "revId": "0fe963104e9d1877082f8fb38f816fcd97eb1d10",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "763d5765_7203e395",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2017-05-22T12:01:27Z",
+      "side": 0,
+      "message": "Wow, that\u0027s really nice! Did not know this - thanks! It seems to be the most elegant way...",
+      "parentUuid": "8da05162_8be9ac9b",
+      "range": {
+        "startLine": 216,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 19
+      },
+      "revId": "0fe963104e9d1877082f8fb38f816fcd97eb1d10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
