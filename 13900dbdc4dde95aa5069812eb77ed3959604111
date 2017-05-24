@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0234154e_344c7fdb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-05-24T00:40:45Z",
+      "side": 1,
+      "message": "drop the \"crypto/\" part. just \"ocsp: \". then since you\u0027re here: lowercase verb \"enhance\" and drop the final period.\n\n(local style, sorry)",
+      "revId": "13900dbdc4dde95aa5069812eb77ed3959604111",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
