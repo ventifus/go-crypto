@@ -10,6 +10,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -359,9 +360,8 @@ func testPermissionsPassing(withPermissions bool, t *testing.T) {
 		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
 			if conn.User() == "nopermissions" {
 				return nil, nil
-			} else {
-				return &Permissions{}, nil
 			}
+			return &Permissions{}, nil
 		},
 	}
 	serverConfig.AddHostKey(testSigners["rsa"])
@@ -510,9 +510,8 @@ func TestClientAuthMaxAuthTries(t *testing.T) {
 					n--
 					if n == 0 {
 						return "right", nil
-					} else {
-						return "wrong", nil
 					}
+					return "wrong", nil
 				}), tries),
 			},
 			HostKeyCallback: InsecureIgnoreHostKey(),
@@ -575,5 +574,64 @@ func TestClientAuthMaxAuthTriesPublicKey(t *testing.T) {
 		t.Fatalf("client: got no error, want %s", expectedErr)
 	} else if err.Error() != expectedErr.Error() {
 		t.Fatalf("client: got %s, want %s", err, expectedErr)
+	}
+}
+
+type testAuthError struct {
+	testField int
+	testError error
+}
+
+func (l testAuthError) Error() string {
+	return l.testError.Error()
+}
+
+// Test whether authentication errors are being properly logged if all
+// authentication methods have been exhausted
+func TestClientAuthErrorList(t *testing.T) {
+	publicKeyErr := &testAuthError{
+		testField: 4,
+		testError: errors.New("This is an error from PublicKeyCallback"),
+	}
+
+	clientConfig := &ClientConfig{
+		Auth: []AuthMethod{
+			PublicKeys(testSigners["rsa"]),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	serverConfig := &ServerConfig{
+		PublicKeyCallback: func(_ ConnMetadata, _ PublicKey) (*Permissions, error) {
+			return nil, publicKeyErr
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+	expectedAuthErrs := [...]error{errors.New("no auth passed yet"), publicKeyErr}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	go NewClientConn(c2, "", clientConfig)
+	_, err = newServer(c1, serverConfig)
+	if err == nil {
+		t.Fatal("newServer: got nil, expected errors")
+	}
+
+	if authErrs, ok := err.(*ServerAuthError); ok {
+		// First "no auth passed yet" error element can only be compared via error message
+		if authErrs.AuthErrors[0].Error() != expectedAuthErrs[0].Error() {
+			t.Fatalf("errors: got %v, want %v", authErrs.AuthErrors[0].Error(), expectedAuthErrs[0].Error())
+		}
+		for i := 1; i < len(authErrs.AuthErrors); i++ {
+			if authErrs.AuthErrors[i] != expectedAuthErrs[i] {
+				t.Fatalf("errors: got %v, want %v", authErrs.AuthErrors[i], expectedAuthErrs[i])
+			}
+		}:
+	} else {
+		t.Fatalf("errors: got %T, want *ssh.ServerAuthError", reflect.TypeOf(err))
 	}
 }
