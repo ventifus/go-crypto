@@ -10,6 +10,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -575,5 +576,47 @@ func TestClientAuthMaxAuthTriesPublicKey(t *testing.T) {
 		t.Fatalf("client: got no error, want %s", expectedErr)
 	} else if err.Error() != expectedErr.Error() {
 		t.Fatalf("client: got %s, want %s", err, expectedErr)
+	}
+}
+
+// Test whether authentication errors are being properly logged if all
+// authentication methods have been exhausted
+func TestClientAuthErrorList(t *testing.T) {
+	publicKeyErr := "This is an error from PublicKeyCallback"
+	clientConfig := &ClientConfig{
+		Auth: []AuthMethod{
+			PublicKeys(testSigners["rsa"]),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	serverConfig := &ServerConfig{
+		PublicKeyCallback: func(_ ConnMetadata, _ PublicKey) (*Permissions, error) {
+			return nil, fmt.Errorf(publicKeyErr)
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+	expectedAuthErrs := [...]string{"no auth passed yet", publicKeyErr}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	go NewClientConn(c2, "", clientConfig)
+	_, err = newServer(c1, serverConfig)
+	if err == nil {
+		t.Fatal("newServer: got nil, expected errors")
+	}
+
+	if authErrs, ok := err.(*ServerAuthError); ok {
+		for i, authErr := range authErrs.AuthErrors {
+			if authErr.Error() != expectedAuthErrs[i] {
+				t.Fatalf("errors: got %v, want %v", authErr, expectedAuthErrs[i])
+			}
+		}
+	} else {
+		t.Fatalf("errors: got %v, want *ssh.ServerAuthError", reflect.TypeOf(err))
 	}
 }
