@@ -159,7 +159,7 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 	perms, err := s.serverHandshake(&fullConf)
 	if err != nil {
 		c.Close()
-		return nil, nil, nil, err
+		return &ServerConn{s, nil}, nil, nil, err
 	}
 	return &ServerConn{s, perms}, s.mux.incomingChannels, s.mux.incomingRequests, nil
 }
@@ -272,12 +272,33 @@ func checkSourceAddress(addr net.Addr, sourceAddrs string) error {
 	return fmt.Errorf("ssh: remote address %v is not allowed because of source-address restriction", addr)
 }
 
+// ErrorList implements the error interface. It appends any authentication
+// errors that may occur during the userAuthLoop in the AuthErrors array, while
+// the error that is returned is stored in the errMsg.
+type ErrorList struct {
+	errMsg     error
+	AuthErrors []error
+}
+
+func (l *ErrorList) addToAuthErrors(err error) {
+	l.AuthErrors = append(l.AuthErrors, err)
+}
+
+func (l *ErrorList) setErrMsg(err error) {
+	l.errMsg = err
+}
+
+func (l ErrorList) Error() string {
+	return l.errMsg.Error()
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
 	var perms *Permissions
 
 	authFailures := 0
+	authErrs := &ErrorList{nil, []error{}}
 
 userAuthLoop:
 	for {
@@ -288,21 +309,26 @@ userAuthLoop:
 			}
 
 			if err := s.transport.writePacket(Marshal(discMsg)); err != nil {
-				return nil, err
+				authErrs.setErrMsg(err)
+				return nil, authErrs
 			}
 
-			return nil, discMsg
+			authErrs.setErrMsg(discMsg)
+			return nil, authErrs
 		}
 
 		var userAuthReq userAuthRequestMsg
 		if packet, err := s.transport.readPacket(); err != nil {
-			return nil, err
+			authErrs.setErrMsg(err)
+			return nil, authErrs
 		} else if err = Unmarshal(packet, &userAuthReq); err != nil {
-			return nil, err
+			authErrs.setErrMsg(err)
+			return nil, authErrs
 		}
 
 		if userAuthReq.Service != serviceSSH {
-			return nil, errors.New("ssh: client attempted to negotiate for unknown service: " + userAuthReq.Service)
+			authErrs.setErrMsg(errors.New("ssh: client attempted to negotiate for unknown service: " + userAuthReq.Service))
+			return nil, authErrs
 		}
 
 		s.user = userAuthReq.User
@@ -326,12 +352,14 @@ userAuthLoop:
 			}
 			payload := userAuthReq.Payload
 			if len(payload) < 1 || payload[0] != 0 {
-				return nil, parseError(msgUserAuthRequest)
+				authErrs.setErrMsg(parseError(msgUserAuthRequest))
+				return nil, authErrs
 			}
 			payload = payload[1:]
 			password, payload, ok := parseString(payload)
 			if !ok || len(payload) > 0 {
-				return nil, parseError(msgUserAuthRequest)
+				authErrs.setErrMsg(parseError(msgUserAuthRequest))
+				return nil, authErrs
 			}
 
 			perms, authErr = config.PasswordCallback(s, password)
@@ -350,13 +378,15 @@ userAuthLoop:
 			}
 			payload := userAuthReq.Payload
 			if len(payload) < 1 {
-				return nil, parseError(msgUserAuthRequest)
+				authErrs.setErrMsg(parseError(msgUserAuthRequest))
+				return nil, authErrs
 			}
 			isQuery := payload[0] == 0
 			payload = payload[1:]
 			algoBytes, payload, ok := parseString(payload)
 			if !ok {
-				return nil, parseError(msgUserAuthRequest)
+				authErrs.setErrMsg(parseError(msgUserAuthRequest))
+				return nil, authErrs
 			}
 			algo := string(algoBytes)
 			if !isAcceptableAlgo(algo) {
@@ -366,12 +396,14 @@ userAuthLoop:
 
 			pubKeyData, payload, ok := parseString(payload)
 			if !ok {
-				return nil, parseError(msgUserAuthRequest)
+				authErrs.setErrMsg(parseError(msgUserAuthRequest))
+				return nil, authErrs
 			}
 
 			pubKey, err := ParsePublicKey(pubKeyData)
 			if err != nil {
-				return nil, err
+				authErrs.setErrMsg(err)
+				return nil, authErrs
 			}
 
 			candidate, ok := cache.get(s.user, pubKeyData)
@@ -392,7 +424,8 @@ userAuthLoop:
 				// would be okay.
 
 				if len(payload) > 0 {
-					return nil, parseError(msgUserAuthRequest)
+					authErrs.setErrMsg(parseError(msgUserAuthRequest))
+					return nil, authErrs
 				}
 
 				if candidate.result == nil {
@@ -401,7 +434,8 @@ userAuthLoop:
 						PubKey: pubKeyData,
 					}
 					if err = s.transport.writePacket(Marshal(&okMsg)); err != nil {
-						return nil, err
+						authErrs.setErrMsg(err)
+						return nil, authErrs
 					}
 					continue userAuthLoop
 				}
@@ -409,7 +443,8 @@ userAuthLoop:
 			} else {
 				sig, payload, ok := parseSignature(payload)
 				if !ok || len(payload) > 0 {
-					return nil, parseError(msgUserAuthRequest)
+					authErrs.setErrMsg(parseError(msgUserAuthRequest))
+					return nil, authErrs
 				}
 				// Ensure the public key algo and signature algo
 				// are supported.  Compare the private key
@@ -422,7 +457,8 @@ userAuthLoop:
 				signedData := buildDataSignedForAuth(sessionID, userAuthReq, algoBytes, pubKeyData)
 
 				if err := pubKey.Verify(signedData, sig); err != nil {
-					return nil, err
+					authErrs.setErrMsg(err)
+					return nil, authErrs
 				}
 
 				authErr = candidate.result
@@ -431,6 +467,8 @@ userAuthLoop:
 		default:
 			authErr = fmt.Errorf("ssh: unknown method %q", userAuthReq.Method)
 		}
+
+		authErrs.addToAuthErrors(authErr)
 
 		if config.AuthLogCallback != nil {
 			config.AuthLogCallback(s, userAuthReq.Method, authErr)
@@ -454,16 +492,19 @@ userAuthLoop:
 		}
 
 		if len(failureMsg.Methods) == 0 {
-			return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+			authErrs.setErrMsg(errors.New("ssh: no authentication methods configured but NoClientAuth is also false"))
+			return nil, authErrs
 		}
 
 		if err := s.transport.writePacket(Marshal(&failureMsg)); err != nil {
-			return nil, err
+			authErrs.setErrMsg(err)
+			return nil, authErrs
 		}
 	}
 
 	if err := s.transport.writePacket([]byte{msgUserAuthSuccess}); err != nil {
-		return nil, err
+		authErrs.setErrMsg(err)
+		return nil, authErrs
 	}
 	return perms, nil
 }
