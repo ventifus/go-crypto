@@ -4,6 +4,10 @@
 
 package edwards25519
 
+import (
+	"crypto/subtle"
+)
+
 // This code is a port of the public domain, “ref10” implementation of ed25519
 // from SUPERCOP.
 
@@ -555,6 +559,17 @@ func FeInvert(out, z *FieldElement) {
 		FeSquare(&t1, &t1)
 	}
 	FeMul(out, &t1, &t0) // 254..5,3,1,0
+}
+
+// y = (u - 1) / (u + 1)
+func FeMontXToEdY(y, x *FieldElement) {
+	var one, um1, up1 FieldElement
+
+	FeOne(&one)
+	FeSub(&um1, x, &one)
+	FeAdd(&up1, x, &one)
+	FeInvert(&up1, &up1)
+	FeMul(y, &um1, &up1)
 }
 
 func fePow22523(out, z *FieldElement) {
@@ -1446,6 +1461,38 @@ func ScMulAdd(s, a, b, c *[32]byte) {
 	s[31] = byte(s11 >> 17)
 }
 
+// b = -a (mod l)
+func ScNeg(b, a *[32]byte) {
+	var zero [32]byte
+	ScMulAdd(b, &LMinus1, a, &zero)
+}
+
+// ScClamp is used to make the scalar a multiple of the cofactor so that it can
+// be used as a private key.
+func ScClamp(a *[32]byte) {
+	a[0] &= 248
+	a[31] &= 127
+	a[31] |= 64
+}
+
+// Replace (f,g) with (g,g) if b == 1;
+// replace (f,g) with (f,g) if b == 0.
+//
+// Preconditions: b in {0,1}.
+func ScCMove(f, g *[32]byte, b byte) {
+	var x [32]byte
+	for count := 0; count < 32; count++ {
+		x[count] = f[count] ^ g[count]
+	}
+	b = -b
+	for count := 0; count < 32; count++ {
+		x[count] &= b
+	}
+	for count := 0; count < 32; count++ {
+		f[count] = f[count] ^ x[count]
+	}
+}
+
 // Input:
 //   s[0]+256*s[1]+...+256^63*s[63] = s
 //
@@ -1768,4 +1815,18 @@ func ScReduce(out *[32]byte, s *[64]byte) {
 	out[29] = byte(s11 >> 1)
 	out[30] = byte(s11 >> 9)
 	out[31] = byte(s11 >> 17)
+}
+
+// ScIsReduced checks if the scalar is reduced. The comparison executes in
+// constant time.
+func ScIsReduced(s *[32]byte) int {
+	var fe FieldElement
+	var strict [32]byte
+
+	FeFromBytes(&fe, s)
+	FeToBytes(&strict, &fe)
+
+	// If we're just checking that public keys match we don't really need to do a
+	// constant time compare; maybe inline this function so it can be removed?
+	return subtle.ConstantTimeCompare(strict[:], s[:])
 }
