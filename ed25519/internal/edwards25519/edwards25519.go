@@ -1446,6 +1446,38 @@ func ScMulAdd(s, a, b, c *[32]byte) {
 	s[31] = byte(s11 >> 17)
 }
 
+// b = -a (mod l)
+func ScNeg(b, a *[32]byte) {
+	var zero [32]byte
+	ScMulAdd(b, &LMinus1, a, &zero)
+}
+
+// ScClamp is used to make the scalar a multiple of the cofactor so that it can
+// be used as a private key.
+func ScClamp(a *[32]byte) {
+	a[0] &= 248
+	a[31] &= 127
+	a[31] |= 64
+}
+
+// Replace (f,g) with (g,g) if b == 1;
+// replace (f,g) with (f,g) if b == 0.
+//
+// Preconditions: b in {0,1}.
+func ScCMove(f, g *[32]byte, b byte) {
+	var x [32]byte
+	for count := 0; count < 32; count++ {
+		x[count] = f[count] ^ g[count]
+	}
+	b = -b
+	for count := 0; count < 32; count++ {
+		x[count] &= b
+	}
+	for count := 0; count < 32; count++ {
+		f[count] = f[count] ^ x[count]
+	}
+}
+
 // Input:
 //   s[0]+256*s[1]+...+256^63*s[63] = s
 //
