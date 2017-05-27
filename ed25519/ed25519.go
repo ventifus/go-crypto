@@ -59,6 +59,34 @@ func (priv PrivateKey) Sign(rand io.Reader, message []byte, opts crypto.SignerOp
 	return Sign(priv, message), nil
 }
 
+// FromMontgomery generates a public/private key pair from a Montgomery private
+// key.
+func FromMontgomery(k *[32]byte) (publicKey PublicKey, privateKey PrivateKey) {
+	var A edwards25519.ExtendedGroupElement
+	edwards25519.GeScalarMultBase(&A, k) // E = kB
+
+	var publicKeyBytes [32]byte
+	A.ToBytes(&publicKeyBytes)
+	signBit := (publicKeyBytes[31] & 0x80) >> 7 // A.s = 0
+
+	publicKey = make([]byte, PublicKeySize)
+	copy(publicKey, publicKeyBytes[:])
+
+	var privateKeyBytes [32]byte // TODO: Why isn't this privateKeySize in the C?
+	copy(privateKeyBytes[:], k[:])
+
+	var negPrivateKey [32]byte
+	edwards25519.ScNeg(&negPrivateKey, &privateKeyBytes)
+	edwards25519.ScCMove(&privateKeyBytes, &negPrivateKey, signBit)
+
+	privateKey = make([]byte, 32)
+	copy(privateKey[:], privateKeyBytes[:])
+
+	publicKey[31] &= 0x7F
+
+	return publicKey, privateKey
+}
+
 // GenerateKey generates a public/private key pair using entropy from rand.
 // If rand is nil, crypto/rand.Reader will be used.
 func GenerateKey(rand io.Reader) (publicKey PublicKey, privateKey PrivateKey, err error) {
