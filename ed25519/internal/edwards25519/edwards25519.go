@@ -4,6 +4,10 @@
 
 package edwards25519
 
+import (
+	"crypto/subtle"
+)
+
 // This code is a port of the public domain, “ref10” implementation of ed25519
 // from SUPERCOP.
 
@@ -555,6 +559,17 @@ func FeInvert(out, z *FieldElement) {
 		FeSquare(&t1, &t1)
 	}
 	FeMul(out, &t1, &t0) // 254..5,3,1,0
+}
+
+// y = (u - 1) / (u + 1)
+func FeMontXToEdY(y, x *FieldElement) {
+	var one, um1, up1 FieldElement
+
+	FeOne(&one)
+	FeSub(&um1, x, &one)
+	FeAdd(&up1, x, &one)
+	FeInvert(&up1, &up1)
+	FeMul(y, &um1, &up1)
 }
 
 func fePow22523(out, z *FieldElement) {
@@ -1446,6 +1461,125 @@ func ScMulAdd(s, a, b, c *[32]byte) {
 	s[31] = byte(s11 >> 17)
 }
 
+// b = -a (mod l)
+func ScNeg(b, a *[32]byte) {
+	var zero [32]byte
+	ScMulAdd(b, &LMinus1, a, &zero)
+}
+
+// ScClamp is used to make the scalar a multiple of the cofactor so that it can
+// be used as a private key.
+func ScClamp(a *[32]byte) {
+	a[0] &= 248
+	a[31] &= 127
+	a[31] |= 64
+}
+
+// Replace (f,g) with (g,g) if b == 1;
+// replace (f,g) with (f,g) if b == 0.
+//
+// Preconditions: b in {0,1}.
+func ScCMove(f, g *[32]byte, b byte) {
+	var x [32]byte
+	x[0] = f[0] ^ g[0]
+	x[1] = f[1] ^ g[1]
+	x[2] = f[2] ^ g[2]
+	x[3] = f[3] ^ g[3]
+	x[4] = f[4] ^ g[4]
+	x[5] = f[5] ^ g[5]
+	x[6] = f[6] ^ g[6]
+	x[7] = f[7] ^ g[7]
+	x[8] = f[8] ^ g[8]
+	x[9] = f[9] ^ g[9]
+	x[10] = f[10] ^ g[10]
+	x[11] = f[11] ^ g[11]
+	x[12] = f[12] ^ g[12]
+	x[13] = f[13] ^ g[13]
+	x[14] = f[14] ^ g[14]
+	x[15] = f[15] ^ g[15]
+	x[16] = f[16] ^ g[16]
+	x[17] = f[17] ^ g[17]
+	x[18] = f[18] ^ g[18]
+	x[19] = f[19] ^ g[19]
+	x[20] = f[20] ^ g[20]
+	x[21] = f[21] ^ g[21]
+	x[22] = f[22] ^ g[22]
+	x[23] = f[23] ^ g[23]
+	x[24] = f[24] ^ g[24]
+	x[25] = f[25] ^ g[25]
+	x[26] = f[26] ^ g[26]
+	x[27] = f[27] ^ g[27]
+	x[28] = f[28] ^ g[28]
+	x[29] = f[29] ^ g[29]
+	x[30] = f[30] ^ g[30]
+	x[31] = f[31] ^ g[31]
+	b = -b
+	x[0] &= b
+	x[1] &= b
+	x[2] &= b
+	x[3] &= b
+	x[4] &= b
+	x[5] &= b
+	x[6] &= b
+	x[7] &= b
+	x[8] &= b
+	x[9] &= b
+	x[10] &= b
+	x[11] &= b
+	x[12] &= b
+	x[13] &= b
+	x[14] &= b
+	x[15] &= b
+	x[16] &= b
+	x[17] &= b
+	x[18] &= b
+	x[19] &= b
+	x[20] &= b
+	x[21] &= b
+	x[22] &= b
+	x[23] &= b
+	x[24] &= b
+	x[25] &= b
+	x[26] &= b
+	x[27] &= b
+	x[28] &= b
+	x[29] &= b
+	x[30] &= b
+	x[31] &= b
+	f[0] ^= x[0]
+	f[1] ^= x[1]
+	f[2] ^= x[2]
+	f[3] ^= x[3]
+	f[4] ^= x[4]
+	f[5] ^= x[5]
+	f[6] ^= x[6]
+	f[7] ^= x[7]
+	f[8] ^= x[8]
+	f[9] ^= x[9]
+	f[10] ^= x[10]
+	f[11] ^= x[11]
+	f[12] ^= x[12]
+	f[13] ^= x[13]
+	f[14] ^= x[14]
+	f[15] ^= x[15]
+	f[16] ^= x[16]
+	f[17] ^= x[17]
+	f[18] ^= x[18]
+	f[19] ^= x[19]
+	f[20] ^= x[20]
+	f[21] ^= x[21]
+	f[22] ^= x[22]
+	f[23] ^= x[23]
+	f[24] ^= x[24]
+	f[25] ^= x[25]
+	f[26] ^= x[26]
+	f[27] ^= x[27]
+	f[28] ^= x[28]
+	f[29] ^= x[29]
+	f[30] ^= x[30]
+	f[31] ^= x[31]
+}
+
 // Input:
 //   s[0]+256*s[1]+...+256^63*s[63] = s
 //
@@ -1768,4 +1902,18 @@ func ScReduce(out *[32]byte, s *[64]byte) {
 	out[29] = byte(s11 >> 1)
 	out[30] = byte(s11 >> 9)
 	out[31] = byte(s11 >> 17)
+}
+
+// ScIsReduced checks if the scalar is reduced. The comparison executes in
+// constant time.
+func ScIsReduced(s *[32]byte) int {
+	var fe FieldElement
+	var strict [32]byte
+
+	FeFromBytes(&fe, s)
+	FeToBytes(&strict, &fe)
+
+	// If we're just checking that public keys match we don't really need to do a
+	// constant time compare; maybe inline this function so it can be removed?
+	return subtle.ConstantTimeCompare(strict[:], s[:])
 }
