@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4409799_aac2a34b",
+        "filename": "ssh/connection.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-05-29T07:11:06Z",
+      "side": 1,
+      "message": "can you put this in a different CL?",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "070bddae660023aa3fa18cee5d6ad9292f089079",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f03c3c5_41245a27",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-05-29T07:11:06Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 162,
+        "startChar": 10,
+        "endLine": 162,
+        "endChar": 20
+      },
+      "revId": "070bddae660023aa3fa18cee5d6ad9292f089079",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71f64cde_6d4c422f",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-05-29T07:11:06Z",
+      "side": 1,
+      "message": "this look confusing. Can we decide for simplicity sake that if there is an I/O error during the loop, we just consider the whole thing failed?",
+      "range": {
+        "startLine": 279,
+        "startChar": 14,
+        "endLine": 279,
+        "endChar": 15
+      },
+      "revId": "070bddae660023aa3fa18cee5d6ad9292f089079",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
