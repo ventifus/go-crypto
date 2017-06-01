@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d786d839_78ae47f2",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-06-01T17:06:07Z",
+      "side": 1,
+      "message": "s.g. So asn1.Sequence?",
+      "parentUuid": "716b5fb9_dd729594",
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f3c68c2_8f1d5487",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -248,6 +266,30 @@
     },
     {
       "key": {
+        "uuid": "969c62be_10bceb69",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-06-01T17:06:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb079493_010450ed",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 42
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf9e423d_2f5a46dd",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -295,6 +337,30 @@
     },
     {
       "key": {
+        "uuid": "b972217b_0b85a43f",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-06-01T17:06:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e7a4190_f24ad94d",
+      "range": {
+        "startLine": 229,
+        "startChar": 25,
+        "endLine": 229,
+        "endChar": 36
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38638da8_9a87f38a",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 2
@@ -339,6 +405,30 @@
       "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7d5e85e_bcd8198c",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-06-01T17:06:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "311d376f_371a7156",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 24
+      },
+      "revId": "b5103d7088d9b5740a656af9a06388bd3402caa8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
