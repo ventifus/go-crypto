@@ -16,6 +16,24 @@
       "revId": "1776a858a1edd979d8ef1f83ea83f93baf096546",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d40c59_e3cd7466",
+        "filename": "xts/xts_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-06-01T17:26:37Z",
+      "side": 1,
+      "message": "A panic is already a failure.",
+      "parentUuid": "7e6c2ef2_be7eb5e0",
+      "revId": "1776a858a1edd979d8ef1f83ea83f93baf096546",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
