@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "187b4141_dcaa702f",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-01T21:53:28Z",
+      "side": 1,
+      "message": "Reverted this and moved it into our AuthLogCallback.",
+      "parentUuid": "4f03c3c5_41245a27",
+      "range": {
+        "startLine": 162,
+        "startChar": 10,
+        "endLine": 162,
+        "endChar": 20
+      },
+      "revId": "070bddae660023aa3fa18cee5d6ad9292f089079",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71f64cde_6d4c422f",
         "filename": "ssh/server.go",
         "patchSetId": 2
