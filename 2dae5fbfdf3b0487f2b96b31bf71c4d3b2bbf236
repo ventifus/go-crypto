@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f3ee0fc_fe64989d",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2017-06-03T05:26:30Z",
+      "side": 1,
+      "message": "One thing that I don\u0027t like is that it\u0027s not clear on the page that we\u0027re using the `rand.Reader` from crypto/rand.\n\nWe could amend the GenerateKey docs to suggest using it, maybe.",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
