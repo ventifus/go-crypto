@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b054bf8c_7ba848b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "this isn\u0027t the normal commit message format. Look at the git log history for examples of how to format the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 94
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7405802_4fc920d6",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "but when is it returned, and by what? Is len(AuthErrors) guaranteed to be greater than 1 when this type is returned? that is, is this only used when there are multiple errors?",
+      "range": {
+        "startLine": 275,
+        "startChar": 13,
+        "endLine": 275,
+        "endChar": 43
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ea08c20_98c8e8d6",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "don\u0027t reference internal functions in public docs.",
+      "range": {
+        "startLine": 276,
+        "startChar": 36,
+        "endLine": 276,
+        "endChar": 48
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6d918e_4753171a",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "likewise with fields",
+      "range": {
+        "startLine": 277,
+        "startChar": 47,
+        "endLine": 277,
+        "endChar": 53
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dafb4eaf_0a086488",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "why is this an error and not a string?",
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7057d9_24519150",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "would need docs",
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc9fbcec_32e0e42f",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-05T19:26:15Z",
+      "side": 1,
+      "message": "these are all gross for single errors. \n\nif we always return this type for single errors too, at least make a constructor so these remain a single line",
+      "range": {
+        "startLine": 381,
+        "startChar": 4,
+        "endLine": 382,
+        "endChar": 24
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
