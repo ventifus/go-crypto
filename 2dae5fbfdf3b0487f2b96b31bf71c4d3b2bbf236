@@ -16,6 +16,92 @@
       "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f36f9949_1412ada1",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-06-05T21:39:58Z",
+      "side": 1,
+      "message": "could you change the import line to be\n\ncrypto_rand \"crypto/rand\"\n\nto make it clearer?",
+      "parentUuid": "4f3ee0fc_fe64989d",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afe7d801_1bcf7236",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-06-05T21:39:58Z",
+      "side": 1,
+      "message": "just\n\nvar nonce [24]byte\n\n(And likewise for decryptNonce, below.)",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "378c76c5_e695e779",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-06-05T21:39:58Z",
+      "side": 1,
+      "message": "I think passing nonce[:] as the output argument warrants a comment explaining what\u0027s going on.",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f751321_c77c935c",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-06-05T21:39:58Z",
+      "side": 1,
+      "message": "s/[]byte{}/nil/",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17065b04_5abf76c2",
+        "filename": "nacl/box/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7285
+      },
+      "writtenOn": "2017-06-05T21:39:58Z",
+      "side": 1,
+      "message": "var sharedEncryptKey [32]byte (and likewise with the rest).",
+      "revId": "2dae5fbfdf3b0487f2b96b31bf71c4d3b2bbf236",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
