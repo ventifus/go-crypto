@@ -151,6 +151,30 @@
     },
     {
       "key": {
+        "uuid": "312f3bf0_7ab142f1",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-07T15:22:35Z",
+      "side": 1,
+      "message": "Sure, I can fix that. My logic was that I should still be sending up all of the authErrors whenever an error is returned, since the location where this function terminates also ostensibly returns an I/O \"error\" (ie. an EOF), so I wasn\u0027t sure where I should be returning any potential previous authErrors if it was relevant.",
+      "parentUuid": "03f144ca_c3eaedaf",
+      "range": {
+        "startLine": 312,
+        "startChar": 13,
+        "endLine": 312,
+        "endChar": 22
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc9fbcec_32e0e42f",
         "filename": "ssh/server.go",
         "patchSetId": 4
