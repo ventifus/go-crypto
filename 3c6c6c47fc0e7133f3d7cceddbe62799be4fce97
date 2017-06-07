@@ -199,6 +199,30 @@
     },
     {
       "key": {
+        "uuid": "cd2120a6_c6ee1555",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-07T18:33:48Z",
+      "side": 1,
+      "message": "The loop, in the \"if packet, err :\u003d s.transport.readPacket(); err !\u003d nil {\" block below. As far as I could tell, it would return an EOF after all of the available keys had been tried, and then it would return the EOF error back up to the authenticating caller.",
+      "parentUuid": "53cd092e_7d615584",
+      "range": {
+        "startLine": 312,
+        "startChar": 13,
+        "endLine": 312,
+        "endChar": 22
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc9fbcec_32e0e42f",
         "filename": "ssh/server.go",
         "patchSetId": 4
