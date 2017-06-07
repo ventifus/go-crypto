@@ -247,6 +247,30 @@
     },
     {
       "key": {
+        "uuid": "e987115d_da8fa108",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-07T22:13:51Z",
+      "side": 1,
+      "message": "Done. Will modify the other return statements so that they are calling a constructor, rather than using two lines, after I get back from the off-site (as mentioned in another comment). Should I revert the other error returns to return just the errors as well, and not return any authError information?",
+      "parentUuid": "a9077d14_699e8c1d",
+      "range": {
+        "startLine": 312,
+        "startChar": 13,
+        "endLine": 312,
+        "endChar": 22
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc9fbcec_32e0e42f",
         "filename": "ssh/server.go",
         "patchSetId": 4
