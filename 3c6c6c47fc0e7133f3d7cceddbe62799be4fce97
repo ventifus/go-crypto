@@ -271,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "8f2e39fb_0255d6f9",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-08T13:52:13Z",
+      "side": 1,
+      "message": "I think we\u0027re still in disagreement here. I think there should be *one* error return statement that returns an aggregation of auth errors. All others are various types of I/O error and should be left alone.",
+      "parentUuid": "e987115d_da8fa108",
+      "range": {
+        "startLine": 312,
+        "startChar": 13,
+        "endLine": 312,
+        "endChar": 22
+      },
+      "revId": "3c6c6c47fc0e7133f3d7cceddbe62799be4fce97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc9fbcec_32e0e42f",
         "filename": "ssh/server.go",
         "patchSetId": 4
