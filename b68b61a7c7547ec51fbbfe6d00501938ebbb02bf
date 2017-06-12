@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61c760bb_81552571",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-12T08:53:50Z",
+      "side": 1,
+      "message": "since you only return this for io.EOF, you don\u0027t need the errMsg field anymore.",
+      "range": {
+        "startLine": 322,
+        "startChar": 16,
+        "endLine": 322,
+        "endChar": 28
+      },
+      "revId": "b68b61a7c7547ec51fbbfe6d00501938ebbb02bf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
