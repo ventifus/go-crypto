@@ -70,6 +70,30 @@
       "revId": "b68b61a7c7547ec51fbbfe6d00501938ebbb02bf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e7933e_c56ce682",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-12T20:21:27Z",
+      "side": 1,
+      "message": "Got it. I\u0027ve updated the .Error() implementation to stringify the AuthErrors array as well, PTAL.",
+      "parentUuid": "aae88ad8_0e4d38cb",
+      "range": {
+        "startLine": 322,
+        "startChar": 16,
+        "endLine": 322,
+        "endChar": 28
+      },
+      "revId": "b68b61a7c7547ec51fbbfe6d00501938ebbb02bf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
