@@ -56,7 +56,12 @@ func ExampleNewServerConn() {
 		// Remove to disable public key auth.
 		PublicKeyCallback: func(c ssh.ConnMetadata, pubKey ssh.PublicKey) (*ssh.Permissions, error) {
 			if authorizedKeysMap[string(pubKey.Marshal())] {
-				return nil, nil
+				return &ssh.Permissions{
+					// Record the public key used for authentication.
+					Extensions: map[string]string{
+						"pubkey-used": string(pubKey.Marshal()),
+					},
+				}, nil
 			}
 			return nil, fmt.Errorf("unknown public key for %q", c.User())
 		},
