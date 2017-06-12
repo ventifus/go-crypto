@@ -14,23 +14,29 @@ import (
 )
 
 // The Permissions type holds fine-grained permissions that are
-// specific to a user or a specific authentication method for a
-// user. Permissions, except for "source-address", must be enforced in
-// the server application layer, after successful authentication. The
-// Permissions are passed on in ServerConn so a server implementation
-// can honor them.
+// specific to a user or a specific authentication method for a user.
+// The Permissions object for a successful authentication attempt is
+// available in ServerConn, so it can be used to pass information
+// from the user-authentication phase to the application layer.
 type Permissions struct {
-	// Critical options restrict default permissions. Common
-	// restrictions are "source-address" and "force-command". If
+	// Critical options restrict the default permissions, so if
 	// the server cannot enforce the restriction, or does not
-	// recognize it, the user should not authenticate.
+	// recognize it, the connection should be rejected. The SSH
+	// library currently only enforces the "source-address"
+	// critical option. It is up to server implementations to
+	// enforce other critical options, such as "force-command",
+	// by applying them after the SSH handshake is successful.
 	CriticalOptions map[string]string
 
 	// Extensions are extra functionality that the server may
-	// offer on authenticated connections. Common extensions are
-	// "permit-agent-forwarding", "permit-X11-forwarding". Lack of
-	// support for an extension does not preclude authenticating a
-	// user.
+	// offer on authenticated connections. Lack of support for an
+	// extension does not preclude authenticating a user. Common
+	// extensions are "permit-agent-forwarding",
+	// "permit-X11-forwarding". The Go SSH library currently does
+	// not act on any extension, and it is up to server
+	// implementations to honor them. Extensions can be used to
+	// pass data from the authentication callbacks to the server
+	// application layer.
 	Extensions map[string]string
 }
 
@@ -55,9 +61,14 @@ type ServerConfig struct {
 	// attempts to authenticate using a password.
 	PasswordCallback func(conn ConnMetadata, password []byte) (*Permissions, error)
 
-	// PublicKeyCallback, if non-nil, is called when a client attempts public
-	// key authentication. It must return true if the given public key is
-	// valid for the given user. For example, see CertChecker.Authenticate.
+	// PublicKeyCallback, if non-nil, is called when a client
+	// offers a public key for authentication. It must return true
+	// if the given public key can be used to authenticate the
+	// given user. For example, see CertChecker.Authenticate. A
+	// call to this function does not guarantee that the key
+	// offered is in fact used to authenticate. To record any data
+	// depending on the public key, store it inside a
+	// Permissions.Extensions entry.
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
 
 	// KeyboardInteractiveCallback, if non-nil, is called when
