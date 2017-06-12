@@ -94,6 +94,99 @@
       "revId": "902d6d6876b0526148445389138fbcf86b551f79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48b34e62_8a2ca837",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-12T08:52:27Z",
+      "side": 1,
+      "message": "two functions as in: why do you have both ParseRawPrivateKeyWithPassphrase and ParsePrivateKeyWithPassphrase.  I now see that you\u0027re mirroring existing code (which probably shouldn\u0027t have the Raw function variant.)",
+      "parentUuid": "3ad0388c_a576d90c",
+      "range": {
+        "startLine": 805,
+        "startChar": 5,
+        "endLine": 805,
+        "endChar": 37
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acc324bc_63b3e6a2",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-12T08:52:27Z",
+      "side": 1,
+      "message": "put the relevant info directly in a comment",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 151,
+        "endChar": 12
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adb3366d_a1d4279e",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-12T08:52:27Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 153,
+        "startChar": 7,
+        "endLine": 153,
+        "endChar": 20
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f999a6ca_b4d10e76",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-12T08:52:27Z",
+      "side": 1,
+      "message": "you should check that the encrypted key actually is the one you want.",
+      "range": {
+        "startLine": 159,
+        "startChar": 3,
+        "endLine": 159,
+        "endChar": 0
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
