@@ -22,6 +22,30 @@
       "revId": "986679422b76f01dcf1e991e5b158d1ccd9a655f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d8a666_681b87d6",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 16585
+      },
+      "writtenOn": "2017-06-13T21:01:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ece1f0e0_a60b939e",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 78,
+        "endChar": 32
+      },
+      "revId": "986679422b76f01dcf1e991e5b158d1ccd9a655f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
