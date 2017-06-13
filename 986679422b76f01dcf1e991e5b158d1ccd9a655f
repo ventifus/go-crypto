@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece1f0e0_a60b939e",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-13T20:50:15Z",
+      "side": 1,
+      "message": "I think you want to add \"http/1.1\" in here afterwards.\n\nFrom the standard library:\n\nnet/http/h2_bundle.go:  if !http2strSliceContains(t1.TLSClientConfig.NextProtos, \"http/1.1\") {\nnet/http/h2_bundle.go:          t1.TLSClientConfig.NextProtos \u003d append(t1.TLSClientConfig.NextProtos, \"http/1.1\")\nnet/http/httptest/server.go:            s.TLS.NextProtos \u003d []string{\"http/1.1\"}\nnet/http/response_test.go:              version(\"http/1.1\", true),\nnet/http/serve_test.go:         NextProtos:         []string{\"h2\", \"http/1.1\"},\nnet/http/serve_test.go:         NextProtos:         []string{\"h2\", \"http/1.1\"},\nnet/http/server.go:     case \"\", \"http/1.1\", \"http/1.0\":\nnet/http/server.go:     if !strSliceContains(config.NextProtos, \"http/1.1\") {\nnet/http/server.go:             config.NextProtos \u003d append(config.NextProtos, \"http/1.1\")",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 78,
+        "endChar": 32
+      },
+      "revId": "986679422b76f01dcf1e991e5b158d1ccd9a655f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
