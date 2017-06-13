@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f39645b_e3a598a8",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 12689
+      },
+      "writtenOn": "2017-06-13T01:28:45Z",
+      "side": 1,
+      "message": "Would you mind retrieving this from the ServerConn and logging it or something, as well?",
+      "revId": "043c8e8810e33e5dee2538bf0403d9c85b4f654a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
