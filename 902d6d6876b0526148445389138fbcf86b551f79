@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "3e10f670_576fed9f",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-06-13T05:21:39Z",
+      "side": 1,
+      "message": "I\u0027m thinking those func(s) are provided for separated purposes. ParseRawXXX really decode keys. ParseXXX return signer.",
+      "parentUuid": "48b34e62_8a2ca837",
+      "range": {
+        "startLine": 805,
+        "startChar": 5,
+        "endLine": 805,
+        "endChar": 37
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "acc324bc_63b3e6a2",
         "filename": "ssh/keys_test.go",
         "patchSetId": 1
@@ -141,6 +165,30 @@
       "revId": "902d6d6876b0526148445389138fbcf86b551f79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b1f7c8f_b14e4c46",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-06-13T05:21:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acc324bc_63b3e6a2",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 151,
+        "endChar": 12
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -167,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "e6262e35_074d93c0",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-06-13T05:21:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adb3366d_a1d4279e",
+      "range": {
+        "startLine": 153,
+        "startChar": 7,
+        "endLine": 153,
+        "endChar": 20
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f999a6ca_b4d10e76",
         "filename": "ssh/keys_test.go",
         "patchSetId": 1
@@ -187,6 +259,30 @@
       "revId": "902d6d6876b0526148445389138fbcf86b551f79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a662aed5_590c489b",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-06-13T05:21:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f999a6ca_b4d10e76",
+      "range": {
+        "startLine": 159,
+        "startChar": 3,
+        "endLine": 159,
+        "endChar": 0
+      },
+      "revId": "902d6d6876b0526148445389138fbcf86b551f79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
