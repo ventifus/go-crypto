@@ -15,7 +15,6 @@ package acme
 
 import (
 	"bytes"
-	"context"
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/elliptic"
@@ -37,6 +36,9 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"golang.org/x/net/context"
+	"golang.org/x/net/context/ctxhttp"
 )
 
 // LetsEncryptURL is the Directory endpoint of Let's Encrypt CA.
@@ -807,7 +809,7 @@ func (c *Client) post(ctx context.Context, urlStr, contentType string, body io.R
 }
 
 func (c *Client) do(ctx context.Context, req *http.Request) (*http.Response, error) {
-	res, err := c.httpClient().Do(req.WithContext(ctx))
+	res, err := ctxhttp.Do(ctx, c.httpClient(), req)
 	if err != nil {
 		select {
 		case <-ctx.Done():
