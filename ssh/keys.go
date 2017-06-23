@@ -814,6 +814,9 @@ func ParseRawPrivateKeyWithPassphrase(pemBytes, passPhrase []byte) (interface{},
 			var err error
 			buf, err = x509.DecryptPEMBlock(block, passPhrase)
 			if err != nil {
+				if err == x509.IncorrectPasswordError {
+					return nil, err
+				}
 				return nil, fmt.Errorf("ssh: cannot decode encrypted private keys: %v", err)
 			}
 		}
