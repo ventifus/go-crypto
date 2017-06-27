@@ -22,6 +22,30 @@
       "revId": "f06de76e84e370e8dce4f17167db7145d8ec8566",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cda76ff9_8491e7c0",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2017-06-27T17:54:44Z",
+      "side": 1,
+      "message": "I should fix %s to %v in TestParseDSA too ?",
+      "parentUuid": "fdfe042b_812ec13a",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 18
+      },
+      "revId": "f06de76e84e370e8dce4f17167db7145d8ec8566",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
