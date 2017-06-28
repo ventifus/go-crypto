@@ -46,6 +46,30 @@
       "revId": "f06de76e84e370e8dce4f17167db7145d8ec8566",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54b1405a_f5ea8b4a",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-06-28T07:34:41Z",
+      "side": 1,
+      "message": "no: the problem is the ordering of the message, it should always be \"actual, expected\".",
+      "parentUuid": "cda76ff9_8491e7c0",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 18
+      },
+      "revId": "f06de76e84e370e8dce4f17167db7145d8ec8566",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
