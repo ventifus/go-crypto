@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "737bf61d_6322d9e2",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-28T18:44:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5331f853_1da3f2e0",
+      "range": {
+        "startLine": 514,
+        "startChar": 5,
+        "endLine": 514,
+        "endChar": 11
+      },
+      "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b222a4a1_319cae12",
         "filename": "ssh/client_auth_test.go",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6b877c1_22b72253",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-28T18:44:16Z",
+      "side": 1,
+      "message": "Ah, if that were the case, should I not just pass in publicKeyErr into the PublicKeyCallback, like so?",
+      "parentUuid": "b222a4a1_319cae12",
+      "range": {
+        "startLine": 592,
+        "startChar": 18,
+        "endLine": 592,
+        "endChar": 31
+      },
+      "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "427499b1_1723b657",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-28T18:44:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8878afda_5149a0d1",
+      "range": {
+        "startLine": 629,
+        "startChar": 8,
+        "endLine": 629,
+        "endChar": 9
+      },
+      "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7171215_5f40b7de",
         "filename": "ssh/server.go",
         "patchSetId": 12
@@ -91,6 +163,30 @@
       "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c819882_80dad93b",
+        "filename": "ssh/server.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-28T18:44:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7171215_5f40b7de",
+      "range": {
+        "startLine": 281,
+        "startChar": 1,
+        "endLine": 281,
+        "endChar": 11
+      },
+      "revId": "9b77fbad803c79d14c0350a7ad8870b6fe26cdbe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
