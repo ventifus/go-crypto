@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc55b1c2_50607bcd",
+        "filename": "salsa20/salsa20.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-29T04:21:52Z",
+      "side": 1,
+      "message": "not an https change but okay :)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "8ac626db7d8d41064bda13f728b54442abfb914f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20ed0f6a_209e34a5",
+        "filename": "twofish/twofish_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-06-29T04:21:52Z",
+      "side": 1,
+      "message": "also okay",
+      "range": {
+        "startLine": 72,
+        "startChar": 10,
+        "endLine": 72,
+        "endChar": 15
+      },
+      "revId": "8ac626db7d8d41064bda13f728b54442abfb914f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
