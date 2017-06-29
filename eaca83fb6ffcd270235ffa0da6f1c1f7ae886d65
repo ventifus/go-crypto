@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72a7cea4_bc7ee433",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7997e891_5c49f511",
+      "range": {
+        "startLine": 613,
+        "startChar": 26,
+        "endLine": 613,
+        "endChar": 41
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb0e684b_e4fccf8e",
         "filename": "ssh/client_auth_test.go",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c424fc5b_48912ad9",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb0e684b_e4fccf8e",
+      "range": {
+        "startLine": 625,
+        "startChar": 47,
+        "endLine": 625,
+        "endChar": 55
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1b0ab8bf_65bad6fb",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc33fe6_2028bed6",
+      "range": {
+        "startLine": 629,
+        "startChar": 64,
+        "endLine": 629,
+        "endChar": 70
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b914f39c_4a5e2dba",
         "filename": "ssh/server.go",
         "patchSetId": 13
@@ -91,6 +163,30 @@
       "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f4503da_ee984a31",
+        "filename": "ssh/server.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b914f39c_4a5e2dba",
+      "range": {
+        "startLine": 279,
+        "startChar": 20,
+        "endLine": 279,
+        "endChar": 32
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +233,54 @@
       "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c95b1404_6b89b36b",
+        "filename": "ssh/server.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc39a6f_cc76d39b",
+      "range": {
+        "startLine": 280,
+        "startChar": 4,
+        "endLine": 280,
+        "endChar": 15
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d82d968_a07c45f3",
+        "filename": "ssh/server.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2017-06-29T18:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5f5da98_0982b4e6",
+      "range": {
+        "startLine": 280,
+        "startChar": 40,
+        "endLine": 280,
+        "endChar": 46
+      },
+      "revId": "eaca83fb6ffcd270235ffa0da6f1c1f7ae886d65",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
