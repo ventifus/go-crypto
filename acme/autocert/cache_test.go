@@ -18,6 +18,7 @@ var _ Cache = DirCache("/")
 
 func TestDirCache(t *testing.T) {
 	dir, err := ioutil.TempDir("", "autocert")
+	defer os.RemoveAll(dir)
 	if err != nil {
 		t.Fatal(err)
 	}
