@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59184bc2_d7288aff",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2017-07-15T23:01:10Z",
+      "side": 1,
+      "message": "Hmm..  Reading https://golang.org/pkg/testing/#hdr-Examples more closely, I\u0027m not sure this is the right name either. Perhaps \"Example_MD4_Sum\"?",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 15
+      },
+      "revId": "697b0db77cb2470ddd744ca8392888bfc963f200",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
