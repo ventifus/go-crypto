@@ -69,3 +69,11 @@ func TestGolden(t *testing.T) {
 		}
 	}
 }
+
+func ExampleNew() {
+	c := New()
+	data := "These pretzels are making me thirsty."
+	io.WriteString(c, data)
+	fmt.Printf("%x", c.Sum(nil))
+	// Output: 48c4e365090b30a32f084c4888deceaa
+}
