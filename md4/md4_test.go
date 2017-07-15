@@ -69,3 +69,10 @@ func TestGolden(t *testing.T) {
 		}
 	}
 }
+
+func ExampleNew_Sum() {
+	c := New()
+	data := []byte("These pretzels are making me thirsty.")
+	fmt.Printf("%x", c.Sum(data))
+	// Output: 546865736520707265747a656c7320617265206d616b696e67206d6520746869727374792e31d6cfe0d16ae931b73c59d7e0c089c0
+}
