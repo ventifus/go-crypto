@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85e51a2e_ebcbf8eb",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2017-07-15T22:41:15Z",
+      "side": 1,
+      "message": "If you intend for this example to go with the Sum method in Godoc, it should be named ExampleSum.\n\n(See https://golang.org/pkg/testing/#hdr-Examples.)",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 16
+      },
+      "revId": "d7b6d477908e0028108e864272d56b12330240ba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
