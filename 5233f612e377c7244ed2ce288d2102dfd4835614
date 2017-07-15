@@ -39,6 +39,24 @@
       "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "776e99cc_f8863857",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-15T21:29:06Z",
+      "side": 1,
+      "message": "most extensions (eg. ssh-agent, sftp) use the same conventions for marshaling data, so this does have uses outside the package.",
+      "parentUuid": "03fd4fc2_65ab6d16",
+      "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
