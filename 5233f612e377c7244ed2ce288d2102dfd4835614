@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7084255_37d536d0",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-15T19:54:48Z",
+      "side": 1,
+      "message": "this is an unexported type. Users can\u0027t do this, so this isn\u0027t a good example.",
+      "range": {
+        "startLine": 215,
+        "startChar": 6,
+        "endLine": 215,
+        "endChar": 12
+      },
+      "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03fd4fc2_65ab6d16",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-15T19:54:48Z",
+      "side": 1,
+      "message": "why does the ssh package even export this?\n\nHow are users supposed to use this? I think that it\u0027s probably a mistake that this is exported at all.\n\nMaybe making it lowercase is the right fix. Han-Wen?",
+      "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
