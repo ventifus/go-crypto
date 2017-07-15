@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e5f7a96a_b0592562",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-15T21:36:21Z",
+      "side": 1,
+      "message": "Oh, I brain-farted here. This is a local type. Duh.",
+      "parentUuid": "e93c38e7_f6f6aee6",
+      "range": {
+        "startLine": 215,
+        "startChar": 6,
+        "endLine": 215,
+        "endChar": 12
+      },
+      "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03fd4fc2_65ab6d16",
         "filename": "ssh/example_test.go",
         "patchSetId": 2
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "most extensions (eg. ssh-agent, sftp) use the same conventions for marshaling data, so this does have uses outside the package.",
       "parentUuid": "03fd4fc2_65ab6d16",
+      "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90378b1_ce285776",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-15T21:36:21Z",
+      "side": 1,
+      "message": "I\u0027ll leave this for you to review then.",
+      "parentUuid": "776e99cc_f8863857",
       "revId": "5233f612e377c7244ed2ce288d2102dfd4835614",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
