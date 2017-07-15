@@ -209,3 +209,17 @@ func ExampleSession_RequestPty() {
 		log.Fatalf("failed to start shell: %s", err)
 	}
 }
+
+func ExampleMarshal() {
+	// Create a message
+	type record struct {
+		Comment string
+	}
+	newRecord := &record{Comment: "Hello"}
+
+	// Pass the message to marshal
+	msgSerialized := ssh.Marshal(newRecord)
+
+	fmt.Printf("%v", msgSerialized)
+	// Output: [0 0 0 5 72 101 108 108 111]
+}
