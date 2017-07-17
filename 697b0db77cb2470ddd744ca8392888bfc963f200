@@ -22,6 +22,30 @@
       "revId": "697b0db77cb2470ddd744ca8392888bfc963f200",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52ef2f36_6b45eabc",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2017-07-17T21:20:46Z",
+      "side": 1,
+      "message": "Ok, now I\u0027ve got it figured out.  (Sorry, took me a while to realize this was in x/crypto and not the standard-library \"crypto\" package.)\n\nThere is no top-level Sum function in the x/crypto/md4 package, so this should be named \"ExampleNew_Sum\".",
+      "parentUuid": "59184bc2_d7288aff",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 15
+      },
+      "revId": "697b0db77cb2470ddd744ca8392888bfc963f200",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
