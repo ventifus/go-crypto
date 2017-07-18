@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1de4fea1_7af7e5eb",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-18T04:59:46Z",
+      "side": 1,
+      "message": "ExampleNew is the only thing that has godoc to attach to in https://godoc.org/golang.org/x/crypto/md4#New",
+      "revId": "dfe0cd170cf5107519b33c8b06b6723efbe7112f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "129db75e_7ed77017",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-18T04:59:46Z",
+      "side": 1,
+      "message": "This is NOT how you use the Hash.Sum method. The argument provided to Sum is scratch space, not input data.",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 30
+      },
+      "revId": "dfe0cd170cf5107519b33c8b06b6723efbe7112f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
