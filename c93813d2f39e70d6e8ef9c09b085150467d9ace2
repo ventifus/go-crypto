@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1525541_ffb0b691",
+        "filename": "md4/md4_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-18T16:17:06Z",
+      "side": 1,
+      "message": "this should move to a file example_test.go with package md4_test so it can import the md4 package and refer to New as:\n\n    h :\u003d md4.New()\n\n(I\u0027d also use \u0027h\u0027 for Hash instead of \u0027c\u0027 for .. ?)",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 1
+      },
+      "revId": "c93813d2f39e70d6e8ef9c09b085150467d9ace2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
