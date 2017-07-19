@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95e957e2_3ce49391",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-19T05:08:21Z",
+      "side": 1,
+      "message": "Bad instructions.\n\nbrad5k:~ $ go get -u golang.org/x/crypto\npackage golang.org/x/crypto: no Go files in /Users/bradfitz/src/golang.org/x/crypto\nbrad5k:~ $ echo $?\n1",
+      "revId": "891de0135e41596921a3bdee3ede8c46bf83b956",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7ff47d8_80612fcc",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-19T05:08:21Z",
+      "side": 1,
+      "message": "may take longer than normal",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 79
+      },
+      "revId": "891de0135e41596921a3bdee3ede8c46bf83b956",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
