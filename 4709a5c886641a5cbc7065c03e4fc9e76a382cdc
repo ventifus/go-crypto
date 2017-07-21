@@ -45,6 +45,30 @@
       "revId": "4709a5c886641a5cbc7065c03e4fc9e76a382cdc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65fa8a23_9db3947d",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 23155
+      },
+      "writtenOn": "2017-07-21T02:47:41Z",
+      "side": 1,
+      "message": "Normally I\u0027d agree.\nI\u0027d stick to the same format as Session.RequestPty function.\nCode gets more confusing mixing argument order.\n\nSuddenly changing Session.RequestPty might make others sad.",
+      "parentUuid": "4d2ca310_eb6e8c73",
+      "range": {
+        "startLine": 243,
+        "startChar": 31,
+        "endLine": 243,
+        "endChar": 35
+      },
+      "revId": "4709a5c886641a5cbc7065c03e4fc9e76a382cdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
