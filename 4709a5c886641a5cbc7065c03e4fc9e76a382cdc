@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f96de39_1744f235",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-21T02:24:25Z",
+      "side": 1,
+      "message": "drop \"x/crypto\"\n\nchange \"added\" to \"add\"\n\ndrop parens after WindowChange\n\n    ssh: add Session.WindowChange to send window change events",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "4709a5c886641a5cbc7065c03e4fc9e76a382cdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d2ca310_eb6e8c73",
+        "filename": "ssh/session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-21T02:24:25Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer \"w, h\". But these should be documented in the docs for WindowChange. Should these be called rows and cols instead, so they\u0027re not confused for the *8 versions?",
+      "range": {
+        "startLine": 243,
+        "startChar": 31,
+        "endLine": 243,
+        "endChar": 35
+      },
+      "revId": "4709a5c886641a5cbc7065c03e4fc9e76a382cdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
