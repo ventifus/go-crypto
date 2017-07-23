@@ -155,6 +155,32 @@ func (s *server) processRequest(data []byte) (interface{}, error) {
 	return nil, fmt.Errorf("unknown opcode %d", data[0])
 }
 
+func parseConstraints(constraints []byte) (lifetimeSecs uint32, confirmBeforeUse bool, extensions []ConstrainExtension, err error) {
+	if len(constraints) != 0 {
+		switch constraints[0] {
+		case agentConstrainLifetime:
+			_, confirmBeforeUse, extensions, err = parseConstraints(constraints[5:])
+			lifetimeSecs = binary.BigEndian.Uint32(constraints[1:5])
+		case agentConstrainConfirm:
+			lifetimeSecs, _, extensions, err = parseConstraints(constraints[1:])
+			confirmBeforeUse = true
+		case agentConstrainExtension:
+			var msg constrainExtensionAgentMsg
+			if err = ssh.Unmarshal(constraints, &msg); err != nil {
+				return 0, false, nil, err
+			}
+			lifetimeSecs, confirmBeforeUse, extensions, err = parseConstraints(msg.Rest)
+			extensions = append(extensions, ConstrainExtension{
+				ExtensionName:    msg.ExtensionName,
+				ExtensionDetails: msg.ExtensionDetails,
+			})
+		default:
+			return 0, false, nil, fmt.Errorf("unknown constraint type: %v", constraints[0])
+		}
+	}
+	return
+}
+
 func parseRSAKey(req []byte) (*AddedKey, error) {
 	var k rsaKeyMsg
 	if err := ssh.Unmarshal(req, &k); err != nil {
@@ -173,7 +199,18 @@ func parseRSAKey(req []byte) (*AddedKey, error) {
 	}
 	priv.Precompute()
 
-	return &AddedKey{PrivateKey: priv, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          priv,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseEd25519Key(req []byte) (*AddedKey, error) {
@@ -182,7 +219,19 @@ func parseEd25519Key(req []byte) (*AddedKey, error) {
 		return nil, err
 	}
 	priv := ed25519.PrivateKey(k.Priv)
-	return &AddedKey{PrivateKey: &priv, Comment: k.Comments}, nil
+
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          &priv,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseDSAKey(req []byte) (*AddedKey, error) {
@@ -202,7 +251,18 @@ func parseDSAKey(req []byte) (*AddedKey, error) {
 		X: k.X,
 	}
 
-	return &AddedKey{PrivateKey: priv, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          priv,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func unmarshalECDSA(curveName string, keyBytes []byte, privScalar *big.Int) (priv *ecdsa.PrivateKey, err error) {
@@ -243,7 +303,20 @@ func parseEd25519Cert(req []byte) (*AddedKey, error) {
 	if !ok {
 		return nil, errors.New("agent: bad ED25519 certificate")
 	}
-	return &AddedKey{PrivateKey: &priv, Certificate: cert, Comment: k.Comments}, nil
+
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          &priv,
+		Certificate:         cert,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseECDSAKey(req []byte) (*AddedKey, error) {
@@ -257,7 +330,18 @@ func parseECDSAKey(req []byte) (*AddedKey, error) {
 		return nil, err
 	}
 
-	return &AddedKey{PrivateKey: priv, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          priv,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseRSACert(req []byte) (*AddedKey, error) {
@@ -300,7 +384,19 @@ func parseRSACert(req []byte) (*AddedKey, error) {
 	}
 	priv.Precompute()
 
-	return &AddedKey{PrivateKey: &priv, Certificate: cert, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          &priv,
+		Certificate:         cert,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseDSACert(req []byte) (*AddedKey, error) {
@@ -338,7 +434,19 @@ func parseDSACert(req []byte) (*AddedKey, error) {
 		X: k.X,
 	}
 
-	return &AddedKey{PrivateKey: priv, Certificate: cert, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          priv,
+		Certificate:         cert,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func parseECDSACert(req []byte) (*AddedKey, error) {
@@ -371,7 +479,19 @@ func parseECDSACert(req []byte) (*AddedKey, error) {
 		return nil, err
 	}
 
-	return &AddedKey{PrivateKey: priv, Certificate: cert, Comment: k.Comments}, nil
+	lifetimeSecs, confirmBeforeUse, constrainExtensions, err := parseConstraints(k.Constraints)
+	if err != nil {
+		return nil, fmt.Errorf("agent: %v", err)
+	}
+
+	return &AddedKey{
+		PrivateKey:          priv,
+		Certificate:         cert,
+		Comment:             k.Comments,
+		LifetimeSecs:        lifetimeSecs,
+		ConfirmBeforeUse:    confirmBeforeUse,
+		ConstrainExtensions: constrainExtensions,
+	}, nil
 }
 
 func (s *server) insertIdentity(req []byte) error {
