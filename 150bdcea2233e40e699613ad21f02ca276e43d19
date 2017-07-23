@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b8e4324_cb214d9e",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-07-23T06:29:50Z",
+      "side": 1,
+      "message": "all exported things need docs",
+      "revId": "150bdcea2233e40e699613ad21f02ca276e43d19",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
