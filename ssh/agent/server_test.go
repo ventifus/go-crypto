@@ -8,6 +8,9 @@ import (
 	"crypto"
 	"crypto/rand"
 	"fmt"
+	pseudorand "math/rand"
+	"reflect"
+	"strings"
 	"testing"
 
 	"golang.org/x/crypto/ssh"
@@ -205,5 +208,55 @@ func TestCertTypes(t *testing.T) {
 		if err := addCertToAgentSock(testPrivateKeys[keyType], cert); err != nil {
 			t.Fatalf("%v", err)
 		}
+	}
+}
+
+func TestParseConstraints(t *testing.T) {
+	// Test LifetimeSecs
+	var msg = constrainLifetimeAgentMsg{pseudorand.Uint32()}
+	lifetimeSecs, _, _, err := parseConstraints(ssh.Marshal(msg))
+	if err != nil {
+		t.Fatalf("parseConstraints: %v", err)
+	}
+	if lifetimeSecs != msg.LifetimeSecs {
+		t.Errorf("got lifetime %v, want %v", lifetimeSecs, msg.LifetimeSecs)
+	}
+
+	// Test ConfirmBeforeUse
+	_, confirmBeforeUse, _, err := parseConstraints([]byte{agentConstrainConfirm})
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if !confirmBeforeUse {
+		t.Error("got comfirmBeforeUse == false")
+	}
+
+	// Test ConstraintExtensions
+	var data []byte
+	for i := 0; i < 10; i++ {
+		var ext = constrainExtensionAgentMsg{
+			ExtensionName:    fmt.Sprintf("name%d", i),
+			ExtensionDetails: []byte(fmt.Sprintf("details: %d", i)),
+		}
+		data = append(data, ssh.Marshal(ext)...)
+	}
+	_, _, extensions, err := parseConstraints(data)
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	for i := 0; i < 10; i++ {
+		var ext = ConstraintExtension{
+			ExtensionName:    fmt.Sprintf("name%d", i),
+			ExtensionDetails: []byte(fmt.Sprintf("details: %d", i)),
+		}
+		if !reflect.DeepEqual(ext, extensions[i]) {
+			t.Errorf("got extension %v, want %v", extensions[i], ext)
+		}
+	}
+
+	// Test Unknown Constraint
+	_, _, _, err = parseConstraints([]byte{128})
+	if err == nil || !strings.Contains(err.Error(), "unknown constraint") {
+		t.Errorf("unexpected error: %v", err)
 	}
 }
