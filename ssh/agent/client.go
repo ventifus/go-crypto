@@ -57,6 +57,11 @@ type Agent interface {
 	Signers() ([]ssh.Signer, error)
 }
 
+type ConstrainExtension struct {
+	ExtensionName    string
+	ExtensionDetails []byte
+}
+
 // AddedKey describes an SSH key to be added to an Agent.
 type AddedKey struct {
 	// PrivateKey must be a *rsa.PrivateKey, *dsa.PrivateKey or
@@ -73,6 +78,9 @@ type AddedKey struct {
 	// ConfirmBeforeUse, if true, requests that the agent confirm with the
 	// user before each use of this key.
 	ConfirmBeforeUse bool
+	// ConstrainExtensions are the experimental or private-use constraints
+	// defined by users.
+	ConstrainExtensions []ConstrainExtension
 }
 
 // See [PROTOCOL.agent], section 3.
@@ -94,8 +102,9 @@ const (
 	agentAddSmartcardKeyConstrained = 26
 
 	// 3.7 Key constraint identifiers
-	agentConstrainLifetime = 1
-	agentConstrainConfirm  = 2
+	agentConstrainLifetime  = 1
+	agentConstrainConfirm   = 2
+	agentConstrainExtension = 3
 )
 
 // maxAgentResponseBytes is the maximum agent reply size that is accepted. This
@@ -149,6 +158,13 @@ type signResponseAgentMsg struct {
 type publicKey struct {
 	Format string
 	Rest   []byte `ssh:"rest"`
+}
+
+// 3.7 Key constraint identifiers
+type constrainExtensionAgentMsg struct {
+	ExtensionName    string `sshtype:"3"`
+	ExtensionDetails []byte
+	Rest             []byte `ssh:"rest"`
 }
 
 // Key represents a protocol 2 public key as defined in
