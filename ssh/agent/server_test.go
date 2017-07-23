@@ -5,10 +5,14 @@
 package agent
 
 import (
+	"bytes"
 	"crypto"
 	"crypto/rand"
+	"encoding/binary"
 	"fmt"
+	"strings"
 	"testing"
+	"time"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -205,5 +209,55 @@ func TestCertTypes(t *testing.T) {
 		if err := addCertToAgentSock(testPrivateKeys[keyType], cert); err != nil {
 			t.Fatalf("%v", err)
 		}
+	}
+}
+
+func TestParseConstraints(t *testing.T) {
+	var data []byte
+
+	// Test LifetimeSecs
+	var secsBytes [4]byte
+	secs := uint32(time.Now().UnixNano())
+	binary.BigEndian.PutUint32(secsBytes[:], secs)
+	data = append(data, agentConstrainLifetime)
+	data = append(data, secsBytes[:]...)
+	lifetimeSecs, _, _, err := parseConstraints(data)
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if lifetimeSecs != secs {
+		t.Errorf("expect lifetime %v, found %v", secs, lifetimeSecs)
+	}
+
+	// Test ConfirmBeforeUse
+	_, confirmBeforeUse, _, err := parseConstraints([]byte{agentConstrainConfirm})
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if !confirmBeforeUse {
+		t.Errorf("unexpected comfirmBeforeUse: %v", confirmBeforeUse)
+	}
+
+	// Test ConstraintExtensions
+	data = data[:0]
+	var ext1 = constrainExtensionAgentMsg{ExtensionName: "name1", ExtensionDetails: []byte("details1")}
+	var ext2 = constrainExtensionAgentMsg{ExtensionName: "name2", ExtensionDetails: []byte("details2")}
+	data = append(data, ssh.Marshal(ext1)...)
+	data = append(data, ssh.Marshal(ext2)...)
+	_, _, extensions, err := parseConstraints(data)
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if extensions[0].ExtensionName != "name2" || !bytes.Equal(extensions[0].ExtensionDetails, []byte("details2")) {
+		t.Errorf("expect extension %v, found %v", ext1, extensions[0])
+	}
+	if extensions[1].ExtensionName != "name1" || !bytes.Equal(extensions[1].ExtensionDetails, []byte("details1")) {
+		t.Errorf("expect extension %v, found %v", ext2, extensions[1])
+	}
+
+	// Test Unknown Constraint
+	_, _, _, err = parseConstraints([]byte{128})
+	if err == nil || !strings.Contains(err.Error(), "unknown constraint") {
+		t.Errorf("unexpected error: %v", err)
 	}
 }
