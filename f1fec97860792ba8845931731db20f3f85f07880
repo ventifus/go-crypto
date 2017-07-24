@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc915ec3_cbc28399",
+        "filename": "ssh/session.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T07:23:43Z",
+      "side": 1,
+      "message": "\u003cbikeshed\u003e: this will be called as WindowChange(25, 80). Isn\u0027t 80x25 the more customary ordering?",
+      "range": {
+        "startLine": 243,
+        "startChar": 31,
+        "endLine": 243,
+        "endChar": 32
+      },
+      "revId": "f1fec97860792ba8845931731db20f3f85f07880",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
