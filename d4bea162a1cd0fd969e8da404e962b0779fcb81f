@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0900699_9bf74a9c",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T16:36:37Z",
+      "side": 1,
+      "message": "add a note that this is for parsing purposes.",
+      "range": {
+        "startLine": 173,
+        "startChar": 25,
+        "endLine": 173,
+        "endChar": 26
+      },
+      "revId": "d4bea162a1cd0fd969e8da404e962b0779fcb81f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af8e08ec_7cdd71db",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T16:36:37Z",
+      "side": 1,
+      "message": "I would rather see a loop than recursion here. The definition of these isn\u0027t recursive either after all.",
+      "range": {
+        "startLine": 162,
+        "startChar": 42,
+        "endLine": 162,
+        "endChar": 58
+      },
+      "revId": "d4bea162a1cd0fd969e8da404e962b0779fcb81f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e60301d8_e20216de",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T16:36:37Z",
+      "side": 1,
+      "message": "why take the nano part? If you want a random number, use crypto/rand or math/rand",
+      "range": {
+        "startLine": 220,
+        "startChar": 27,
+        "endLine": 220,
+        "endChar": 35
+      },
+      "revId": "d4bea162a1cd0fd969e8da404e962b0779fcb81f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7b20596_ded1187a",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T16:36:37Z",
+      "side": 1,
+      "message": "rather than construct data \"by hand\", can you think of a way to make the construction/serialization part of the package too? Then you can do roundtrip tests.",
+      "range": {
+        "startLine": 223,
+        "startChar": 15,
+        "endLine": 223,
+        "endChar": 19
+      },
+      "revId": "d4bea162a1cd0fd969e8da404e962b0779fcb81f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
