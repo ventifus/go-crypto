@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3be57081_eddd34a4",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T06:28:53Z",
+      "side": 1,
+      "message": "That\u0027s a verb, no? Usually these are nouns (ExtensionConstraint?), or are you following some RFC? https://tools.ietf.org/html/draft-miller-ssh-agent-00#section-4.2.6.3 talks about ConstraintExtension",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "65535456f62ddff55418d193367b7b6cb91fa6c7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b35e807c_4ddf2ab5",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T06:28:53Z",
+      "side": 1,
+      "message": "the \u0027rest\u0027 field  isn\u0027t in the spec.",
+      "range": {
+        "startLine": 173,
+        "startChar": 1,
+        "endLine": 173,
+        "endChar": 5
+      },
+      "revId": "65535456f62ddff55418d193367b7b6cb91fa6c7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df363275_43dc2b7e",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T06:28:53Z",
+      "side": 1,
+      "message": "I\u0027ve seen this block 8 times or so. Can you rearrage the code to do this only once? Maybe intrdouce a \n\n  setConstraints(key *AddedKey, constraintBytes []byte)",
+      "revId": "65535456f62ddff55418d193367b7b6cb91fa6c7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
