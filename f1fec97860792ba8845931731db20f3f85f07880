@@ -46,6 +46,30 @@
       "revId": "f1fec97860792ba8845931731db20f3f85f07880",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ca81ba_44aff76d",
+        "filename": "ssh/session.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-24T08:43:59Z",
+      "side": 1,
+      "message": "oh sorry, I didn\u0027t read Brad\u0027s review. Do add something to the doc string about what h and w mean.",
+      "parentUuid": "22a8f1de_a345519a",
+      "range": {
+        "startLine": 243,
+        "startChar": 31,
+        "endLine": 243,
+        "endChar": 32
+      },
+      "revId": "f1fec97860792ba8845931731db20f3f85f07880",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
