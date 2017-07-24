@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8dd13e66_57b0906e",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-24T16:01:01Z",
+      "side": 1,
+      "message": "Ummm, I did follow this RFC and wanted to use ConstraintExtension here, but it\u0027s really hard to notice a typo in Saturday night, thanks for pointing out.",
+      "parentUuid": "3be57081_eddd34a4",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "65535456f62ddff55418d193367b7b6cb91fa6c7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b35e807c_4ddf2ab5",
         "filename": "ssh/agent/client.go",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-24T06:28:53Z",
       "side": 1,
       "message": "the \u0027rest\u0027 field  isn\u0027t in the spec.",
+      "range": {
+        "startLine": 173,
+        "startChar": 1,
+        "endLine": 173,
+        "endChar": 5
+      },
+      "revId": "65535456f62ddff55418d193367b7b6cb91fa6c7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b2d7e2b_1bff5602",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-24T16:01:01Z",
+      "side": 1,
+      "message": "ssh.Unmarshal doesn\u0027t return the rest bytes, this is the most reasonable way I found to parse the constraints recursively.",
+      "parentUuid": "b35e807c_4ddf2ab5",
       "range": {
         "startLine": 173,
         "startChar": 1,
