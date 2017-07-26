@@ -258,6 +258,30 @@
       "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb72fbf_288d9f24",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T17:12:11Z",
+      "side": 1,
+      "message": "I didn\u0027t get your solution, as the reflect package stated, \"struct values are deeply equal if their corresponding fields, both exported and unexported, are deeply equal.\". Clean the content of Rest won\u0027t influence deepequal, and I don\u0027t think there\u0027s a way to remove field Rest from the struct. Although I think I come up with a solution that may satisfy your requirement, feel free to tell me what I misunderstood.",
+      "parentUuid": "da05be3f_effdf456",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 0
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
