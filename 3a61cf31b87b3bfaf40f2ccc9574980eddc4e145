@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb5304d2_d570192f",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T09:06:46Z",
+      "side": 1,
+      "message": "%d",
+      "range": {
+        "startLine": 178,
+        "startChar": 63,
+        "endLine": 178,
+        "endChar": 65
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "043ca03c_34a14857",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T09:06:46Z",
+      "side": 1,
+      "message": "parseConstraints: %v",
+      "range": {
+        "startLine": 219,
+        "startChar": 12,
+        "endLine": 219,
+        "endChar": 13
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "074d118b_9e2d5f1b",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T09:06:46Z",
+      "side": 1,
+      "message": "order is always got, want",
+      "range": {
+        "startLine": 222,
+        "startChar": 19,
+        "endLine": 222,
+        "endChar": 27
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "543a1ae8_884f31b8",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T09:06:46Z",
+      "side": 1,
+      "message": "got confirmBeforeUse \u003d\u003d false \n\n(it\u0027s boolean, so no point in using %v)",
+      "range": {
+        "startLine": 231,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 22
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc33b02d_3fa6f534",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T09:06:46Z",
+      "side": 1,
+      "message": "can you save the msgs in l.237 and then do deepequal on the whole array ?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 0
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
