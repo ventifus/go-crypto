@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9f4b4360_c2ac6c7c",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T09:59:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb5304d2_d570192f",
+      "range": {
+        "startLine": 178,
+        "startChar": 63,
+        "endLine": 178,
+        "endChar": 65
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "043ca03c_34a14857",
         "filename": "ssh/agent/server_test.go",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d465830c_a2e3515b",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T09:59:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "043ca03c_34a14857",
+      "range": {
+        "startLine": 219,
+        "startChar": 12,
+        "endLine": 219,
+        "endChar": 13
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2edc20f6_4ba1a606",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T09:59:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "074d118b_9e2d5f1b",
+      "range": {
+        "startLine": 222,
+        "startChar": 19,
+        "endLine": 222,
+        "endChar": 27
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "543a1ae8_884f31b8",
         "filename": "ssh/agent/server_test.go",
         "patchSetId": 6
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "aad0c220_de192d7e",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T09:59:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "543a1ae8_884f31b8",
+      "range": {
+        "startLine": 231,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 22
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc33b02d_3fa6f534",
         "filename": "ssh/agent/server_test.go",
         "patchSetId": 6
@@ -105,6 +201,30 @@
       "writtenOn": "2017-07-26T09:06:46Z",
       "side": 1,
       "message": "can you save the msgs in l.237 and then do deepequal on the whole array ?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 0
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35579d4_3fa0dcb9",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 21970
+      },
+      "writtenOn": "2017-07-26T09:59:40Z",
+      "side": 1,
+      "message": "Those msgs have an additional field Rest, deepequal will always return false",
+      "parentUuid": "bc33b02d_3fa6f534",
       "range": {
         "startLine": 255,
         "startChar": 2,
