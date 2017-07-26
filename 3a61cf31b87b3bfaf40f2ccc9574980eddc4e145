@@ -234,6 +234,30 @@
       "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da05be3f_effdf456",
+        "filename": "ssh/agent/server_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-07-26T10:11:17Z",
+      "side": 1,
+      "message": "you could clear out the Rest field and it would still be shorter",
+      "parentUuid": "a35579d4_3fa0dcb9",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 0
+      },
+      "revId": "3a61cf31b87b3bfaf40f2ccc9574980eddc4e145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
