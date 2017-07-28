@@ -22,6 +22,30 @@
       "revId": "67ec62f23eb2c84106349e939dafc3e4a1472f17",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c79e6c_eacca691",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2017-07-28T08:03:52Z",
+      "side": 1,
+      "message": "Ah sorry, ignore this. I was mistakenly thinking about acme/autocert.",
+      "parentUuid": "2c2cc772_34c25278",
+      "range": {
+        "startLine": 299,
+        "startChar": 43,
+        "endLine": 299,
+        "endChar": 79
+      },
+      "revId": "67ec62f23eb2c84106349e939dafc3e4a1472f17",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
