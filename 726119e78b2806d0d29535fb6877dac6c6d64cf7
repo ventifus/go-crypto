@@ -22,6 +22,30 @@
       "revId": "726119e78b2806d0d29535fb6877dac6c6d64cf7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa66c512_8d737e35",
+        "filename": "salsa20/salsa/salsa20_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 22895
+      },
+      "writtenOn": "2017-08-02T14:59:27Z",
+      "side": 1,
+      "message": "Do you mean check len(in) to ensure it has enough space?\nlen(in) is passed to salsa2020XORKeyStream, so I think it won\u0027t write beyond len(in).",
+      "parentUuid": "16dd507e_c909bb76",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "726119e78b2806d0d29535fb6877dac6c6d64cf7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
