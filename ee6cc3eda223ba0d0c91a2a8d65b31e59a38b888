@@ -53,6 +53,23 @@
     },
     {
       "key": {
+        "uuid": "c6a77fff_c827b1d6",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 10030
+      },
+      "writtenOn": "2017-08-02T01:29:16Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "500da0b3_989ce0fb",
         "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
         "patchSetId": 1
@@ -64,6 +81,23 @@
       "writtenOn": "2017-01-27T07:23:43Z",
       "side": 1,
       "message": "You probably want a continue instead of return as a return will skip all the following tests",
+      "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6178891c_e264237f",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 10030
+      },
+      "writtenOn": "2017-08-02T01:29:16Z",
+      "side": 1,
+      "message": "Done",
       "revId": "ee6cc3eda223ba0d0c91a2a8d65b31e59a38b888",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true

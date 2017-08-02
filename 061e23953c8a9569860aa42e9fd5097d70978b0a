@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ee330f5b_c082be7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 10030
+      },
+      "writtenOn": "2017-08-02T01:29:16Z",
+      "side": 1,
+      "message": "Agreed, I think it\u0027s a bug, but just wanted to make sure I wasn\u0027t missing something.",
+      "parentUuid": "1cf31f7c_8d9e02fd",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "061e23953c8a9569860aa42e9fd5097d70978b0a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8211b264_ec4c1341",
         "filename": "openpgp/packet/symmetric_key_encrypted.go",
         "patchSetId": 4
@@ -82,6 +106,30 @@
       "writtenOn": "2017-07-17T22:00:00Z",
       "side": 1,
       "message": "prefer to reduce with De Morgan\u0027s where possible:\n\nif l !\u003d cipherKeySize \u0026\u0026 l%cipherBlockSize !\u003d 0 {\n\nHowever, might be moot given the overall comment about why this test exists at all.",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 51
+      },
+      "revId": "061e23953c8a9569860aa42e9fd5097d70978b0a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69629dce_c60ba84d",
+        "filename": "openpgp/packet/symmetric_key_encrypted.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 10030
+      },
+      "writtenOn": "2017-08-02T01:29:16Z",
+      "side": 1,
+      "message": "Removed this and simplified",
+      "parentUuid": "ff2c0223_f00460c3",
       "range": {
         "startLine": 92,
         "startChar": 4,
@@ -162,6 +210,30 @@
       "revId": "061e23953c8a9569860aa42e9fd5097d70978b0a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "747fd919_7bc249b0",
+        "filename": "openpgp/packet/symmetric_key_encrypted_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 10030
+      },
+      "writtenOn": "2017-08-02T01:29:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a6ef34f2_737f99dd",
+      "range": {
+        "startLine": 85,
+        "startChar": 13,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "061e23953c8a9569860aa42e9fd5097d70978b0a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
