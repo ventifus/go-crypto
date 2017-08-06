@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06139ab8_b8d34c0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-08-06T15:30:05Z",
+      "side": 1,
+      "message": "drop \"x/crypto/\". Just \"ssh: \"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "2edc6afb18f4a3c0ba1f296aa96ace01104574f6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a67766_295ab899",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-08-06T15:30:05Z",
+      "side": 1,
+      "message": "a nil error\n\nBut I would probably say something about how it must return either a non-nil *Permissions or a non-nil error too.\n\nI\u0027ll leave this to Han-Wen.",
+      "range": {
+        "startLine": 70,
+        "startChar": 59,
+        "endLine": 70,
+        "endChar": 68
+      },
+      "revId": "2edc6afb18f4a3c0ba1f296aa96ace01104574f6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
