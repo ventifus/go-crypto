@@ -16,6 +16,24 @@
       "revId": "bae03120dd46ea772fb2a409421fa6afd76b7d4f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52141a8e_bd348278",
+        "filename": "ssh/buffer.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2017-08-18T13:29:07Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure I understand your comment, but this intention of this CL is exactly to remove the error return because none of the users of this function use the return value.",
+      "parentUuid": "230a6f2c_40660df9",
+      "revId": "bae03120dd46ea772fb2a409421fa6afd76b7d4f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
