@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd2fee8f_2545ee3c",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2017-08-19T02:06:23Z",
+      "side": 1,
+      "message": "s/KiB/KB/. There\u0027s no difference for this purpose anyway, and we haven\u0027t used the i forms elsewhere in Go docs.",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5643c5c1_753c124c",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2017-08-19T02:06:23Z",
+      "side": 1,
+      "message": "KB",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "821624d2_2a2f1926",
+        "filename": "nacl/secretbox/secretbox.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2017-08-19T02:06:23Z",
+      "side": 1,
+      "message": "KB",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a6f9134_7447b58b",
+        "filename": "nacl/secretbox/secretbox.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2017-08-19T02:06:23Z",
+      "side": 1,
+      "message": "KB",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
