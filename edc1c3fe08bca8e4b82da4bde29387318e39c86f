@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7a2cc27_22e600c8",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-23T00:26:22Z",
+      "side": 1,
+      "message": "continuation?",
+      "range": {
+        "startLine": 115,
+        "startChar": 10,
+        "endLine": 115,
+        "endChar": 15
+      },
+      "revId": "edc1c3fe08bca8e4b82da4bde29387318e39c86f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
