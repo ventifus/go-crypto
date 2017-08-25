@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d70d4a9_f5458f80",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "irrelevant",
+      "range": {
+        "startLine": 559,
+        "startChar": 64,
+        "endLine": 559,
+        "endChar": 74
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7659d99c_f04d4293",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "That should be moot if we provide SkipOptionalASN1, no?",
+      "range": {
+        "startLine": 559,
+        "startChar": 29,
+        "endLine": 560,
+        "endChar": 23
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bfcbe8a_de594e6a",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "This looks weird. If out \u003d\u003d nil, shouldn\u0027t it at least s.Skip(int(length))? Otherwise s.readASN1(nil, ...) doesn\u0027t modify s at all.",
+      "range": {
+        "startLine": 731,
+        "startChar": 4,
+        "endLine": 731,
+        "endChar": 14
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5171450_3b7ea4ae",
+        "filename": "cryptobyte/asn1/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "(I initially had doubts about the style guide compatibility of all-caps names, but there is plenty of precedent for adopted names https://golang.org/pkg/syscall/#pkg-constants.)",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 8
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33becee7_94f10fbc",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "\"or, if \u0027fixed\u0027, ...\"?  \n\n\"or are \u0027fixed\u0027, i.e. they ...\"?",
+      "range": {
+        "startLine": 13,
+        "startChar": 47,
+        "endLine": 13,
+        "endChar": 61
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "328ec449_c8ede0ad",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "comma?",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7e2c2fb_6996491d",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-08-25T23:59:01Z",
+      "side": 1,
+      "message": "Perhaps this should be \"Err\", so we could possibly make BuildError implement the error interface if needed?",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 6
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
