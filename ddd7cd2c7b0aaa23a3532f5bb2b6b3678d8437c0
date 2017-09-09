@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c718938e_27fea2a2",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:47:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd2fee8f_2545ee3c",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5643c5c1_753c124c",
         "filename": "nacl/box/box.go",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "013f9c41_89981827",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:47:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5643c5c1_753c124c",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d716fe9d_7503bce2",
+        "filename": "nacl/secretbox/secretbox.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:47:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "821624d2_2a2f1926",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a6f9134_7447b58b",
         "filename": "nacl/secretbox/secretbox.go",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fea3bcb_248f0158",
+        "filename": "nacl/secretbox/secretbox.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:47:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a6f9134_7447b58b",
+      "revId": "ddd7cd2c7b0aaa23a3532f5bb2b6b3678d8437c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
