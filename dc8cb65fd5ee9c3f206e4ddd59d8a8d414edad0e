@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "75630431_7e7dcf52",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d70d4a9_f5458f80",
+      "range": {
+        "startLine": 559,
+        "startChar": 64,
+        "endLine": 559,
+        "endChar": 74
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7659d99c_f04d4293",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "94eb65be_fd36ec2d",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Yep, thanks. Went back and forth on nil pointer vs Skip a few times and I think I prefer Skip. However, I didn\u0027t undo all the changes fully.",
+      "parentUuid": "7659d99c_f04d4293",
+      "range": {
+        "startLine": 559,
+        "startChar": 29,
+        "endLine": 560,
+        "endChar": 23
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6bfcbe8a_de594e6a",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-08-25T23:59:01Z",
       "side": 1,
       "message": "This looks weird. If out \u003d\u003d nil, shouldn\u0027t it at least s.Skip(int(length))? Otherwise s.readASN1(nil, ...) doesn\u0027t modify s at all.",
+      "range": {
+        "startLine": 731,
+        "startChar": 4,
+        "endLine": 731,
+        "endChar": 14
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae0b1dd_3cde2604",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Done. (No longer needed without support for a nil output.)",
+      "parentUuid": "6bfcbe8a_de594e6a",
       "range": {
         "startLine": 731,
         "startChar": 4,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "81e1276c_d388596b",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33becee7_94f10fbc",
+      "range": {
+        "startLine": 13,
+        "startChar": 47,
+        "endLine": 13,
+        "endChar": 61
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "328ec449_c8ede0ad",
         "filename": "cryptobyte/builder.go",
         "patchSetId": 2
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "5618ede0_b32e34cf",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "328ec449_c8ede0ad",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7e2c2fb_6996491d",
         "filename": "cryptobyte/builder.go",
         "patchSetId": 2
@@ -160,6 +280,30 @@
       "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2e4ef07_32341775",
+        "filename": "cryptobyte/builder.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-09T20:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7e2c2fb_6996491d",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 6
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
