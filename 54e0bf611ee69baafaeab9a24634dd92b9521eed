@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59e3ac54_c73a9cec",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-09-11T21:17:09Z",
+      "side": 1,
+      "message": "out should never be nil, right?",
+      "range": {
+        "startLine": 565,
+        "startChar": 4,
+        "endLine": 565,
+        "endChar": 14
+      },
+      "revId": "54e0bf611ee69baafaeab9a24634dd92b9521eed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ebf5042_831805bb",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-09-11T21:17:09Z",
+      "side": 1,
+      "message": "And here, out should never be nil.",
+      "range": {
+        "startLine": 730,
+        "startChar": 18,
+        "endLine": 730,
+        "endChar": 32
+      },
+      "revId": "54e0bf611ee69baafaeab9a24634dd92b9521eed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

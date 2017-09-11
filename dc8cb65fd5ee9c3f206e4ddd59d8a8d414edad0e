@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "64a90457_91bddec9",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 16331
+      },
+      "writtenOn": "2017-09-11T21:17:09Z",
+      "side": 1,
+      "message": "I like Skip better, too.",
+      "parentUuid": "94eb65be_fd36ec2d",
+      "range": {
+        "startLine": 559,
+        "startChar": 29,
+        "endLine": 560,
+        "endChar": 23
+      },
+      "revId": "dc8cb65fd5ee9c3f206e4ddd59d8a8d414edad0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bfcbe8a_de594e6a",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 2
