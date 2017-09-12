@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a822e8bb_6f5f6ae8",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-12T17:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59e3ac54_c73a9cec",
+      "range": {
+        "startLine": 565,
+        "startChar": 4,
+        "endLine": 565,
+        "endChar": 14
+      },
+      "revId": "54e0bf611ee69baafaeab9a24634dd92b9521eed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ebf5042_831805bb",
         "filename": "cryptobyte/asn1.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "54e0bf611ee69baafaeab9a24634dd92b9521eed",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c55f3177_93f04432",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-09-12T17:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ebf5042_831805bb",
+      "range": {
+        "startLine": 730,
+        "startChar": 18,
+        "endLine": 730,
+        "endChar": 32
+      },
+      "revId": "54e0bf611ee69baafaeab9a24634dd92b9521eed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
