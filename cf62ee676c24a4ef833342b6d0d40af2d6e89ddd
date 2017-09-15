@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "840736b7_21e94c0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5040
+      },
+      "writtenOn": "2017-09-15T22:49:36Z",
+      "side": 1,
+      "message": "I\u0027d simple say:\n\ndoc: reword the godoc to be more human readable",
+      "revId": "cf62ee676c24a4ef833342b6d0d40af2d6e89ddd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f65031eb_8c69e4c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5040
+      },
+      "writtenOn": "2017-09-15T22:49:36Z",
+      "side": 1,
+      "message": "You can remove the description.",
+      "revId": "cf62ee676c24a4ef833342b6d0d40af2d6e89ddd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
