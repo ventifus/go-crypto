@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "3878aefe_e29a03c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5076
+      },
+      "writtenOn": "2017-09-16T01:19:53Z",
+      "side": 1,
+      "message": "s/doc/acme\n\nthe first line in cl description helps to construct dashboard stuff such as https://dev.golang.org, and wrong lines perhaps might lead dashboard users confusion.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "cf62ee676c24a4ef833342b6d0d40af2d6e89ddd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f65031eb_8c69e4c1",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
