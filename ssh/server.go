@@ -95,6 +95,10 @@ type ServerConfig struct {
 	// Note that RFC 4253 section 4.2 requires that this string start with
 	// "SSH-2.0-".
 	ServerVersion string
+
+	// Banner, if present, is sent to the client after servicing the
+	// ssh-connection request but before authenticating
+	Banner string
 }
 
 // AddHostKey adds a private key as a host key. If an existing host
@@ -340,6 +344,15 @@ userAuthLoop:
 
 		if userAuthReq.Service != serviceSSH {
 			return nil, errors.New("ssh: client attempted to negotiate for unknown service: " + userAuthReq.Service)
+		}
+
+		if authFailures == 0 && config.Banner != "" {
+			bannerMsg := &userAuthBannerMsg{
+				Banner: config.Banner,
+			}
+			if err := s.transport.writePacket(Marshal(bannerMsg)); err != nil {
+				return nil, err
+			}
 		}
 
 		s.user = userAuthReq.User
