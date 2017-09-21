@@ -78,6 +78,8 @@ type handshakeTransport struct {
 	dialAddress     string
 	remoteAddr      net.Addr
 
+	bannerCallback BannerCallback
+
 	// Algorithms agreed in the last key exchange.
 	algorithms *algorithms
 
@@ -120,6 +122,7 @@ func newClientTransport(conn keyingTransport, clientVersion, serverVersion []byt
 	t.dialAddress = dialAddr
 	t.remoteAddr = addr
 	t.hostKeyCallback = config.HostKeyCallback
+	t.bannerCallback = config.BannerCallback
 	if config.HostKeyAlgorithms != nil {
 		t.hostKeyAlgorithms = config.HostKeyAlgorithms
 	} else {
