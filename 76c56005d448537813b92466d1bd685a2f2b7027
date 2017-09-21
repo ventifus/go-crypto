@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78e625f0_88c3dc3a",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 24882
+      },
+      "writtenOn": "2017-09-21T19:07:57Z",
+      "side": 1,
+      "message": "If this is a static string, it is not possible to send a customized message to the client, because ServerConfig need to be constructed before the handshake (ssh.NewServerConn(nConn, serverConfig))",
+      "range": {
+        "startLine": 101,
+        "startChar": 1,
+        "endLine": 102,
+        "endChar": 1
+      },
+      "revId": "76c56005d448537813b92466d1bd685a2f2b7027",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
