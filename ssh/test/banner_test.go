@@ -1,0 +1,42 @@
+// Copyright 2014 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// +build darwin dragonfly freebsd linux netbsd openbsd
+package test
+
+import (
+	"testing"
+
+)
+
+func TestBannerCallbackAgainstOpenSSH(t *testing.T) {
+	server := newServer(t)
+	defer server.Shutdown()
+
+	clientConf := clientConfig()
+
+	var receivedBanner string
+	clientConf.BannerCallback = func(message string) error {
+		receivedBanner = message
+		return nil
+	}
+
+	conn := server.Dial(clientConf)
+	defer conn.Close()
+
+	session, err := conn.NewSession()
+	if err != nil {
+		t.Fatalf("session failed: %v", err)
+	}
+	defer session.Close()
+
+	if receivedBanner == "" && err != nil {
+		t.Fatal(err)
+	}
+
+	expected := "Hello World"
+	if receivedBanner != expected {
+		t.Fatalf("got %v; want %v", receivedBanner, expected)
+	}
+}
