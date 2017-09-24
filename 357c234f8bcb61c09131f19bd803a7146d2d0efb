@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8b72151_c04fe57a",
+        "filename": "ssh/messages.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 24882
+      },
+      "writtenOn": "2017-09-24T14:42:30Z",
+      "side": 1,
+      "message": "In RFC 4252 this is called Message.",
+      "range": {
+        "startLine": 143,
+        "startChar": 1,
+        "endLine": 143,
+        "endChar": 7
+      },
+      "revId": "357c234f8bcb61c09131f19bd803a7146d2d0efb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98c26885_5e60119d",
+        "filename": "ssh/messages.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 24882
+      },
+      "writtenOn": "2017-09-24T14:42:30Z",
+      "side": 1,
+      "message": "And this is LanguageTag. I think it worth keeping those names, so if somebody looking the code, can find it easier in the RFC what is what.",
+      "range": {
+        "startLine": 144,
+        "startChar": 1,
+        "endLine": 144,
+        "endChar": 9
+      },
+      "revId": "357c234f8bcb61c09131f19bd803a7146d2d0efb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
