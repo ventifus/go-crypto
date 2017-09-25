@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75a399a8_26e1fce6",
+        "filename": "ssh/certs.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-09-25T09:49:54Z",
+      "side": 1,
+      "message": "the doc string is a little unclear. How about: \n\n   SignCert has the authority sign the certificate, setting the Nonce, SignatureKey and Signature fields\n\n(nonces are always random, so no need to call that out.)",
+      "range": {
+        "startLine": 398,
+        "startChar": 2,
+        "endLine": 399,
+        "endChar": 77
+      },
+      "revId": "e22c9c864a2ffcebbd91611f137ce95195a567d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
