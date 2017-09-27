@@ -23,6 +23,7 @@ func ExampleNewListener() {
 
 func ExampleManager() {
 	m := autocert.Manager{
+		Cache:      DirCache("secret-dir"),
 		Prompt:     autocert.AcceptTOS,
 		HostPolicy: autocert.HostWhitelist("example.org"),
 	}
