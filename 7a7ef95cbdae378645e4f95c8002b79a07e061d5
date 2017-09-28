@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "3dc70e48_5f5e9254",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-09-28T16:18:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e57980_49919eff",
+      "range": {
+        "startLine": 100,
+        "startChar": 47,
+        "endLine": 100,
+        "endChar": 75
+      },
+      "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eed66145_345ca394",
         "filename": "ssh/server.go",
         "patchSetId": 3
