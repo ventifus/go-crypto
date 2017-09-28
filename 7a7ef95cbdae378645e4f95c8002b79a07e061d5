@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "acadd5ba_e2564cc6",
+        "filename": "ssh/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-09-28T16:16:35Z",
+      "side": 1,
+      "message": "So, as far as I can tell, OpenSSH (which can be considered the reference implementation IMHO), is not using it.\nSee user_auth_banner at https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/auth2.c?rev\u003d1.143\u0026content-type\u003dtext/x-cvsweb-markup for server implementation and input_userauth_banner at https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/sshconnect2.c?rev\u003d1.266\u0026content-type\u003dtext/x-cvsweb-markup for client.\nAnd I only found two SSH server implementations supporting the language tag for banners: https://github.com/apache/mina-sshd/blob/9dbe5fe084b4e7cbfef62371f881f6c65f26f17b/sshd-core/src/main/java/org/apache/sshd/server/session/ServerUserAuthService.java#L390 and https://github.com/paramiko/paramiko/blob/b27b82c0ba10001d9f67eb7365e1bdc16a19e048/paramiko/auth_handler.py#L239\n\nSo I guess we can drop it.",
+      "parentUuid": "241219ae_d1c8c95f",
+      "range": {
+        "startLine": 194,
+        "startChar": 34,
+        "endLine": 194,
+        "endChar": 42
+      },
+      "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5e03bfd_7bfe44f5",
         "filename": "ssh/server.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37e57980_49919eff",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-09-28T16:16:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f5e03bfd_7bfe44f5",
+      "range": {
+        "startLine": 100,
+        "startChar": 47,
+        "endLine": 100,
+        "endChar": 75
+      },
+      "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
