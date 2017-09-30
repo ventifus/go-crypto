@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46289736_c9c422da",
+        "filename": "scrypt/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-09-30T17:42:40Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "34d0413e1bf9c8d5ccc42391da5c92d16c595f74",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
