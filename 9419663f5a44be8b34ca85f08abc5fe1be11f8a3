@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5014eb9a_bd5b93ce",
+        "filename": "scrypt/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-09-30T18:51:39Z",
+      "side": 1,
+      "message": "Good, I see you added the blank line before submitting. :)",
+      "revId": "9419663f5a44be8b34ca85f08abc5fe1be11f8a3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
