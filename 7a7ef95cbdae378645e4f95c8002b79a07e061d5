@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "2fa97306_943d82f2",
+        "filename": "ssh/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-10-04T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab9bd9ef_ab1ce8d9",
+      "range": {
+        "startLine": 194,
+        "startChar": 34,
+        "endLine": 194,
+        "endChar": 42
+      },
+      "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5e03bfd_7bfe44f5",
         "filename": "ssh/server.go",
         "patchSetId": 3
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "eed66145_345ca394",
+      "range": {
+        "startLine": 102,
+        "startChar": 49,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "7a7ef95cbdae378645e4f95c8002b79a07e061d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ff3999f_ad626ca9",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-10-04T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9b59857_a911fd69",
       "range": {
         "startLine": 102,
         "startChar": 49,
