@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f95b123c_dded8377",
+        "filename": "ssh/client.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-10-09T11:52:14Z",
+      "side": 1,
+      "message": "function",
+      "range": {
+        "startLine": 219,
+        "startChar": 29,
+        "endLine": 219,
+        "endChar": 38
+      },
+      "revId": "0fd66284549a6437ca0af8dc2f680e3b7f5493e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13b15d08_d37af957",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-10-09T11:52:14Z",
+      "side": 1,
+      "message": "\u0027ok\u0027 is the customary name for this.",
+      "range": {
+        "startLine": 353,
+        "startChar": 12,
+        "endLine": 353,
+        "endChar": 32
+      },
+      "revId": "0fd66284549a6437ca0af8dc2f680e3b7f5493e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f75391d_18161002",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-10-09T11:52:14Z",
+      "side": 1,
+      "message": "add comment. This is only set for the client, right?",
+      "range": {
+        "startLine": 81,
+        "startChar": 1,
+        "endLine": 81,
+        "endChar": 15
+      },
+      "revId": "0fd66284549a6437ca0af8dc2f680e3b7f5493e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
