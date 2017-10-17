@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d662f0c2_1afd03cc",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-10-17T20:34:49Z",
+      "side": 1,
+      "message": "// The Subject Common Name is set to the first SAN to aid debugging.",
+      "range": {
+        "startLine": 998,
+        "startChar": 7,
+        "endLine": 998,
+        "endChar": 91
+      },
+      "revId": "e2143f3cbf28d486d69e61e471bb2d7d4f275198",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18ed4ca4_f215d07f",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-10-17T20:34:49Z",
+      "side": 1,
+      "message": "might as well:\n\nif cn :\u003d cert.Subject.CommonName; cn !\u003d sanA {\n  t.Errorf(\"CommonName \u003d %q; want %q\", cn, sanA)\n}",
+      "revId": "e2143f3cbf28d486d69e61e471bb2d7d4f275198",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
