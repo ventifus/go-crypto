@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d15ef321_ec8e7a24",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-10-19T16:46:04Z",
+      "side": 1,
+      "message": "Actually this is a bad use of iota.\n\niota should not be used when the numbers must have explicit values as expected by others (e.g. RFC 5280)\n\nThe RFC says:\n\n\n   CRLReason ::\u003d ENUMERATED {\n        unspecified             (0),\n        keyCompromise           (1),\n        cACompromise            (2),\n        affiliationChanged      (3),\n        superseded              (4),\n        cessationOfOperation    (5),\n        certificateHold         (6),\n             -- value 7 is not used\n        removeFromCRL           (8),\n        privilegeWithdrawn      (9),\n        aACompromise           (10) }\n\n\nSo, please replace iota here with explicit numbers.",
+      "range": {
+        "startLine": 297,
+        "startChar": 1,
+        "endLine": 308,
+        "endChar": 13
+      },
+      "revId": "e526b81f3b064ae4ab18ab10fe136f7f44eaa221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
