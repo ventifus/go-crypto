@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3d81af7c_2bc865f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-10-19T16:46:22Z",
+      "side": 1,
+      "message": "drop the \"x/crypto/\" prefix. Just \"ocsp: \"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "e526b81f3b064ae4ab18ab10fe136f7f44eaa221",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d15ef321_ec8e7a24",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 1
