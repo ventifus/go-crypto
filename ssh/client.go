@@ -173,7 +173,11 @@ func Dial(network, addr string, config *ClientConfig) (*Client, error) {
 	if err != nil {
 		return nil, err
 	}
+	if config.Timeout > 0 {
+		conn.SetDeadline(time.Now().Add(config.Timeout))
+	}
 	c, chans, reqs, err := NewClientConn(conn, addr, config)
+	conn.SetDeadline(time.Time{})
 	if err != nil {
 		return nil, err
 	}
