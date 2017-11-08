@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a90a4161_a726c601",
+        "filename": "ssh/test/banner_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-11-08T10:05:15Z",
+      "side": 1,
+      "message": "there is existing infrastructure for running tests. Cant you simply add a banner to the default configuration?",
+      "revId": "1e497758d3fd0061cdc6bfec31e14b8ff2481272",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
