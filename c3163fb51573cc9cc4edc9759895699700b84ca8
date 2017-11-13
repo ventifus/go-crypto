@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6a613a38_13d3af32",
+        "filename": "ssh/test/banner_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-11-13T21:03:25Z",
+      "side": 1,
+      "message": "indeed, fixed.",
+      "parentUuid": "99b0aa89_2d2c0a5b",
+      "range": {
+        "startLine": 28,
+        "startChar": 22,
+        "endLine": 28,
+        "endChar": 32
+      },
+      "revId": "c3163fb51573cc9cc4edc9759895699700b84ca8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69d5a8f5_3403fa8d",
         "filename": "ssh/test/test_unix_test.go",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "c3163fb51573cc9cc4edc9759895699700b84ca8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689e3dde_7c46aff0",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-11-13T21:03:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69d5a8f5_3403fa8d",
+      "range": {
+        "startLine": 260,
+        "startChar": 49,
+        "endLine": 260,
+        "endChar": 60
+      },
+      "revId": "c3163fb51573cc9cc4edc9759895699700b84ca8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
