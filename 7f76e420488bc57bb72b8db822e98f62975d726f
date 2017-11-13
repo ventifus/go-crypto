@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a98b86de_9237727e",
+        "filename": "ssh/test/banner_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-11-13T21:15:00Z",
+      "side": 1,
+      "message": "https://storage.googleapis.com/go-build-log/7f88d3c1/linux-amd64_d848f644.log\n\n\n# golang.org/x/crypto/ssh/test\n../../gopath/src/golang.org/x/crypto/ssh/test/banner_test.go:5: +build comment must appear before package clause and be followed by a blank line",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 9
+      },
+      "revId": "7f76e420488bc57bb72b8db822e98f62975d726f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
