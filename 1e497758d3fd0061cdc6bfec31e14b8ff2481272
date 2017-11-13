@@ -16,6 +16,24 @@
       "revId": "1e497758d3fd0061cdc6bfec31e14b8ff2481272",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c0837e3_45e06646",
+        "filename": "ssh/test/banner_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 23797
+      },
+      "writtenOn": "2017-11-13T20:58:25Z",
+      "side": 1,
+      "message": "Sorry for the delay, I\u0027ve been AFK lately.\n\nOh god I didn\u0027t spot this infrastructure, thanks for pointing it out.\nI just pushed an update on this matter.",
+      "parentUuid": "a90a4161_a726c601",
+      "revId": "1e497758d3fd0061cdc6bfec31e14b8ff2481272",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
