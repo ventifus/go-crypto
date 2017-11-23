@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74fca52b_ba8bbbbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2017-11-23T06:33:33Z",
+      "side": 1,
+      "message": "Maybe say:\n\nssh/terminal: handle non-ASCII characters when reading passwords\n\nReadPassword uses Windows ReadFile to read from console handle.\nBut ReadFile does not split input into UTF-8 characters, so ReadFile\nonly works when input is ASCII. Use os.File instead of Windows\nReadFile, because os.File reads console and parses it into UTF-8.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "ba8a4773d1044dc7ebb7a685aae6fb1e00eee4bd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b413d5af_ab06b501",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2017-11-23T06:33:33Z",
+      "side": 1,
+      "message": "s/fixes/Fixes/",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 5
+      },
+      "revId": "ba8a4773d1044dc7ebb7a685aae6fb1e00eee4bd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "090a40e3_efc610be",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2017-11-23T06:33:33Z",
+      "side": 1,
+      "message": "Maybe\n\ns/sysfile/stdin/\n\nto help debugging later.",
+      "range": {
+        "startLine": 96,
+        "startChar": 50,
+        "endLine": 96,
+        "endChar": 58
+      },
+      "revId": "ba8a4773d1044dc7ebb7a685aae6fb1e00eee4bd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
