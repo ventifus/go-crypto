@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "20ac2a52_ddfee696",
+        "filename": "bn256/bn256.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2017-11-28T17:39:25Z",
+      "side": 1,
+      "message": "Lint warned because the variable representing the struct G1 was \"g\" on some functions and \"e\" on others; I standardized on \"e\" because more functions used it.",
+      "revId": "1ad5751269e86e2fc86c470a72e5cbcc6cf99c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc45bef0_4809b12a",
         "filename": "ssh/keys.go",
         "patchSetId": 1
