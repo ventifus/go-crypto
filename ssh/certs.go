@@ -343,7 +343,7 @@ func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 		return fmt.Errorf("ssh: certicate serial %d revoked", cert.Serial)
 	}
 
-	for opt, _ := range cert.CriticalOptions {
+	for opt := range cert.CriticalOptions {
 		// sourceAddressCriticalOption will be enforced by
 		// serverAuthenticate
 		if opt == sourceAddressCriticalOption {
@@ -432,8 +432,8 @@ func certToPrivAlgo(algo string) string {
 	panic("unknown cert algorithm")
 }
 
-func (cert *Certificate) bytesForSigning() []byte {
-	c2 := *cert
+func (c *Certificate) bytesForSigning() []byte {
+	c2 := *c
 	c2.Signature = nil
 	out := c2.Marshal()
 	// Drop trailing signature length.

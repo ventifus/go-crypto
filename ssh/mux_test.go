@@ -154,7 +154,7 @@ func TestMuxChannelOverflow(t *testing.T) {
 	// Send 1 byte.
 	packet := make([]byte, 1+4+4+1)
 	packet[0] = msgChannelData
-	marshalUint32(packet[1:], writer.remoteId)
+	marshalUint32(packet[1:], writer.remoteID)
 	marshalUint32(packet[5:], uint32(1))
 	packet[9] = 42
 
@@ -475,7 +475,7 @@ func TestMuxMaxPacketSize(t *testing.T) {
 	large := make([]byte, a.maxRemotePayload+1)
 	packet := make([]byte, 1+4+4+1+len(large))
 	packet[0] = msgChannelData
-	marshalUint32(packet[1:], a.remoteId)
+	marshalUint32(packet[1:], a.remoteID)
 	marshalUint32(packet[5:], uint32(len(large)))
 	packet[9] = 42
 

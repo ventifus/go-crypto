@@ -83,18 +83,18 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 	return
 }
 
-func (d0 *digest) Sum(in []byte) []byte {
+func (d *digest) Sum(in []byte) []byte {
 	// Make a copy of d0 so that caller can keep writing and summing.
-	d := *d0
+	d1 := *d
 
 	// Padding.  Add a 1 bit and 0 bits until 56 bytes mod 64.
-	tc := d.tc
+	tc := d1.tc
 	var tmp [64]byte
 	tmp[0] = 0x80
 	if tc%64 < 56 {
-		d.Write(tmp[0 : 56-tc%64])
+		d1.Write(tmp[0 : 56-tc%64])
 	} else {
-		d.Write(tmp[0 : 64+56-tc%64])
+		d1.Write(tmp[0 : 64+56-tc%64])
 	}
 
 	// Length in bits.
@@ -102,14 +102,14 @@ func (d0 *digest) Sum(in []byte) []byte {
 	for i := uint(0); i < 8; i++ {
 		tmp[i] = byte(tc >> (8 * i))
 	}
-	d.Write(tmp[0:8])
+	d1.Write(tmp[0:8])
 
-	if d.nx != 0 {
+	if d1.nx != 0 {
 		panic("d.nx != 0")
 	}
 
 	var digest [Size]byte
-	for i, s := range d.s {
+	for i, s := range d1.s {
 		digest[i*4] = byte(s)
 		digest[i*4+1] = byte(s >> 8)
 		digest[i*4+2] = byte(s >> 16)

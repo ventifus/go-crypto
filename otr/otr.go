@@ -324,16 +324,15 @@ func (c *Conversation) Receive(in []byte) (out []byte, encrypted bool, change Se
 				// We win. Retransmit DH commit.
 				toSend = c.encode(c.serializeDHCommit())
 				return
-			} else {
-				// They win. We forget about our DH commit.
-				c.authState = authStateAwaitingRevealSig
-				if err = c.processDHCommit(msg); err != nil {
-					return
-				}
-				c.reset()
-				toSend = c.encode(c.generateDHKey())
+			}
+			// They win. We forget about our DH commit.
+			c.authState = authStateAwaitingRevealSig
+			if err = c.processDHCommit(msg); err != nil {
 				return
 			}
+			c.reset()
+			toSend = c.encode(c.generateDHKey())
+			return
 		case authStateAwaitingRevealSig:
 			if err = c.processDHCommit(msg); err != nil {
 				return
@@ -518,7 +517,7 @@ func (c *Conversation) IsEncrypted() bool {
 	return c.state == stateEncrypted
 }
 
-var fragmentError = errors.New("otr: invalid OTR fragment")
+var errFragment = errors.New("otr: invalid OTR fragment")
 
 // processFragment processes a fragmented OTR message and possibly returns a
 // complete message. Fragmented messages look like "?OTR,k,n,msg," where k is
@@ -528,21 +527,21 @@ func (c *Conversation) processFragment(in []byte) (out []byte, err error) {
 	in = in[len(fragmentPrefix):] // remove "?OTR,"
 	parts := bytes.Split(in, fragmentPartSeparator)
 	if len(parts) != 4 || len(parts[3]) != 0 {
-		return nil, fragmentError
+		return nil, errFragment
 	}
 
 	k, err := strconv.Atoi(string(parts[0]))
 	if err != nil {
-		return nil, fragmentError
+		return nil, errFragment
 	}
 
 	n, err := strconv.Atoi(string(parts[1]))
 	if err != nil {
-		return nil, fragmentError
+		return nil, errFragment
 	}
 
 	if k < 1 || n < 1 || k > n {
-		return nil, fragmentError
+		return nil, errFragment
 	}
 
 	if k == 1 {

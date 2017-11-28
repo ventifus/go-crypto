@@ -14,10 +14,10 @@ func init() {
 	crypto.RegisterHash(crypto.MD4, New)
 }
 
-// The size of an MD4 checksum in bytes.
+// Size is the size of an MD4 checksum in bytes.
 const Size = 16
 
-// The blocksize of MD4 in bytes.
+// BlockSize is the blocksize of MD4 in bytes.
 const BlockSize = 64
 
 const (
@@ -82,19 +82,19 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 	return
 }
 
-func (d0 *digest) Sum(in []byte) []byte {
+func (d *digest) Sum(in []byte) []byte {
 	// Make a copy of d0, so that caller can keep writing and summing.
-	d := new(digest)
-	*d = *d0
+	d1 := new(digest)
+	*d1 = *d
 
 	// Padding.  Add a 1 bit and 0 bits until 56 bytes mod 64.
-	len := d.len
+	len := d1.len
 	var tmp [64]byte
 	tmp[0] = 0x80
 	if len%64 < 56 {
-		d.Write(tmp[0 : 56-len%64])
+		d1.Write(tmp[0 : 56-len%64])
 	} else {
-		d.Write(tmp[0 : 64+56-len%64])
+		d1.Write(tmp[0 : 64+56-len%64])
 	}
 
 	// Length in bits.
@@ -102,13 +102,13 @@ func (d0 *digest) Sum(in []byte) []byte {
 	for i := uint(0); i < 8; i++ {
 		tmp[i] = byte(len >> (8 * i))
 	}
-	d.Write(tmp[0:8])
+	d1.Write(tmp[0:8])
 
-	if d.nx != 0 {
+	if d1.nx != 0 {
 		panic("d.nx != 0")
 	}
 
-	for _, s := range d.s {
+	for _, s := range d1.s {
 		in = append(in, byte(s>>0))
 		in = append(in, byte(s>>8))
 		in = append(in, byte(s>>16))
