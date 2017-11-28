@@ -22,6 +22,30 @@
       "revId": "e8f229864d71a49e5fdc4a9a134c5f85c4c33d64",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae50f6d6_b010e3e8",
+        "filename": "ssh/common.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 13437
+      },
+      "writtenOn": "2017-11-28T21:26:02Z",
+      "side": 0,
+      "message": "Yikes, I missed that; I checked each of the constants and functions in each package, didn\u0027t see any here so assumed that it was fine.\n\nI\u0027m still a little confused since it seems like any attempt to use any of those hashes in a Go program would trigger that same init() line so there\u0027s no harm done, but it\u0027s easiest to revert it for now.",
+      "parentUuid": "5f9f943f_ddab54a2",
+      "range": {
+        "startLine": 13,
+        "startChar": 7,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "e8f229864d71a49e5fdc4a9a134c5f85c4c33d64",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
