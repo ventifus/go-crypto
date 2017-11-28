@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e50df6d_bd42735a",
+        "filename": "bn256/bn256.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-11-28T19:48:08Z",
+      "side": 1,
+      "message": "Update this docstring. (n should be e)",
+      "revId": "e8f229864d71a49e5fdc4a9a134c5f85c4c33d64",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "248d0639_edae8852",
+        "filename": "ssh/channel.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-11-28T19:48:08Z",
+      "side": 1,
+      "message": "ch.writeMu",
+      "revId": "e8f229864d71a49e5fdc4a9a134c5f85c4c33d64",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
