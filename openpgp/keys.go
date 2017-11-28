@@ -325,9 +325,8 @@ func ReadEntity(packets *packet.Reader) (*Entity, error) {
 		if e.PrivateKey, ok = p.(*packet.PrivateKey); !ok {
 			packets.Unread(p)
 			return nil, errors.StructuralError("first packet was not a public/private key")
-		} else {
-			e.PrimaryKey = &e.PrivateKey.PublicKey
 		}
+		e.PrimaryKey = &e.PrivateKey.PublicKey
 	}
 
 	if !e.PrimaryKey.PubKeyAlgo.CanSign() {
@@ -383,9 +382,8 @@ EachPacket:
 				// revocation keys).
 			} else if current == nil {
 				return nil, errors.StructuralError("signature packet found before user id packet")
-			} else {
-				current.Signatures = append(current.Signatures, pkt)
 			}
+			current.Signatures = append(current.Signatures, pkt)
 		case *packet.PrivateKey:
 			if pkt.IsSubkey == false {
 				packets.Unread(p)

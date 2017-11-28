@@ -363,7 +363,7 @@ func (r *rsaPublicKey) CryptoPublicKey() crypto.PublicKey {
 
 type dsaPublicKey dsa.PublicKey
 
-func (r *dsaPublicKey) Type() string {
+func (k *dsaPublicKey) Type() string {
 	return "ssh-dss"
 }
 
@@ -499,7 +499,7 @@ func (key *ecdsaPublicKey) nistID() string {
 
 type ed25519PublicKey ed25519.PublicKey
 
-func (key ed25519PublicKey) Type() string {
+func (k ed25519PublicKey) Type() string {
 	return KeyAlgoED25519
 }
 
@@ -518,23 +518,23 @@ func parseED25519(in []byte) (out PublicKey, rest []byte, err error) {
 	return (ed25519PublicKey)(key), w.Rest, nil
 }
 
-func (key ed25519PublicKey) Marshal() []byte {
+func (k ed25519PublicKey) Marshal() []byte {
 	w := struct {
 		Name     string
 		KeyBytes []byte
 	}{
 		KeyAlgoED25519,
-		[]byte(key),
+		[]byte(k),
 	}
 	return Marshal(&w)
 }
 
-func (key ed25519PublicKey) Verify(b []byte, sig *Signature) error {
-	if sig.Format != key.Type() {
-		return fmt.Errorf("ssh: signature type %s for key type %s", sig.Format, key.Type())
+func (k ed25519PublicKey) Verify(b []byte, sig *Signature) error {
+	if sig.Format != k.Type() {
+		return fmt.Errorf("ssh: signature type %s for key type %s", sig.Format, k.Type())
 	}
 
-	edKey := (ed25519.PublicKey)(key)
+	edKey := (ed25519.PublicKey)(k)
 	if ok := ed25519.Verify(edKey, b, sig.Blob); !ok {
 		return errors.New("ssh: signature did not verify")
 	}
@@ -641,8 +641,8 @@ func (key *ecdsaPublicKey) Verify(data []byte, sig *Signature) error {
 	return errors.New("ssh: signature did not verify")
 }
 
-func (k *ecdsaPublicKey) CryptoPublicKey() crypto.PublicKey {
-	return (*ecdsa.PublicKey)(k)
+func (key *ecdsaPublicKey) CryptoPublicKey() crypto.PublicKey {
+	return (*ecdsa.PublicKey)(key)
 }
 
 // NewSignerFromKey takes an *rsa.PrivateKey, *dsa.PrivateKey,
@@ -758,7 +758,7 @@ func NewPublicKey(key interface{}) (PublicKey, error) {
 		return (*rsaPublicKey)(key), nil
 	case *ecdsa.PublicKey:
 		if !supportedEllipticCurve(key.Curve) {
-			return nil, errors.New("ssh: only P-256, P-384 and P-521 EC keys are supported.")
+			return nil, errors.New("ssh: only P-256, P-384 and P-521 EC keys are supported")
 		}
 		return (*ecdsaPublicKey)(key), nil
 	case *dsa.PublicKey:
