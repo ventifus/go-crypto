@@ -12,6 +12,7 @@ import (
 	"math"
 	"sync"
 
+	// This import calls crypto.RegisterHash for each algorithm.
 	_ "crypto/sha1"
 	_ "crypto/sha256"
 	_ "crypto/sha512"
