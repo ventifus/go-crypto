@@ -62,7 +62,7 @@ func sshPipe() (Conn, *server, error) {
 
 	server := <-done
 	if server == nil {
-		return nil, nil, errors.New("server handshake failed.")
+		return nil, nil, errors.New("server handshake failed")
 	}
 	go DiscardRequests(reqs)
 

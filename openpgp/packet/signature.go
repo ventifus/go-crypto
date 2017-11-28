@@ -433,7 +433,7 @@ func subpacketsLength(subpackets []outputSubpacket, hashed bool) (length int) {
 	for _, subpacket := range subpackets {
 		if subpacket.hashed == hashed {
 			length += subpacketLengthLength(len(subpacket.contents) + 1)
-			length += 1 // type byte
+			length++ // type byte
 			length += len(subpacket.contents)
 		}
 	}

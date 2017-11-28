@@ -287,7 +287,7 @@ func (m *mux) handleChannelOpen(packet []byte) error {
 	}
 
 	c := m.newChannel(msg.ChanType, channelInbound, msg.TypeSpecificData)
-	c.remoteId = msg.PeersID
+	c.remoteID = msg.PeersID
 	c.maxRemotePayload = msg.MaxPacketSize
 	c.remoteWin.add(msg.PeersWindow)
 	m.incomingChannels <- c
@@ -313,7 +313,7 @@ func (m *mux) openChannel(chanType string, extra []byte) (*channel, error) {
 		PeersWindow:      ch.myWindow,
 		MaxPacketSize:    ch.maxIncomingPayload,
 		TypeSpecificData: extra,
-		PeersID:          ch.localId,
+		PeersID:          ch.localID,
 	}
 	if err := m.sendMessage(open); err != nil {
 		return nil, err

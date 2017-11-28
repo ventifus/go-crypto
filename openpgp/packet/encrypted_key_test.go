@@ -78,11 +78,11 @@ func TestDecryptingEncryptedKey(t *testing.T) {
 func TestEncryptingEncryptedKey(t *testing.T) {
 	key := []byte{1, 2, 3, 4}
 	const expectedKeyHex = "01020304"
-	const keyId = 42
+	const keyID = 42
 
 	pub := &PublicKey{
 		PublicKey:  &encryptedKeyPub,
-		KeyId:      keyId,
+		KeyId:      keyID,
 		PubKeyAlgo: PubKeyAlgoRSAEncryptOnly,
 	}
 
