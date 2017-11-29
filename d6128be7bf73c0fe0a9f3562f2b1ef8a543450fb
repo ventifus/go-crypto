@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8529e797_22e4d2ee",
+        "filename": "bn256/bn256.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-11-29T00:05:45Z",
+      "side": 1,
+      "message": "Update this comment.",
+      "revId": "d6128be7bf73c0fe0a9f3562f2b1ef8a543450fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdd7abc3_b522439f",
+        "filename": "md4/md4.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-11-29T00:05:45Z",
+      "side": 1,
+      "message": "I prefer the old version here, with d0. This pattern of naming is also used in the stdlib crypto packages, eg https://github.com/golang/go/blob/master/src/crypto/sha256/sha256.go#L217-L219",
+      "revId": "d6128be7bf73c0fe0a9f3562f2b1ef8a543450fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a59e3b_3719d111",
+        "filename": "ripemd160/ripemd160.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-11-29T00:05:45Z",
+      "side": 1,
+      "message": "Same.",
+      "revId": "d6128be7bf73c0fe0a9f3562f2b1ef8a543450fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
