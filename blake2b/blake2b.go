@@ -125,6 +125,14 @@ func checkSum(sum *[Size]byte, hashSize int, data []byte) {
 	}
 }
 
+var _ = (initAble)(new(digest))
+
+// initAble provides a way to customize the size of the digest.
+// This is required by the Argon2 KDF.
+type initAble interface {
+	Init(int)
+}
+
 type digest struct {
 	h      [8]uint64
 	c      [2]uint64
@@ -139,6 +147,14 @@ type digest struct {
 func (d *digest) BlockSize() int { return BlockSize }
 
 func (d *digest) Size() int { return d.size }
+
+func (d *digest) Init(size int) {
+	if size > Size {
+		panic("blake2b: invalid hash size")
+	}
+	d.size = size
+	d.Reset()
+}
 
 func (d *digest) Reset() {
 	d.h = iv
