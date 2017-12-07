@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06f66535_8778d097",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-07T03:35:46Z",
+      "side": 1,
+      "message": "you can\u0027t call Fatal from other goroutines.\n\nSee https://golang.org/pkg/testing/#T.FailNow\n\nI mean, you can, but it probably doesn\u0027t do what you think.",
+      "revId": "fee8d6d0267e37c4b02db9a02c0609e3cf4ca2f0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
