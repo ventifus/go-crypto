@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99dcb818_0c94e585",
+        "filename": "ssh/certs_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2017-12-12T20:24:53Z",
+      "side": 1,
+      "message": "a lot of these can be slow to generate, no? There are precooked keys under testdata/ ? Can you see if you can use those instead?",
+      "range": {
+        "startLine": 268,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 27
+      },
+      "revId": "8c4f628425d1bafb4ae4252afa6da04dc0a80511",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
