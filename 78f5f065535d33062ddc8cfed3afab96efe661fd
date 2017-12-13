@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "812e4e90_14df352d",
+        "filename": "argon2/blake2b.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-12-13T20:08:03Z",
+      "side": 1,
+      "message": "this seems odd, is this XOF-like use of Blake2 in the Argon spec? If len(out) \u003c 64 then it does a single hash, otherwise it chains blocks of only 32 bytes?\n\nSay that len(out) \u003d\u003d 65. The loop above will run twice and write 64 bytes of hash. This expression will be 33 and, since b2.Sum will want to append 33 bytes to out[:0] on line 52, it might a) write elsewhere and return a new slice or b) write past |out|, surprising the caller.",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "78f5f065535d33062ddc8cfed3afab96efe661fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da30adce_e46b4621",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-12-13T20:08:03Z",
+      "side": 1,
+      "message": "(typo)",
+      "range": {
+        "startLine": 91,
+        "startChar": 59,
+        "endLine": 91,
+        "endChar": 66
+      },
+      "revId": "78f5f065535d33062ddc8cfed3afab96efe661fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
