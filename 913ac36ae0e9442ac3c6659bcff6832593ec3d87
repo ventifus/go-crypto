@@ -22,6 +22,30 @@
       "revId": "913ac36ae0e9442ac3c6659bcff6832593ec3d87",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd69228b_cdbdc9a9",
+        "filename": "pbkdf2/pbkdf2_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2017-12-16T19:21:45Z",
+      "side": 1,
+      "message": "HMAC would be redundant - the pbkdf2 package only supports HMAC.\nSHA would be misleading - benchmark will use any hash function you give it.",
+      "parentUuid": "32a35c1b_54451e2e",
+      "range": {
+        "startLine": 161,
+        "startChar": 5,
+        "endLine": 161,
+        "endChar": 14
+      },
+      "revId": "913ac36ae0e9442ac3c6659bcff6832593ec3d87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
