@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e425d204_91c62fe7",
+        "filename": "argon2/blake2b.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2017-12-18T18:09:33Z",
+      "side": 1,
+      "message": "Ah, sorry. I thought blake2b.Size was 32 because of all the 32-byte chunks here.",
+      "parentUuid": "8cf38393_c1481676",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "78f5f065535d33062ddc8cfed3afab96efe661fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da30adce_e46b4621",
         "filename": "blake2b/blake2b.go",
         "patchSetId": 6
