@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25884f89_9f9ea83a",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fca68e91_29183093",
+      "range": {
+        "startLine": 169,
+        "startChar": 3,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cefb16c3_639c5c26",
         "filename": "ssh/client.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df1a8ddd_6dfa7a18",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cefb16c3_639c5c26",
+      "range": {
+        "startLine": 175,
+        "startChar": 9,
+        "endLine": 175,
+        "endChar": 10
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "254ed29a_6fed3f5e",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cc06ca8_cf992090",
+      "range": {
+        "startLine": 191,
+        "startChar": 74,
+        "endLine": 191,
+        "endChar": 111
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e85d12e6_ecd90b46",
         "filename": "ssh/client.go",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b11c31e7_f716e3dc",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e85d12e6_ecd90b46",
+      "range": {
+        "startLine": 192,
+        "startChar": 77,
+        "endLine": 192,
+        "endChar": 109
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "48739c0a_846eede0",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "this is a little bit problematic. As it\u0027s currently designed, this expects all Dial() methods to have the same signature, but there\u0027s no ssh.Client.DialContext.\n\nI can add that if you think it\u0027d be worthwhile (I suppose it could be worthwhile in its own right).",
+      "parentUuid": "7819bbc8_52345902",
+      "range": {
+        "startLine": 205,
+        "startChar": 15,
+        "endLine": 205,
+        "endChar": 19
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52f35e71_3f993b0d",
         "filename": "ssh/client.go",
         "patchSetId": 1
@@ -160,6 +280,30 @@
       "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "923f9128_2a79b91c",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8905
+      },
+      "writtenOn": "2017-12-19T17:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f35e71_3f993b0d",
+      "range": {
+        "startLine": 210,
+        "startChar": 2,
+        "endLine": 210,
+        "endChar": 26
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
