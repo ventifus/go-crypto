@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"net"
 	"os"
 	"sync"
@@ -162,6 +163,66 @@ func (c *Client) handleChannelOpens(in <-chan NewChannel) {
 	}
 	c.channelHandlers = nil
 	c.mu.Unlock()
+}
+
+// ForwardedClient is a Client that's been forwarded through mulitple hops.
+// It's primary purpose is to keep track of the all the connections that need
+// to be closed when the remote Client is closed.
+type ForwardedClient struct {
+	*Client
+
+	closers []io.Closer
+	mu      *sync.Mutex
+}
+
+// Close closes all connections associated with this ForwardedClient.
+func (fc *ForwardedClient) Close() error {
+	fc.mu.Lock()
+	defer fc.mu.Unlock()
+
+	for _, c := range fc.closers {
+		c.Close()
+	}
+
+	return nil
+}
+
+// DialJumphosts returns a Client connection to the last host in the addresses slice, by connecting
+// to each of the preceding hosts in order. This is equivalent to calling `ssh A -o ProxyCommand=ssh B -W A:22`
+func DialJumphosts(network string, addresses []string, config *ClientConfig) (fc *ForwardedClient, err error) {
+	fc = &ForwardedClient{mu: &sync.Mutex{}}
+
+	defer func() {
+		if err != nil {
+			for _, c := range fc.closers {
+				c.Close()
+			}
+		}
+	}()
+
+	dial := net.Dial
+	for _, host := range addresses {
+		conn, err := dial(network, host)
+		if err != nil {
+			return nil, err
+		}
+
+		fmt.Printf("%s\n", host)
+		sshConn, chans, reqs, err := NewClientConn(conn, host, config)
+		if err != nil {
+			return nil, err
+		}
+
+		fc.Client = NewClient(sshConn, chans, reqs)
+
+		fc.mu.Lock()
+		fc.closers = append(fc.closers, []io.Closer{conn, sshConn, fc.Client}...)
+		fc.mu.Unlock()
+
+		dial = fc.Client.Dial
+	}
+
+	return
 }
 
 // Dial starts a client connection to the given SSH server. It is a
