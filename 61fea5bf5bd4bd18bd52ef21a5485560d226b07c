@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca68e91_29183093",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "wrong spelling of Its",
+      "range": {
+        "startLine": 169,
+        "startChar": 3,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cefb16c3_639c5c26",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "put mutexes before what they guard.\n\nalso, just use a value type here. no need for the pointer.",
+      "range": {
+        "startLine": 175,
+        "startChar": 9,
+        "endLine": 175,
+        "endChar": 10
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cc06ca8_cf992090",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "we don\u0027t use markdown in Go comments. no backticks.",
+      "range": {
+        "startLine": 191,
+        "startChar": 74,
+        "endLine": 191,
+        "endChar": 111
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e85d12e6_ecd90b46",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "don\u0027t name result parameters when they add nothing to the docs.",
+      "range": {
+        "startLine": 192,
+        "startChar": 77,
+        "endLine": 192,
+        "endChar": 109
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6cfff7b_8a210247",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "oh, this is why you wanted to name the return parameter.\n\nin that case I\u0027d just have an internal helper func that had the signature with things named, to keep public docs prettier.",
+      "range": {
+        "startLine": 196,
+        "startChar": 2,
+        "endLine": 196,
+        "endChar": 17
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7819bbc8_52345902",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "if we\u0027re going to add new API to the ssh package, we should probably use *net.Dialer instead, which can use contexts, rather than hard-coding the old net.Dial.",
+      "range": {
+        "startLine": 205,
+        "startChar": 15,
+        "endLine": 205,
+        "endChar": 19
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52f35e71_3f993b0d",
+        "filename": "ssh/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2017-12-19T05:19:06Z",
+      "side": 1,
+      "message": "leftover debug?",
+      "range": {
+        "startLine": 210,
+        "startChar": 2,
+        "endLine": 210,
+        "endChar": 26
+      },
+      "revId": "61fea5bf5bd4bd18bd52ef21a5485560d226b07c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
