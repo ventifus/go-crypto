@@ -47,18 +47,21 @@ func deriveKey(mode int, password, salt, secret, data []byte, time, memory uint3
 		panic("argon2: number of rounds too small")
 	}
 	if threads < 1 {
-		panic("argon2: paralisim degree too low")
+		panic("argon2: parallelism degree too low")
 	}
-	mem := memory / (4 * uint32(threads)) * (4 * uint32(threads))
-	if mem < 8*uint32(threads) {
-		mem = 8 * uint32(threads)
+	mem := memory / (syncPoints * uint32(threads)) * (syncPoints * uint32(threads))
+	if mem < 2*syncPoints*uint32(threads) {
+		mem = 2 * syncPoints * uint32(threads)
 	}
 	B := initBlocks(password, salt, secret, data, time, mem, uint32(threads), keyLen, mode)
 	processBlocks(B, time, mem, uint32(threads), mode)
 	return extractKey(B, mem, uint32(threads), keyLen)
 }
 
-const blockLength = 128
+const (
+	blockLength = 128
+	syncPoints  = 4
+)
 
 type block [blockLength]uint64
 
@@ -113,7 +116,6 @@ func initBlocks(password, salt, key, data []byte, time, memory, threads, keyLen 
 }
 
 func processBlocks(B []block, time, memory, threads uint32, mode int) {
-	const syncPoints = 4
 	lanes := memory / threads
 	segments := lanes / syncPoints
 
@@ -131,7 +133,7 @@ func processBlocks(B []block, time, memory, threads uint32, mode int) {
 		index := uint32(0)
 		if n == 0 && slice == 0 {
 			index = 2 // we have already generated the first two blocks
-			if mode == argon2i || (mode == argon2id && n == 0 && slice < syncPoints/2) {
+			if mode == argon2i || mode == argon2id {
 				in[6]++
 				processBlock(&addresses, &in, &zero)
 				processBlock(&addresses, &addresses, &zero)
@@ -143,7 +145,7 @@ func processBlocks(B []block, time, memory, threads uint32, mode int) {
 		for index < segments {
 			prev := offset - 1
 			if index == 0 && slice == 0 {
-				prev = lane*lanes + lanes - 1 // last block in lane
+				prev += lanes // last block in lane
 			}
 			if mode == argon2i || (mode == argon2id && n == 0 && slice < syncPoints/2) {
 				if index%blockLength == 0 {
@@ -194,8 +196,10 @@ func extractKey(B []block, memory, threads, keyLen uint32) []byte {
 
 func indexAlpha(rand uint64, lanes, segments, threads, n, slice, lane, index uint32) uint32 {
 	refLane := uint32(rand>>32) % threads
-
-	m, s := 3*segments, (slice+1)%4*segments
+	if n == 0 && slice == 0 {
+		refLane = lane
+	}
+	m, s := 3*segments, ((slice+1)%syncPoints)*segments
 	if lane == refLane {
 		m += index
 	}
