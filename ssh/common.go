@@ -24,11 +24,11 @@ const (
 	serviceSSH      = "ssh-connection"
 )
 
-// supportedCiphers specifies the supported ciphers in preference order.
-var supportedCiphers = []string{
+// defaultCiphers specifies the ciphers that will be used if not explicitly
+// set in Config.Ciphers.
+var defaultCiphers = []string{
 	"aes128-ctr", "aes192-ctr", "aes256-ctr",
 	"aes128-gcm@openssh.com",
-	"arcfour256", "arcfour128",
 }
 
 // supportedKexAlgos specifies the supported key-exchange algorithms in
@@ -211,7 +211,7 @@ func (c *Config) SetDefaults() {
 		c.Rand = rand.Reader
 	}
 	if c.Ciphers == nil {
-		c.Ciphers = supportedCiphers
+		c.Ciphers = defaultCiphers
 	}
 	var ciphers []string
 	for _, c := range c.Ciphers {
