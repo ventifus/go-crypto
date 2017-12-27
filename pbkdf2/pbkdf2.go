@@ -21,6 +21,7 @@ package pbkdf2 // import "golang.org/x/crypto/pbkdf2"
 import (
 	"crypto/hmac"
 	"hash"
+	"math/big"
 )
 
 // Key derives a key from the password, salt and iteration count, returning a
@@ -39,7 +40,29 @@ import (
 //
 // Using a higher iteration count will increase the cost of an exhaustive
 // search but will also make derivation proportionally slower.
-func Key(password, salt []byte, iter, keyLen int, h func() hash.Hash) []byte {
+func Key(password, salt []byte, iter int, keyLen int, h func() hash.Hash) []byte {
+	i := big.NewInt(int64(iter))
+	return KeyBigIter(password, salt, i, keyLen, h)
+}
+
+// KeyBigIter derives a key from the password, salt and iteration count
+// (as an arbitrary-precision arithmetic *big.Int), returning a []byte of
+// length keylen that can be used as cryptographic key.
+// The key is derived based on the method described as PBKDF2 with the HMAC
+// variant using the supplied hash function.
+//
+// For example, to use a HMAC-SHA-1 based PBKDF2 key derivation function, you
+// can get a derived key for e.g. AES-256 (which needs a 32-byte key) by
+// doing:
+//
+// 	dk := pbkdf2.Key([]byte("some password"), salt, 4096, 32, sha1.New)
+//
+// Remember to get a good random salt. At least 8 bytes is recommended by the
+// RFC.
+//
+// Using a higher iteration count will increase the cost of an exhaustive
+// search but will also make derivation proportionally slower.
+func KeyBigIter(password, salt []byte, iter *big.Int, keyLen int, h func() hash.Hash) []byte {
 	prf := hmac.New(h, password)
 	hashLen := prf.Size()
 	numBlocks := (keyLen + hashLen - 1) / hashLen
@@ -63,7 +86,10 @@ func Key(password, salt []byte, iter, keyLen int, h func() hash.Hash) []byte {
 		copy(U, T)
 
 		// U_n = PRF(password, U_(n-1))
-		for n := 2; n <= iter; n++ {
+		i := big.NewInt(1)
+		n := big.NewInt(1)
+		for iter.Cmp(n) == 1 {
+			//for n := 2; n <= iter; n++ {
 			prf.Reset()
 			prf.Write(U)
 			U = U[:0]
@@ -71,6 +97,7 @@ func Key(password, salt []byte, iter, keyLen int, h func() hash.Hash) []byte {
 			for x := range U {
 				T[x] ^= U[x]
 			}
+			n.Add(n, i)
 		}
 	}
 	return dk[:keyLen]
