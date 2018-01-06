@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9c5f102_c914219e",
+        "filename": "pbkdf2/pbkdf2.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-06T16:21:55Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m finally looking at the content of your change now. (My first round triage of incoming changes is just for formatting conventions)\n\nI think a *big.Int here is overkill. Why not just an int64?\n\nBut does anybody actually do more than 2 billion iterations? I\u0027m curious about the motivation for this CL.",
+      "range": {
+        "startLine": 65,
+        "startChar": 39,
+        "endLine": 65,
+        "endChar": 52
+      },
+      "revId": "83b1571af009d7fe2772252569410d22727c2905",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
