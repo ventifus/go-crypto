@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b29f24f1_c84bdb5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 25980
+      },
+      "writtenOn": "2018-01-06T16:32:11Z",
+      "side": 1,
+      "message": "This is my first commit so I\u0027m still getting used to the rule. Hopefully I have it right now.",
+      "parentUuid": "5e0e4263_a403b48b",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 70
+      },
+      "revId": "4527366d207f12129f53631f2f51fceef2741b6a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0ede700_023a151b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "4527366d207f12129f53631f2f51fceef2741b6a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f202069_b0bd480d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 25980
+      },
+      "writtenOn": "2018-01-06T16:32:11Z",
+      "side": 1,
+      "message": "I\u0027ve wrapped the description lines to 76 characters",
+      "parentUuid": "b0ede700_023a151b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 110
+      },
+      "revId": "4527366d207f12129f53631f2f51fceef2741b6a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
