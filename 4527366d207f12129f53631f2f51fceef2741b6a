@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e0e4263_a403b48b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-06T15:26:29Z",
+      "side": 1,
+      "message": "sorry, this still isn\u0027t right. You didn\u0027t delete the 5 words I highlighted in the previous round. \n\nThe part after the colon should start with a lowercase verb completing the sentence in the previously linked docs. There\u0027s no verb here.\n\nYou can also remove the period at the end.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 70
+      },
+      "revId": "4527366d207f12129f53631f2f51fceef2741b6a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ede700_023a151b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-06T15:26:29Z",
+      "side": 1,
+      "message": "wrap this under 80 or 76 too, per normal git convention.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 110
+      },
+      "revId": "4527366d207f12129f53631f2f51fceef2741b6a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
