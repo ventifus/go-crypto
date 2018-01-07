@@ -22,6 +22,30 @@
       "revId": "83b1571af009d7fe2772252569410d22727c2905",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00ca70d3_9d9ae331",
+        "filename": "pbkdf2/pbkdf2.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 25980
+      },
+      "writtenOn": "2018-01-07T08:52:30Z",
+      "side": 1,
+      "message": "Perhaps an int64 would be sufficient. What drove this was an RFC that required 4294967296 iterations. This would work fine on a 64bit system with int but would fail on a 32bit system. I was therefore looking to work around this limitation and assumed the big package was a match for this purpose. However I guess that the int64 would work on a 32bit system in this case. As you say there would still be a limit but one that realistically would not be hit. Happy to rework using int64 if you think this is more appropriate...",
+      "parentUuid": "a9c5f102_c914219e",
+      "range": {
+        "startLine": 65,
+        "startChar": 39,
+        "endLine": 65,
+        "endChar": 52
+      },
+      "revId": "83b1571af009d7fe2772252569410d22727c2905",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
