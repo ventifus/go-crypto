@@ -282,6 +282,30 @@
       "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9af6469_6c4c6634",
+        "filename": "ssh/transport_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 26164
+      },
+      "writtenOn": "2018-01-08T20:48:39Z",
+      "side": 1,
+      "message": "After some more thinking, I went with 1) and added in a fakeClient bool in TestClientVersion.\n\nSee what you think. Sorry for the confusion :)",
+      "parentUuid": "280dd820_41718d6e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
