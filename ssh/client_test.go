@@ -32,7 +32,7 @@ func testClientVersion(t *testing.T, config *ClientConfig, expected string) {
 }
 
 func TestCustomClientVersion(t *testing.T) {
-	version := "Test-Client-Version-0.0"
+	version := "SSH-2.0-CustomClientVersionString"
 	testClientVersion(t, &ClientConfig{ClientVersion: version}, version)
 }
 
