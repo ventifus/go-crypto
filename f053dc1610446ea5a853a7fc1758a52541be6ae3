@@ -258,6 +258,30 @@
       "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "280dd820_41718d6e",
+        "filename": "ssh/transport_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 26164
+      },
+      "writtenOn": "2018-01-08T20:05:06Z",
+      "side": 1,
+      "message": "Ok, so to start with, I left the TestClientVersion implementation similar to the original one, but it may not work.\n\nThe client version check in ssh/transport.go exchangeVersions rejects \u0027\\r\u0027 and \u0027\\n\u0027 from the ignored lines until I fixed it (read #2 below).\n\nSo, we\u0027re left with two options:\n1) Revert testClientVersion. Create a new test and don\u0027t call NewClientConn. Instead, take control of the server half and inject \"ignored\\r\\n\" from the server. Otherwise, exchangeVersions will return a client error on \\r or \\n.\n\n2) Leave or tweak this CL\u0027s implementation. I modified exchangeVersions to allow \\r\\n sent within the client version string. The drawback here is that a user could accidentiy put \\r\\n at the end of ClientVersion, which would cause SSH-2.0-Blabla\\r\\n\\r\\n (unless we start adding in TrimSuffix, which is annoying). We also don\u0027t really need to support extra lines on the client side. \n\nI\u0027m guessing you probably want 1), or is there a better way?",
+      "parentUuid": "90847685_a75123fa",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
