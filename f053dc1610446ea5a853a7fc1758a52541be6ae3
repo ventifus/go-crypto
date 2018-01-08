@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a66fa43_812ebe5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T15:42:50Z",
+      "side": 1,
+      "message": "it\u0027s not optional, right? Conforming implementations should support it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 12,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19baac6d_9c039596",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T15:42:50Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc9314f8_bc4901ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T15:42:50Z",
+      "side": 1,
+      "message": "which is guaranteed to fail.",
+      "range": {
+        "startLine": 20,
+        "startChar": 56,
+        "endLine": 21,
+        "endChar": 64
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4811109_f9d27216",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T15:42:50Z",
+      "side": 1,
+      "message": "commit messages usually don\u0027t refer to the author like this.\n\nI think this paragraph can go; the implementation should be obvious for anyone who reads the code.",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff5db70e_f0e49e03",
+        "filename": "ssh/transport_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T15:42:50Z",
+      "side": 1,
+      "message": "it\u0027s good that you unittest this, but I\u0027d also like to see a complete test. \n\nCan you cook up a net.Conn that adds a rogue line before the version string, and verify that one can create a ssh connection like that? That test should fail without your changes.\n\nAlso, this would be a good time to double check that we forbid having \\n and \\r in theversion string that we send ourselves.",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
