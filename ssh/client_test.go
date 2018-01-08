@@ -10,34 +10,62 @@ import (
 	"testing"
 )
 
-func testClientVersion(t *testing.T, config *ClientConfig, expected string) {
-	clientConn, serverConn := net.Pipe()
-	defer clientConn.Close()
-	receivedVersion := make(chan string, 1)
-	config.HostKeyCallback = InsecureIgnoreHostKey()
-	go func() {
-		version, err := readVersion(serverConn)
-		if err != nil {
-			receivedVersion <- ""
-		} else {
-			receivedVersion <- string(version)
-		}
-		serverConn.Close()
-	}()
-	NewClientConn(clientConn, "", config)
-	actual := <-receivedVersion
-	if actual != expected {
-		t.Fatalf("got %s; want %s", actual, expected)
+func TestClientVersion(t *testing.T) {
+	for _, tt := range []struct {
+		version    string
+		expected   string
+		fakeClient bool
+	}{
+		{
+			version:  packageVersion,
+			expected: packageVersion,
+		},
+		{
+			version:  "SSH-2.0-CustomClientVersionString",
+			expected: "SSH-2.0-CustomClientVersionString",
+		},
+		{
+			version:    "ignored\r\n" + packageVersion,
+			expected:   packageVersion,
+			fakeClient: true,
+		},
+		{
+			version:    "ignored\n" + packageVersion,
+			expected:   packageVersion,
+			fakeClient: true,
+		},
+	} {
+		t.Run(tt.version, func(t *testing.T) {
+			clientConn, serverConn := net.Pipe()
+			defer clientConn.Close()
+			receivedVersion := make(chan string, 1)
+			config := &ClientConfig{
+				ClientVersion:   tt.version,
+				HostKeyCallback: InsecureIgnoreHostKey(),
+			}
+			go func() {
+				version, err := readVersion(serverConn)
+				if err != nil {
+					receivedVersion <- err.Error()
+				} else {
+					receivedVersion <- string(version)
+				}
+				serverConn.Close()
+			}()
+			if tt.fakeClient {
+				// To test the handling of multi-line versions, we can't use
+				// NewClientConn since they aren't allowed there. Instead, we
+				// can just send the multi-line version on the conn directly.
+				clientConn.Write([]byte(tt.version + "\r\n"))
+			} else {
+				NewClientConn(clientConn, "", config)
+			}
+			actual := <-receivedVersion
+			if actual != tt.expected {
+				t.Fatalf("got %s; want %s", actual, tt.expected)
+			}
+		})
 	}
-}
-
-func TestCustomClientVersion(t *testing.T) {
-	version := "Test-Client-Version-0.0"
-	testClientVersion(t, &ClientConfig{ClientVersion: version}, version)
-}
-
-func TestDefaultClientVersion(t *testing.T) {
-	testClientVersion(t, &ClientConfig{}, packageVersion)
 }
 
 func TestHostKeyCheck(t *testing.T) {
