@@ -234,6 +234,30 @@
       "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90847685_a75123fa",
+        "filename": "ssh/transport_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-08T17:33:14Z",
+      "side": 1,
+      "message": "yeah, testClientVersion in client_test.go is a good place to start. You could take one of the halves that net.Pipe() returns and do \n\n  c.Write([]byte(\"ignored\\r\\n\"))",
+      "parentUuid": "c3297cb3_b1be4be6",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "f053dc1610446ea5a853a7fc1758a52541be6ae3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
