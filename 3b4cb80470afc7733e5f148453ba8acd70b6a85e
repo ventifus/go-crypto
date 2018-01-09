@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84c8065e_74e8a6c5",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-09T08:30:55Z",
+      "side": 1,
+      "message": "rather than testing the fake code here, can you do\n\nif multiLine {\n  clientConn.WRite(\"ignore\\r\\n\")\n} \nif err :\u003d NewClientConn(clientConn, \"\", config); err !\u003d nil { \n  // check error.\n}\n\nthe server half should just use NewServerConn to test the whole the thing",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "3b4cb80470afc7733e5f148453ba8acd70b6a85e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
