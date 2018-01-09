@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "380c0755_ca46fb1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5340
+      },
+      "writtenOn": "2018-01-09T19:50:01Z",
+      "side": 1,
+      "message": "This doesn’t explain why.",
+      "revId": "eeef762747ca83e644f51671e5c9088d69ae19e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
