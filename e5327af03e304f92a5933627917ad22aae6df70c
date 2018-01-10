@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbac1baf_9026e7ed",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T15:01:15Z",
+      "side": 1,
+      "message": "s/,so it is /are/",
+      "range": {
+        "startLine": 117,
+        "startChar": 16,
+        "endLine": 117,
+        "endChar": 27
+      },
+      "revId": "e5327af03e304f92a5933627917ad22aae6df70c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48e882cd_67ff8f8a",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T15:01:15Z",
+      "side": 1,
+      "message": "\"invest in\" or \"invent\" ?",
+      "revId": "e5327af03e304f92a5933627917ad22aae6df70c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e25ae2_a30ba713",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T15:01:15Z",
+      "side": 1,
+      "message": "move the \u0026 to line 654. Don\u0027t use value types temporarily if they\u0027re just going to become pointers later. Risk of shallow copies.",
+      "range": {
+        "startLine": 660,
+        "startChar": 8,
+        "endLine": 660,
+        "endChar": 10
+      },
+      "revId": "e5327af03e304f92a5933627917ad22aae6df70c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
