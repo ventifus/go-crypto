@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d81cee7_5522b44f",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T14:37:30Z",
+      "side": 1,
+      "message": "end in period here and line 37",
+      "revId": "987252866dd9eb4b51c98d7051af985c5bc33f4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
