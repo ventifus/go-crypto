@@ -22,6 +22,30 @@
       "revId": "3b4cb80470afc7733e5f148453ba8acd70b6a85e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74fd43ea_a5ad2d4d",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 26164
+      },
+      "writtenOn": "2018-01-10T02:12:42Z",
+      "side": 1,
+      "message": "Ah, clever idea. Thanks.\n\nI made multiLine a string so I could do a few more tests / error cases. And I had to use the netPipe wrapper since net.Pipe deadlocks, but at least the documentation was good :)\n\nI just ran the test with -count\u003d100 to make sure it isn\u0027t flaky.",
+      "parentUuid": "84c8065e_74e8a6c5",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "3b4cb80470afc7733e5f148453ba8acd70b6a85e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
