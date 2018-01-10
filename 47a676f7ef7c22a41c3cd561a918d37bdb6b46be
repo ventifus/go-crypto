@@ -22,6 +22,30 @@
       "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "851bcc27_6d32f1c6",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-10T16:39:37Z",
+      "side": 1,
+      "message": "fixed in https://go-review.googlesource.com/c/crypto/+/87196/1/ssh/cipher.go",
+      "parentUuid": "72832258_7f7a59a0",
+      "range": {
+        "startLine": 117,
+        "startChar": 20,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
