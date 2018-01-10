@@ -52,6 +52,24 @@
       "revId": "eeef762747ca83e644f51671e5c9088d69ae19e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f42b2ea_6b8b14d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T14:38:17Z",
+      "side": 1,
+      "message": "There used to be. Lost staffing.",
+      "parentUuid": "2b5c0b79_105dc4c3",
+      "revId": "eeef762747ca83e644f51671e5c9088d69ae19e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
