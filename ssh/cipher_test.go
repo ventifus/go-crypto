@@ -21,6 +21,10 @@ func TestDefaultCiphersExist(t *testing.T) {
 	}
 }
 
+func isAEAD(nm string) bool {
+	return nm == gcmCipherID || nm == chacha20Poly1305ID
+}
+
 func TestPacketCiphers(t *testing.T) {
 	// Still test aes128cbc cipher although it's commented out.
 	cipherModes[aes128cbcID] = &streamCipherMode{16, aes.BlockSize, 0, nil}
@@ -29,7 +33,7 @@ func TestPacketCiphers(t *testing.T) {
 	defaultMac := "hmac-sha2-256"
 	for cipher := range cipherModes {
 		for mac := range macModes {
-			if (cipher == gcmCipherID || cipher == chacha20ID) && mac != defaultMac {
+			if isAEAD(cipher) && mac != defaultMac {
 				continue
 			}
 
