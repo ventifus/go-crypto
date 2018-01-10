@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e650a3bb_ecb40495",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-10T14:44:35Z",
+      "side": 1,
+      "message": "internal/chacha20: move up from chacha20poly1305/internal/chacha20\n\nWill change in Gerrit",
+      "revId": "615a5027d8d108b01cde016cb65e0071760cd445",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
