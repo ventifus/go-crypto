@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6839b45e_84db1a5c",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-11T21:41:53Z",
+      "side": 1,
+      "message": "This is an optimization, we can definitely take it out though. It allows users of the package to cache the AccountURL and avoid an extra round-trip each time they initialize the client, which seemed worth the extra field since many clients will keep track of this URL.",
+      "parentUuid": "68751318_2ebdaed4",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e3efec4_c18fc3dd",
         "filename": "acme/acme.go",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-11T21:30:37Z",
       "side": 1,
       "message": "What if we stored *acme.Account here instead of the individual URLs? Will be easier to manage if the spec changes again adding more account fields, imho.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc3a4230_ec503743",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-11T21:41:53Z",
+      "side": 1,
+      "message": "I originally had it like that, but switched to the individual URLs because it was a bit less clunky without checking for a nil account in a few places. It\u0027s pretty unlikely that any additional URLs will be added to the spec, and not a big deal to change later. I don\u0027t really care either way though.",
+      "parentUuid": "3e3efec4_c18fc3dd",
       "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -104,6 +140,24 @@
     },
     {
       "key": {
+        "uuid": "4879edd6_285ef358",
+        "filename": "acme/integration_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-11T21:41:53Z",
+      "side": 1,
+      "message": "This test is already skipped unless ACME_DIRECTORY_URL is set, happy to add a tag if you\u0027d like that better.",
+      "parentUuid": "ebb85e55_44aa7fa7",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3def94_8951d706",
         "filename": "acme/jws.go",
         "patchSetId": 5
@@ -118,6 +172,24 @@
       "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3461e89a_aef70949",
+        "filename": "acme/jws.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-11T21:41:53Z",
+      "side": 1,
+      "message": "Yeah, I agree. I experimented with using a struct, but it was a bit annoying, though I can see the argument for going back to that.",
+      "parentUuid": "0f3def94_8951d706",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     },
     {
       "key": {
