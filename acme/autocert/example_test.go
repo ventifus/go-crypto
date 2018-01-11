@@ -22,11 +22,28 @@ func ExampleNewListener() {
 }
 
 func ExampleManager() {
-	m := autocert.Manager{
+	m := &autocert.Manager{
 		Cache:      autocert.DirCache("secret-dir"),
 		Prompt:     autocert.AcceptTOS,
 		HostPolicy: autocert.HostWhitelist("example.org"),
 	}
+	s := &http.Server{
+		Addr:      ":https",
+		TLSConfig: &tls.Config{GetCertificate: m.GetCertificate},
+	}
+	s.ListenAndServeTLS("", "")
+}
+
+func ExampleHTTPHandler() {
+	m := &autocert.Manager{
+		Cache:      autocert.DirCache("secret-dir"),
+		Prompt:     autocert.AcceptTOS,
+		HostPolicy: autocert.HostWhitelist("example.org"),
+	}
+	h := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello clear HTTP.")
+	})
+	go http.ListenAndServe(":http", m.HTTPHandler(h))
 	s := &http.Server{
 		Addr:      ":https",
 		TLSConfig: &tls.Config{GetCertificate: m.GetCertificate},

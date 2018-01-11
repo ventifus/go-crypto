@@ -25,6 +25,7 @@ import (
 	"io"
 	mathrand "math/rand"
 	"net/http"
+	"path"
 	"strconv"
 	"strings"
 	"sync"
@@ -150,10 +151,18 @@ type Manager struct {
 	stateMu sync.Mutex
 	state   map[string]*certState // keyed by domain name
 
-	// tokenCert is keyed by token domain name, which matches server name
-	// of ClientHello. Keys always have ".acme.invalid" suffix.
-	tokenCertMu sync.RWMutex
-	tokenCert   map[string]*tls.Certificate
+	// If true, will try "http-01" challenge type in addition to tls-sni-xx
+	// during the domain authorization flow.
+	tryHTTP01 bool
+
+	tokensMu sync.RWMutex // guards certTokens and httpTokens
+	// certTokens is used for tls-sni challenges and keyed by token domain name,
+	// which matches server name of ClientHello.
+	// Keys always have ".acme.invalid" suffix.
+	certTokens map[string]*tls.Certificate
+	// httpTokens is used for http-01 challenges and keyed by the URL path
+	// at which the token value must be provisioned.
+	httpTokens map[string][]byte
 
 	// renewal tracks the set of domains currently running renewal timers.
 	// It is keyed by domain name.
@@ -185,14 +194,16 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 		return nil, errors.New("acme/autocert: server name contains invalid character")
 	}
 
+	// In the worst-case scenario, the timeout needs to account for caching, host policy,
+	// domain ownership verification and certificate issuance.
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 	defer cancel()
 
 	// check whether this is a token cert requested for TLS-SNI challenge
 	if strings.HasSuffix(name, ".acme.invalid") {
-		m.tokenCertMu.RLock()
-		defer m.tokenCertMu.RUnlock()
-		if cert := m.tokenCert[name]; cert != nil {
+		m.tokensMu.RLock()
+		defer m.tokensMu.RUnlock()
+		if cert := m.certTokens[name]; cert != nil {
 			return cert, nil
 		}
 		if cert, err := m.cacheGet(ctx, name); err == nil {
@@ -222,6 +233,45 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	}
 	m.cachePut(ctx, name, cert)
 	return cert, nil
+}
+
+// HTTPHandler configures the Manager to respond to ACME "http-01" challenges.
+// It returns an http.Handler that responds to the challenges and must be
+// running on port 80. If it receives a request that is not an ACME challenge,
+// it delegates the request to the optional fallback handler.
+//
+// The fallback is not protected by the optional HostPolicy.
+// If fallback is nil, the returned handler serves a 404 Not Found response.
+// Because the fallback handler is run with unencrypted port 80 requests,
+// the fallback should not serve TLS-only requests.
+//
+// If HTTPHandler is never called, the Manager will only use TLS SNI
+// challenges for domain verification.
+func (m *Manager) HTTPHandler(fallback http.Handler) http.Handler {
+	m.tryHTTP01 = true
+	if fallback == nil {
+		fallback = http.NotFoundHandler()
+	}
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if !strings.HasPrefix(r.URL.Path, "/.well-known/acme-challenge/") {
+			fallback.ServeHTTP(w, r)
+			return
+		}
+		// A reasonable context timeout for cache and host policy only,
+		// because we don't wait for a new certificate issuance here.
+		ctx, cancel := context.WithTimeout(r.Context(), time.Minute)
+		defer cancel()
+		if err := m.hostPolicy()(ctx, r.Host); err != nil {
+			http.Error(w, err.Error(), http.StatusForbidden)
+			return
+		}
+		data, err := m.httpToken(ctx, r.URL.Path)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusNotFound)
+			return
+		}
+		w.Write(data)
+	})
 }
 
 // cert returns an existing certificate either from m.state or cache.
@@ -475,85 +525,163 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 		return err
 	}
 
-	// start domain authorization and get the challenge
-	authz, err := client.Authorize(ctx, domain)
-	if err != nil {
-		return err
+	// Try to fulfill any of the known challenges, one at a time.
+	challengeTypes := []string{"tls-sni-02", "tls-sni-01"}
+	if m.tryHTTP01 {
+		challengeTypes = append(challengeTypes, "http-01")
 	}
-	// maybe don't need to at all
-	if authz.Status == acme.StatusValid {
-		return nil
-	}
-
-	// pick a challenge: prefer tls-sni-02 over tls-sni-01
-	// TODO: consider authz.Combinations
-	var chal *acme.Challenge
-	for _, c := range authz.Challenges {
-		if c.Type == "tls-sni-02" {
-			chal = c
-			break
+	// Index of the next preferred challenge type.
+	var nextTyp int
+	for {
+		// Start domain authorization and get the challenge.
+		authz, err := client.Authorize(ctx, domain)
+		if err != nil {
+			return err
 		}
-		if c.Type == "tls-sni-01" {
-			chal = c
+		// No point in accepting challenges if the authorization status
+		// is in a final state.
+		switch authz.Status {
+		case acme.StatusValid:
+			return nil // already authorized
+		case acme.StatusInvalid:
+			return fmt.Errorf("acme/autocert: invalid authorization %q", authz.URI)
+		}
+
+		// Pick the next preferred challenge.
+		var chal *acme.Challenge
+		for chal == nil && nextTyp < len(challengeTypes) {
+			chal = pickChallenge(challengeTypes[nextTyp], authz.Challenges)
+			nextTyp++
+		}
+		if chal == nil {
+			return fmt.Errorf("acme/autocert: unable to authorize %q", domain)
+		}
+		cleanup, err := m.fulfill(ctx, client, chal)
+		if err != nil {
+			continue
+		}
+		defer cleanup()
+		if _, err := client.Accept(ctx, chal); err != nil {
+			continue
+		}
+
+		// A challenge is fulfilled and accepted: wait for the CA to validate.
+		if _, err := client.WaitAuthorization(ctx, authz.URI); err == nil {
+			return nil
 		}
 	}
-	if chal == nil {
-		return errors.New("acme/autocert: no supported challenge type found")
-	}
-
-	// create a token cert for the challenge response
-	var (
-		cert tls.Certificate
-		name string
-	)
-	switch chal.Type {
-	case "tls-sni-01":
-		cert, name, err = client.TLSSNI01ChallengeCert(chal.Token)
-	case "tls-sni-02":
-		cert, name, err = client.TLSSNI02ChallengeCert(chal.Token)
-	default:
-		err = fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
-	}
-	if err != nil {
-		return err
-	}
-	m.putTokenCert(ctx, name, &cert)
-	defer func() {
-		// verification has ended at this point
-		// don't need token cert anymore
-		go m.deleteTokenCert(name)
-	}()
-
-	// ready to fulfill the challenge
-	if _, err := client.Accept(ctx, chal); err != nil {
-		return err
-	}
-	// wait for the CA to validate
-	_, err = client.WaitAuthorization(ctx, authz.URI)
-	return err
 }
 
-// putTokenCert stores the cert under the named key in both m.tokenCert map
-// and m.Cache.
-func (m *Manager) putTokenCert(ctx context.Context, name string, cert *tls.Certificate) {
-	m.tokenCertMu.Lock()
-	defer m.tokenCertMu.Unlock()
-	if m.tokenCert == nil {
-		m.tokenCert = make(map[string]*tls.Certificate)
+// fulfill provisions a response to the challenge chal.
+// The cleanup is non-nil only if provisioning succeeded.
+func (m *Manager) fulfill(ctx context.Context, client *acme.Client, chal *acme.Challenge) (cleanup func(), err error) {
+	switch chal.Type {
+	case "tls-sni-01":
+		cert, name, err := client.TLSSNI01ChallengeCert(chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		m.putCertToken(ctx, name, &cert)
+		return func() { go m.deleteCertToken(name) }, nil
+	case "tls-sni-02":
+		cert, name, err := client.TLSSNI02ChallengeCert(chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		m.putCertToken(ctx, name, &cert)
+		return func() { go m.deleteCertToken(name) }, nil
+	case "http-01":
+		resp, err := client.HTTP01ChallengeResponse(chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		p := client.HTTP01ChallengePath(chal.Token)
+		m.putHTTPToken(ctx, p, resp)
+		return func() { go m.deleteHTTPToken(p) }, nil
 	}
-	m.tokenCert[name] = cert
+	return nil, fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
+}
+
+func pickChallenge(typ string, chal []*acme.Challenge) *acme.Challenge {
+	for _, c := range chal {
+		if c.Type == typ {
+			return c
+		}
+	}
+	return nil
+}
+
+// putCertToken stores the cert under the named key in both m.certTokens map
+// and m.Cache.
+func (m *Manager) putCertToken(ctx context.Context, name string, cert *tls.Certificate) {
+	m.tokensMu.Lock()
+	defer m.tokensMu.Unlock()
+	if m.certTokens == nil {
+		m.certTokens = make(map[string]*tls.Certificate)
+	}
+	m.certTokens[name] = cert
 	m.cachePut(ctx, name, cert)
 }
 
-// deleteTokenCert removes the token certificate for the specified domain name
-// from both m.tokenCert map and m.Cache.
-func (m *Manager) deleteTokenCert(name string) {
-	m.tokenCertMu.Lock()
-	defer m.tokenCertMu.Unlock()
-	delete(m.tokenCert, name)
+// deleteCertToken removes the token certificate for the specified domain name
+// from both m.certTokens map and m.Cache.
+func (m *Manager) deleteCertToken(name string) {
+	m.tokensMu.Lock()
+	defer m.tokensMu.Unlock()
+	delete(m.certTokens, name)
 	if m.Cache != nil {
 		m.Cache.Delete(context.Background(), name)
 	}
+}
+
+// httpToken retrieves an existing http-01 token value from an in-memory map
+// or the optional cache.
+func (m *Manager) httpToken(ctx context.Context, tokenPath string) ([]byte, error) {
+	m.tokensMu.RLock()
+	defer m.tokensMu.RUnlock()
+	if v, ok := m.httpTokens[tokenPath]; ok {
+		return v, nil
+	}
+	if m.Cache == nil {
+		return nil, fmt.Errorf("acme/autocert: no token at %q", tokenPath)
+	}
+	return m.Cache.Get(ctx, httpTokenCacheKey(tokenPath))
+}
+
+// putHTTPToken stores an http-01 token value using tokenPath as key
+// in both in-memory map and the optional Cache.
+//
+// It ignores any error returned from Cache.Put.
+func (m *Manager) putHTTPToken(ctx context.Context, tokenPath, val string) {
+	m.tokensMu.Lock()
+	defer m.tokensMu.Unlock()
+	if m.httpTokens == nil {
+		m.httpTokens = make(map[string][]byte)
+	}
+	b := []byte(val)
+	m.httpTokens[tokenPath] = b
+	if m.Cache != nil {
+		m.Cache.Put(ctx, httpTokenCacheKey(tokenPath), b)
+	}
+}
+
+// deleteHTTPToken removes an http-01 token value from both in-memory map
+// and the optional Cache, ignoring any error returned from the latter.
+//
+// If m.Cache is non-nil, it blocks until Cache.Delete returns without a timeout.
+func (m *Manager) deleteHTTPToken(tokenPath string) {
+	m.tokensMu.Lock()
+	defer m.tokensMu.Unlock()
+	delete(m.httpTokens, tokenPath)
+	if m.Cache != nil {
+		m.Cache.Delete(context.Background(), httpTokenCacheKey(tokenPath))
+	}
+}
+
+// httpTokenCacheKey returns a key at which an http-01 token value may be stored
+// in the Manager's optional Cache.
+func httpTokenCacheKey(tokenPath string) string {
+	return "http-01-" + path.Base(tokenPath)
 }
 
 // renew starts a cert renewal timer loop, one per domain.
