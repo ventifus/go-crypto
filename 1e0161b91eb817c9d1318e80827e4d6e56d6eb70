@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68751318_2ebdaed4",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused. Can we remove this field and just always look it up using the key, if the key was specified by the user?",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e3efec4_c18fc3dd",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "What if we stored *acme.Account here instead of the individual URLs? Will be easier to manage if the spec changes again adding more account fields, imho.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f4fdd60_c64b014b",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "It feels like if you inlined c.getOrder in c.GetOrder and then just called c.GetOrder in a loop from within WaitOrder, the body of this method would be simpler to read and also gets rid of the waitFinal arg.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a621af3_7df501b1",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "Maybe add a short comment why this case is empty?",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70425d12_202fd6b9",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "Could this be split into separate methods/funcs for create/update/read?\nI have to admit doReg has always been confusing and I wished I\u0027d made it simpler.\nMaybe move some it in the exported XxxAccount methods?",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebb85e55_44aa7fa7",
+        "filename": "acme/integration_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "Should this file be in some other directory?\nAlso, I would suggest adding a tag here so that the test doesn\u0027t run by default with \"go test\".",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f3def94_8951d706",
+        "filename": "acme/jws.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "It isn\u0027t always obvious what the args are, when this func is called with\n\n    jwsEncodeJSON(x, key, \"\", url, nonce)\n\nor\n\n    jwsEncodeJSON(x, key, accountURL, url, nonce)\n\nbut I haven\u0027t come up with a better alternative.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed4cdde2_1e0688d4",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "Maybe I missed it, but is ErrorSubproblem actually used as error type anywhere?\nIf not, I would remove this and maybe call it just Subproblem.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16fc8ed_6f280073",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "I would call it simply NewOrder and mention what it\u0027s for vs creating one with \u0026Order{...}.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95b419d9_1b4a179f",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T21:30:37Z",
+      "side": 1,
+      "message": "Why pointer? Here and in the other structs.",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
