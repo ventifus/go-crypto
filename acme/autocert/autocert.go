@@ -25,6 +25,7 @@ import (
 	"io"
 	mathrand "math/rand"
 	"net/http"
+	"path"
 	"strconv"
 	"strings"
 	"sync"
@@ -32,6 +33,10 @@ import (
 
 	"golang.org/x/crypto/acme"
 )
+
+// List of challenge types the Manager will try to fulfill
+// during the Authorization flow, in the specified order.
+var challengeTypes = []string{"tls-sni-02", "tls-sni-01", "http-01"}
 
 // createCertRetryAfter is how much time to wait before removing a failed state
 // entry due to an unsuccessful createCert call.
@@ -155,6 +160,9 @@ type Manager struct {
 	tokenCertMu sync.RWMutex
 	tokenCert   map[string]*tls.Certificate
 
+	httpTokensMu sync.RWMutex
+	httpTokens   map[string][]byte
+
 	// renewal tracks the set of domains currently running renewal timers.
 	// It is keyed by domain name.
 	renewalMu sync.Mutex
@@ -222,6 +230,26 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	}
 	m.cachePut(ctx, name, cert)
 	return cert, nil
+}
+
+// ServeHTTP implements http.Handler interface to fulfill http-01 challenges
+// for higher certificates availability.
+func (m *Manager) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !strings.HasPrefix(r.URL.Path, "/.well-known/acme-challenge/") {
+		http.NotFound(w, r)
+		return
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	if err := m.hostPolicy()(ctx, r.Host); err != nil {
+		http.Error(w, err.Error(), http.StatusForbidden)
+	}
+	data, err := m.httpToken(ctx, r.URL.Path)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+	w.Write(data)
 }
 
 // cert returns an existing certificate either from m.state or cache.
@@ -475,62 +503,88 @@ func (m *Manager) verify(ctx context.Context, domain string) error {
 		return err
 	}
 
-	// start domain authorization and get the challenge
-	authz, err := client.Authorize(ctx, domain)
-	if err != nil {
-		return err
-	}
-	// maybe don't need to at all
-	if authz.Status == acme.StatusValid {
-		return nil
-	}
-
-	// pick a challenge: prefer tls-sni-02 over tls-sni-01
-	// TODO: consider authz.Combinations
-	var chal *acme.Challenge
-	for _, c := range authz.Challenges {
-		if c.Type == "tls-sni-02" {
-			chal = c
-			break
+	// Try to fulfill any of the known challenges one at a time,
+	// in the order specified by challengeTypes.
+	var nextTyp int // next preferred challenge type index
+	for {
+		// Start domain authorization and get the challenge.
+		authz, err := client.Authorize(ctx, domain)
+		if err != nil {
+			return err
 		}
-		if c.Type == "tls-sni-01" {
-			chal = c
+		// No point in accepting challenges if the authorization status
+		// is in a final state.
+		switch authz.Status {
+		case acme.StatusValid:
+			return nil // already authorized
+		case acme.StatusInvalid:
+			return fmt.Errorf("acme/autocert: invalid authorization %q", authz.URI)
+		}
+
+		// Pick the next preferred challenge.
+		var chal *acme.Challenge
+		for chal == nil {
+			if nextTyp >= len(challengeTypes) {
+				break
+			}
+			chal = pickChallenge(challengeTypes[nextTyp], authz.Challenges)
+			nextTyp++
+		}
+		if chal == nil {
+			return fmt.Errorf("acme/autocert: unable to authorize %q", domain)
+		}
+		cleanup, err := m.fulfill(ctx, client, chal)
+		defer cleanup()
+		if err != nil {
+			continue
+		}
+		if _, err := client.Accept(ctx, chal); err != nil {
+			continue
+		}
+
+		// A challenge is fulfilled and accepted: wait for the CA to validate.
+		if _, err := client.WaitAuthorization(ctx, authz.URI); err == nil {
+			return nil
 		}
 	}
-	if chal == nil {
-		return errors.New("acme/autocert: no supported challenge type found")
-	}
+}
 
-	// create a token cert for the challenge response
-	var (
-		cert tls.Certificate
-		name string
-	)
+func (m *Manager) fulfill(ctx context.Context, client *acme.Client, chal *acme.Challenge) (cleanup func(), err error) {
+	noop := func() {}
 	switch chal.Type {
 	case "tls-sni-01":
-		cert, name, err = client.TLSSNI01ChallengeCert(chal.Token)
+		cert, name, err := client.TLSSNI01ChallengeCert(chal.Token)
+		if err != nil {
+			return noop, err
+		}
+		m.putTokenCert(ctx, name, &cert)
+		return func() { go m.deleteTokenCert(name) }, nil
 	case "tls-sni-02":
-		cert, name, err = client.TLSSNI02ChallengeCert(chal.Token)
-	default:
-		err = fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
+		cert, name, err := client.TLSSNI02ChallengeCert(chal.Token)
+		if err != nil {
+			return noop, err
+		}
+		m.putTokenCert(ctx, name, &cert)
+		return func() { go m.deleteTokenCert(name) }, nil
+	case "http-01":
+		resp, err := client.HTTP01ChallengeResponse(chal.Token)
+		if err != nil {
+			return noop, nil
+		}
+		p := client.HTTP01ChallengePath(chal.Token)
+		m.putHTTPToken(ctx, p, resp)
+		return func() { go m.deleteHTTPToken(p) }, nil
 	}
-	if err != nil {
-		return err
-	}
-	m.putTokenCert(ctx, name, &cert)
-	defer func() {
-		// verification has ended at this point
-		// don't need token cert anymore
-		go m.deleteTokenCert(name)
-	}()
+	return noop, fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
+}
 
-	// ready to fulfill the challenge
-	if _, err := client.Accept(ctx, chal); err != nil {
-		return err
+func pickChallenge(pref string, chal []*acme.Challenge) *acme.Challenge {
+	for _, c := range chal {
+		if strings.HasPrefix(c.Type, pref) {
+			return c
+		}
 	}
-	// wait for the CA to validate
-	_, err = client.WaitAuthorization(ctx, authz.URI)
-	return err
+	return nil
 }
 
 // putTokenCert stores the cert under the named key in both m.tokenCert map
@@ -554,6 +608,44 @@ func (m *Manager) deleteTokenCert(name string) {
 	if m.Cache != nil {
 		m.Cache.Delete(context.Background(), name)
 	}
+}
+
+func (m *Manager) httpToken(ctx context.Context, tokenPath string) ([]byte, error) {
+	m.httpTokensMu.RLock()
+	defer m.httpTokensMu.RUnlock()
+	if v, ok := m.httpTokens[tokenPath]; ok {
+		return v, nil
+	}
+	if m.Cache == nil {
+		return nil, fmt.Errorf("acme/autocert: no token at %q", tokenPath)
+	}
+	return m.Cache.Get(ctx, httpTokenCacheKey(tokenPath))
+}
+
+func (m *Manager) putHTTPToken(ctx context.Context, tokenPath string, val string) {
+	m.httpTokensMu.Lock()
+	defer m.httpTokensMu.Unlock()
+	if m.httpTokens == nil {
+		m.httpTokens = make(map[string][]byte)
+	}
+	b := []byte(val)
+	m.httpTokens[tokenPath] = b
+	if m.Cache != nil {
+		m.Cache.Put(ctx, httpTokenCacheKey(tokenPath), b)
+	}
+}
+
+func (m *Manager) deleteHTTPToken(tokenPath string) {
+	m.httpTokensMu.Lock()
+	defer m.httpTokensMu.Unlock()
+	delete(m.httpTokens, tokenPath)
+	if m.Cache != nil {
+		m.Cache.Delete(context.Background(), httpTokenCacheKey(tokenPath))
+	}
+}
+
+func httpTokenCacheKey(tokenPath string) string {
+	return "http01-" + path.Base(tokenPath)
 }
 
 // renew starts a cert renewal timer loop, one per domain.
