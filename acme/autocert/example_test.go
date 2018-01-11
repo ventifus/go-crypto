@@ -22,7 +22,7 @@ func ExampleNewListener() {
 }
 
 func ExampleManager() {
-	m := autocert.Manager{
+	m := &autocert.Manager{
 		Cache:      autocert.DirCache("secret-dir"),
 		Prompt:     autocert.AcceptTOS,
 		HostPolicy: autocert.HostWhitelist("example.org"),
@@ -31,5 +31,27 @@ func ExampleManager() {
 		Addr:      ":https",
 		TLSConfig: &tls.Config{GetCertificate: m.GetCertificate},
 	}
+	// Optionally allow Manager to fulfill http-01 challenges.
+	go http.ListenAndServe(":http", m)
+	s.ListenAndServeTLS("", "")
+}
+
+func ExampleManagerWithHTTPContent() {
+	m := &autocert.Manager{
+		Cache:      autocert.DirCache("secret-dir"),
+		Prompt:     autocert.AcceptTOS,
+		HostPolicy: autocert.HostWhitelist("example.org"),
+	}
+	s := &http.Server{
+		Addr:      ":https",
+		TLSConfig: &tls.Config{GetCertificate: m.GetCertificate},
+	}
+	// Serve content on port 80 and also allow the manager to fulfill
+	// http-01 challenges.
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello clear HTTP.")
+	})
+	http.Handle("/.well-known/acme-challenge/", m)
+	go http.ListenAndServe(":http", m)
 	s.ListenAndServeTLS("", "")
 }

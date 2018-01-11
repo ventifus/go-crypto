@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -48,6 +49,16 @@ var authzTmpl = template.Must(template.New("authz").Parse(`{
 			"uri": "{{.}}/challenge/2",
 			"type": "tls-sni-02",
 			"token": "token-02"
+		},
+		{
+			"uri": "{{.}}/challenge/dns-01",
+			"type": "dns-01",
+			"token": "token-dns-01"
+		},
+		{
+			"uri": "{{.}}/challenge/http-01",
+			"type": "http-01",
+			"token": "token-http-01"
 		}
 	]
 }`))
@@ -417,6 +428,104 @@ func testGetCertificate(t *testing.T, man *Manager, domain string, hello *tls.Cl
 		t.Errorf("cert.DNSNames = %v; want %q", cert.DNSNames, domain)
 	}
 
+}
+
+func TestVerifyHTTP01(t *testing.T) {
+	var (
+		man *Manager
+
+		authzCount      int // num. of created authorizations
+		didAcceptHTTP01 bool
+	)
+
+	verifyHTTPToken := func() {
+		r := httptest.NewRequest("GET", "/.well-known/acme-challenge/token-http-01", nil)
+		w := httptest.NewRecorder()
+		man.ServeHTTP(w, r)
+		if w.Code != http.StatusOK {
+			t.Errorf("http token: w.Code = %d; want %d", w.Code, http.StatusOK)
+		}
+		if v := string(w.Body.Bytes()); !strings.HasPrefix(v, "token-http-01.") {
+			t.Errorf("http token value = %q; want 'token-http-01.' prefix", v)
+		}
+	}
+
+	// ACME CA server stub, only the needed bits.
+	// TODO: Merge this with startACMEServerStub, making it a configurable CA for testing.
+	var ca *httptest.Server
+	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Replay-Nonce", "nonce")
+		if r.Method == "HEAD" {
+			// a nonce request
+			return
+		}
+
+		switch r.URL.Path {
+		// Discovery.
+		case "/":
+			if err := discoTmpl.Execute(w, ca.URL); err != nil {
+				t.Errorf("discoTmpl: %v", err)
+			}
+		// Client key registration.
+		case "/new-reg":
+			w.Write([]byte("{}"))
+		// New domain authorization.
+		case "/new-authz":
+			authzCount++
+			w.Header().Set("Location", fmt.Sprintf("%s/authz/%d", ca.URL, authzCount))
+			w.WriteHeader(http.StatusCreated)
+			if err := authzTmpl.Execute(w, ca.URL); err != nil {
+				t.Errorf("authzTmpl: %v", err)
+			}
+		// Accept tls-sni-02.
+		case "/challenge/2":
+			w.Write([]byte("{}"))
+		// Reject tls-sni-01.
+		case "/challenge/1":
+			http.Error(w, "won't accept tls-sni-01", http.StatusBadRequest)
+		// Should not accept dns-01.
+		case "/challenge/dns-01":
+			t.Errorf("dns-01 challenge was accepted")
+			http.Error(w, "won't accept dns-01", http.StatusBadRequest)
+		// Accept http-01.
+		case "/challenge/http-01":
+			didAcceptHTTP01 = true
+			verifyHTTPToken()
+			w.Write([]byte("{}"))
+		// Authorization statuses.
+		// Make tls-sni-xxx invalid.
+		case "/authz/1", "/authz/2":
+			w.Write([]byte(`{"status": "invalid"}`))
+		case "/authz/3", "/authz/4":
+			w.Write([]byte(`{"status": "valid"}`))
+		default:
+			http.NotFound(w, r)
+			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
+		}
+	}))
+	defer ca.Close()
+
+	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	man = &Manager{
+		Client: &acme.Client{
+			Key:          key,
+			DirectoryURL: ca.URL,
+		},
+	}
+	if err := man.verify(context.Background(), "example.org"); err != nil {
+		t.Errorf("man.verify: %v", err)
+	}
+	// Only tls-sni-01, tls-sni-02 and http-01 must be accepted
+	// The dns-01 challenge is unsupported.
+	if authzCount != 3 {
+		t.Errorf("authzCount = %d; want 3", authzCount)
+	}
+	if !didAcceptHTTP01 {
+		t.Error("did not accept http-01 challenge")
+	}
 }
 
 func TestAccountKeyCache(t *testing.T) {
