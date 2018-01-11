@@ -16,6 +16,24 @@
       "revId": "e369dd306e264ee90d5736312fedd3fbb336486c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fb93c1f_503809e3",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-11T15:22:00Z",
+      "side": 1,
+      "message": "Changed it to include obtaining new authorization in the loop.",
+      "parentUuid": "d01fcbb0_c679022a",
+      "revId": "e369dd306e264ee90d5736312fedd3fbb336486c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
