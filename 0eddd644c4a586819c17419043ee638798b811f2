@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cb96275_24d9d06c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "the more mutexes we have (especially without documented lock order rules), the more likely we are to introduce deadlocks at some point. can we combine some of these mutex into one?\n\nprobably not, because I see it calls the user code (cache.Get) with the lock held.\n\ncan you at least document the lock ordering?",
+      "range": {
+        "startLine": 163,
+        "startChar": 1,
+        "endLine": 163,
+        "endChar": 26
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07239724_070b3ed4",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "document on the same line what the map key is",
+      "range": {
+        "startLine": 164,
+        "startChar": 13,
+        "endLine": 164,
+        "endChar": 31
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a6d6bac_779cb0d6",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "implements the",
+      "range": {
+        "startLine": 235,
+        "startChar": 13,
+        "endLine": 235,
+        "endChar": 23
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83510570_87914c14",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "delete this line.\n\nYou can say it\u0027s optional, though.",
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35f60a9e_60dc7886",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "there needs to be a fallback that the user provides. we can\u0027t own port 80 just to serve 404s.",
+      "range": {
+        "startLine": 239,
+        "startChar": 2,
+        "endLine": 239,
+        "endChar": 21
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e18a8d_4efc6a5b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "r.Context()",
+      "range": {
+        "startLine": 242,
+        "startChar": 36,
+        "endLine": 242,
+        "endChar": 57
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ab0aee0_17626abc",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "or 500?",
+      "range": {
+        "startLine": 249,
+        "startChar": 29,
+        "endLine": 249,
+        "endChar": 48
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7815ef94_539f6880",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "does this need to be a particular Content-Type?",
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "628e574c_f8270235",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "why prefix?",
+      "range": {
+        "startLine": 583,
+        "startChar": 4,
+        "endLine": 583,
+        "endChar": 38
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e4a8b0d_ee3edbca",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T15:41:25Z",
+      "side": 1,
+      "message": "a, b string",
+      "range": {
+        "startLine": 625,
+        "startChar": 52,
+        "endLine": 625,
+        "endChar": 80
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
