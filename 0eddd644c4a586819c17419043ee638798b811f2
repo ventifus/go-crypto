@@ -254,6 +254,30 @@
     },
     {
       "key": {
+        "uuid": "42a3b956_c307740f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-11T22:02:48Z",
+      "side": 1,
+      "message": "I still disagree. I think it\u0027ll be incredibly common for people to do their own things on port 80, such as redirecting to https. I don\u0027t want to unilaterally serve a 404 here. I don\u0027t want them to ever know about the substring \".well-known\" anywhere in their programs.\n\nMaybe we go back to a method to return a Handler, like:\n\n   // HTTPHandler configures the Manager to request \u0026 respond to ACME \"http-01\" challenges.\n   // It returns an http.Handler that responds to the challenges.\n   // It must be be running on port 80. If it receives a request\n   // that is not an ACME challenge, it delegates the request to the optional\n   // fallback handler.\n   // If fallback is nil, the returned handler serves a 404 Not Found response.\n   // Because the fallback handler is run with unencrypted port 80 requests,\n   // the fallback should not serve TLS-only requests.\n   //\n   // If HTTPHandler is never called, the Manager will only issue TLS SNI\n   // challenges.\n   (func *Manager) HTTPHandler(fallback http.Handler) http.Handler { ... }",
+      "parentUuid": "a70b12ce_b477a63c",
+      "range": {
+        "startLine": 239,
+        "startChar": 2,
+        "endLine": 239,
+        "endChar": 21
+      },
+      "revId": "0eddd644c4a586819c17419043ee638798b811f2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1e18a8d_4efc6a5b",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 3
