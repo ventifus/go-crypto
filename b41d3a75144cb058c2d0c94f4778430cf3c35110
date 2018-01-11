@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "995c2bac_f802e2e5",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 26164
+      },
+      "writtenOn": "2018-01-11T00:46:58Z",
+      "side": 1,
+      "message": "Done. rt@ taught me that back during my go readability days :). I still forget it from time to time.\n\nAlso did: %s/actual/got",
+      "parentUuid": "4c2dcdd7_49a5254a",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "b41d3a75144cb058c2d0c94f4778430cf3c35110",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce1247d9_cdcff206",
         "filename": "ssh/transport.go",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "b41d3a75144cb058c2d0c94f4778430cf3c35110",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee062cef_9f32bacb",
+        "filename": "ssh/transport.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 26164
+      },
+      "writtenOn": "2018-01-11T00:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce1247d9_cdcff206",
+      "range": {
+        "startLine": 358,
+        "startChar": 20,
+        "endLine": 358,
+        "endChar": 24
+      },
+      "revId": "b41d3a75144cb058c2d0c94f4778430cf3c35110",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
