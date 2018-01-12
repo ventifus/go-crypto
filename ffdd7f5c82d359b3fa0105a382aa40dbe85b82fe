@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c0b333d5_24c8f73f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T19:09:36Z",
+      "side": 1,
+      "message": "Oh, right, it can be a full URL with scheme.\n \nBut using r.URL.Path kinda sucks, because if the request is:\n\nGET /foo%20/ HTTP/1.1\n\nThen r.URL.Path \u003d\u003d \"/foo /\" with an actual space in it. That then comes back on the wire in the Location header, which browsers might do different things with? It\u0027s at least different from what the original client sent, though, with the %xx bytes.\n\nSo I have a slight preference to using RequestURI if it starts with a \"/\", or otherwise stripping it up until the first \"/\" past \"://\".",
+      "parentUuid": "77a1fc96_11f6ce65",
+      "range": {
+        "startLine": 292,
+        "startChar": 42,
+        "endLine": 295,
+        "endChar": 2
+      },
+      "revId": "ffdd7f5c82d359b3fa0105a382aa40dbe85b82fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "666c5405_9e5e9276",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 12
