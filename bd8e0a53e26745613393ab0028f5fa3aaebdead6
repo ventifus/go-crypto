@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7266838_48fbb41d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:51:37Z",
+      "side": 1,
+      "message": "using the new Manager.HTTPHandler method",
+      "revId": "bd8e0a53e26745613393ab0028f5fa3aaebdead6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f45af60e_67a7c857",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:51:37Z",
+      "side": 1,
+      "message": "blank line after this, between Fixes and Change-Id",
+      "revId": "bd8e0a53e26745613393ab0028f5fa3aaebdead6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
