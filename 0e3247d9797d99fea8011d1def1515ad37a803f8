@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9eae6a2_4fcb6bfe",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T00:35:46Z",
+      "side": 1,
+      "message": "this should be guarded by a mutex. See my comment on the example.\n\nBut which mutex? There are way too many. It needs to be simplified to have fewer mutexes, at least eventually. For now find the most appropriate one. probably clientMu, which could be rename \"mu\". Maybe we could get it all down to one mutex.",
+      "range": {
+        "startLine": 251,
+        "startChar": 1,
+        "endLine": 251,
+        "endChar": 19
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9fec409_aa33463f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T00:35:46Z",
+      "side": 1,
+      "message": "since this is so easy for people to pass in as their fallback value, I wonder if a better default for a nil fallback is redirecting http to https, at least for GET/HEAD requests?\n\nI\u0027m curious what others think.\n\nAlso, if LetsEncrypt is shutting down tls-sni-{01,02} for good, maybe we should do even more magic in this package.\n\nIf this HTTPHandler method was never called, we could optimistically try to open port 80 and hope for the best and use it if we get it? The risk is that there\u0027s a firewall or proxies in front of us and port 80 requests never get to us. But it might fix a good chunk of people without any changes to their code.\n\nI also wonder whether we could add something to net/http + the standard library to route these http-01 ACME challenges to the autocert or autocert-like packages, without the user explicitly wiring them. I\u0027m thinking of a pretty safe way to do it, repeating such requests if the default handler ends up replying with a 404.",
+      "range": {
+        "startLine": 253,
+        "startChar": 2,
+        "endLine": 253,
+        "endChar": 35
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2cf779b_acec015a",
+        "filename": "acme/autocert/example_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T00:35:46Z",
+      "side": 1,
+      "message": "Just fold this example into ExampleManager\n\nSounds like tls-sni-01 and tls-sni-02 are dead: https://community.letsencrypt.org/t/2018-01-11-update-regarding-acme-tls-sni-and-shared-hosting-infrastructure/50188",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 27
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "971a8234_a377542f",
+        "filename": "acme/autocert/example_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T00:35:46Z",
+      "side": 1,
+      "message": "I\u0027d delete this and just use nil for HTTPHandler. People can look up how the fallback works if they care.",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 3
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "908dddc7_ecd1031f",
+        "filename": "acme/autocert/example_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T00:35:46Z",
+      "side": 1,
+      "message": "this isn\u0027t racy because in this case m.HTTPHandler() evaluates first, before the goroutine, but if somebody did:\n\n   go func() {\n       errc \u003c- http.ListenAndServe(\":http\", m.HTTPHandler(h)\n\n.. then it\u0027d be a race, since the HTTPHandler accessor sets that bool without any mutex.",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
