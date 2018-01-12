@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2a957719_bca2ebd1",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T19:02:27Z",
+      "side": 1,
+      "message": "Yeah, this doesn\u0027t work in tests. RequestURI includes scheme and host.",
+      "parentUuid": "77a1fc96_11f6ce65",
+      "range": {
+        "startLine": 292,
+        "startChar": 42,
+        "endLine": 295,
+        "endChar": 2
+      },
+      "revId": "ffdd7f5c82d359b3fa0105a382aa40dbe85b82fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "666c5405_9e5e9276",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 12
@@ -60,6 +84,30 @@
       "writtenOn": "2018-01-12T18:47:04Z",
       "side": 1,
       "message": "I\u0027d prefer you rewrite this in terms of net.SplitHostPort\n\n  if host, _, err :\u003d net.SplitHostPort(hostport); err \u003d\u003d nil {\n        return host\n  }\n  return hostport\n\n(or inverted if you prefer)",
+      "range": {
+        "startLine": 300,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 2
+      },
+      "revId": "ffdd7f5c82d359b3fa0105a382aa40dbe85b82fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14e2ac3d_53951b66",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T19:02:27Z",
+      "side": 1,
+      "message": "This won\u0027t strip [] brackets if the port is missing.\nNot sure I remember, it\u0027s ok to use it in the Location header anyway?",
+      "parentUuid": "666c5405_9e5e9276",
       "range": {
         "startLine": 300,
         "startChar": 2,
