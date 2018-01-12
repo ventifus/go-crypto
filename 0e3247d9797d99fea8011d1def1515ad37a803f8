@@ -67,6 +67,30 @@
     },
     {
       "key": {
+        "uuid": "253351fe_ddc48e7c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T09:56:37Z",
+      "side": 1,
+      "message": "Ah, speaking of mutexes. Forgot to add: please review https://golang.org/cl/41731 when you have a chance :)",
+      "parentUuid": "e381173e_75002f3d",
+      "range": {
+        "startLine": 251,
+        "startChar": 1,
+        "endLine": 251,
+        "endChar": 19
+      },
+      "revId": "0e3247d9797d99fea8011d1def1515ad37a803f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9fec409_aa33463f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 7
