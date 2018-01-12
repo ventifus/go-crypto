@@ -117,6 +117,30 @@
       "revId": "ffdd7f5c82d359b3fa0105a382aa40dbe85b82fe",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bde3f49_c8916006",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T19:09:31Z",
+      "side": 1,
+      "message": "Actually, the brackets need to be there for the redirect to work with ipv6, but SplitHostPort removes them.",
+      "parentUuid": "14e2ac3d_53951b66",
+      "range": {
+        "startLine": 300,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 2
+      },
+      "revId": "ffdd7f5c82d359b3fa0105a382aa40dbe85b82fe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
