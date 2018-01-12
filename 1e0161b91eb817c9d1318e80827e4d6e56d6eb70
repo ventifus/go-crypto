@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "54c9d20b_1f78a5ae",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T17:17:35Z",
+      "side": 1,
+      "message": "Right. You could say the same about the dir field and export it as Directory.\nI would remove it for now. It isn\u0027t set in stone though, can always add back later.",
+      "parentUuid": "6839b45e_84db1a5c",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e3efec4_c18fc3dd",
         "filename": "acme/acme.go",
         "patchSetId": 5
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I originally had it like that, but switched to the individual URLs because it was a bit less clunky without checking for a nil account in a few places. It\u0027s pretty unlikely that any additional URLs will be added to the spec, and not a big deal to change later. I don\u0027t really care either way though.",
       "parentUuid": "3e3efec4_c18fc3dd",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76428717_21541e42",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T17:17:35Z",
+      "side": 1,
+      "message": "Ah ok, that\u0027s fine if you\u0027ve tried already.\nOne other thing: would it make sense to combine urlMu with dirMu into a single mutex? The fewer we have, the better. I have the same thing in autocert - too many mutexes now.",
+      "parentUuid": "fc3a4230_ec503743",
       "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -158,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "7dc7e56a_6efeeb41",
+        "filename": "acme/integration_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T17:17:35Z",
+      "side": 1,
+      "message": "I think it\u0027s easier to manage with a tag. You might change ACME_DIRECTORY_URL to something else in the test, or add more tests, but the tag will stay.",
+      "parentUuid": "4879edd6_285ef358",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3def94_8951d706",
         "filename": "acme/jws.go",
         "patchSetId": 5
@@ -187,6 +241,24 @@
       "side": 1,
       "message": "Yeah, I agree. I experimented with using a struct, but it was a bit annoying, though I can see the argument for going back to that.",
       "parentUuid": "0f3def94_8951d706",
+      "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c25e334c_13cdeff9",
+        "filename": "acme/jws.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-12T17:17:35Z",
+      "side": 1,
+      "message": "Right. Well, it\u0027s internal anyway. Can always refactor later.",
+      "parentUuid": "3461e89a_aef70949",
       "revId": "1e0161b91eb817c9d1318e80827e4d6e56d6eb70",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
