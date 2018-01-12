@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "42b0546c_0ab0641e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "Instead of \"xx\", I\u0027d spell out which ones are supported explicitly, in case they name the next one tls-sni-03 (it might also be named tls-alpn-01). We\u0027ll see.",
+      "range": {
+        "startLine": 91,
+        "startChar": 61,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec700ab5_4a26c33b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "but what is the value? You say it\u0027s \"used for http-01 challenges\", but you should describe what it is first.",
+      "range": {
+        "startLine": 169,
+        "startChar": 46,
+        "endLine": 169,
+        "endChar": 59
+      },
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3da493f0_7be4038e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "likewise",
+      "range": {
+        "startLine": 172,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 31
+      },
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53f35084_2cf74f7c",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 9
@@ -38,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "c51b7613_b81c84fd",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "IndexByte if we really cared about performance, but this will be nowhere near noticeable in the grand scheme of this package \u0026 protocol exchange.\n\nSo right whatever\u0027s nicest to read. Don\u0027t worry about performance here. Index is shortest. And all 3 have fast paths for single ASCII bytes anyway.\n\nBut this should actually use https://golang.org/pkg/net/#SplitHostPort instead of manually looking for colons.\n\nI confirmed that browsers will send IPv6 literals with ports in the Host header:\n\nGET / HTTP/1.1\nHost: [2602:d1:xxxx::c60a]:1234\nConnection: keep-alive\nCache-Control: max-age\u003d0\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\nUpgrade-Insecure-Requests: 1\nAccept: text/html,application/xhtml+xml,application/xml;q\u003d0.9,image/webp,image/apng,*/*;q\u003d0.8\nAccept-Encoding: gzip, deflate\nAccept-Language: en-US,en;q\u003d0.9",
+      "parentUuid": "53f35084_2cf74f7c",
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25f4cfe2_641db5eb",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 9
@@ -71,6 +158,47 @@
       "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfbdf295_26d4a847",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "25f4cfe2_641db5eb",
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "225091a3_403fb827",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:43:22Z",
+      "side": 1,
+      "message": "why are you picking \"http-01\" if the user has never called HTTPHandler? it can\u0027t possibly succeed, so you\u0027re just spamming the ACME server with traffic that will never validate at that point.\n\nbetter to fail/log with a nice error message telling the user what to do.\n\nI think you need to restore the boolean field about whether they\u0027ve called HTTPHandler, but with the mutex.",
+      "range": {
+        "startLine": 559,
+        "startChar": 26,
+        "endLine": 561,
+        "endChar": 66
+      },
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
