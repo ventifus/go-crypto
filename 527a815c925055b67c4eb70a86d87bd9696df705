@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53f35084_2cf74f7c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-12T16:12:55Z",
+      "side": 1,
+      "message": "I think this should be Index instead of IndexRune, the Host is ASCII, so there\u0027s no UTF-8 concern here and Index is faster.",
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25f4cfe2_641db5eb",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-12T16:12:55Z",
+      "side": 1,
+      "message": "This should be StatusFound (302) to avoid bricking sites if they temporarily enable HTTPS and then disable it again (for example, after finding mixed content).",
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
