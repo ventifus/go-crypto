@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e6f5b48_878817ff",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T19:59:00Z",
+      "side": 1,
+      "message": "you can just delete this comment. it\u0027s obvious from context. If anybody deletes it, your tests should fail.",
+      "revId": "7176b665c580782f2740448b6a310735827d40aa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23c32b7_0d179634",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T19:59:00Z",
+      "side": 1,
+      "message": "this line sounds like each time you call verify it does a different challenge type.\n\nHow about keep the first line (except the final period) and add here:\n\n// using each applicable ACME challenge type.",
+      "revId": "7176b665c580782f2740448b6a310735827d40aa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
