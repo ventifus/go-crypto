@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "6395feaf_6cf338e9",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-12T17:46:33Z",
+      "side": 1,
+      "message": "You can\u0027t use URL.Hostname for incoming requests. The Request.URL field is incomplete (lacks domain names) for incoming requests. The hostname will be blank.",
+      "parentUuid": "c51b7613_b81c84fd",
+      "revId": "527a815c925055b67c4eb70a86d87bd9696df705",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25f4cfe2_641db5eb",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 9
