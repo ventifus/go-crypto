@@ -52,6 +52,24 @@
       "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13f96cac_0a354faa",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 16005
+      },
+      "writtenOn": "2018-01-13T15:40:28Z",
+      "side": 1,
+      "message": "\u003e The defer is idiomatic\n\nThis doesn\u0027t look idiomatic to me.\n\n\u003e We\u0027re not holding the lock longer than we need to\n\nThat\u0027s not correct. There is other stuff happening inside the locking, so it\u0027s definitely not as efficient as possible and the lock is kept for longer than required. Also, especially in this particular case, there\u0027s absolutely no need to _not_ directly surround the critical part with a lock and go without `defer`.\nDeferring an unlock suggests that there are more critical parts happening, which here are not. From reading this code, it\u0027s not evident on first sight that only a single variable is guarded.\n\n\u003e Right now only tryHTTP01 is modified indeed, but there could be more stuff in here\n\nWell, then why not adjust the code when needed? It\u0027s only a line or two after all.\n\nJust my two cents and sorry for the rant :)",
+      "parentUuid": "75a2a986_04977844",
+      "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
