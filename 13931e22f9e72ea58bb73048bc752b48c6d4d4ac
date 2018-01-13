@@ -70,6 +70,24 @@
       "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d183414_81da3f19",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-13T15:55:36Z",
+      "side": 1,
+      "message": "\u003e This doesn\u0027t look idiomatic to me.\n\nWell, now you know?\n\n\u003e That\u0027s not correct. There is other stuff happening inside the locking, so it\u0027s definitely not as efficient as possible\n\nThere is a local variable comparison to nil, a conditional assignment to said local variable, and a return statement. That\u0027s basically nothing.\n\n\u003e From reading this code, it\u0027s not evident on first sight that only a single variable is guarded.\n\nYou learn the locking rules by reading the docs \u0026 layout of the the mutex \u0026 other fields, and also docs on funcs. Not by guessing from code.",
+      "parentUuid": "13f96cac_0a354faa",
+      "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
