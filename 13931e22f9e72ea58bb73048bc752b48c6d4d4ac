@@ -88,6 +88,24 @@
       "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06558427_b1bc7f55",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 16005
+      },
+      "writtenOn": "2018-01-13T16:07:49Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t agree with you. Just by looking at the following three lines, it\u0027s immediately clear why and for what the lock is used.\n```go\nm.tokensMu.Lock()\nm.tryHTTP01 \u003d true\nm.tokensMu.Unlock()\n```\nDon\u0027t you agree? Why do you prefer to `defer` the unlock?\n\nBy using `defer` as done in this commit, you need to read the _whole_ func to see whether other variables might be guarded as well.\nSuppose you were to remove the lock, it would be much easier to remove the condensed version as you\u0027d be absolutely certain to not introduce a data race.",
+      "parentUuid": "1d183414_81da3f19",
+      "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
