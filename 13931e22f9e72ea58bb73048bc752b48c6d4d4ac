@@ -16,6 +16,24 @@
       "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12fc854e_e2b29470",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-01-13T15:27:00Z",
+      "side": 1,
+      "message": "The defer is idiomatic. There\u0027s no real work happening later anyway, so defer is fine. We\u0027re not holding the lock longer than we need to, and it\u0027s not a contentious lock anyway.",
+      "parentUuid": "ec67dd50_b79a9c84",
+      "revId": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
