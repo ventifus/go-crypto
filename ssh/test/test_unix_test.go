@@ -25,7 +25,8 @@ import (
 	"golang.org/x/crypto/ssh/testdata"
 )
 
-const sshdConfig = `
+var configTmpl = map[string]*template.Template{
+	"default": template.Must(template.New("").Parse(`
 Protocol 2
 Banner {{.Dir}}/banner
 HostKey {{.Dir}}/id_rsa
@@ -49,9 +50,36 @@ IgnoreRhosts yes
 RhostsRSAAuthentication no
 HostbasedAuthentication no
 PubkeyAcceptedKeyTypes=*
-`
-
-var configTmpl = template.Must(template.New("").Parse(sshdConfig))
+`)),
+	"MultiAuth": template.Must(template.New("").Parse(`
+Protocol 2
+Banner {{.Dir}}/banner
+HostKey {{.Dir}}/id_rsa
+HostKey {{.Dir}}/id_dsa
+HostKey {{.Dir}}/id_ecdsa
+HostCertificate {{.Dir}}/id_rsa-cert.pub
+Pidfile {{.Dir}}/sshd.pid
+#UsePrivilegeSeparation no
+KeyRegenerationInterval 3600
+ServerKeyBits 768
+SyslogFacility AUTH
+LogLevel DEBUG2
+LoginGraceTime 120
+PermitRootLogin no
+StrictModes no
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile	{{.Dir}}/authorized_keys
+TrustedUserCAKeys {{.Dir}}/id_ecdsa.pub
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+PubkeyAcceptedKeyTypes=*
+UsePAM yes
+PasswordAuthentication yes
+ChallengeResponseAuthentication yes
+AuthenticationMethods {{.AuthMethods}}
+`))}
 
 type server struct {
 	t          *testing.T
@@ -238,6 +266,11 @@ func writeFile(path string, contents []byte) {
 
 // newServer returns a new mock ssh server.
 func newServer(t *testing.T) *server {
+	return newServerForConfig(t, "default", map[string]string{}, true)
+}
+
+// newServerForConfig returns a new mock ssh server.
+func newServerForConfig(t *testing.T, config string, configVars map[string]string, strictMode bool) *server {
 	if testing.Short() {
 		t.Skip("skipping test due to -short")
 	}
@@ -249,9 +282,11 @@ func newServer(t *testing.T) *server {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = configTmpl.Execute(f, map[string]string{
-		"Dir": dir,
-	})
+	if _, ok := configTmpl[config]; ok == false {
+		t.Fatal(fmt.Errorf("Invalid server config '%s'", config))
+	}
+	configVars["Dir"] = dir
+	err = configTmpl[config].Execute(f, configVars)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -275,6 +310,10 @@ func newServer(t *testing.T) *server {
 		authkeys.Write(ssh.MarshalAuthorizedKey(testPublicKeys[k]))
 	}
 	writeFile(filepath.Join(dir, "authorized_keys"), authkeys.Bytes())
+	if strictMode == false {
+		os.Chmod(dir, 0755)
+		os.Chmod(filepath.Join(dir, "authorized_keys"), 0644)
+	}
 
 	return &server{
 		t:          t,
