@@ -46,6 +46,57 @@
       "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fb92d9f_b89bcf06",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-01-17T22:16:37Z",
+      "side": 1,
+      "message": "Why not read into lenBytes at L674 and XOR in-place to avoid |tmp|?",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db71209c_ccc59cc2",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-01-17T22:16:37Z",
+      "side": 1,
+      "message": "Doesn\u0027t the chacha20poly1305 package do this for you if you set the nonce to be 000000 ++ |seqNum|?",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e99470a_4cfa617a",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-01-17T22:16:37Z",
+      "side": 1,
+      "message": "Do you want the ) before the +1? (Otherwise it can overflow in the uint8 context before being converted to an int.",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
