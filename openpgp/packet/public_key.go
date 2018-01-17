@@ -244,7 +244,12 @@ func NewECDSAPublicKey(creationTime time.Time, pub *ecdsa.PublicKey) *PublicKey 
 	}
 
 	pk.ec.p.bytes = elliptic.Marshal(pub.Curve, pub.X, pub.Y)
-	pk.ec.p.bitLength = uint16(8 * len(pk.ec.p.bytes))
+
+	// https://tools.ietf.org/html/rfc6637#section-6
+	// 4 || X || Y: 4 is bit length 3, X and Y coordinates are rounded up
+	// to nearest 8-bit boundary
+	cl := uint16(pub.Curve.Params().BitSize) + 7 & ^7
+	pk.ec.p.bitLength = 3 + cl + cl
 
 	pk.setFingerPrintAndKeyId()
 	return pk
