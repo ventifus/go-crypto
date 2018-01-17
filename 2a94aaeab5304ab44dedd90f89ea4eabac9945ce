@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e549c5f_d115d352",
+        "filename": "openpgp/packet/public_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 26282
+      },
+      "writtenOn": "2018-01-17T07:25:00Z",
+      "side": 1,
+      "message": "I don\u0027t know why I had to do this. It always added one to the number by the time it arrived in the PrivateKey structure.",
+      "range": {
+        "startLine": 223,
+        "startChar": 3,
+        "endLine": 223,
+        "endChar": 27
+      },
+      "revId": "2a94aaeab5304ab44dedd90f89ea4eabac9945ce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
