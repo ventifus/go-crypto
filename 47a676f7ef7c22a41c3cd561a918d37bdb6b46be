@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "eec88faa_983363c3",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-18T15:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "851bcc27_6d32f1c6",
+      "range": {
+        "startLine": 117,
+        "startChar": 20,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fb92d9f_b89bcf06",
         "filename": "ssh/cipher.go",
         "patchSetId": 7
@@ -60,6 +84,24 @@
       "writtenOn": "2018-01-17T22:16:37Z",
       "side": 1,
       "message": "Why not read into lenBytes at L674 and XOR in-place to avoid |tmp|?",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee2e5d2_66ddc78e",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-18T15:33:34Z",
+      "side": 1,
+      "message": "I\u0027d still have to copy it to c.buf because the length is included in the verified data. Reorganized it a little bit.",
+      "parentUuid": "3fb92d9f_b89bcf06",
       "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -83,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "34011d85_9b19791f",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-18T15:33:34Z",
+      "side": 1,
+      "message": "kind of. The SSH protocol uses a different key for the length counters (see l.679 vs. 711 here), so I don\u0027t think I can use the public methods of the chacha20poly1305 package.",
+      "parentUuid": "db71209c_ccc59cc2",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e99470a_4cfa617a",
         "filename": "ssh/cipher.go",
         "patchSetId": 7
@@ -94,6 +154,24 @@
       "writtenOn": "2018-01-17T22:16:37Z",
       "side": 1,
       "message": "Do you want the ) before the +1? (Otherwise it can overflow in the uint8 context before being converted to an int.",
+      "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c77c19e6_45d52927",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-18T15:33:34Z",
+      "side": 1,
+      "message": "good catch, thanks.",
+      "parentUuid": "5e99470a_4cfa617a",
       "revId": "47a676f7ef7c22a41c3cd561a918d37bdb6b46be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
