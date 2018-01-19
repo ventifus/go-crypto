@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8c9b822_e3012f05",
+        "filename": "argon2/blamka_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7435
+      },
+      "writtenOn": "2018-01-19T14:56:51Z",
+      "side": 1,
+      "message": "Isn\u0027t the amd64 tag implicit from the filename (blamka_amd64.go)?",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "0bbb6c326ce3b9c32835a79cf315330a25f2bd91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
