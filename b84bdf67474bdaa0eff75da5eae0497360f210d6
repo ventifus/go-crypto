@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a974ba74_8b04e845",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-01-22T19:42:31Z",
+      "side": 1,
+      "message": "const numBytes \u003d 4096}\n\n(want seems like a poor name for this.)",
+      "revId": "b84bdf67474bdaa0eff75da5eae0497360f210d6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
