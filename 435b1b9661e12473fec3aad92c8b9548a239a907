@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cc9b9c0_5b33d030",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-23T14:23:56Z",
+      "side": 1,
+      "message": "that is a shame, but better than nothing. I\u0027ll double check with damien if there is no way around this.",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "435b1b9661e12473fec3aad92c8b9548a239a907",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8512b9b_3ce06432",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-23T14:23:56Z",
+      "side": 1,
+      "message": "this is the password for a live user on the system, right? If so, drop this. \n\nThe command-line is publicly visible through ps -ef.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "435b1b9661e12473fec3aad92c8b9548a239a907",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f36ea9e_0957eebe",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-23T14:23:56Z",
+      "side": 1,
+      "message": "is it necessary for these to be global? If not, can you encapsulate this in struct that each test creates from scratch?",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 35
+      },
+      "revId": "435b1b9661e12473fec3aad92c8b9548a239a907",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
