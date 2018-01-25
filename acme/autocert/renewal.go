@@ -7,6 +7,9 @@ package autocert
 import (
 	"context"
 	"crypto"
+	"crypto/tls"
+	"crypto/x509"
+	"errors"
 	"sync"
 	"time"
 )
@@ -71,12 +74,39 @@ func (dr *domainRenewal) renew() {
 	testDidRenewLoop(next, err)
 }
 
+// updateState locks and replaces the relevant Manager.state item with the given private key
+// and certificate. It additionally updates dr.key with the given private key.
+func (dr *domainRenewal) updateState(ctx context.Context, key crypto.PrivateKey, cert [][]byte, leaf *x509.Certificate) (*tls.Certificate, error) {
+	signer, ok := key.(crypto.Signer)
+	if !ok {
+		return nil, errors.New("acme/autocert: private key cannot sign")
+	}
+
+	s := &certState{
+		key:  signer,
+		cert: cert,
+		leaf: leaf,
+	}
+
+	tlscert, err := s.tlscert()
+	if err != nil {
+		return nil, err
+	}
+
+	dr.m.stateMu.Lock()
+	defer dr.m.stateMu.Unlock()
+	dr.key = signer
+	dr.m.state[dr.domain] = s
+
+	return tlscert, nil
+}
+
 // do is similar to Manager.createCert but it doesn't lock a Manager.state item.
 // Instead, it requests a new certificate independently and, upon success,
 // replaces dr.m.state item with a new one and updates cache for the given domain.
 //
-// It may return immediately if the expiration date of the currently cached cert
-// is far enough in the future.
+// It may lock and update the Manager.state if the expiration date of the currently
+// cached cert is far enough in the future.
 //
 // The returned value is a time interval after which the renewal should occur again.
 func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
@@ -85,7 +115,10 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 	if tlscert, err := dr.m.cacheGet(ctx, dr.domain); err == nil {
 		next := dr.next(tlscert.Leaf.NotAfter)
 		if next > dr.m.renewBefore()+renewJitter {
-			return next, nil
+			_, err = dr.updateState(ctx, tlscert.PrivateKey, tlscert.Certificate, tlscert.Leaf)
+			if err == nil {
+				return next, nil
+			}
 		}
 	}
 
@@ -93,20 +126,14 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 	if err != nil {
 		return 0, err
 	}
-	state := &certState{
-		key:  dr.key,
-		cert: der,
-		leaf: leaf,
-	}
-	tlscert, err := state.tlscert()
+
+	tlscert, err := dr.updateState(ctx, dr.key, der, leaf)
 	if err != nil {
 		return 0, err
 	}
+
+	// TODO: A retry mechanism here would be nice.
 	dr.m.cachePut(ctx, dr.domain, tlscert)
-	dr.m.stateMu.Lock()
-	defer dr.m.stateMu.Unlock()
-	// m.state is guaranteed to be non-nil at this point
-	dr.m.state[dr.domain] = state
 	return dr.next(leaf.NotAfter), nil
 }
 
