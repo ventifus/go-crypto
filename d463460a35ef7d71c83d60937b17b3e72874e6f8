@@ -34,6 +34,24 @@
       "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc591caa_d539e7dd",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 15430
+      },
+      "writtenOn": "2018-01-25T00:44:07Z",
+      "side": 1,
+      "message": "Calling File.Close clears the finalizer https://github.com/golang/go/blob/e72e69a3f65232b5b8352259d58a31d30e521efa/src/os/file_windows.go#L197",
+      "parentUuid": "1b8ab5e1_d10cdee0",
+      "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
