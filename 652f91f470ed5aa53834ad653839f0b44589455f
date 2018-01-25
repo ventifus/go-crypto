@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77c3e3ba_52116272",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-25T13:08:18Z",
+      "side": 1,
+      "message": "this looks considerably more complicate than the poc we got from Damien; why? Is this because of BSD vs Linux?",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e70ccbbd_a57a50d1",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-25T13:08:18Z",
+      "side": 1,
+      "message": "abort if the env vars aren\u0027t defined.",
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7408f435_d20ad786",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-25T13:08:18Z",
+      "side": 1,
+      "message": "why? This never happens for our test?",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 147,
+        "endChar": 26
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6cec07_b9827c63",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-25T13:08:18Z",
+      "side": 1,
+      "message": "can you use \n\n  strdup()\n\ninstead? That will get rid of the hardcoded lengths and \\0 meddling.\n\nalso, I don\u0027t understand why you copy to pw_name from pwd-\u003epw_name, to copy it into pwd-\u003epw_name down below again.\n\nalso, why get the passwd from the real function anyway? You could copy strings from the environment?",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 11
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
