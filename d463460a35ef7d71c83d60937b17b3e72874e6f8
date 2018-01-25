@@ -52,6 +52,24 @@
       "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144424fc_e2b73fd0",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2018-01-25T03:08:03Z",
+      "side": 1,
+      "message": "Yes, but second call of close should be an error.\n\nhttps://play.golang.org/p/KzvzpECUeJE",
+      "parentUuid": "cc591caa_d539e7dd",
+      "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
