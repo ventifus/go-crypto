@@ -88,6 +88,24 @@
       "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6dae2b2_d93dbb53",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2018-01-25T23:24:10Z",
+      "side": 1,
+      "message": "I agree with Kale. There is no point leaving new file handle open after readPasswordLine returns, because no one will read or write to it. You might as well close it before you return from ReadPassword.",
+      "parentUuid": "ad56356f_612c2642",
+      "revId": "d463460a35ef7d71c83d60937b17b3e72874e6f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
