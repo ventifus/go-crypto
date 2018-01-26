@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "219122d5_124ac5b6",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d179eaa3_83ebf769",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 2
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e36db716_8554a46b",
         "filename": "acme/autocert/renewal.go",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8088393d_b8d8cc2c",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "My intention was to share the state modifying code with the renewal case later on, which made this sort of awkward. So I decided to construct the certState struct here and pass that instead.",
+      "parentUuid": "e36db716_8554a46b",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "802551c3_d4ba795c",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d19480d_37c47dc1",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 4
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7603a4a1_fa727aa1",
         "filename": "acme/autocert/renewal.go",
         "patchSetId": 1
@@ -79,6 +145,24 @@
       "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa014da3_16d2b078",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "Yup. https://github.com/golang/go/issues/23569",
+      "parentUuid": "7603a4a1_fa727aa1",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "207ebb46_8c40c621",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2413b958_054a714a",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 17
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b35630a7_13d96856",
         "filename": "acme/autocert/renewal_test.go",
         "patchSetId": 1
@@ -119,6 +227,24 @@
       "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac274ec_e9edc1b5",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-01-26T20:10:26Z",
+      "side": 1,
+      "message": "Ah, thanks.",
+      "parentUuid": "b35630a7_13d96856",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
