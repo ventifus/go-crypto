@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d179eaa3_83ebf769",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "won\u0027t need this if updateState took the whole tlscert arg.\nsee my comment below.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 2
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e36db716_8554a46b",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "no need for passing fields, imho. just pass the whole tlscert.",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d19480d_37c47dc1",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "won\u0027t need this if you pass the whole tlscert to updateState, because dr.m.cacheGet guarantees to return a valid cert: https://github.com/golang/crypto/blob/0efb9460aaf800c6376acf625be2853bceac2e06/acme/autocert/autocert.go#L340\nand you don\u0027t even need to return anything from updateState.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 4
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7603a4a1_fa727aa1",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "create an issue instead of this todo? github.com/golang/go/issues/new\nit doesn\u0027t feel to belong to this change.",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2413b958_054a714a",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "you can just pass DirectoryURL: \"invalid\" to \u0026acme.Client{}.\nno need for the real serve.",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 17
+      },
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b35630a7_13d96856",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-01-26T14:09:40Z",
+      "side": 1,
+      "message": "See Time type and its Equal method for \u003d\u003d operator comments:\nhttps://golang.org/pkg/time/#Time\n\nHere and in other places where you compare time.",
+      "revId": "0f0e432c340006c1f37f69e8f606a7cff2510f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
