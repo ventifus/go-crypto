@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d6c1c428_80f8469d",
+        "filename": "acme/acme.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-29T00:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28dd5638_7ed0089a",
+      "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef77caf6_907305cb",
         "filename": "acme/types.go",
         "patchSetId": 6
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "60b70e1e_6ff08634",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-29T00:48:52Z",
+      "side": 1,
+      "message": "Done. fmt/vet didn\u0027t show any errors.",
+      "parentUuid": "ef77caf6_907305cb",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbbf9c01_5be3ef26",
         "filename": "acme/types.go",
         "patchSetId": 6
@@ -56,6 +98,24 @@
       "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d462c661_5a1c7524",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-29T00:48:52Z",
+      "side": 1,
+      "message": "To do retries properly in WaitOrder, I had to thread the RetryAfter field through in the Order. It made more sense as an absolute Time, so the retryAfter parser was changed along with this.",
+      "parentUuid": "dbbf9c01_5be3ef26",
+      "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "c3ce7989_599772fe",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-29T00:48:52Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "a144f66e_c4845fbd",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "529bfb7f_f7152630",
         "filename": "acme/types.go",
         "patchSetId": 6
@@ -102,6 +186,30 @@
       "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f821d2d_f618a923",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-01-29T00:48:52Z",
+      "side": 1,
+      "message": "Test extended to cover all fields.",
+      "parentUuid": "529bfb7f_f7152630",
+      "range": {
+        "startLine": 340,
+        "startChar": 1,
+        "endLine": 340,
+        "endChar": 20
+      },
+      "revId": "eb5690528b41c1526e93b28aad95cdb5c9d9e61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
