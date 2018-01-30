@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97137b7d_87f9c57e",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-30T16:33:27Z",
+      "side": 1,
+      "message": "since we generate the test password, is there a reason put a non-zero salt here?",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 2
+      },
+      "revId": "c117e0b778d8649876a49cb377d235b428096cf5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0c0fed_35aff1a3",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-30T16:33:27Z",
+      "side": 1,
+      "message": "0 , right?",
+      "range": {
+        "startLine": 140,
+        "startChar": 9,
+        "endLine": 140,
+        "endChar": 11
+      },
+      "revId": "c117e0b778d8649876a49cb377d235b428096cf5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35587ec7_6c6e7ba3",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-30T16:33:27Z",
+      "side": 1,
+      "message": "can you do somethign like\n\n\n  baseTpl \u003d ` ... `\n\n  \"default\": baseTpl,\n  \"multi\": baseTpl + ` ... `",
+      "range": {
+        "startLine": 80,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 26
+      },
+      "revId": "c117e0b778d8649876a49cb377d235b428096cf5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
