@@ -1,0 +1,337 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af06dc7_b94f9b54",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "multiAuthTestContext",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff20f3d1_40a0e901",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "since you only call this on construction, can you make\n\n func newMultiAuthContext() (*multiAuthContext, error) {\n\ninstead?",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cf0767e_08a33736",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "t.Fatalf()",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1db5b55_54aee72e",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "drop blank line",
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10557d2c_d57c669e",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "nil",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a3701f1_6b48b7ba",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "can return nil here, I think.",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "081c27b5_43f6d4d5",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "you should be able to cast ctx.passwordCallback to the function type directly, \n\n ssh.PasswordCallback(ctx.pwCallback)\n\nhere and below.",
+      "range": {
+        "startLine": 80,
+        "startChar": 13,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6199bf73_10e216f1",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "pwCb called %d times, want %d\n\nhere and below.",
+      "range": {
+        "startLine": 88,
+        "startChar": 21,
+        "endLine": 88,
+        "endChar": 70
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "455dd11a_b4635772",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "shouldn\u0027t this assert that the login attempt as successful? here and below.",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "200fd2bd_1d5a7aeb",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "why is it necessary to use RetryableAuthMethod ?\n\nThis is probably a daft question by me; if it is, there should be documentation on how to setup multiauth for the client.",
+      "range": {
+        "startLine": 104,
+        "startChar": 49,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0251c984_c48ce439",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 105,
+        "startChar": 52,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260b2016_94dec946",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "all of these tests look very alike in terms of code. Can you parameterize this using t.Run() \nand looping over the different multi auth configurations?",
+      "range": {
+        "startLine": 190,
+        "startChar": 2,
+        "endLine": 190,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f39ebf5_9f205ece",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "can just use + , I think.",
+      "range": {
+        "startLine": 66,
+        "startChar": 55,
+        "endLine": 66,
+        "endChar": 62
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc9f9a2_8968e1bf",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "// dynamic library to inject a custom password into sshd.",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 13
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "070d78bc_1ecc2a6b",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-01-31T13:38:43Z",
+      "side": 1,
+      "message": "drop blank",
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
