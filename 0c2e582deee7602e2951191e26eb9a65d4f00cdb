@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d319494_1a723507",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-05T08:54:39Z",
+      "side": 1,
+      "message": "nit: pwcbs is a bit too abbreviated. \n\n  passwordCount ?",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 9
+      },
+      "revId": "0c2e582deee7602e2951191e26eb9a65d4f00cdb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbef667c_355b1677",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-05T08:54:39Z",
+      "side": 1,
+      "message": "this and below is part of the test case specification, and should not be in your mutable context class.\n\n  struct multiAuthTestCase {\n     auth []string\n     numPasswd int\n     numKbInt  int\n  }",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "0c2e582deee7602e2951191e26eb9a65d4f00cdb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030680da_960cf3b9",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-05T08:54:39Z",
+      "side": 1,
+      "message": "no need to explicitly init to 0.",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 10
+      },
+      "revId": "0c2e582deee7602e2951191e26eb9a65d4f00cdb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e027a5ce_55910d92",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-05T08:54:39Z",
+      "side": 1,
+      "message": "if you store this as []string{\"password\",\"publickey\"} in the test case specification, you can easily generate clientConfig.Auth programmatically.",
+      "revId": "0c2e582deee7602e2951191e26eb9a65d4f00cdb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
