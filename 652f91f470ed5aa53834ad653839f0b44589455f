@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e928178_cc39233a",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Yeah, maybe not using strdup() makes the code more messy. It is simpler now.\n\nAs to why implement getpwnam_r() and getspnam_r()? On linux PAM calls both getpwnam() and getpwnam_r(). I do not see any calls to getspnam() or getspnam_r(), but decided to implement then anyway as PAM source code has references to them.",
+      "parentUuid": "77c3e3ba_52116272",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e70ccbbd_a57a50d1",
         "filename": "ssh/test/sshd_test_pw.c",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "03cd91c8_877a40f8",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e70ccbbd_a57a50d1",
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7408f435_d20ad786",
         "filename": "ssh/test/sshd_test_pw.c",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2018-01-25T13:08:18Z",
       "side": 1,
       "message": "why? This never happens for our test?",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 147,
+        "endChar": 26
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d353e3e9_be7dca4c",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Why, as in why call real_getpwnam_r(), or why to implement getpwnam_r()?\n\nAnswer to the latter is that PAM needs it on my ubuntu 16.04.",
+      "parentUuid": "7408f435_d20ad786",
       "range": {
         "startLine": 147,
         "startChar": 11,
@@ -85,6 +151,30 @@
       "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa7a315a_a634b8ed",
+        "filename": "ssh/test/sshd_test_pw.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Ok. Changed to use strdup() everywhere where applicable.",
+      "parentUuid": "4e6cec07_b9827c63",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 11
+      },
+      "revId": "652f91f470ed5aa53834ad653839f0b44589455f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

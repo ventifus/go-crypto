@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8adca49f_4843151d",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af06dc7_b94f9b54",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff20f3d1_40a0e901",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012e1b02_a70fb937",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Yes, makes sense.",
+      "parentUuid": "ff20f3d1_40a0e901",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c564f84b_ebbaf2d5",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf0767e_08a33736",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1db5b55_54aee72e",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -85,6 +157,24 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9525f53_12b153fc",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1db5b55_54aee72e",
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "b1078daf_27e40402",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10557d2c_d57c669e",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a3701f1_6b48b7ba",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -131,6 +245,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4986348a_0ce6e136",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Yes, looks like KeyboardInteractiveChallenge.auth() handles nil when returning err !\u003d nil.",
+      "parentUuid": "2a3701f1_6b48b7ba",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "4f6796b7_5d4d120f",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081c27b5_43f6d4d5",
+      "range": {
+        "startLine": 80,
+        "startChar": 13,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6199bf73_10e216f1",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -177,6 +339,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ded55ff_9af90af6",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6199bf73_10e216f1",
+      "range": {
+        "startLine": 88,
+        "startChar": 21,
+        "endLine": 88,
+        "endChar": 70
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "f7610d38_6d9d2389",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "server.Dial() calls t.Fatalf() if ssh.NewClientConn() returns error, so auth failures are already checked there. Do you want an explicit check here?",
+      "parentUuid": "455dd11a_b4635772",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "200fd2bd_1d5a7aeb",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -223,6 +433,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aadd4f46_9c7718af",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "The bug in client_auth.go appears (I think) only if RetryableAuthMethod() is used. And in real world it is used in most cases where user is prompted for password, right?",
+      "parentUuid": "200fd2bd_1d5a7aeb",
+      "range": {
+        "startLine": 104,
+        "startChar": 49,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -249,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "18a3ae5f_f09a919a",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0251c984_c48ce439",
+      "range": {
+        "startLine": 105,
+        "startChar": 52,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "260b2016_94dec946",
         "filename": "ssh/test/multi_auth_test.go",
         "patchSetId": 5
@@ -269,6 +527,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38c09824_6f6f24ac",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "260b2016_94dec946",
+      "range": {
+        "startLine": 190,
+        "startChar": 2,
+        "endLine": 190,
+        "endChar": 0
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "4df0b56f_7d4fc102",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f39ebf5_9f205ece",
+      "range": {
+        "startLine": 66,
+        "startChar": 55,
+        "endLine": 66,
+        "endChar": 62
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bc9f9a2_8968e1bf",
         "filename": "ssh/test/test_unix_test.go",
         "patchSetId": 5
@@ -315,6 +621,30 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ef4e9cc_91986120",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bc9f9a2_8968e1bf",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 13
+      },
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -350,6 +680,42 @@
       "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2534fd_3c1259b1",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "070d78bc_1ecc2a6b",
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "60347849_d23960b6",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665d7de4_faf7ddeb",
+      "revId": "ead377b7cdbdc1e2ff26a428e3fe2cc1349d98a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
