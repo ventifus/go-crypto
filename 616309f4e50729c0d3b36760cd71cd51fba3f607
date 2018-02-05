@@ -22,6 +22,30 @@
       "revId": "616309f4e50729c0d3b36760cd71cd51fba3f607",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "438f5d38_90c9242f",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2018-02-05T14:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7099ff6_9b00046d",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 41
+      },
+      "revId": "616309f4e50729c0d3b36760cd71cd51fba3f607",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
