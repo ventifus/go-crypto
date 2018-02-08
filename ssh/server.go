@@ -1,3 +1,5 @@
+
+
 // Copyright 2011 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -309,6 +311,14 @@ func (l ServerAuthError) Error() string {
 	return "[" + strings.Join(errs, ", ") + "]"
 }
 
+// NoAuthError is the unique error that is returned if no authentication method
+// has been passed yet
+type NoAuthError struct{}
+
+func (e *NoAuthError) Error() string {
+	return "no auth passed yet"
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
@@ -363,7 +373,7 @@ userAuthLoop:
 		}
 
 		perms = nil
-		authErr := errors.New("no auth passed yet")
+		authErr := &NoAuthError{}
 
 		switch userAuthReq.Method {
 		case "none":
