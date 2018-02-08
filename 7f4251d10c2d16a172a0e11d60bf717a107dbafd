@@ -22,6 +22,30 @@
       "revId": "7f4251d10c2d16a172a0e11d60bf717a107dbafd",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c9ff93a_653322ed",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2018-02-08T18:29:15Z",
+      "side": 1,
+      "message": "We want to find some way other than string matching against the \"no auth passed yet\" errors received from the SSH library. I thought creating a unique error type might allow for a type check instead.",
+      "parentUuid": "e895683c_724127d2",
+      "range": {
+        "startLine": 312,
+        "startChar": 3,
+        "endLine": 312,
+        "endChar": 14
+      },
+      "revId": "7f4251d10c2d16a172a0e11d60bf717a107dbafd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
