@@ -22,6 +22,30 @@
       "revId": "f11e343c5ebe876e8ab864c56ddf2a7cac456efc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "297b5008_7a5c4517",
+        "filename": "ssh/certs.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-08T17:09:14Z",
+      "side": 1,
+      "message": "Adam introduced this. Can we leave this for another change?",
+      "parentUuid": "1d62280a_7c3d4a04",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "f11e343c5ebe876e8ab864c56ddf2a7cac456efc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
