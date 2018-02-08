@@ -52,6 +52,24 @@
       "revId": "8df7f7785bb444dc1b21d39713b4aca9b6caf6d9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ea15cf1_052d9699",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-08T16:52:54Z",
+      "side": 1,
+      "message": "It has no meaning in filenames either. Neither does \"posix\", which you also see in filenames conventionally. Both \"unix\" and \"posix\"-named files have +build tags in the source that enumerate a bunch of GOOSes.",
+      "parentUuid": "fbb7ce79_da32a42c",
+      "revId": "8df7f7785bb444dc1b21d39713b4aca9b6caf6d9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
