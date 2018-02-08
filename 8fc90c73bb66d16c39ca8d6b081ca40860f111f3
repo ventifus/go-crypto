@@ -16,6 +16,24 @@
       "revId": "8fc90c73bb66d16c39ca8d6b081ca40860f111f3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82194deb_2356ad0c",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-08T15:53:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1215ba_d0de2e09",
+      "revId": "8fc90c73bb66d16c39ca8d6b081ca40860f111f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
