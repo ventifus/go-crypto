@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a06bcfb2_3b885f33",
+        "filename": "openpgp/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-08T22:43:41Z",
+      "side": 1,
+      "message": "use %q instead of %v for both of these. (%q shows empty strings and strings with binary gibberish nicely)",
+      "range": {
+        "startLine": 337,
+        "startChar": 28,
+        "endLine": 337,
+        "endChar": 39
+      },
+      "revId": "52fd6f3b006c44fcf8fb60cc804896feafda8371",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
