@@ -16,6 +16,24 @@
       "revId": "8df7f7785bb444dc1b21d39713b4aca9b6caf6d9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8467d980_90c85bde",
+        "filename": "ssh/test/multi_auth_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-08T15:40:32Z",
+      "side": 1,
+      "message": "(That is, this is just skipping this test unless you run \"go test --tags\u003dunix\")",
+      "parentUuid": "da05bdb6_c010c38f",
+      "revId": "8df7f7785bb444dc1b21d39713b4aca9b6caf6d9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
