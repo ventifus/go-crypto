@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37b23f2a_6be711c3",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 14630
+      },
+      "writtenOn": "2018-02-10T03:30:15Z",
+      "side": 1,
+      "message": "The final argument here (nil) is the account object. At least using Pebble, calling GetAccount resets the accounts ToS back to not accepted, causing subsequent operations to fail.\n\nI\u0027m not too sure how GetAccount can get around this for now, but in the meantime I\u0027m going to avoid all use of the function in favour of always calling CreateAccount.",
+      "revId": "b5d478aa69df375ad2f1dfa47247450344372001",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
