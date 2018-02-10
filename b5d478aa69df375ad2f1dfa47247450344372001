@@ -16,6 +16,24 @@
       "revId": "b5d478aa69df375ad2f1dfa47247450344372001",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d75f178_1582548d",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 5431
+      },
+      "writtenOn": "2018-02-10T03:33:22Z",
+      "side": 1,
+      "message": "The spec says:\n\n\u003e This field is not updateable [sic] by the client.\n\nSo, this sounds like a bug in pebble that should be reported on GitHub.",
+      "parentUuid": "37b23f2a_6be711c3",
+      "revId": "b5d478aa69df375ad2f1dfa47247450344372001",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
