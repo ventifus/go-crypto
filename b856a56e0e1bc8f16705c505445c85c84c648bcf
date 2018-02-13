@@ -22,6 +22,30 @@
       "revId": "b856a56e0e1bc8f16705c505445c85c84c648bcf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11139f09_b89211f4",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 20245
+      },
+      "writtenOn": "2018-02-13T18:34:40Z",
+      "side": 1,
+      "message": "If I set authErr to be a NoAuthError here, when it\u0027s being defined, then any other generic error assignments will fail (ie. http://google3/third_party/golang/go_crypto/ssh/server.go?l\u003d380\u0026rcl\u003d182799957)",
+      "parentUuid": "6112448c_03d8da6a",
+      "range": {
+        "startLine": 374,
+        "startChar": 19,
+        "endLine": 374,
+        "endChar": 20
+      },
+      "revId": "b856a56e0e1bc8f16705c505445c85c84c648bcf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
