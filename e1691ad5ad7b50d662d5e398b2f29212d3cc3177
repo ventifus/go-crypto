@@ -16,6 +16,24 @@
       "revId": "e1691ad5ad7b50d662d5e398b2f29212d3cc3177",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "953de453_d7752622",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-02-13T23:59:27Z",
+      "side": 1,
+      "message": "Sure, but I\u0027m assuming that nobody is calling this package outside of the rest of the openpgp code. Is there a suggestion that\u0027s not true? (GitHub doesn\u0027t seem to do site-wide search any longer.)",
+      "parentUuid": "4b4ff7be_2bf07168",
+      "revId": "e1691ad5ad7b50d662d5e398b2f29212d3cc3177",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
