@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b4ff7be_2bf07168",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-13T22:36:24Z",
+      "side": 1,
+      "message": "what about keeping this signature unchanged, and adding a new Parse variant with this signature?\n\nThen this one would wrap the full one, but return an error on keyIsMissing?\n\nOr, easier: keep this signature unchanged, don\u0027t add anything new, but document that for the GNU extension, the err value will be ErrGNUNoPrivateKey or something?\n\nThen callers unprepared for a nil f won\u0027t be surprised on err \u003d\u003d nil, but will still get the same information out of the function.",
+      "revId": "e1691ad5ad7b50d662d5e398b2f29212d3cc3177",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
