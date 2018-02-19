@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "bd84522d_a6bb597a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2018-02-19T21:38:02Z",
+      "side": 1,
+      "message": "I\u0027ve looked and there are existing issues for this. Also, in https://golang.org/issues/23852 (and elsewhere), Brad said git-codereview hook is no longer a good idea because changes can come from PRs. A review bot becomes more versatile.\n\nThis discussion can be continued/tracked in https://golang.org/issues/18548.",
+      "parentUuid": "8370a4ae_404ccb1f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 4
+      },
+      "revId": "432090b8f568c018896cd8a0fb0345872bbac6ce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbab4a27_8f8068a4",
         "filename": "ssh/server.go",
         "patchSetId": 7
