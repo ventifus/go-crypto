@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47b2364a_0f3ceadb",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-19T18:19:32Z",
+      "side": 1,
+      "message": "update message",
+      "range": {
+        "startLine": 618,
+        "startChar": 32,
+        "endLine": 618,
+        "endChar": 36
+      },
+      "revId": "536df9ab91b5121bc02e91496bce87169d365017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44fcc821_e32dc163",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-19T18:19:32Z",
+      "side": 1,
+      "message": "has succeeded\n\n(since we\u0027re nitpicking.)",
+      "range": {
+        "startLine": 313,
+        "startChar": 3,
+        "endLine": 313,
+        "endChar": 18
+      },
+      "revId": "536df9ab91b5121bc02e91496bce87169d365017",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
