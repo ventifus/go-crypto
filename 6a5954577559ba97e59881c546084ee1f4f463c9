@@ -22,6 +22,30 @@
       "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8489fe_40ef0996",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 16005
+      },
+      "writtenOn": "2018-02-19T21:08:16Z",
+      "side": 1,
+      "message": "How is this patch behaving any differently than the type def before? What do you recommend instead?",
+      "parentUuid": "3fe7ed14_f0fe60da",
+      "range": {
+        "startLine": 314,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 13
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
