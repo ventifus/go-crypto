@@ -311,11 +311,7 @@ func (l ServerAuthError) Error() string {
 
 // NoAuthError is the unique error that is returned if no authentication method
 // has been passed yet
-type NoAuthError struct{}
-
-func (e *NoAuthError) Error() string {
-	return "no auth passed yet"
-}
+var NoAuthError = errors.New("no auth passed yet")
 
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
@@ -371,7 +367,7 @@ userAuthLoop:
 		}
 
 		perms = nil
-		authErr := error(&NoAuthError{})
+		authErr := NoAuthError
 
 		switch userAuthReq.Method {
 		case "none":
