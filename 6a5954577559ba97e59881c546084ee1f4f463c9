@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fe7ed14_f0fe60da",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-19T19:08:54Z",
+      "side": 1,
+      "message": "this defeats the purpose of the original change, which is to offer a sanctioned way to filter this placeholder from a \u0026ServerAuthError{} value.",
+      "range": {
+        "startLine": 314,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 13
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
