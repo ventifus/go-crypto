@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbab4a27_8f8068a4",
+        "filename": "ssh/server.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 16005
+      },
+      "writtenOn": "2018-02-19T16:56:26Z",
+      "side": 1,
+      "message": "Why make it so complicated? `var NoAuthError \u003d fmt.Errorf(\"no auth password yet\")`\nThen simply return `NoAuthError` wherever appropriate and check for it like this:\n```go\n_, err :\u003d serverAuthenticate(..\nif err \u003d\u003d NoAuthError {..\n```",
+      "revId": "432090b8f568c018896cd8a0fb0345872bbac6ce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
