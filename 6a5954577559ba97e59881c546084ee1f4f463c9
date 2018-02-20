@@ -115,6 +115,30 @@
       "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc64967f_38f04e59",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-02-20T08:20:23Z",
+      "side": 1,
+      "message": "the left side has a type, which you can cast an error to. This here hides the error variable so it is hidden to callers, so callers have nothing to compare to except strings.Contains().",
+      "parentUuid": "4a8489fe_40ef0996",
+      "range": {
+        "startLine": 314,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 13
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
