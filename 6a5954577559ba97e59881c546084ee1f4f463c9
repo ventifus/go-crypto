@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "db337d05_e6c31219",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-20T01:37:21Z",
+      "side": 1,
+      "message": "\"the error value\" instead of \"the unique error\".",
+      "range": {
+        "startLine": 312,
+        "startChar": 16,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3257f455_5314dab4",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-20T01:37:21Z",
+      "side": 1,
+      "message": "returned by what? Document it there too.",
+      "range": {
+        "startLine": 312,
+        "startChar": 41,
+        "endLine": 312,
+        "endChar": 49
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "063d99f5_7c97368c",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-20T01:37:21Z",
+      "side": 1,
+      "message": "end sentences in a period.",
+      "range": {
+        "startLine": 313,
+        "startChar": 17,
+        "endLine": 313,
+        "endChar": 20
+      },
+      "revId": "6a5954577559ba97e59881c546084ee1f4f463c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3fe7ed14_f0fe60da",
         "filename": "ssh/server.go",
         "patchSetId": 2
