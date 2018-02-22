@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12a397e2_a2e8bb2d",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-22T21:12:40Z",
+      "side": 1,
+      "message": "I already commented on this and said it was the wrong naming convention.\n\nAs I said earlier, it should be ErrNoAuth for variables. Naming it ending in Error is only for types.",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 55
+      },
+      "revId": "49796115aa4b964c318aad4f3084fdb41e9aa067",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
