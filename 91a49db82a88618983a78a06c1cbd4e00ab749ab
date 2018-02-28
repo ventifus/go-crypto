@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d480d9b7_d6464d28",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 5021
+      },
+      "writtenOn": "2018-02-28T21:03:36Z",
+      "side": 1,
+      "message": "Does it make sense to actually exclude 429 here? I believe any 429 response should be retried after a sleeping period.",
+      "revId": "91a49db82a88618983a78a06c1cbd4e00ab749ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
