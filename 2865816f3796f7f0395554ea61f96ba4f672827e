@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c9f52ad_26f0b48b",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-28T15:41:43Z",
+      "side": 1,
+      "message": "I slightly prefer \u003c\u003d 499",
+      "range": {
+        "startLine": 415,
+        "startChar": 45,
+        "endLine": 415,
+        "endChar": 50
+      },
+      "revId": "2865816f3796f7f0395554ea61f96ba4f672827e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac5c8653_70b7177c",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-28T15:41:43Z",
+      "side": 1,
+      "message": "they don\u0027t ever return a 404 immediately after creating an authorization for a small time window, do they? i.e. some eventually consistent backend and our client gets unlucky on second HTTP request and hits a frontend that hits a backend that doesn\u0027t have the data yet?\n\nbut this LGTM anyway. we can adjust later if needed.\n\nI really hope a serious service isn\u0027t using eventual consistency for something API-facing.",
+      "range": {
+        "startLine": 416,
+        "startChar": 66,
+        "endLine": 416,
+        "endChar": 79
+      },
+      "revId": "2865816f3796f7f0395554ea61f96ba4f672827e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00aa068d_3722a0c0",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-28T15:41:43Z",
+      "side": 1,
+      "message": "make this buffered (, 1)",
+      "revId": "2865816f3796f7f0395554ea61f96ba4f672827e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d4c7ff9_ae05fe41",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-28T15:41:43Z",
+      "side": 1,
+      "message": "delete this line. it can only cause panics.",
+      "revId": "2865816f3796f7f0395554ea61f96ba4f672827e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13c8d32a_70f79812",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-02-28T15:41:43Z",
+      "side": 1,
+      "message": "little minimal but okay",
+      "revId": "2865816f3796f7f0395554ea61f96ba4f672827e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
