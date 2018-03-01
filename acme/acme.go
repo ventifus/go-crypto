@@ -412,37 +412,41 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 		if err != nil {
 			return nil, err
 		}
-		if res.StatusCode >= 400 && res.StatusCode <= 499 {
-			// Non-retriable error. For instance, Let's Encrypt may return 404 Not Found
-			// when requesting an expired authorization.
-			defer res.Body.Close()
-			return nil, responseError(res)
-		}
-
-		retry := res.Header.Get("Retry-After")
+		after := res.Header.Get("Retry-After")
 		if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusAccepted {
+			// No reason to even try parsing authorization status,
+			// given the non-ok response code.
+			if unretriable(res) {
+				// For instance, Let's Encrypt may return 404 Not Found
+				// when requesting an expired authorization.
+				defer res.Body.Close()
+				return nil, responseError(res)
+			}
 			res.Body.Close()
-			if err := sleep(retry, 1); err != nil {
+			if err := sleep(after, 1); err != nil {
 				return nil, err
 			}
 			continue
 		}
+
 		var raw wireAuthz
 		err = json.NewDecoder(res.Body).Decode(&raw)
 		res.Body.Close()
 		if err != nil {
-			if err := sleep(retry, 0); err != nil {
+			if err := sleep(after, 0); err != nil {
 				return nil, err
 			}
 			continue
 		}
+		// Check for a final status.
 		if raw.Status == StatusValid {
 			return raw.authorization(url), nil
 		}
 		if raw.Status == StatusInvalid {
 			return nil, raw.error(url)
 		}
-		if err := sleep(retry, 0); err != nil {
+		// Not yet; still pending.
+		if err := sleep(after, 0); err != nil {
 			return nil, err
 		}
 	}
@@ -952,6 +956,12 @@ func sleeper(ctx context.Context) func(ra string, inc int) error {
 			return nil
 		}
 	}
+}
+
+// unretriable reports whether a retry loop should abandon retrying the same request.
+func unretriable(res *http.Response) bool {
+	return res.StatusCode >= 400 && res.StatusCode <= 499 &&
+		res.StatusCode != http.StatusTooManyRequests
 }
 
 // retryAfter parses a Retry-After HTTP header value,
