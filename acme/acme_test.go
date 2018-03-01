@@ -485,88 +485,39 @@ func TestGetAuthorization(t *testing.T) {
 }
 
 func TestWaitAuthorization(t *testing.T) {
-	var count int
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		count++
-		w.Header().Set("Retry-After", "0")
-		if count > 1 {
-			fmt.Fprintf(w, `{"status":"valid"}`)
-			return
+	t.Run("wait loop", func(t *testing.T) {
+		var count int
+		authz, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			count++
+			w.Header().Set("Retry-After", "0")
+			if count > 1 {
+				fmt.Fprintf(w, `{"status":"valid"}`)
+				return
+			}
+			fmt.Fprintf(w, `{"status":"pending"}`)
+		})
+		if err != nil {
+			t.Fatalf("non-nil error: %v", err)
 		}
-		fmt.Fprintf(w, `{"status":"pending"}`)
-	}))
-	defer ts.Close()
-
-	type res struct {
-		authz *Authorization
-		err   error
-	}
-	done := make(chan res)
-	defer close(done)
-	go func() {
-		var client Client
-		a, err := client.WaitAuthorization(context.Background(), ts.URL)
-		done <- res{a, err}
-	}()
-
-	select {
-	case <-time.After(5 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case res := <-done:
-		if res.err != nil {
-			t.Fatalf("res.err =  %v", res.err)
+		if authz == nil {
+			t.Fatal("authz is nil")
 		}
-		if res.authz == nil {
-			t.Fatal("res.authz is nil")
-		}
-	}
-}
+	})
 
-func TestWaitAuthorizationInvalid(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, `{"status":"invalid"}`)
-	}))
-	defer ts.Close()
-
-	res := make(chan error)
-	defer close(res)
-	go func() {
-		var client Client
-		_, err := client.WaitAuthorization(context.Background(), ts.URL)
-		res <- err
-	}()
-
-	select {
-	case <-time.After(3 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-res:
-		if err == nil {
-			t.Error("err is nil")
-		}
+	t.Run("invalid status", func(t *testing.T) {
+		_, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			fmt.Fprintf(w, `{"status":"invalid"}`)
+		})
 		if _, ok := err.(*AuthorizationError); !ok {
-			t.Errorf("err is %T; want *AuthorizationError", err)
+			t.Errorf("err is %v (%T); want non-nil *AuthorizationError", err, err)
 		}
-	}
-}
+	})
 
-func TestWaitAuthorizationClientError(t *testing.T) {
-	const code = http.StatusBadRequest
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(code)
-	}))
-	defer ts.Close()
-
-	ch := make(chan error, 1)
-	go func() {
-		var client Client
-		_, err := client.WaitAuthorization(context.Background(), ts.URL)
-		ch <- err
-	}()
-
-	select {
-	case <-time.After(3 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-ch:
+	t.Run("client errors", func(t *testing.T) {
+		const code = http.StatusBadRequest
+		_, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(code)
+		})
 		res, ok := err.(*Error)
 		if !ok {
 			t.Fatalf("err is %v (%T); want a non-nil *Error", err, err)
@@ -574,34 +525,63 @@ func TestWaitAuthorizationClientError(t *testing.T) {
 		if res.StatusCode != code {
 			t.Errorf("res.StatusCode = %d; want %d", res.StatusCode, code)
 		}
-	}
-}
+	})
 
-func TestWaitAuthorizationCancel(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Retry-After", "60")
-		fmt.Fprintf(w, `{"status":"pending"}`)
-	}))
-	defer ts.Close()
+	t.Run("retriable 429 client error", func(t *testing.T) {
+		var count int
+		authz, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			count++
+			w.Header().Set("Retry-After", "0")
+			if count > 1 {
+				fmt.Fprintf(w, `{"status":"valid"}`)
+				return
+			}
+			w.WriteHeader(http.StatusTooManyRequests)
+		})
+		if err != nil {
+			t.Fatalf("non-nil error: %v", err)
+		}
+		if authz == nil {
+			t.Fatal("authz is nil")
+		}
+	})
 
-	res := make(chan error)
-	defer close(res)
-	go func() {
-		var client Client
+	t.Run("context cancel", func(t *testing.T) {
 		ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 		defer cancel()
-		_, err := client.WaitAuthorization(ctx, ts.URL)
-		res <- err
-	}()
-
-	select {
-	case <-time.After(time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-res:
+		_, err := runWaitAuthorization(ctx, t, func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Retry-After", "60")
+			fmt.Fprintf(w, `{"status":"pending"}`)
+		})
 		if err == nil {
 			t.Error("err is nil")
 		}
+	})
+}
+
+func runWaitAuthorization(ctx context.Context, t *testing.T, h http.HandlerFunc) (*Authorization, error) {
+	t.Helper()
+	ts := httptest.NewServer(h)
+	defer ts.Close()
+
+	type res struct {
+		authz *Authorization
+		err   error
 	}
+	ch := make(chan res, 1)
+	go func() {
+		var client Client
+		a, err := client.WaitAuthorization(ctx, ts.URL)
+		ch <- res{a, err}
+	}()
+
+	select {
+	case <-time.After(3 * time.Second):
+		t.Fatal("WaitAuthorization took too long to return")
+	case v := <-ch:
+		return v.authz, v.err
+	}
+	panic("runWaitAuthorization: out of select")
 }
 
 func TestRevokeAuthorization(t *testing.T) {

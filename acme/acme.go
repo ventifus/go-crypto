@@ -412,7 +412,7 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 		if err != nil {
 			return nil, err
 		}
-		if res.StatusCode >= 400 && res.StatusCode <= 499 {
+		if res.StatusCode >= 400 && res.StatusCode <= 499 && res.StatusCode != http.StatusTooManyRequests {
 			// Non-retriable error. For instance, Let's Encrypt may return 404 Not Found
 			// when requesting an expired authorization.
 			defer res.Body.Close()
