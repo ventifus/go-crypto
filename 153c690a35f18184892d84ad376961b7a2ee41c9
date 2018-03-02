@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6032dcb_ca0d145d",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-03-02T10:46:20Z",
+      "side": 1,
+      "message": "This changes the behaviour. In a previous patchset, the code wouldn\u0027t return but go ahead and renew the cert with the existing key, known to be good to sign.\n\nYou return 0 now, which makes it retry \"signer, ok :\u003d tlscert.PrivateKey.(crypto.Signer)\" again and again, until \"next\" is \u003c\u003d dr.m.renewBefore()+renewJitter at which point it\u0027ll branch out to renewing the cert with the original key anyway.\n\nSo, maybe it\u0027s better to fallback to the original behaviour: return next, nil to use existing cert?",
+      "revId": "153c690a35f18184892d84ad376961b7a2ee41c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
