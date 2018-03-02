@@ -16,6 +16,24 @@
       "revId": "153c690a35f18184892d84ad376961b7a2ee41c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac03dfa3_a3416c18",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 26319
+      },
+      "writtenOn": "2018-03-02T18:28:29Z",
+      "side": 1,
+      "message": "Fixed. I don\u0027t thing we should return `next` from this block because it\u0027s related to the cert in the cache (that somehow fails the PrivateKey type assertion) that we would not be actually using. \n\nInstead, proceed to do a renewal with our current key - which is similar behavior if we got an error from the cacheGet() itself.",
+      "parentUuid": "c6032dcb_ca0d145d",
+      "revId": "153c690a35f18184892d84ad376961b7a2ee41c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
