@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "000291b0_7a34563f",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-02T17:19:54Z",
+      "side": 1,
+      "message": "I\u0027d rather you invert this. I don\u0027t like negating with English when the language has \"!\". Because inevitably it leads to people writing code with double negativess:\n\n   if !unretriable(...)\n\nAnd that\u0027s just terrible, so let\u0027s stop that before it happens.\n\nIf you prefer a different name like canRetry or shouldRetry or shouldRetryWaitAuth (if the policy will be different for multiple callers), that\u0027s fine too.",
+      "range": {
+        "startLine": 419,
+        "startChar": 3,
+        "endLine": 419,
+        "endChar": 24
+      },
+      "revId": "8054631cf1e583e26174f9aee3a22fd68789551f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
