@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3aefb0a_7f4f6c4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-03-06T12:20:26Z",
+      "side": 1,
+      "message": "Could you also reference the bug please:\nhttps://github.com/golang/go/issues/23569",
+      "revId": "776afdaa67229f843ca6dc3a8eb8095292480cf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
