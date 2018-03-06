@@ -16,6 +16,24 @@
       "revId": "776afdaa67229f843ca6dc3a8eb8095292480cf0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fe8df3e_9045b0f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-03-06T12:22:30Z",
+      "side": 1,
+      "message": "Maybe I should mention. It should be of the following form:\n\nFixes golang/go#23569",
+      "parentUuid": "f3aefb0a_7f4f6c4d",
+      "revId": "776afdaa67229f843ca6dc3a8eb8095292480cf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
