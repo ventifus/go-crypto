@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "814819f0_e57a520b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-03-08T14:12:53Z",
+      "side": 1,
+      "message": "can you rephrase this commit message impersonally? Also, \"I\" is capitalized.",
+      "range": {
+        "startLine": 9,
+        "startChar": 46,
+        "endLine": 9,
+        "endChar": 74
+      },
+      "revId": "970a02498710c5503e4b26b8c69edc899df5067a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78cdd74e_7d956c8b",
+        "filename": "ssh/common.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-03-08T14:12:53Z",
+      "side": 1,
+      "message": "why, and why specifically in this order? See also https://www.imperialviolet.org/2014/05/25/strengthmatching.html for considerations on bit sizes. \n\nIf you are worried about selecting the \"best\" cipher combination, you shoudl probably not use a MAC at all and use chacha20-poly1305 or AES-GCM.",
+      "range": {
+        "startLine": 70,
+        "startChar": 40,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "970a02498710c5503e4b26b8c69edc899df5067a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
