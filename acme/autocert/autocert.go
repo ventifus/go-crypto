@@ -542,9 +542,24 @@ func (m *Manager) authorizedCert(ctx context.Context, key crypto.Signer, domain 
 	return der, leaf, nil
 }
 
+// revokePending revokes all provided authorizarions (passed as a map of URIs)
+func (m *Manager) revokePending(ctx context.Context, pendingAuthzURIs map[string]bool) {
+	var wg sync.WaitGroup
+	for uri := range pendingAuthzURIs {
+		wg.Add(1)
+		go func(uri string) {
+			m.Client.RevokeAuthorization(ctx, uri)
+			wg.Done()
+		}(uri)
+	}
+	if waitForRevocations {
+		wg.Wait()
+	}
+}
+
 // verify runs the identifier (domain) authorization flow
 // using each applicable ACME challenge type.
-func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string) error {
+func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string) (err error) {
 	// The list of challenge types we'll try to fulfill
 	// in this specific order.
 	challengeTypes := []string{"tls-sni-02", "tls-sni-01"}
@@ -553,6 +568,10 @@ func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string
 		challengeTypes = append(challengeTypes, "http-01")
 	}
 	m.tokensMu.RUnlock()
+
+	// we keep track of pending authzs and revoke the ones that did not validate.
+	pendingAuthzs := make(map[string]bool)
+	defer m.revokePending(ctx, pendingAuthzs)
 
 	var nextTyp int // challengeType index of the next challenge type to try
 	for {
@@ -569,6 +588,8 @@ func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string
 		case acme.StatusInvalid:
 			return fmt.Errorf("acme/autocert: invalid authorization %q", authz.URI)
 		}
+
+		pendingAuthzs[authz.URI] = true
 
 		// Pick the next preferred challenge.
 		var chal *acme.Challenge
@@ -590,6 +611,7 @@ func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string
 
 		// A challenge is fulfilled and accepted: wait for the CA to validate.
 		if _, err := client.WaitAuthorization(ctx, authz.URI); err == nil {
+			delete(pendingAuthzs, authz.URI)
 			return nil
 		}
 	}
@@ -959,4 +981,7 @@ var (
 
 	// Called when a state is removed.
 	testDidRemoveState = func(domain string) {}
+
+	// make testing of revokePending synchronous
+	waitForRevocations = false
 )
