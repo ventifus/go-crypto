@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9a454bd_8c1618f5",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-03-14T23:22:24Z",
+      "side": 1,
+      "message": "Needs copyright and package comment.",
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4acd6846_1e6d15e4",
+        "filename": "nacl/sign/sign_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-03-14T23:22:24Z",
+      "side": 1,
+      "message": "Needs copyright",
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1704672_b8b245d6",
+        "filename": "nacl/sign/sign_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-03-14T23:22:24Z",
+      "side": 1,
+      "message": "\"Gold\" isn\u0027t something that I\u0027ve seen people use before in the Go codebase. How about \"testKeys\", \"testSignedMessage\" etc?",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
