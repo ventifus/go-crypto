@@ -16,6 +16,24 @@
       "revId": "6ea0b4eb96ed5be93015e15b7bb40ddd922c80c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e574473d_81fd4b99",
+        "filename": "openpgp/packet/encrypted_key_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-15T23:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0b0796_bed92760",
+      "revId": "6ea0b4eb96ed5be93015e15b7bb40ddd922c80c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
