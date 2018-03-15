@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2724728_2396b6cf",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-03-15T21:57:09Z",
+      "side": 1,
+      "message": "(nit: needs at least one blank line in here.)",
+      "revId": "eebee179e9751aeea38d2cb02aaa8b14015e2758",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
