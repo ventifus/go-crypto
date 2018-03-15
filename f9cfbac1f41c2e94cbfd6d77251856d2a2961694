@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "adee8a55_ace17cab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-15T02:26:41Z",
+      "side": 1,
+      "message": "just \"nacl/sign:\" per https://github.com/golang/go/wiki/CommitMessage",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9a454bd_8c1618f5",
         "filename": "nacl/sign/sign.go",
         "patchSetId": 3
