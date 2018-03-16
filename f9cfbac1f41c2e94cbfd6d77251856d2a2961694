@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "76d99520_c3da6f15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-16T13:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adee8a55_ace17cab",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9a454bd_8c1618f5",
         "filename": "nacl/sign/sign.go",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "78c2c8b3_1b807b0a",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-16T13:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9a454bd_8c1618f5",
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4acd6846_1e6d15e4",
         "filename": "nacl/sign/sign_test.go",
         "patchSetId": 3
@@ -56,6 +98,24 @@
       "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04deada9_8f9cbb95",
+        "filename": "nacl/sign/sign_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-16T13:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4acd6846_1e6d15e4",
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -79,6 +139,30 @@
       "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16cf5d39_1f4f42d6",
+        "filename": "nacl/sign/sign_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-16T13:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1704672_b8b245d6",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "f9cfbac1f41c2e94cbfd6d77251856d2a2961694",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
