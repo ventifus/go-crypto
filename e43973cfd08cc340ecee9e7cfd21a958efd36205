@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b9c3310_a52b32a6",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-19T05:09:48Z",
+      "side": 1,
+      "message": "you say nothing about the rand parameter.\n\nIs it just exposed for testing?\n\nMaybe it should default to crypto/rand.Reader and have a separate tedious and verbose function (GenerateKeyFromRandSource) for the rare case?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 17
+      },
+      "revId": "e43973cfd08cc340ecee9e7cfd21a958efd36205",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cad722f9_e0c3435e",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-19T05:09:48Z",
+      "side": 1,
+      "message": "why pointer types?\n\nOr why not add a KeyPair type?",
+      "range": {
+        "startLine": 34,
+        "startChar": 34,
+        "endLine": 34,
+        "endChar": 75
+      },
+      "revId": "e43973cfd08cc340ecee9e7cfd21a958efd36205",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
