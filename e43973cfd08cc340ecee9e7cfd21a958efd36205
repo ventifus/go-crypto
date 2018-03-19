@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9798331b_8c984d2d",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-19T13:25:13Z",
+      "side": 1,
+      "message": "I stuck as closely as possible to the nacl/box interface, which does it this way.",
+      "parentUuid": "6b9c3310_a52b32a6",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 17
+      },
+      "revId": "e43973cfd08cc340ecee9e7cfd21a958efd36205",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cad722f9_e0c3435e",
         "filename": "nacl/sign/sign.go",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-19T05:09:48Z",
       "side": 1,
       "message": "why pointer types?\n\nOr why not add a KeyPair type?",
+      "range": {
+        "startLine": 34,
+        "startChar": 34,
+        "endLine": 34,
+        "endChar": 75
+      },
+      "revId": "e43973cfd08cc340ecee9e7cfd21a958efd36205",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af50d3e7_3932880d",
+        "filename": "nacl/sign/sign.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 13410
+      },
+      "writtenOn": "2018-03-19T13:25:13Z",
+      "side": 1,
+      "message": "This is how it is done in nacl/box, nacl/auth and box/secretbox. I think we should stay consistent within the nacl/* family for now.\n\nI actually wrote some code that has a key type and wraps the GenerateKey, Sign and Open functions. Let me just post the result of godoc here:\n\ntype PrivateKey [64]byte\nfunc GeneratePrivateKey(rand io.Reader) (*PrivateKey, error)\nfunc (key *PrivateKey) Public() *PublicKey\n\nfunc (key *PrivateKey) SignedMessage(msg []byte) []byte\nfunc (key *PrivateKey) Signature(msg []byte) []byte\n\ntype PublicKey [32]byte\nfunc (pub *PublicKey) VerifiedMessage(sigMsg []byte) ([]byte, bool)\nfunc (pub *PublicKey) VerifySignature(sig, msg []byte) bool\n\n\nThere are a couple more that may be nice to have like:\nfunc (key *PrivateKey) AppendSignedMessage(out, msg []byte) []byte\nor methods write the output to a writer.\n\nIf we want to consider a design like this, let\u0027s do it for the whole nacl directory, after this is merged. I\u0027m happy to send a change that provides such a friendly interface at the top level of nacl, wrapping the nacl/* packages. Let me know if there is any interest in that and I\u0027ll send a proposal that we can iterate a couple of times (preferably after this is one is done).\n\nThen we could also revisit the question whether the user should provide a source of randomness for key generation.",
+      "parentUuid": "cad722f9_e0c3435e",
       "range": {
         "startLine": 34,
         "startChar": 34,
