@@ -92,6 +92,7 @@ type tbsRequest struct {
 	Version       int              `asn1:"explicit,tag:0,default:0,optional"`
 	RequestorName pkix.RDNSequence `asn1:"explicit,tag:1,optional"`
 	RequestList   []request
+	ExtensionList []pkix.Extension `asn1:"explicit,tag:2,optional"`
 }
 
 type request struct {
@@ -116,11 +117,12 @@ type basicResponse struct {
 }
 
 type responseData struct {
-	Raw            asn1.RawContent
-	Version        int `asn1:"optional,default:0,explicit,tag:0"`
-	RawResponderID asn1.RawValue
-	ProducedAt     time.Time `asn1:"generalized"`
-	Responses      []singleResponse
+	Raw                asn1.RawContent
+	Version            int `asn1:"optional,default:0,explicit,tag:0"`
+	RawResponderID     asn1.RawValue
+	ProducedAt         time.Time `asn1:"generalized"`
+	Responses          []singleResponse
+	ResponseExtensions []pkix.Extension `asn1:"explicit,tag:1,optional"`
 }
 
 type singleResponse struct {
@@ -414,10 +416,12 @@ func (p ParseError) Error() string {
 	return string(p)
 }
 
-// ParseRequest parses an OCSP request in DER form. It only supports
+// ParseRequestWithExtensions parses an OCSP request in DER form. It only supports
 // requests for a single certificate. Signed requests are not supported.
 // If a request includes a signature, it will result in a ParseError.
-func ParseRequest(bytes []byte) (*Request, error) {
+// It returns the unmodified pkix extensions. If you do not need the extensions
+// Then use the ParseRequest function
+func ParseRequestWithExtensions(bytes []byte) (*Request, []pkix.Extension, error) {
 	var req ocspRequest
 	rest, err := asn1.Unmarshal(bytes, &req)
 	if err != nil {
@@ -442,7 +446,14 @@ func ParseRequest(bytes []byte) (*Request, error) {
 		IssuerNameHash: innerRequest.Cert.NameHash,
 		IssuerKeyHash:  innerRequest.Cert.IssuerKeyHash,
 		SerialNumber:   innerRequest.Cert.SerialNumber,
-	}, nil
+	}, req.TBSRequest.ExtensionList, nil
+}
+
+// ParseRequest returns the request and error from ParseRequestWithExtensions
+// It is mostly for compatability, as ParseRequestWithExtensions was added later
+func ParseRequest(bytes []byte) (*Request, error) {
+	req, _, err = ParseRequestWithExtensions(bytes)
+	return req, err
 }
 
 // ParseResponse parses an OCSP response in DER form. It only supports
@@ -727,10 +738,11 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		Bytes:      responderCert.RawSubject,
 	}
 	tbsResponseData := responseData{
-		Version:        0,
-		RawResponderID: rawResponderID,
-		ProducedAt:     time.Now().Truncate(time.Minute).UTC(),
-		Responses:      []singleResponse{innerResponse},
+		Version:            0,
+		RawResponderID:     rawResponderID,
+		ProducedAt:         time.Now().Truncate(time.Minute).UTC(),
+		Responses:          []singleResponse{innerResponse},
+		ResponseExtensions: template.Extensions,
 	}
 
 	tbsResponseDataDER, err := asn1.Marshal(tbsResponseData)
