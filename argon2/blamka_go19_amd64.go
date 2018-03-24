@@ -1,19 +1,15 @@
-// Copyright 2017 The Go Authors. All rights reserved.
+// Copyright 2018 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build go1.10,amd64,!gccgo,!appengine
+// +build !go1.10,amd64,!gccgo,!appengine
 
 package argon2
 
 func init() {
-	useAVX2 = supportsAVX2()
+	useAVX2 = false
 	useSSE4 = supportsSSE4()
 }
-
-// This function is implemented in blamkaAVX2_amd64.s
-//go:noescape
-func supportsAVX2() bool
 
 // This function is implemented in blamka_amd64.s
 //go:noescape
@@ -23,34 +19,20 @@ func supportsSSE4() bool
 //go:noescape
 func mixBlocksSSE2(out, a, b, c *block)
 
-// This function is implemented in blamkaAVX2_amd64.s
-//go:noescape
-func mixBlocksAVX2(out, a, b, c *block)
-
 // This function is implemented in blamka_amd64.s
 //go:noescape
 func xorBlocksSSE2(out, a, b, c *block)
 
-// This function is implemented in blamkaAVX2_amd64.s
-//go:noescape
-func xorBlocksAVX2(out, a, b, c *block)
-
 // This function is implemented in blamka_amd64.s
 //go:noescape
 func blamkaSSE4(b *block)
-
-// This function is implemented in blamkaAVX2_amd64.s
-//go:noescape
-func blamkaAVX2(b *block)
 
 func processBlock(out, in1, in2 *block) { processBlockAsm(out, in1, in2, false) }
 
 func processBlockXOR(out, in1, in2 *block) { processBlockAsm(out, in1, in2, true) }
 
 func processBlockAsm(out, in1, in2 *block, xor bool) {
-	if useAVX2 {
-		processBlockAVX2(out, in1, in2, xor)
-	} else if useSSE4 {
+	if useSSE4 {
 		processBlockSSE4(out, in1, in2, xor)
 	} else {
 		processBlockSSE2(out, in1, in2, xor)
@@ -93,16 +75,5 @@ func processBlockSSE4(out, in1, in2 *block, xor bool) {
 		xorBlocksSSE2(out, in1, in2, &t)
 	} else {
 		mixBlocksSSE2(out, in1, in2, &t)
-	}
-}
-
-func processBlockAVX2(out, in1, in2 *block, xor bool) {
-	var t block
-	mixBlocksAVX2(&t, in1, in2, &t)
-	blamkaAVX2(&t)
-	if xor {
-		xorBlocksAVX2(out, in1, in2, &t)
-	} else {
-		mixBlocksAVX2(out, in1, in2, &t)
 	}
 }
