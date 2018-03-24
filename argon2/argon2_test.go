@@ -23,8 +23,15 @@ var (
 )
 
 func TestArgon2(t *testing.T) {
-	defer func(sse4 bool) { useSSE4 = sse4 }(useSSE4)
+	defer func(sse4, avx2 bool) { useSSE4, useAVX2 = sse4, avx2 }(useSSE4, useAVX2)
 
+	if useAVX2 {
+		t.Log("AVX2 version")
+		testArgon2i(t)
+		testArgon2d(t)
+		testArgon2id(t)
+		useAVX2 = false
+	}
 	if useSSE4 {
 		t.Log("SSE4.1 version")
 		testArgon2i(t)
@@ -36,6 +43,23 @@ func TestArgon2(t *testing.T) {
 	testArgon2i(t)
 	testArgon2d(t)
 	testArgon2id(t)
+}
+
+func TestVectors(t *testing.T) {
+	defer func(sse4, avx2 bool) { useSSE4, useAVX2 = sse4, avx2 }(useSSE4, useAVX2)
+
+	if useAVX2 {
+		t.Log("AVX2 version")
+		testVectors(t)
+		useAVX2 = false
+	}
+	if useSSE4 {
+		t.Log("SSE4.1 version")
+		testVectors(t)
+		useSSE4 = false
+	}
+	t.Log("generic version")
+	testVectors(t)
 }
 
 func testArgon2d(t *testing.T) {
@@ -77,9 +101,9 @@ func testArgon2id(t *testing.T) {
 	}
 }
 
-func TestVectors(t *testing.T) {
+func testVectors(t *testing.T) {
 	password, salt := []byte("password"), []byte("somesalt")
-	for i, v := range testVectors {
+	for i, v := range vectors {
 		want, err := hex.DecodeString(v.hash)
 		if err != nil {
 			t.Fatalf("Test %d: failed to decode hash: %v", i, err)
@@ -128,7 +152,7 @@ func BenchmarkArgon2id(b *testing.B) {
 }
 
 // Generated with the CLI of https://github.com/P-H-C/phc-winner-argon2/blob/master/argon2-specs.pdf
-var testVectors = []struct {
+var vectors = []struct {
 	mode         int
 	time, memory uint32
 	threads      uint8
