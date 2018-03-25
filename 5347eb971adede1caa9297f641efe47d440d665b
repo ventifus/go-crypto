@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7abb1587_6f40d74b",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 24096
+      },
+      "writtenOn": "2018-03-25T13:48:30Z",
+      "side": 1,
+      "message": "Is it necessary to load these into registers ? The manual says that VPSHUFB can take memory operand as an argument - \n```\nVEX.NDS.256.66.0F38.WIG 00 /r\nVPSHUFB ymm1, ymm2, ymm3/m256\n```\n\nI have even some AVX and FMA instructions here https://go-review.googlesource.com/c/go/+/62590/6/src/math/exp_amd64.s#136 which work on memory operands directly. But I haven\u0027t worked with AVX2 directly.",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
