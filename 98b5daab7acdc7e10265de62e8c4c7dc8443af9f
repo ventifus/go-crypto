@@ -16,6 +16,24 @@
       "revId": "98b5daab7acdc7e10265de62e8c4c7dc8443af9f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e5413d9_318734b1",
+        "filename": "argon2/blamka_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-25T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34cd8b3f_f632aa5a",
+      "revId": "98b5daab7acdc7e10265de62e8c4c7dc8443af9f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
