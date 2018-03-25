@@ -16,6 +16,24 @@
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "267ad1f6_563dbb38",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-25T14:39:19Z",
+      "side": 1,
+      "message": "It would also work using the constants directly.\nBut: \"Most microprocessors have a penalty of several clock cycles when accessing misaligned \ndata\" AFAIK it\u0027s not guaranteed that the const. data (in text segment) is aligned. So the processor would have to do an unaligned load operation. Loading this once into a register is the preferable approach as long as there are enough registers - I think...",
+      "parentUuid": "7abb1587_6f40d74b",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
