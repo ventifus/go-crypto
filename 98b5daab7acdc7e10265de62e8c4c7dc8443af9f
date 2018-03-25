@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34cd8b3f_f632aa5a",
+        "filename": "argon2/blamka_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 24096
+      },
+      "writtenOn": "2018-03-25T11:51:18Z",
+      "side": 1,
+      "message": "A switch statement is more idiomatic here.",
+      "revId": "98b5daab7acdc7e10265de62e8c4c7dc8443af9f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
