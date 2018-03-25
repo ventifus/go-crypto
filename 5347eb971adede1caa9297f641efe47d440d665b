@@ -52,6 +52,24 @@
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "761dcefa_bf17aeae",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-25T20:52:12Z",
+      "side": 1,
+      "message": "\u003e \u003e It would also work using the constants directly.\n\u003e \n\u003e I have tried before, and using constants directly doesn\u0027t work. Maybe something changed.\n\nIt should work if you replace any Y5 register with ·AVX2_c40\u003c\u003e(SB) - at least on my machine with 1.10 everything works as expected...",
+      "parentUuid": "0b1a1821_e1f98c06",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
