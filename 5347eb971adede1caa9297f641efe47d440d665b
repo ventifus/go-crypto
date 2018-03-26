@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "61e68341_07984c94",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-26T22:52:41Z",
+      "side": 1,
+      "message": "Done - On my machine it improves performance a bit (~2%). Updated commit MSG.",
+      "parentUuid": "8160bc0e_dfb07816",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a9dc2b1_85d6a575",
         "filename": "argon2/blamkaAVX2_amd64.s",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-26T18:17:05Z",
       "side": 1,
       "message": "I wonder if it is worth it to interleave loads for 2 rounds and do something like\nVMOVDQU  8*off+0*8(block), Y15\nVINSERTI128 $0, Y15, Y0, Y0; // for 1st round\nVEXTRACTI128 $0, Y15, Y8; // for 2nd round",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dcb06d5_c664dd7e",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-26T22:52:41Z",
+      "side": 1,
+      "message": "While I think I got the general idea - I\u0027m not sure how to it can be implemented...\nNotice that you cannot insert into a Y-reg. from a Y-reg. (Same applies for extract).\nSo e.g. VINSERTI128 $0, Y15, Y0, Y0; is not a valid instruction.\nI can only do: VINSERTI128 $0, X15, Y0, Y0 - but this doesn\u0027t help, right?!",
+      "parentUuid": "3a9dc2b1_85d6a575",
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -136,6 +172,24 @@
       "writtenOn": "2018-03-26T18:17:05Z",
       "side": 1,
       "message": "Please don\u0027t use runtime·support_avx2, this will require updating, when runtime implementation changes. See https://go-review.googlesource.com/c/crypto/+/41862 for alternative way to check for avx2 support",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a33b0da_b52684ad",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-26T22:52:41Z",
+      "side": 1,
+      "message": "Okay - added runtime-independent asm implementation. PTAL",
+      "parentUuid": "475afec0_dfad01f4",
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
