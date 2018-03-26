@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "8160bc0e_dfb07816",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-26T18:17:05Z",
+      "side": 1,
+      "message": "It seems that you have unused registers, can you check if reassociation improves performance?\nSomething like \nt1 \u003d t0 + v0\nt2 \u003d t0 + v1\nv0 \u003d t1 + t2",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a9dc2b1_85d6a575",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-26T18:17:05Z",
+      "side": 1,
+      "message": "I wonder if it is worth it to interleave loads for 2 rounds and do something like\nVMOVDQU  8*off+0*8(block), Y15\nVINSERTI128 $0, Y15, Y0, Y0; // for 1st round\nVEXTRACTI128 $0, Y15, Y8; // for 2nd round",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7abb1587_6f40d74b",
         "filename": "argon2/blamkaAVX2_amd64.s",
         "patchSetId": 4
@@ -67,6 +101,41 @@
       "side": 1,
       "message": "\u003e \u003e It would also work using the constants directly.\n\u003e \n\u003e I have tried before, and using constants directly doesn\u0027t work. Maybe something changed.\n\nIt should work if you replace any Y5 register with ·AVX2_c40\u003c\u003e(SB) - at least on my machine with 1.10 everything works as expected...",
       "parentUuid": "0b1a1821_e1f98c06",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54913263_e448afe9",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-26T18:17:05Z",
+      "side": 1,
+      "message": "Keeping shuffle mask in register produces smaller code and IIRC vpshufb with memory operand has higher latency. If you can reproduce asm failure for constants, please submit an iisue.",
+      "parentUuid": "761dcefa_bf17aeae",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "475afec0_dfad01f4",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-26T18:17:05Z",
+      "side": 1,
+      "message": "Please don\u0027t use runtime·support_avx2, this will require updating, when runtime implementation changes. See https://go-review.googlesource.com/c/crypto/+/41862 for alternative way to check for avx2 support",
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
