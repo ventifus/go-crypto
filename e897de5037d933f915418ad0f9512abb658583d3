@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f46cd8e0_f8b5f895",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-27T16:46:02Z",
+      "side": 1,
+      "message": "30-45 :)",
+      "parentUuid": "6c2d876f_622710af",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "524ed1e7_f1688aa7",
         "filename": "argon2/argon2_test.go",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-27T15:04:43Z",
       "side": 1,
       "message": "Is this a simple refactoring? It doesn\u0027t look like this is related to avx2, so perhaps this can be spitted into separate CL.",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8854e2d8_8ec0b797",
+        "filename": "argon2/argon2_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-27T16:46:02Z",
+      "side": 1,
+      "message": "Well - if you run the tests without this change on a machine with AVX2 than you won\u0027t run the test vectors using the SSE4.1 code. So this change basically ensures that TestVectors(...) is run using AVX2 (if available), SSE4.1 (if available) and generic. So IMO this is related to AVX2...",
+      "parentUuid": "524ed1e7_f1688aa7",
       "revId": "e897de5037d933f915418ad0f9512abb658583d3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "e897de5037d933f915418ad0f9512abb658583d3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15d89593_ff0486f4",
+        "filename": "argon2/blamka_go19_amd64.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-03-27T16:46:02Z",
+      "side": 1,
+      "message": "Yes - before submitting this CL the code looked exactly like that.\nIt is a little bit harder to follow (IMO) but both solutions aren\u0027t perfect.\nAdded 1.9 and 1.10 files.",
+      "parentUuid": "f2dac7d0_79725e20",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
