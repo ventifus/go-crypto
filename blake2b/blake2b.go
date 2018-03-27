@@ -150,6 +150,15 @@ type digest struct {
 	keyLen int
 }
 
+// Clone returns a new digest with the same internal state as its input.
+func Clone(h hash.Hash) (*digest, error) {
+	if d, ok := h.(*digest); ok {
+		clone := *d
+		return &clone, nil
+	}
+	return nil, errors.New("h is not of type blake2b.digest")
+}
+
 func (d *digest) BlockSize() int { return BlockSize }
 
 func (d *digest) Size() int { return d.size }

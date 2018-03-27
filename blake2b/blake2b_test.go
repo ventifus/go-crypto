@@ -251,6 +251,31 @@ func TestSelfTest(t *testing.T) {
 	}
 }
 
+func TestClone(t *testing.T) {
+	N := 100
+	msgSize := 64
+	keys := make([]byte, 32*N)
+	msgs := make([]byte, 2*msgSize*N)
+	generateSequence(keys, 1)
+	generateSequence(msgs, 2)
+	for i := 0; i < N; i++ {
+		hash1, _ := New512(keys[i*32 : (i+1)*32])
+		hash1.Write(msgs[2*i : 2*i+msgSize])
+		hash2, _ := Clone(hash1)
+		digest1 := hash1.Sum([]byte{})
+		digest2 := hash2.Sum([]byte{})
+		if !bytes.Equal(digest1, digest2) {
+			t.Fatalf("got %x, wanted %x")
+		}
+		// Check that hash2 doesn't change when updating hash1
+		hash1.Write(msgs[2*(i+1) : 2*(i+1)+msgSize])
+		digest2_2 := hash2.Sum([]byte{})
+		if !bytes.Equal(digest2, digest2_2) {
+			t.Fatalf("got %x, wanted %x")
+		}
+	}
+}
+
 // Benchmarks
 
 func benchmarkSum(b *testing.B, size int) {
