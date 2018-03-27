@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a53587d0_f4fa5662",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 24096
+      },
+      "writtenOn": "2018-03-27T03:16:36Z",
+      "side": 1,
+      "message": "Interesting. I am wondering how/why using extra registers is increasing performance ?",
+      "parentUuid": "61e68341_07984c94",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a9dc2b1_85d6a575",
         "filename": "argon2/blamkaAVX2_amd64.s",
         "patchSetId": 4
