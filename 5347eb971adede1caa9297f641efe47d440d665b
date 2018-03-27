@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "aca30564_359c3289",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-27T15:04:43Z",
+      "side": 1,
+      "message": "It allows to execute 2 additions in parallel with each other, by removing dependency.",
+      "parentUuid": "a53587d0_f4fa5662",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a9dc2b1_85d6a575",
         "filename": "argon2/blamkaAVX2_amd64.s",
         "patchSetId": 4
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "While I think I got the general idea - I\u0027m not sure how to it can be implemented...\nNotice that you cannot insert into a Y-reg. from a Y-reg. (Same applies for extract).\nSo e.g. VINSERTI128 $0, Y15, Y0, Y0; is not a valid instruction.\nI can only do: VINSERTI128 $0, X15, Y0, Y0 - but this doesn\u0027t help, right?!",
       "parentUuid": "3a9dc2b1_85d6a575",
+      "revId": "5347eb971adede1caa9297f641efe47d440d665b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14fee33f_e26f4ed6",
+        "filename": "argon2/blamkaAVX2_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-27T15:04:43Z",
+      "side": 1,
+      "message": "You are right, I guess VPERM2I128 could be used instead.",
+      "parentUuid": "7dcb06d5_c664dd7e",
       "revId": "5347eb971adede1caa9297f641efe47d440d665b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true

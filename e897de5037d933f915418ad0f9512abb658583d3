@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c2d876f_622710af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-27T15:04:43Z",
+      "side": 1,
+      "message": "More like 30-40%  :)",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "524ed1e7_f1688aa7",
+        "filename": "argon2/argon2_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-27T15:04:43Z",
+      "side": 1,
+      "message": "Is this a simple refactoring? It doesn\u0027t look like this is related to avx2, so perhaps this can be spitted into separate CL.",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2dac7d0_79725e20",
+        "filename": "argon2/blamka_go19_amd64.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 26817
+      },
+      "writtenOn": "2018-03-27T15:04:43Z",
+      "side": 1,
+      "message": "I don\u0027t like code duplication there. Perhaps it is better to keep\nprocessBlockSSE2 \u0026 freinds in blamka_amd64.go and add 2 files\ngo19_amd64.go and go110_amd64.go, which will have only processBlockAsm and avx2 related stuff?",
+      "revId": "e897de5037d933f915418ad0f9512abb658583d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
