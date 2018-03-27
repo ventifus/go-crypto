@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d1f7ee0_09765321",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-27T17:28:00Z",
+      "side": 1,
+      "message": "This isn\u0027t good style, returning an unexported type from an exported func.",
+      "revId": "8cc493ac078df64fe730dfbef84ecb9ee354ea1e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
