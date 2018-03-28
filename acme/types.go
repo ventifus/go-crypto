@@ -194,6 +194,9 @@ type Authorization struct {
 	// Status identifies the status of an authorization.
 	Status string
 
+	// Optional expiration of an authorization.
+	Expires time.Time
+
 	// Identifier is what the account is authorized to represent.
 	Identifier AuthzID
 
@@ -219,6 +222,7 @@ type AuthzID struct {
 // wireAuthz is ACME JSON representation of Authorization objects.
 type wireAuthz struct {
 	Status       string
+	Expires      time.Time
 	Challenges   []wireChallenge
 	Combinations [][]int
 	Identifier   struct {
@@ -231,6 +235,7 @@ func (z *wireAuthz) authorization(uri string) *Authorization {
 	a := &Authorization{
 		URI:          uri,
 		Status:       z.Status,
+		Expires:      z.Expires,
 		Identifier:   AuthzID{Type: z.Identifier.Type, Value: z.Identifier.Value},
 		Combinations: z.Combinations, // shallow copy
 		Challenges:   make([]*Challenge, len(z.Challenges)),

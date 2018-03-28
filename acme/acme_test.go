@@ -398,13 +398,20 @@ func TestAuthorizeValid(t *testing.T) {
 			return
 		}
 		w.WriteHeader(http.StatusCreated)
-		w.Write([]byte(`{"status":"valid"}`))
+		w.Write([]byte(`{
+			"status": "valid",
+			"expires": "2018-09-09T14:09:00Z"
+		}`))
 	}))
 	defer ts.Close()
 	client := Client{Key: testKey, dir: &Directory{AuthzURL: ts.URL}}
-	_, err := client.Authorize(context.Background(), "example.com")
+	auth, err := client.Authorize(context.Background(), "example.com")
 	if err != nil {
 		t.Errorf("err = %v", err)
+	}
+
+	if d := time.Date(2018, 9, 9, 14, 9, 0, 0, time.UTC); !auth.Expires.Equal(d) {
+		t.Errorf("auth.Expiration = %q; want %q", auth.Expires, d)
 	}
 }
 
