@@ -150,6 +150,51 @@ type digest struct {
 	keyLen int
 }
 
+const (
+	magic         = "blake2b"
+	marshaledSize = len(magic) + 8*8 + 2*8 + 1 + BlockSize + 4
+)
+
+func (d *digest) MarshalBinary() ([]byte, error) {
+	if d.keyLen != 0 {
+		return nil, errors.New("crypto/blake2b: cannot marshal MAC's")
+	}
+	b := make([]byte, 0, marshaledSize)
+	b = append(b, magic...)
+	for i := 0; i < 8; i++ {
+		b = appendUint64(b, d.h[i])
+	}
+	b = appendUint64(b, d.c[0])
+	b = appendUint64(b, d.c[1])
+	// Maximum value for size is 64
+	b = appendUint8(b, uint8(d.size))
+	b = append(b, d.block[:]...)
+	b = appendUint32(b, uint32(d.offset))
+	return b, nil
+}
+
+func (d *digest) UnmarshalBinary(b []byte) error {
+	if len(b) < len(magic) || string(b[:len(magic)]) != magic {
+		return errors.New("crypto/blake2b: invalid hash state identifier")
+	}
+	if len(b) != marshaledSize {
+		return errors.New("crypto/blake2b: invalid hash state size")
+	}
+	b = b[len(magic):]
+	for i := 0; i < 8; i++ {
+		b, d.h[i] = consumeUint64(b)
+	}
+	b, d.c[0] = consumeUint64(b)
+	b, d.c[1] = consumeUint64(b)
+	b, size := consumeUint8(b)
+	d.size = int(size)
+	copy(d.block[:], b[:BlockSize])
+	b = b[BlockSize:]
+	b, offset := consumeUint32(b)
+	d.offset = int(offset)
+	return nil
+}
+
 func (d *digest) BlockSize() int { return BlockSize }
 
 func (d *digest) Size() int { return d.size }
@@ -218,4 +263,66 @@ func (d *digest) finalize(hash *[Size]byte) {
 	for i, v := range h {
 		binary.LittleEndian.PutUint64(hash[8*i:], v)
 	}
+}
+
+func appendUint64(b []byte, x uint64) []byte {
+	var a [8]byte
+	putUint64(a[:], x)
+	return append(b, a[:]...)
+}
+
+func appendUint32(b []byte, x uint32) []byte {
+	var a [4]byte
+	putUint32(a[:], x)
+	return append(b, a[:]...)
+}
+
+func appendUint8(b []byte, x uint8) []byte {
+	var a [1]byte
+	putUint8(a[:], x)
+	return append(b, a[:]...)
+}
+
+func consumeUint64(b []byte) ([]byte, uint64) {
+	_ = b[7]
+	x := uint64(b[7]) | uint64(b[6])<<8 | uint64(b[5])<<16 | uint64(b[4])<<24 |
+		uint64(b[3])<<32 | uint64(b[2])<<40 | uint64(b[1])<<48 | uint64(b[0])<<56
+	return b[8:], x
+}
+
+func consumeUint32(b []byte) ([]byte, uint32) {
+	_ = b[3]
+	x := uint32(b[3]) | uint32(b[2])<<8 | uint32(b[1])<<16 | uint32(b[0])<<24
+	return b[4:], x
+}
+
+func consumeUint8(b []byte) ([]byte, uint8) {
+	_ = b[0]
+	x := uint8(b[0])
+	return b[1:], x
+}
+
+func putUint64(x []byte, s uint64) {
+	_ = x[7]
+	x[0] = byte(s >> 56)
+	x[1] = byte(s >> 48)
+	x[2] = byte(s >> 40)
+	x[3] = byte(s >> 32)
+	x[4] = byte(s >> 24)
+	x[5] = byte(s >> 16)
+	x[6] = byte(s >> 8)
+	x[7] = byte(s)
+}
+
+func putUint32(x []byte, s uint32) {
+	_ = x[3]
+	x[0] = byte(s >> 24)
+	x[1] = byte(s >> 16)
+	x[2] = byte(s >> 8)
+	x[3] = byte(s)
+}
+
+func putUint8(x []byte, s uint8) {
+	_ = x[0]
+	x[0] = byte(s)
 }
