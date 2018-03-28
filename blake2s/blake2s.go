@@ -120,6 +120,51 @@ type digest struct {
 	keyLen int
 }
 
+const (
+	magic         = "blake2s"
+	marshaledSize = len(magic) + 8*4 + 2*4 + 1 + BlockSize + 4
+)
+
+func (d *digest) MarshalBinary() ([]byte, error) {
+	if d.keyLen != 0 {
+		return nil, errors.New("crypto/blake2s: cannot marshal MACs")
+	}
+	b := make([]byte, 0, marshaledSize)
+	b = append(b, magic...)
+	for i := 0; i < 8; i++ {
+		b = appendUint32(b, d.h[i])
+	}
+	b = appendUint32(b, d.c[0])
+	b = appendUint32(b, d.c[1])
+	// Maximum value for size is 32
+	b = append(b, byte(d.size))
+	b = append(b, d.block[:]...)
+	b = appendUint32(b, uint32(d.offset))
+	return b, nil
+}
+
+func (d *digest) UnmarshalBinary(b []byte) error {
+	if len(b) < len(magic) || string(b[:len(magic)]) != magic {
+		return errors.New("crypto/blake2s: invalid hash state identifier")
+	}
+	if len(b) != marshaledSize {
+		return errors.New("crypto/blake2s: invalid hash state size")
+	}
+	b = b[len(magic):]
+	for i := 0; i < 8; i++ {
+		b, d.h[i] = consumeUint32(b)
+	}
+	b, d.c[0] = consumeUint32(b)
+	b, d.c[1] = consumeUint32(b)
+	d.size = int(b[0])
+	b = b[1:]
+	copy(d.block[:], b[:BlockSize])
+	b = b[BlockSize:]
+	b, offset := consumeUint32(b)
+	d.offset = int(offset)
+	return nil
+}
+
 func (d *digest) BlockSize() int { return BlockSize }
 
 func (d *digest) Size() int { return d.size }
@@ -184,4 +229,15 @@ func (d *digest) finalize(hash *[Size]byte) {
 	for i, v := range h {
 		binary.LittleEndian.PutUint32(hash[4*i:], v)
 	}
+}
+
+func appendUint32(b []byte, x uint32) []byte {
+	var a [4]byte
+	binary.BigEndian.PutUint32(a[:], x)
+	return append(b, a[:]...)
+}
+
+func consumeUint32(b []byte) ([]byte, uint32) {
+	x := binary.BigEndian.Uint32(b)
+	return b[4:], x
 }
