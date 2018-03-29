@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "16b3e11a_e5b613a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "blake2b,blake2s",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fc3c109_08d3f931",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "Maybe shorten to \"b2b\" (and \"b2s\")?",
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1083e04_7940bd10",
         "filename": "blake2b/blake2b.go",
         "patchSetId": 1
@@ -46,6 +86,23 @@
       "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9d81393_ece285f7",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "offset is at most BlockSize, so it will fit in a uint8",
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     },
     {
       "key": {
@@ -117,6 +174,47 @@
       "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "493b5f14_93bfa3a3",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "encoding/binary has an unfortunate dependency on reflect, which is a problem in core hashes, IIRC.",
+      "parentUuid": "2092e73c_1e4e88a3",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 1
+      },
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebd4f9e6_c3b99db9",
+        "filename": "blake2b/blake2b_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "Test a nonstandard size, too.",
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }

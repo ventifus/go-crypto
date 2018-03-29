@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d66ad32_ce8382c1",
+        "filename": "blake2b/blake2b_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "In all test error messages in both files, include size and input length.",
+      "revId": "0c2b07193158cb60de34d3dcbfb6390aa0394f4e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0cf6274_d89604ae",
+        "filename": "blake2s/blake2s.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-03-29T19:16:00Z",
+      "side": 1,
+      "message": "Here too offset fits in a uint8",
+      "revId": "0c2b07193158cb60de34d3dcbfb6390aa0394f4e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
