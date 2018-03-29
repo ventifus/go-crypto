@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1083e04_7940bd10",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-29T16:51:09Z",
+      "side": 1,
+      "message": "drop the apostrophe",
+      "range": {
+        "startLine": 160,
+        "startChar": 60,
+        "endLine": 160,
+        "endChar": 61
+      },
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a383bd81_7cc1cbf0",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-03-29T16:51:09Z",
+      "side": 1,
+      "message": "can you just use the encoding/binary package instead?",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 1
+      },
+      "revId": "4ac010ac929177d291ee52e81f7742d29e1c9c7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
