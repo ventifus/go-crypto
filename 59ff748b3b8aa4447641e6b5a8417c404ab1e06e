@@ -52,6 +52,24 @@
       "revId": "59ff748b3b8aa4447641e6b5a8417c404ab1e06e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69239941_b8fae0c7",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 27059
+      },
+      "writtenOn": "2018-03-30T20:15:56Z",
+      "side": 1,
+      "message": "Oh woops, my bad. Thanks for pointing that out.",
+      "parentUuid": "604b9a38_423df9a3",
+      "revId": "59ff748b3b8aa4447641e6b5a8417c404ab1e06e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
