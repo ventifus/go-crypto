@@ -16,6 +16,24 @@
       "revId": "59ff748b3b8aa4447641e6b5a8417c404ab1e06e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a14e7e9f_1418ccd5",
+        "filename": "blake2b/blake2b.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 27059
+      },
+      "writtenOn": "2018-03-30T19:40:03Z",
+      "side": 1,
+      "message": "New Digest does enforce this, on Line 103. Should I open a separate issue to change this wording instead of changing that here though?",
+      "parentUuid": "9661a4d7_1a123b50",
+      "revId": "59ff748b3b8aa4447641e6b5a8417c404ab1e06e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
