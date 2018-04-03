@@ -11,6 +11,8 @@ package ripemd160 // import "golang.org/x/crypto/ripemd160"
 
 import (
 	"crypto"
+	"encoding/binary"
+	"errors"
 	"hash"
 )
 
@@ -40,13 +42,52 @@ type digest struct {
 	tc uint64          // total count of bytes processed
 }
 
+const (
+	magic         = "rmd"
+	marshaledSize = len(magic) + 5*4 + BlockSize + 1 + 8
+)
+
+func (d *digest) MarshalBinary() ([]byte, error) {
+	b := make([]byte, 0, marshaledSize)
+	b = append(b, magic...)
+	for i := 0; i < 5; i++ {
+		b = appendUint32(b, d.s[i])
+	}
+	b = append(b, d.x[:]...)
+	// Maximum value for nx is 64
+	b = append(b, byte(d.nx))
+	b = appendUint64(b, d.tc)
+	return b, nil
+}
+
+func (d *digest) UnmarshalBinary(b []byte) error {
+	if len(b) < len(magic) || string(b[:len(magic)]) != magic {
+		return errors.New("crypto/ripemd160: invalid hash state identifier")
+	}
+	if len(b) != marshaledSize {
+		return errors.New("crypto/ripemd160: invalid hash state size")
+	}
+	b = b[len(magic):]
+	for i := 0; i < 5; i++ {
+		b, d.s[i] = consumeUint32(b)
+	}
+	copy(d.x[:], b[:BlockSize])
+	b = b[BlockSize:]
+	d.nx = int(b[0])
+	b = b[1:]
+	b, d.tc = consumeUint64(b)
+	return nil
+}
+
 func (d *digest) Reset() {
 	d.s[0], d.s[1], d.s[2], d.s[3], d.s[4] = _s0, _s1, _s2, _s3, _s4
 	d.nx = 0
 	d.tc = 0
 }
 
-// New returns a new hash.Hash computing the checksum.
+// New returns a new hash.Hash computing the checksum. The returned hash.Hash
+// implements BinaryMarshaler and BinaryUnmarshaler for state (de)serialization
+// as documented by hash.Hash.
 func New() hash.Hash {
 	result := new(digest)
 	result.Reset()
@@ -117,4 +158,26 @@ func (d0 *digest) Sum(in []byte) []byte {
 	}
 
 	return append(in, digest[:]...)
+}
+
+func appendUint64(b []byte, x uint64) []byte {
+	var a [8]byte
+	binary.BigEndian.PutUint64(a[:], x)
+	return append(b, a[:]...)
+}
+
+func appendUint32(b []byte, x uint32) []byte {
+	var a [4]byte
+	binary.BigEndian.PutUint32(a[:], x)
+	return append(b, a[:]...)
+}
+
+func consumeUint64(b []byte) ([]byte, uint64) {
+	x := binary.BigEndian.Uint64(b)
+	return b[8:], x
+}
+
+func consumeUint32(b []byte) ([]byte, uint32) {
+	x := binary.BigEndian.Uint32(b)
+	return b[4:], x
 }

@@ -7,6 +7,8 @@ package md4 // import "golang.org/x/crypto/md4"
 
 import (
 	"crypto"
+	"encoding/binary"
+	"errors"
 	"hash"
 )
 
@@ -36,6 +38,43 @@ type digest struct {
 	len uint64
 }
 
+const (
+	magic         = "md4"
+	marshaledSize = len(magic) + 4*4 + _Chunk + 1 + 8
+)
+
+func (d *digest) MarshalBinary() ([]byte, error) {
+	b := make([]byte, 0, marshaledSize)
+	b = append(b, magic...)
+	for i := 0; i < 4; i++ {
+		b = appendUint32(b, d.s[i])
+	}
+	b = append(b, d.x[:]...)
+	// Maximum value for nx is 64
+	b = append(b, byte(d.nx))
+	b = appendUint64(b, d.len)
+	return b, nil
+}
+
+func (d *digest) UnmarshalBinary(b []byte) error {
+	if len(b) < len(magic) || string(b[:len(magic)]) != magic {
+		return errors.New("crypto/md4: invalid hash state identifier")
+	}
+	if len(b) != marshaledSize {
+		return errors.New("crypto/md4: invalid hash state size")
+	}
+	b = b[len(magic):]
+	for i := 0; i < 4; i++ {
+		b, d.s[i] = consumeUint32(b)
+	}
+	copy(d.x[:], b[:_Chunk])
+	b = b[_Chunk:]
+	d.nx = int(b[0])
+	b = b[1:]
+	b, d.len = consumeUint64(b)
+	return nil
+}
+
 func (d *digest) Reset() {
 	d.s[0] = _Init0
 	d.s[1] = _Init1
@@ -45,7 +84,9 @@ func (d *digest) Reset() {
 	d.len = 0
 }
 
-// New returns a new hash.Hash computing the MD4 checksum.
+// New returns a new hash.Hash computing the MD4 checksum. The returned hash.Hash
+// implements BinaryMarshaler and BinaryUnmarshaler for state (de)serialization
+// as documented by hash.Hash.
 func New() hash.Hash {
 	d := new(digest)
 	d.Reset()
@@ -115,4 +156,26 @@ func (d0 *digest) Sum(in []byte) []byte {
 		in = append(in, byte(s>>24))
 	}
 	return in
+}
+
+func appendUint64(b []byte, x uint64) []byte {
+	var a [8]byte
+	binary.BigEndian.PutUint64(a[:], x)
+	return append(b, a[:]...)
+}
+
+func appendUint32(b []byte, x uint32) []byte {
+	var a [4]byte
+	binary.BigEndian.PutUint32(a[:], x)
+	return append(b, a[:]...)
+}
+
+func consumeUint64(b []byte) ([]byte, uint64) {
+	x := binary.BigEndian.Uint64(b)
+	return b[8:], x
+}
+
+func consumeUint32(b []byte) ([]byte, uint32) {
+	x := binary.BigEndian.Uint32(b)
+	return b[4:], x
 }

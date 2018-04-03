@@ -4,6 +4,11 @@
 
 package sha3
 
+import (
+	"encoding/binary"
+	"errors"
+)
+
 // spongeDirection indicates the direction bytes are flowing through the sponge.
 type spongeDirection int
 
@@ -44,6 +49,77 @@ type state struct {
 	// Specific to SHA-3 and SHAKE.
 	outputLen int             // the default output size in bytes
 	state     spongeDirection // whether the sponge is absorbing or squeezing
+}
+
+const (
+	magic            = "sha3"
+	minMarshaledSize = len(magic) + 25*8 + 1 + 1 + 1 + maxRate + 1 + 1
+	maxMarshaledSize = len(magic) + 25*8 + 1 + 1 + 1 + maxRate + 1 + 1 + 1
+)
+
+func (d *state) MarshalBinary() ([]byte, error) {
+	b := make([]byte, 0, minMarshaledSize)
+	b = append(b, magic...)
+	b = append(b, byte(d.state))
+	for i := 0; i < 25; i++ {
+		b = appendUint64(b, d.a[i])
+	}
+	// Max size for buf is rate
+	b = append(b, byte(len(d.buf)))
+	// Maximum value for rate is 168
+	b = append(b, byte(d.rate))
+	b = append(b, d.dsbyte)
+	b = append(b, d.storage[:]...)
+	// Maximum value for outputLen is 64
+	b = append(b, byte(d.outputLen))
+	if d.state == spongeSqueezing {
+		b = append(b, byte(d.state))
+	}
+	return b, nil
+}
+
+func (d *state) UnmarshalBinary(b []byte) error {
+	lenb := len(b)
+	if lenb < len(magic) || string(b[:len(magic)]) != magic {
+		return errors.New("crypto/sha3: invalid hash state identifier")
+	}
+	if lenb < minMarshaledSize || lenb > maxMarshaledSize {
+		return errors.New("crypto/sha3: invalid hash state size")
+	}
+	b = b[len(magic):]
+	d.state = spongeDirection(b[0])
+	b = b[1:]
+	if d.state == spongeSqueezing {
+		if lenb != maxMarshaledSize {
+			return errors.New("crypto/sha3: invalid hash state size")
+		}
+	} else {
+		if lenb != minMarshaledSize {
+			return errors.New("crypto/sha3: invalid hash state size")
+		}
+	}
+	for i := 0; i < 25; i++ {
+		b, d.a[i] = consumeUint64(b)
+	}
+	bufSize := int(b[0])
+	b = b[1:]
+	d.rate = int(b[0])
+	b = b[1:]
+
+	d.dsbyte = b[0]
+	b = b[1:]
+	copy(d.storage[:], b[:maxRate])
+	b = b[maxRate:]
+	d.outputLen = int(b[0])
+	b = b[1:]
+
+	if d.state == spongeAbsorbing {
+		d.buf = d.storage[:bufSize]
+	} else {
+		cap := int(b[0])
+		d.buf = d.storage[d.rate-cap : d.rate]
+	}
+	return nil
 }
 
 // BlockSize returns the rate of sponge underlying this hash function.
@@ -189,4 +265,15 @@ func (d *state) Sum(in []byte) []byte {
 	hash := make([]byte, dup.outputLen)
 	dup.Read(hash)
 	return append(in, hash...)
+}
+
+func appendUint64(b []byte, x uint64) []byte {
+	var a [8]byte
+	binary.BigEndian.PutUint64(a[:], x)
+	return append(b, a[:]...)
+}
+
+func consumeUint64(b []byte) ([]byte, uint64) {
+	x := binary.BigEndian.Uint64(b)
+	return b[8:], x
 }

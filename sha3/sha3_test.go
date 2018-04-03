@@ -13,6 +13,7 @@ package sha3
 import (
 	"bytes"
 	"compress/flate"
+	"encoding"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -212,6 +213,43 @@ func TestSqueezing(t *testing.T) {
 			}
 		}
 	})
+}
+
+func TestMarshal(t *testing.T) {
+	input := make([]byte, 255)
+	for i := range input {
+		input[i] = byte(i)
+	}
+	indexToSize := []int{224, 256, 384, 512}
+	for index, NewHash := range []func() hash.Hash{New224, New256, New384, New512} {
+		for i := 0; i < 256; i++ {
+			h := NewHash()
+			h2 := NewHash()
+			h.Write(input[:i/2])
+			halfstate, err := h.(encoding.BinaryMarshaler).MarshalBinary()
+			if err != nil {
+				t.Fatalf("size=%d, len(input)=%d: could not marshal: %v", indexToSize[index], i, err)
+			}
+			err = h2.(encoding.BinaryUnmarshaler).UnmarshalBinary(halfstate)
+			if err != nil {
+				t.Fatalf("size=%d, len(input)=%d: could not unmarshal: %v", indexToSize[index], i, err)
+			}
+			h.Write(input[i/2 : i])
+			h2.Write(input[i/2 : i])
+			sum := h.Sum(nil)
+			sum2 := h2.Sum(nil)
+			if !bytes.Equal(sum, sum2) {
+				t.Fatalf("size=%d, len(input)=%d: results do not match; sum = %v, sum2 = %v", indexToSize[index], i, sum, sum2)
+			}
+
+			h3 := NewHash()
+			h3.Write(input[:i])
+			sum3 := h3.Sum(nil)
+			if !bytes.Equal(sum, sum3) {
+				t.Fatalf("size=%d, len(input)=%d: sum = %v, want %v", indexToSize[index], i, sum, sum3)
+			}
+		}
+	}
 }
 
 // sequentialBytes produces a buffer of size consecutive bytes 0x00, 0x01, ..., used for testing.
