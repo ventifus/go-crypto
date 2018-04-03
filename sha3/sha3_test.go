@@ -13,9 +13,9 @@ package sha3
 import (
 	"bytes"
 	"compress/flate"
+	"encoding"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"hash"
 	"os"
 	"strings"
@@ -214,6 +214,43 @@ func TestSqueezing(t *testing.T) {
 	})
 }
 
+func TestMarshal(t *testing.T) {
+	input := make([]byte, 255)
+	for i := range input {
+		input[i] = byte(i)
+	}
+	indexToSize := []int{224, 256, 384, 512}
+	for index, NewHash := range []func() hash.Hash{New224, New256, New384, New512} {
+		for i := 0; i < 256; i++ {
+			h := NewHash()
+			h2 := NewHash()
+			h.Write(input[:i/2])
+			halfstate, err := h.(encoding.BinaryMarshaler).MarshalBinary()
+			if err != nil {
+				t.Fatalf("size=%d, len(input)=%d: could not marshal: %v", indexToSize[index], i, err)
+			}
+			err = h2.(encoding.BinaryUnmarshaler).UnmarshalBinary(halfstate)
+			if err != nil {
+				t.Fatalf("size=%d, len(input)=%d: could not unmarshal: %v", indexToSize[index], i, err)
+			}
+			h.Write(input[i/2 : i])
+			h2.Write(input[i/2 : i])
+			sum := h.Sum(nil)
+			sum2 := h2.Sum(nil)
+			if !bytes.Equal(sum, sum2) {
+				t.Fatalf("size=%d, len(input)=%d: results do not match; sum = %v, sum2 = %v", indexToSize[index], i, sum, sum2)
+			}
+
+			h3 := NewHash()
+			h3.Write(input[:i])
+			sum3 := h3.Sum(nil)
+			if !bytes.Equal(sum, sum3) {
+				t.Fatalf("size=%d, len(input)=%d: sum = %v, want %v", indexToSize[index], i, sum, sum3)
+			}
+		}
+	}
+}
+
 // sequentialBytes produces a buffer of size consecutive bytes 0x00, 0x01, ..., used for testing.
 func sequentialBytes(size int) []byte {
 	result := make([]byte, size)
@@ -284,28 +321,28 @@ func BenchmarkShake256_1MiB(b *testing.B) { benchmarkShake(b, NewShake256(), 102
 
 func BenchmarkSha3_512_1MiB(b *testing.B) { benchmarkHash(b, New512(), 1024, 1024) }
 
-func Example_sum() {
-	buf := []byte("some data to hash")
-	// A hash needs to be 64 bytes long to have 256-bit collision resistance.
-	h := make([]byte, 64)
-	// Compute a 64-byte hash of buf and put it in h.
-	ShakeSum256(h, buf)
-	fmt.Printf("%x\n", h)
-	// Output: 0f65fe41fc353e52c55667bb9e2b27bfcc8476f2c413e9437d272ee3194a4e3146d05ec04a25d16b8f577c19b82d16b1424c3e022e783d2b4da98de3658d363d
-}
+// func Example_sum() {
+// 	buf := []byte("some data to hash")
+// 	// A hash needs to be 64 bytes long to have 256-bit collision resistance.
+// 	h := make([]byte, 64)
+// 	// Compute a 64-byte hash of buf and put it in h.
+// 	ShakeSum256(h, buf)
+// 	fmt.Printf("%x\n", h)
+// 	// Output: 0f65fe41fc353e52c55667bb9e2b27bfcc8476f2c413e9437d272ee3194a4e3146d05ec04a25d16b8f577c19b82d16b1424c3e022e783d2b4da98de3658d363d
+// }
 
-func Example_mac() {
-	k := []byte("this is a secret key; you should generate a strong random key that's at least 32 bytes long")
-	buf := []byte("and this is some data to authenticate")
-	// A MAC with 32 bytes of output has 256-bit security strength -- if you use at least a 32-byte-long key.
-	h := make([]byte, 32)
-	d := NewShake256()
-	// Write the key into the hash.
-	d.Write(k)
-	// Now write the data.
-	d.Write(buf)
-	// Read 32 bytes of output from the hash into h.
-	d.Read(h)
-	fmt.Printf("%x\n", h)
-	// Output: 78de2974bd2711d5549ffd32b753ef0f5fa80a0db2556db60f0987eb8a9218ff
-}
+// func Example_mac() {
+// 	k := []byte("this is a secret key; you should generate a strong random key that's at least 32 bytes long")
+// 	buf := []byte("and this is some data to authenticate")
+// 	// A MAC with 32 bytes of output has 256-bit security strength -- if you use at least a 32-byte-long key.
+// 	h := make([]byte, 32)
+// 	d := NewShake256()
+// 	// Write the key into the hash.
+// 	d.Write(k)
+// 	// Now write the data.
+// 	d.Write(buf)
+// 	// Read 32 bytes of output from the hash into h.
+// 	d.Read(h)
+// 	fmt.Printf("%x\n", h)
+// 	// Output: 78de2974bd2711d5549ffd32b753ef0f5fa80a0db2556db60f0987eb8a9218ff
+// }
