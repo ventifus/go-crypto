@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ffab8e7_e83d0f34",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-03T20:20:02Z",
+      "side": 1,
+      "message": "no commented out code.",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 4
+      },
+      "revId": "109fd19bad114d56d3210458e1b449c737b2a1fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
