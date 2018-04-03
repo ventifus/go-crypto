@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "ac10f282_e9110ecb",
+        "filename": "sha3/sha3.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 27059
+      },
+      "writtenOn": "2018-04-03T20:30:22Z",
+      "side": 1,
+      "message": "Woops, forgot to change magic, I will change this in the next patch.",
+      "revId": "109fd19bad114d56d3210458e1b449c737b2a1fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95494823_eebece55",
+        "filename": "sha3/sha3.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 27059
+      },
+      "writtenOn": "2018-04-03T20:30:22Z",
+      "side": 1,
+      "message": "Should this support two different marshaling sizes, or just have everything marshal to be the same size? One extra byte is needed when the state is spongesqueezing, which I\u0027m unsure if it should be supported.",
+      "revId": "109fd19bad114d56d3210458e1b449c737b2a1fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad16a4ce_c0378ead",
+        "filename": "sha3/sha3.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 27059
+      },
+      "writtenOn": "2018-04-03T20:30:22Z",
+      "side": 1,
+      "message": "I\u0027m unsure if sponge Squeezing should be supported, since I\u0027m not sure that it makes to marshal in the squeezing state.",
+      "revId": "109fd19bad114d56d3210458e1b449c737b2a1fd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ffab8e7_e83d0f34",
         "filename": "sha3/sha3_test.go",
         "patchSetId": 1
