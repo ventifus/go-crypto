@@ -6,6 +6,7 @@ package chacha20
 
 import (
 	"encoding/hex"
+	"fmt"
 	"testing"
 )
 
@@ -29,5 +30,23 @@ func TestCore(t *testing.T) {
 	const expected = "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e"
 	if result := hex.EncodeToString(out[:]); result != expected {
 		t.Errorf("wanted %x but got %x", expected, result)
+	}
+}
+
+func BenchmarkChaCha20(b *testing.B) {
+	sizes := []int{32, 63, 64, 256, 1024, 1350, 65536}
+	for _, size := range sizes {
+		s := size
+		b.Run(fmt.Sprint(s), func(b *testing.B) {
+			k := [32]byte{}
+			c := [16]byte{}
+			src := make([]byte, s)
+			dst := make([]byte, s)
+			b.SetBytes(int64(s))
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				XORKeyStream(dst, src, &c, &k)
+			}
+		})
 	}
 }
