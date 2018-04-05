@@ -183,6 +183,16 @@ func TestBasic(t *testing.T) {
 	} else if !reflect.DeepEqual(ke.Want[0], want) {
 		t.Errorf("got %v, want %v", ke.Want[0], want)
 	}
+
+	if err := db.check("evil.org:22", testAddr, ecKey); err == nil {
+		t.Errorf("succeeded, want KeyError")
+	} else if ke, ok := err.(*KeyError); !ok {
+		t.Errorf("got %T, want *KeyError", err)
+	} else if len(ke.Want) != 1 {
+		t.Errorf("got %v, want 1 entry", ke)
+	} else if !reflect.DeepEqual(ke.Want[0], want) {
+		t.Errorf("got %v, want %v", ke.Want[0], want)
+	}
 }
 
 func TestNegate(t *testing.T) {
