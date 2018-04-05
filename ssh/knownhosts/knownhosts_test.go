@@ -7,6 +7,7 @@ package knownhosts
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"net"
 	"reflect"
 	"testing"
@@ -166,7 +167,7 @@ func TestBasic(t *testing.T) {
 	str := fmt.Sprintf("#comment\n\nserver.org,%s %s\notherhost %s", testAddr, edKeyStr, ecKeyStr)
 	db := testDB(t, str)
 	if err := db.check("server.org:22", testAddr, edKey); err != nil {
-		t.Errorf("got error %q, want none", err)
+		t.Errorf("got error %v, want none", err)
 	}
 
 	want := KnownKey{
@@ -183,6 +184,36 @@ func TestBasic(t *testing.T) {
 	} else if !reflect.DeepEqual(ke.Want[0], want) {
 		t.Errorf("got %v, want %v", ke.Want[0], want)
 	}
+}
+
+func TestHostNamePrecedence(t *testing.T) {
+	var evilAddr = &net.TCPAddr{
+		IP:   net.IP{66, 66, 66, 66},
+		Port: 22,
+	}
+
+	str := fmt.Sprintf("server.org,%s %s\nevil.org,%s %s", testAddr, edKeyStr, evilAddr, ecKeyStr)
+	db := testDB(t, str)
+
+	if err := db.check("server.org:22", evilAddr, ecKey); err == nil {
+		t.Errorf("succeeded, want KeyError")
+	} else if _, ok := err.(*KeyError); !ok {
+		t.Errorf("got %T, want *KeyError", err)
+	} else {
+		log.Println(err)
+	}
+}
+
+func TestDBOrderingPrecedenceKeyType(t *testing.T) {
+	str := fmt.Sprintf("server.org,%s %s\nserver.org,%s %s", testAddr, edKeyStr, testAddr, alternateEdKeyStr)
+	db := testDB(t, str)
+
+	if err := db.check("server.org:22", testAddr, alternateEdKey); err == nil {
+		t.Errorf("succeeded, want KeyError")
+	} else if _, ok := err.(*KeyError); !ok {
+		t.Errorf("got %T, want *KeyError", err)
+	}
+>>>>>>> 54cff0c... ssh/knownhosts: disregard IP address if the hostname is available
 }
 
 func TestNegate(t *testing.T) {
