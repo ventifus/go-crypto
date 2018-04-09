@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9058266_e055e502",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T18:18:43Z",
+      "side": 1,
+      "message": "See https://github.com/golang/go/wiki/CommitMessage",
+      "revId": "64432a94bb1fd6d03700282725c30ae059c71314",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39768143_e6063b55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T18:18:43Z",
+      "side": 1,
+      "message": "No Markdown in commit message either.",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "64432a94bb1fd6d03700282725c30ae059c71314",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
