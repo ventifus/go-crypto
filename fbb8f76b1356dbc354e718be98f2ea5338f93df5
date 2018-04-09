@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae622d06_9176c3aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T18:47:18Z",
+      "side": 1,
+      "message": "add a verb, per https://github.com/golang/go/wiki/CommitMessage\n\nMaybe just the word \"add\" before \"arm64\".",
+      "revId": "fbb8f76b1356dbc354e718be98f2ea5338f93df5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33d589c8_2eefe2b7",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T18:47:18Z",
+      "side": 1,
+      "message": "Missing standard copyright header.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 53
+      },
+      "revId": "fbb8f76b1356dbc354e718be98f2ea5338f93df5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01241467_1debca6a",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T18:47:18Z",
+      "side": 1,
+      "message": "MIT or public domain",
+      "range": {
+        "startLine": 9,
+        "startChar": 60,
+        "endLine": 10,
+        "endChar": 9
+      },
+      "revId": "fbb8f76b1356dbc354e718be98f2ea5338f93df5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
