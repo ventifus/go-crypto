@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "409914d4_13fa345d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-09T19:34:48Z",
+      "side": 1,
+      "message": "You missed the golang/go part",
+      "parentUuid": "93c5740c_1b9619b5",
+      "revId": "9f1c20aaa6bfd55b350585587961a2303c8fdd96",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c99b871_cdaa2ad2",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
