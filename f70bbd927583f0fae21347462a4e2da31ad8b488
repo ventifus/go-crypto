@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "60989ca4_d5cb34c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-10T11:54:51Z",
+      "side": 1,
+      "message": "Done. I spent a bit of time making the computation a bit quicker too. I\u0027ve lumped everything into this one CL for now. Some bits might make sense to break out, but maybe not.",
+      "parentUuid": "c455aff6_93278c00",
+      "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c848539_1964782f",
         "filename": "internal/chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-04-05T18:01:42Z",
       "side": 1,
       "message": "Let\u0027s make this return a concrete Cipher type.",
+      "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6431705_c99990ab",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-10T11:54:51Z",
+      "side": 1,
+      "message": "Done. I also had to change the parameters for New. This was important to allow it to inline, which is necessary to avoid the state escaping to the heap. In general I think it is an improvement to pass in uint32 arrays, and this can be revisited if we ever make this package public.",
+      "parentUuid": "4c848539_1964782f",
       "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "591f3d81_117aaf22",
+        "filename": "internal/chacha20/chacha_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-10T11:54:51Z",
+      "side": 1,
+      "message": "Done. Added 63 and 1350.",
+      "parentUuid": "cb4199dc_29780f5e",
+      "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a5b0471_35045c7a",
         "filename": "internal/chacha20/chacha_test.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2018-04-05T18:01:42Z",
       "side": 1,
       "message": "Since this is stateful and not reusable, I think it belongs inside the benchmark loop. Or better yet there should be two separate benchmarks, like BenchmarkChaCha20Message and BenchmarkChaCha20Chunk.",
+      "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b450571f_7ee255fa",
+        "filename": "internal/chacha20/chacha_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-10T11:54:51Z",
+      "side": 1,
+      "message": "Pushed the call to New inside the loop. I\u0027ve kept one benchmark for now. The initialization is quite cheap, so I don\u0027t think it\u0027s that important to have a separate chunk benchmark.",
+      "parentUuid": "5a5b0471_35045c7a",
       "revId": "f70bbd927583f0fae21347462a4e2da31ad8b488",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
