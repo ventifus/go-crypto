@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75f39f58_d4f2de77",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "2018",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c0c8f3_d1db8031",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "This probably doesn\u0027t work. Space-separated tags are OR\u0027d. I think we want them AND\u0027d, for which we should use comma to separate them. Also, what is \"debug\" build tag? It present here but not in the assembly file.",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab69c4ff_9c6f98f7",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "I\u0027m worried this will break godoc to display the doc of Sum function, although I have not tried myself. If it indeed does, probably\n\n// Sum generates ...\n// ...\n//\n//go:noescpae\nfunc Sum(...) // implemented in sum_arm64.s",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 13
+      },
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed3de2b2_f970db45",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "2018",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b048af_fc97806a",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1685cd1_52e5b085",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "Too many blank lines.",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aa814c6_7e982bb4",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2018-04-10T20:12:38Z",
+      "side": 1,
+      "message": "Write the masks in hex. Also below.",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
