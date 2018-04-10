@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d3d3ac2_5282727a",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-10T18:26:28Z",
+      "side": 1,
+      "message": "\"and advances\" feels like it\u0027s cut short. advances what?\n\nBut I guess this is wording matches line 250, so this is fine.",
+      "range": {
+        "startLine": 228,
+        "startChar": 27,
+        "endLine": 228,
+        "endChar": 39
+      },
+      "revId": "1a15d3556c36142633dbd01f13276a51c7c92d81",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
