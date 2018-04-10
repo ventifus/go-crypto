@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c7346ee9_ca8c8d8f",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75f39f58_d4f2de77",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3c0c8f3_d1db8031",
         "filename": "poly1305/sum_arm64.go",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac97fc22_57046368",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done. Sorry, was testing with debug flag and forgot to clean it up.",
+      "parentUuid": "b3c0c8f3_d1db8031",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9b0668e6_b40d1019",
+        "filename": "poly1305/sum_arm64.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab69c4ff_9c6f98f7",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 13
+      },
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed3de2b2_f970db45",
         "filename": "poly1305/sum_arm64.s",
         "patchSetId": 2
@@ -73,6 +133,24 @@
       "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "359354ca_08dcd3e0",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed3de2b2_f970db45",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "9b8e24fd_a273fd3d",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b048af_fc97806a",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1685cd1_52e5b085",
         "filename": "poly1305/sum_arm64.s",
         "patchSetId": 2
@@ -107,6 +203,24 @@
       "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a4ec590_f563df18",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1685cd1_52e5b085",
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -130,6 +244,30 @@
       "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0a01ee2_d2055607",
+        "filename": "poly1305/sum_arm64.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-04-10T20:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0aa814c6_7e982bb4",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "59806675a8de0ea8da58603ea09c5c477df447e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
