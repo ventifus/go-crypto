@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0cede058_c1b1e41e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-12T20:11:17Z",
+      "side": 1,
+      "message": "No \":\"",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "50a49930_77508d8f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -13,6 +36,30 @@
       "writtenOn": "2018-03-15T06:42:30Z",
       "side": 1,
       "message": "this does an unbounded number of revocations at once. Maybe this needs to be bounded to, say, 5 or 10 at once?\n\nyou could just make a buffered channel you send to before the goroutine and receive from after the Revoke call?",
+      "range": {
+        "startLine": 549,
+        "startChar": 2,
+        "endLine": 551,
+        "endChar": 41
+      },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc16ef9e_2beac752",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-12T20:11:17Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a problem. The pending authz were all generated for the same certificate. There can only be a few of them.\n\nHowever, any reason not to move the loop inside the goroutine?",
+      "parentUuid": "50a49930_77508d8f",
       "range": {
         "startLine": 549,
         "startChar": 2,
@@ -42,6 +89,23 @@
         "endLine": 562,
         "endChar": 94
       },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67f37917_5abf28ab",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-12T20:11:17Z",
+      "side": 1,
+      "message": "for i :\u003d range revoked {",
       "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
