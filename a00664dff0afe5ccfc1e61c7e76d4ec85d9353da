@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb3e56f5_2ea44f39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-12T16:58:58Z",
+      "side": 1,
+      "message": "drop the x/crypto/ prefix per https://github.com/golang/go/wiki/CommitMessage",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "a00664dff0afe5ccfc1e61c7e76d4ec85d9353da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc430c60_5848138b",
+        "filename": "sm3/sm3.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-12T16:58:58Z",
+      "side": 1,
+      "message": "don\u0027t put a URL in the first sentence of a package description.\n\nI\u0027d write:\n\n// Package sm3 implements the SM3 hash algorithm.\n//\n// See https://tools.ietf.org/id/draft-oscca-cfrg-sm3-01.html",
+      "range": {
+        "startLine": 6,
+        "startChar": 3,
+        "endLine": 6,
+        "endChar": 57
+      },
+      "revId": "a00664dff0afe5ccfc1e61c7e76d4ec85d9353da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b0bb31c_d4efee4b",
+        "filename": "sm3/sm3.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-12T16:58:58Z",
+      "side": 1,
+      "message": "missing space after //\n\nBut also: https://github.com/golang/go/wiki/CodeReviewComments#comment-sentences",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "a00664dff0afe5ccfc1e61c7e76d4ec85d9353da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e1fbb57_81a9b614",
+        "filename": "sm3/sm3.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-12T16:58:58Z",
+      "side": 1,
+      "message": "Use encoding/binary instead. Don\u0027t duplicate these.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 1
+      },
+      "revId": "a00664dff0afe5ccfc1e61c7e76d4ec85d9353da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
