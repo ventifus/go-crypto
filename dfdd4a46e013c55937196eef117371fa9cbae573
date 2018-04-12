@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d278bc9a_e1ef1abd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-12T19:56:07Z",
+      "side": 1,
+      "message": "Fixes",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "dfdd4a46e013c55937196eef117371fa9cbae573",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f43363d_2fe57ad7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-12T19:56:07Z",
+      "side": 1,
+      "message": "I think I see a race here.\n\nA first request comes in, it reaches certState.\ncertState creates a certState stub and adds it to m.state.\ncertState unlocks m.stateMu and returns to createCert.\nBefore state.once fires, a new request comes in and reaches cert.\nThis call to tlscert (read) races with the once call (write).\n\nAlso, apparently a tests gap (if I\u0027m right).",
+      "revId": "dfdd4a46e013c55937196eef117371fa9cbae573",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
