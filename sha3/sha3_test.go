@@ -36,15 +36,19 @@ func newHashShake256() hash.Hash {
 }
 
 // testDigests contains functions returning hash.Hash instances
-// with output-length equal to the KAT length for both SHA-3 and
+// with output-length equal to the KAT length for SHA-3, Keccak
 // SHAKE instances.
 var testDigests = map[string]func() hash.Hash{
-	"SHA3-224": New224,
-	"SHA3-256": New256,
-	"SHA3-384": New384,
-	"SHA3-512": New512,
-	"SHAKE128": newHashShake128,
-	"SHAKE256": newHashShake256,
+	"SHA3-224":   New224,
+	"SHA3-256":   New256,
+	"SHA3-384":   New384,
+	"SHA3-512":   New512,
+	"Keccak-224": NewKeccak224,
+	"Keccak-256": NewKeccak256,
+	"Keccak-384": NewKeccak384,
+	"Keccak-512": NewKeccak512,
+	"SHAKE128":   newHashShake128,
+	"SHAKE256":   newHashShake256,
 }
 
 // testShakes contains functions that return ShakeHash instances for
@@ -276,6 +280,11 @@ func BenchmarkSha3_512_MTU(b *testing.B) { benchmarkHash(b, New512(), 1350, 1) }
 func BenchmarkSha3_384_MTU(b *testing.B) { benchmarkHash(b, New384(), 1350, 1) }
 func BenchmarkSha3_256_MTU(b *testing.B) { benchmarkHash(b, New256(), 1350, 1) }
 func BenchmarkSha3_224_MTU(b *testing.B) { benchmarkHash(b, New224(), 1350, 1) }
+
+func BenchmarkKeccak_512_MTU(b *testing.B) { benchmarkHash(b, NewKeccak512(), 1350, 1) }
+func BenchmarkKeccak_384_MTU(b *testing.B) { benchmarkHash(b, NewKeccak384(), 1350, 1) }
+func BenchmarkKeccak_256_MTU(b *testing.B) { benchmarkHash(b, NewKeccak256(), 1350, 1) }
+func BenchmarkKeccak_224_MTU(b *testing.B) { benchmarkHash(b, NewKeccak224(), 1350, 1) }
 
 func BenchmarkShake128_MTU(b *testing.B)  { benchmarkShake(b, NewShake128(), 1350, 1) }
 func BenchmarkShake256_MTU(b *testing.B)  { benchmarkShake(b, NewShake256(), 1350, 1) }
