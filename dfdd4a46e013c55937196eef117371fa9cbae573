@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4acf9eb6_d48902cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-13T16:51:47Z",
+      "side": 1,
+      "message": "It is for GitHub, but we decided to only use Fixes for consistency.\n\nhttps://github.com/golang/go/wiki/CommitMessage",
+      "parentUuid": "a12dac6d_46161a0e",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "dfdd4a46e013c55937196eef117371fa9cbae573",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f43363d_2fe57ad7",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 8
