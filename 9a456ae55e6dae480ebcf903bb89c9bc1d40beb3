@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e71972b8_e2d7dc65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-17T20:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cede058_c1b1e41e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50a49930_77508d8f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "c4975d14_71edde80",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-17T20:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc16ef9e_2beac752",
+      "range": {
+        "startLine": 549,
+        "startChar": 2,
+        "endLine": 551,
+        "endChar": 41
+      },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d0af64a_f58e49b5",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "f4cb1dad_ef6b474e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-17T20:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d0af64a_f58e49b5",
+      "range": {
+        "startLine": 562,
+        "startChar": 82,
+        "endLine": 562,
+        "endChar": 94
+      },
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67f37917_5abf28ab",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 4
@@ -109,6 +181,24 @@
       "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4db5413f_dc45e81c",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-17T20:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67f37917_5abf28ab",
+      "revId": "9a456ae55e6dae480ebcf903bb89c9bc1d40beb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
