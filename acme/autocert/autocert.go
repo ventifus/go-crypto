@@ -101,8 +101,7 @@ type Manager struct {
 	// Cache optionally stores and retrieves previously-obtained certificates.
 	// If nil, certs will only be cached for the lifetime of the Manager.
 	//
-	// Manager passes the Cache certificates data encoded in PEM, with private/public
-	// parts combined in a single Cache.Put call, private key first.
+	// Using a persistent Cache, such as DirCache, is strongly recommended.
 	Cache Cache
 
 	// HostPolicy controls which domains the Manager will attempt
@@ -140,22 +139,21 @@ type Manager struct {
 	// If the Client's account key is already registered, Email is not used.
 	Email string
 
-	// ForceRSA makes the Manager generate certificates with 2048-bit RSA keys.
+	// ForceRSA used to make the Manager generate RSA certificates. It is now ignored.
 	//
-	// If false, a default is used. Currently the default
-	// is EC-based keys using the P-256 curve.
+	// Deprecated: the Manager will request the correct type of certificate based
+	// on what each client supports.
 	ForceRSA bool
 
 	clientMu sync.Mutex
 	client   *acme.Client // initialized by acmeClient method
 
 	stateMu sync.Mutex
-	state   map[string]*certState // keyed by domain name
+	state   map[certKey]*certState
 
 	// renewal tracks the set of domains currently running renewal timers.
-	// It is keyed by domain name.
 	renewalMu sync.Mutex
-	renewal   map[string]*domainRenewal
+	renewal   map[certKey]*domainRenewal
 
 	// tokensMu guards the rest of the fields: tryHTTP01, certTokens and httpTokens.
 	tokensMu sync.RWMutex
@@ -171,7 +169,20 @@ type Manager struct {
 	// and is keyed by token domain name, which matches server name of ClientHello.
 	// Keys always have ".acme.invalid" suffix.
 	// The entries are stored for the duration of the authorization flow.
-	certTokens map[string]*tls.Certificate
+	certTokens map[certKey]*tls.Certificate
+}
+
+// certKey is the key by which certificates are tracked in state, renewal and cache.
+type certKey struct {
+	domain string
+	isRSA  bool
+}
+
+func (c certKey) String() string {
+	if c.isRSA {
+		return c.domain + "/rsa"
+	}
+	return c.domain
 }
 
 // GetCertificate implements the tls.Config.GetCertificate hook.
@@ -207,10 +218,11 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	if strings.HasSuffix(name, ".acme.invalid") {
 		m.tokensMu.RLock()
 		defer m.tokensMu.RUnlock()
-		if cert := m.certTokens[name]; cert != nil {
+		certKey := certKey{domain: name}
+		if cert := m.certTokens[certKey]; cert != nil {
 			return cert, nil
 		}
-		if cert, err := m.cacheGet(ctx, name); err == nil {
+		if cert, err := m.cacheGet(ctx, certKey); err == nil {
 			return cert, nil
 		}
 		// TODO: cache error results?
@@ -218,8 +230,11 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	}
 
 	// regular domain
-	name = strings.TrimSuffix(name, ".") // golang.org/issue/18114
-	cert, err := m.cert(ctx, name)
+	certKey := certKey{
+		domain: strings.TrimSuffix(name, "."), // golang.org/issue/18114
+		isRSA:  !m.supportsECDSA(hello),
+	}
+	cert, err := m.cert(ctx, certKey)
 	if err == nil {
 		return cert, nil
 	}
@@ -231,12 +246,16 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	if err := m.hostPolicy()(ctx, name); err != nil {
 		return nil, err
 	}
-	cert, err = m.createCert(ctx, name)
+	cert, err = m.createCert(ctx, certKey)
 	if err != nil {
 		return nil, err
 	}
-	m.cachePut(ctx, name, cert)
+	m.cachePut(ctx, certKey, cert)
 	return cert, nil
+}
+
+func (m *Manager) supportsECDSA(hello *tls.ClientHelloInfo) bool {
+	return !m.ForceRSA
 }
 
 // HTTPHandler configures the Manager to provision ACME "http-01" challenge responses.
@@ -304,16 +323,16 @@ func stripPort(hostport string) string {
 // cert returns an existing certificate either from m.state or cache.
 // If a certificate is found in cache but not in m.state, the latter will be filled
 // with the cached value.
-func (m *Manager) cert(ctx context.Context, name string) (*tls.Certificate, error) {
+func (m *Manager) cert(ctx context.Context, ck certKey) (*tls.Certificate, error) {
 	m.stateMu.Lock()
-	if s, ok := m.state[name]; ok {
+	if s, ok := m.state[ck]; ok {
 		m.stateMu.Unlock()
 		s.RLock()
 		defer s.RUnlock()
 		return s.tlscert()
 	}
 	defer m.stateMu.Unlock()
-	cert, err := m.cacheGet(ctx, name)
+	cert, err := m.cacheGet(ctx, ck)
 	if err != nil {
 		return nil, err
 	}
@@ -322,25 +341,25 @@ func (m *Manager) cert(ctx context.Context, name string) (*tls.Certificate, erro
 		return nil, errors.New("acme/autocert: private key cannot sign")
 	}
 	if m.state == nil {
-		m.state = make(map[string]*certState)
+		m.state = make(map[certKey]*certState)
 	}
 	s := &certState{
 		key:  signer,
 		cert: cert.Certificate,
 		leaf: cert.Leaf,
 	}
-	m.state[name] = s
-	go m.renew(name, s.key, s.leaf.NotAfter)
+	m.state[ck] = s
+	go m.renew(ck, s.key, s.leaf.NotAfter)
 	return cert, nil
 }
 
 // cacheGet always returns a valid certificate, or an error otherwise.
-// If a cached certficate exists but is not valid, ErrCacheMiss is returned.
-func (m *Manager) cacheGet(ctx context.Context, domain string) (*tls.Certificate, error) {
+// If a cached certificate exists but is not valid, ErrCacheMiss is returned.
+func (m *Manager) cacheGet(ctx context.Context, ck certKey) (*tls.Certificate, error) {
 	if m.Cache == nil {
 		return nil, ErrCacheMiss
 	}
-	data, err := m.Cache.Get(ctx, domain)
+	data, err := m.Cache.Get(ctx, ck.String())
 	if err != nil {
 		return nil, err
 	}
@@ -353,6 +372,22 @@ func (m *Manager) cacheGet(ctx context.Context, domain string) (*tls.Certificate
 	privKey, err := parsePrivateKey(priv.Bytes)
 	if err != nil {
 		return nil, err
+	}
+
+	// Older versions of Manager stored certificates without type suffix.
+	if !strings.HasSuffix(ck.domain, ".acme.invalid") {
+		switch privKey.(type) {
+		case *rsa.PrivateKey:
+			if !ck.isRSA {
+				return nil, ErrCacheMiss
+			}
+		case *ecdsa.PrivateKey:
+			if ck.isRSA {
+				return nil, ErrCacheMiss
+			}
+		default:
+			return nil, ErrCacheMiss
+		}
 	}
 
 	// public
@@ -371,7 +406,7 @@ func (m *Manager) cacheGet(ctx context.Context, domain string) (*tls.Certificate
 	}
 
 	// verify and create TLS cert
-	leaf, err := validCert(domain, pubDER, privKey)
+	leaf, err := validCert(ck.domain, pubDER, privKey)
 	if err != nil {
 		return nil, ErrCacheMiss
 	}
@@ -383,7 +418,7 @@ func (m *Manager) cacheGet(ctx context.Context, domain string) (*tls.Certificate
 	return tlscert, nil
 }
 
-func (m *Manager) cachePut(ctx context.Context, domain string, tlscert *tls.Certificate) error {
+func (m *Manager) cachePut(ctx context.Context, ck certKey, tlscert *tls.Certificate) error {
 	if m.Cache == nil {
 		return nil
 	}
@@ -415,7 +450,7 @@ func (m *Manager) cachePut(ctx context.Context, domain string, tlscert *tls.Cert
 		}
 	}
 
-	return m.Cache.Put(ctx, domain, buf.Bytes())
+	return m.Cache.Put(ctx, ck.String(), buf.Bytes())
 }
 
 func encodeECDSAKey(w io.Writer, key *ecdsa.PrivateKey) error {
@@ -432,9 +467,9 @@ func encodeECDSAKey(w io.Writer, key *ecdsa.PrivateKey) error {
 //
 // If the domain is already being verified, it waits for the existing verification to complete.
 // Either way, createCert blocks for the duration of the whole process.
-func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certificate, error) {
+func (m *Manager) createCert(ctx context.Context, ck certKey) (*tls.Certificate, error) {
 	// TODO: maybe rewrite this whole piece using sync.Once
-	state, err := m.certState(domain)
+	state, err := m.certState(ck)
 	if err != nil {
 		return nil, err
 	}
@@ -452,44 +487,44 @@ func (m *Manager) createCert(ctx context.Context, domain string) (*tls.Certifica
 	defer state.Unlock()
 	state.locked = false
 
-	der, leaf, err := m.authorizedCert(ctx, state.key, domain)
+	der, leaf, err := m.authorizedCert(ctx, state.key, ck.domain)
 	if err != nil {
 		// Remove the failed state after some time,
 		// making the manager call createCert again on the following TLS hello.
 		time.AfterFunc(createCertRetryAfter, func() {
-			defer testDidRemoveState(domain)
+			defer testDidRemoveState(ck)
 			m.stateMu.Lock()
 			defer m.stateMu.Unlock()
 			// Verify the state hasn't changed and it's still invalid
 			// before deleting.
-			s, ok := m.state[domain]
+			s, ok := m.state[ck]
 			if !ok {
 				return
 			}
-			if _, err := validCert(domain, s.cert, s.key); err == nil {
+			if _, err := validCert(ck.domain, s.cert, s.key); err == nil {
 				return
 			}
-			delete(m.state, domain)
+			delete(m.state, ck)
 		})
 		return nil, err
 	}
 	state.cert = der
 	state.leaf = leaf
-	go m.renew(domain, state.key, state.leaf.NotAfter)
+	go m.renew(ck, state.key, state.leaf.NotAfter)
 	return state.tlscert()
 }
 
 // certState returns a new or existing certState.
 // If a new certState is returned, state.exist is false and the state is locked.
 // The returned error is non-nil only in the case where a new state could not be created.
-func (m *Manager) certState(domain string) (*certState, error) {
+func (m *Manager) certState(ck certKey) (*certState, error) {
 	m.stateMu.Lock()
 	defer m.stateMu.Unlock()
 	if m.state == nil {
-		m.state = make(map[string]*certState)
+		m.state = make(map[certKey]*certState)
 	}
 	// existing state
-	if state, ok := m.state[domain]; ok {
+	if state, ok := m.state[ck]; ok {
 		return state, nil
 	}
 
@@ -498,7 +533,7 @@ func (m *Manager) certState(domain string) (*certState, error) {
 		err error
 		key crypto.Signer
 	)
-	if m.ForceRSA {
+	if ck.isRSA {
 		key, err = rsa.GenerateKey(rand.Reader, 2048)
 	} else {
 		key, err = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
@@ -512,7 +547,7 @@ func (m *Manager) certState(domain string) (*certState, error) {
 		locked: true,
 	}
 	state.Lock() // will be unlocked by m.certState caller
-	m.state[domain] = state
+	m.state[ck] = state
 	return state, nil
 }
 
@@ -636,24 +671,24 @@ func pickChallenge(typ string, chal []*acme.Challenge) *acme.Challenge {
 
 // putCertToken stores the cert under the named key in both m.certTokens map
 // and m.Cache.
-func (m *Manager) putCertToken(ctx context.Context, name string, cert *tls.Certificate) {
+func (m *Manager) putCertToken(ctx context.Context, ck certKey, cert *tls.Certificate) {
 	m.tokensMu.Lock()
 	defer m.tokensMu.Unlock()
 	if m.certTokens == nil {
-		m.certTokens = make(map[string]*tls.Certificate)
+		m.certTokens = make(map[certKey]*tls.Certificate)
 	}
-	m.certTokens[name] = cert
-	m.cachePut(ctx, name, cert)
+	m.certTokens[ck] = cert
+	m.cachePut(ctx, ck, cert)
 }
 
 // deleteCertToken removes the token certificate for the specified domain name
 // from both m.certTokens map and m.Cache.
-func (m *Manager) deleteCertToken(name string) {
+func (m *Manager) deleteCertToken(ck certKey) {
 	m.tokensMu.Lock()
 	defer m.tokensMu.Unlock()
-	delete(m.certTokens, name)
+	delete(m.certTokens, ck)
 	if m.Cache != nil {
-		m.Cache.Delete(context.Background(), name)
+		m.Cache.Delete(context.Background(), ck.String())
 	}
 }
 
@@ -715,18 +750,18 @@ func httpTokenCacheKey(tokenPath string) string {
 //
 // The key argument is a certificate private key.
 // The exp argument is the cert expiration time (NotAfter).
-func (m *Manager) renew(domain string, key crypto.Signer, exp time.Time) {
+func (m *Manager) renew(ck certKey, key crypto.Signer, exp time.Time) {
 	m.renewalMu.Lock()
 	defer m.renewalMu.Unlock()
-	if m.renewal[domain] != nil {
+	if m.renewal[ck] != nil {
 		// another goroutine is already on it
 		return
 	}
 	if m.renewal == nil {
-		m.renewal = make(map[string]*domainRenewal)
+		m.renewal = make(map[certKey]*domainRenewal)
 	}
-	dr := &domainRenewal{m: m, domain: domain, key: key}
-	m.renewal[domain] = dr
+	dr := &domainRenewal{m: m, ck: ck, key: key}
+	m.renewal[ck] = dr
 	dr.start(exp)
 }
 
@@ -958,5 +993,5 @@ var (
 	timeNow = time.Now
 
 	// Called when a state is removed.
-	testDidRemoveState = func(domain string) {}
+	testDidRemoveState = func(ck certKey) {}
 )
