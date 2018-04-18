@@ -1,0 +1,96 @@
+// Copyright 2018 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+#include "textflag.h"
+
+// func block(state *[16]uint32, out, in []byte)
+TEXT ·block(SB), NOSPLIT, $0-56
+
+	MOVD	state+0(FP), R0
+	VLD1	(R0), [V0.S4, V1.S4, V2.S4, V3.S4]
+	VLD1	(R0), [V8.S4, V9.S4, V10.S4, V11.S4]
+
+	MOVD	out+8(FP), R1
+	MOVD	in+32(FP), R2
+
+	MOVD	$·rot8(SB), R3
+	VLD1	(R3), [V12.S4]
+
+	MOVD	$10, R4
+
+loop:
+	VADD	V0.S4, V1.S4, V0.S4
+	VEOR	V0.B16, V3.B16, V3.B16
+	VREV32	V3.H8, V3.H8
+
+	VADD	V2.S4, V3.S4, V2.S4
+	VEOR	V1.B16, V2.B16, V4.B16
+	VSHL	$12, V4.S4, V1.S4
+	// VSRI $20, V4.S4, V1.S4
+	WORD	$0x6F2C4481
+
+	VADD	V0.S4, V1.S4, V0.S4
+	VEOR	V0.B16, V3.B16, V3.B16
+	// VTBL V12.B16, [V3.B16], V3.B16
+	WORD	$0x4E0C0063
+
+	VADD	V2.S4, V3.S4, V2.S4
+	VEOR	V2.B16, V1.B16, V4.B16
+	VSHL	$7, V4.S4, V1.S4
+	// VSRI $25, V4.S4, V1.S4
+	WORD	$0x6F274481
+
+	//v1 >>>= 32; v2 >>>= 64; v3 >>>= 96;
+	VEXT	$4, V1.B16, V1.B16, V1.B16
+	VEXT	$8, V2.B16, V2.B16, V2.B16
+	VEXT	$12, V3.B16, V3.B16, V3.B16
+
+	VADD	V0.S4, V1.S4, V0.S4
+	VEOR	V0.B16, V3.B16, V3.B16
+	VREV32	V3.H8, V3.H8
+
+	VADD	V2.S4, V3.S4, V2.S4
+	VEOR	V1.B16, V2.B16, V4.B16
+	VSHL	$12, V4.S4, V1.S4
+	// VSRI $20, V4.S4, V1.S4
+	WORD	$0x6F2C4481
+
+	VADD	V0.S4, V1.S4, V0.S4
+	VEOR	V0.B16, V3.B16, V3.B16
+	// VTBL V12.B16, [V3.B16], V3.B16
+	WORD	$0x4E0C0063
+
+	VADD	V2.S4, V3.S4, V2.S4
+	VEOR	V2.B16, V1.B16, V4.B16
+	VSHL	$7, V4.S4, V1.S4
+	// VSRI $25, V4.S4, V1.S4
+	WORD	$0x6F274481
+
+	//v1 <<<= 32; v2 <<<= 64; v3 <<<= 96;
+	VEXT	$12, V1.B16, V1.B16, V1.B16
+	VEXT	$8, V2.B16, V2.B16, V2.B16
+	VEXT	$4, V3.B16, V3.B16, V3.B16
+
+	SUB	$1, R4
+	CBNZ	R4, loop
+
+	VLD1	(R2), [V4.B16, V5.B16, V6.B16, V7.B16]
+
+	VADD	V8.S4, V0.S4, V0.S4
+	VEOR	V4.B16, V0.B16, V0.B16
+	VADD	V9.S4, V1.S4, V1.S4
+	VEOR	V5.B16, V1.B16, V1.B16
+	VADD	V10.S4, V2.S4, V2.S4
+	VEOR	V6.B16, V2.B16, V2.B16
+	VADD	V11.S4, V3.S4, V3.S4
+	VEOR	V7.B16, V3.B16, V3.B16
+
+	VST1	[V0.B16, V1.B16, V2.B16, V3.B16], (R1)
+	RET
+
+DATA    ·rot8+0x00(SB)/4, $0x02010003
+DATA    ·rot8+0x04(SB)/4, $0x06050407
+DATA    ·rot8+0x08(SB)/4, $0x0a09080b
+DATA    ·rot8+0x0c(SB)/4, $0x0e0d0c0f
+GLOBL   ·rot8(SB), NOPTR+RODATA, $16

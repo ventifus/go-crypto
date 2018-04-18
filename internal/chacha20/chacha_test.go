@@ -28,6 +28,6 @@ func TestCore(t *testing.T) {
 	XORKeyStream(out[:], out[:], &input, &key)
 	const expected = "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e"
 	if result := hex.EncodeToString(out[:]); result != expected {
-		t.Errorf("wanted %x but got %x", expected, result)
+		t.Errorf("wanted %s but got %s", expected, result)
 	}
 }
