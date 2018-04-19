@@ -16,6 +16,24 @@
       "revId": "d191bca6ee2539fb2a49947d6524f33f550844bf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a715a7b_6b402b68",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-19T13:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3703f1a0_a6654b44",
+      "revId": "d191bca6ee2539fb2a49947d6524f33f550844bf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
