@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f71e0f63_a93d58a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-04-20T15:08:00Z",
+      "side": 1,
+      "message": "Hisilicon Kirin960\nHikey960 4G",
+      "parentUuid": "ecef46e1_1088a905",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "c4148a71d969ed55fbbdb5cb3a5e5d4ebbadc256",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fecc819e_8ee69660",
         "filename": "internal/chacha20/chacha_arm64.s",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1795f978_e73ed36c",
+        "filename": "internal/chacha20/chacha_arm64.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-04-20T15:08:00Z",
+      "side": 1,
+      "message": "That CL has already merged. Can we reopen that?",
+      "parentUuid": "fecc819e_8ee69660",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 26
+      },
+      "revId": "c4148a71d969ed55fbbdb5cb3a5e5d4ebbadc256",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd1abdb1_e4356b2d",
         "filename": "internal/chacha20/chacha_arm64.s",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2018-04-20T14:47:32Z",
       "side": 1,
       "message": "This can be combined to use a vector table lookup (VTBL) which is faster.",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 26
+      },
+      "revId": "c4148a71d969ed55fbbdb5cb3a5e5d4ebbadc256",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "164c9e53_32122ced",
+        "filename": "internal/chacha20/chacha_arm64.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-04-20T15:08:00Z",
+      "side": 1,
+      "message": "According to \"Cortex A57 Software Optimization\" latency of VTBL is 3 same as both VSRI and VSHL.\nBut for VTBL we need to load table data into register which will need VLD (latency 5).",
+      "parentUuid": "bd1abdb1_e4356b2d",
       "range": {
         "startLine": 34,
         "startChar": 1,
