@@ -41,7 +41,7 @@ type ShakeHash interface {
 
 // cSHAKE specific context
 type cshakeState struct {
-	state // SHA-3 state context and Read/Write operations
+	*state // SHA-3 state context and Read/Write operations
 
 	// initBlock is the cSHAKE specific initialization set of bytes. It is initialized
 	// by newCShake function and stores concatenation of N followed by S, encoded
@@ -81,8 +81,21 @@ func leftEncode(value uint64) []byte {
 	return b[i-1:]
 }
 
+func rightEncode(value uint64) []byte {
+	var b [9]byte
+	binary.BigEndian.PutUint64(b[:8], value)
+	// Trim all but last leading zero bytes
+	i := byte(0)
+	for i < 7 && b[i] == 0 {
+		i++
+	}
+	// Append number of encoded bytes
+	b[8] = 8 - i
+	return b[i:]
+}
+
 func newCShake(N, S []byte, rate int, dsbyte byte) ShakeHash {
-	c := cshakeState{state: state{rate: rate, dsbyte: dsbyte}}
+	c := cshakeState{state: &state{rate: rate, dsbyte: dsbyte}}
 
 	// leftEncode returns max 9 bytes
 	c.initBlock = make([]byte, 0, 9*2+len(N)+len(S))
@@ -104,7 +117,7 @@ func (c *cshakeState) Reset() {
 func (c *cshakeState) Clone() ShakeHash {
 	b := make([]byte, len(c.initBlock))
 	copy(b, c.initBlock)
-	return &cshakeState{state: *c.clone(), initBlock: b}
+	return &cshakeState{state: c.clone(), initBlock: b}
 }
 
 // Clone returns copy of SHAKE context within its current state.
