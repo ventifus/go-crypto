@@ -46,6 +46,30 @@
       "revId": "1e11ac2dc46e2289d68748bed4d8ac02ecc27edd",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f164fa0_33af6e03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-04-20T17:26:36Z",
+      "side": 1,
+      "message": "\u003e I tried to fix this via Gerrit but it got lost afterwards.\n\nAh, it was the GitHub bot that reverted this. Can the bot be made to stop syncing once changes have happened on Gerrit?",
+      "parentUuid": "5badb79a_eec1637e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "1e11ac2dc46e2289d68748bed4d8ac02ecc27edd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
