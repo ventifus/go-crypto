@@ -4,8 +4,10 @@
 
 // Package sha3 implements the SHA-3 fixed-output-length hash functions and
 // the SHAKE variable-output-length hash functions defined by FIPS-202.
+// It also implements the KMAC message authentication code defined by
+// NIST SP 800-185.
 //
-// Both types of hash function use the "sponge" construction and the Keccak
+// These functions use the "sponge" construction and the Keccak
 // permutation. For a detailed specification see http://keccak.noekeon.org/
 //
 //
@@ -15,9 +17,7 @@
 // bytes of output. The SHAKE instances are faster than the SHA3 instances;
 // the latter have to allocate memory to conform to the hash.Hash interface.
 //
-// If you need a secret-key MAC (message authentication code), prepend the
-// secret key to the input, hash with SHAKE256 and read at least 32 bytes of
-// output.
+// If you need a secret-key MAC (message authentication code), use KMAC.
 //
 //
 // Security strengths
@@ -31,6 +31,9 @@
 // is used.  Requesting more than 64 or 32 bytes of output, respectively, does
 // not increase the collision-resistance of the SHAKE functions.
 //
+// The KMAC-256 and -128 functions have a generic security strength of 256 and
+// 128 bits against all attacks, provided that at least 2x bits of their output
+// is used.
 //
 // The sponge construction
 //
