@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "88155703_ea08ba66",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-20T21:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfaeb751_b5d2e395",
+      "revId": "5081db522c28e67a5760e7b65c1a87e5aa27749c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeaff0ab_2b5398f5",
         "filename": "internal/chacha20/xor.go",
         "patchSetId": 5
@@ -69,6 +87,24 @@
       "revId": "5081db522c28e67a5760e7b65c1a87e5aa27749c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8657d3_8eaa4c9c",
+        "filename": "internal/chacha20/xor.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-20T21:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e38bc7f5_9e3940cb",
+      "revId": "5081db522c28e67a5760e7b65c1a87e5aa27749c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
