@@ -81,6 +81,19 @@ func leftEncode(value uint64) []byte {
 	return b[i-1:]
 }
 
+func rightEncode(value uint64) []byte {
+	var b [9]byte
+	binary.BigEndian.PutUint64(b[:8], value)
+	// Trim all but last leading zero bytes
+	i := byte(0)
+	for i < 7 && b[i] == 0 {
+		i++
+	}
+	// Append number of encoded bytes
+	b[8] = 8 - i
+	return b[i:]
+}
+
 func newCShake(N, S []byte, rate int, dsbyte byte) ShakeHash {
 	c := cshakeState{state: &state{rate: rate, dsbyte: dsbyte}}
 
