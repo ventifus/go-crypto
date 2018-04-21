@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "467aa2d4_313d4faa",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2018-04-21T05:47:29Z",
+      "side": 1,
+      "message": "This is minor, but \"out\" should probably not be double quoted.\n\nGenerally, when Go documentation refers to parameter names, they\u0027re written without any extra characters. Using quotes make it read more like a string value.\n\nThe variable out is also referred to in the first sentence without quotes:\n\n    // ReadOptionalASN1OctetString attempts to read an optional ASN.1 OCTET STRING\n    // explicitly tagged with tag into out and advances. ...",
+      "revId": "e73bf333ef8920dbb52ad18d4bd38ad9d9bc76d7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
