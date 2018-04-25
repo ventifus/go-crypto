@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "066661dc_697cb96f",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-04-25T15:09:09Z",
+      "side": 1,
+      "message": "You could do 4 XORs then 4 stores and avoid a hazard in TMPx.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a239d239_0f1f550b",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-04-25T15:09:09Z",
+      "side": 1,
+      "message": "You could use 4 different temp registers here and group all 4 loads to keep all the load units busy.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63deb4f9_04ece8fe",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-04-25T15:09:09Z",
+      "side": 1,
+      "message": "Another place where you can group instructions for more efficiency. You could do 4 XORs then 4 stores and avoid a hazard in TMPx.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93b8f88d_c0931dc8",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-04-25T15:09:09Z",
+      "side": 1,
+      "message": "You already have all the key values in registers. Can\u0027t you do the XORs in the loop below without passing them to the stack?",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "892f8978_79a414c5",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-04-25T15:09:09Z",
+      "side": 1,
+      "message": "This loop can be unrolled once so you keep all 4 load units busy.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
