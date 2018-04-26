@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5709ec9f_709d4c08",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-26T18:15:36Z",
+      "side": 1,
+      "message": "more idiomatic is:\n\n   var _ cipher.Stream \u003d (*Cipher)(nil)",
+      "revId": "debbf57975b41cca24b145c6a6e4651b664c2acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21cccfd2_9e97ab15",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-26T18:15:36Z",
+      "side": 1,
+      "message": "I\u0027d move this last sentence to the Cipher type docs. You can put the word \"A\" in front of it so the sentence doesn\u0027t begin with an asterisk.",
+      "range": {
+        "startLine": 28,
+        "startChar": 42,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "debbf57975b41cca24b145c6a6e4651b664c2acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dd68e8b_629ff007",
+        "filename": "internal/chacha20/xor.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-04-26T18:15:36Z",
+      "side": 1,
+      "message": "reference a bug number here (and whenever such comments appear)",
+      "range": {
+        "startLine": 22,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 42
+      },
+      "revId": "debbf57975b41cca24b145c6a6e4651b664c2acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
