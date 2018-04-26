@@ -1354,27 +1354,25 @@ func TestDNS01ChallengeRecord(t *testing.T) {
 	}
 }
 
-func TestBackoff(t *testing.T) {
-	tt := []struct{ min, max time.Duration }{
-		{time.Second, 2 * time.Second},
-		{2 * time.Second, 3 * time.Second},
-		{4 * time.Second, 5 * time.Second},
-		{8 * time.Second, 9 * time.Second},
+func TestDefaultBackoff(t *testing.T) {
+	tt := []struct {
+		n          int
+		retryAfter time.Duration
+		out        time.Duration
+	}{
+		{0, 0, time.Second},
+		{1, 0, 2 * time.Second},
+		{2, 0, 4 * time.Second},
+		{3, 0, 8 * time.Second},
+		{-1, 0, time.Second},
+		{100, 0, 10 * time.Second},
+		{0, time.Hour, time.Hour},
 	}
 	for i, test := range tt {
-		d := backoff(i, time.Minute)
-		if d < test.min || test.max < d {
-			t.Errorf("%d: d = %v; want between %v and %v", i, d, test.min, test.max)
+		max := test.out + time.Second // + max jitter
+		d := defaultBackoff(test.n, test.retryAfter)
+		if d < test.out || max < d {
+			t.Errorf("%d: defaultBackoff(%v, %v) = %v; want between %v and %v", i, test.n, test.retryAfter, d, test.out, max)
 		}
-	}
-
-	min, max := time.Second, 2*time.Second
-	if d := backoff(-1, time.Minute); d < min || max < d {
-		t.Errorf("d = %v; want between %v and %v", d, min, max)
-	}
-
-	bound := 10 * time.Second
-	if d := backoff(100, bound); d != bound {
-		t.Errorf("d = %v; want %v", d, bound)
 	}
 }

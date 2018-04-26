@@ -76,6 +76,17 @@ type Client struct {
 	// will have no effect.
 	DirectoryURL string
 
+	// RetryBackoff computes the duration after which an n+1 attempt of a failed request
+	// should occur. The optional retryAfter value is the parsed Retry-After header
+	// as returned from the server. Otherwise, retryAfter is zero.
+	// Requests which result in a 4xx client error are not retried.
+	//
+	// If RetryBackoff is nil, a default truncated exponential backoff algorithm
+	// with the ceiling of 10 seconds is used, where each subsequent attempt n
+	// is retried after either (retryAfter + jitter) or (2^n seconds + jitter),
+	// preferring the former. The jitter is anywhere between [0,1) seconds.
+	RetryBackoff func(n int, retryAfter time.Duration) time.Duration
+
 	dirMu sync.Mutex // guards writes to dir
 	dir   *Directory // cached result of Client's Discover method
 
@@ -99,7 +110,7 @@ func (c *Client) Discover(ctx context.Context) (Directory, error) {
 	if dirURL == "" {
 		dirURL = LetsEncryptURL
 	}
-	res, err := c.get(ctx, dirURL)
+	res, err := c.retryGet(ctx, dirURL)
 	if err != nil {
 		return Directory{}, err
 	}
@@ -196,24 +207,21 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 // Callers are encouraged to parse the returned value to ensure the certificate is valid
 // and has expected features.
 func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]byte, error) {
+	sleep := sleeper(c.RetryBackoff)
 	for {
-		res, err := c.get(ctx, url)
-		if err != nil {
+		res, err := c.retryGet(ctx, url)
+		switch {
+		case err != nil:
 			return nil, err
-		}
-		defer res.Body.Close()
-		if res.StatusCode == http.StatusOK {
+		case res.StatusCode == http.StatusOK:
+			defer res.Body.Close()
 			return c.responseCert(ctx, res, bundle)
-		}
-		if res.StatusCode > 299 {
-			return nil, responseError(res)
-		}
-		d := retryAfter(res.Header.Get("Retry-After"), 3*time.Second)
-		select {
-		case <-time.After(d):
-			// retry
-		case <-ctx.Done():
-			return nil, ctx.Err()
+		default:
+			res.Body.Close()
+			ra := res.Header.Get("Retry-After")
+			if err := sleep(ctx, 1, ra); err != nil {
+				return nil, err
+			}
 		}
 	}
 }
@@ -353,7 +361,7 @@ func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, 
 // If a caller needs to poll an authorization until its status is final,
 // see the WaitAuthorization method.
 func (c *Client) GetAuthorization(ctx context.Context, url string) (*Authorization, error) {
-	res, err := c.get(ctx, url)
+	res, err := c.retryGet(ctx, url)
 	if err != nil {
 		return nil, err
 	}
@@ -406,23 +414,17 @@ func (c *Client) RevokeAuthorization(ctx context.Context, url string) error {
 // In all other cases WaitAuthorization returns an error.
 // If the Status is StatusInvalid, the returned error is of type *AuthorizationError.
 func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorization, error) {
-	sleep := sleeper(ctx)
+	sleep := sleeper(c.RetryBackoff)
 	for {
-		res, err := c.get(ctx, url)
+		res, err := c.retryGet(ctx, url)
 		if err != nil {
 			return nil, err
 		}
-		if res.StatusCode >= 400 && res.StatusCode <= 499 {
-			// Non-retriable error. For instance, Let's Encrypt may return 404 Not Found
-			// when requesting an expired authorization.
-			defer res.Body.Close()
-			return nil, responseError(res)
-		}
 
-		retry := res.Header.Get("Retry-After")
+		after := res.Header.Get("Retry-After")
 		if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusAccepted {
 			res.Body.Close()
-			if err := sleep(retry, 1); err != nil {
+			if err := sleep(ctx, 1, after); err != nil {
 				return nil, err
 			}
 			continue
@@ -431,7 +433,7 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 		err = json.NewDecoder(res.Body).Decode(&raw)
 		res.Body.Close()
 		if err != nil {
-			if err := sleep(retry, 0); err != nil {
+			if err := sleep(ctx, 0, after); err != nil {
 				return nil, err
 			}
 			continue
@@ -442,7 +444,7 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 		if raw.Status == StatusInvalid {
 			return nil, raw.error(url)
 		}
-		if err := sleep(retry, 0); err != nil {
+		if err := sleep(ctx, 0, after); err != nil {
 			return nil, err
 		}
 	}
@@ -452,7 +454,7 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 //
 // A client typically polls a challenge status using this method.
 func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, error) {
-	res, err := c.get(ctx, url)
+	res, err := c.retryGet(ctx, url)
 	if err != nil {
 		return nil, err
 	}
@@ -661,7 +663,7 @@ func (c *Client) doReg(ctx context.Context, url string, typ string, acct *Accoun
 // If the response was 4XX-5XX, then responseError is called on the body,
 // the body is closed, and the error returned.
 func (c *Client) retryPostJWS(ctx context.Context, key crypto.Signer, url string, body interface{}) (*http.Response, error) {
-	sleep := sleeper(ctx)
+	sleep := sleeper(c.RetryBackoff)
 	for {
 		res, err := c.postJWS(ctx, key, url, body)
 		if err != nil {
@@ -678,8 +680,8 @@ func (c *Client) retryPostJWS(ctx context.Context, key crypto.Signer, url string
 				// clear any nonces that we might've stored that might now be
 				// considered bad
 				c.clearNonces()
-				retry := res.Header.Get("Retry-After")
-				if err := sleep(retry, 1); err != nil {
+				ra := res.Header.Get("Retry-After")
+				if err := sleep(ctx, 1, ra); err != nil {
 					return nil, err
 				}
 				continue
@@ -754,6 +756,29 @@ func (c *Client) httpClient() *http.Client {
 		return c.HTTPClient
 	}
 	return http.DefaultClient
+}
+
+func (c *Client) retryGet(ctx context.Context, urlStr string) (*http.Response, error) {
+	sleep := sleeper(c.RetryBackoff)
+	for {
+		res, err := c.get(ctx, urlStr)
+		switch {
+		case err != nil:
+			return nil, err
+		case res.StatusCode >= 200 && res.StatusCode <= 299:
+			return res, nil
+		case res.StatusCode >= 400 && res.StatusCode <= 499:
+			// Non-recoverable client error.
+			defer res.Body.Close()
+			return nil, responseError(res)
+		default:
+			res.Body.Close()
+			ra := res.Header.Get("Retry-After")
+			if err := sleep(ctx, 1, ra); err != nil {
+				return nil, err
+			}
+		}
+	}
 }
 
 func (c *Client) get(ctx context.Context, urlStr string) (*http.Response, error) {
@@ -880,7 +905,7 @@ func (c *Client) chainCert(ctx context.Context, url string, depth int) ([][]byte
 		return nil, errors.New("acme: certificate chain is too deep")
 	}
 
-	res, err := c.get(ctx, url)
+	res, err := c.retryGet(ctx, url)
 	if err != nil {
 		return nil, err
 	}
@@ -937,12 +962,14 @@ func linkHeader(h http.Header, rel string) []string {
 // consecutive calls until the context is done. If the Retry-After header
 // cannot be parsed, then backoff is used with a maximum sleep time of 10
 // seconds.
-func sleeper(ctx context.Context) func(ra string, inc int) error {
+func sleeper(backoff func(int, time.Duration) time.Duration) func(ctx context.Context, inc int, ra string) error {
+	if backoff == nil {
+		backoff = defaultBackoff
+	}
 	var count int
-	return func(ra string, inc int) error {
+	return func(ctx context.Context, inc int, ra string) error {
 		count += inc
-		d := backoff(count, 10*time.Second)
-		d = retryAfter(ra, d)
+		d := backoff(count, retryAfter(ra))
 		wakeup := time.NewTimer(d)
 		defer wakeup.Stop()
 		select {
@@ -956,35 +983,41 @@ func sleeper(ctx context.Context) func(ra string, inc int) error {
 
 // retryAfter parses a Retry-After HTTP header value,
 // trying to convert v into an int (seconds) or use http.ParseTime otherwise.
-// It returns d if v cannot be parsed.
-func retryAfter(v string, d time.Duration) time.Duration {
+// It returns zero value if v cannot be parsed.
+func retryAfter(v string) time.Duration {
 	if i, err := strconv.Atoi(v); err == nil {
 		return time.Duration(i) * time.Second
 	}
 	t, err := http.ParseTime(v)
 	if err != nil {
-		return d
+		return 0
 	}
 	return t.Sub(timeNow())
 }
 
-// backoff computes a duration after which an n+1 retry iteration should occur
+// defaultBackoff computes a duration after which an n+1 retry iteration should occur
 // using truncated exponential backoff algorithm.
 //
 // The n argument is always bounded between 0 and 30.
-// The max argument defines upper bound for the returned value.
-func backoff(n int, max time.Duration) time.Duration {
+// The retryAfter optionally indicates the desired value as returned from the server,
+// typically in the Retry-After header.
+func defaultBackoff(n int, retryAfter time.Duration) time.Duration {
+	const max = 10 * time.Second
+	var jitter time.Duration
+	if x, err := rand.Int(rand.Reader, big.NewInt(1000)); err == nil {
+		jitter = time.Duration(x.Int64()) * time.Millisecond
+	}
+	if retryAfter > 0 {
+		return retryAfter + jitter
+	}
+
 	if n < 0 {
 		n = 0
 	}
 	if n > 30 {
 		n = 30
 	}
-	var d time.Duration
-	if x, err := rand.Int(rand.Reader, big.NewInt(1000)); err == nil {
-		d = time.Duration(x.Int64()) * time.Millisecond
-	}
-	d += time.Duration(1<<uint(n)) * time.Second
+	d := time.Duration(1<<uint(n))*time.Second + jitter
 	if d > max {
 		return max
 	}
