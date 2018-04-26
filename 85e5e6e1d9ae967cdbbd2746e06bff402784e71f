@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77f63d8a_bafa67a4",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-04-26T08:06:19Z",
+      "side": 1,
+      "message": "Fatalf(\"user.Current: %v\", err)",
+      "range": {
+        "startLine": 307,
+        "startChar": 10,
+        "endLine": 307,
+        "endChar": 13
+      },
+      "revId": "85e5e6e1d9ae967cdbbd2746e06bff402784e71f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
