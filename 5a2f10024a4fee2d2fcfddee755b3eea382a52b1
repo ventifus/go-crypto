@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d666691d_888a2d29",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:50:11Z",
+      "side": 1,
+      "message": "It would be nicer. That was how I had it originally. Unfortunately it forces a bunch of spills because of the call to runtime.memmove. I\u0027ve added a comment about that to the code.",
+      "parentUuid": "7a18f4d8_94f0b348",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f4f936d_3d9f0b80",
         "filename": "internal/chacha20/chacha_generic.go",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e19e7d8_3244e910",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:50:11Z",
+      "side": 1,
+      "message": "Great question :) No there isn\u0027t. I\u0027ve put them in the correct order now, much neater!",
+      "parentUuid": "9f4f936d_3d9f0b80",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b3d82aa8_0ae86c48",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:50:11Z",
+      "side": 1,
+      "message": "It shaves about 10 instructions from the final assembly. There are quite a few (unnecessary. but hard for the compiler to figure out) bounds checks in this code and when re-slicing the compiler emits code to check both the length and the cap. By making them the same we get rid of the need to check the cap and, more importantly, reduce the register pressure a bit.",
+      "parentUuid": "159fc5b3_bb486633",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03c4517e_479c6ec0",
         "filename": "internal/chacha20/chacha_generic.go",
         "patchSetId": 7
@@ -67,6 +121,24 @@
       "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1852b33_4da38fec",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:50:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03c4517e_479c6ec0",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

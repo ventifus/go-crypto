@@ -107,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "f3df664b_7cf5a23e",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:50:11Z",
+      "side": 1,
+      "message": "This comment was a hangover from an old version. Changed it to something more generic.",
+      "parentUuid": "1810d8b2_b3086847",
+      "range": {
+        "startLine": 160,
+        "startChar": 13,
+        "endLine": 160,
+        "endChar": 17
+      },
+      "revId": "debbf57975b41cca24b145c6a6e4651b664c2acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dd68e8b_629ff007",
         "filename": "internal/chacha20/xor.go",
         "patchSetId": 6
