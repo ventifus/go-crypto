@@ -485,88 +485,37 @@ func TestGetAuthorization(t *testing.T) {
 }
 
 func TestWaitAuthorization(t *testing.T) {
-	var count int
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		count++
-		w.Header().Set("Retry-After", "0")
-		if count > 1 {
-			fmt.Fprintf(w, `{"status":"valid"}`)
-			return
+	t.Run("wait loop", func(t *testing.T) {
+		var count int
+		authz, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			count++
+			w.Header().Set("Retry-After", "0")
+			if count > 1 {
+				fmt.Fprintf(w, `{"status":"valid"}`)
+				return
+			}
+			fmt.Fprintf(w, `{"status":"pending"}`)
+		})
+		if err != nil {
+			t.Fatalf("non-nil error: %v", err)
 		}
-		fmt.Fprintf(w, `{"status":"pending"}`)
-	}))
-	defer ts.Close()
-
-	type res struct {
-		authz *Authorization
-		err   error
-	}
-	done := make(chan res)
-	defer close(done)
-	go func() {
-		var client Client
-		a, err := client.WaitAuthorization(context.Background(), ts.URL)
-		done <- res{a, err}
-	}()
-
-	select {
-	case <-time.After(5 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case res := <-done:
-		if res.err != nil {
-			t.Fatalf("res.err =  %v", res.err)
+		if authz == nil {
+			t.Fatal("authz is nil")
 		}
-		if res.authz == nil {
-			t.Fatal("res.authz is nil")
-		}
-	}
-}
-
-func TestWaitAuthorizationInvalid(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, `{"status":"invalid"}`)
-	}))
-	defer ts.Close()
-
-	res := make(chan error)
-	defer close(res)
-	go func() {
-		var client Client
-		_, err := client.WaitAuthorization(context.Background(), ts.URL)
-		res <- err
-	}()
-
-	select {
-	case <-time.After(3 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-res:
-		if err == nil {
-			t.Error("err is nil")
-		}
+	})
+	t.Run("invalid status", func(t *testing.T) {
+		_, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			fmt.Fprintf(w, `{"status":"invalid"}`)
+		})
 		if _, ok := err.(*AuthorizationError); !ok {
-			t.Errorf("err is %T; want *AuthorizationError", err)
+			t.Errorf("err is %v (%T); want non-nil *AuthorizationError", err, err)
 		}
-	}
-}
-
-func TestWaitAuthorizationClientError(t *testing.T) {
-	const code = http.StatusBadRequest
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(code)
-	}))
-	defer ts.Close()
-
-	ch := make(chan error, 1)
-	go func() {
-		var client Client
-		_, err := client.WaitAuthorization(context.Background(), ts.URL)
-		ch <- err
-	}()
-
-	select {
-	case <-time.After(3 * time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-ch:
+	})
+	t.Run("non-retriable error", func(t *testing.T) {
+		const code = http.StatusBadRequest
+		_, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(code)
+		})
 		res, ok := err.(*Error)
 		if !ok {
 			t.Fatalf("err is %v (%T); want a non-nil *Error", err, err)
@@ -574,34 +523,60 @@ func TestWaitAuthorizationClientError(t *testing.T) {
 		if res.StatusCode != code {
 			t.Errorf("res.StatusCode = %d; want %d", res.StatusCode, code)
 		}
+	})
+	for _, code := range []int{http.StatusTooManyRequests, http.StatusInternalServerError} {
+		t.Run(fmt.Sprintf("retriable %d error", code), func(t *testing.T) {
+			var count int
+			authz, err := runWaitAuthorization(context.Background(), t, func(w http.ResponseWriter, r *http.Request) {
+				count++
+				w.Header().Set("Retry-After", "0")
+				if count > 1 {
+					fmt.Fprintf(w, `{"status":"valid"}`)
+					return
+				}
+				w.WriteHeader(code)
+			})
+			if err != nil {
+				t.Fatalf("non-nil error: %v", err)
+			}
+			if authz == nil {
+				t.Fatal("authz is nil")
+			}
+		})
 	}
-}
-
-func TestWaitAuthorizationCancel(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Retry-After", "60")
-		fmt.Fprintf(w, `{"status":"pending"}`)
-	}))
-	defer ts.Close()
-
-	res := make(chan error)
-	defer close(res)
-	go func() {
-		var client Client
+	t.Run("context cancel", func(t *testing.T) {
 		ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 		defer cancel()
-		_, err := client.WaitAuthorization(ctx, ts.URL)
-		res <- err
-	}()
-
-	select {
-	case <-time.After(time.Second):
-		t.Fatal("WaitAuthz took too long to return")
-	case err := <-res:
+		_, err := runWaitAuthorization(ctx, t, func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Retry-After", "60")
+			fmt.Fprintf(w, `{"status":"pending"}`)
+		})
 		if err == nil {
 			t.Error("err is nil")
 		}
+	})
+}
+func runWaitAuthorization(ctx context.Context, t *testing.T, h http.HandlerFunc) (*Authorization, error) {
+	t.Helper()
+	ts := httptest.NewServer(h)
+	defer ts.Close()
+	type res struct {
+		authz *Authorization
+		err   error
 	}
+	ch := make(chan res, 1)
+	go func() {
+		var client Client
+		a, err := client.WaitAuthorization(ctx, ts.URL)
+		ch <- res{a, err}
+	}()
+	select {
+	case <-time.After(3 * time.Second):
+		t.Fatal("WaitAuthorization took too long to return")
+	case v := <-ch:
+		return v.authz, v.err
+	}
+	panic("runWaitAuthorization: out of select")
 }
 
 func TestRevokeAuthorization(t *testing.T) {
@@ -1354,27 +1329,25 @@ func TestDNS01ChallengeRecord(t *testing.T) {
 	}
 }
 
-func TestBackoff(t *testing.T) {
-	tt := []struct{ min, max time.Duration }{
-		{time.Second, 2 * time.Second},
-		{2 * time.Second, 3 * time.Second},
-		{4 * time.Second, 5 * time.Second},
-		{8 * time.Second, 9 * time.Second},
+func TestDefaultBackoff(t *testing.T) {
+	tt := []struct {
+		n          int
+		retryAfter time.Duration
+		out        time.Duration
+	}{
+		{0, 0, time.Second},
+		{1, 0, 2 * time.Second},
+		{2, 0, 4 * time.Second},
+		{3, 0, 8 * time.Second},
+		{-1, 0, time.Second},
+		{100, 0, 10 * time.Second},
+		{0, time.Hour, time.Hour},
 	}
 	for i, test := range tt {
-		d := backoff(i, time.Minute)
-		if d < test.min || test.max < d {
-			t.Errorf("%d: d = %v; want between %v and %v", i, d, test.min, test.max)
+		max := test.out + time.Second // + max jitter
+		d := defaultBackoff(test.n, test.retryAfter)
+		if d < test.out || max < d {
+			t.Errorf("%d: defaultBackoff(%v, %v) = %v; want between %v and %v", i, test.n, test.retryAfter, d, test.out, max)
 		}
-	}
-
-	min, max := time.Second, 2*time.Second
-	if d := backoff(-1, time.Minute); d < min || max < d {
-		t.Errorf("d = %v; want between %v and %v", d, min, max)
-	}
-
-	bound := 10 * time.Second
-	if d := backoff(100, bound); d != bound {
-		t.Errorf("d = %v; want %v", d, bound)
 	}
 }
