@@ -84,6 +84,29 @@
     },
     {
       "key": {
+        "uuid": "1810d8b2_b3086847",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-26T19:54:29Z",
+      "side": 1,
+      "message": "uint32?",
+      "range": {
+        "startLine": 160,
+        "startChar": 13,
+        "endLine": 160,
+        "endChar": 17
+      },
+      "revId": "debbf57975b41cca24b145c6a6e4651b664c2acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dd68e8b_629ff007",
         "filename": "internal/chacha20/xor.go",
         "patchSetId": 6

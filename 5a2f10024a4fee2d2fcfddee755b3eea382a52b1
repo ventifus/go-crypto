@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a18f4d8_94f0b348",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-26T19:54:29Z",
+      "side": 1,
+      "message": "Maybe move this below into the \"if i \u003d\u003d fin {\" block. It took me a while to understand that s.buf already had the input in it.",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f4f936d_3d9f0b80",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-26T19:54:29Z",
+      "side": 1,
+      "message": "This swaps c and d compared to RFC 7539 2.1.\n\nI see that then you also swap them in the invocation, but any reason to invert them?",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "159fc5b3_bb486633",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-26T19:54:29Z",
+      "side": 1,
+      "message": "Why the cap slicing?",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03c4517e_479c6ec0",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-04-26T19:54:29Z",
+      "side": 1,
+      "message": "if s.counter \u003d\u003d 0 {\n    panic(\"chacha20: counter overflow\")\n}\n\n256GB is not impossible to reach.",
+      "revId": "5a2f10024a4fee2d2fcfddee755b3eea382a52b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
