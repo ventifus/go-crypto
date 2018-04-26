@@ -22,6 +22,30 @@
       "revId": "bf3d5b0a9c6dd5c838093971283d78a6b909dd05",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c04ebbc3_d498f443",
+        "filename": "internal/chacha20/asm_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-04-26T22:58:42Z",
+      "side": 1,
+      "message": "I think I\u0027ll leave them in for consistency for now, but yes we could go through and delete them all.",
+      "parentUuid": "6324d3ad_26c8a2aa",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "bf3d5b0a9c6dd5c838093971283d78a6b909dd05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
