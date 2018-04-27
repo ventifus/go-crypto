@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a3ee359_e09f620c",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-04-27T09:36:07Z",
+      "side": 1,
+      "message": "This is not fully true -\u003e nonce error, which is 400, is retried.",
+      "range": {
+        "startLine": 82,
+        "startChar": 25,
+        "endLine": 82,
+        "endChar": 61
+      },
+      "revId": "d59743c9867fa400e92c3d4b2d60ddc87db204a3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3f8fe45_ed278f60",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-04-27T09:36:07Z",
+      "side": 1,
+      "message": "I like the fact that this is public field, so that I can do tricks like different backoff for different calls (by changing this before the call), pass additional info to the function via closure, etc.",
+      "range": {
+        "startLine": 84,
+        "startChar": 7,
+        "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "d59743c9867fa400e92c3d4b2d60ddc87db204a3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46ba52d4_206f97e4",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-04-27T09:36:07Z",
+      "side": 1,
+      "message": "WDYT about also returning a bool here, which would indicate whether to retry at all?\n\nThis can currently be done through a hack - passing ctx via closure and cancelling it in this function - maybe consider promoting it into valid usage pattern?",
+      "range": {
+        "startLine": 88,
+        "startChar": 65,
+        "endLine": 88,
+        "endChar": 0
+      },
+      "revId": "d59743c9867fa400e92c3d4b2d60ddc87db204a3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
