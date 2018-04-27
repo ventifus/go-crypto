@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "4317978c_0b0dccae",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-04-27T18:58:37Z",
+      "side": 1,
+      "message": "Not sure why you are loading into TMP1 then immediately moving into another register.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf89ef33_6bb71466",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-04-27T18:58:37Z",
+      "side": 1,
+      "message": "The vsrw, (shift right) vlrw, (shift left) vor (or) can be replaced by just vrlw (rotate).  This appears in several places.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "066661dc_697cb96f",
         "filename": "internal/chacha20/chacha_ppc64le.s",
         "patchSetId": 1
@@ -70,6 +104,24 @@
     },
     {
       "key": {
+        "uuid": "6adc4af6_463bb0da",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-04-27T18:58:37Z",
+      "side": 1,
+      "message": "I agree.",
+      "parentUuid": "93b8f88d_c0931dc8",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "892f8978_79a414c5",
         "filename": "internal/chacha20/chacha_ppc64le.s",
         "patchSetId": 1
@@ -81,6 +133,23 @@
       "writtenOn": "2018-04-25T15:09:09Z",
       "side": 1,
       "message": "This loop can be unrolled once so you keep all 4 load units busy.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7af044d3_dcaecb0f",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-04-27T18:58:37Z",
+      "side": 1,
+      "message": "I don\u0027t understand why you are doing this.",
       "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
