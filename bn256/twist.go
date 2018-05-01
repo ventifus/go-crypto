@@ -223,6 +223,13 @@ func (c *twistPoint) MakeAffine(pool *bnPool) *twistPoint {
 	if c.z.IsOne() {
 		return c
 	}
+	if c.IsInfinity() {
+		c.x.SetZero()
+		c.y.SetZero()
+		c.z.SetOne()
+		c.t.SetOne()
+		return c
+	}
 
 	zInv := newGFp2(pool).Invert(c.z, pool)
 	t := newGFp2(pool).Mul(c.y, zInv, pool)
