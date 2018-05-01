@@ -220,7 +220,7 @@ func (c *twistPoint) Mul(a *twistPoint, scalar *big.Int, pool *bnPool) *twistPoi
 }
 
 func (c *twistPoint) MakeAffine(pool *bnPool) *twistPoint {
-	if c.z.IsOne() {
+	if c.z.IsOne() || c.IsInfinity() {
 		return c
 	}
 

@@ -249,6 +249,9 @@ func (c *curvePoint) MakeAffine(pool *bnPool) *curvePoint {
 	if words := c.z.Bits(); len(words) == 1 && words[0] == 1 {
 		return c
 	}
+	if c.IsInfinity() {
+		return c
+	}
 
 	zInv := pool.Get().ModInverse(c.z, p)
 	t := pool.Get().Mul(c.y, zInv)
