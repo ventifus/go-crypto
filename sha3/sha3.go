@@ -54,7 +54,9 @@ func (d *state) Size() int { return d.outputLen }
 
 // Reset clears the internal state by zeroing the sponge state and
 // the byte buffer, and setting Sponge.state to absorbing.
-func (d *state) Reset() {
+func (d *state) Reset() { d.reset() }
+
+func (d *state) reset() {
 	// Zero the permutation's state.
 	for i := range d.a {
 		d.a[i] = 0
