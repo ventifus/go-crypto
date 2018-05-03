@@ -31,3 +31,41 @@ func Verify(mac *[16]byte, m []byte, key *[32]byte) bool {
 	Sum(&tmp, m, key)
 	return subtle.ConstantTimeCompare(tmp[:], mac[:]) == 1
 }
+
+// New returns a new Hash computing an authentication
+// tag of all data written to it with the given key.
+func New(key *[32]byte) *Hash {
+	return &Hash{
+		hash:      newHash(key),
+		finalized: false,
+	}
+}
+
+// Hash is an io.Writer computing an authentication tag
+// of the data written to it.
+//
+// Hash cannot be used like common hash.Hash implementations,
+// because using a poly1305 key twice breaks its security.
+// Therefore writing data to a running Hash after calling
+// Sum causes it to panic.
+type Hash struct {
+	hash // platform-dependent implementation
+
+	finalized bool
+}
+
+// Write adds more data to the running message-authentication-code.
+// It never returns an error.
+func (h *Hash) Write(p []byte) (n int, err error) {
+	if h.finalized {
+		panic("poly1305: write to Hash after sum")
+	}
+	return h.hash.Write(p)
+}
+
+// Sum computes the authenticator of all data written to the
+// message-authentication-code.
+func (h *Hash) Sum(out *[16]byte) {
+	h.hash.Sum(out)
+	h.finalized = true
+}

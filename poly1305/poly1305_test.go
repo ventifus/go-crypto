@@ -128,7 +128,23 @@ func TestBurnin(t *testing.T) {
 func TestSum(t *testing.T)          { testSum(t, false) }
 func TestSumUnaligned(t *testing.T) { testSum(t, true) }
 
-func benchmark(b *testing.B, size int, unaligned bool) {
+func TestWrite(t *testing.T) {
+	for i, v := range testData {
+		var key [32]byte
+		var out [16]byte
+		copy(key[:], v.k)
+
+		h := New(&key)
+		h.Write(v.in[:len(v.in)/2])
+		h.Write(v.in[len(v.in)/2:])
+		h.Sum(&out)
+		if !bytes.Equal(out[:], v.correct) {
+			t.Errorf("%d: expected %x, got %x", i, v.correct, out[:])
+		}
+	}
+}
+
+func benchmarkSum(b *testing.B, size int, unaligned bool) {
 	var out [16]byte
 	var key [32]byte
 	in := make([]byte, size)
@@ -142,10 +158,25 @@ func benchmark(b *testing.B, size int, unaligned bool) {
 	}
 }
 
-func Benchmark64(b *testing.B)          { benchmark(b, 64, false) }
-func Benchmark1K(b *testing.B)          { benchmark(b, 1024, false) }
-func Benchmark64Unaligned(b *testing.B) { benchmark(b, 64, true) }
-func Benchmark1KUnaligned(b *testing.B) { benchmark(b, 1024, true) }
+func benchmarkWrite(b *testing.B, size int) {
+	var key [32]byte
+	h := New(&key)
+	in := make([]byte, size)
+	b.SetBytes(int64(len(in)))
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		h.Write(in)
+	}
+}
+
+func Benchmark64(b *testing.B)          { benchmarkSum(b, 64, false) }
+func Benchmark1K(b *testing.B)          { benchmarkSum(b, 1024, false) }
+func Benchmark64Unaligned(b *testing.B) { benchmarkSum(b, 64, true) }
+func Benchmark1KUnaligned(b *testing.B) { benchmarkSum(b, 1024, true) }
+
+func BenchmarkWrite64(b *testing.B) { benchmarkWrite(b, 64) }
+
+func BenchmarkWrite1K(b *testing.B) { benchmarkWrite(b, 1024) }
 
 func unalignBytes(in []byte) []byte {
 	out := make([]byte, len(in)+1)
