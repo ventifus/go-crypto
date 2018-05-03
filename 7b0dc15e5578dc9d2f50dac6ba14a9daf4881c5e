@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aa3c5c3_21e2cabe",
+        "filename": "sha3/sha3.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:30:45Z",
+      "side": 1,
+      "message": "No need for this change, just use ctx.state.Reset() in your other CL. (Also, this would belong in the other CL as well, if it was needed.)",
+      "revId": "7b0dc15e5578dc9d2f50dac6ba14a9daf4881c5e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
