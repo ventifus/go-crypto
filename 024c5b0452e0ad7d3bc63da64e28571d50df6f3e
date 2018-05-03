@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ae2437e_1eb2f18f",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "Spurious new line.",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd218df5_d2f3ae6a",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "Spurious new line.",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa4c6a1f_a8e51e41",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "Intentionally reverted to 128?",
+      "range": {
+        "startLine": 127,
+        "startChar": 34,
+        "endLine": 127,
+        "endChar": 37
+      },
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad6055c4_4d0fb88d",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "NIST spells it without the dash.",
+      "range": {
+        "startLine": 137,
+        "startChar": 34,
+        "endLine": 137,
+        "endChar": 35
+      },
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e1b64c_065dddd9",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "I don\u0027t think the new docs add anything compared to the old ones.",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28ed2236_03ac0879",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-03T15:37:04Z",
+      "side": 1,
+      "message": "Do we really need the Sum helpers for cSHAKE? The API surface of this package is terrifying.",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
