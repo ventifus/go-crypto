@@ -1,0 +1,11 @@
+// Copyright 2012 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// +build !amd64 gccgo appengine
+
+package poly1305
+
+type hash hashGeneric
+
+func newHash(key *[32]byte) hash { return hashGeneric(key) }
