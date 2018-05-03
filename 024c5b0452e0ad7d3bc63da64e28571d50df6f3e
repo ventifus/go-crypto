@@ -148,6 +148,24 @@
       "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8624ac92_449fb9ff",
+        "filename": "sha3/shake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-03T19:33:48Z",
+      "side": 1,
+      "message": "Do you mean cSHAKE or both SHAKE and cSHAKE all of them?",
+      "parentUuid": "e891f686_96aea8b0",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
