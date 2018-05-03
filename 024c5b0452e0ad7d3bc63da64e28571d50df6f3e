@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7f6f8c33_c7bc223b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-03T19:34:16Z",
+      "side": 1,
+      "message": "you got the lowercase, but missed the verb part.\n\n\"add\" is a nice verb.\n\n    sha3: add cSHAKE implementation\nor\n    sha3: add cSHAKE support",
+      "parentUuid": "1a6dea6d_c4de5f38",
+      "revId": "024c5b0452e0ad7d3bc63da64e28571d50df6f3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2ae2437e_1eb2f18f",
         "filename": "sha3/shake.go",
         "patchSetId": 1
