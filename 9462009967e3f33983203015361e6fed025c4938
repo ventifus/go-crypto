@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc12f2b5_6f0c4a1a",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-04T07:49:39Z",
+      "side": 1,
+      "message": "Needs own comment.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 5
+      },
+      "revId": "9462009967e3f33983203015361e6fed025c4938",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44dc5c95_e7fa77a8",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-04T07:49:39Z",
+      "side": 1,
+      "message": "poly1305vmsl needs its own //go:noescape annotation and comment.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 69
+      },
+      "revId": "9462009967e3f33983203015361e6fed025c4938",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "281e2ac7_741cb8ac",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-04T07:49:39Z",
+      "side": 1,
+      "message": "Lets do something like this instead:\n\nif hasVX {\n    var mPtr *byte\n    if len(m) \u003e 0 {\n        mPtr \u003d \u0026m[0]\n    }\n    if hasVMSL \u0026\u0026 len(m) \u003e 256 {\n        poly1305vmsl(out, mPtr, uint64(len(m)), key)\n    } else {\n        poly1305vx(out, mPtr, uint64(len(m)), key)\n    }\n}",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 2
+      },
+      "revId": "9462009967e3f33983203015361e6fed025c4938",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
