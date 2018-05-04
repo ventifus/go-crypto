@@ -36,15 +36,19 @@ func newHashShake256() hash.Hash {
 }
 
 // testDigests contains functions returning hash.Hash instances
-// with output-length equal to the KAT length for both SHA-3 and
-// SHAKE instances.
+// with output-length equal to the KAT length for SHA-3, Keccak
+// and SHAKE instances.
 var testDigests = map[string]func() hash.Hash{
-	"SHA3-224": New224,
-	"SHA3-256": New256,
-	"SHA3-384": New384,
-	"SHA3-512": New512,
-	"SHAKE128": newHashShake128,
-	"SHAKE256": newHashShake256,
+	"SHA3-224":   New224,
+	"SHA3-256":   New256,
+	"SHA3-384":   New384,
+	"SHA3-512":   New512,
+	"Keccak-224": NewKeccak224,
+	"Keccak-256": NewKeccak256,
+	"Keccak-384": NewKeccak384,
+	"Keccak-512": NewKeccak512,
+	"SHAKE128":   newHashShake128,
+	"SHAKE256":   newHashShake256,
 }
 
 // testShakes contains functions that return ShakeHash instances for
@@ -122,6 +126,46 @@ func TestKeccakKats(t *testing.T) {
 			}
 		}
 	})
+}
+
+// TestKeccak does a basic test of the non-standardized Keccak hash functions.
+func TestKeccak(t *testing.T) {
+	tests := []struct {
+		fn   func() hash.Hash
+		data []byte
+		want string
+	}{
+		{
+			NewKeccak224,
+			[]byte("abc"),
+			"c30411768506ebe1c2871b1ee2e87d38df342317300a9b97a95ec6a8",
+		},
+		{
+			NewKeccak256,
+			[]byte("abc"),
+			"4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c45",
+		},
+		{
+			NewKeccak384,
+			[]byte("abc"),
+			"f7df1165f033337be098e7d288ad6a2f74409d7a60b49c36642218de161b1f99f8c681e4afaf31a34db29fb763e3c28e",
+		},
+		{
+			NewKeccak512,
+			[]byte("abc"),
+			"18587dc2ea106b9a1563e32b3312421ca164c7f1f07bc922a9c83d77cea3a1e5d0c69910739025372dc14ac9642629379540c17e2a65b19d77aa511a9d00bb96",
+		},
+	}
+
+	for _, u := range tests {
+		h := u.fn()
+		h.Write(u.data)
+		got := h.Sum(nil)
+		want, _ := hex.DecodeString(u.want)
+		if !bytes.Equal(got, want) {
+			t.Errorf("unexpected hash for size %d: got '%s' want '%s'", h.Size()*8, hex.EncodeToString(got), u.want)
+		}
+	}
 }
 
 // TestUnalignedWrite tests that writing data in an arbitrary pattern with
