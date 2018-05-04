@@ -22,6 +22,46 @@
       "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edec06dc_c45d19eb",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5440
+      },
+      "writtenOn": "2018-05-04T20:16:47Z",
+      "side": 1,
+      "message": "This seems to be the same as the function in sum_ref.go. Move into poly1305.go or sum.go so we only need one copy?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2665735_b5e0d6d4",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5440
+      },
+      "writtenOn": "2018-05-04T20:16:47Z",
+      "side": 1,
+      "message": "Parentheses seem unnecessary?",
+      "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
