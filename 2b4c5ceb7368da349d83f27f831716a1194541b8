@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32a53ba1_d654ccaa",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-04T08:03:48Z",
+      "side": 1,
+      "message": "I\u0027m fairly sure this won\u0027t get inlined and Hash will be forced onto the heap which is unfortunate.\n\nIt\u0027s possible that mid-stack inlining will be enabled in Go 1.12 for this kind of function, so hopefully this will be solved. I have no other ideas that don\u0027t compromise the API.",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 1
+      },
+      "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
