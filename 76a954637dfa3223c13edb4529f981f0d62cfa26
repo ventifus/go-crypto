@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6be10b0f_be8d6e58",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 0,
+      "message": "Spurious.",
+      "revId": "76a954637dfa3223c13edb4529f981f0d62cfa26",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b71335ec_ef1ab174",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 0,
+      "message": "No, I meant we shouldn\u0027t add c-variants of them, but we don\u0027t break exported APIs.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "76a954637dfa3223c13edb4529f981f0d62cfa26",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

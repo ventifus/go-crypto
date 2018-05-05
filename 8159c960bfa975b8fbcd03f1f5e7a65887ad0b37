@@ -1,0 +1,261 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9b49045_2827a7a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "Strike.",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c5daa4a_bd4ac0c2",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "Revert.",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee7392b8_85550f45",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "No empty lines after {",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d0f5bf_68d29086",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "I would call this cshakeState (and use c as method receiver), ctx is usually about the context package in Go, but up to you.",
+      "range": {
+        "startLine": 40,
+        "startChar": 5,
+        "endLine": 40,
+        "endChar": 14
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "731475f7_8a216913",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "\"initBlock is the cSHAKE...\"",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7e2ebe2_4a83bdf3",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "dsbyteCShake",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 13
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67fe7dd3_5ce00afc",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "Also here, try to avoid the allocations in append.",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95504aab_9d8cf2ac",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "This is very hard to follow, and it\u0027s more C than Go. Have a look at the implementation in https://go-review.googlesource.com/c/crypto/+/108715. You can copy the helper functions, and adapt them to work with your initBlock approach (which I prefer compared to keeping two states).",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 1
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78b3a600_d7ae3c5a",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "You can probably save an allocation or two by preallocating\n\n    ctx.initBlock \u003d make([]byte, 0, higherCeilingEstimate)",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f8e501f_b7c3a815",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "\"NewCShake128 creates a new cSHAKE128 variable-output-length ShakeHash, a customizable variant of SHAKE128.\"",
+      "range": {
+        "startLine": 135,
+        "startChar": 3,
+        "endLine": 135,
+        "endChar": 38
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07023221_bf7aa20b",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "No need to repeat what is already in the type (\"is a string\").\n\n\"S is used to customize the hash for different purposes, so that the outputs can\u0027t be used in place of each other. N is used to define functions based on cSHAKE, it can be empty when plain cSHAKE is desired.\"",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "178cc759_1f5c1372",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "\"When N and S are both empty, this is equivalent to NewShake128.\"",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6efd0586_387a8094",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-05T03:42:50Z",
+      "side": 1,
+      "message": "I think these should be strings. They are usually fixed and ASCII, right? (Even if they don\u0027t have to.)\n\nAlso, I would put them in the order NIST puts them, with S first and N second.",
+      "range": {
+        "startLine": 142,
+        "startChar": 18,
+        "endLine": 142,
+        "endChar": 29
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
