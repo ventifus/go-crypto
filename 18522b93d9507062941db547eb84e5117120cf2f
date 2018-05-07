@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b4c6ba1_1c8cb7ab",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "I fear we\u0027re going to need more context here in the future, like the *http.Request or *http.Response. Maybe we just include those both now, and then we can remove the retryAfter parameter?",
+      "range": {
+        "startLine": 80,
+        "startChar": 22,
+        "endLine": 80,
+        "endChar": 73
+      },
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5030bd72_941fea2b",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "this isn\u0027t super clear about what \"n\" means.\n\nThe first call has n\u003d\u003d1, right?",
+      "range": {
+        "startLine": 79,
+        "startChar": 51,
+        "endLine": 80,
+        "endChar": 16
+      },
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1be26a0e_3aab15e5",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "my experience with people using this notation is it results in tons of bogus bug reports from people who don\u0027t know this notation.\n\nAs it\u0027s not important here whether it\u0027s 1 second inclusive or exclusively, I\u0027d avoid this notation and use words.",
+      "range": {
+        "startLine": 89,
+        "startChar": 58,
+        "endLine": 89,
+        "endChar": 63
+      },
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b70bba_663fe191",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "Not quite a fan of the name \"retryGet\". Makes it sounds like it already failed and we\u0027re trying again now.\n\nAlso, if these are all changing, the better question is which callers (With a GET method) do NOT retry? Maybe the NOT retrying case needs to get the special name, like \"getNoRetry\"?",
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d140b9d_27803de1",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "// isBadNonce reports whether err is an ACME \"badnonce\" error.",
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ae96856_d613a75a",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T17:47:33Z",
+      "side": 1,
+      "message": "document this method",
+      "revId": "18522b93d9507062941db547eb84e5117120cf2f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
