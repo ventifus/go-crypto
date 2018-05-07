@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "afcc3a5b_a2125d69",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c5daa4a_bd4ac0c2",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee7392b8_85550f45",
         "filename": "sha3/sha3_test.go",
         "patchSetId": 3
@@ -47,6 +65,41 @@
       "writtenOn": "2018-05-05T03:42:50Z",
       "side": 1,
       "message": "No empty lines after {",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a4a7ecb_eebce226",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee7392b8_85550f45",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "586a9564_c27feedf",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "1 \u003c-\u003e 2",
       "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -76,6 +129,30 @@
     },
     {
       "key": {
+        "uuid": "ae66acb6_945582b3",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14d0f5bf_68d29086",
+      "range": {
+        "startLine": 40,
+        "startChar": 5,
+        "endLine": 40,
+        "endChar": 14
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "731475f7_8a216913",
         "filename": "sha3/shake.go",
         "patchSetId": 3
@@ -96,6 +173,30 @@
       "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e36cf502_f9f49d81",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "731475f7_8a216913",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "e1de9449_ba396dff",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7e2ebe2_4a83bdf3",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 13
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67fe7dd3_5ce00afc",
         "filename": "sha3/shake.go",
         "patchSetId": 3
@@ -136,6 +261,24 @@
       "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "920c5059_38c15c9e",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67fe7dd3_5ce00afc",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -162,6 +305,30 @@
     },
     {
       "key": {
+        "uuid": "82f8b05c_915e24cd",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done.\nI needed implement it differently, it seems to me that other implementation may have a small bug. Anyways, should be be more Go alike now.",
+      "parentUuid": "95504aab_9d8cf2ac",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 1
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78b3a600_d7ae3c5a",
         "filename": "sha3/shake.go",
         "patchSetId": 3
@@ -176,6 +343,24 @@
       "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6f9ec4_98bc23f2",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78b3a600_d7ae3c5a",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -202,6 +387,30 @@
     },
     {
       "key": {
+        "uuid": "e111da1e_f40c5490",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f8e501f_b7c3a815",
+      "range": {
+        "startLine": 135,
+        "startChar": 3,
+        "endLine": 135,
+        "endChar": 38
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07023221_bf7aa20b",
         "filename": "sha3/shake.go",
         "patchSetId": 3
@@ -216,6 +425,24 @@
       "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b07f174_b63ec5bc",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07023221_bf7aa20b",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -236,6 +463,24 @@
     },
     {
       "key": {
+        "uuid": "e7856bac_ac0ad801",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "178cc759_1f5c1372",
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6efd0586_387a8094",
         "filename": "sha3/shake.go",
         "patchSetId": 3
@@ -247,6 +492,30 @@
       "writtenOn": "2018-05-05T03:42:50Z",
       "side": 1,
       "message": "I think these should be strings. They are usually fixed and ASCII, right? (Even if they don\u0027t have to.)\n\nAlso, I would put them in the order NIST puts them, with S first and N second.",
+      "range": {
+        "startLine": 142,
+        "startChar": 18,
+        "endLine": 142,
+        "endChar": 29
+      },
+      "revId": "8159c960bfa975b8fbcd03f1f5e7a65887ad0b37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1fa88e5_56f1046a",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 27471
+      },
+      "writtenOn": "2018-05-07T19:50:01Z",
+      "side": 1,
+      "message": "Strictly speaking N and S are defined as bit strings (see 3.1 of spec), so not necessarily character strings. In practice N \"probably\" always will be a character string (defined by NIST), but it is up to the caller to choose S and it doesn\u0027t have to be printable ASCII char. I\u0027m actually using bytes for customization string in my case (0x01, 0x02,...0xFF). Few other implementations use bytes. If you don\u0027t mind I would prefer to keep it as is, I don\u0027t think it is a problem to convert character string to bytes. \n\nAlso NIST defines the function as \"cSHAKE128(X,L, N, S)\", so I think order is OK here",
+      "parentUuid": "6efd0586_387a8094",
       "range": {
         "startLine": 142,
         "startChar": 18,
