@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "df4a8298_f1800c56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-07T15:08:04Z",
+      "side": 1,
+      "message": "drop the \"crypto/\" prefix per https://github.com/golang/go/wiki/CommitMessage#other-repos",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "04ca66401d1a266a250caa814b2f48170feffcbf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f643d578_99a4ab81",
         "filename": "openpgp/packet/signature.go",
         "patchSetId": 2
