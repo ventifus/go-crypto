@@ -17,6 +17,7 @@ var _ cipher.Stream = (*Cipher)(nil)
 // Cipher is a stateful instance of ChaCha20 using a particular key
 // and nonce. A *Cipher implements the cipher.Stream interface.
 type Cipher struct {
+	// NOTE don't change structure order
 	key     [8]uint32
 	counter uint32 // incremented after each block
 	nonce   [3]uint32
