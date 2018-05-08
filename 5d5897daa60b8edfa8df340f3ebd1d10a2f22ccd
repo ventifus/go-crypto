@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c39bcc6c_cbd469d5",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-08T06:03:35Z",
+      "side": 1,
+      "message": "needs gccgo and appengine tags:\n\n// +build !arm,!amd64,!s390x gccgo appengine",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 28
+      },
+      "revId": "5d5897daa60b8edfa8df340f3ebd1d10a2f22ccd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f652a406_4c4ca681",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-08T06:03:35Z",
+      "side": 1,
+      "message": "delete blank line",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "5d5897daa60b8edfa8df340f3ebd1d10a2f22ccd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34d45b47_4380d6a7",
+        "filename": "poly1305/sum_vmsl_s390x.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-08T06:03:35Z",
+      "side": 1,
+      "message": "This needs a go1.11 tag for VMSLG support (and inverse checks in other files).",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 1
+      },
+      "revId": "5d5897daa60b8edfa8df340f3ebd1d10a2f22ccd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
