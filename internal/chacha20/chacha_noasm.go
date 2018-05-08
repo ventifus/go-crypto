@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // +build !s390x gccgo appengine
+// +build !arm64
 
 package chacha20
 
