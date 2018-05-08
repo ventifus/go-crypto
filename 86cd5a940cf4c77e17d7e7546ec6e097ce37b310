@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4a9aa77_4c567c26",
+        "filename": "internal/chacha20/asm_arm64.s",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 25702
+      },
+      "writtenOn": "2018-05-08T13:42:24Z",
+      "side": 1,
+      "message": "No need to use the WORD directive, I\u0027ve added VZIP1/VZIP2 support in CL110015.",
+      "range": {
+        "startLine": 210,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 10
+      },
+      "revId": "86cd5a940cf4c77e17d7e7546ec6e097ce37b310",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
