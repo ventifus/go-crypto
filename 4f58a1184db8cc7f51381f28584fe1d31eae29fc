@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "31791b79_86f63727",
+        "filename": "subtle/aliasing.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-09T11:38:24Z",
+      "side": 1,
+      "message": "Done.\n\nDo you mean the subtle package in x/crypto should have a different description?",
+      "parentUuid": "20b08c99_4d7a9ca8",
+      "revId": "4f58a1184db8cc7f51381f28584fe1d31eae29fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4aa77744_3357ddb9",
         "filename": "subtle/aliasing_test.go",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "4f58a1184db8cc7f51381f28584fe1d31eae29fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f7e86e_037382e7",
+        "filename": "subtle/aliasing_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-09T11:38:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4aa77744_3357ddb9",
+      "revId": "4f58a1184db8cc7f51381f28584fe1d31eae29fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
