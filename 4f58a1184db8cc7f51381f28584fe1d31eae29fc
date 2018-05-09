@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20b08c99_4d7a9ca8",
+        "filename": "subtle/aliasing.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T07:34:15Z",
+      "side": 1,
+      "message": "Needs copyright header (and I don\u0027t think you want to duplicate the package decription here).",
+      "revId": "4f58a1184db8cc7f51381f28584fe1d31eae29fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aa77744_3357ddb9",
+        "filename": "subtle/aliasing_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T07:34:15Z",
+      "side": 1,
+      "message": "Needs copyright header.",
+      "revId": "4f58a1184db8cc7f51381f28584fe1d31eae29fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
