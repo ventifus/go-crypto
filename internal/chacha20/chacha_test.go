@@ -5,11 +5,20 @@
 package chacha20
 
 import (
+	"crypto/cipher"
 	"encoding/hex"
 	"fmt"
 	"math/rand"
 	"testing"
+
+	"golang.org/x/crypto/cryptotest"
 )
+
+func TestChaCha20Stream(t *testing.T) {
+	cryptotest.TestStream(t, func() cipher.Stream {
+		return New(testVectors[0].key, testVectors[0].nonce)
+	})
+}
 
 func TestCore(t *testing.T) {
 	// This is just a smoke test that checks the example from
