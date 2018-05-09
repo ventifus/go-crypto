@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "525b25e5_75855763",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-09T15:38:59Z",
+      "side": 1,
+      "message": "Done\n\nPatch 10 only handle 256 bytes and save stream result.\nPatch 11 handle 64 and 256 bytes.",
+      "parentUuid": "516520d0_d1382a6c",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 72
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3388cebf_b3ded54c",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-09T06:40:36Z",
       "side": 1,
       "message": "I\u0027d be tempted to split this into the key and nonce pointers so that you don\u0027t rely on Cipher not changing.",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "365ee226_2b5ce3f2",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-09T15:38:59Z",
+      "side": 1,
+      "message": "If the name is State which is ok not to change structure :)\nIt\u0027s much more easier to use vld1 load data into vector as DJB designed.",
+      "parentUuid": "3388cebf_b3ded54c",
       "range": {
         "startLine": 15,
         "startChar": 40,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2232a8f6_576cdced",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-09T15:38:59Z",
+      "side": 1,
+      "message": "The implement on arm64 is hard to \"load data with length from/to vector register\" as my email mentioned.",
+      "parentUuid": "86bb29dd_3dd328fc",
+      "range": {
+        "startLine": 23,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45eb77db_0c1b4367",
         "filename": "internal/chacha20/chacha_noasm.go",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d636bf_56fc5b03",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-09T15:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45eb77db_0c1b4367",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
