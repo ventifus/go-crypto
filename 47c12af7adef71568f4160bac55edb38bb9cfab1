@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "6a6e2032_1efee24b",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-09T18:33:17Z",
+      "side": 1,
+      "message": "Why restrict it to len(plaintext) bytes? I\u0027d guess that things probably work if the tag overwrites the beginning of the plaintext, but I don\u0027t see why we would allow that.",
+      "range": {
+        "startLine": 59,
+        "startChar": 29,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af44fbdd_761f2230",
+        "filename": "chacha20poly1305/chacha20poly1305_generic.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-09T18:33:17Z",
+      "side": 1,
+      "message": "(ditto.)",
+      "range": {
+        "startLine": 21,
+        "startChar": 29,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99d88db3_339c37a1",
         "filename": "subtle/aliasing.go",
         "patchSetId": 4
