@@ -9,6 +9,7 @@ import (
 
 	"golang.org/x/crypto/internal/chacha20"
 	"golang.org/x/crypto/poly1305"
+	"golang.org/x/crypto/subtle"
 )
 
 func roundTo16(n int) int {
@@ -17,6 +18,9 @@ func roundTo16(n int) int {
 
 func (c *chacha20poly1305) sealGeneric(dst, nonce, plaintext, additionalData []byte) []byte {
 	ret, out := sliceForAppend(dst, len(plaintext)+poly1305.TagSize)
+	if subtle.InexactOverlap(out[:len(plaintext)], plaintext) {
+		panic("chacha20poly1305: invalid buffer overlap")
+	}
 
 	var polyKey [32]byte
 	s := chacha20.New(c.key, [3]uint32{
@@ -62,6 +66,9 @@ func (c *chacha20poly1305) openGeneric(dst, nonce, ciphertext, additionalData []
 	binary.LittleEndian.PutUint64(polyInput[len(polyInput)-8:], uint64(len(ciphertext)))
 
 	ret, out := sliceForAppend(dst, len(ciphertext))
+	if subtle.InexactOverlap(out, ciphertext) {
+		panic("chacha20poly1305: invalid buffer overlap")
+	}
 	if !poly1305.Verify(&tag, polyInput, &polyKey) {
 		for i := range out {
 			out[i] = 0
