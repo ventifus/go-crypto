@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "11186926_9bb91390",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T21:24:08Z",
+      "side": 1,
+      "message": "The performance hit is big, so it is possible that it is worth going back to the Go version when the length is \u003c\u003d 64. But bear in mind that because of the way the ChaCha20-Poly1305 AEAD is structured we always encrypt 64 bytes initially, and then the plaintext. We are therefore very likely to be in a situation where the extra key stream bytes we buffer *are* used to encrypt the plaintext, thereby speeding up the AEAD, possibly significantly.\n\nIn other words the current method, always encrypting 256 bytes, will most likely be faster than the Go version when the ChaCha20-Poly1305 AEAD plaintext is 1 to 192 bytes long. I strongly recommend benchmarking the AEAD at those plaintext lengths before you consider switching to the Go version for short lengths.\n\nIn any case I would profile the slow cases to see if there are any obvious optimizations that can be done. (I find go tool pprof really good for this stuff.)",
+      "parentUuid": "85c39c10_b379cbe9",
+      "revId": "fd64e3ffd18c80c1870977eb5a900b73ec42ec76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f82ecfa4_5e258901",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 2
