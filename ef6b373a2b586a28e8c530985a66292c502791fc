@@ -36,6 +36,57 @@
     },
     {
       "key": {
+        "uuid": "a4e03e91_f0195b79",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-09T14:21:04Z",
+      "side": 1,
+      "message": "Same as above: use rotate instead of right shift, left shift, or.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe319cb2_645cf76f",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-09T14:21:04Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54fd2be9_dbea0197",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-09T14:21:04Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "066661dc_697cb96f",
         "filename": "internal/chacha20/chacha_ppc64le.s",
         "patchSetId": 1
