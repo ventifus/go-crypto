@@ -22,6 +22,75 @@
       "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3388cebf_b3ded54c",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T06:40:36Z",
+      "side": 1,
+      "message": "I\u0027d be tempted to split this into the key and nonce pointers so that you don\u0027t rely on Cipher not changing.",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86bb29dd_3dd328fc",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T06:40:36Z",
+      "side": 1,
+      "message": "This can be simplified to:\n\ns.buf \u003d [bufSize]byte{} // probably not actually necessary\ni :\u003d len(src) \u0026^ (bufSize - 1)\ncopy(s.buf[:], src[i:])\nxorKeyStreamChunk(xorKeyStreamChunk(s.buf[:], s.buf[:], c, \u0026c.counter)\nc.len \u003d bufSize - copy(dst[i:], s.buf[:])\n\nThat way you don\u0027t need to pass the buffer or tail flag in to xorKeyStreamChunk, it just treats it like any other 256 byte block.",
+      "range": {
+        "startLine": 23,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45eb77db_0c1b4367",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-09T06:40:36Z",
+      "side": 1,
+      "message": "I think this is:\n\n((NOT s390x) OR gccgo OR appengine) AND ((NOT arm64) OR (NOT go1.11))\n\nI don\u0027t think that\u0027s right since gccgo wouldn\u0027t build this file on arm64.\n\nMaybe this?\n\n// +build !s390x !arm64 arm64,!go1.11 gccgo appengine",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
