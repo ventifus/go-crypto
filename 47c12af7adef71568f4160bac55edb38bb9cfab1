@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99d88db3_339c37a1",
+        "filename": "subtle/aliasing.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2018-05-09T13:02:36Z",
+      "side": 1,
+      "message": "Can you make this x/crypto/internal/subtle please?\nI assume the long-term plan would be for these functions\nto be provided by the main crypto/subtle instead.",
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
