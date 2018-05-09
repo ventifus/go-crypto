@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f82ecfa4_5e258901",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-05-09T20:46:46Z",
+      "side": 1,
+      "message": "You can group these 4 loads together.",
+      "revId": "fd64e3ffd18c80c1870977eb5a900b73ec42ec76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34ff8df7_be355c60",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-05-09T20:46:46Z",
+      "side": 1,
+      "message": "The loads can be grouped in batches of 4 here as well.",
+      "revId": "fd64e3ffd18c80c1870977eb5a900b73ec42ec76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36561a41_7be06a16",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2018-05-09T20:46:46Z",
+      "side": 1,
+      "message": "I think this loop can be optimized a little bit more by grouping 2 integer/logical instructions + 2 vector instructions per group of 4 instructions. That would keep all the execution units busy for the loop duration.",
+      "revId": "fd64e3ffd18c80c1870977eb5a900b73ec42ec76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
