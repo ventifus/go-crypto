@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b8d0ee1_3a760dda",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "Have you verified that this is in cryptograms or ask Andy about putting it there? Seems like last time it took a few weeks to make that happen.",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b8f811b_87ed12ba",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "What is the VADDUWM doing?",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d85ffd29_2ba4a839",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "MOVWZ 4(CNT), X13, then eliminate the MOVD TMP1, X13 below.",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9173b59_2e1a6e82",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "MOVWZ 8(CNT), X14 then eliminate the following statement.",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebd53e1f_d9c57c9a",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "MOVWZ 12(CNT), X15 then eliminate the following statement.",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5cff483_d83790c1",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "I think it would be better here to do:\nADD\nADD\nADD\nADD\nMOVWZ\nMOVWZ\nMOVWZ\nMOVWZ",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6318562d_8e825d8c",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2018-05-10T18:56:43Z",
+      "side": 1,
+      "message": "I think you could use TMP0, TMP1, TMP2 here instead of TEMP for all but the last one, and then do:\nMOVWZ TMP0\nMOVWZ TMP1\nMOVWZ TMP2\nMOVWZ TEMP\nADD TMP0\nADD TMP1\nADD TMP2\nADD TEMP",
+      "revId": "f709869df408606386f36b3311ef3763b7f3f594",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
