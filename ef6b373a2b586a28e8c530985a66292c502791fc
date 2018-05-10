@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a429a3a9_57edf450",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 15931
+      },
+      "writtenOn": "2018-05-10T13:04:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4317978c_0b0dccae",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf89ef33_6bb71466",
         "filename": "internal/chacha20/chacha_ppc64le.s",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b648ec_3390103b",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 15931
+      },
+      "writtenOn": "2018-05-10T13:04:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf89ef33_6bb71466",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -101,6 +137,24 @@
       "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f553e8f_4b0c2944",
+        "filename": "internal/chacha20/chacha_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 15931
+      },
+      "writtenOn": "2018-05-10T13:04:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "066661dc_697cb96f",
+      "revId": "ef6b373a2b586a28e8c530985a66292c502791fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
