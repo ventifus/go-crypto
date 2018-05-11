@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "88fdb1a6_e27ed039",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-11T09:20:12Z",
+      "side": 1,
+      "message": "Bear in mind that the standard use case for ChaCha20, the ChaCha20-Poly1305 AEAD, requires more than 64 bytes of key stream to be generated if the plaintext is longer than 1 byte. It may therefore be worth sacrificing 64 byte performance and always generating 256 bytes. Plus it saves a bunch of assembly. Maybe worth some benchmarking of the AEAD at least.",
+      "parentUuid": "525b25e5_75855763",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 72
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3388cebf_b3ded54c",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 10
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "If the name is State which is ok not to change structure :)\nIt\u0027s much more easier to use vld1 load data into vector as DJB designed.",
       "parentUuid": "3388cebf_b3ded54c",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478a372e_eb06865a",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-11T09:20:12Z",
+      "side": 1,
+      "message": "It\u0027s easier but it is also more fragile. I don\u0027t think the few loads and stores you save are worth it. But I\u0027ll let the final reviewer decide.",
+      "parentUuid": "365ee226_2b5ce3f2",
       "range": {
         "startLine": 15,
         "startChar": 40,
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "71dbaa0d_83afca62",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-11T09:20:12Z",
+      "side": 1,
+      "message": "This code change doesn\u0027t require that instruction, it\u0027s pure Go code. It just saves you having to allocate ret and handle tail cases in assembly (because the Go code does all that for you).",
+      "parentUuid": "2232a8f6_576cdced",
+      "range": {
+        "startLine": 23,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45eb77db_0c1b4367",
         "filename": "internal/chacha20/chacha_noasm.go",
         "patchSetId": 10
@@ -178,6 +250,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "45eb77db_0c1b4367",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5d4440f_cd556474",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-11T09:20:12Z",
+      "side": 1,
+      "message": "The new build constraints are wrong. This needs to be fixed or you will break the s390x implementation.\n\nMy original suggestion was also wrong (sigh). I think this is correct (all on one line):\n\n// +build !arm64.!s390x arm64,!go1.11 gccgo appengine\n\nIn Go style for easier parsing:\n\n(!arm64 \u0026\u0026 !s390x) || (arm64 \u0026\u0026 !go1.11) || gccgo || appengine",
+      "parentUuid": "e1d636bf_56fc5b03",
       "range": {
         "startLine": 5,
         "startChar": 0,
