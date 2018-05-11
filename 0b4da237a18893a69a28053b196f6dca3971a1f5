@@ -283,6 +283,30 @@
       "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05b1d0ad_300f9c6e",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-11T09:25:49Z",
+      "side": 1,
+      "message": "Sorry that should be a \u0027,\u0027 not a \u0027.\u0027 between !arm64 and !s390x:\n\n// +build !arm64,!s390x arm64,!go1.11 gccgo appengine",
+      "parentUuid": "e5d4440f_cd556474",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
