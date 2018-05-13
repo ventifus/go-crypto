@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "90c993fb_9e1e31be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-13T16:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88fdb1a6_e27ed039",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 72
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3388cebf_b3ded54c",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 10
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "d522728d_1c66d92e",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-13T16:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "478a372e_eb06865a",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86bb29dd_3dd328fc",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 10
@@ -212,6 +260,30 @@
       "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a685877_01335bae",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-13T16:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71dbaa0d_83afca62",
+      "range": {
+        "startLine": 23,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -298,6 +370,30 @@
       "side": 1,
       "message": "Sorry that should be a \u0027,\u0027 not a \u0027.\u0027 between !arm64 and !s390x:\n\n// +build !arm64,!s390x arm64,!go1.11 gccgo appengine",
       "parentUuid": "e5d4440f_cd556474",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "0b4da237a18893a69a28053b196f6dca3971a1f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89676d72_af12e0a8",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-13T16:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b1d0ad_300f9c6e",
       "range": {
         "startLine": 5,
         "startChar": 0,
