@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8cd561a_7a3d2951",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-14T19:56:28Z",
+      "side": 1,
+      "message": "This text is the godoc so we need to keep it as:\n\n// Sum generates an authenticator for msg using a one-time key and puts the\n// 16-byte result into out. Authenticating two different messages with the same\n// key allows an attacker to forge messages at will.",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 95
+      },
+      "revId": "709d4ce9c9c48cdf3b0c415273e0b1600a0fd010",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
