@@ -22,6 +22,30 @@
       "revId": "11bb1a7e44f8205525f8b36e5af4034673058062",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "591af6d6_6aaaa606",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-14T16:25:24Z",
+      "side": 1,
+      "message": "Yup, that was the plan. I just got distracted when the lunch crew left.",
+      "parentUuid": "d89ac8c7_69ce6b39",
+      "range": {
+        "startLine": 179,
+        "startChar": 5,
+        "endLine": 179,
+        "endChar": 13
+      },
+      "revId": "11bb1a7e44f8205525f8b36e5af4034673058062",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
