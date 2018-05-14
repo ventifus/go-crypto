@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0faee20d_adf35baa",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-14T07:31:14Z",
+      "side": 1,
+      "message": "needs nacl tag (seems to have gone missing)",
+      "revId": "daefd8053627d9c534a37126f132dd63aec6835c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
