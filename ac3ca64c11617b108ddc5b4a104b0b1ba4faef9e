@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4df7e2ad_32276c63",
+        "filename": "acme/http.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-14T16:04:29Z",
+      "side": 1,
+      "message": "Actually, this should be \"... tried %d time(s)\", r.URL, t.n), not t.n+1 because nth retry will not happen.",
+      "revId": "ac3ca64c11617b108ddc5b4a104b0b1ba4faef9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14561a7c_f01a7c9e",
+        "filename": "acme/http_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-14T16:04:29Z",
+      "side": 1,
+      "message": "Maybe I should\u0027ve moved a couple other TestXxx from acme_test.go.",
+      "revId": "ac3ca64c11617b108ddc5b4a104b0b1ba4faef9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
