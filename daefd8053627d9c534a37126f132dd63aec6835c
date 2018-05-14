@@ -16,6 +16,24 @@
       "revId": "daefd8053627d9c534a37126f132dd63aec6835c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a340d3a_abf430e5",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11191
+      },
+      "writtenOn": "2018-05-14T18:51:46Z",
+      "side": 1,
+      "message": "Ok, no problem.",
+      "parentUuid": "0faee20d_adf35baa",
+      "revId": "daefd8053627d9c534a37126f132dd63aec6835c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
