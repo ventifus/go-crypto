@@ -176,6 +176,23 @@ func unixConnection() (*net.UnixConn, *net.UnixConn, error) {
 	return c1.(*net.UnixConn), c2.(*net.UnixConn), nil
 }
 
+func findSSHD() (string, error) {
+	sshd, lookErr := exec.LookPath("sshd")
+	if lookErr == nil {
+		return sshd, nil
+	}
+	// Look in common locations:
+	for _, path := range []string{
+		"/usr/sbin/sshd", // Debian
+	} {
+		if _, err := os.Stat(path); err == nil {
+			return path, nil
+		}
+	}
+	return "", lookErr
+
+}
+
 func (s *server) TryDial(config *ssh.ClientConfig) (*ssh.Client, error) {
 	return s.TryDialWithAddr(config, "")
 }
@@ -183,7 +200,7 @@ func (s *server) TryDial(config *ssh.ClientConfig) (*ssh.Client, error) {
 // addr is the user specified host:port. While we don't actually dial it,
 // we need to know this for host key matching
 func (s *server) TryDialWithAddr(config *ssh.ClientConfig, addr string) (*ssh.Client, error) {
-	sshd, err := exec.LookPath("sshd")
+	sshd, err := findSSHD()
 	if err != nil {
 		s.t.Skipf("skipping test: %v", err)
 	}
