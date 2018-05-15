@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "eada3dd4_20413602",
+        "filename": "internal/chacha20/asm_arm64.s",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 19276
+      },
+      "writtenOn": "2018-05-15T10:10:43Z",
+      "side": 1,
+      "message": "From code point (asm_s390x.s), it seems that s390x also supports appengine.  Anyway, IMHO, adding !appengine constrain makes code more flexible.",
+      "parentUuid": "0d0af3bf_f0cb3b66",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 16
+      },
+      "revId": "fbc390ca2425b2b630a32393db9e27382dada334",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e269b693_10ac8dc9",
         "filename": "internal/chacha20/asm_arm64.s",
         "patchSetId": 13
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "These registers will be used at data add-xor stage (line 223~284)",
       "parentUuid": "e269b693_10ac8dc9",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "fbc390ca2425b2b630a32393db9e27382dada334",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "416beae0_f09a6c1c",
+        "filename": "internal/chacha20/asm_arm64.s",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 19276
+      },
+      "writtenOn": "2018-05-15T10:10:43Z",
+      "side": 1,
+      "message": "I mean is it possible to avoid usage of these registers during add-xor stage so that these codes can be moved outside the loop.",
+      "parentUuid": "255c12eb_1db75921",
       "range": {
         "startLine": 31,
         "startChar": 1,
