@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38da4983_b1df540a",
+        "filename": "sha3/shake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-15T12:34:31Z",
+      "side": 1,
+      "message": "Why do we need to modify ShakeSum128 and ShakeSum256 in this CL? Looks like they were fine before.",
+      "range": {
+        "startLine": 160,
+        "startChar": 1,
+        "endLine": 164,
+        "endChar": 1
+      },
+      "revId": "bd26d5b2a94b7efedc74166a7ab101e2ee5c1c9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df8cae1d_9656e2a5",
+        "filename": "sha3/shake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-15T12:34:31Z",
+      "side": 1,
+      "message": "arbitrary",
+      "range": {
+        "startLine": 166,
+        "startChar": 25,
+        "endLine": 166,
+        "endChar": 33
+      },
+      "revId": "bd26d5b2a94b7efedc74166a7ab101e2ee5c1c9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce9f127e_17a299da",
+        "filename": "sha3/shake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-15T12:34:31Z",
+      "side": 1,
+      "message": "arbitrary",
+      "range": {
+        "startLine": 169,
+        "startChar": 25,
+        "endLine": 169,
+        "endChar": 33
+      },
+      "revId": "bd26d5b2a94b7efedc74166a7ab101e2ee5c1c9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
