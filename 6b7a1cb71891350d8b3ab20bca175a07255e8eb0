@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57769c5b_c2dffab3",
+        "filename": "internal/chacha20/asm_arm64.s",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-05-16T06:28:28Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to pass buf into this function any more. I think you can delete this and all the associated assembly to write to buf.",
+      "range": {
+        "startLine": 12,
+        "startChar": 89,
+        "endLine": 12,
+        "endChar": 105
+      },
+      "revId": "6b7a1cb71891350d8b3ab20bca175a07255e8eb0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
