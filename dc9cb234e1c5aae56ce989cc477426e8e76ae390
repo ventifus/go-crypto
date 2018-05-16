@@ -16,6 +16,24 @@
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5c09f36_85beaebf",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-05-16T15:30:01Z",
+      "side": 1,
+      "message": "Some of the instructions (VTBL etc..) are implement at go1.11 and \nabout 40+ projects import chacha20poly1305\nhttps://godoc.org/golang.org/x/crypto/chacha20poly1305?importers\n\nI just don\u0027t want this change break those projects.",
+      "parentUuid": "fb8f8645_1b46376d",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
