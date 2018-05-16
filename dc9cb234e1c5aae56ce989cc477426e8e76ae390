@@ -34,6 +34,24 @@
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a708aa_74b37935",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-16T17:22:40Z",
+      "side": 1,
+      "message": "Oh, I was somehow thinking this was a change for the \"go\" repo, not the \"crypto\" repo. Ignore me.",
+      "parentUuid": "e5c09f36_85beaebf",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
