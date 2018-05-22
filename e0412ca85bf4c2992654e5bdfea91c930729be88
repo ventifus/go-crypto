@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05126b8b_b2e94feb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 27759
+      },
+      "writtenOn": "2018-05-22T20:48:24Z",
+      "side": 1,
+      "message": "For these commit changes, since I\u0027ll have to rebase off the fixed master anyway, should I squash these into one commit, amend the comments or just make the next commit correct? Just never had a commit message reviewed before haha",
+      "parentUuid": "2b8bbf72_b419a810",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21a736cd_32927e66",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "28b2a573_137820f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 27759
+      },
+      "writtenOn": "2018-05-22T20:48:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21a736cd_32927e66",
+      "range": {
+        "startLine": 9,
+        "startChar": 345,
+        "endLine": 9,
+        "endChar": 410
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e60f22f_bd2f90e2",
         "filename": "openpgp/keys.go",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2018-05-22T18:20:04Z",
       "side": 1,
       "message": "config is ignored.",
+      "range": {
+        "startLine": 546,
+        "startChar": 3,
+        "endLine": 546,
+        "endChar": 52
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02411e19_32d965ad",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 27759
+      },
+      "writtenOn": "2018-05-22T20:48:24Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. What\u0027s the process for changing an interface, i.e. removing config from the function signature? Is that something we\u0027d want to do in this PR?",
+      "parentUuid": "0e60f22f_bd2f90e2",
       "range": {
         "startLine": 546,
         "startChar": 3,
