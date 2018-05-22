@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b8bbf72_b419a810",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T18:20:04Z",
+      "side": 1,
+      "message": "Lowercase.",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a736cd_32927e66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T18:20:04Z",
+      "side": 1,
+      "message": "Master links with line refs break over time, either pin it to a version, or even better just refer to \"its docs\".",
+      "range": {
+        "startLine": 9,
+        "startChar": 345,
+        "endLine": 9,
+        "endChar": 410
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e60f22f_bd2f90e2",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T18:20:04Z",
+      "side": 1,
+      "message": "config is ignored.",
+      "range": {
+        "startLine": 546,
+        "startChar": 3,
+        "endLine": 546,
+        "endChar": 52
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
