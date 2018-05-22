@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7088e6d5_5db475fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T22:17:26Z",
+      "side": 1,
+      "message": "In Gerrit, you are always amending the same commit. However when you contribute via GitHub PRs, there\u0027s a bot squashing all commits for you. The commit message in this case comes from the PR title and body, so you can just edit that.\n\nCommit message review is one of the features of Gerrit we love around here :)",
+      "parentUuid": "05126b8b_b2e94feb",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21a736cd_32927e66",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "Thanks for pointing that out. What\u0027s the process for changing an interface, i.e. removing config from the function signature? Is that something we\u0027d want to do in this PR?",
       "parentUuid": "0e60f22f_bd2f90e2",
+      "range": {
+        "startLine": 546,
+        "startChar": 3,
+        "endLine": 546,
+        "endChar": 52
+      },
+      "revId": "e0412ca85bf4c2992654e5bdfea91c930729be88",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2accb8a2_78c95385",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T22:17:26Z",
+      "side": 1,
+      "message": "We try never to break a public API. In this case, it\u0027s ok to leave config as is. It\u0027s ugly, but ugly is better than broken. I was just suggesting adding that to the doc comment.",
+      "parentUuid": "02411e19_32d965ad",
       "range": {
         "startLine": 546,
         "startChar": 3,
