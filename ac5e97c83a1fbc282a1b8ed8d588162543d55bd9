@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fb3c2bb_2b6345c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T14:41:39Z",
+      "side": 1,
+      "message": "Add the openpgp: prefix. See https://github.com/golang/go/wiki/CommitMessage",
+      "revId": "ac5e97c83a1fbc282a1b8ed8d588162543d55bd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a397489_e72224c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T14:41:39Z",
+      "side": 1,
+      "message": "This goes at the end as \"Fixes #25463\"",
+      "revId": "ac5e97c83a1fbc282a1b8ed8d588162543d55bd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82e1c2a1_e9b04463",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-22T14:41:39Z",
+      "side": 1,
+      "message": "Why not make the signatures in this function instead, so that you don\u0027t have to carry the config, or delay the operation?\n\nThen you can even remove the signing operation from SerializePrivate as the docs say \"it must only be used on an Entity returned from NewEntity\", and add \"config is ignored.\"",
+      "revId": "ac5e97c83a1fbc282a1b8ed8d588162543d55bd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
