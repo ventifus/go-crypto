@@ -500,6 +500,10 @@ func NewEntity(name, comment, email string, config *packet.Config) (*Entity, err
 			IssuerKeyId:  &e.PrimaryKey.KeyId,
 		},
 	}
+	err = e.Identities[uid.Id].SelfSignature.SignUserId(uid.Id, e.PrimaryKey, e.PrivateKey, config)
+	if err != nil {
+		return nil, err
+	}
 
 	// If the user passes in a DefaultHash via packet.Config,
 	// set the PreferredHash for the SelfSignature.
@@ -529,7 +533,10 @@ func NewEntity(name, comment, email string, config *packet.Config) (*Entity, err
 	}
 	e.Subkeys[0].PublicKey.IsSubkey = true
 	e.Subkeys[0].PrivateKey.IsSubkey = true
-
+	err = e.Subkeys[0].Sig.SignKey(e.Subkeys[0].PublicKey, e.PrivateKey, config)
+	if err != nil {
+		return nil, err
+	}
 	return e, nil
 }
 
@@ -547,10 +554,6 @@ func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error
 		if err != nil {
 			return
 		}
-		err = ident.SelfSignature.SignUserId(ident.UserId.Id, e.PrimaryKey, e.PrivateKey, config)
-		if err != nil {
-			return
-		}
 		err = ident.SelfSignature.Serialize(w)
 		if err != nil {
 			return
@@ -558,10 +561,6 @@ func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error
 	}
 	for _, subkey := range e.Subkeys {
 		err = subkey.PrivateKey.Serialize(w)
-		if err != nil {
-			return
-		}
-		err = subkey.Sig.SignKey(subkey.PublicKey, e.PrivateKey, config)
 		if err != nil {
 			return
 		}
