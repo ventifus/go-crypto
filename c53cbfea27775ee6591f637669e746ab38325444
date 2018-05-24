@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d21d1242_b4adc4fe",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "the nth",
+      "range": {
+        "startLine": 77,
+        "startChar": 51,
+        "endLine": 77,
+        "endChar": 54
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dfb38cc_f6591cbd",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "The value of n for the first call on failure is 1.",
+      "range": {
+        "startLine": 78,
+        "startChar": 33,
+        "endLine": 78,
+        "endChar": 50
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e69ef681_6971bfd5",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "what about negative? does that mean 0 or immediately?",
+      "range": {
+        "startLine": 80,
+        "startChar": 26,
+        "endLine": 80,
+        "endChar": 30
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a098774e_914ec4d4",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03f93452_1bdae06a",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "typo: encapsulates",
+      "range": {
+        "startLine": 18,
+        "startChar": 14,
+        "endLine": 18,
+        "endChar": 26
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fb68b2b_9a420bac",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "not safe",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edbb7e6f_b2c201b4",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "s/okStatus/wantStatus/\n\nBecause \"ok\" makes it sounds like this is for 2xx errors.",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7185584d_8b3869be",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "want to turn this into an internal type? then you can attach docs to it in one place and remove some duplicated docs.\n\n\n// resOkay is a function that reports whether the provided response is okay.\ntype resOkay func(*http.Response) bool\n\nfunc wantStatus(code int) resOkay { return func( ....",
+      "range": {
+        "startLine": 120,
+        "startChar": 57,
+        "endLine": 120,
+        "endChar": 82
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0be474e_655b1003",
+        "filename": "acme/http_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e87178c3_ba8fac82",
+        "filename": "acme/http_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-24T20:00:32Z",
+      "side": 1,
+      "message": "I thought this started at 1? or one starts at 1 and the other starts at 0?\n\ndocument at least, or also make this one also start at 1? (my preference is both)",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 4
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
