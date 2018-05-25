@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c1cc7750_579a9d8e",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d21d1242_b4adc4fe",
+      "range": {
+        "startLine": 77,
+        "startChar": 51,
+        "endLine": 77,
+        "endChar": 54
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dfb38cc_f6591cbd",
         "filename": "acme/acme.go",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "c53cbfea27775ee6591f637669e746ab38325444",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e9e5049_89a63346",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dfb38cc_f6591cbd",
+      "range": {
+        "startLine": 78,
+        "startChar": 33,
+        "endLine": 78,
+        "endChar": 50
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3777a4b3_60039374",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Oh, right. Negative also stops retries. My reasoning behind stopping retries for \u003c\u003d 0 was to sort of \"safeguard\" against unintentional retries with 0 pause, maybe due to some parsing or calculation mistake in a user-provided backoff function. Basically, make it harder for people to (unintentionally) hit an endpoint with too high a QPS rate.\n\nWDYT?",
+      "parentUuid": "e69ef681_6971bfd5",
+      "range": {
+        "startLine": 80,
+        "startChar": 26,
+        "endLine": 80,
+        "endChar": 30
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a098774e_914ec4d4",
         "filename": "acme/http.go",
         "patchSetId": 7
@@ -85,6 +157,24 @@
       "revId": "c53cbfea27775ee6591f637669e746ab38325444",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c8e53c_21cfc8bc",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a098774e_914ec4d4",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "b61c5c8a_9c488830",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03f93452_1bdae06a",
+      "range": {
+        "startLine": 18,
+        "startChar": 14,
+        "endLine": 18,
+        "endChar": 26
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fb68b2b_9a420bac",
         "filename": "acme/http.go",
         "patchSetId": 7
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "37786fd4_9ffd0e9d",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fb68b2b_9a420bac",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edbb7e6f_b2c201b4",
         "filename": "acme/http.go",
         "patchSetId": 7
@@ -142,6 +274,24 @@
       "revId": "c53cbfea27775ee6591f637669e746ab38325444",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38fbb87_47273de2",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edbb7e6f_b2c201b4",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "5a09efdf_473d92e8",
+        "filename": "acme/http.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Nice. Done.",
+      "parentUuid": "7185584d_8b3869be",
+      "range": {
+        "startLine": 120,
+        "startChar": 57,
+        "endLine": 120,
+        "endChar": 82
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0be474e_655b1003",
         "filename": "acme/http_test.go",
         "patchSetId": 7
@@ -182,6 +356,24 @@
       "revId": "c53cbfea27775ee6591f637669e746ab38325444",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d06e3cb_9c13f455",
+        "filename": "acme/http_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0be474e_655b1003",
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -205,6 +397,30 @@
       "revId": "c53cbfea27775ee6591f637669e746ab38325444",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d72b206_a139e227",
+        "filename": "acme/http_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T00:21:40Z",
+      "side": 1,
+      "message": "oh, of course. it was a mistake.\nit starts at 1. added both and updated expected values.\nalso, added a test to verify RetryBackoff args.",
+      "parentUuid": "e87178c3_ba8fac82",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 4
+      },
+      "revId": "c53cbfea27775ee6591f637669e746ab38325444",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
