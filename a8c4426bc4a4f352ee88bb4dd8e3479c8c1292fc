@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1d4569ae_66bbb49a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T15:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d5108f9_6acb640a",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 30
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fa9df29_6ccc18e7",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "175572ef_7244f1eb",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T15:50:12Z",
+      "side": 1,
+      "message": "Right. This is confusing. I\u0027ll just refer to x509.CreateCertificateRequest.",
+      "parentUuid": "7fa9df29_6ccc18e7",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 47
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0a5cbd16_225f691b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T15:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b91dc4b_71159d9b",
+      "range": {
+        "startLine": 155,
+        "startChar": 45,
+        "endLine": 155,
+        "endChar": 46
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a556ea68_8cebdaa9",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 5
@@ -85,6 +157,24 @@
       "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3137e38_c939b00a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-25T15:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a556ea68_8cebdaa9",
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
