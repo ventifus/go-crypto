@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d5108f9_6acb640a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-25T15:32:41Z",
+      "side": 1,
+      "message": "\"thus allowing customization of\" or \"allowing one to customize\".",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 30
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fa9df29_6ccc18e7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-25T15:32:41Z",
+      "side": 1,
+      "message": "This begs the question, if I set it, what defaults am I using? What about having elements override the defaults if given?\n\nLater: actually, since this is fed into crypto/x509, doesn\u0027t it have that semantic already?",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 47
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b91dc4b_71159d9b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-25T15:32:41Z",
+      "side": 1,
+      "message": "… the …",
+      "range": {
+        "startLine": 155,
+        "startChar": 45,
+        "endLine": 155,
+        "endChar": 46
+      },
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a556ea68_8cebdaa9",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-05-25T15:32:41Z",
+      "side": 1,
+      "message": "Call this ExtraExtensions to match the naming in crypto/x509? (I.e. \"Extensions\" is the result of parsing and \"ExtraExtensions\" feed into marshaling.)",
+      "revId": "a8c4426bc4a4f352ee88bb4dd8e3479c8c1292fc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
