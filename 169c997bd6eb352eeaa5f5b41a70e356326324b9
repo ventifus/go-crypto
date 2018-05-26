@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b15fbf78_e73a607c",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-05-26T22:55:21Z",
+      "side": 1,
+      "message": "Good catch about r.URL.String().\nYour suggestion about a separate \"/authz/2\" case made me realize this test wasn\u0027t deterministic because pendingAuthzs in Manager.verify is a map and iteration over its elements is not ordered. So, revocation of /authz/2 may happen before /authz/1 or /authz/0.\nI\u0027m just counting the number of times a revocation has occured and closing the done channel based on that counter.",
+      "parentUuid": "47e37b46_42e003e2",
+      "revId": "169c997bd6eb352eeaa5f5b41a70e356326324b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80584552_e9f3a362",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
