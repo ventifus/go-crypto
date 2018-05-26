@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47e37b46_42e003e2",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 25498
+      },
+      "writtenOn": "2018-05-26T21:31:21Z",
+      "side": 1,
+      "message": "why not check r.URL.Path here as well?\nsince I\u0027m nitpicking, would something like the following be frowned upon?\ncase \"/authz/2\":\n  defer close(done)\n  fallthrough\ncase \"/authz/0\", \"authz/1\":\n  ...",
+      "revId": "169c997bd6eb352eeaa5f5b41a70e356326324b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80584552_e9f3a362",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 25498
+      },
+      "writtenOn": "2018-05-26T21:31:21Z",
+      "side": 1,
+      "message": "this is A LOT less brittle than the ParseInt stuff I had in there. Don\u0027t know why I felt that was appropriate...",
+      "revId": "169c997bd6eb352eeaa5f5b41a70e356326324b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
