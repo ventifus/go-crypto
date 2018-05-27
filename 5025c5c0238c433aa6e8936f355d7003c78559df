@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f33d1bb3_64d7c39c",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-27T01:44:54Z",
+      "side": 1,
+      "message": "Why the defer?",
+      "revId": "5025c5c0238c433aa6e8936f355d7003c78559df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7cf8540_f5e95cb3",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-27T01:44:54Z",
+      "side": 1,
+      "message": "This test technically won\u0027t catch the problem this change is fixing (nil Client).",
+      "revId": "5025c5c0238c433aa6e8936f355d7003c78559df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
