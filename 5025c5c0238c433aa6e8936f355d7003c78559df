@@ -69,6 +69,24 @@
       "revId": "5025c5c0238c433aa6e8936f355d7003c78559df",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f74a666_f1d55378",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-05-28T00:09:40Z",
+      "side": 1,
+      "message": "Tests should totally catch typos. But I recognize it\u0027s not an easy condition to test, hence the +2.",
+      "parentUuid": "7dcf45eb_360a60c1",
+      "revId": "5025c5c0238c433aa6e8936f355d7003c78559df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
