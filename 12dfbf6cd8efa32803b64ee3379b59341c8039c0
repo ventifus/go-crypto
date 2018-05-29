@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff512856_fd286db4",
+        "filename": "keywrap/rfc3394.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-29T21:12:45Z",
+      "side": 1,
+      "message": "Missing copyright header.",
+      "revId": "12dfbf6cd8efa32803b64ee3379b59341c8039c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e97e6d4c_f8793c06",
+        "filename": "keywrap/rfc3394.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-29T21:12:45Z",
+      "side": 1,
+      "message": "Public docs need to be in Go\u0027s normal style.\n\nSee https://github.com/golang/go/wiki/CodeReviewComments#comment-sentences\n\nalso \"as per\", not \"as par\". And RFC all caps. and end in a period.",
+      "revId": "12dfbf6cd8efa32803b64ee3379b59341c8039c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56778759_143cade9",
+        "filename": "keywrap/rfc3394.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-29T21:12:45Z",
+      "side": 1,
+      "message": "same",
+      "revId": "12dfbf6cd8efa32803b64ee3379b59341c8039c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac10f0d7_f021b70b",
+        "filename": "keywrap/rfc3394.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-05-29T21:12:45Z",
+      "side": 1,
+      "message": "no all caps variable names.",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "12dfbf6cd8efa32803b64ee3379b59341c8039c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
