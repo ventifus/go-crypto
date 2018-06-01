@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "782cfb4a_c6c077e4",
+        "filename": "acme/acme.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "wantCode(http.StatusOK, res.StatusAccepted)",
+      "range": {
+        "startLine": 343,
+        "startChar": 29,
+        "endLine": 345,
+        "endChar": 3
+      },
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4412ea23_576613db",
+        "filename": "acme/acme.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 393,
+        "startChar": 30,
+        "endLine": 395,
+        "endChar": 4
+      },
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47bfdf7e_dbc3cb03",
         "filename": "acme/acme.go",
         "patchSetId": 9
@@ -13,6 +59,92 @@
       "writtenOn": "2018-06-01T15:49:01Z",
       "side": 1,
       "message": "No",
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "155c9a0b_bb01b2e9",
+        "filename": "acme/acme.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 439,
+        "startChar": 29,
+        "endLine": 441,
+        "endChar": 3
+      },
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77804642_409d85d4",
+        "filename": "acme/acme.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "same, but can be formatted like:\n\n   wantStatus(\n          http.StatusOK, // updates and deletes\n          http.StatusCreated, // new account creation\n   )",
+      "range": {
+        "startLine": 604,
+        "startChar": 42,
+        "endLine": 608,
+        "endChar": 3
+      },
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f789a320_006ca904",
+        "filename": "acme/http.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "if you changed this to:\n\n    func wantStatus(codes ...int) resOkay\n\n... then you could make call sites prettier for the cases where they match 2-3 status.",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 24
+      },
+      "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b858b8ed_2e26a585",
+        "filename": "acme/http.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-01T16:56:25Z",
+      "side": 1,
+      "message": "for _, code :\u003d range codes {\n    if code \u003d\u003d res.StatusCode { return true }\n}\nreturn false",
       "revId": "37192e3c125e641e9350a5a4eeb14917e6b6c072",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
