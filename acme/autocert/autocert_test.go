@@ -5,6 +5,7 @@
 package autocert
 
 import (
+	"bytes"
 	"context"
 	"crypto"
 	"crypto/ecdsa"
@@ -30,6 +31,12 @@ import (
 	"time"
 
 	"golang.org/x/crypto/acme"
+)
+
+var (
+	exampleDomain     = "example.org"
+	exampleCertKey    = certKey{domain: exampleDomain}
+	exampleCertKeyRSA = certKey{domain: exampleDomain, isRSA: true}
 )
 
 var discoTmpl = template.Must(template.New("disco").Parse(`{
@@ -138,17 +145,28 @@ func decodePayload(v interface{}, r io.Reader) error {
 	return json.Unmarshal(payload, v)
 }
 
+func clientHelloInfo(sni string, ecdsaSupport bool) *tls.ClientHelloInfo {
+	hello := &tls.ClientHelloInfo{
+		ServerName:   sni,
+		CipherSuites: []uint16{tls.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305},
+	}
+	if ecdsaSupport {
+		hello.CipherSuites = append(hello.CipherSuites, tls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305)
+	}
+	return hello
+}
+
 func TestGetCertificate(t *testing.T) {
 	man := &Manager{Prompt: AcceptTOS}
 	defer man.stopRenew()
-	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
+	hello := clientHelloInfo("example.org", true)
 	testGetCertificate(t, man, "example.org", hello)
 }
 
 func TestGetCertificate_trailingDot(t *testing.T) {
 	man := &Manager{Prompt: AcceptTOS}
 	defer man.stopRenew()
-	hello := &tls.ClientHelloInfo{ServerName: "example.org."}
+	hello := clientHelloInfo("example.org.", true)
 	testGetCertificate(t, man, "example.org", hello)
 }
 
@@ -159,15 +177,16 @@ func TestGetCertificate_ForceRSA(t *testing.T) {
 		ForceRSA: true,
 	}
 	defer man.stopRenew()
-	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
+	hello := clientHelloInfo("example.org", true)
 	testGetCertificate(t, man, "example.org", hello)
 
-	cert, err := man.cacheGet(context.Background(), "example.org")
+	// ForceRSA was deprecated and is now ignored.
+	cert, err := man.cacheGet(context.Background(), exampleCertKey)
 	if err != nil {
 		t.Fatalf("man.cacheGet: %v", err)
 	}
-	if _, ok := cert.PrivateKey.(*rsa.PrivateKey); !ok {
-		t.Errorf("cert.PrivateKey is %T; want *rsa.PrivateKey", cert.PrivateKey)
+	if _, ok := cert.PrivateKey.(*ecdsa.PrivateKey); !ok {
+		t.Errorf("cert.PrivateKey is %T; want *ecdsa.PrivateKey", cert.PrivateKey)
 	}
 }
 
@@ -184,7 +203,7 @@ func TestGetCertificate_nilPrompt(t *testing.T) {
 		Key:          key,
 		DirectoryURL: url,
 	}
-	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
+	hello := clientHelloInfo("example.org", true)
 	if _, err := man.GetCertificate(hello); err == nil {
 		t.Error("got certificate for example.org; wanted error")
 	}
@@ -212,13 +231,13 @@ func TestGetCertificate_expiredCache(t *testing.T) {
 
 	man := &Manager{Prompt: AcceptTOS, Cache: newMemCache()}
 	defer man.stopRenew()
-	if err := man.cachePut(context.Background(), "example.org", tlscert); err != nil {
+	if err := man.cachePut(context.Background(), exampleCertKey, tlscert); err != nil {
 		t.Fatalf("man.cachePut: %v", err)
 	}
 
 	// The expired cached cert should trigger a new cert issuance
 	// and return without an error.
-	hello := &tls.ClientHelloInfo{ServerName: "example.org"}
+	hello := clientHelloInfo("example.org", true)
 	testGetCertificate(t, man, "example.org", hello)
 }
 
@@ -228,7 +247,6 @@ func TestGetCertificate_failedAttempt(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	const example = "example.org"
 	d := createCertRetryAfter
 	f := testDidRemoveState
 	defer func() {
@@ -237,9 +255,9 @@ func TestGetCertificate_failedAttempt(t *testing.T) {
 	}()
 	createCertRetryAfter = 0
 	done := make(chan struct{})
-	testDidRemoveState = func(domain string) {
-		if domain != example {
-			t.Errorf("testDidRemoveState: domain = %q; want %q", domain, example)
+	testDidRemoveState = func(ck certKey) {
+		if ck != exampleCertKey {
+			t.Errorf("testDidRemoveState: domain = %v; want %v", ck, exampleCertKey)
 		}
 		close(done)
 	}
@@ -256,18 +274,18 @@ func TestGetCertificate_failedAttempt(t *testing.T) {
 		},
 	}
 	defer man.stopRenew()
-	hello := &tls.ClientHelloInfo{ServerName: example}
+	hello := clientHelloInfo("example.org", true)
 	if _, err := man.GetCertificate(hello); err == nil {
 		t.Error("GetCertificate: err is nil")
 	}
 	select {
 	case <-time.After(5 * time.Second):
-		t.Errorf("took too long to remove the %q state", example)
+		t.Errorf("took too long to remove the %q state", exampleCertKey)
 	case <-done:
 		man.stateMu.Lock()
 		defer man.stateMu.Unlock()
-		if v, exist := man.state[example]; exist {
-			t.Errorf("state exists for %q: %+v", example, v)
+		if v, exist := man.state[exampleCertKey]; exist {
+			t.Errorf("state exists for %v: %+v", exampleCertKey, v)
 		}
 	}
 }
@@ -446,7 +464,7 @@ func TestVerifyHTTP01(t *testing.T) {
 		if w.Code != http.StatusOK {
 			t.Errorf("http token: w.Code = %d; want %d", w.Code, http.StatusOK)
 		}
-		if v := string(w.Body.Bytes()); !strings.HasPrefix(v, "token-http-01.") {
+		if v := w.Body.String(); !strings.HasPrefix(v, "token-http-01.") {
 			t.Errorf("http token value = %q; want 'token-http-01.' prefix", v)
 		}
 	}
@@ -619,7 +637,7 @@ func TestRevokeFailedAuthz(t *testing.T) {
 	// The first 2 are tsl-sni-02 and tls-sni-01 challenges.
 	// The third time an authorization is created but no viable challenge is found.
 	// See revokedAuthz above for more explanation.
-	if _, err := m.createCert(context.Background(), "example.org"); err == nil {
+	if _, err := m.createCert(context.Background(), exampleCertKey); err == nil {
 		t.Errorf("m.createCert returned nil error")
 	}
 	select {
@@ -693,36 +711,57 @@ func TestAccountKeyCache(t *testing.T) {
 }
 
 func TestCache(t *testing.T) {
-	privKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	ecdsaKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {
 		t.Fatal(err)
 	}
-	tmpl := &x509.Certificate{
-		SerialNumber: big.NewInt(1),
-		Subject:      pkix.Name{CommonName: "example.org"},
-		NotAfter:     time.Now().Add(time.Hour),
-	}
-	pub, err := x509.CreateCertificate(rand.Reader, tmpl, tmpl, &privKey.PublicKey, privKey)
+	cert, err := dummyCert(ecdsaKey.Public(), "example.org")
 	if err != nil {
 		t.Fatal(err)
 	}
-	tlscert := &tls.Certificate{
-		Certificate: [][]byte{pub},
-		PrivateKey:  privKey,
+	ecdsaCert := &tls.Certificate{
+		Certificate: [][]byte{cert},
+		PrivateKey:  ecdsaKey,
+	}
+
+	rsaKey, err := rsa.GenerateKey(rand.Reader, 512)
+	if err != nil {
+		t.Fatal(err)
+	}
+	cert, err = dummyCert(rsaKey.Public(), "example.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+	rsaCert := &tls.Certificate{
+		Certificate: [][]byte{cert},
+		PrivateKey:  rsaKey,
 	}
 
 	man := &Manager{Cache: newMemCache()}
 	defer man.stopRenew()
 	ctx := context.Background()
-	if err := man.cachePut(ctx, "example.org", tlscert); err != nil {
+
+	if err := man.cachePut(ctx, exampleCertKey, ecdsaCert); err != nil {
 		t.Fatalf("man.cachePut: %v", err)
 	}
-	res, err := man.cacheGet(ctx, "example.org")
+	if err := man.cachePut(ctx, exampleCertKeyRSA, rsaCert); err != nil {
+		t.Fatalf("man.cachePut: %v", err)
+	}
+
+	res, err := man.cacheGet(ctx, exampleCertKey)
 	if err != nil {
 		t.Fatalf("man.cacheGet: %v", err)
 	}
-	if res == nil {
-		t.Fatal("res is nil")
+	if res == nil || !bytes.Equal(res.Certificate[0], ecdsaCert.Certificate[0]) {
+		t.Errorf("man.cacheGet = %+v; want %+v", res, ecdsaCert)
+	}
+
+	res, err = man.cacheGet(ctx, exampleCertKeyRSA)
+	if err != nil {
+		t.Fatalf("man.cacheGet: %v", err)
+	}
+	if res == nil || !bytes.Equal(res.Certificate[0], rsaCert.Certificate[0]) {
+		t.Errorf("man.cacheGet = %+v; want %+v", res, rsaCert)
 	}
 }
 
@@ -786,26 +825,28 @@ func TestValidCert(t *testing.T) {
 	}
 
 	tt := []struct {
-		domain string
-		key    crypto.Signer
-		cert   [][]byte
-		ok     bool
+		ck   certKey
+		key  crypto.Signer
+		cert [][]byte
+		ok   bool
 	}{
-		{"example.org", key1, [][]byte{cert1}, true},
-		{"example.org", key3, [][]byte{cert3}, true},
-		{"example.org", key1, [][]byte{cert1, cert2, cert3}, true},
-		{"example.org", key1, [][]byte{cert1, {1}}, false},
-		{"example.org", key1, [][]byte{{1}}, false},
-		{"example.org", key1, [][]byte{cert2}, false},
-		{"example.org", key2, [][]byte{cert1}, false},
-		{"example.org", key1, [][]byte{cert3}, false},
-		{"example.org", key3, [][]byte{cert1}, false},
-		{"example.net", key1, [][]byte{cert1}, false},
-		{"example.org", key1, [][]byte{early}, false},
-		{"example.org", key1, [][]byte{expired}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{cert1}, true},
+		{certKey{domain: "example.org", isRSA: true}, key3, [][]byte{cert3}, true},
+		{certKey{domain: "example.org"}, key1, [][]byte{cert1, cert2, cert3}, true},
+		{certKey{domain: "example.org"}, key1, [][]byte{cert1, {1}}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{{1}}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{cert2}, false},
+		{certKey{domain: "example.org"}, key2, [][]byte{cert1}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{cert3}, false},
+		{certKey{domain: "example.org"}, key3, [][]byte{cert1}, false},
+		{certKey{domain: "example.net"}, key1, [][]byte{cert1}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{early}, false},
+		{certKey{domain: "example.org"}, key1, [][]byte{expired}, false},
+		{certKey{domain: "example.org", isRSA: true}, key1, [][]byte{cert1}, false},
+		{certKey{domain: "example.org"}, key3, [][]byte{cert3}, false},
 	}
 	for i, test := range tt {
-		leaf, err := validCert(test.domain, test.cert, test.key)
+		leaf, err := validCert(test.ck, test.cert, test.key)
 		if err != nil && test.ok {
 			t.Errorf("%d: err = %v", i, err)
 		}
@@ -854,7 +895,7 @@ func TestManagerGetCertificateBogusSNI(t *testing.T) {
 		{"fo.o", "cache.Get of fo.o"},
 	}
 	for _, tt := range tests {
-		_, err := m.GetCertificate(&tls.ClientHelloInfo{ServerName: tt.name})
+		_, err := m.GetCertificate(clientHelloInfo(tt.name, true))
 		got := fmt.Sprint(err)
 		if got != tt.wantErr {
 			t.Errorf("GetCertificate(SNI = %q) = %q; want %q", tt.name, got, tt.wantErr)
@@ -889,5 +930,45 @@ func TestCertRequest(t *testing.T) {
 	}
 	if !found {
 		t.Errorf("want %v in Extensions: %v", ext, r.Extensions)
+	}
+}
+
+func TestSupportsECDSA(t *testing.T) {
+	tests := []struct {
+		CipherSuites     []uint16
+		SignatureSchemes []tls.SignatureScheme
+		ecdsaOk          bool
+	}{
+		{[]uint16{
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+		}, nil, false},
+		{[]uint16{
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+		}, nil, true},
+		// SignatureSchemes limits, not extends, CipherSuites
+		{[]uint16{
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+		}, []tls.SignatureScheme{
+			tls.PKCS1WithSHA256, tls.ECDSAWithP256AndSHA256,
+		}, false},
+		{[]uint16{
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+		}, []tls.SignatureScheme{
+			tls.PKCS1WithSHA256,
+		}, false},
+		{[]uint16{
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+		}, []tls.SignatureScheme{
+			tls.PKCS1WithSHA256, tls.ECDSAWithP256AndSHA256,
+		}, true},
+	}
+	for i, tt := range tests {
+		result := supportsECDSA(&tls.ClientHelloInfo{
+			CipherSuites:     tt.CipherSuites,
+			SignatureSchemes: tt.SignatureSchemes,
+		})
+		if result != tt.ecdsaOk {
+			t.Errorf("%d: supportsECDSA = %v; want %v", i, result, tt.ecdsaOk)
+		}
 	}
 }
