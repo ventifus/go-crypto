@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8a41e8d_659aff48",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-03T20:25:15Z",
+      "side": 1,
+      "message": "It seems this would try to produce the following when using DirCache:\n\n    1. file: cache/example.org (ecdsa)\n    2. dir: cache/example.org\n    3. file: cache/example.org/rsa\n    4. file: cache/example.org/token\n\nwhere (1) and (2) cannot exist on most filesystems.\nhow about this:\n\n    c.domain + \".rsa\"\n    c.domain + \".token\"\n\nor\n\n    \"rsa/\" + c.domain\n    \"token/\" + c.domain\n\nThe isToken field seems to complicate things though. OTOH I like it being there because I think it might be useful when implementing tls-alpn challenge.",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55faa727_2d4f9762",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-03T20:25:15Z",
+      "side": 1,
+      "message": "You seem to be using \"ck\" in other places. How about ck :\u003d certKey{...} here.",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62685d2e_f5530bea",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-03T20:25:15Z",
+      "side": 1,
+      "message": "I\u0027m surprised a lint didn\u0027t catch it and suggested ecdsaOK (initialism).",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc1cea0f_cdf5b595",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-03T20:25:15Z",
+      "side": 1,
+      "message": "You\u0027ve updated many tests to use exampleCertKey or exampleCertKeyRSA but not their corresponding exampleDomain, leaving \"example.org\" literal as is. Seems inconsistent.\n\nPersonally, I would avoid using these globals and continue to use literals, but up to you, as long as it\u0027s consistent.",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
