@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e666948c_7a6546e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-04T04:06:52Z",
+      "side": 1,
+      "message": "this should start with \"openpgp: support ...\" per https://github.com/golang/go/wiki/CommitMessage",
+      "revId": "ce70cffbe332fbab2ebbca45d11193b998c8e882",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
