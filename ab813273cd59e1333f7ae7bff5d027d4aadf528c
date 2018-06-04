@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d476b2d_db0112ab",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T18:04:14Z",
+      "side": 0,
+      "message": "Because it directly contradicts the Cache docs, and is incomplete (as certificates are not the only things stored in the cache).\n\n\u003e Cache is used by Manager to store and retrieve previously obtained certificates as opaque data.",
+      "parentUuid": "11977054_6ab23665",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "ab813273cd59e1333f7ae7bff5d027d4aadf528c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d887d87_f671e7be",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "ab813273cd59e1333f7ae7bff5d027d4aadf528c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d212c2d5_ea53351d",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T18:04:14Z",
+      "side": 0,
+      "message": "Done and added tests for it.",
+      "parentUuid": "0d887d87_f671e7be",
+      "revId": "ab813273cd59e1333f7ae7bff5d027d4aadf528c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
