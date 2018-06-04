@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc28daf0_fc2483c2",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T09:33:30Z",
+      "side": 1,
+      "message": "This would make path.Base(tokenPath) part a new directory for a filesystem cache impl. like DirCache, and could fail with a \"dir does not exist\".\n\nSwitch to \"+\" like in certKey?",
+      "revId": "25aaf1e8a207d02146936f51b87ea0edbc5330e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
