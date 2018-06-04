@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56933108_4b9bee82",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "you use the user var elsewhere",
+      "range": {
+        "startLine": 488,
+        "startChar": 22,
+        "endLine": 488,
+        "endChar": 30
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acab69fa_d8b23e54",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "huh?",
+      "range": {
+        "startLine": 491,
+        "startChar": 27,
+        "endLine": 491,
+        "endChar": 35
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb5bf286_98d99692",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "\"not-the-allowed-user\"",
+      "range": {
+        "startLine": 527,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 20
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbe7720f_23e75494",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "login succeeded",
+      "range": {
+        "startLine": 533,
+        "startChar": 23,
+        "endLine": 533,
+        "endChar": 43
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b683678f_10cb7c5b",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "why are you examining the payload?",
+      "range": {
+        "startLine": 391,
+        "startChar": 28,
+        "endLine": 391,
+        "endChar": 46
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82b73cae_2d7b5e4c",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-06-04T11:56:16Z",
+      "side": 1,
+      "message": "Can you double check this? AFAIK, the auth handshake loop always starts with the client requesting \u0027none\u0027, so there should not be a need to do this.",
+      "range": {
+        "startLine": 527,
+        "startChar": 49,
+        "endLine": 527,
+        "endChar": 50
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
