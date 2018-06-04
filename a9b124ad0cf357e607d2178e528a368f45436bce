@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1b42f8f1_9db59d5d",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T20:20:55Z",
+      "side": 1,
+      "message": "\u003e That\u0027s a feature of the Manager and how it uses Cache\nManager just calls Cache interface methods. I can\u0027t see any other use of a Cache interface, unless using non-deterministic cache keys by creating a random cache key each time. But that would defeat the purpose of cache, wouldn\u0027t it.\n\nACME certs are cached so that upon restart a manager reuses existing certs. The fact that you can run a hypothetical distributed managers fleet is a side effect.\n\nTo me it\u0027s stating the obvious: because Manager has a Cache field of type Cache, it may reuse the same instance:\n\n  type i interface {\n    hello()\n  }\n\n  // f can share the same i\n  func f(i interface{})\n\nNot sure it explains what I mean.\nI just think this new line adds nothing which isn\u0027t already described in https://golang.org/ref/spec#Interface_types.",
+      "parentUuid": "0d4368d2_97dbede0",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b61f314_fcad8caf",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
@@ -104,6 +122,24 @@
       "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ccfdf330_f83e645f",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T20:20:55Z",
+      "side": 1,
+      "message": "In https://go-review.googlesource.com/c/crypto/+/114501/6/acme/autocert/autocert.go#191 you have this:\n\n\n  func (c certKey) String() string {\n\tif c.isToken {\n\t\treturn c.domain + \"+token\"\n\t}\n\tif c.isRSA {\n\t\treturn c.domain + \"+rsa\"\n\t}\n\treturn c.domain\n  }\n\nWhat does strings.HasSuffix(key, \"+key\") mean, where does \"+key\" coming from, why \"+key\"?",
+      "parentUuid": "cfcb075e_56de040e",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
