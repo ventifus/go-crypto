@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f943447b_a5c8111f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-04T02:43:29Z",
+      "side": 1,
+      "message": "little suboptimal to do this work before it\u0027s needed.\n\nalso, the convention for naming on errors is\n\n   errFoo (or ErrFoo) for a variable of type \"error\" and\n   FooError (or fooError) for a type that implements error\n\nThis is neither, so I might use \"errorMsg\".\n\nBut really I\u0027d just ditch this variable and inline in the two places below and then drop the string concat on line 633.",
+      "revId": "782a854c9207f1120659349d24adf8d5043f34c0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
