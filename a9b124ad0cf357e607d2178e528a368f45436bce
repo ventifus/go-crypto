@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "3b61f314_fcad8caf",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T12:05:32Z",
+      "side": 1,
+      "message": "tbh, it feels like https://golang.org/cl/114501 would be more appropriate CL for this.",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "137c3d89_f0b018d5",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
