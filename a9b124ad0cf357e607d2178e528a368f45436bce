@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d92125bb_76c713ad",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T09:16:48Z",
+      "side": 1,
+      "message": "Not sure cache sharing should be mentioned here. I\u0027d say it belongs to a specific cache implementation, like this instance here: https://godoc.org/golang.org/x/crypto/acme/autocert#DirCache.",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "137c3d89_f0b018d5",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-04T09:16:48Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be \"+rsa\"?\nalso, as a (personally opinionated) alternative, you could reduce the for loop to something like:\n\n    if !strings.HasSuffix(key, \"+token\") \u0026\u0026 !strings.HasSuffix(key, \"+rsa\") {\n      res++\n    }",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
