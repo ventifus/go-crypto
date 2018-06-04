@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0d4368d2_97dbede0",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T18:05:57Z",
+      "side": 1,
+      "message": "This means separate Manager can synchronize using the same cache, which I assume is why ACME keys and tokens are cached. That\u0027s a feature of the Manager and how it uses Cache, not of the underlying implementation (which might in fact not be safe for concurrent use).",
+      "parentUuid": "d92125bb_76c713ad",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b61f314_fcad8caf",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6d6d3096_caf32998",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T18:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b61f314_fcad8caf",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "137c3d89_f0b018d5",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfcb075e_56de040e",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T18:05:57Z",
+      "side": 1,
+      "message": "No, I\u0027m ignoring the ACME key and token certs because I\u0027m checking the number of real certificates in the cache (to make sure there\u0027s both an RSA and an ECDSA one).\n\nIt is missing the HTTP tokens, though. Done.",
+      "parentUuid": "137c3d89_f0b018d5",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
