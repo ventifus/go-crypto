@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11977054_6ab23665",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-04T14:51:09Z",
+      "side": 0,
+      "message": "why are you deleting this information?",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "ab813273cd59e1333f7ae7bff5d027d4aadf528c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d887d87_f671e7be",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-04T14:51:09Z",
+      "side": 0,
+      "message": "I would keep a promise here about which characters will be in the key (same filesystem path entry components?)",
+      "revId": "ab813273cd59e1333f7ae7bff5d027d4aadf528c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
