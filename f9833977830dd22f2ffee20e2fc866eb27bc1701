@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6badbe07_41faf547",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T01:23:34Z",
+      "side": 1,
+      "message": "Very good catch. I intentionally avoided \".\" because it could appear in a domain and so doesn\u0027t properly partition the key space. Switched to \"+\".",
+      "parentUuid": "c8a41e8d_659aff48",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55faa727_2d4f9762",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e45b720_8d71a21a",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T01:23:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55faa727_2d4f9762",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9f9a5cf5_1c3e3f7f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T01:23:34Z",
+      "side": 1,
+      "message": "I don\u0027t use cosmetic linters, and I lifted this from crypto/tls. Done.",
+      "parentUuid": "62685d2e_f5530bea",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc1cea0f_cdf5b595",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b7cd4d_20faa051",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-04T01:23:34Z",
+      "side": 1,
+      "message": "I wanted to limit churn. I\u0027ve now switched the ones used in the same tests as exampleCertKey.\n\nI like the constants because it\u0027s way too easy to mix \"example.org\" and \"example.com\". (I did at some point developing this change.)",
+      "parentUuid": "dc1cea0f_cdf5b595",
+      "revId": "f9833977830dd22f2ffee20e2fc866eb27bc1701",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
