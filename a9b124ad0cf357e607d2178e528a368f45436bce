@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "1ad09786_28f511d3",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-05T14:20:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb0f1eb9_6c469873",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b61f314_fcad8caf",
         "filename": "acme/autocert/autocert_test.go",
         "patchSetId": 1
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "See (*Manager).accountKey.",
       "parentUuid": "ccfdf330_f83e645f",
+      "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f90600db_b1ce0ae4",
+        "filename": "acme/autocert/autocert_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-05T14:20:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fad3e119_323d139a",
       "revId": "a9b124ad0cf357e607d2178e528a368f45436bce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
