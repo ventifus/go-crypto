@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "020efd66_490b457b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-05T13:53:01Z",
+      "side": 1,
+      "message": "This feels like one of those moments where I discover something horrible, but how can a \u0027+\u0027 show up in a valid hostname? I\u0027m happy to change it to any other filename-safe delimiter, but I\u0027d like to avoid \u0027/\u0027 if possible not to add complexity to DirCache.\n\nOr I can add a check making sure there\u0027s no \u0027+\u0027 in the hostname in GetCertificate.\n\nAvoiding untagged names would make things cleaner, but unless there\u0027s a concrete risk I\u0027d prefer not to cause a mass reissuance.",
+      "parentUuid": "5ade4faa_39f0ae39",
+      "range": {
+        "startLine": 193,
+        "startChar": 21,
+        "endLine": 193,
+        "endChar": 22
+      },
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67ef9110_aa49ab4e",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c7d36657_89e83b3e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-05T13:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67ef9110_aa49ab4e",
+      "range": {
+        "startLine": 271,
+        "startChar": 67,
+        "endLine": 271,
+        "endChar": 72
+      },
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "081ce0b1_0e2b1bd2",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 6
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "0a0fc701_f4874730",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-05T13:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081ce0b1_0e2b1bd2",
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01ccd894_2dcd37c3",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 6
@@ -79,6 +145,24 @@
       "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec4b798_a9ec25b7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-05T13:53:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "01ccd894_2dcd37c3",
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
