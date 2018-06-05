@@ -52,6 +52,24 @@
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a69bd01_318c23e1",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2018-06-05T08:35:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96a708aa_74b37935",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
