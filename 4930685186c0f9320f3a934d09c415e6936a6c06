@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "1e367524_a5afaa48",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 17788
+      },
+      "writtenOn": "2018-06-05T16:29:59Z",
+      "side": 1,
+      "message": "The other callbacks do it, I assume as a failsafe.  I can remove it if it\u0027s not needed.",
+      "parentUuid": "b683678f_10cb7c5b",
+      "range": {
+        "startLine": 391,
+        "startChar": 28,
+        "endLine": 391,
+        "endChar": 46
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82b73cae_2d7b5e4c",
         "filename": "ssh/server.go",
         "patchSetId": 4
@@ -137,6 +161,30 @@
       "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aafa242_6b02699e",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 17788
+      },
+      "writtenOn": "2018-06-05T16:29:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82b73cae_2d7b5e4c",
+      "range": {
+        "startLine": 527,
+        "startChar": 49,
+        "endLine": 527,
+        "endChar": 50
+      },
+      "revId": "4930685186c0f9320f3a934d09c415e6936a6c06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
