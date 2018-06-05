@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ade4faa_39f0ae39",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-06-05T00:23:59Z",
+      "side": 1,
+      "message": "is \u0027+\u0027 a good deliminator after a hostname? What about putting the fixed part first (i.e. \"token/example.com\") so that any odd characters in the hostname don\u0027t get confused? Also if you always include a prefix, there\u0027s no possibility of confusion with ECDSA (i.e. untagged) hostnames, although that will invalidate existing caches.",
+      "range": {
+        "startLine": 193,
+        "startChar": 21,
+        "endLine": 193,
+        "endChar": 22
+      },
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67ef9110_aa49ab4e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-06-05T00:23:59Z",
+      "side": 1,
+      "message": "7.4.1.4.1",
+      "range": {
+        "startLine": 271,
+        "startChar": 67,
+        "endLine": 271,
+        "endChar": 72
+      },
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "081ce0b1_0e2b1bd2",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-06-05T00:23:59Z",
+      "side": 1,
+      "message": "also check that SupportedCurves contains P-256?",
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ccd894_2dcd37c3",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-06-05T00:23:59Z",
+      "side": 1,
+      "message": "(note: if changing string format, also change here and a few places below.)",
+      "revId": "ec5f2b13fe616add24e7d2459b1aad7517bb02e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
