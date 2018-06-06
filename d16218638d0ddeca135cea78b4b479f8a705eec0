@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c6700b7_fd5f875c",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-06T01:45:03Z",
+      "side": 1,
+      "message": "Sent https://go-review.googlesource.com/#/c/crypto/+/116379 acme/autocert: change a var to a const",
+      "revId": "d16218638d0ddeca135cea78b4b479f8a705eec0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
