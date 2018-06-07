@@ -22,6 +22,8 @@ import (
 	"crypto/sha256"
 	"crypto/tls"
 	"crypto/x509"
+	"crypto/x509/pkix"
+	"encoding/asn1"
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
@@ -39,6 +41,9 @@ import (
 
 // LetsEncryptURL is the Directory endpoint of Let's Encrypt CA.
 const LetsEncryptURL = "https://acme-v01.api.letsencrypt.org/directory"
+
+// idPeACMEIdentifierV1 is the OID for the ACME extension for the TLS-ALPN challenge.
+var idPeACMEIdentifierV1 = asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 1, 30, 1}
 
 const (
 	maxChainLen = 5       // max depth and breadth of a certificate chain
@@ -526,7 +531,7 @@ func (c *Client) HTTP01ChallengePath(token string) string {
 // If no WithKey option is provided, a new ECDSA key is generated using P-256 curve.
 //
 // The returned certificate is valid for the next 24 hours and must be presented only when
-// the server name of the client hello matches exactly the returned name value.
+// the server name of the TLS ClientHello matches exactly the returned name value.
 func (c *Client) TLSSNI01ChallengeCert(token string, opt ...CertOption) (cert tls.Certificate, name string, err error) {
 	ka, err := keyAuth(c.Key.Public(), token)
 	if err != nil {
@@ -553,7 +558,7 @@ func (c *Client) TLSSNI01ChallengeCert(token string, opt ...CertOption) (cert tl
 // If no WithKey option is provided, a new ECDSA key is generated using P-256 curve.
 //
 // The returned certificate is valid for the next 24 hours and must be presented only when
-// the server name in the client hello matches exactly the returned name value.
+// the server name in the TLS ClientHello matches exactly the returned name value.
 func (c *Client) TLSSNI02ChallengeCert(token string, opt ...CertOption) (cert tls.Certificate, name string, err error) {
 	b := sha256.Sum256([]byte(token))
 	h := hex.EncodeToString(b[:])
@@ -572,6 +577,40 @@ func (c *Client) TLSSNI02ChallengeCert(token string, opt ...CertOption) (cert tl
 		return tls.Certificate{}, "", err
 	}
 	return cert, sanA, nil
+}
+
+// TLSALPN01ChallengeCert creates a certificate for TLS-ALPN-01 challenge response.
+// Servers can present the certificate to validate the challenge and prove control
+// over a domain name. For more details on TLS-ALPN-01 see
+// https://tools.ietf.org/html/draft-shoemaker-acme-tls-alpn-00#section-3
+//
+// The token argument is a Challenge.Token value.
+// If a WithKey option is provided, its private part signs the returned cert,
+// and the public part is used to specify the signee.
+// If no WithKey option is provided, a new ECDSA key is generated using P-256 curve.
+//
+// The returned certificate is valid for the next 24 hours and must be presented only when
+// the server name in the TLS ClientHello matches the domain, and the special acme-tls/1 ALPN protocol
+// has been specified.
+func (c *Client) TLSALPN01ChallengeCert(token, domain string, opt ...CertOption) (cert tls.Certificate, err error) {
+	ka, err := keyAuth(c.Key.Public(), token)
+	if err != nil {
+		return tls.Certificate{}, err
+	}
+	shasum := sha256.Sum256([]byte(ka))
+	acmeExtension := pkix.Extension{
+		Id:       idPeACMEIdentifierV1,
+		Critical: true,
+		Value:    shasum[:],
+	}
+
+	newOpt := []CertOption{WithExtensions([]pkix.Extension{acmeExtension})}
+	newOpt = append(newOpt, opt...)
+	cert, err = tlsChallengeCert([]string{domain}, newOpt)
+	if err != nil {
+		return tls.Certificate{}, err
+	}
+	return cert, nil
 }
 
 // doReg sends all types of registration requests.
@@ -803,6 +842,7 @@ func tlsChallengeCert(san []string, opt []CertOption) (tls.Certificate, error) {
 	var (
 		key  crypto.Signer
 		tmpl *x509.Certificate
+		exts []pkix.Extension
 	)
 	for _, o := range opt {
 		switch o := o.(type) {
@@ -814,6 +854,8 @@ func tlsChallengeCert(san []string, opt []CertOption) (tls.Certificate, error) {
 		case *certOptTemplate:
 			var t = *(*x509.Certificate)(o) // shallow copy is ok
 			tmpl = &t
+		case *certOptExtensions:
+			exts = append(exts, ([]pkix.Extension)(*o)...)
 		default:
 			// package's fault, if we let this happen:
 			panic(fmt.Sprintf("unsupported option type %T", o))
@@ -839,6 +881,7 @@ func tlsChallengeCert(san []string, opt []CertOption) (tls.Certificate, error) {
 	if len(san) > 0 {
 		tmpl.Subject.CommonName = san[0]
 	}
+	tmpl.ExtraExtensions = append(tmpl.ExtraExtensions, exts...)
 
 	der, err := x509.CreateCertificate(rand.Reader, tmpl, tmpl, key.Public(), key)
 	if err != nil {
