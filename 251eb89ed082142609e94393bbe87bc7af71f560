@@ -615,6 +615,24 @@
     },
     {
       "key": {
+        "uuid": "b7b74a95_eb12bcf2",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T21:02:39Z",
+      "side": 1,
+      "message": "The semantics is: take the user-provided template (or default if none) and add all extensions from options to it. In TLS-ALPN case, also add ACME extension.\n\nIf the code does something else, it is a bug in the code, and please point it out (it did in PS1).\n\nI believe this is a reasonable semantics, and cleaner to just using WithTemplate. If I did not add WithExtensions, TLSALPN01ChallengeCert would have additionally:\n\n        tmpl :\u003d defaultTemplate // needs to be exposed from tlsChallengeCert\n        for _, o :\u003d range opt {\n                switch o :\u003d o.(type) {\n                case *certOptTemplate:\n                        var t \u003d *(*x509.Certificate)(o) // shallow copy is ok\n                        tmpl \u003d \u0026t\n                case ...:\n                        continue\n                default:\n                        // package\u0027s fault, if we let this happen:\n                        panic(fmt.Sprintf(\"unsupported option type %T\", o))\n                }\n        }\n        tmpl.ExtraExtensions \u003d append(tmpl.ExtraExtensions, ACMEExtension)\n        tlsChallengeCert(..., WithTemplate(tmpl))\nI don\u0027t like it at all.",
+      "parentUuid": "b306f144_5374ded8",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "977269a9_c83ee298",
         "filename": "acme/types.go",
         "patchSetId": 1
