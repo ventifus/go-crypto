@@ -597,6 +597,24 @@
     },
     {
       "key": {
+        "uuid": "b306f144_5374ded8",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-07T15:42:29Z",
+      "side": 1,
+      "message": "I guess the above comment was for WithExtensions func:\n\nWhat I meant is, it\u0027s different for ALPN and other challenges. In the former, you\u0027ll append because you already have at least one extension, and either way the final result always overrides default ExtraExtensions semantics.\n\nIn the latter case, WithExtensions is not \"additional\" but a \"replacement\" if no other ExtraExtensions were explicitely specified by the user. I\u0027d rather you leave this to x509.Certificate.ExtraExtensions and just say in TLSALPN01 function doc that the resulting cert overrides ExtraExtensions either way, appending to user-specified template or just replacing it in the default template.",
+      "parentUuid": "da90a6d9_fc8cad58",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "977269a9_c83ee298",
         "filename": "acme/types.go",
         "patchSetId": 1
