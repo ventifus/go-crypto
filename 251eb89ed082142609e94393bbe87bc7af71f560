@@ -402,6 +402,24 @@
     },
     {
       "key": {
+        "uuid": "ad27a4c1_25ea94aa",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-07T15:35:04Z",
+      "side": 1,
+      "message": "Yeah, just append the acme extension to the user-specified template, or create a new one if none were specified. Not sure about \"have the default in TLSxxxChallengeCert functions\" - tlsChallengeCert already creates the default template.\n\nI don\u0027t see a problem here. What am I missing?",
+      "parentUuid": "cf307f9d_7fcbeb20",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7023e8f_fb8bf7ad",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -434,6 +452,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08cb6bcf_014772f1",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-07T15:35:04Z",
+      "side": 1,
+      "message": "This seems to complicate things even more: if I specify a template the default semantics for ExtraExtensions hold. If I only specify the extra extensions, they override the default template\u0027s. If I specify both, my WithExtensions option gets appended to the other extra extensions I\u0027d specified in the template.\n\nI think it should be much simpler, and it feels like it can with using just the existing WithTemplate option.",
+      "parentUuid": "c4ffa2e3_70246231",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     },
     {
       "key": {
@@ -484,6 +520,30 @@
     },
     {
       "key": {
+        "uuid": "fb155d07_942243fa",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-07T15:35:04Z",
+      "side": 1,
+      "message": "Or just use TLSxChallengeCert. I\u0027d think one \"x\" is enough.",
+      "parentUuid": "5dae4472_1487d00b",
+      "range": {
+        "startLine": 300,
+        "startChar": 51,
+        "endLine": 300,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "553876c4_26417e10",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -516,6 +576,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da90a6d9_fc8cad58",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-07T15:35:04Z",
+      "side": 1,
+      "message": "It\u0027s still confusing, because the extensions aren\u0027t added but replaced, this is different from what the doc says here.",
+      "parentUuid": "4292a72a_3baa7bea",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     },
     {
       "key": {
