@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbe96d1a_2a2407fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "drop the \"x/crypto/\" prefix. We only do that for issues, where we share a repo and need to disambiguate. We don\u0027t need to duplicate it here.\n\nSee https://github.com/golang/go/wiki/CommitMessage",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b89d3fec_600213e6",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "is the OID for the ACME TLS-ALPN challenge type.",
+      "range": {
+        "startLine": 45,
+        "startChar": 54,
+        "endLine": 45,
+        "endChar": 66
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "164c4125_1c0c721a",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "wrong case, per https://github.com/golang/go/wiki/CodeReviewComments#initialisms\n\nACME not Acme, etc.\n\nBut also: why does this need to be exported? Can you make it lowercase?",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45d60b06_88a212f6",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "and the special",
+      "range": {
+        "startLine": 593,
+        "startChar": 59,
+        "endLine": 593,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba066d60_c2f9bf06",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "in the TLS ClientHello",
+      "range": {
+        "startLine": 593,
+        "startChar": 26,
+        "endLine": 593,
+        "endChar": 38
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e81f28fa_a66d64d6",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "token, domain string",
+      "range": {
+        "startLine": 595,
+        "startChar": 40,
+        "endLine": 595,
+        "endChar": 67
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "930ddb90_d56139a9",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T14:40:04Z",
+      "side": 1,
+      "message": "just list them both",
+      "range": {
+        "startLine": 300,
+        "startChar": 51,
+        "endLine": 300,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
