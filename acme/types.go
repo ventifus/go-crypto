@@ -7,6 +7,7 @@ package acme
 import (
 	"crypto"
 	"crypto/x509"
+	"crypto/x509/pkix"
 	"errors"
 	"fmt"
 	"net/http"
@@ -296,8 +297,8 @@ func (e *wireError) error(h http.Header) *Error {
 	}
 }
 
-// CertOption is an optional argument type for the TLSSNIxChallengeCert methods for
-// customizing a temporary certificate for TLS-SNI challenges.
+// CertOption is an optional argument type for the TLS ChallengeCert methods for
+// customizing a temporary certificate for TLS-based challenges.
 type CertOption interface {
 	privateCertOpt()
 }
@@ -317,7 +318,7 @@ func (*certOptKey) privateCertOpt() {}
 // WithTemplate creates an option for specifying a certificate template.
 // See x509.CreateCertificate for template usage details.
 //
-// In TLSSNIxChallengeCert methods, the template is also used as parent,
+// In TLS ChallengeCert methods, the template is also used as parent,
 // resulting in a self-signed certificate.
 // The DNSNames field of t is always overwritten for tls-sni challenge certs.
 func WithTemplate(t *x509.Certificate) CertOption {
@@ -327,3 +328,14 @@ func WithTemplate(t *x509.Certificate) CertOption {
 type certOptTemplate x509.Certificate
 
 func (*certOptTemplate) privateCertOpt() {}
+
+// WithExtensions creates an option for specifying additional extensions to the
+// created certificate. They are added to extensions specified in default or
+// user-provided template.
+func WithExtensions(es []pkix.Extension) CertOption {
+	return (*certOptExtensions)(&es)
+}
+
+type certOptExtensions []pkix.Extension
+
+func (*certOptExtensions) privateCertOpt() {}
