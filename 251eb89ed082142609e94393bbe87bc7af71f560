@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "48db88fa_b1d9ea3d",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-07T15:20:22Z",
+      "side": 1,
+      "message": "I don\u0027t see any changes.",
+      "parentUuid": "ebafec21_367c59ab",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45d60b06_88a212f6",
         "filename": "acme/acme.go",
         "patchSetId": 1
