@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9762a3db_54844305",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbe96d1a_2a2407fd",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b60d31e_4544a7a7",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54aaaa63_d4922e77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b60d31e_4544a7a7",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "a4eb2204_64f85059",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "It is not for the challenge itself, but for the x509 cert extension, I\u0027d keep that in the description.",
+      "parentUuid": "b89d3fec_600213e6",
+      "range": {
+        "startLine": 45,
+        "startChar": 54,
+        "endLine": 45,
+        "endChar": 66
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "164c4125_1c0c721a",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -85,6 +151,30 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebafec21_367c59ab",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "164c4125_1c0c721a",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +224,54 @@
     },
     {
       "key": {
+        "uuid": "f7d33e62_405b4f12",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba066d60_c2f9bf06",
+      "range": {
+        "startLine": 593,
+        "startChar": 26,
+        "endLine": 593,
+        "endChar": 38
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0a010c1_a0bc9030",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45d60b06_88a212f6",
+      "range": {
+        "startLine": 593,
+        "startChar": 59,
+        "endLine": 593,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e81f28fa_a66d64d6",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "da68ffed_39901f63",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e81f28fa_a66d64d6",
+      "range": {
+        "startLine": 595,
+        "startChar": 40,
+        "endLine": 595,
+        "endChar": 67
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c24b853_07b19372",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -174,6 +336,24 @@
     },
     {
       "key": {
+        "uuid": "cf307f9d_7fcbeb20",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "I\u0027d need to pull template from options (in case user provided one), or have the default in TLSxxxChallengeCert functions (in case not) instead of in tlsChallengeCert, and modify it and pass again. This is pretty cumbersome.",
+      "parentUuid": "4c24b853_07b19372",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7023e8f_fb8bf7ad",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -188,6 +368,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4ffa2e3_70246231",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "You\u0027re right the semantic was strange. I\u0027ve modified it so that extensions from all WithExtensions options are added to the template instead.",
+      "parentUuid": "f7023e8f_fb8bf7ad",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -214,6 +412,30 @@
     },
     {
       "key": {
+        "uuid": "5dae4472_1487d00b",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "There are three of them: TLSSNI01, TLSSNI02 and TLSALPN01 (see code before). I\u0027d prefer \"xxx\" unless you object strongly.",
+      "parentUuid": "930ddb90_d56139a9",
+      "range": {
+        "startLine": 300,
+        "startChar": 51,
+        "endLine": 300,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "553876c4_26417e10",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -231,6 +453,24 @@
     },
     {
       "key": {
+        "uuid": "4292a72a_3baa7bea",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "See other comment",
+      "parentUuid": "553876c4_26417e10",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "977269a9_c83ee298",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -245,6 +485,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3933c68e_6190cfde",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-07T15:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "977269a9_c83ee298",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
