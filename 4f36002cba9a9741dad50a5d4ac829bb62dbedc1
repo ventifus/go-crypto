@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f833c3_5ba08e66",
+        "filename": "acme/acme.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T09:13:44Z",
+      "side": 1,
+      "message": "s/Tls/TLS (initialism)",
+      "revId": "4f36002cba9a9741dad50a5d4ac829bb62dbedc1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
