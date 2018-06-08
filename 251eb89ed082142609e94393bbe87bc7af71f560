@@ -420,6 +420,24 @@
     },
     {
       "key": {
+        "uuid": "5b0209e3_38b93655",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T07:49:50Z",
+      "side": 1,
+      "message": "Your snippet in the other comment looks ok, except you don\u0027t need to check all the options because it\u0027s already done in tlsChallengeCert anyway:\n\n  var tmpl *x509.Certificate\n  var opts []CertOption\n  for _, o :\u003d range opt {\n    switch o :\u003d o.(type) {\n    case *certOptTemplate:\n      t :\u003d *(*x509.Certificate)(o)\n      tmpl \u003d \u0026t\n    default:\n      opts \u003d append(opts, o)\n    }\n  }\n  if tmpl \u003d\u003d nil {\n    tmpl \u003d tlsChallengeTemplate()\n    opts \u003d append(opts, WithTemplate(tmpl))\n  }\n  tmpl.ExtraExtensions \u003d append(tmpl.ExtraExtensions, acmeExt)\n  return tlsChallengeCert(tmpl, opts)",
+      "parentUuid": "ad27a4c1_25ea94aa",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7023e8f_fb8bf7ad",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -630,6 +648,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1bedaf8d_aca9b98c",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T07:49:50Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t like it at all.\n\nWhy not. Either way, internal code shouldn\u0027t be simplified at the expense of the package users, like exporting a new function in this case.\n\nLet\u0027s continue this in the acme.go. See my comment in TLSALPN01 method.",
+      "parentUuid": "b7b74a95_eb12bcf2",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     },
     {
       "key": {

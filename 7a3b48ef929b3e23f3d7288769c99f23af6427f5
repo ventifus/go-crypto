@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36b45a7f_d5c5a36e",
+        "filename": "acme/acme.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T07:49:50Z",
+      "side": 1,
+      "message": "no need for this, just \"return tlsChallengeCert(...)\" on the previous line.",
+      "revId": "7a3b48ef929b3e23f3d7288769c99f23af6427f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
