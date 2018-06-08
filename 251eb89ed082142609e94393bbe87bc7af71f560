@@ -474,6 +474,24 @@
     },
     {
       "key": {
+        "uuid": "67e39c7f_f265c85a",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T08:10:44Z",
+      "side": 1,
+      "message": "\u003e This is an exact duplication of what happens in tlsChallengeCert.\n\nSo what? Some times \"A little copying is better than a little dependency.\"\nhttps://go-proverbs.github.io/\n\n\u003e WithExtension can also be useful to users - if one wants to just add a custom extension, it is much easier to do it this way than to specify whole template.\n\nThis is a very specific use case and doesn\u0027t warrant a whole new exported function, imho. If someone needs to provide a custom extension, they might as well just use a template. It\u0027s only a few extra lines. Not that big at all.\n\nAside from the above, I also think the WithExtensions complicates things even for internal code understanding. It makes WithTemplate + WithExtensions options combination harder to understand and much easier to introduce a bug in the future.\n\nYou can see this can clearly be done with the existing WithTemplate option.",
+      "parentUuid": "2836296e_efbe9a2c",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7023e8f_fb8bf7ad",
         "filename": "acme/acme.go",
         "patchSetId": 1
