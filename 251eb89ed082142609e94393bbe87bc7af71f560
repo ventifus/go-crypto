@@ -492,6 +492,24 @@
     },
     {
       "key": {
+        "uuid": "613bb828_a750ac78",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-08T08:26:50Z",
+      "side": 1,
+      "message": "I think this is terrible, but I don\u0027t care enough and need this feature quickly. It\u0027s your library after all.",
+      "parentUuid": "67e39c7f_f265c85a",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7023e8f_fb8bf7ad",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -542,6 +560,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44167811_4de79694",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-08T08:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08cb6bcf_014772f1",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -613,6 +649,30 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d0e90bd_5be23df0",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-08T08:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb155d07_942243fa",
+      "range": {
+        "startLine": 300,
+        "startChar": 51,
+        "endLine": 300,
+        "endChar": 70
+      },
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -720,6 +780,24 @@
       "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b10b4cb_3e6fdec0",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 26521
+      },
+      "writtenOn": "2018-06-08T08:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bedaf8d_aca9b98c",
+      "revId": "251eb89ed082142609e94393bbe87bc7af71f560",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
