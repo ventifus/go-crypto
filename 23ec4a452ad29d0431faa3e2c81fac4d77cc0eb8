@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3396fa96_1b26847c",
+        "filename": "acme/acme.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-08T08:40:53Z",
+      "side": 1,
+      "message": "Maybe tlsChallengeTemplate or something like that.\nOtherwise, unclear what this default is for.\n\nAlso, a doc comment what it\u0027s for?\nPersonally, I\u0027d move it close to where it\u0027s used, maybe beneath tlsChallengeCert func.",
+      "revId": "23ec4a452ad29d0431faa3e2c81fac4d77cc0eb8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
