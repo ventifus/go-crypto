@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7ea0f9fe_ff27d46c",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-12T19:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a6e2032_1efee24b",
+      "range": {
+        "startLine": 59,
+        "startChar": 29,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af44fbdd_761f2230",
         "filename": "chacha20poly1305/chacha20poly1305_generic.go",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f624b7_c4c1aa34",
+        "filename": "chacha20poly1305/chacha20poly1305_generic.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-12T19:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af44fbdd_761f2230",
+      "range": {
+        "startLine": 21,
+        "startChar": 29,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -80,6 +128,24 @@
       "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b9b137b_0c4e5038",
+        "filename": "subtle/aliasing.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-12T19:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de260905_8b8ddd16",
+      "revId": "47c12af7adef71568f4160bac55edb38bb9cfab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
