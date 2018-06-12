@@ -346,10 +346,12 @@ EachPacket:
 
 		switch pkt := p.(type) {
 		case *packet.UserId:
+			// Make a new Identity object, that we might wind up throwing away.
+			// We'll only add it if we get a valid self-signature over this
+			// userID.
 			current = new(Identity)
 			current.Name = pkt.Id
 			current.UserId = pkt
-			e.Identities[pkt.Id] = current
 
 			for {
 				p, err = packets.Next()
@@ -361,7 +363,8 @@ EachPacket:
 
 				sig, ok := p.(*packet.Signature)
 				if !ok {
-					return nil, errors.StructuralError("user ID packet not followed by self-signature")
+					packets.Unread(p)
+					break
 				}
 
 				if (sig.SigType == packet.SigTypePositiveCert || sig.SigType == packet.SigTypeGenericCert) && sig.IssuerKeyId != nil && *sig.IssuerKeyId == e.PrimaryKey.KeyId {
@@ -369,6 +372,7 @@ EachPacket:
 						return nil, errors.StructuralError("user ID self-signature invalid: " + err.Error())
 					}
 					current.SelfSignature = sig
+					e.Identities[pkt.Id] = current
 					break
 				}
 				current.Signatures = append(current.Signatures, sig)
