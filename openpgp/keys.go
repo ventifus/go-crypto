@@ -346,35 +346,29 @@ EachPacket:
 
 		switch pkt := p.(type) {
 		case *packet.UserId:
+
+			// Make a new Identity object, that we might wind up throwing away.
+			// We'll only add it if we get a valid self-signature over this
+			// userID.
 			current = new(Identity)
 			current.Name = pkt.Id
 			current.UserId = pkt
-			e.Identities[pkt.Id] = current
-
-			for {
-				p, err = packets.Next()
-				if err == io.EOF {
-					return nil, io.ErrUnexpectedEOF
-				} else if err != nil {
-					return nil, err
-				}
-
-				sig, ok := p.(*packet.Signature)
-				if !ok {
-					return nil, errors.StructuralError("user ID packet not followed by self-signature")
-				}
-
-				if (sig.SigType == packet.SigTypePositiveCert || sig.SigType == packet.SigTypeGenericCert) && sig.IssuerKeyId != nil && *sig.IssuerKeyId == e.PrimaryKey.KeyId {
-					if err = e.PrimaryKey.VerifyUserIdSignature(pkt.Id, e.PrimaryKey, sig); err != nil {
-						return nil, errors.StructuralError("user ID self-signature invalid: " + err.Error())
-					}
-					current.SelfSignature = sig
-					break
-				}
-				current.Signatures = append(current.Signatures, sig)
-			}
 		case *packet.Signature:
-			if pkt.SigType == packet.SigTypeKeyRevocation {
+
+			// First handle the case of: a self-signature, and no previous self-signature
+			// verified for this UID.
+			if current != nil && current.SelfSignature == nil && (pkt.SigType == packet.SigTypePositiveCert || pkt.SigType == packet.SigTypeGenericCert) && pkt.IssuerKeyId != nil && *pkt.IssuerKeyId == e.PrimaryKey.KeyId {
+				if err = e.PrimaryKey.VerifyUserIdSignature(current.Name, e.PrimaryKey, pkt); err == nil {
+
+					// Only set this self-sig once. It can't be overwritten.
+					current.SelfSignature = pkt
+
+					e.Identities[current.Name] = current
+				} else {
+					// TODO: We really should warn that there was a failure here. Not raise an error
+					// since this really shouldn't be a fail-stop error.
+				}
+			} else if pkt.SigType == packet.SigTypeKeyRevocation {
 				revocations = append(revocations, pkt)
 			} else if pkt.SigType == packet.SigTypeDirectSignature {
 				// TODO: RFC4880 5.2.1 permits signatures
