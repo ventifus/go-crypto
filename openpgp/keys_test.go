@@ -116,8 +116,12 @@ func TestRevokedUserID(t *testing.T) {
 	if len(keys) != 1 {
 		t.Fatal("Failed to read key with a revoked user id")
 	}
-	if numIdentities, numExpected := len(keys[0].Identities), 1; numIdentities != numExpected {
-		t.Errorf("obtained %d identities, expected %d", numIdentities, numExpected)
+	if numIdentities, numExpected := len(keys[0].Identities), 2; numIdentities != numExpected {
+		t.Fatalf("obtained %d identities, expected %d", numIdentities, numExpected)
+	}
+	revokedIdentityName := "Golang Gopher <revoked@golang.com>"
+	if numRevocations, numExpected := len(keys[0].Identities[revokedIdentityName].Revocations), 1; numRevocations != numExpected {
+		t.Errorf("obtained %d identities, expected %d", numRevocations, numExpected)
 	}
 }
 
