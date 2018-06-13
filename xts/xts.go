@@ -31,6 +31,7 @@ import (
 // and therefore can be used concurrently.
 type Cipher struct {
 	k1, k2 cipher.Block
+	tweak  [blockSize]byte
 }
 
 // blockSize is the block size that the underlying cipher must have. XTS is
@@ -65,23 +66,25 @@ func (c *Cipher) Encrypt(ciphertext, plaintext []byte, sectorNum uint64) {
 		panic("xts: plaintext is not a multiple of the block size")
 	}
 
-	var tweak [blockSize]byte
-	binary.LittleEndian.PutUint64(tweak[:8], sectorNum)
+	for i := range c.tweak {
+		c.tweak[i] = 0
+	}
+	binary.LittleEndian.PutUint64(c.tweak[:8], sectorNum)
 
-	c.k2.Encrypt(tweak[:], tweak[:])
+	c.k2.Encrypt(c.tweak[:], c.tweak[:])
 
 	for len(plaintext) > 0 {
-		for j := range tweak {
-			ciphertext[j] = plaintext[j] ^ tweak[j]
+		for j := range c.tweak {
+			ciphertext[j] = plaintext[j] ^ c.tweak[j]
 		}
 		c.k1.Encrypt(ciphertext, ciphertext)
-		for j := range tweak {
-			ciphertext[j] ^= tweak[j]
+		for j := range c.tweak {
+			ciphertext[j] ^= c.tweak[j]
 		}
 		plaintext = plaintext[blockSize:]
 		ciphertext = ciphertext[blockSize:]
 
-		mul2(&tweak)
+		mul2(&c.tweak)
 	}
 }
 
@@ -96,23 +99,25 @@ func (c *Cipher) Decrypt(plaintext, ciphertext []byte, sectorNum uint64) {
 		panic("xts: ciphertext is not a multiple of the block size")
 	}
 
-	var tweak [blockSize]byte
-	binary.LittleEndian.PutUint64(tweak[:8], sectorNum)
+	for i := range c.tweak {
+		c.tweak[i] = 0
+	}
+	binary.LittleEndian.PutUint64(c.tweak[:8], sectorNum)
 
-	c.k2.Encrypt(tweak[:], tweak[:])
+	c.k2.Encrypt(c.tweak[:], c.tweak[:])
 
 	for len(ciphertext) > 0 {
-		for j := range tweak {
-			plaintext[j] = ciphertext[j] ^ tweak[j]
+		for j := range c.tweak {
+			plaintext[j] = ciphertext[j] ^ c.tweak[j]
 		}
 		c.k1.Decrypt(plaintext, plaintext)
-		for j := range tweak {
-			plaintext[j] ^= tweak[j]
+		for j := range c.tweak {
+			plaintext[j] ^= c.tweak[j]
 		}
 		plaintext = plaintext[blockSize:]
 		ciphertext = ciphertext[blockSize:]
 
-		mul2(&tweak)
+		mul2(&c.tweak)
 	}
 }
 
