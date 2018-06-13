@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0c585ab_4615b08f",
+        "filename": "openpgp/keys_test.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-13T22:21:02Z",
+      "side": 1,
+      "message": "Also test that the one that was parsed is the non-revoked identity.",
+      "revId": "c5cd3bf30b51b9925a016eb8abc0ff904eb172aa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
