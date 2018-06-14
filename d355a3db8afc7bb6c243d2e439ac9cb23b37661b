@@ -69,6 +69,24 @@
       "revId": "d355a3db8afc7bb6c243d2e439ac9cb23b37661b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "093b3aeb_ce92655d",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 27580
+      },
+      "writtenOn": "2018-06-14T16:58:55Z",
+      "side": 1,
+      "message": "I have removed the break but I kept the signature handling. A follow-up patch could improve addSubKey and then remove this signature handling.",
+      "parentUuid": "a6d6e060_8460b07b",
+      "revId": "d355a3db8afc7bb6c243d2e439ac9cb23b37661b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
