@@ -29,16 +29,16 @@ func TestKeyExpiry(t *testing.T) {
 	//
 	// So this should select the newest, non-expired encryption key.
 	key, _ := entity.encryptionKey(time1)
-	if id := key.PublicKey.KeyIdShortString(); id != "96A672F5" {
-		t.Errorf("Expected key 1ABB25A0 at time %s, but got key %s", time1.Format(timeFormat), id)
+	if id, expected := key.PublicKey.KeyIdShortString(), "96A672F5"; id != expected {
+		t.Errorf("Expected key %s at time %s, but got key %s", expected, time1.Format(timeFormat), id)
 	}
 
 	// Once the first encryption subkey has expired, the second should be
 	// selected.
 	time2, _ := time.Parse(timeFormat, "2013-07-09")
 	key, _ = entity.encryptionKey(time2)
-	if id := key.PublicKey.KeyIdShortString(); id != "96A672F5" {
-		t.Errorf("Expected key 96A672F5 at time %s, but got key %s", time2.Format(timeFormat), id)
+	if id, expected := key.PublicKey.KeyIdShortString(), "96A672F5"; id != expected {
+		t.Errorf("Expected key %s at time %s, but got key %s", expected, time2.Format(timeFormat), id)
 	}
 
 	// Once all the keys have expired, nothing should be returned.
@@ -178,6 +178,44 @@ func TestKeyRevocation(t *testing.T) {
 			t.Errorf("Expected KeysByIdUsage to filter out revoked key %X, but got %d matches", id, len(keys))
 		}
 	}
+}
+
+func TestKeyWithRevokedSubKey(t *testing.T) {
+	// This key contains a sub key:
+	//  pub   rsa1024/0x4CBD826C39074E38 2018-06-14 [SC]
+	//        Key fingerprint = 3F95 169F 3FFA 7D3F 2B47  6F0C 4CBD 826C 3907 4E38
+	//  uid   Golang Gopher <no-reply@golang.com>
+	//  sub   rsa1024/0x945DB1AF61D85727 2018-06-14 [S] [revoked: 2018-06-14]
+
+	keys, err := ReadArmoredKeyRing(bytes.NewBufferString(keyWithSubKey))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(keys) != 1 {
+		t.Fatal("Failed to read key with a sub key")
+	}
+
+	identity := keys[0].Identities["Golang Gopher <no-reply@golang.com>"]
+
+	// Test for an issue where Subkey Binding Signatures (RFC 4880 5.2.1) were added to the identity
+	// preceding the Subkey Packet if the Subkey Packet was followed by more than one signature.
+	// For example:
+	//    PUBKEY UID SELFSIG SUBKEY REV SELFSIG
+	// The last SELFSIG would be added to the UID. This is wrong.
+	if numIdentitySigs, numExpected := len(identity.Signatures), 0; numIdentitySigs != numExpected {
+		t.Fatalf("got %d identity signatures, expected %d", numIdentitySigs, numExpected)
+	}
+
+	if numSubKeys, numExpected := len(keys[0].Subkeys), 1; numSubKeys != numExpected {
+		t.Fatalf("got %d subkeys, expected %d", numSubKeys, numExpected)
+	}
+
+	subKey := keys[0].Subkeys[0]
+	if subKey.Sig == nil {
+		t.Fatalf("subkey signature is nil")
+	}
+
 }
 
 func TestSubkeyRevocation(t *testing.T) {
@@ -546,4 +584,32 @@ yJl9bD5R4SUNy8oQmhOxi+gbhD4Ao34e4W0ilibslI/uawvCiOwlu5NGd8zv5n+U
 heiQvzkApQup5c+BhH5zFDFdKJ2CBByxw9+7QjMFI/wgLixKuE0Ob2kAokXf7RlB
 7qTZOahrETw=
 =IKnw
+-----END PGP PUBLIC KEY BLOCK-----`
+
+const keyWithSubKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mI0EWyKwKQEEALwXhKBnyaaNFeK3ljfc/qn9X/QFw+28EUfgZPHjRmHubuXLE2uR
+s3ZoSXY2z7Dkv+NyHYMt8p+X8q5fR7JvUjK2XbPyKoiJVnHINll83yl67DaWfKNL
+EjNoO0kIfbXfCkZ7EG6DL+iKtuxniGTcnGT47e+HJSqb/STpLMnWwXjBABEBAAG0
+I0dvbGFuZyBHb3BoZXIgPG5vLXJlcGx5QGdvbGFuZy5jb20+iM4EEwEKADgWIQQ/
+lRafP/p9PytHbwxMvYJsOQdOOAUCWyKwKQIbAwULCQgHAwUVCgkICwUWAgMBAAIe
+AQIXgAAKCRBMvYJsOQdOOOsFBAC62mXww8XuqvYLcVOvHkWLT6mhxrQOJXnlfpn7
+2uBV9CMhoG/Ycd43NONsJrB95Apr9TDIqWnVszNbqPCuBhZQSGLdbiDKjxnCWBk0
+69qv4RNtkpOhYB7jK4s8F5oQZqId6JasT/PmJTH92mhBYhhTQr0GYFuPX2UJdkw9
+Sn9C67iNBFsisDUBBAC3A+Yo9lgCnxi/pfskyLrweYif6kIXWLAtLTsM6g/6jt7b
+wTrknuCPyTv0QKGXsAEe/cK/Xq3HvX9WfXPGIHc/X56ZIsHQ+RLowbZV/Lhok1IW
+FAuQm8axr/by80cRwFnzhfPc/ukkAq2Qyj4hLsGblu6mxeAhzcp8aqmWOO2H9QAR
+AQABiLYEKAEKACAWIQQ/lRafP/p9PytHbwxMvYJsOQdOOAUCWyK16gIdAAAKCRBM
+vYJsOQdOOB1vA/4u4uLONsE+2GVOyBsHyy7uTdkuxaR9b54A/cz6jT/tzUbeIzgx
+22neWhgvIEghnUZd0vEyK9k1wy5vbDlEo6nKzHso32N1QExGr5upRERAxweDxGOj
+7luDwNypI7QcifE64lS/JmlnunwRCdRWMKc0Fp+7jtRc5mpwyHN/Suf5RokBagQY
+AQoAIBYhBD+VFp8/+n0/K0dvDEy9gmw5B044BQJbIrA1AhsCAL8JEEy9gmw5B044
+tCAEGQEKAB0WIQSNdnkaWY6t62iX336UXbGvYdhXJwUCWyKwNQAKCRCUXbGvYdhX
+JxJSA/9fCPHP6sUtGF1o3G1a3yvOUDGr1JWcct9U+QpbCt1mZoNopCNDDQAJvDWl
+mvDgHfuogmgNJRjOMznvahbF+wpTXmB7LS0SK412gJzl1fFIpK4bgnhu0TwxNsO1
+8UkCZWqxRMgcNUn9z6XWONK8dgt5JNvHSHrwF4CxxwjL23AAtK+FA/UUoi3U4kbC
+0XnSr1Sl+mrzQi1+H7xyMe7zjqe+gGANtskqexHzwWPUJCPZ5qpIa2l8ghiUim6b
+4ymJ+N8/T8Yva1FaPEqfMzzqJr8McYFm0URioXJPvOAlRxdHPteZ0qUopt/Jawxl
+Xt6B9h1YpeLoJwjwsvbi98UTRs0jXwoY
+=3fWu
 -----END PGP PUBLIC KEY BLOCK-----`
