@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "763a11dc_31082e99",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-14T15:21:31Z",
+      "side": 1,
+      "message": "This should be \"break\" or \"continue EachPacket\".",
+      "revId": "d355a3db8afc7bb6c243d2e439ac9cb23b37661b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89d74811_35478c6f",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-14T15:21:31Z",
+      "side": 1,
+      "message": "I\u0027m confused by how current.Signatures is populated. It seems to allow\n\n   UID SIG SIG SELFSIG OTHER SIG\n\nwith a non-sig packet between the UID and the SIG, as long as a SELFSIG appeared before it.\n\nIs that by spec? If not could we just lose this current handling, and remove the break at line 376?",
+      "revId": "d355a3db8afc7bb6c243d2e439ac9cb23b37661b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
