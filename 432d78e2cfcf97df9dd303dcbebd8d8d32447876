@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8439ff51_47a091aa",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-14T20:23:45Z",
+      "side": 1,
+      "message": "I prefer to avoid map[string]x as it provides less type safety and requires comments to specify what the keys are.",
+      "parentUuid": "8408eaad_225d85ac",
+      "revId": "432d78e2cfcf97df9dd303dcbebd8d8d32447876",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9dbd7a39_db68e743",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "432d78e2cfcf97df9dd303dcbebd8d8d32447876",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "384d0d1a_2bf76410",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-14T20:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dbd7a39_db68e743",
+      "range": {
+        "startLine": 623,
+        "startChar": 30,
+        "endLine": 623,
+        "endChar": 34
+      },
+      "revId": "432d78e2cfcf97df9dd303dcbebd8d8d32447876",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
