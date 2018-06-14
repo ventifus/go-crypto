@@ -38,6 +38,7 @@ type Identity struct {
 	UserId        *packet.UserId
 	SelfSignature *packet.Signature
 	Signatures    []*packet.Signature
+	Revocations   []*packet.Signature
 }
 
 // A Subkey is an additional public key in an Entity. Subkeys can be used for
@@ -345,36 +346,8 @@ EachPacket:
 
 		switch pkt := p.(type) {
 		case *packet.UserId:
-			// Make a new Identity object, that we might wind up throwing away.
-			// We'll only add it if we get a valid self-signature over this
-			// userID.
-			current := new(Identity)
-			current.Name = pkt.Id
-			current.UserId = pkt
-
-			for {
-				p, err = packets.Next()
-				if err == io.EOF {
-					break EachPacket
-				} else if err != nil {
-					return nil, err
-				}
-
-				sig, ok := p.(*packet.Signature)
-				if !ok {
-					packets.Unread(p)
-					continue EachPacket
-				}
-
-				if (sig.SigType == packet.SigTypePositiveCert || sig.SigType == packet.SigTypeGenericCert) && sig.IssuerKeyId != nil && *sig.IssuerKeyId == e.PrimaryKey.KeyId {
-					if err = e.PrimaryKey.VerifyUserIdSignature(pkt.Id, e.PrimaryKey, sig); err != nil {
-						return nil, errors.StructuralError("user ID self-signature invalid: " + err.Error())
-					}
-					current.SelfSignature = sig
-					e.Identities[pkt.Id] = current
-				} else {
-					current.Signatures = append(current.Signatures, sig)
-				}
+			if err := addUserID(e, packets, pkt); err != nil {
+				return nil, err
 			}
 		case *packet.Signature:
 			if pkt.SigType == packet.SigTypeKeyRevocation {
@@ -424,6 +397,52 @@ EachPacket:
 	}
 
 	return e, nil
+}
+
+func addUserID(e *Entity, packets *packet.Reader, pkt *packet.UserId) error {
+	// Make a new Identity object, that we might wind up throwing away.
+	// We'll only add it if we get a valid self-signature over this
+	// userID.
+	identity := new(Identity)
+	identity.Name = pkt.Id
+	identity.UserId = pkt
+
+	for {
+		p, err := packets.Next()
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			return err
+		}
+
+		sig, ok := p.(*packet.Signature)
+		if !ok {
+			packets.Unread(p)
+			break
+		}
+
+		switch sig.SigType {
+		case packet.SigTypeCertRevocation:
+			identity.Revocations = append(identity.Revocations, sig)
+		case packet.SigTypePositiveCert, packet.SigTypeGenericCert:
+			if sig.IssuerKeyId != nil && *sig.IssuerKeyId == e.PrimaryKey.KeyId {
+				if err = e.PrimaryKey.VerifyUserIdSignature(pkt.Id, e.PrimaryKey, sig); err != nil {
+					return errors.StructuralError("user ID self-signature invalid: " + err.Error())
+				}
+				if identity.SelfSignature == nil {
+					identity.SelfSignature = sig
+				}
+				break
+			}
+			fallthrough // It isn't a self-sig, treat it as a normal signature
+		default:
+			identity.Signatures = append(identity.Signatures, sig)
+		}
+	}
+
+	e.Identities[identity.Name] = identity
+
+	return nil
 }
 
 func addSubkey(e *Entity, packets *packet.Reader, pub *packet.PublicKey, priv *packet.PrivateKey) error {
