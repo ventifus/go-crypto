@@ -400,9 +400,6 @@ EachPacket:
 }
 
 func addUserID(e *Entity, packets *packet.Reader, pkt *packet.UserId) error {
-	// Make a new Identity object, that we might wind up throwing away.
-	// We'll only add it if we get a valid self-signature over this
-	// userID.
 	identity := new(Identity)
 	identity.Name = pkt.Id
 	identity.UserId = pkt
