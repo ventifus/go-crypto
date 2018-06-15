@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "471c3da9_84931332",
+        "filename": "internal/subtle/aliasing.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-06-15T13:08:50Z",
+      "side": 1,
+      "message": "I believe this breaks compatibility with App Engine due to unsafe package not allowed:\nhttps://cloud.google.com/appengine/kb/\n\nBecause of this other packages which previously ran ok on App Engine standard can no longer do so importing this subtle pkg.\n\nThoughts?",
+      "revId": "37a17fe027db43f76fd88b056ddf588563fc8722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
