@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f71bca16_a8fafef7",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-18T18:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59398907_ded35ec2",
+      "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0078a71_9f46da8d",
         "filename": "cryptotest/stream.go",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e344003a_b4d2f433",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-18T18:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0078a71_9f46da8d",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "e8d3e560_5c5c1d97",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-18T18:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bed792b8_f96253e4",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d19db059_076ce5cf",
         "filename": "cryptotest/stream.go",
         "patchSetId": 1
@@ -76,6 +142,30 @@
       "writtenOn": "2018-05-09T13:55:05Z",
       "side": 1,
       "message": "%#v will give you something that can be copy and pasted into a Go program. Works nicely when used in conjunction with encoding/hex.",
+      "range": {
+        "startLine": 156,
+        "startChar": 21,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0619293_c43abdab",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-18T18:04:19Z",
+      "side": 1,
+      "message": "I find the []byte{0xXX, 0xXX, ...} syntax way too verbose for errors. You can also easily copy the hex encoded output of %x.",
+      "parentUuid": "d19db059_076ce5cf",
       "range": {
         "startLine": 156,
         "startChar": 21,
@@ -108,6 +198,30 @@
       "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c2dfe4_293913c6",
+        "filename": "internal/chacha20/chacha_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-18T18:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e2f7a28_ebd34962",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 29
+      },
+      "revId": "a9728dfe5034dc4c6e8bf4191dba7ed574d54bce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
