@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a0794fe_209c9128",
+        "filename": "internal/subtle/aliasing_appengine.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-19T15:46:39Z",
+      "side": 1,
+      "message": "is the Google",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 17
+      },
+      "revId": "1fbabba47fe42f56deb9ac881a2880d1776b9a09",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15fc0728_aae78ef1",
+        "filename": "internal/subtle/aliasing_appengine.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-19T15:46:39Z",
+      "side": 1,
+      "message": "If this were a safe assumption, wouldn\u0027t the normal version do this?\n\nI think you should instead implement AnyOverlap using reflect and https://golang.org/pkg/reflect/#Value.Pointer.\n\nIt\u0027ll be slower, but that doesn\u0027t matter.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 76
+      },
+      "revId": "1fbabba47fe42f56deb9ac881a2880d1776b9a09",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b8c168a_16b4ca2a",
+        "filename": "internal/subtle/aliasing_appengine.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-19T15:46:39Z",
+      "side": 1,
+      "message": "is the Google",
+      "range": {
+        "startLine": 15,
+        "startChar": 11,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "1fbabba47fe42f56deb9ac881a2880d1776b9a09",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f08c19ba_81786456",
+        "filename": "internal/subtle/aliasing_appengine.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-06-19T15:46:39Z",
+      "side": 1,
+      "message": "is the Google",
+      "revId": "1fbabba47fe42f56deb9ac881a2880d1776b9a09",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
