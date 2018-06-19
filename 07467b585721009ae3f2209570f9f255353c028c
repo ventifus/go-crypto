@@ -1,0 +1,273 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab618d77_011308d5",
+        "filename": "cryptotest/blockmode.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "(nit)\n\nMakeBlockMode is a verb phrase, but the thing your naming here is a noun (“the type of functions which accept a cipher.Block and iv and return a cipher.BlockMode”).\n\n(I\u0027d be inclined to name this something like “BlockModeFunc” or “BlockModeSource” or “Crypter”, but I\u0027m not very familiar with the idioms in the crypto/ packages.)",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f77207_0a6d4464",
+        "filename": "cryptotest/blockmode.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Is len(iv) invariantly equal to c.BlockSize()?\n\n(This construction is repeated twice so far: can you factor it out into testBlockModePair?)",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5daea957_250c7009",
+        "filename": "cryptotest/blockmode.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Why is this a Skip instead of a Fatal?\n\n(At the very least, a more in-depth comment would be helpful.)",
+      "range": {
+        "startLine": 70,
+        "startChar": 5,
+        "endLine": 70,
+        "endChar": 9
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2e71cd2_34020a82",
+        "filename": "cryptotest/blockmode.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "I\u0027m not so sure that we should test for this: the docs for NewCBCDecrypter and NewCBCEncrypter require that the length match the block size, but they don\u0027t specify what happens if it doesn\u0027t match.\n\n(For example, would it be valid for the MakeBlockMode function to panic in a separate goroutine, terminating the binary? Or to return a non-nil BlockMode that panics on the first call to CryptBlocks?)",
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8596aeb6_6770cbe5",
+        "filename": "cryptotest/blockmode.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "This seems to enforce the “length of src must be a multiple of the block size” clause of CryptBlocks, but that part of the documentation doesn\u0027t actually specify a panic on violation. (Perhaps it should?)",
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71666fa9_497faa2d",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "(nit) StreamFunc?",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 15
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a4817bd_c949010b",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Would it make sense to use subtests instead of extending the failure messages?\n\nThat would also make it easier to iterate on fixing violations that only occur for a specific length, if that ever happens.",
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be61c884_8cac83ae",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "To make this a bit more robust, you could key it on the name of the type rather than the name of the test:\n\n\tif t :\u003d reflect.TypeOf(ms()); t.PkgPath() \u003d\u003d \"crypto/cipher\" \u0026\u0026 t.Name() \u003d\u003d \"cfb\" {\n\nOr even construct one of the problematic things and check for equality:\n\n\tif reflect.TypeOf(ms()) \u003d\u003d cipherCFBType {",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a49ed5a_c4f16c6f",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure exactly what this means. Perhaps \"key stream was not applied with XOR operation\"?",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71548fbe_0be9284d",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Does this need to go inside the loop? (Otherwise, you could get spurious failures after the first failure.)",
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2db90d2c_b65250e1",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Same comment here as in testBlockMode: the documentation doesn\u0027t strictly specify a panic, so (for example) it might be reasonable for an implementation to panic on the some subsequent call to XORKeyStream instead.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 3
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aeff8f9_16124e98",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "Three keyLens times 13 bufLens is a lot of iterations. Should we throw it a `t.Short()` cutoff at some point?",
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94c601c4_287ed6ad",
+        "filename": "cryptotest/stream.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-06-19T20:34:35Z",
+      "side": 1,
+      "message": "https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures\n\nWe conventionally put the “got” value first in failure messages.",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 31
+      },
+      "revId": "07467b585721009ae3f2209570f9f255353c028c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
