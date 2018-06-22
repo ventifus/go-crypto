@@ -62,6 +62,11 @@ type Signature struct {
 	FlagsValid                                                           bool
 	FlagCertify, FlagSign, FlagEncryptCommunications, FlagEncryptStorage bool
 
+	// PreferredKeyServer is a URI of a key server that the keyholder prefers
+	// to be used for updates. Optional
+	// See RFC 4880, section 5.2.3.18 for details.
+	PreferredKeyServer string
+
 	// RevocationReason is set if this signature has been revoked.
 	// See RFC 4880, section 5.2.3.23 for details.
 	RevocationReason     *uint8
@@ -200,6 +205,7 @@ const (
 	issuerSubpacket              signatureSubpacketType = 16
 	prefHashAlgosSubpacket       signatureSubpacketType = 21
 	prefCompressionSubpacket     signatureSubpacketType = 22
+	prefKeyServer                signatureSubpacketType = 24
 	primaryUserIdSubpacket       signatureSubpacketType = 25
 	keyFlagsSubpacket            signatureSubpacketType = 27
 	reasonForRevocationSubpacket signatureSubpacketType = 29
@@ -304,6 +310,11 @@ func parseSignatureSubpacket(sig *Signature, subpacket []byte, isHashed bool) (r
 		}
 		sig.PreferredHash = make([]byte, len(subpacket))
 		copy(sig.PreferredHash, subpacket)
+	case prefKeyServer:
+		if !isHashed {
+			return
+		}
+		sig.PreferredKeyServer = string(subpacket)
 	case prefCompressionSubpacket:
 		// Preferred compression algorithms, section 5.2.3.9
 		if !isHashed {
@@ -725,6 +736,10 @@ func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
 
 	if len(sig.PreferredCompression) > 0 {
 		subpackets = append(subpackets, outputSubpacket{true, prefCompressionSubpacket, false, sig.PreferredCompression})
+	}
+
+	if sig.PreferredKeyServer != "" {
+		subpackets = append(subpackets, outputSubpacket{true, prefKeyServer, false, []byte(sig.PreferredKeyServer)})
 	}
 
 	return
