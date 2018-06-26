@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c7c2965_e7a9acee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-26T21:10:13Z",
+      "side": 1,
+      "message": "You can remove the word \"support\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d229b56_35952e61",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-26T21:10:13Z",
+      "side": 1,
+      "message": "\"Fixes #26005\"\n\nSee https://golang.org/wiki/CommitMessage",
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d628d913_086b42e5",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-06-26T21:10:13Z",
+      "side": 1,
+      "message": "\"Optional.\"",
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
