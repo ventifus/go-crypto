@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5969e9a_04909b7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28118
+      },
+      "writtenOn": "2018-07-03T12:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c7c2965_e7a9acee",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d229b56_35952e61",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "e976efde_aa282883",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 28118
+      },
+      "writtenOn": "2018-07-03T12:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d229b56_35952e61",
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d628d913_086b42e5",
         "filename": "openpgp/packet/signature.go",
         "patchSetId": 2
@@ -56,6 +98,24 @@
       "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa6bb2b_9b4317fb",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 28118
+      },
+      "writtenOn": "2018-07-03T12:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d628d913_086b42e5",
+      "revId": "eef5de1353eede555fcf48a2045052af6cea31be",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
