@@ -41,8 +41,7 @@ var preferredCiphers = []string{
 	"aes128-ctr", "aes192-ctr", "aes256-ctr",
 }
 
-// supportedKexAlgos specifies the supported key-exchange algorithms in
-// preference order.
+// supportedKexAlgos specifies the supported key-exchange algorithms
 var supportedKexAlgos = []string{
 	kexAlgoCurve25519SHA256,
 	// P384 and P521 are not constant-time yet, but since we don't
@@ -56,6 +55,14 @@ var supportedKexAlgos = []string{
 var serverForbiddenKexAlgos = map[string]struct{}{
 	kexAlgoDHGEXSHA1:   {}, // server half implementation is only minimal to satisfy the automated tests
 	kexAlgoDHGEXSHA256: {}, // server half implementation is only minimal to satisfy the automated tests
+}
+
+// preferredKexAlgos specifies the default preference for key-exchange algorithms
+// in preference order.
+var preferredKexAlgos = []string{
+	kexAlgoCurve25519SHA256,
+	kexAlgoECDH256, kexAlgoECDH384, kexAlgoECDH521,
+	kexAlgoDH14SHA1,
 }
 
 // supportedHostKeyAlgos specifies the supported host-key algorithms (i.e. methods
@@ -246,7 +253,7 @@ func (c *Config) SetDefaults() {
 	c.Ciphers = ciphers
 
 	if c.KeyExchanges == nil {
-		c.KeyExchanges = supportedKexAlgos
+		c.KeyExchanges = preferredKexAlgos
 	}
 
 	if c.MACs == nil {
