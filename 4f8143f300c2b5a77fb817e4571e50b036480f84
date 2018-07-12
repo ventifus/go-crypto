@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "983e0910_1f311022",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-12T17:12:10Z",
+      "side": 1,
+      "message": "Needs to be fully qualified:\n\nFixes golang/go#12955",
+      "revId": "4f8143f300c2b5a77fb817e4571e50b036480f84",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
