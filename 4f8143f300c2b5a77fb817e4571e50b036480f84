@@ -16,6 +16,24 @@
       "revId": "4f8143f300c2b5a77fb817e4571e50b036480f84",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20df9553_94ab7b98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 28325
+      },
+      "writtenOn": "2018-07-12T17:32:43Z",
+      "side": 1,
+      "message": "Done. Thanks! I used this site as a guide, so maybe it should be tweaked?\n\nhttps://golang.org/doc/contribute.html#commit_messages",
+      "parentUuid": "983e0910_1f311022",
+      "revId": "4f8143f300c2b5a77fb817e4571e50b036480f84",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
