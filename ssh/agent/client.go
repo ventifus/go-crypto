@@ -25,8 +25,17 @@ import (
 	"math/big"
 	"sync"
 
+	"crypto"
 	"golang.org/x/crypto/ed25519"
 	"golang.org/x/crypto/ssh"
+)
+
+type SignatureFlags uint32
+
+const (
+	SignatureFlagReserved SignatureFlags = 1 << iota
+	SignatureFlagRsaSha256
+	SignatureFlagRsaSha512
 )
 
 // Agent represents the capabilities of an ssh-agent.
@@ -55,6 +64,19 @@ type Agent interface {
 
 	// Signers returns signers for all the known keys.
 	Signers() ([]ssh.Signer, error)
+}
+
+type ExtendedAgent interface {
+	Agent
+
+	// The same as Sign, but allows for additional flags to be sent/received
+	SignWithFlags(key ssh.PublicKey, data []byte, flags SignatureFlags) (*ssh.Signature, error)
+
+	// A custom extension request. Standard compliant agents do not need to implement this
+	// method (they may just return an error), but it allows agents to implement
+	// vendor-specific methods or add experimental features. See [PROTOCOL.agent] section 4.7.
+	// The output of this call will be the response, including the "type" byte.
+	Extension(extensionType string, contents []byte) ([]byte, error)
 }
 
 // ConstraintExtension describes an optional constraint defined by users.
@@ -179,6 +201,15 @@ type constrainExtensionAgentMsg struct {
 	Rest []byte `ssh:"rest"`
 }
 
+// See [PROTOCOL.agent], section 4.7
+const agentExtension = 27
+const agentExtensionFailure = 28
+
+type extensionAgentMsg struct {
+	ExtensionType string `sshtype:"27"`
+	Contents      []byte
+}
+
 // Key represents a protocol 2 public key as defined in
 // [PROTOCOL.agent], section 2.5.2.
 type Key struct {
@@ -260,7 +291,7 @@ type client struct {
 
 // NewClient returns an Agent that talks to an ssh-agent process over
 // the given connection.
-func NewClient(rw io.ReadWriter) Agent {
+func NewClient(rw io.ReadWriter) ExtendedAgent {
 	return &client{conn: rw}
 }
 
@@ -268,34 +299,45 @@ func NewClient(rw io.ReadWriter) Agent {
 // unmarshaled into reply and replyType is set to the first byte of
 // the reply, which contains the type of the message.
 func (c *client) call(req []byte) (reply interface{}, err error) {
+	buf, err := c.callRaw(req)
+	if err != nil {
+		return nil, err
+	}
+	reply, err = unmarshal(buf)
+	if err != nil {
+		return nil, clientErr(err)
+	}
+	return reply, nil
+}
+
+// callRaw sends an RPC to the agent. On success, the raw
+// bytes of the response are returned; no unmarshalling is
+// performed on the response.
+func (c *client) callRaw(req []byte) ([]byte, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
 	msg := make([]byte, 4+len(req))
 	binary.BigEndian.PutUint32(msg, uint32(len(req)))
 	copy(msg[4:], req)
-	if _, err = c.conn.Write(msg); err != nil {
+	if _, err := c.conn.Write(msg); err != nil {
 		return nil, clientErr(err)
 	}
 
 	var respSizeBuf [4]byte
-	if _, err = io.ReadFull(c.conn, respSizeBuf[:]); err != nil {
+	if _, err := io.ReadFull(c.conn, respSizeBuf[:]); err != nil {
 		return nil, clientErr(err)
 	}
 	respSize := binary.BigEndian.Uint32(respSizeBuf[:])
 	if respSize > maxAgentResponseBytes {
-		return nil, clientErr(err)
+		return nil, clientErr(errors.New("response too big"))
 	}
 
 	buf := make([]byte, respSize)
-	if _, err = io.ReadFull(c.conn, buf); err != nil {
+	if _, err := io.ReadFull(c.conn, buf); err != nil {
 		return nil, clientErr(err)
 	}
-	reply, err = unmarshal(buf)
-	if err != nil {
-		return nil, clientErr(err)
-	}
-	return reply, err
+	return buf, nil
 }
 
 func (c *client) simpleCall(req []byte) error {
@@ -369,9 +411,14 @@ func (c *client) List() ([]*Key, error) {
 // Sign has the agent sign the data using a protocol 2 key as defined
 // in [PROTOCOL.agent] section 2.6.2.
 func (c *client) Sign(key ssh.PublicKey, data []byte) (*ssh.Signature, error) {
+	return c.SignWithFlags(key, data, 0)
+}
+
+func (c *client) SignWithFlags(key ssh.PublicKey, data []byte, flags SignatureFlags) (*ssh.Signature, error) {
 	req := ssh.Marshal(signRequestAgentMsg{
 		KeyBlob: key.Marshal(),
 		Data:    data,
+		Flags:   uint32(flags),
 	})
 
 	msg, err := c.call(req)
@@ -680,4 +727,37 @@ func (s *agentKeyringSigner) PublicKey() ssh.PublicKey {
 func (s *agentKeyringSigner) Sign(rand io.Reader, data []byte) (*ssh.Signature, error) {
 	// The agent has its own entropy source, so the rand argument is ignored.
 	return s.agent.Sign(s.pub, data)
+}
+
+func (s *agentKeyringSigner) SignWithOpts(rand io.Reader, data []byte, opts crypto.SignerOpts) (*ssh.Signature, error) {
+	var flags SignatureFlags
+	if opts != nil {
+		switch opts.HashFunc() {
+		case crypto.SHA256:
+			flags = SignatureFlagRsaSha256
+		case crypto.SHA512:
+			flags = SignatureFlagRsaSha512
+		}
+	}
+	return s.agent.SignWithFlags(s.pub, data, flags)
+}
+
+// Calls a extension method. It is up to the agent implementation as to whether or not
+// any particular extension is supported and may always return an error. Because the
+// type of the response is up to the implementation, this returns the bytes of the
+// response and does not attempt any time of unmarshalling.
+func (c *client) Extension(extensionType string, contents []byte) ([]byte, error) {
+	req := ssh.Marshal(extensionAgentMsg{
+		ExtensionType: extensionType,
+		Contents:      contents,
+	})
+	buf, err := c.callRaw(req)
+	if err != nil {
+		return nil, err
+	}
+	if len(buf) == 0 || buf[0] == agentFailure || buf[0] == agentExtensionFailure {
+		return nil, errors.New("agent: failure")
+	}
+
+	return buf, nil
 }

@@ -128,7 +128,14 @@ func (s *server) processRequest(data []byte) (interface{}, error) {
 			Blob:   req.KeyBlob,
 		}
 
-		sig, err := s.agent.Sign(k, req.Data) //  TODO(hanwen): flags.
+		var sig *ssh.Signature
+		var err error
+		if extendedAgent, ok := s.agent.(ExtendedAgent); ok {
+			sig, err = extendedAgent.SignWithFlags(k, req.Data, SignatureFlags(req.Flags))
+		} else {
+			sig, err = s.agent.Sign(k, req.Data)
+		}
+
 		if err != nil {
 			return nil, err
 		}
@@ -150,6 +157,32 @@ func (s *server) processRequest(data []byte) (interface{}, error) {
 
 	case agentAddIDConstrained, agentAddIdentity:
 		return nil, s.insertIdentity(data)
+
+	case agentExtension:
+		// Return a stub object where the whole contents of the response gets marshaled.
+		var responseStub struct {
+			Rest []byte `ssh:"rest"`
+		}
+
+		if extendedAgent, ok := s.agent.(ExtendedAgent); !ok {
+			// If this agent doesn't implement extensions, just return a failure message
+			responseStub.Rest = []byte{agentExtensionFailure}
+		} else {
+			var req extensionAgentMsg
+			if err := ssh.Unmarshal(data, &req); err != nil {
+				return nil, err
+			}
+			res, err := extendedAgent.Extension(req.ExtensionType, req.Contents)
+			if err != nil {
+				return nil, err
+			}
+			if len(res) == 0 {
+				return nil, nil
+			}
+			responseStub.Rest = res
+		}
+
+		return responseStub, nil
 	}
 
 	return nil, fmt.Errorf("unknown opcode %d", data[0])
