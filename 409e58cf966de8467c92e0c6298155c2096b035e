@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a8da6c4_c85b7cd5",
+        "filename": "openpgp/write.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-07-18T04:22:57Z",
+      "side": 1,
+      "message": "ciphertext / plaintext are not the right names. input / output? And docs are missing for hints.",
+      "revId": "409e58cf966de8467c92e0c6298155c2096b035e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
