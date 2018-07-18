@@ -16,6 +16,24 @@
       "revId": "409e58cf966de8467c92e0c6298155c2096b035e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f6653d5_34c9fc82",
+        "filename": "openpgp/write.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 28262
+      },
+      "writtenOn": "2018-07-18T05:56:39Z",
+      "side": 1,
+      "message": "I was trying to keep it in line with the other methods, but I agree the names were not good.\n\nDone, including doc for hints.",
+      "parentUuid": "1a8da6c4_c85b7cd5",
+      "revId": "409e58cf966de8467c92e0c6298155c2096b035e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
