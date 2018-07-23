@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "44b5b56d_96d17e3b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T16:03:38Z",
+      "side": 1,
+      "message": "Well, is ACME required? We\u0027re already in an \"acme\" package, or \"acme/autocert\" at least.\n \nProtoALPN? ALPNProto?\n\nDoes this even need to be exported? Seems like we should just have helpers for higher-level stuff. This is the \"autocert\" package, after all. If anything, maybe this should live in the uglier (lower-level, not \"ugly\") package a level up.",
+      "parentUuid": "aa96a521_aece7b8f",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdd77c4b_0f4d1d7f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
