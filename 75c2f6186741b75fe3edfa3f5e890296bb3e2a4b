@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74056088_9bda33c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T15:36:46Z",
+      "side": 1,
+      "message": "Separate \"Fixes\" lines for these, for GitHub.",
+      "revId": "75c2f6186741b75fe3edfa3f5e890296bb3e2a4b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

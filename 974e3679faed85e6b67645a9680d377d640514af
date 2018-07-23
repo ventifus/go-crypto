@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0068717d_73ece977",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T15:36:46Z",
+      "side": 1,
+      "message": "Go doesn\u0027t use ALL_CAPS for constants. (syscall and legacy pkg os stuff is an exception)\n\nhttps://github.com/golang/go/wiki/CodeReviewComments#mixed-caps",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd77c4b_0f4d1d7f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T15:36:46Z",
+      "side": 1,
+      "message": "don\u0027t put this in quotes.\n\n... supporting HTTP/2 and the tls-alpn-01 ACME challenge type",
+      "range": {
+        "startLine": 214,
+        "startChar": 14,
+        "endLine": 214,
+        "endChar": 22
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7924e617_62400641",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T15:36:46Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b689b07f_4ecdc678",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-23T15:36:46Z",
+      "side": 1,
+      "message": "put a blank //-only line before this so this TODO sentence doesn\u0027t become part of the summary.",
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
