@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aa96a521_aece7b8f",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-07-23T15:59:36Z",
+      "side": 1,
+      "message": "Right, but then it becomes ACMEALPNProto because 2 out of 3 are initialisms.\nI figured it would be hardly readable. Can we make an exception here?\nAny ideas for a more suitable name which is still readable without ALL_CAPS?",
+      "parentUuid": "0068717d_73ece977",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdd77c4b_0f4d1d7f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d43b8a85_7ed89efc",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-07-23T15:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd77c4b_0f4d1d7f",
+      "range": {
+        "startLine": 214,
+        "startChar": 14,
+        "endLine": 214,
+        "endChar": 22
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7924e617_62400641",
         "filename": "acme/autocert/internal/acmetest/ca.go",
         "patchSetId": 1
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "d6e60ef7_51c9d71d",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-07-23T15:59:36Z",
+      "side": 1,
+      "message": "Every single time... Done.",
+      "parentUuid": "7924e617_62400641",
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b689b07f_4ecdc678",
         "filename": "acme/autocert/internal/acmetest/ca.go",
         "patchSetId": 1
@@ -79,6 +145,24 @@
       "revId": "974e3679faed85e6b67645a9680d377d640514af",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5b715f_96151798",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-07-23T15:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b689b07f_4ecdc678",
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
