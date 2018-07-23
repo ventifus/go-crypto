@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c3729921_d27b903d",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2018-07-23T16:24:57Z",
+      "side": 1,
+      "message": "Agree on all points. Done.\nThanks!",
+      "parentUuid": "44b5b56d_96d17e3b",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "974e3679faed85e6b67645a9680d377d640514af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdd77c4b_0f4d1d7f",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
