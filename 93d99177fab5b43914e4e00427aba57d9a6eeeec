@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5295e3_0029048d",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-31T15:22:58Z",
+      "side": 1,
+      "message": "\", for example\" to join these sentences is grammatically awkward at best, but probably just wrong.\n\nMaybe instead: \". See the crypto/tls package\u0027s Config.NextProtos field.\"\n\nOr a new sentence of your choosing. The first part is long enough.",
+      "range": {
+        "startLine": 50,
+        "startChar": 60,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "93d99177fab5b43914e4e00427aba57d9a6eeeec",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7eea5f0_8fbdbef9",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-31T15:22:58Z",
+      "side": 1,
+      "message": "via Manager.TLSConfig \n\n(to disambiguate. there are other things named TLSConfig?)",
+      "revId": "93d99177fab5b43914e4e00427aba57d9a6eeeec",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a7dd4f_46e33ed2",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-07-31T15:22:58Z",
+      "side": 1,
+      "message": "let\u0027s put these challenge types in quotes... the \"tls-alpn-01\" challenge",
+      "range": {
+        "startLine": 364,
+        "startChar": 65,
+        "endLine": 365,
+        "endChar": 0
+      },
+      "revId": "93d99177fab5b43914e4e00427aba57d9a6eeeec",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
