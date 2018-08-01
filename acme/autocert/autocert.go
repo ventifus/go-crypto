@@ -81,8 +81,8 @@ func defaultHostPolicy(context.Context, string) error {
 }
 
 // Manager is a stateful certificate manager built on top of acme.Client.
-// It obtains and refreshes certificates automatically using "tls-alpn-01",
-// "tls-sni-01", "tls-sni-02" and "http-01" challenge types,
+// It obtains and refreshes certificates automatically using "tls-alpn-01"
+// and "http-01" challenge types,
 // as well as providing them to a TLS server via tls.Config.
 //
 // You must specify a cache implementation, such as DirCache,
@@ -177,10 +177,8 @@ type Manager struct {
 	// to be provisioned.
 	// The entries are stored for the duration of the authorization flow.
 	httpTokens map[string][]byte
-	// certTokens contains temporary certificates for tls-sni and tls-alpn challenges
-	// and is keyed by token domain name, which matches server name of ClientHello.
-	// Keys always have ".acme.invalid" suffix for tls-sni. Otherwise, they are domain names
-	// for tls-alpn.
+	// certTokens contains temporary certificates for tls-alpn challenges
+	// and is keyed by token domain name, which matches the ClientHello server name.
 	// The entries are stored for the duration of the authorization flow.
 	certTokens map[string]*tls.Certificate
 }
@@ -215,8 +213,8 @@ func (m *Manager) TLSConfig() *tls.Config {
 }
 
 // GetCertificate implements the tls.Config.GetCertificate hook.
-// It provides a TLS certificate for hello.ServerName host, including answering
-// tls-alpn-01 and *.acme.invalid (tls-sni-01 and tls-sni-02) challenges.
+// It provides a TLS certificate for the hello.ServerName host, including answering
+// tls-alpn-01 and *.acme.invalid challenges.
 // All other fields of hello are ignored.
 //
 // If m.HostPolicy is non-nil, GetCertificate calls the policy before requesting
@@ -244,13 +242,10 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 	defer cancel()
 
-	// Check whether this is a token cert requested for TLS-SNI or TLS-ALPN challenge.
+	// Check whether this is a token cert requested for a TLS-ALPN challenge.
 	if wantsTokenCert(hello) {
 		m.tokensMu.RLock()
 		defer m.tokensMu.RUnlock()
-		// It's ok to use the same token cert key for both tls-sni and tls-alpn
-		// because there's always at most 1 token cert per on-going domain authorization.
-		// See m.verify for details.
 		if cert := m.certTokens[name]; cert != nil {
 			return cert, nil
 		}
@@ -286,15 +281,14 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 	return cert, nil
 }
 
-// wantsTokenCert reports whether a TLS request with SNI is made by a CA server
-// for a challenge verification.
+// wantsTokenCert reports whether a TLS request is from an ACME server
+// doing a challenge verification.
 func wantsTokenCert(hello *tls.ClientHelloInfo) bool {
 	// tls-alpn-01
 	if len(hello.SupportedProtos) == 1 && hello.SupportedProtos[0] == acme.ALPNProto {
 		return true
 	}
-	// tls-sni-xx
-	return strings.HasSuffix(hello.ServerName, ".acme.invalid")
+	return false
 }
 
 func supportsECDSA(hello *tls.ClientHelloInfo) bool {
@@ -356,7 +350,7 @@ func supportsECDSA(hello *tls.ClientHelloInfo) bool {
 // Because the fallback handler is run with unencrypted port 80 requests,
 // the fallback should not serve TLS-only requests.
 //
-// If HTTPHandler is never called, the Manager will only use TLS SNI
+// If HTTPHandler is never called, the Manager will only use TLS ALPN
 // challenges for domain verification.
 func (m *Manager) HTTPHandler(fallback http.Handler) http.Handler {
 	m.tokensMu.Lock()
@@ -663,7 +657,7 @@ func (m *Manager) revokePendingAuthz(ctx context.Context, uri []string) {
 func (m *Manager) verify(ctx context.Context, client *acme.Client, domain string) error {
 	// The list of challenge types we'll try to fulfill
 	// in this specific order.
-	challengeTypes := []string{"tls-alpn-01", "tls-sni-02", "tls-sni-01"}
+	challengeTypes := []string{"tls-alpn-01"}
 	m.tokensMu.RLock()
 	if m.tryHTTP01 {
 		challengeTypes = append(challengeTypes, "http-01")
@@ -751,20 +745,6 @@ func (m *Manager) fulfill(ctx context.Context, client *acme.Client, chal *acme.C
 		}
 		m.putCertToken(ctx, domain, &cert)
 		return func() { go m.deleteCertToken(domain) }, nil
-	case "tls-sni-01":
-		cert, name, err := client.TLSSNI01ChallengeCert(chal.Token)
-		if err != nil {
-			return nil, err
-		}
-		m.putCertToken(ctx, name, &cert)
-		return func() { go m.deleteCertToken(name) }, nil
-	case "tls-sni-02":
-		cert, name, err := client.TLSSNI02ChallengeCert(chal.Token)
-		if err != nil {
-			return nil, err
-		}
-		m.putCertToken(ctx, name, &cert)
-		return func() { go m.deleteCertToken(name) }, nil
 	case "http-01":
 		resp, err := client.HTTP01ChallengeResponse(chal.Token)
 		if err != nil {
