@@ -22,6 +22,30 @@
       "revId": "ea9c183c745d1d89d7d81dc83959827eb777e958",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de591502_fb911951",
+        "filename": "chacha20poly1305/xchacha20poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-08-03T23:45:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ad6b546_a8c70726",
+      "range": {
+        "startLine": 29,
+        "startChar": 18,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "ea9c183c745d1d89d7d81dc83959827eb777e958",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
