@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28317c59_2850eaf3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-08-06T15:18:19Z",
+      "side": 1,
+      "message": "add \"ssh: \" prefix, per https://github.com/golang/go/wiki/CommitMessage",
+      "revId": "337bced0ffecd1ac6abfd882e0f9b0c6d31c3128",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4da56017_70fa6124",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-08-06T15:18:19Z",
+      "side": 1,
+      "message": "Delete this line. We don\u0027t use these.",
+      "revId": "337bced0ffecd1ac6abfd882e0f9b0c6d31c3128",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
