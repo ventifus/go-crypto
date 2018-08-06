@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1d41c84_b246699d",
+        "filename": "chacha20poly1305/chacha20poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-08-06T18:55:14Z",
+      "side": 1,
+      "message": "mathrand for consistency?",
+      "range": {
+        "startLine": 14,
+        "startChar": 1,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "af2f87a500e13b3144824f8678e8072b11c19e12",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
