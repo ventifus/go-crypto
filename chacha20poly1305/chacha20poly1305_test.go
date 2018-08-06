@@ -7,8 +7,10 @@ package chacha20poly1305
 import (
 	"bytes"
 	"crypto/cipher"
-	cr "crypto/rand"
+	cryptorand "crypto/rand"
 	"encoding/hex"
+	"fmt"
+	"log"
 	mr "math/rand"
 	"strconv"
 	"testing"
@@ -90,10 +92,10 @@ func TestRandom(t *testing.T) {
 			pl := mr.Intn(16384)
 			ad := make([]byte, al)
 			plaintext := make([]byte, pl)
-			cr.Read(key[:])
-			cr.Read(nonce[:])
-			cr.Read(ad)
-			cr.Read(plaintext)
+			cryptorand.Read(key[:])
+			cryptorand.Read(nonce[:])
+			cryptorand.Read(ad)
+			cryptorand.Read(plaintext)
 
 			var (
 				aead cipher.AEAD
@@ -216,4 +218,38 @@ func BenchmarkChacha20Poly1305(b *testing.B) {
 			benchamarkChaCha20Poly1305Seal(b, make([]byte, length), NonceSizeX)
 		})
 	}
+}
+
+var key = make([]byte, KeySize)
+
+func ExampleNewX() {
+	aead, err := NewX(key)
+	if err != nil {
+		log.Fatalln("Failed to instantiate XChaCha20-Poly1305:", err)
+	}
+
+	for _, msg := range []string{
+		"Attack at dawn.",
+		"The eagle has landed.",
+		"Gophers, gophers, gophers everywhere!",
+	} {
+		// Encryption.
+		nonce := make([]byte, NonceSizeX)
+		if _, err := cryptorand.Read(nonce); err != nil {
+			panic(err)
+		}
+		ciphertext := aead.Seal(nil, nonce, []byte(msg), nil)
+
+		// Decryption.
+		plaintext, err := aead.Open(nil, nonce, ciphertext, nil)
+		if err != nil {
+			log.Fatalln("Failed to decrypt or authenticate message:", err)
+		}
+
+		fmt.Printf("%s\n", plaintext)
+	}
+
+	// Output: Attack at dawn.
+	// The eagle has landed.
+	// Gophers, gophers, gophers everywhere!
 }
