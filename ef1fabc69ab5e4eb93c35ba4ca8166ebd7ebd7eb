@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18e0b1f3_f922e4cc",
+        "filename": "acme/acme.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 27231
+      },
+      "writtenOn": "2018-08-08T12:24:00Z",
+      "side": 1,
+      "message": "I think this method should be exported as GetCertificate.\n\nAs part of the draft 12 spec, an order can be in a \u0027valid\u0027 state which indicates it has already been finalized and is available for retrieval.\n\nSince Let\u0027s Encrypt have begun correctly using the \u0027valid\u0027 and \u0027ready\u0027 states, it is now possible to discern whether a certificate is \u0027valid\u0027 (i.e. issued) or \u0027ready\u0027 (i.e. ready for finalization). We can use this information to determine whether to simply retrieve an existing certificate rather than creating a whole new order (thus using up CreateOrder quota).",
+      "revId": "ef1fabc69ab5e4eb93c35ba4ca8166ebd7ebd7eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
