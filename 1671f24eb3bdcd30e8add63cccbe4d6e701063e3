@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c37edab_41ec856e",
+        "filename": "poly1305/hash_noasm.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2018-08-21T10:22:08Z",
+      "side": 1,
+      "message": "s/2012/2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "1671f24eb3bdcd30e8add63cccbe4d6e701063e3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
