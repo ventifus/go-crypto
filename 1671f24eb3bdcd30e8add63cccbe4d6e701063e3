@@ -22,6 +22,30 @@
       "revId": "1671f24eb3bdcd30e8add63cccbe4d6e701063e3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdced1b9_a4631aad",
+        "filename": "poly1305/hash_noasm.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2018-08-21T13:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c37edab_41ec856e",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "1671f24eb3bdcd30e8add63cccbe4d6e701063e3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
