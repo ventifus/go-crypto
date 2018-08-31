@@ -16,6 +16,24 @@
       "revId": "d35f2c239e1e029bde6dc73979200c15327dc7b6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9567857_7580a3a5",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-08-31T23:11:04Z",
+      "side": 1,
+      "message": "Always glad to save an allocation. Done.",
+      "parentUuid": "6950ee79_ab19e862",
+      "revId": "d35f2c239e1e029bde6dc73979200c15327dc7b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
