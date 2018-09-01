@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15d1be8e_0d53178e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "lowercase \"define\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "528378c3_42d9d501",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "remove this intro from the commit message.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13192e48_1e48aec4",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "There should be full docs on these, not just URLs.\n\n(They can have URLs at the end. See the net and net/http packages for examples.)",
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3371549_4e5f4875",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "SHA1 per https://github.com/golang/go/wiki/CodeReviewComments#initialisms",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6a028ad_3880352b",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "These need comments. See https://github.com/golang/go/wiki/CodeReviewComments#comment-sentences",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4347936c_1e35df0c",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-01T20:13:43Z",
+      "side": 1,
+      "message": "exported things of unexported types is weird.\n\nOr did you even mean to export them?\n\nIf they\u0027re supposed to be private, the documentation bar is much lower.",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
