@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d8216db9_404775eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "How would you like me to edit this, rebase and edit the commit? (I don\u0027t know if Gerrit is OK with that)",
+      "parentUuid": "15d1be8e_0d53178e",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "528378c3_42d9d501",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-01T20:13:43Z",
       "side": 1,
       "message": "remove this intro from the commit message.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c7cebcf_e50d5e34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "This was taken from my pull request text, not a commit message, how would you like me to edit this?",
+      "parentUuid": "528378c3_42d9d501",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "07b028ad_75cda2b4",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "I\u0027ve documented these now.",
+      "parentUuid": "13192e48_1e48aec4",
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3371549_4e5f4875",
         "filename": "openpgp/packet/private_key.go",
         "patchSetId": 1
@@ -85,6 +151,30 @@
       "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86b86de9_6f53cbb6",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b3371549_4e5f4875",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "2a596e4b_7a22b8d5",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c6a028ad_3880352b",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4347936c_1e35df0c",
         "filename": "openpgp/s2k/s2k.go",
         "patchSetId": 1
@@ -131,6 +245,30 @@
       "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14aecd56_bc0c5a07",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 29100
+      },
+      "writtenOn": "2018-09-04T09:51:05Z",
+      "side": 1,
+      "message": "Good point, no there\u0027s no reason to export them. Have fixed.",
+      "parentUuid": "4347936c_1e35df0c",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
