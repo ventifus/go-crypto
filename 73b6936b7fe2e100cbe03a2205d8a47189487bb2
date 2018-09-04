@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "04388eeb_2c8495cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-04T10:11:57Z",
+      "side": 1,
+      "message": "Clicking the edit button on the GitHub PR title \u0026 description.\n\nNo need to rebase.",
+      "parentUuid": "0c7cebcf_e50d5e34",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "73b6936b7fe2e100cbe03a2205d8a47189487bb2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13192e48_1e48aec4",
         "filename": "openpgp/packet/private_key.go",
         "patchSetId": 1
