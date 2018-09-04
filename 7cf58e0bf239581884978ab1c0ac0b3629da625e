@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82f305b9_ae44761e",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-09-04T19:41:14Z",
+      "side": 1,
+      "message": "Reword these so the subject is the first word. You\u0027ll need to move the \"When ....., \" phrase later in the sentence.\n\nSee https://github.com/golang/go/wiki/CodeReviewComments#comment-sentences",
+      "range": {
+        "startLine": 19,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 72
+      },
+      "revId": "7cf58e0bf239581884978ab1c0ac0b3629da625e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
