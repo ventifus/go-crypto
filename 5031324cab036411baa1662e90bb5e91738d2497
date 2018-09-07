@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43f76a8e_d7508c90",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-07T17:44:26Z",
+      "side": 1,
+      "message": "The text of this error seems misleading now. Wouldn\u0027t it also fire for PUBKEY UID SELFSIG UNKNOWN SELFSIG? Also, shouldn\u0027t that case be ignored now instead of generating an error?",
+      "revId": "5031324cab036411baa1662e90bb5e91738d2497",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
