@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1819c624_2e79ce32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-10T17:57:38Z",
+      "side": 1,
+      "message": "\"extra subkey selfsigs\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "da941f989163fa3a394d4583fb29ec1dd200502a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a4318ec_1eca56e3",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-10T17:57:38Z",
+      "side": 1,
+      "message": "This will now error out on SUBKEY SUBKEYSIG OTHERSIG, while before it would have fallen back to current.Signatures, is that what the spec says? (Might be, actually asking.)",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 3
+      },
+      "revId": "da941f989163fa3a394d4583fb29ec1dd200502a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

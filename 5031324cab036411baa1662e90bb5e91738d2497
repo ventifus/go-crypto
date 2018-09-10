@@ -34,6 +34,24 @@
       "revId": "5031324cab036411baa1662e90bb5e91738d2497",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f11df20_0b2e11d9",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-10T17:57:38Z",
+      "side": 1,
+      "message": "Maybe add a comment explaining that we drop signatures on the floor here because they don\u0027t follow directly anything we\u0027d know to attach them to.",
+      "parentUuid": "07cab474_98557c6a",
+      "revId": "5031324cab036411baa1662e90bb5e91738d2497",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
