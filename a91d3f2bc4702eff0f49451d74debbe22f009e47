@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e620fb4a_b8ccacac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 26193
+      },
+      "writtenOn": "2018-09-10T22:28:46Z",
+      "side": 1,
+      "message": "Technically this just allows decoding bags that don\u0027t have 1 of each. (Which was my situation)",
+      "revId": "a91d3f2bc4702eff0f49451d74debbe22f009e47",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
