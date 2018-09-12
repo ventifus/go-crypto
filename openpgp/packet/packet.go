@@ -395,6 +395,7 @@ const (
 	SigTypePrimaryKeyBinding               = 0x19
 	SigTypeDirectSignature                 = 0x1F
 	SigTypeKeyRevocation                   = 0x20
+	SigTypeCertRevocation                  = 0x30
 	SigTypeSubkeyRevocation                = 0x28
 )
 
