@@ -252,6 +252,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46da3c79_ad37f3f3",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:06:20Z",
+      "side": 1,
+      "message": "also, shouldn\u0027t there be a test that runs the SHA2 signer against a public key?\n\nis there docs for SSH standard that explain how this new option meshes with the existing key types? I want to make sure that we need this type, rather than something like\n\n  NewSignerWithHash(key interface{}, signAlgorithm string)",
+      "parentUuid": "050423da_4900d024",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
