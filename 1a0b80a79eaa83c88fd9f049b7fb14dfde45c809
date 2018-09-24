@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eab589a_6ba7c696",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:10:11Z",
+      "side": 1,
+      "message": "add a blurb about compatibility:\n\n\n\"This is backwards incompatible: if you connect to ssh servers that \ndo not support any key exchanges except for dh-group1-sha1, you \nmust now specify config.KeyExchanges explicitly\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "1a0b80a79eaa83c88fd9f049b7fb14dfde45c809",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
