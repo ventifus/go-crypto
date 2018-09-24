@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cfea821_7e74eed1",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "this is outdated. Can you rebase your change?",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44434722_043cf0ef",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "needs comment",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 4
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dcf9f57_dbd86bdb",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "here too. Add reference to the protocol spec section.",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 22
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff39d3ae_47c70710",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "\"SignWithFlags signs like Sign, but  ...",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 7
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d9e07d_c6b99e89",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "start with method name.",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 6
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d131a01_40d56845",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "standard-compliant ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3161952_1039dcf8",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "the standard has some language around returning the right error code. Does the library hadnle this for you, or does the implementor have to worry about it?",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "675a899e_f5c1beba",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "I couldn\u0027t readily  see where the output format for extensions is defined in the spec.",
+      "range": {
+        "startLine": 78,
+        "startChar": 7,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "080deea7_ec44a2d2",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "this needs to be public so others can implement it. \n\nalternatively, define an error sentinel value (\"ErrAgentUnsupported\" ?) that gets translated into code 28 by the library. \n\nThe latter is more idiomatic, probably.",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 27
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc35dff_2c5e6e09",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "I think it\u0027s better if we let the library tack these code on, and let implementers just do Go style error handling.",
+      "range": {
+        "startLine": 412,
+        "startChar": 22,
+        "endLine": 412,
+        "endChar": 34
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "050423da_4900d024",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-09-24T14:01:15Z",
+      "side": 1,
+      "message": "Does this have uses beyond ssh-agent? \n\nThis adds code and API surface to the core SSH library, but there are no additional tests to the core library. Should we add those?\n\nIn particular, I want to have a test against opensshd to make sure that get details of the format right.",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
