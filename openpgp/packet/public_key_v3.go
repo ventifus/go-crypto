@@ -202,7 +202,7 @@ func (pk *PublicKeyV3) VerifySignatureV3(signed hash.Hash, sig *SignatureV3) (er
 		return errors.SignatureError("hash tag doesn't match")
 	}
 
-	if pk.PubKeyAlgo != sig.PubKeyAlgo {
+	if sameSignature(pk.PubKeyAlgo, sig.PubKeyAlgo) {
 		return errors.InvalidArgumentError("public key and signature use different algorithms")
 	}
 
