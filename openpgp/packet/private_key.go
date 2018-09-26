@@ -65,13 +65,16 @@ func NewECDSAPrivateKey(currentTime time.Time, priv *ecdsa.PrivateKey) *PrivateK
 }
 
 // NewSignerPrivateKey creates a sign-only PrivateKey from a crypto.Signer that
-// implements RSA or ECDSA.
+// implements RSA, DSA or ECDSA.
 func NewSignerPrivateKey(currentTime time.Time, signer crypto.Signer) *PrivateKey {
 	pk := new(PrivateKey)
 	switch pubkey := signer.Public().(type) {
 	case rsa.PublicKey:
 		pk.PublicKey = *NewRSAPublicKey(currentTime, &pubkey)
 		pk.PubKeyAlgo = PubKeyAlgoRSASignOnly
+	case *dsa.PublicKey:
+		pk.PublicKey = *NewDSAPublicKey(currentTime, pubkey)
+		pk.PubKeyAlgo = PubKeyAlgoDSA
 	case ecdsa.PublicKey:
 		pk.PublicKey = *NewECDSAPublicKey(currentTime, &pubkey)
 	default:

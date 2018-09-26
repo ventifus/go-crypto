@@ -521,19 +521,27 @@ func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err e
 		sig.RSASignature.bytes, err = priv.PrivateKey.(crypto.Signer).Sign(config.Random(), digest, sig.Hash)
 		sig.RSASignature.bitLength = uint16(8 * len(sig.RSASignature.bytes))
 	case PubKeyAlgoDSA:
-		dsaPriv := priv.PrivateKey.(*dsa.PrivateKey)
+		pub := priv.PublicKey.PublicKey.(*dsa.PublicKey)
 
 		// Need to truncate hashBytes to match FIPS 186-3 section 4.6.
-		subgroupSize := (dsaPriv.Q.BitLen() + 7) / 8
+		subgroupSize := (pub.Q.BitLen() + 7) / 8
 		if len(digest) > subgroupSize {
 			digest = digest[:subgroupSize]
 		}
-		r, s, err := dsa.Sign(config.Random(), dsaPriv, digest)
+		var r, s *big.Int
+		if dsaPriv, ok := priv.PrivateKey.(*dsa.PrivateKey); ok {
+			// direct support, avoid asn1 wrapping/unwrapping
+			r, s, err = dsa.Sign(config.Random(), dsaPriv, digest)
+		} else {
+			var b []byte
+			b, err = priv.PrivateKey.(crypto.Signer).Sign(config.Random(), digest, sig.Hash)
+			if err == nil {
+				r, s, err = unwrapDSASig(b)
+			}
+		}
 		if err == nil {
-			sig.DSASigR.bytes = r.Bytes()
-			sig.DSASigR.bitLength = uint16(8 * len(sig.DSASigR.bytes))
-			sig.DSASigS.bytes = s.Bytes()
-			sig.DSASigS.bitLength = uint16(8 * len(sig.DSASigS.bytes))
+			sig.DSASigR = fromBig(r)
+			sig.DSASigS = fromBig(s)
 		}
 	case PubKeyAlgoECDSA:
 		var r, s *big.Int
@@ -544,7 +552,7 @@ func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err e
 			var b []byte
 			b, err = priv.PrivateKey.(crypto.Signer).Sign(config.Random(), digest, nil)
 			if err == nil {
-				r, s, err = unwrapECDSASig(b)
+				r, s, err = unwrapDSASig(b)
 			}
 		}
 		if err == nil {
@@ -558,17 +566,17 @@ func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err e
 	return
 }
 
-// unwrapECDSASig parses the two integer components of an ASN.1-encoded ECDSA
+// unwrapDSASig parses the two integer components of an ASN.1-encoded (EC)DSA
 // signature.
-func unwrapECDSASig(b []byte) (r, s *big.Int, err error) {
-	var ecsdaSig struct {
+func unwrapDSASig(b []byte) (r, s *big.Int, err error) {
+	var dsaSig struct {
 		R, S *big.Int
 	}
-	_, err = asn1.Unmarshal(b, &ecsdaSig)
+	_, err = asn1.Unmarshal(b, &dsaSig)
 	if err != nil {
 		return
 	}
-	return ecsdaSig.R, ecsdaSig.S, nil
+	return dsaSig.R, dsaSig.S, nil
 }
 
 // SignUserId computes a signature from priv, asserting that pub is a valid
