@@ -499,6 +499,18 @@ func (pk *PublicKey) CanSign() bool {
 	return pk.PubKeyAlgo != PubKeyAlgoRSAEncryptOnly && pk.PubKeyAlgo != PubKeyAlgoElGamal
 }
 
+// sameSignature reports whether both public key algorithms use the same
+// signature scheme.
+func sameSignature(a, b PublicKeyAlgorithm) bool {
+	if a == PubKeyAlgoRSA {
+		a = PubKeyAlgoRSASignOnly
+	}
+	if b == PubKeyAlgoRSA {
+		b = PubKeyAlgoRSASignOnly
+	}
+	return a == b
+}
+
 // VerifySignature returns nil iff sig is a valid signature, made by this
 // public key, of the data hashed into signed. signed is mutated by this call.
 func (pk *PublicKey) VerifySignature(signed hash.Hash, sig *Signature) (err error) {
@@ -513,7 +525,7 @@ func (pk *PublicKey) VerifySignature(signed hash.Hash, sig *Signature) (err erro
 		return errors.SignatureError("hash tag doesn't match")
 	}
 
-	if pk.PubKeyAlgo != sig.PubKeyAlgo {
+	if !sameSignature(pk.PubKeyAlgo, sig.PubKeyAlgo) {
 		return errors.InvalidArgumentError("public key and signature use different algorithms")
 	}
 
@@ -564,7 +576,7 @@ func (pk *PublicKey) VerifySignatureV3(signed hash.Hash, sig *SignatureV3) (err 
 		return errors.SignatureError("hash tag doesn't match")
 	}
 
-	if pk.PubKeyAlgo != sig.PubKeyAlgo {
+	if !sameSignature(pk.PubKeyAlgo, sig.PubKeyAlgo) {
 		return errors.InvalidArgumentError("public key and signature use different algorithms")
 	}
 
