@@ -166,7 +166,7 @@ type rsaSigner struct {
 }
 
 func (s *rsaSigner) Public() crypto.PublicKey {
-	return s.priv.PublicKey
+	return &s.priv.PublicKey
 }
 
 func (s *rsaSigner) Sign(rand io.Reader, msg []byte, opts crypto.SignerOpts) ([]byte, error) {

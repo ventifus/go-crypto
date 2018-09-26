@@ -69,7 +69,12 @@ func NewECDSAPrivateKey(currentTime time.Time, priv *ecdsa.PrivateKey) *PrivateK
 func NewSignerPrivateKey(currentTime time.Time, signer crypto.Signer) *PrivateKey {
 	pk := new(PrivateKey)
 	switch pubkey := signer.Public().(type) {
+	case *rsa.PublicKey:
+		pk.PublicKey = *NewRSAPublicKey(currentTime, pubkey)
+		pk.PubKeyAlgo = PubKeyAlgoRSASignOnly
 	case rsa.PublicKey:
+		// This case only exists for backwards compatibility. We should assume
+		// rsa.PublicKey to be used as a pointer.
 		pk.PublicKey = *NewRSAPublicKey(currentTime, &pubkey)
 		pk.PubKeyAlgo = PubKeyAlgoRSASignOnly
 	case ecdsa.PublicKey:
