@@ -404,11 +404,13 @@ const (
 type PublicKeyAlgorithm uint8
 
 const (
-	PubKeyAlgoRSA            PublicKeyAlgorithm = 1
+	PubKeyAlgoRSA PublicKeyAlgorithm = 1
+	// Deprecated: RFC 4880, Section 13.5. Set key flags instead.
 	PubKeyAlgoRSAEncryptOnly PublicKeyAlgorithm = 2
-	PubKeyAlgoRSASignOnly    PublicKeyAlgorithm = 3
-	PubKeyAlgoElGamal        PublicKeyAlgorithm = 16
-	PubKeyAlgoDSA            PublicKeyAlgorithm = 17
+	// Deprecated: RFC 4880, Section 13.5. Set key flags instead.
+	PubKeyAlgoRSASignOnly PublicKeyAlgorithm = 3
+	PubKeyAlgoElGamal     PublicKeyAlgorithm = 16
+	PubKeyAlgoDSA         PublicKeyAlgorithm = 17
 	// RFC 6637, Section 5.
 	PubKeyAlgoECDH  PublicKeyAlgorithm = 18
 	PubKeyAlgoECDSA PublicKeyAlgorithm = 19
