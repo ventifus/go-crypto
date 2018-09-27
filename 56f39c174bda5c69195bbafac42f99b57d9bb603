@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d399e7d_c5628a56",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-27T04:16:33Z",
+      "side": 1,
+      "message": "Why not the ECDSA case as well? ecdsa.PrivateKey.Public() returns a *ecdsa.PublicKey too.",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad2b3d5d_032500a9",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-27T04:16:33Z",
+      "side": 1,
+      "message": "Looks like this type only existed to change the behavior of Public(), which is not needed anymore, so just use the *rsa.PrivateKey directly.",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "418201b0_9de008e8",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-09-27T04:16:33Z",
+      "side": 1,
+      "message": "Same.",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
