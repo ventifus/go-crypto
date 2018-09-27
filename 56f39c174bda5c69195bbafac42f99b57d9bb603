@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "892f6e27_bea1a2c7",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-27T23:50:13Z",
+      "side": 1,
+      "message": "Because I apparently confused it with ed25519 m(",
+      "parentUuid": "1d399e7d_c5628a56",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad2b3d5d_032500a9",
         "filename": "openpgp/packet/private_key_test.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3db66a2e_7260d071",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-27T23:50:13Z",
+      "side": 1,
+      "message": "No, they also make type-assertions for *rsa.PrivateKey fail. They are integral to the function of the test, as only this ensures that code actually works with a different crypto.Signer.\nThough we can remove the methods and rely on embedding instead.",
+      "parentUuid": "ad2b3d5d_032500a9",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "418201b0_9de008e8",
         "filename": "openpgp/packet/private_key_test.go",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30db76a9_a5e08900",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-27T23:50:13Z",
+      "side": 1,
+      "message": "Same.",
+      "parentUuid": "418201b0_9de008e8",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
