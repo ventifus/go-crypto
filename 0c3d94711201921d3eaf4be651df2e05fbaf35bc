@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "267fc39e_41754c08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-28T00:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "793df5ac_ce207a7e",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "0c3d94711201921d3eaf4be651df2e05fbaf35bc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdfa820b_1bc61ffa",
         "filename": "openpgp/packet/private_key_test.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "0c3d94711201921d3eaf4be651df2e05fbaf35bc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01b46a01_90d726ef",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-28T00:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdfa820b_1bc61ffa",
+      "range": {
+        "startLine": 185,
+        "startChar": 14,
+        "endLine": 185,
+        "endChar": 35
+      },
+      "revId": "0c3d94711201921d3eaf4be651df2e05fbaf35bc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

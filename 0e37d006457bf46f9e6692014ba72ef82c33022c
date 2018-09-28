@@ -22,6 +22,30 @@
       "revId": "0e37d006457bf46f9e6692014ba72ef82c33022c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6b0dbe2_62c00a3c",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14425
+      },
+      "writtenOn": "2018-09-28T00:07:53Z",
+      "side": 0,
+      "message": "Done. With going on record that I don\u0027t think they actually *should* be deprecated in the sense of Deprecated-annotations, given that they are still useful and correct to use when interpreting existing keys.",
+      "parentUuid": "42f9919e_10d31d8b",
+      "range": {
+        "startLine": 74,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 39
+      },
+      "revId": "0e37d006457bf46f9e6692014ba72ef82c33022c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
