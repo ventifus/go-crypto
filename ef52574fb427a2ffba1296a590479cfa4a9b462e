@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "345c71ff_22faf7d4",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6cfea821_7e74eed1",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44434722_043cf0ef",
         "filename": "ssh/agent/client.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-24T14:01:15Z",
       "side": 1,
       "message": "needs comment",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 4
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23e60e12_6c604b90",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44434722_043cf0ef",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ea3c2d2f_9def6c8a",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8dcf9f57_dbd86bdb",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 22
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff39d3ae_47c70710",
         "filename": "ssh/agent/client.go",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a201562e_564fd520",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff39d3ae_47c70710",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 7
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,54 @@
     },
     {
       "key": {
+        "uuid": "a4f05f28_397f0009",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0d9e07d_c6b99e89",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 6
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b3c31a6_adf8cedd",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5d131a01_40d56845",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3161952_1039dcf8",
         "filename": "ssh/agent/client.go",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2018-09-24T14:01:15Z",
       "side": 1,
       "message": "the standard has some language around returning the right error code. Does the library hadnle this for you, or does the implementor have to worry about it?",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5b83f31_b3fb8ef9",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "You\u0027re right that this was unclear, and upon further inspection this PR wasn\u0027t actually handling it completely correctly. I\u0027ve made it clear now that if extensions are unsupported the sentinel ErrAgentExtensionUnsupported error should be returned in which case the library will handle returning the correct error code.",
+      "parentUuid": "f3161952_1039dcf8",
       "range": {
         "startLine": 76,
         "startChar": 12,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "17d9d6b2_99ff6b31",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Added some clarification here. For better or worse the spec leaves this totally open-ended: \"The contents of successful extension reply messages are specific to the extension type.  Extension requests may return SSH_AGENT_SUCCESS on success or some other extension-specific message.\" Since the type of the message isn\u0027t even specified we can\u0027t even try and parse it beyond looking for message type bytes that indicate an error. So my solution was to just return the whole response including the message type byte.",
+      "parentUuid": "675a899e_f5c1beba",
+      "range": {
+        "startLine": 78,
+        "startChar": 7,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "080deea7_ec44a2d2",
         "filename": "ssh/agent/client.go",
         "patchSetId": 1
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "ca2b252c_86e47c23",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Right, as mentioned above I\u0027ve now clarified that implementations of the Extension method should return the sentinel ErrAgentExtensionUnsupported error, and then the library will translate this into the proper message code.",
+      "parentUuid": "080deea7_ec44a2d2",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 27
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccc35dff_2c5e6e09",
         "filename": "ssh/agent/client_test.go",
         "patchSetId": 1
@@ -220,6 +436,30 @@
       "writtenOn": "2018-09-24T14:01:15Z",
       "side": 1,
       "message": "I think it\u0027s better if we let the library tack these code on, and let implementers just do Go style error handling.",
+      "range": {
+        "startLine": 412,
+        "startChar": 22,
+        "endLine": 412,
+        "endChar": 34
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9baba142_fbab01d6",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "Alluded to this elsewhere in my updates, but the spec for extensions says \"The contents of successful extension reply messages are specific to the extension type.  Extension requests may return SSH_AGENT_SUCCESS on success or some other extension-specific message.\"\n\nSince the message type of a extension response could be anything, I think we have to let implementers specify their message type byte (which could be SSH_AGENT_SUCCESS as in this case, but could just as easily be something like SSH_AGENT_SIGN_RESPONSE or even a custom message type not defined in the spec).",
+      "parentUuid": "ccc35dff_2c5e6e09",
       "range": {
         "startLine": 412,
         "startChar": 22,
@@ -267,6 +507,30 @@
       "side": 1,
       "message": "also, shouldn\u0027t there be a test that runs the SHA2 signer against a public key?\n\nis there docs for SSH standard that explain how this new option meshes with the existing key types? I want to make sure that we need this type, rather than something like\n\n  NewSignerWithHash(key interface{}, signAlgorithm string)",
       "parentUuid": "050423da_4900d024",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a4fef1_4486b08d",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-09-29T19:56:01Z",
+      "side": 1,
+      "message": "The intent was to provide an interface in the ssh package that the agent package could use so that it could implement the new SignWithFlags method using an up-casted Signer. See https://go-review.googlesource.com/c/crypto/+/123955/1/ssh/agent/keyring.go#202\n\nThe interface had to be public so the up-casting could be done from the agent package. (Otherwise, yes, it would just be internal to the ssh-agent code.)\n\nGiven that the only use-case here is to support implementation of the Signature Flags in the spec, which at this point only serve to specify that the signature should use the \"rsa-sha2-256\" or \"rsa-sha2-512\" algorithms, you\u0027re right that we only really need an mechanism to specify the signAlgorithm.\n\nAt this point in the code we are trying to use an existing Signer with a particular signing algorithm, so it made sense to me to try and up-cast the Signer to something where that algorithm could be specified (in this case via signer opts). But you\u0027re right that we could instead have something like a NewSignerWithHash(Signer original, signAlgorithm string) so that we could convert the \"ssh-rsa\" signer into a \"rsa-sha2-256\" or \"rsa-sha2-512\" signer at runtime.\n\n\nOn the note of testing, this code is effectively covered by the new code in agent/client_test.go (https://go-review.googlesource.com/c/crypto/+/123955/1/ssh/agent/client_test.go#181) but you\u0027re right that since it exposes API surface it ought to be covered in this package as well. I\u0027ll add test coverage, but I wanted to see what your preferred path forward is before I add that to the PR.",
+      "parentUuid": "46da3c79_ad37f3f3",
       "range": {
         "startLine": 303,
         "startChar": 5,
