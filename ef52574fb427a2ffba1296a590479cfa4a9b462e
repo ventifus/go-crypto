@@ -612,6 +612,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e877b84_81677c58",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-10-01T18:14:37Z",
+      "side": 1,
+      "message": "Definitely, will do. I\u0027ll try my best to get an this PR updated in the next week or so with a cleaned up interface for this and some thorough coverage. Thanks for the discussion!",
+      "parentUuid": "4437def5_0fde0293",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
