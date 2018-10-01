@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "bad0af6e_19eb97f2",
+        "filename": "openpgp/packet/private_key_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-10-01T20:30:42Z",
+      "side": 1,
+      "message": "Ah yep, right, thanks.",
+      "parentUuid": "3db66a2e_7260d071",
+      "revId": "56f39c174bda5c69195bbafac42f99b57d9bb603",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "418201b0_9de008e8",
         "filename": "openpgp/packet/private_key_test.go",
         "patchSetId": 1
