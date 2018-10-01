@@ -588,6 +588,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4437def5_0fde0293",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-01T17:36:03Z",
+      "side": 1,
+      "message": "that sounds like an argument for an extended interface that has SignWithOptions().\n\ncan you make something for the core SSH library that creates that and ensures it\u0027s properly unittested and end-to-end tested?",
+      "parentUuid": "88dbdfad_c81fb837",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
