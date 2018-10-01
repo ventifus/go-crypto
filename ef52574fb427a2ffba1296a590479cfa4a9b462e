@@ -564,6 +564,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88dbdfad_c81fb837",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-10-01T17:26:17Z",
+      "side": 1,
+      "message": "\u003e  I suspect it\u0027s not possible, but I haven\u0027t delved into the specification.\n\nRight, a single ssh-rsa key in an SSH agent can be used for any of the \"ssh-rsa\", \"ssh-sha2-256\", or \"rsa-sha2-512\" signing algorithms. Which algorithm is used is determined by the flags sent with the SSH_AGENTC_SIGN_REQUEST (at least in the agent context), so it\u0027s definitely an at-signing-time decision, not something that can be determined when the signer is created.\n\nSo I believe this means that either the Signer interface in the ssh package _really_ needs to be enhanced to support a signature algorithm (or something effectively the same like SignerOpts). I\u0027m happy to defer on the best way to get that flexibility though (whether it\u0027s by upcasting Signer to something like ParameterizedSigner, having a new NewSignerWithHash, or something else).",
+      "parentUuid": "676dae2e_d4f0eef7",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
