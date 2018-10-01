@@ -540,6 +540,30 @@
       "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "676dae2e_d4f0eef7",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-01T09:51:13Z",
+      "side": 1,
+      "message": "my preferred route is that the changes to SSH core library are completely covered with unittests   and tests against openssh independently. Preferably, the agent changes would also be in a separate commit, but that\u0027s probably tricky if you use github PRs.\n\nYou mention that it is possible to convert the signer at runtime, but my real question is if the conversion has to be done for each signature attempt separately, or whether you can determine upfront if a signer is only ever going to be used as either SHA1 or SHA2 signer. I suspect it\u0027s not possible, but I haven\u0027t delved into the specification.",
+      "parentUuid": "13a4fef1_4486b08d",
+      "range": {
+        "startLine": 303,
+        "startChar": 5,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "ef52574fb427a2ffba1296a590479cfa4a9b462e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
