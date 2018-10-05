@@ -29,7 +29,7 @@ type server struct {
 func (s *server) processRequestBytes(reqData []byte) []byte {
 	rep, err := s.processRequest(reqData)
 	if err != nil {
-		if err != errLocked {
+		if err != errLocked && len(reqData) > 0 {
 			// TODO(hanwen): provide better logging interface?
 			log.Printf("agent %d: %v", reqData[0], err)
 		}
@@ -74,6 +74,10 @@ type agentUnlockMsg struct {
 }
 
 func (s *server) processRequest(data []byte) (interface{}, error) {
+	if len(data) == 0 {
+		return nil, errors.New("empty request")
+	}
+
 	switch data[0] {
 	case agentRequestV1Identities:
 		return &agentV1IdentityMsg{0}, nil
