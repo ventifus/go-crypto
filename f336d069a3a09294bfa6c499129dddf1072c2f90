@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0894b3b2_afb30e96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-05T20:40:07Z",
+      "side": 1,
+      "message": "See https://github.com/golang/go/wiki/CommitMessage\n\nTitle line should start with:\n\n   ssh/agent: add ...",
+      "revId": "f336d069a3a09294bfa6c499129dddf1072c2f90",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
