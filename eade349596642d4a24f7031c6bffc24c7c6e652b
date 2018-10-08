@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdaf17ca_7472763c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "drop (it\u0027s implicit.)",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 97
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "462aacb4_ac0be6fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "please wrap this message to 72 cols.",
+      "range": {
+        "startLine": 9,
+        "startChar": 102,
+        "endLine": 9,
+        "endChar": 107
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8c8b62_ebb58491",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "\u0027change\u0027  or \u0027commit\u0027",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c958566c_f1741565",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "drop this paragraph.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "978350e6_7bfbfa37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "IIRC, we don\u0027t use MD style links. Can you check in the git log history?",
+      "range": {
+        "startLine": 13,
+        "startChar": 147,
+        "endLine": 13,
+        "endChar": 186
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed6a25e2_6ac40842",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "In case of success, ...",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3176655_34a6f0d8",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "agent: agent extension unsupported\n\n(the errors should have pkg name as prefix.)",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 52
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "131156d6_535d5181",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "type ?",
+      "range": {
+        "startLine": 766,
+        "startChar": 37,
+        "endLine": 766,
+        "endChar": 41
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cb81c88_4df3e8a0",
+        "filename": "ssh/certs.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "typo (h missing)",
+      "range": {
+        "startLine": 227,
+        "startChar": 1,
+        "endLine": 227,
+        "endChar": 16
+      },
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b70a1fc_8130d278",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "add links to RFC / standard docs.",
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0f6628c_5bdabd3e",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-08T15:39:49Z",
+      "side": 1,
+      "message": "check if the signature verifies too.",
+      "revId": "eade349596642d4a24f7031c6bffc24c7c6e652b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
