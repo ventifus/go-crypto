@@ -9,6 +9,7 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"testing"
@@ -28,8 +29,8 @@ func (cr keyboardInteractive) Challenge(user string, instruction string, questio
 var clientPassword = "tiger"
 
 // tryAuth runs a handshake with a given config against an SSH server
-// with config serverConfig
-func tryAuth(t *testing.T, config *ClientConfig) error {
+// with config serverConfig. Returns both client and server side errors.
+func tryAuth(t *testing.T, config *ClientConfig) (clientError error, serverAuthErrors []error) {
 	c1, c2, err := netPipe()
 	if err != nil {
 		t.Fatalf("netPipe: %v", err)
@@ -79,9 +80,13 @@ func tryAuth(t *testing.T, config *ClientConfig) error {
 	}
 	serverConfig.AddHostKey(testSigners["rsa"])
 
+	serverConfig.AuthLogCallback = func(conn ConnMetadata, method string, err error) {
+		serverAuthErrors = append(serverAuthErrors, err)
+	}
+
 	go newServer(c1, serverConfig)
 	_, _, _, err = NewClientConn(c2, "", config)
-	return err
+	return err, serverAuthErrors
 }
 
 func TestClientAuthPublicKey(t *testing.T) {
@@ -92,7 +97,7 @@ func TestClientAuthPublicKey(t *testing.T) {
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
@@ -106,7 +111,7 @@ func TestAuthMethodPassword(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
@@ -126,7 +131,7 @@ func TestAuthMethodFallback(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 
@@ -145,7 +150,7 @@ func TestAuthMethodWrongPassword(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
@@ -163,7 +168,7 @@ func TestAuthMethodKeyboardInteractive(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
@@ -180,7 +185,7 @@ func TestAuthMethodWrongKeyboardInteractive(t *testing.T) {
 		},
 	}
 
-	if err := tryAuth(t, config); err == nil {
+	if err, _ := tryAuth(t, config); err == nil {
 		t.Fatalf("wrong answers should not have authenticated with KeyboardInteractive")
 	}
 }
@@ -194,7 +199,7 @@ func TestAuthMethodInvalidPublicKey(t *testing.T) {
 		},
 	}
 
-	if err := tryAuth(t, config); err == nil {
+	if err, _ := tryAuth(t, config); err == nil {
 		t.Fatalf("dsa private key should not have authenticated with rsa public key")
 	}
 }
@@ -208,8 +213,47 @@ func TestAuthMethodRSAandDSA(t *testing.T) {
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("client could not authenticate with rsa key: %v", err)
+	}
+}
+
+type invalidAlgSigner struct {
+	Signer
+}
+
+func (s *invalidAlgSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	sig, err := s.Signer.Sign(rand, data)
+	if sig != nil {
+		sig.Format = "invalid"
+	}
+	return sig, err
+}
+
+func TestMethodInvalidAlgorithm(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(&invalidAlgSigner{testSigners["rsa"]}),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	err, serverErrors := tryAuth(t, config)
+	if err == nil {
+		t.Fatalf("login succeeded")
+	}
+
+	found := false
+	want := "algorithm \"invalid\""
+
+	var errStrings []string
+	for _, err := range serverErrors {
+		found = found || strings.Contains(err.Error(), want)
+		errStrings = append(errStrings, err.Error())
+	}
+	if !found {
+		t.Errorf("server got error %q, want substring %q", errStrings, want)
 	}
 }
 
@@ -225,7 +269,7 @@ func TestClientHMAC(t *testing.T) {
 			},
 			HostKeyCallback: InsecureIgnoreHostKey(),
 		}
-		if err := tryAuth(t, config); err != nil {
+		if err, _ := tryAuth(t, config); err != nil {
 			t.Fatalf("client could not authenticate with mac algo %s: %v", mac, err)
 		}
 	}
@@ -242,7 +286,7 @@ func TestClientUnsupportedCipher(t *testing.T) {
 			Ciphers: []string{"aes128-cbc"}, // not currently supported
 		},
 	}
-	if err := tryAuth(t, config); err == nil {
+	if err, _ := tryAuth(t, config); err == nil {
 		t.Errorf("expected no ciphers in common")
 	}
 }
@@ -261,7 +305,7 @@ func TestClientUnsupportedKex(t *testing.T) {
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
-	if err := tryAuth(t, config); err == nil || !strings.Contains(err.Error(), "common algorithm") {
+	if err, _ := tryAuth(t, config); err == nil || !strings.Contains(err.Error(), "common algorithm") {
 		t.Errorf("got %v, expected 'common algorithm'", err)
 	}
 }
@@ -285,34 +329,34 @@ func TestClientLoginCert(t *testing.T) {
 	clientConfig.Auth = append(clientConfig.Auth, PublicKeys(certSigner))
 
 	// should succeed
-	if err := tryAuth(t, clientConfig); err != nil {
+	if err, _ := tryAuth(t, clientConfig); err != nil {
 		t.Errorf("cert login failed: %v", err)
 	}
 
 	// corrupted signature
 	cert.Signature.Blob[0]++
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login passed with corrupted sig")
 	}
 
 	// revoked
 	cert.Serial = 666
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("revoked cert login succeeded")
 	}
 	cert.Serial = 1
 
 	// sign with wrong key
 	cert.SignCert(rand.Reader, testSigners["dsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login passed with non-authoritative key")
 	}
 
 	// host cert
 	cert.CertType = HostCert
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login passed with wrong type")
 	}
 	cert.CertType = UserCert
@@ -320,14 +364,14 @@ func TestClientLoginCert(t *testing.T) {
 	// principal specified
 	cert.ValidPrincipals = []string{"user"}
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err != nil {
+	if err, _ := tryAuth(t, clientConfig); err != nil {
 		t.Errorf("cert login failed: %v", err)
 	}
 
 	// wrong principal specified
 	cert.ValidPrincipals = []string{"fred"}
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login passed with wrong principal")
 	}
 	cert.ValidPrincipals = nil
@@ -335,21 +379,21 @@ func TestClientLoginCert(t *testing.T) {
 	// added critical option
 	cert.CriticalOptions = map[string]string{"root-access": "yes"}
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login passed with unrecognized critical option")
 	}
 
 	// allowed source address
 	cert.CriticalOptions = map[string]string{"source-address": "127.0.0.42/24,::42/120"}
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err != nil {
+	if err, _ := tryAuth(t, clientConfig); err != nil {
 		t.Errorf("cert login with source-address failed: %v", err)
 	}
 
 	// disallowed source address
 	cert.CriticalOptions = map[string]string{"source-address": "127.0.0.42,::42"}
 	cert.SignCert(rand.Reader, testSigners["ecdsa"])
-	if err := tryAuth(t, clientConfig); err == nil {
+	if err, _ := tryAuth(t, clientConfig); err == nil {
 		t.Errorf("cert login with source-address succeeded")
 	}
 }
@@ -419,7 +463,7 @@ func TestRetryableAuth(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 	if n != 2 {
@@ -445,7 +489,7 @@ func ExampleRetryableAuthMethod(t *testing.T) {
 		},
 	}
 
-	if err := tryAuth(t, config); err != nil {
+	if err, _ := tryAuth(t, config); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
@@ -554,7 +598,7 @@ func TestClientAuthMaxAuthTriesPublicKey(t *testing.T) {
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
-	if err := tryAuth(t, validConfig); err != nil {
+	if err, _ := tryAuth(t, validConfig); err != nil {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 
@@ -569,7 +613,7 @@ func TestClientAuthMaxAuthTriesPublicKey(t *testing.T) {
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
-	if err := tryAuth(t, invalidConfig); err == nil {
+	if err, _ := tryAuth(t, invalidConfig); err == nil {
 		t.Fatalf("client: got no error, want %s", expectedErr)
 	} else if err.Error() != expectedErr.Error() {
 		t.Fatalf("client: got %s, want %s", err, expectedErr)
