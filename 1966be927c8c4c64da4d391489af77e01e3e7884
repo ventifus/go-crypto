@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8150a1d8_ceccf034",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-18T09:31:34Z",
+      "side": 1,
+      "message": "check write return value.",
+      "range": {
+        "startLine": 235,
+        "startChar": 5,
+        "endLine": 235,
+        "endChar": 6
+      },
+      "revId": "1966be927c8c4c64da4d391489af77e01e3e7884",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
