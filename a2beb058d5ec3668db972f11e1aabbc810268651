@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9b156ba_8311e05e",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-18T09:44:11Z",
+      "side": 1,
+      "message": "sorry for that. this stutters.\n\n  agent: extension unsupported.\n\nRename the error too,  ErrExtensionUnsupported.",
+      "range": {
+        "startLine": 224,
+        "startChar": 54,
+        "endLine": 224,
+        "endChar": 59
+      },
+      "revId": "a2beb058d5ec3668db972f11e1aabbc810268651",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
