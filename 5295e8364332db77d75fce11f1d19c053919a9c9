@@ -46,6 +46,30 @@
       "revId": "5295e8364332db77d75fce11f1d19c053919a9c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91c6e9e_2992f3a2",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-10-18T05:42:19Z",
+      "side": 0,
+      "message": "See separate commit here: https://go-review.googlesource.com/c/crypto/+/143058",
+      "parentUuid": "1a5c8049_d5980456",
+      "range": {
+        "startLine": 287,
+        "startChar": 14,
+        "endLine": 287,
+        "endChar": 23
+      },
+      "revId": "5295e8364332db77d75fce11f1d19c053919a9c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
