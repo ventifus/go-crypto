@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d794a71c_1629d54e",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2018-10-23T09:37:38Z",
+      "side": 1,
+      "message": "why are you synchronzing at the end of the test? If there\u0027s nothing after the WAit(), then it\u0027s unnecessary? The goroutine should be triggered by agent.List() which will read from the other side of the connection.",
+      "range": {
+        "startLine": 255,
+        "startChar": 10,
+        "endLine": 256,
+        "endChar": 0
+      },
+      "revId": "8fd9566b9fcb0c6f8f507d0d3585d81ba35cdbf3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
