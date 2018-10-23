@@ -22,6 +22,30 @@
       "revId": "8fd9566b9fcb0c6f8f507d0d3585d81ba35cdbf3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0364503_d19c242c",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2018-10-23T16:54:49Z",
+      "side": 1,
+      "message": "Yep, you\u0027re right. For some reason I got it in my head that the \"main\" test method needed to ensure the goroutine completed to make sure the test assertions got run. But that\u0027s definitely not the case; thanks for correcting me.",
+      "parentUuid": "d794a71c_1629d54e",
+      "range": {
+        "startLine": 255,
+        "startChar": 10,
+        "endLine": 256,
+        "endChar": 0
+      },
+      "revId": "8fd9566b9fcb0c6f8f507d0d3585d81ba35cdbf3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
