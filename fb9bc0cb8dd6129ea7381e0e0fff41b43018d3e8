@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04cfe464_fb50b2f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T01:28:20Z",
+      "side": 1,
+      "message": "one-line change, not changes.\n\nAs an FYI: advertising a one-line change generally is a negative attribute instead of a positive: it advertised that tests weren\u0027t updated.\n\nThis one might not need a test update or addition, and perhaps nobody string matches or looks for substrings in these error values, but it\u0027s not guaranteed that error string changes are harmless. I\u0027m fine with this, though.\n\nBut no need to mention that it\u0027s a one-line change. The diff speaks for itself.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 21
+      },
+      "revId": "fb9bc0cb8dd6129ea7381e0e0fff41b43018d3e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebe7217e_50db259e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T01:28:20Z",
+      "side": 1,
+      "message": "See https://github.com/golang/go/wiki/CommitMessage for how we format our commit messages. (notably this last line and the subject line)\n\nSee the section at bottom of how GitHub PRs are mapped to Gerrit commit messages.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "fb9bc0cb8dd6129ea7381e0e0fff41b43018d3e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "347f886a_857ef5f6",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T01:28:20Z",
+      "side": 1,
+      "message": "no commented out code",
+      "revId": "fb9bc0cb8dd6129ea7381e0e0fff41b43018d3e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "408f1bd7_92fca752",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T01:28:20Z",
+      "side": 1,
+      "message": "maybe:\n\n     host %q not permitted by HostWhitelist policy",
+      "revId": "fb9bc0cb8dd6129ea7381e0e0fff41b43018d3e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
