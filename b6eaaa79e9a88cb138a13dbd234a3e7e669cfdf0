@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e183317f_88d0675d",
+        "filename": "hkdf/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T15:29:36Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this comment is saying.",
+      "range": {
+        "startLine": 24,
+        "startChar": 45,
+        "endLine": 24,
+        "endChar": 59
+      },
+      "revId": "b6eaaa79e9a88cb138a13dbd234a3e7e669cfdf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b663e165_ff9a2718",
+        "filename": "hkdf/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-10-24T15:29:36Z",
+      "side": 1,
+      "message": "Non-secret",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "b6eaaa79e9a88cb138a13dbd234a3e7e669cfdf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
