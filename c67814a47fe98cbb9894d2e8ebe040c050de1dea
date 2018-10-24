@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad42e9d8_2da503b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-10-24T13:37:32Z",
+      "side": 1,
+      "message": "We do not accept code lifted from other projects, whatever the license (with very very rare exceptions, which must live in the vendor folder). The code author and copyright owner must submit it to the Go project under the CLA.",
+      "revId": "c67814a47fe98cbb9894d2e8ebe040c050de1dea",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
