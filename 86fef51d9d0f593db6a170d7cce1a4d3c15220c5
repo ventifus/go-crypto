@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02bb6570_72101cd6",
+        "filename": "hkdf/hkdf.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-10-24T16:16:32Z",
+      "side": 1,
+      "message": "\"master secret\" is a TLS term which seems a little odd here, although I don\u0027t have strong feelings. In HKDF it\u0027s called the \"input keying material\" and just needs to a min-entropy string .",
+      "range": {
+        "startLine": 20,
+        "startChar": 67,
+        "endLine": 20,
+        "endChar": 80
+      },
+      "revId": "86fef51d9d0f593db6a170d7cce1a4d3c15220c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f8e528c_4fed1bd8",
+        "filename": "hkdf/hkdf.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-10-24T16:16:32Z",
+      "side": 1,
+      "message": "I think it reads a little better as:\n\n\"Most common scenarios, including the generation of multiple keys, should use New instead.\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 63
+      },
+      "revId": "86fef51d9d0f593db6a170d7cce1a4d3c15220c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "314a20cc_1bdd2804",
+        "filename": "hkdf/hkdf.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-10-24T16:16:32Z",
+      "side": 1,
+      "message": "HKDF is not an exported type. Maybe \"Expand returns a Reader, from which a key can be read, …\". But your call because it\u0027s from the original code.",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "86fef51d9d0f593db6a170d7cce1a4d3c15220c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7836b7_693af15b",
+        "filename": "hkdf/hkdf.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2018-10-24T16:16:32Z",
+      "side": 1,
+      "message": "(ditto here if you decide to make a change to the wording above.)",
+      "range": {
+        "startLine": 88,
+        "startChar": 17,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "86fef51d9d0f593db6a170d7cce1a4d3c15220c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
