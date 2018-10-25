@@ -46,6 +46,30 @@
       "revId": "0e37d006457bf46f9e6692014ba72ef82c33022c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e58796a3_98613da7",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-10-25T11:34:23Z",
+      "side": 0,
+      "message": "I don\u0027t have a strong opinion, so changed it before submitting.",
+      "parentUuid": "c6b0dbe2_62c00a3c",
+      "range": {
+        "startLine": 74,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 39
+      },
+      "revId": "0e37d006457bf46f9e6692014ba72ef82c33022c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
