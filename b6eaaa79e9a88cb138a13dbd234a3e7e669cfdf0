@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4b6fb635_b811284c",
+        "filename": "hkdf/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-10-25T21:28:26Z",
+      "side": 1,
+      "message": "This is the constant problem of how to show keys in examples without encouraging hardcoding. I\u0027d love a nice solution, but that can be its own wide CL, as this comment is from the original.",
+      "parentUuid": "e183317f_88d0675d",
+      "range": {
+        "startLine": 24,
+        "startChar": 45,
+        "endLine": 24,
+        "endChar": 59
+      },
+      "revId": "b6eaaa79e9a88cb138a13dbd234a3e7e669cfdf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b663e165_ff9a2718",
         "filename": "hkdf/example_test.go",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "b6eaaa79e9a88cb138a13dbd234a3e7e669cfdf0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c89423ec_cfcc2054",
+        "filename": "hkdf/example_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-10-25T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b663e165_ff9a2718",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "b6eaaa79e9a88cb138a13dbd234a3e7e669cfdf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
