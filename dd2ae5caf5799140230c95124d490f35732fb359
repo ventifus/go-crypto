@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffd7ad2c_d120d083",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 5822
+      },
+      "writtenOn": "2018-10-26T09:51:00Z",
+      "side": 1,
+      "message": "Here you are allocating potentially a few times, and using bytes.Buffer when you don\u0027t need it. You can arrange to allocate exactly once:\n\nreasonForRevData :\u003d make([]byte, 0, 1 + len(sig.RevocationReasonText))\nreasonForRevData \u003d append(reasonForRevData, *sig.RevocationReason)\nreasonForRevData \u003d append(reasonForRevData, sig.RevocationReasonText...)\n\n(this works because of a special rule for append([]byte, string...) mentioned under https://golang.org/ref/spec#Appending_and_copying_slices)\n\nTo try it out: https://play.golang.org/p/wlfo94soo39",
+      "revId": "dd2ae5caf5799140230c95124d490f35732fb359",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
