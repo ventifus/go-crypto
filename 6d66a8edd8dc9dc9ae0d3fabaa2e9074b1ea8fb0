@@ -16,6 +16,24 @@
       "revId": "6d66a8edd8dc9dc9ae0d3fabaa2e9074b1ea8fb0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd9d1188_f3eb77ed",
+        "filename": "cryptobyte/cryptobyte_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-11-12T20:30:45Z",
+      "side": 1,
+      "message": "Ugh, clicked Submit too fast, sorry.",
+      "parentUuid": "6a27bcf1_c4a5d4bd",
+      "revId": "6d66a8edd8dc9dc9ae0d3fabaa2e9074b1ea8fb0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
