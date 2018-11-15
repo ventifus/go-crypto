@@ -140,13 +140,26 @@ ParsePackets:
 		}
 	}
 
+	if err := tryDecryptKeys(pubKeys, config, se, md, symKeys, prompt); err != nil {
+		return nil, err
+	}
+
+	if err := packets.Push(md.decrypted); err != nil {
+		return nil, err
+	}
+	return readSignedMessage(packets, md, keyring)
+}
+
+// tryDecryptKeys tries to decrypt the message using the provided chain of the keys.
+// returns error or updates the passed MessageDetails object with the decrypted content.
+func tryDecryptKeys(pubKeys []keyEnvelopePair, config *packet.Config, se *packet.SymmetricallyEncrypted,
+	md *MessageDetails, symKeys []*packet.SymmetricKeyEncrypted, prompt PromptFunction) error {
 	var candidates []Key
 	var decrypted io.ReadCloser
 
 	// Now that we have the list of encrypted keys we need to decrypt at
 	// least one of them or, if we cannot, we need to call the prompt
 	// function so that it can decrypt a key or give us a passphrase.
-FindKey:
 	for {
 		// See if any of the keys already have a private key available
 		candidates = candidates[:0]
@@ -160,16 +173,18 @@ FindKey:
 				if len(pk.encryptedKey.Key) == 0 {
 					pk.encryptedKey.Decrypt(pk.key.PrivateKey, config)
 				}
+
 				if len(pk.encryptedKey.Key) == 0 {
 					continue
 				}
-				decrypted, err = se.Decrypt(pk.encryptedKey.CipherFunc, pk.encryptedKey.Key)
+				decrypted, err := se.Decrypt(pk.encryptedKey.CipherFunc, pk.encryptedKey.Key)
 				if err != nil && err != errors.ErrKeyIncorrect {
-					return nil, err
+					return err
 				}
 				if decrypted != nil {
 					md.DecryptedWith = pk.key
-					break FindKey
+					md.decrypted = decrypted
+					return nil
 				}
 			} else {
 				fpr := string(pk.key.PublicKey.Fingerprint[:])
@@ -182,17 +197,19 @@ FindKey:
 		}
 
 		if len(candidates) == 0 && len(symKeys) == 0 {
-			return nil, errors.ErrKeyIncorrect
+			return errors.ErrKeyIncorrect
 		}
 
 		if prompt == nil {
-			return nil, errors.ErrKeyIncorrect
+			return errors.ErrKeyIncorrect
 		}
 
 		passphrase, err := prompt(candidates, len(symKeys) != 0)
 		if err != nil {
-			return nil, err
+			return err
 		}
+
+		var hasError error
 
 		// Try the symmetric passphrase first
 		if len(symKeys) != 0 && passphrase != nil {
@@ -201,22 +218,22 @@ FindKey:
 				if err == nil {
 					decrypted, err = se.Decrypt(cipherFunc, key)
 					if err != nil && err != errors.ErrKeyIncorrect {
-						return nil, err
+						return err
 					}
 					if decrypted != nil {
-						break FindKey
+						md.decrypted = decrypted
+						return nil
 					}
+				} else {
+					hasError = err
 				}
-
 			}
 		}
+		if hasError != nil {
+			return hasError
+		}
 	}
-
-	md.decrypted = decrypted
-	if err := packets.Push(decrypted); err != nil {
-		return nil, err
-	}
-	return readSignedMessage(packets, md, keyring)
+	return nil
 }
 
 // readSignedMessage reads a possibly signed message if mdin is non-zero then
