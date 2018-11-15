@@ -16,6 +16,24 @@
       "revId": "95e0d2060dc464fc5d8e912e895315522e50cdfa",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1d348fa_3a8cf480",
+        "filename": "openpgp/read.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 29965
+      },
+      "writtenOn": "2018-11-15T23:50:03Z",
+      "side": 1,
+      "message": "I don\u0027t know either. I presume that this part could be refactored into a set of functions, however I am not sure whether this refactoring should be part of this hotfix. \n\nPerhaps we can go with this change first, and then I will try to tidy up the rest of this code as a separate PR?",
+      "parentUuid": "eff5cdef_6b6697cf",
+      "revId": "95e0d2060dc464fc5d8e912e895315522e50cdfa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
