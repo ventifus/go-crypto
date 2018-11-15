@@ -255,45 +255,108 @@ func TestUnspecifiedRecipient(t *testing.T) {
 }
 
 func TestSymmetricallyEncrypted(t *testing.T) {
-	firstTimeCalled := true
 
-	prompt := func(keys []Key, symmetric bool) ([]byte, error) {
-		if len(keys) != 0 {
-			t.Errorf("prompt: len(keys) = %d (want 0)", len(keys))
-		}
+	type testFunc func(string, *MessageDetails, error)
 
-		if !symmetric {
-			t.Errorf("symmetric is not set")
-		}
-
-		if firstTimeCalled {
-			firstTimeCalled = false
-			return []byte("wrongpassword"), nil
-		}
-
-		return []byte("password"), nil
-	}
-
-	md, err := ReadMessage(readerFromHex(symmetricallyEncryptedCompressedHex), nil, prompt, nil)
+	var body bytes.Buffer
+	msg, err := SymmetricallyEncrypt(&body, []byte("secretpassword"), nil, nil)
 	if err != nil {
-		t.Errorf("ReadMessage: %s", err)
-		return
+		t.Fatalf("SymmetricallyEncrypt: %#v", err)
 	}
-
-	contents, err := ioutil.ReadAll(md.UnverifiedBody)
+	_, err = msg.Write([]byte("Hello, secret world!"))
+	msg.Close()
 	if err != nil {
-		t.Errorf("ReadAll: %s", err)
+		t.Fatalf("msg.Write: %#v", err)
 	}
 
-	expectedCreationTime := uint32(1295992998)
-	if md.LiteralData.Time != expectedCreationTime {
-		t.Errorf("LiteralData.Time is %d, want %d", md.LiteralData.Time, expectedCreationTime)
+	tests := []struct {
+		testName      string
+		encryptedData io.Reader
+		password      string
+		test          testFunc
+	}{
+		{
+			testName:      "basic encryption / decryption, correct password",
+			encryptedData: &body,
+			password:      "secretpassword",
+			test: func(testName string, md *MessageDetails, err error) {
+				if err != nil {
+					t.Errorf("[%s]: ReadMessage: %s", testName, err)
+					return
+				}
+
+				contents, err := ioutil.ReadAll(md.UnverifiedBody)
+				if err != nil {
+					t.Errorf("[%s]: ReadAll: %s", testName, err)
+					return
+				}
+
+				const expected = "Hello, secret world!"
+				if s := string(contents); s != expected {
+					t.Errorf("[%s]: contents got: %s want: %s", testName, s, expected)
+					return
+				}
+
+			},
+		},
+		{
+			testName:      "basic encryption / decryption, wrong password",
+			encryptedData: &body,
+			password:      "wrongpassword",
+			test: func(testName string, md *MessageDetails, err error) {
+				if err == nil {
+					t.Errorf("[%s]: Expecting error because of wrong password", testName)
+					return
+				}
+			},
+		},
+		{
+			testName:      "message digest, correct password",
+			encryptedData: readerFromHex(symmetricallyEncryptedCompressedHex),
+			password:      "password",
+			test: func(testName string, md *MessageDetails, err error) {
+				if err != nil {
+					t.Errorf("[%s]: ReadMessage: %s", testName, err)
+					return
+				}
+
+				contents, err := ioutil.ReadAll(md.UnverifiedBody)
+				if err != nil {
+					t.Errorf("[%s]: ReadAll: %s", testName, err)
+				}
+
+				expectedCreationTime := uint32(1295992998)
+				if md.LiteralData.Time != expectedCreationTime {
+					t.Errorf("[%s]: LiteralData.Time is %d, want %d", testName, md.LiteralData.Time, expectedCreationTime)
+				}
+
+				const expected = "Symmetrically encrypted.\n"
+				if string(contents) != expected {
+					t.Errorf("[%s]: contents got: %s want: %s", testName, string(contents), expected)
+				}
+			},
+		},
 	}
 
-	const expected = "Symmetrically encrypted.\n"
-	if string(contents) != expected {
-		t.Errorf("contents got: %s want: %s", string(contents), expected)
+	prompt := func(pwd string) func([]Key, bool) ([]byte, error) {
+		return func(keys []Key, symmetric bool) ([]byte, error) {
+			if len(keys) != 0 {
+				t.Errorf("prompt: len(keys) = %d (want 0)", len(keys))
+			}
+
+			if !symmetric {
+				t.Errorf("symmetric is not set")
+			}
+
+			return []byte(pwd), nil
+		}
 	}
+
+	for _, test := range tests {
+		md, err := ReadMessage(test.encryptedData, nil, prompt(test.password), nil)
+		test.test(test.testName, md, err)
+	}
+
 }
 
 func testDetachedSignature(t *testing.T, kring KeyRing, signature io.Reader, sigInput, tag string, expectedSignerKeyId uint64) {
