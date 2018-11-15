@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c510bc2_cde91423",
+        "filename": "openpgp/read_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-11-15T03:41:50Z",
+      "side": 1,
+      "message": "What is this string? Comment or name it.",
+      "range": {
+        "startLine": 259,
+        "startChar": 20,
+        "endLine": 259,
+        "endChar": 26
+      },
+      "revId": "1eeb199458ca7bec48ce8149b5f2f68abbceed47",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09bd3b19_bbdcaf3f",
+        "filename": "openpgp/read_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-11-15T03:41:50Z",
+      "side": 1,
+      "message": "I\u0027d just use subtests (t.Run) and turn these into t.Fatal and don\u0027t worry about including testName because you\u0027d pass testName to t.Run instead.",
+      "range": {
+        "startLine": 289,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 5
+      },
+      "revId": "1eeb199458ca7bec48ce8149b5f2f68abbceed47",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
