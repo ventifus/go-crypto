@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eff5cdef_6b6697cf",
+        "filename": "openpgp/read.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2018-11-15T16:44:18Z",
+      "side": 1,
+      "message": "I don\u0027t get why this loop exists. If the answer is just to be able to \"break FindKey\", then it should be a function.",
+      "revId": "95e0d2060dc464fc5d8e912e895315522e50cdfa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
