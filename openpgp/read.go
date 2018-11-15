@@ -194,6 +194,8 @@ FindKey:
 			return nil, err
 		}
 
+		var hasError error
+
 		// Try the symmetric passphrase first
 		if len(symKeys) != 0 && passphrase != nil {
 			for _, s := range symKeys {
@@ -206,9 +208,13 @@ FindKey:
 					if decrypted != nil {
 						break FindKey
 					}
+				} else {
+					hasError = err
 				}
-
 			}
+		}
+		if hasError != nil {
+			return nil, hasError
 		}
 	}
 
