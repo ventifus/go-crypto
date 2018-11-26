@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29bba2a0_61a84a0e",
+        "filename": "ssh/terminal/util_aix.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2018-11-26T08:03:54Z",
+      "side": 1,
+      "message": "You\u0027ll need to add\n\n  // +build aix\n\nfor compatibility with Go 1.10 and 1.11. These version don\u0027t know about GOOS\u003daix yet.",
+      "revId": "a224b1bbda350e11d8c8d31162c5da2597f651b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
