@@ -52,6 +52,24 @@
       "revId": "95e0d2060dc464fc5d8e912e895315522e50cdfa",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e88862_a575a0f2",
+        "filename": "openpgp/read.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 29965
+      },
+      "writtenOn": "2018-11-27T00:14:22Z",
+      "side": 1,
+      "message": "Can you please elaborate on \"this fix is doing the wrong thing\"? Without the fix an attempt to decrypt the block using the wrong password results in the infinite loop. \n\nThe fixed code ensures that if trying all the keys didn\u0027t result in the valid decryption and instead an error was reported - return that error. Clean and simple.\n\nWhat are the problems with this approach?",
+      "parentUuid": "dd898118_77320ca5",
+      "revId": "95e0d2060dc464fc5d8e912e895315522e50cdfa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
