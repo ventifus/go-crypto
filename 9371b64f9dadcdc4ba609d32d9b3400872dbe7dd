@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9816103d_292c4c83",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2018-12-07T15:07:40Z",
+      "side": 1,
+      "message": "No equal sign here. You\u0027re defining a type alias by accident rather than a new type.",
+      "revId": "9371b64f9dadcdc4ba609d32d9b3400872dbe7dd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
