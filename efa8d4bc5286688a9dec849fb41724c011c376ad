@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2aa7f276_a39009a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-12-20T21:07:31Z",
+      "side": 1,
+      "message": "“Proposal” means something specific within the Go project, and is done via the issue tracker rather than a pull request. See https://golang.org/s/proposal.",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "efa8d4bc5286688a9dec849fb41724c011c376ad",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c07ac04_b3412136",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2018-12-20T21:07:31Z",
+      "side": 1,
+      "message": "Please format the commit message according to https://github.com/golang/go/wiki/CommitMessage.\n\nThe first line should start with the name of the primary package being changed. The issue reference should be:\nFixes golang/go#29286\nor\nUpdates golang/go#29286",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "efa8d4bc5286688a9dec849fb41724c011c376ad",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
