@@ -483,7 +483,7 @@ func ParseResponseForCert(bytes []byte, cert, issuer *x509.Certificate) (*Respon
 	}
 
 	var basicResp basicResponse
-	rest, err = asn1.Unmarshal(resp.Response.Response, &basicResp)
+	_, err = asn1.Unmarshal(resp.Response.Response, &basicResp)
 	if err != nil {
 		return nil, err
 	}
