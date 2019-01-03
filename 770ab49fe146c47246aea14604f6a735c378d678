@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f43bb219_29cc4ffb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-01-03T23:08:31Z",
+      "side": 1,
+      "message": "lowercase verb after the colon (https://github.com/golang/go/wiki/CommitMessage) and mention any new added API.\n\n   acme/autocert: add Manager.Indirect443Listener\n\nThen describe it more in the body.",
+      "revId": "770ab49fe146c47246aea14604f6a735c378d678",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c44a86_fc6d60d3",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-01-03T23:08:31Z",
+      "side": 1,
+      "message": "I\u0027m not a huge fan of this name. Plus Go APIs typically say \"Addr\" instead of \"Address\", but even that\u0027s kinda weird.\n\nThe adjectives should probably go before the noun, too, even though we don\u0027t do that everywhere (Dial, DialContext, etc).\n\nMaybe \"Indirect443Listener\"? To make it super explicit that this is really for port 443 but not directly?\n\nIn any case, file a bug and we can bikeshed the name there with others. We don\u0027t typically make these sorts of decisions on Gerrit.",
+      "revId": "770ab49fe146c47246aea14604f6a735c378d678",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
