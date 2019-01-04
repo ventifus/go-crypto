@@ -33,6 +33,24 @@
       "revId": "770ab49fe146c47246aea14604f6a735c378d678",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a5f2257_28a43217",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 30448
+      },
+      "writtenOn": "2019-01-04T07:31:38Z",
+      "side": 1,
+      "message": "Created and commented on a github issue: https://github.com/golang/go/issues/29540",
+      "parentUuid": "b6c44a86_fc6d60d3",
+      "revId": "770ab49fe146c47246aea14604f6a735c378d678",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
