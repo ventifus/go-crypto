@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5f7c288_d46074d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2019-01-21T22:26:59Z",
+      "side": 1,
+      "message": "Write this as\n\nblake2b: fix comments in grammar\n\nSee https://golang.org/wiki/CommitMessage.",
+      "revId": "4f3653af85d309e3e8ec176f0e91323c683e3e93",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
