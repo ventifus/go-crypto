@@ -173,6 +173,56 @@ func testAgentInterface(t *testing.T, agent Agent, key interface{}, cert *ssh.Ce
 
 }
 
+func TestEmptyRequest(t *testing.T) {
+	keyringAgent := NewKeyring()
+	listener, err := netListener()
+	if err != nil {
+		t.Fatalf("netListener: %v", err)
+	}
+	defer listener.Close()
+	go func() {
+		for {
+			c, err := listener.Accept()
+			if err != nil {
+				return
+			}
+			go ServeAgent(keyringAgent, c)
+		}
+	}()
+
+	// Send a few sets of bogus bytes to the listening agent. These should cause errors on the server-side, but shouldn't
+	// cause the server to panic.
+	for _, requestBytes := range [][]byte{
+		{},
+		{0x00},
+		{0x00, 0x00, 0x00, 0x00},
+		{0x00, 0x00, 0x00, 0x01},
+		{0x00, 0x00, 0x00, 0x01, 0x00},
+	} {
+		c, err := net.Dial("tcp", listener.Addr().String())
+		if err != nil {
+			t.Fatalf("net.Dial: %v", err)
+		}
+		defer c.Close()
+		_, err = c.Write(requestBytes)
+		if err != nil {
+			t.Fatalf("Unexpected error writing raw bytes on connection: %v", err)
+		}
+	}
+
+	// Finally, construct a real client and do a simple request (like List) to verify the client is still up and running.
+	c, err := net.Dial("tcp", listener.Addr().String())
+	if err != nil {
+		t.Fatalf("net.Dial: %v", err)
+	}
+	defer c.Close()
+	agent := NewClient(c)
+	_, err = agent.List()
+	if err != nil {
+		t.Fatalf("Error listing keys: %v", err)
+	}
+}
+
 func TestAgent(t *testing.T) {
 	for _, keyType := range []string{"rsa", "dsa", "ecdsa", "ed25519"} {
 		testOpenSSHAgent(t, testPrivateKeys[keyType], nil, 0)
@@ -192,16 +242,25 @@ func TestCert(t *testing.T) {
 	testKeyringAgent(t, testPrivateKeys["rsa"], cert, 0)
 }
 
-// netPipe is analogous to net.Pipe, but it uses a real net.Conn, and
-// therefore is buffered (net.Pipe deadlocks if both sides start with
-// a write.)
-func netPipe() (net.Conn, net.Conn, error) {
+// netListener creates a localhost network listener.
+func netListener() (net.Listener, error) {
 	listener, err := net.Listen("tcp", "127.0.0.1:0")
 	if err != nil {
 		listener, err = net.Listen("tcp", "[::1]:0")
 		if err != nil {
-			return nil, nil, err
+			return nil, err
 		}
+	}
+	return listener, nil
+}
+
+// netPipe is analogous to net.Pipe, but it uses a real net.Conn, and
+// therefore is buffered (net.Pipe deadlocks if both sides start with
+// a write.)
+func netPipe() (net.Conn, net.Conn, error) {
+	listener, err := netListener()
+	if err != nil {
+		return nil, nil, err
 	}
 	defer listener.Close()
 	c1, err := net.Dial("tcp", listener.Addr().String())
