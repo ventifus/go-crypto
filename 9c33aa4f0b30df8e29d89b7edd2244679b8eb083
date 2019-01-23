@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34f21063_a9a85223",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2019-01-23T19:49:43Z",
+      "side": 1,
+      "message": "You\u0027re correct that that probably wasn\u0027t causing any errors before. Actually out of all of these test cases I think it was only the `{0x00, 0x00, 0x00, 0x00},` case that was causing a panic. I figured I\u0027d just throw in a handful of additional inputs to make sure the code is defensive. But I can drop the empty case if it\u0027s deemed unnecessary.",
+      "parentUuid": "b90587a6_153f7abf",
+      "range": {
+        "startLine": 196,
+        "startChar": 3,
+        "endLine": 196,
+        "endChar": 4
+      },
+      "revId": "9c33aa4f0b30df8e29d89b7edd2244679b8eb083",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3748229d_a46fd631",
         "filename": "ssh/agent/server.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "9c33aa4f0b30df8e29d89b7edd2244679b8eb083",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d53e1372_316e9658",
+        "filename": "ssh/agent/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2019-01-23T19:49:43Z",
+      "side": 1,
+      "message": "Sure, moved this above the `if l \u003e maxAgentResponseBytes {` check.",
+      "parentUuid": "3748229d_a46fd631",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 7
+      },
+      "revId": "9c33aa4f0b30df8e29d89b7edd2244679b8eb083",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
