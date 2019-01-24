@@ -45,6 +45,30 @@
       "revId": "45927d4e1d97fdc0902bcd37391036f03f9bfad5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f003a8_4132f332",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-01-24T13:23:12Z",
+      "side": 1,
+      "message": "the fact that it continues running is because of l.184 in this file, ie. you\u0027re testing the test, not the code we\u0027re interested in.",
+      "parentUuid": "5ed3c72a_510e39c7",
+      "range": {
+        "startLine": 213,
+        "startChar": 110,
+        "endLine": 213,
+        "endChar": 117
+      },
+      "revId": "45927d4e1d97fdc0902bcd37391036f03f9bfad5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
