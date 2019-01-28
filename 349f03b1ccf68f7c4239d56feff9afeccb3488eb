@@ -46,6 +46,30 @@
       "revId": "349f03b1ccf68f7c4239d56feff9afeccb3488eb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdb6edd0_b40a592c",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-01-28T19:41:48Z",
+      "side": 1,
+      "message": "can you check if it returns error as expected?\n\nYou\u0027d have to specify the testcases with \n struct {\n   name string\n   in []byte\n   wantServerErr bool\n }",
+      "parentUuid": "b1b4513c_e07e0ec9",
+      "range": {
+        "startLine": 191,
+        "startChar": 3,
+        "endLine": 191,
+        "endChar": 13
+      },
+      "revId": "349f03b1ccf68f7c4239d56feff9afeccb3488eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
