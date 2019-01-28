@@ -22,6 +22,30 @@
       "revId": "349f03b1ccf68f7c4239d56feff9afeccb3488eb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b4513c_e07e0ec9",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 29401
+      },
+      "writtenOn": "2019-01-28T19:30:25Z",
+      "side": 1,
+      "message": "Some of the test cases are expected to result in an error. I can log it though for better visibility.",
+      "parentUuid": "5dcc201c_6fd98f65",
+      "range": {
+        "startLine": 191,
+        "startChar": 3,
+        "endLine": 191,
+        "endChar": 13
+      },
+      "revId": "349f03b1ccf68f7c4239d56feff9afeccb3488eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
