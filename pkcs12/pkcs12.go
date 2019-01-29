@@ -7,6 +7,9 @@
 // This implementation is distilled from https://tools.ietf.org/html/rfc7292
 // and referenced documents. It is intended for decoding P12/PFX-stored
 // certificates and keys for use with the crypto/tls package.
+//
+// This package is frozen. For more functionality, consider a community
+// alternative like github.com/SSLMate/go-pkcs12.
 package pkcs12
 
 import (
