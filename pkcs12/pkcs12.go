@@ -208,7 +208,7 @@ func convertAttribute(attribute *pkcs12Attribute) (key, value string, err error)
 
 // Decode extracts a certificate and private key from pfxData. This function
 // assumes that there is only one certificate and only one private key in the
-// pfxData.
+// pfxData, if there are more use ToPEM instead.
 func Decode(pfxData []byte, password string) (privateKey interface{}, certificate *x509.Certificate, err error) {
 	encodedPassword, err := bmpString(password)
 	if err != nil {
