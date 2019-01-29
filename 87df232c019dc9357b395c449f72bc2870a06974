@@ -16,6 +16,24 @@
       "revId": "87df232c019dc9357b395c449f72bc2870a06974",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18592c87_43df20d4",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-01-29T20:08:46Z",
+      "side": 1,
+      "message": "https://go-review.googlesource.com/c/crypto/+/160259",
+      "parentUuid": "a264c7e3_eeaac2be",
+      "revId": "87df232c019dc9357b395c449f72bc2870a06974",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
