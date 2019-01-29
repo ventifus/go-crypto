@@ -16,6 +16,24 @@
       "revId": "8d7daa0c54b357f3071e11eaef7efc4e19a417e2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "056fed67_c0ca76a0",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 30511
+      },
+      "writtenOn": "2019-01-29T23:23:23Z",
+      "side": 0,
+      "message": "My read of it is that this was ported from another language and he\u0027s assigning `0` to clear the variable, but that\u0027s not needed with golang.\n\nHere\u0027s the ineffassign output for edwards25519.go at 8d7daa0 (with full path truncated):\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1167:2: ineffectual assignment to s23\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1175:2: ineffectual assignment to s22\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1183:2: ineffectual assignment to s21\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1191:2: ineffectual assignment to s20\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1199:2: ineffectual assignment to s19\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1207:2: ineffectual assignment to s18\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1250:2: ineffectual assignment to s17\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1258:2: ineffectual assignment to s16\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1266:2: ineffectual assignment to s15\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1274:2: ineffectual assignment to s14\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1282:2: ineffectual assignment to s13\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1381:2: ineffectual assignment to s12\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1489:2: ineffectual assignment to s23\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1497:2: ineffectual assignment to s22\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1505:2: ineffectual assignment to s21\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1513:2: ineffectual assignment to s20\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1521:2: ineffectual assignment to s19\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1529:2: ineffectual assignment to s18\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1574:2: ineffectual assignment to s17\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1582:2: ineffectual assignment to s16\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1590:2: ineffectual assignment to s15\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1598:2: ineffectual assignment to s14\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1606:2: ineffectual assignment to s13\ncrypto/ed25519/internal/edwards25519/edwards25519.go:1705:2: ineffectual assignment to s12\n\nThat said, this function is indeed overwhelming, and if reverting the changes in this file is what you prefer, then that of course is what I\u0027ll do.",
+      "parentUuid": "a3ea1869_7a715ac5",
+      "revId": "8d7daa0c54b357f3071e11eaef7efc4e19a417e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
