@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "05e249ca_b0e96407",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-01-29T21:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12fbb600_1a838441",
+      "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "870e2de1_03765479",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "271e88de_5570c183",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-01-29T21:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "870e2de1_03765479",
+      "range": {
+        "startLine": 333,
+        "startChar": 3,
+        "endLine": 333,
+        "endChar": 6
+      },
+      "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30b7e355_2d472714",
         "filename": "acme/acme.go",
         "patchSetId": 1
@@ -62,6 +104,30 @@
       "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c71ba8_83b136ae",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-01-29T21:16:16Z",
+      "side": 1,
+      "message": "I think it\u0027s pretty obvious what the format is, but the doc comment points to the spec for any doubts.\nThe net.IP would make the usage here a bit more harder than it needs to be imho.\nUsers can always use net.IP in their programs and call net.IP.String() here if they really wanted to.\nI\u0027d prefer string here.",
+      "parentUuid": "30b7e355_2d472714",
+      "range": {
+        "startLine": 335,
+        "startChar": 50,
+        "endLine": 335,
+        "endChar": 63
+      },
+      "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
