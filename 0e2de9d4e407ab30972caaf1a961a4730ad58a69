@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5de3db31_7a89e555",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-01-29T21:43:10Z",
+      "side": 1,
+      "message": "len(rest) \u003d\u003d 0 should be checked here like above.",
+      "revId": "0e2de9d4e407ab30972caaf1a961a4730ad58a69",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
