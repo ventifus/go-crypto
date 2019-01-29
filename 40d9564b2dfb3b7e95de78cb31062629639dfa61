@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12fbb600_1a838441",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-01-29T20:36:29Z",
+      "side": 1,
+      "message": "missing period at the end of the sentence",
+      "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "870e2de1_03765479",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-01-29T20:36:29Z",
+      "side": 1,
+      "message": "See the",
+      "range": {
+        "startLine": 333,
+        "startChar": 3,
+        "endLine": 333,
+        "endChar": 6
+      },
+      "revId": "40d9564b2dfb3b7e95de78cb31062629639dfa61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
