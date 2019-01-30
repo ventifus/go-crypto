@@ -46,6 +46,30 @@
       "revId": "505ab145d0a99da450461ae2c1a9f6cd10d1f447",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8772f821_52d9c440",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 30511
+      },
+      "writtenOn": "2019-01-30T22:26:19Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "5a7a1c40_079f9eb2",
+      "range": {
+        "startLine": 1167,
+        "startChar": 0,
+        "endLine": 1207,
+        "endChar": 8
+      },
+      "revId": "505ab145d0a99da450461ae2c1a9f6cd10d1f447",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
