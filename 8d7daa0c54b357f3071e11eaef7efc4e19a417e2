@@ -34,6 +34,24 @@
       "revId": "8d7daa0c54b357f3071e11eaef7efc4e19a417e2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb40b11_f5b4760d",
+        "filename": "ed25519/internal/edwards25519/edwards25519.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-01-30T18:17:02Z",
+      "side": 0,
+      "message": "I do believe the lines are useless, but I think that even in whatever language this came from the point of zeroing them was to \"free\" this \"manually allocated register\". Entirely symbolical, but helps a bit the human trying to trace things.",
+      "parentUuid": "056fed67_c0ca76a0",
+      "revId": "8d7daa0c54b357f3071e11eaef7efc4e19a417e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
