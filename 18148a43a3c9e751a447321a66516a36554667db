@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca874de4_ce3a6867",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-01-30T22:18:23Z",
+      "side": 1,
+      "message": "(existing issue)\n\ns/ConvertToPEM/ToPEM/",
+      "range": {
+        "startLine": 103,
+        "startChar": 3,
+        "endLine": 103,
+        "endChar": 15
+      },
+      "revId": "18148a43a3c9e751a447321a66516a36554667db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f95fa3_e64409db",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-01-30T22:18:23Z",
+      "side": 1,
+      "message": "(nit)\n\ns/,/;/",
+      "range": {
+        "startLine": 211,
+        "startChar": 10,
+        "endLine": 211,
+        "endChar": 11
+      },
+      "revId": "18148a43a3c9e751a447321a66516a36554667db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
