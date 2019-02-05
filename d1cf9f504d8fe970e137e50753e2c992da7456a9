@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "986e09a1_2b01369e",
+        "filename": "curve25519/testvectors_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-02-05T21:47:50Z",
+      "side": 1,
+      "message": "Needs copyright header.",
+      "revId": "d1cf9f504d8fe970e137e50753e2c992da7456a9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
