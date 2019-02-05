@@ -70,6 +70,57 @@
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ef163a3_dfb6d122",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-05T22:00:29Z",
+      "side": 1,
+      "message": "i :\u003d len(src) - len(src)%bufSize\n\nif that\u0027s what this is doing.",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "327e4294_90f77fc2",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-05T22:00:29Z",
+      "side": 1,
+      "message": "This does not ensure the rest of buf is zeroes.\n\nTests should have caught this.",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a9a9d9a_f25c41e9",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-05T22:00:29Z",
+      "side": 1,
+      "message": "This breaks if dst is longer than src, which is allowed by the interface.\n\nTests should have caught this.",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
