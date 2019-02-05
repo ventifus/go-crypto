@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8bc491c_cb9112cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:25:29Z",
+      "side": 1,
+      "message": "s/OpenPGP/openpgp\n\nalso, Implemented should be lowercase",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "b7eb64116b22c188384c5d0e0aff8806eb874300",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77bd63d9_cacc97e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:25:29Z",
+      "side": 1,
+      "message": "we don\u0027t use signed-off-by lines",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "b7eb64116b22c188384c5d0e0aff8806eb874300",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
