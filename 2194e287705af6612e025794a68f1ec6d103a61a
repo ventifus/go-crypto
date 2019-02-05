@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4057a3a8_76c75e7e",
+        "filename": "sha3/kmac.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:22:52Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "2194e287705af6612e025794a68f1ec6d103a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2887003e_d15a54c6",
+        "filename": "sha3/kmac.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:22:52Z",
+      "side": 1,
+      "message": "errant newline",
+      "revId": "2194e287705af6612e025794a68f1ec6d103a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45666ded_bda152bc",
+        "filename": "sha3/kmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:22:52Z",
+      "side": 1,
+      "message": "Add license header",
+      "revId": "2194e287705af6612e025794a68f1ec6d103a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "605ff295_26b34128",
+        "filename": "sha3/kmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:22:52Z",
+      "side": 1,
+      "message": "check these errors and t.Errorf (t.Fatalf if used within t.Run)",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 62,
+        "endChar": 8
+      },
+      "revId": "2194e287705af6612e025794a68f1ec6d103a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28c1f950_95778c5c",
+        "filename": "sha3/kmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 22285
+      },
+      "writtenOn": "2019-02-05T21:22:52Z",
+      "side": 1,
+      "message": "space after //",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 4
+      },
+      "revId": "2194e287705af6612e025794a68f1ec6d103a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
