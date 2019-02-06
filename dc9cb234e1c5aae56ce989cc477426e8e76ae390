@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "033c1e53_57a61acd",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 20556
+      },
+      "writtenOn": "2019-02-06T04:16:25Z",
+      "side": 1,
+      "message": "bufSize is a power of two, so why not the more optimized version? Is Go compiler smart enough to optimize the expensive modulo operation plus subtraction into this?",
+      "parentUuid": "0ef163a3_dfb6d122",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "327e4294_90f77fc2",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -107,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "2621f30a_8f39785d",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 20556
+      },
+      "writtenOn": "2019-02-06T04:16:25Z",
+      "side": 1,
+      "message": "Does it matter? Bytes in c.buf[i:] are not used anyway, since the subsequent copy discards that result. No use zeroing.",
+      "parentUuid": "327e4294_90f77fc2",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a9a9d9a_f25c41e9",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -118,6 +154,24 @@
       "writtenOn": "2019-02-05T22:00:29Z",
       "side": 1,
       "message": "This breaks if dst is longer than src, which is allowed by the interface.\n\nTests should have caught this.",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03d6f618_887155c4",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 20556
+      },
+      "writtenOn": "2019-02-06T04:16:25Z",
+      "side": 1,
+      "message": "Perhaps a reasonable fix is something like this?\n\nc.len \u003d bufSize - copy(dst[i:], c.buf[:len(src) \u0026 (bufSize - 1)])",
+      "parentUuid": "5a9a9d9a_f25c41e9",
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
