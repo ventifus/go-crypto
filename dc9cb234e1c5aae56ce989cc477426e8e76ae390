@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "5529929d_741d317d",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-07T17:54:21Z",
+      "side": 1,
+      "message": "Because tracking what \u0026^ does and the assumption on the value of bufSize is a lot of human overhead, at least for people who don\u0027t work with low-level code all the time.\n\nIf it makes a significant performance difference there should be a benchmark and a compiler issue.",
+      "parentUuid": "033c1e53_57a61acd",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "327e4294_90f77fc2",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -143,6 +161,24 @@
     },
     {
       "key": {
+        "uuid": "d10a232d_8be4e0af",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-07T17:54:21Z",
+      "side": 1,
+      "message": "c.buf[c.len:] is used by the caller of xorKeyStreamAsm.",
+      "parentUuid": "2621f30a_8f39785d",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a9a9d9a_f25c41e9",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -172,6 +208,24 @@
       "side": 1,
       "message": "Perhaps a reasonable fix is something like this?\n\nc.len \u003d bufSize - copy(dst[i:], c.buf[:len(src) \u0026 (bufSize - 1)])",
       "parentUuid": "5a9a9d9a_f25c41e9",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da5179a4_c8cae791",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-07T17:54:21Z",
+      "side": 1,
+      "message": "For the same reason above, I prefer not to use bitwise operations for arithmetic.",
+      "parentUuid": "03d6f618_887155c4",
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
