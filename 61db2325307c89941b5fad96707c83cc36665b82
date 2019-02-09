@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "394649b0_d49b5eb2",
+        "filename": "poly1305/hash_noasm.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-02-09T21:15:00Z",
+      "side": 1,
+      "message": "So the reason is that the MAC implementation will use asm on amd64 but the generic implementation on e.g. arm. But sum_noasm.go is ignored on arm. So merging them into a single\nfile causes the build to fail. However, when there is also an arm and s390x asm implementation of MAC then we could merge sum_noasm.go and hash_noasm.go\n\nAlso, will rename hash_noasm.go -\u003e mac_noasm.go based on review comments.",
+      "parentUuid": "de38f8ed_c07bc007",
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1920df33_2c4f93ad",
         "filename": "poly1305/poly1305.go",
         "patchSetId": 3
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "3e8c5819_76c0073a",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-02-09T21:15:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70814d8c_a3348e4d",
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d66e7c89_4c3a31b5",
         "filename": "poly1305/poly1305.go",
         "patchSetId": 3
@@ -77,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "7778c5fe_685d4812",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-02-09T21:15:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d66e7c89_4c3a31b5",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a03410d_8874ce67",
         "filename": "poly1305/poly1305.go",
         "patchSetId": 3
@@ -91,6 +151,24 @@
       "revId": "61db2325307c89941b5fad96707c83cc36665b82",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85797566_d94d4d44",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-02-09T21:15:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a03410d_8874ce67",
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +192,30 @@
       "revId": "61db2325307c89941b5fad96707c83cc36665b82",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ba3b792_46f4c7a9",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-02-09T21:15:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dbc3ea1_efd5cbe7",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 33
+      },
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
