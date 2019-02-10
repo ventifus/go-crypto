@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "829a36f2_fd1f0be1",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2019-02-10T13:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5529929d_741d317d",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "327e4294_90f77fc2",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -179,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "5459ea57_a2034cb2",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2019-02-10T13:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d10a232d_8be4e0af",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a9a9d9a_f25c41e9",
         "filename": "internal/chacha20/chacha_arm64.go",
         "patchSetId": 18
@@ -229,6 +265,24 @@
       "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b80e0621_38e1c876",
+        "filename": "internal/chacha20/chacha_arm64.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2019-02-10T13:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5179a4_c8cae791",
+      "revId": "dc9cb234e1c5aae56ce989cc477426e8e76ae390",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
