@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6b233a5_aa217c82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-11T17:45:40Z",
+      "side": 1,
+      "message": "This is crypto/ so we do need the golang/go prefix.",
+      "revId": "42b62bacab924296d4aa06e8ee32302a8ac75f6b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
