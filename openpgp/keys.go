@@ -309,6 +309,22 @@ func readToNextPublicKey(packets *packet.Reader) (err error) {
 	}
 }
 
+// validRevocationReason reports whether the given revocation reason code is valid
+// as per RFC4880 section-5.2.3.23.
+func validRevocationReason(r uint8) bool {
+	switch r {
+	// Defined in RFC4880 section-5.2.3.23
+	case 0, 1, 2, 3, 32:
+		return true
+	default:
+		// Private use (RFC4880 section-5.2.3.23)
+		if 100 <= r && r <= 110 {
+			return true
+		}
+		return false
+	}
+}
+
 // ReadEntity reads an entity (public key, identities, subkeys etc) from the
 // given Reader.
 func ReadEntity(packets *packet.Reader) (*Entity, error) {
@@ -502,7 +518,7 @@ const defaultRSAKeyBits = 2048
 // NewEntity returns an Entity that contains a fresh RSA/RSA keypair with a
 // single identity composed of the given full name, comment and email, any of
 // which may be empty but must not contain any of "()<>\x00".
-// If config is nil, sensible defaults will be used.
+// If config is nil, defaults will be used.
 func NewEntity(name, comment, email string, config *packet.Config) (*Entity, error) {
 	creationTime := config.Now()
 
@@ -516,10 +532,6 @@ func NewEntity(name, comment, email string, config *packet.Config) (*Entity, err
 		return nil, errors.InvalidArgumentError("user id field contained invalid characters")
 	}
 	signingPriv, err := rsa.GenerateKey(config.Random(), bits)
-	if err != nil {
-		return nil, err
-	}
-	encryptingPriv, err := rsa.GenerateKey(config.Random(), bits)
 	if err != nil {
 		return nil, err
 	}
@@ -561,34 +573,132 @@ func NewEntity(name, comment, email string, config *packet.Config) (*Entity, err
 		e.Identities[uid.Id].SelfSignature.PreferredSymmetric = []uint8{uint8(config.DefaultCipher)}
 	}
 
-	e.Subkeys = make([]Subkey, 1)
-	e.Subkeys[0] = Subkey{
-		PublicKey:  packet.NewRSAPublicKey(creationTime, &encryptingPriv.PublicKey),
-		PrivateKey: packet.NewRSAPrivateKey(creationTime, encryptingPriv),
-		Sig: &packet.Signature{
-			CreationTime:              creationTime,
-			SigType:                   packet.SigTypeSubkeyBinding,
-			PubKeyAlgo:                packet.PubKeyAlgoRSA,
-			Hash:                      config.Hash(),
-			FlagsValid:                true,
-			FlagEncryptStorage:        true,
-			FlagEncryptCommunications: true,
-			IssuerKeyId:               &e.PrimaryKey.KeyId,
-		},
-	}
-	e.Subkeys[0].PublicKey.IsSubkey = true
-	e.Subkeys[0].PrivateKey.IsSubkey = true
-	err = e.Subkeys[0].Sig.SignKey(e.Subkeys[0].PublicKey, e.PrivateKey, config)
+	err = e.AddSubkey(false, true, config)
 	if err != nil {
 		return nil, err
 	}
 	return e, nil
 }
 
+// AddSubkey adds a RSA/RSA keypair as a subkey to the Entity. If canSign is true, then
+// the subkey will support signing. If canEncrypt is true, then the subkey supports encryption.
+// If config is nil, defaults will be used.
+func (e *Entity) AddSubkey(canSign bool, canEncrypt bool, config *packet.Config) error {
+	if !canSign && !canEncrypt {
+		return errors.InvalidArgumentError("subkey must support encryption and/or signing")
+	}
+	creationTime := config.Now()
+
+	bits := defaultRSAKeyBits
+	if config != nil && config.RSABits != 0 {
+		bits = config.RSABits
+	}
+
+	key, err := rsa.GenerateKey(config.Random(), bits)
+	if err != nil {
+		return err
+	}
+
+	subkey := Subkey{
+		PublicKey:  packet.NewRSAPublicKey(creationTime, &key.PublicKey),
+		PrivateKey: packet.NewRSAPrivateKey(creationTime, key),
+		Sig: &packet.Signature{
+			CreationTime:              creationTime,
+			SigType:                   packet.SigTypeSubkeyBinding,
+			PubKeyAlgo:                packet.PubKeyAlgoRSA,
+			Hash:                      config.Hash(),
+			FlagsValid:                true,
+			FlagEncryptStorage:        canEncrypt,
+			FlagEncryptCommunications: canEncrypt,
+			FlagSign:                  canSign,
+			IssuerKeyId:               &e.PrimaryKey.KeyId,
+		},
+	}
+
+	if canSign {
+		embeddedSig := &packet.Signature{
+			CreationTime: creationTime,
+			SigType:      packet.SigTypePrimaryKeyBinding,
+			PubKeyAlgo:   packet.PubKeyAlgoRSA,
+			Hash:         config.Hash(),
+			IssuerKeyId:  &e.PrimaryKey.KeyId,
+		}
+		err = embeddedSig.CrossSignKey(subkey.PublicKey, e.PrimaryKey, subkey.PrivateKey, config)
+		if err != nil {
+			return err
+		}
+		subkey.Sig.EmbeddedSignature = embeddedSig
+	}
+
+	subkey.PublicKey.IsSubkey = true
+	subkey.PrivateKey.IsSubkey = true
+	if err = subkey.Sig.SignKey(subkey.PublicKey, e.PrivateKey, config); err != nil {
+		return err
+	}
+
+	e.Subkeys = append(e.Subkeys, subkey)
+	return nil
+}
+
+// RevokeKey generates a key revocation signature (packet.SigTypeKeyRevocation) with the
+// specified reason code and text (RFC4880 section-5.2.3.23).
+// If config is nil, defaults will be used.
+func (e *Entity) RevokeKey(reason uint8, reasonText string, config *packet.Config) error {
+	if !validRevocationReason(reason) {
+		return errors.InvalidArgumentError("invalid reason code")
+	}
+
+	revSig := &packet.Signature{
+		CreationTime:         config.Now(),
+		SigType:              packet.SigTypeKeyRevocation,
+		PubKeyAlgo:           packet.PubKeyAlgoRSA,
+		Hash:                 config.Hash(),
+		RevocationReason:     &reason,
+		RevocationReasonText: reasonText,
+		IssuerKeyId:          &e.PrimaryKey.KeyId,
+	}
+
+	if err := revSig.RevokeKey(e.PrimaryKey, e.PrivateKey, config); err != nil {
+		return err
+	}
+	e.Revocations = append(e.Revocations, revSig)
+	return nil
+}
+
+// RevokeSubkey generates a subkey revocation signature (packet.SigTypeSubkeyRevocation) for
+// a subkey with the specified reason code and text (RFC4880 section-5.2.3.23).
+// If config is nil, defaults will be used.
+func (e *Entity) RevokeSubkey(sk *Subkey, reason uint8, reasonText string, config *packet.Config) error {
+	if !validRevocationReason(reason) {
+		return errors.InvalidArgumentError("invalid reason code")
+	}
+
+	if err := e.PrimaryKey.VerifyKeySignature(sk.PublicKey, sk.Sig); err != nil {
+		return errors.InvalidArgumentError("given subkey is not associated with this key")
+	}
+
+	revSig := &packet.Signature{
+		CreationTime:         config.Now(),
+		SigType:              packet.SigTypeSubkeyRevocation,
+		PubKeyAlgo:           packet.PubKeyAlgoRSA,
+		Hash:                 config.Hash(),
+		RevocationReason:     &reason,
+		RevocationReasonText: reasonText,
+		IssuerKeyId:          &e.PrimaryKey.KeyId,
+	}
+
+	if err := revSig.RevokeKey(sk.PublicKey, e.PrivateKey, config); err != nil {
+		return err
+	}
+
+	sk.Sig = revSig
+	return nil
+}
+
 // SerializePrivate serializes an Entity, including private key material, but
 // excluding signatures from other entities, to the given Writer.
 // Identities and subkeys are re-signed in case they changed since NewEntry.
-// If config is nil, sensible defaults will be used.
+// If config is nil, defaults will be used.
 func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error) {
 	err = e.PrivateKey.Serialize(w)
 	if err != nil {
@@ -619,6 +729,14 @@ func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error
 			err = subkey.Sig.SignKey(subkey.PublicKey, e.PrivateKey, config)
 			if err != nil {
 				return
+			}
+		}
+		// Re-sign the embedded signature as well if it exists.
+		if subkey.Sig.EmbeddedSignature != nil {
+			err = subkey.Sig.EmbeddedSignature.CrossSignKey(subkey.PublicKey, e.PrimaryKey,
+				subkey.PrivateKey, config)
+			if err != nil {
+				return err
 			}
 		}
 		err = subkey.Sig.Serialize(w)
@@ -669,7 +787,7 @@ func (e *Entity) Serialize(w io.Writer) error {
 // associated with e. The provided identity must already be an element of
 // e.Identities and the private key of signer must have been decrypted if
 // necessary.
-// If config is nil, sensible defaults will be used.
+// If config is nil, defaults will be used.
 func (e *Entity) SignIdentity(identity string, signer *Entity, config *packet.Config) error {
 	if signer.PrivateKey == nil {
 		return errors.InvalidArgumentError("signing Entity must have a private key")
