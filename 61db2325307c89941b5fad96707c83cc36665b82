@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "d393e9fd_dc0c8527",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-11T17:31:18Z",
+      "side": 1,
+      "message": "Still missing the \"Common uses should use the Sum function in this package instead.\" part.",
+      "parentUuid": "3e8c5819_76c0073a",
+      "revId": "61db2325307c89941b5fad96707c83cc36665b82",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d66e7c89_4c3a31b5",
         "filename": "poly1305/poly1305.go",
         "patchSetId": 3

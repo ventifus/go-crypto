@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd325fe5_7536f99d",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-11T17:31:18Z",
+      "side": 1,
+      "message": "Missing \"//\"",
+      "revId": "dc30dba1ea63273e4831b9f98e4dfd37c5f45cb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "433cf742_2240f3d0",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-11T17:31:18Z",
+      "side": 1,
+      "message": "\"The key must be unique for each message, as...\"",
+      "revId": "dc30dba1ea63273e4831b9f98e4dfd37c5f45cb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b93313ae_de401ac6",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-02-11T17:31:18Z",
+      "side": 1,
+      "message": "nit: capitalize Sum",
+      "range": {
+        "startLine": 68,
+        "startChar": 38,
+        "endLine": 68,
+        "endChar": 39
+      },
+      "revId": "dc30dba1ea63273e4831b9f98e4dfd37c5f45cb3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
