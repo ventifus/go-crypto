@@ -29,6 +29,30 @@ const (
 	KeyFlagEncryptStorage
 )
 
+// RFC4880 section-5.2.3.23
+const (
+	noReason       uint8 = 0
+	keySuperseded  uint8 = 1
+	keyCompromised uint8 = 2
+	keyRetired     uint8 = 3
+	invalidUserID  uint8 = 32
+)
+
+// ValidRevocationReason returns true if the given revocation reason code is valid
+// as per RFC4880 section-5.2.3.23.
+func ValidRevocationReason(r uint8) bool {
+	switch r {
+	case noReason, keySuperseded, keyCompromised, keyRetired, invalidUserID:
+		return true
+	default:
+		// Private use (RFC4880 section-5.2.3.23)
+		if r >= uint8(100) && r <= uint8(110) {
+			return true
+		}
+		return false
+	}
+}
+
 // Signature represents a signature. See RFC 4880, section 5.2.
 type Signature struct {
 	SigType    SignatureType
@@ -349,6 +373,7 @@ func parseSignatureSubpacket(sig *Signature, subpacket []byte, isHashed bool) (r
 	case reasonForRevocationSubpacket:
 		// Reason For Revocation, section 5.2.3.23
 		if !isHashed {
+			err = errors.StructuralError("revocation reason subpacket in non-hashed area")
 			return
 		}
 		if len(subpacket) == 0 {
@@ -509,7 +534,10 @@ func (sig *Signature) signPrepareHash(h hash.Hash) (digest []byte, err error) {
 // On success, the signature is stored in sig. Call Serialize to write it out.
 // If config is nil, sensible defaults will be used.
 func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err error) {
-	sig.outSubpackets = sig.buildSubpackets()
+	sig.outSubpackets, err = sig.buildSubpackets()
+	if err != nil {
+		return err
+	}
 	digest, err := sig.signPrepareHash(h)
 	if err != nil {
 		return
@@ -583,11 +611,34 @@ func (sig *Signature) SignUserId(id string, pub *PublicKey, priv *PrivateKey, co
 	return sig.Sign(h, priv, config)
 }
 
+// CrossSignKey computes a signature from signingKey on pub hashed using hashKey. On success,
+// the signature is stored in sig. Call Serialize to write it out.
+// If config is nil, sensible defaults will be used.
+func (sig *Signature) CrossSignKey(pub *PublicKey, hashKey *PublicKey, signingKey *PrivateKey,
+	config *Config) error {
+	h, err := keySignatureHash(hashKey, pub, sig.Hash)
+	if err != nil {
+		return err
+	}
+	return sig.Sign(h, signingKey, config)
+}
+
 // SignKey computes a signature from priv, asserting that pub is a subkey. On
 // success, the signature is stored in sig. Call Serialize to write it out.
 // If config is nil, sensible defaults will be used.
 func (sig *Signature) SignKey(pub *PublicKey, priv *PrivateKey, config *Config) error {
 	h, err := keySignatureHash(&priv.PublicKey, pub, sig.Hash)
+	if err != nil {
+		return err
+	}
+	return sig.Sign(h, priv, config)
+}
+
+// RevokeKey computes a revocation signature of pub using priv. On success, the signature is
+// stored in sig. Call Serialize to write it out.
+// If config is nil, sensible defaults will be used.
+func (sig *Signature) RevokeKey(pub *PublicKey, priv *PrivateKey, config *Config) error {
+	h, err := keyRevocationHash(pub, sig.Hash)
 	if err != nil {
 		return err
 	}
@@ -627,6 +678,15 @@ func (sig *Signature) Serialize(w io.Writer) (err error) {
 		return
 	}
 
+	err = sig.serializeBody(w)
+	if err != nil {
+		return err
+	}
+	return
+}
+
+func (sig *Signature) serializeBody(w io.Writer) (err error) {
+	unhashedSubpacketsLen := subpacketsLength(sig.outSubpackets, false)
 	_, err = w.Write(sig.HashSuffix[:len(sig.HashSuffix)-6])
 	if err != nil {
 		return
@@ -667,7 +727,7 @@ type outputSubpacket struct {
 	contents      []byte
 }
 
-func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
+func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket, err error) {
 	creationTime := make([]byte, 4)
 	binary.BigEndian.PutUint32(creationTime, uint32(sig.CreationTime.Unix()))
 	subpackets = append(subpackets, outputSubpacket{true, creationTimeSubpacket, false, creationTime})
@@ -725,6 +785,23 @@ func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
 
 	if len(sig.PreferredCompression) > 0 {
 		subpackets = append(subpackets, outputSubpacket{true, prefCompressionSubpacket, false, sig.PreferredCompression})
+	}
+
+	// Revocation reason appears only in revocation signatures and is serialized as per section 5.2.3.23.
+	if sig.RevocationReason != nil {
+		subpackets = append(subpackets, outputSubpacket{true, reasonForRevocationSubpacket, true,
+			append([]uint8{*sig.RevocationReason}, []uint8(sig.RevocationReasonText)...)})
+	}
+
+	// EmbeddedSignature appears only in subkeys capable of signing and is serialized as per section 5.2.3.26.
+	if sig.EmbeddedSignature != nil {
+		var buf bytes.Buffer
+		err = sig.EmbeddedSignature.serializeBody(&buf)
+		if err != nil {
+			return
+		}
+		subpackets = append(subpackets, outputSubpacket{true, embeddedSignatureSubpacket, true,
+			buf.Bytes()})
 	}
 
 	return
