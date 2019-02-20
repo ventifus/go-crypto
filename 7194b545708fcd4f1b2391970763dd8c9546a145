@@ -73,6 +73,30 @@
       "revId": "7194b545708fcd4f1b2391970763dd8c9546a145",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "535e8905_8f17aa7a",
+        "filename": "bn256/bn256.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 31103
+      },
+      "writtenOn": "2019-02-20T16:26:16Z",
+      "side": 1,
+      "message": "Thanks. A new commit was uploaded.",
+      "parentUuid": "b563aa5a_42f6832a",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 2
+      },
+      "revId": "7194b545708fcd4f1b2391970763dd8c9546a145",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
