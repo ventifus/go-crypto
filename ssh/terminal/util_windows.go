@@ -70,7 +70,7 @@ func GetSize(fd int) (width, height int, err error) {
 	if err := windows.GetConsoleScreenBufferInfo(windows.Handle(fd), &info); err != nil {
 		return 0, 0, err
 	}
-	return int(info.Size.X), int(info.Size.Y), nil
+	return int(info.Window.Right - info.Window.Left), int(info.Window.Bottom - info.Window.Top), nil
 }
 
 // ReadPassword reads a line of input from a terminal without local echo.  This
