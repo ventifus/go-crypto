@@ -64,13 +64,15 @@ func Restore(fd int, state *State) error {
 	return windows.SetConsoleMode(windows.Handle(fd), state.mode)
 }
 
-// GetSize returns the dimensions of the given terminal.
+// GetSize returns the visible dimensions of the given terminal.
+//
+// These dimensions don't include screen buffer which is the overall scrollable size.
 func GetSize(fd int) (width, height int, err error) {
 	var info windows.ConsoleScreenBufferInfo
 	if err := windows.GetConsoleScreenBufferInfo(windows.Handle(fd), &info); err != nil {
 		return 0, 0, err
 	}
-	return int(info.Size.X), int(info.Size.Y), nil
+	return int(info.Window.Right - info.Window.Left), int(info.Window.Bottom - info.Window.Top), nil
 }
 
 // ReadPassword reads a line of input from a terminal without local echo.  This
