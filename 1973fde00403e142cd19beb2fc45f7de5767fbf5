@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ffe6642_2a549a12",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-02-25T15:39:46Z",
+      "side": 1,
+      "message": "Let\u0027s update the docs here too, then, to make it clear this is the viewable size, and not including the scrollback/buffer size.\n\n// GetSize returns the dimensions of the given terminal.\n//\n// The height does not include any scrollback buffer.",
+      "revId": "1973fde00403e142cd19beb2fc45f7de5767fbf5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
