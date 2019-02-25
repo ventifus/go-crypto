@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba062a77_154c1b1b",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-02-25T18:44:47Z",
+      "side": 1,
+      "message": "The first part is fine, but please drop the parens. Use separate sentences like in my earlier proposed text. Using some combination of the two texts is fine.",
+      "revId": "ae2e9c1861aeed8f1f59410365e00b2ff4f9b118",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
