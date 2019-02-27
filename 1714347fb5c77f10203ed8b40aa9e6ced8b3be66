@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bca1f35c_9ca7576a",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-02-27T15:51:51Z",
+      "side": 1,
+      "message": "Missing a word here between include and screen.\n\nLet\u0027s say:\n\n   // These dimensions don\u0027t include any scrollback buffer height.",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 40
+      },
+      "revId": "1714347fb5c77f10203ed8b40aa9e6ced8b3be66",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
