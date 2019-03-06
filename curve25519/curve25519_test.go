@@ -77,3 +77,13 @@ func BenchmarkScalarBaseMult(b *testing.B) {
 		ScalarBaseMult(&out, &in)
 	}
 }
+
+func BenchmarkScalarMult(b *testing.B) {
+	var in, out, k [32]byte
+	in[0] = 1
+
+	b.SetBytes(32)
+	for i := 0; i < b.N; i++ {
+		ScalarMult(&out, &in, &k)
+	}
+}
