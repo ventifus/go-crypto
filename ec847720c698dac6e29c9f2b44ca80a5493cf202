@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76af13a3_86a26a92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-03-06T20:45:38Z",
+      "side": 1,
+      "message": "curve25519: ....\n\nSee https://github.com/golang/go/wiki/CommitMessage\n\n(and lowercase verb after the colon)",
+      "revId": "ec847720c698dac6e29c9f2b44ca80a5493cf202",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
