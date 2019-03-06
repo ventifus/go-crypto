@@ -5,8 +5,6 @@
 package curve25519
 
 import (
-	"bytes"
-	"crypto/rand"
 	"fmt"
 	"testing"
 )
@@ -30,30 +28,6 @@ func TestBaseScalarMult(t *testing.T) {
 	}
 }
 
-// TestHighBitIgnored tests the following requirement in RFC 7748:
-//
-//	When receiving such an array, implementations of X25519 (but not X448) MUST
-//	mask the most significant bit in the final byte.
-//
-// Regression test for issue #30095.
-func TestHighBitIgnored(t *testing.T) {
-	var s, u [32]byte
-	rand.Read(s[:])
-	rand.Read(u[:])
-
-	var hi0, hi1 [32]byte
-
-	u[31] &= 0x7f
-	ScalarMult(&hi0, &s, &u)
-
-	u[31] |= 0x80
-	ScalarMult(&hi1, &s, &u)
-
-	if !bytes.Equal(hi0[:], hi1[:]) {
-		t.Errorf("high bit of group point should not affect result")
-	}
-}
-
 func BenchmarkScalarBaseMult(b *testing.B) {
 	var in, out [32]byte
 	in[0] = 1
@@ -61,5 +35,15 @@ func BenchmarkScalarBaseMult(b *testing.B) {
 	b.SetBytes(32)
 	for i := 0; i < b.N; i++ {
 		ScalarBaseMult(&out, &in)
+	}
+}
+
+func BenchmarkScalarMult(b *testing.B) {
+	var in, out, k [32]byte
+	in[0] = 1
+
+	b.SetBytes(32)
+	for i := 0; i < b.N; i++ {
+		ScalarMult(&out, &in, &k)
 	}
 }
