@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2386c596_3e43f520",
+        "filename": "poly1305/mac_noasm.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-06T11:21:00Z",
+      "side": 1,
+      "message": "Does this need to be a type alias? They were added in Go 1.9, which is old enough to be acceptable, but if we just use a normal type assignment then we don\u0027t break old versions unnecessarily:\n\ntype mac macGeneric",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaa4bc6f_0b031c9e",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-06T11:21:00Z",
+      "side": 1,
+      "message": "Maybe we should switch to using sub tests for the benchmarks now.",
+      "range": {
+        "startLine": 172,
+        "startChar": 1,
+        "endLine": 186,
+        "endChar": 85
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "984fdfda_a525e60d",
+        "filename": "poly1305/sum_amd64.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-06T11:21:00Z",
+      "side": 1,
+      "message": "Maybe rewrite this in pure Go and inline it into newMac?",
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fb5e748_c244b0b8",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-06T11:21:00Z",
+      "side": 1,
+      "message": "We should probably do this arithmetically (same for other places we do this check) and let the compiler optimize:\n\nif nn :\u003d len(p) - (len(p) % TagSize); nn \u003e 0 {\n    ...\n}",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66cfd180_12499a7a",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-06T11:21:00Z",
+      "side": 1,
+      "message": "If we zero\u0027d h.buffer when we set h.offset to 0 above then we wouldn\u0027t need this copy, we could just write the 1 directly into h.buffer, which might be faster when processing short messages.\n\nvar z [TagSize]byte\nh.buffer \u003d z\nh.offset \u003d 0",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
