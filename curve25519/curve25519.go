@@ -86,7 +86,7 @@ func feFromBytes(dst *fieldElement, src *[32]byte) {
 	h6 := load3(src[20:]) << 7
 	h7 := load3(src[23:]) << 5
 	h8 := load3(src[26:]) << 4
-	h9 := (load3(src[29:]) & 0x7fffff) << 2
+	h9 := load3(src[29:]) << 2
 
 	var carry [10]int64
 	carry[9] = (h9 + 1<<24) >> 25
@@ -782,7 +782,9 @@ func feInvert(out, z *fieldElement) {
 	feMul(out, &t1, &t0)
 }
 
-func scalarMult(out, in, base *[32]byte) {
+// ScalarMult sets dst to the product in*base where dst and base are the x
+// coordinates of group points and all values are in little-endian form.
+func ScalarMult(out, in, base *[32]byte) {
 	var e [32]byte
 
 	copy(e[:], in[:])
@@ -831,4 +833,13 @@ func scalarMult(out, in, base *[32]byte) {
 	feInvert(&z2, &z2)
 	feMul(&x2, &x2, &z2)
 	feToBytes(out, &x2)
+}
+
+// ScalarBaseMult sets dst to the product in*base where dst and base are the x
+// coordinates of group points, base is the standard generator and all values
+// are in little-endian form.
+func ScalarBaseMult(dst, in *[32]byte) {
+	// basePoint is the x coordinate of the generator of the curve.
+	basePoint := [32]byte{9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	ScalarMult(dst, in, &basePoint)
 }
