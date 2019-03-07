@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "55b277ed_c7b2e9d7",
+        "filename": "poly1305/mac_noasm.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "This would not work: type mac macGeneric\nThe mac type would not have e.g. a method Write(...) \n\nUse embedding - Changed it to type mac struct { macGeneric }.",
+      "parentUuid": "261a8059_c9bd5a1d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d69e9e2_3e8eebd6",
         "filename": "poly1305/poly1305.go",
         "patchSetId": 7
@@ -69,6 +93,30 @@
       "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13ddb95e_9d41d24b",
+        "filename": "poly1305/poly1305.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d69e9e2_3e8eebd6",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -112,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "c6752228_27c59186",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "This is on purpose since it\u0027s the internal implementation. Note that `MAC`.Write(...) calls this function after checking that no Sum has happened before.",
+      "parentUuid": "f5a9bb34_436fec88",
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad536c8b_15bf428e",
         "filename": "poly1305/sum_amd64.go",
         "patchSetId": 7
@@ -123,6 +189,24 @@
       "writtenOn": "2019-03-07T18:04:29Z",
       "side": 1,
       "message": "This copy in unnecessary if we panic on Write after Sum.",
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b53de81_136ddaf6",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "Not, AFAICS. Sum can be called multiple times and update(...) changes the state. Multiple calls to Sum() would lead to different results.",
+      "parentUuid": "ad536c8b_15bf428e",
       "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -193,6 +277,30 @@
     },
     {
       "key": {
+        "uuid": "f375bd51_c6e8d690",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6112905c_df6af57b",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66cfd180_12499a7a",
         "filename": "poly1305/sum_generic.go",
         "patchSetId": 7
@@ -204,6 +312,30 @@
       "writtenOn": "2019-03-06T11:21:00Z",
       "side": 1,
       "message": "If we zero\u0027d h.buffer when we set h.offset to 0 above then we wouldn\u0027t need this copy, we could just write the 1 directly into h.buffer, which might be faster when processing short messages.\n\nvar z [TagSize]byte\nh.buffer \u003d z\nh.offset \u003d 0",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a303b83_3006ea7f",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-03-07T18:49:39Z",
+      "side": 1,
+      "message": "Same, this is not correct AFAICS. Sum can be called multiple times which would lead to different results.",
+      "parentUuid": "66cfd180_12499a7a",
       "range": {
         "startLine": 70,
         "startChar": 18,
