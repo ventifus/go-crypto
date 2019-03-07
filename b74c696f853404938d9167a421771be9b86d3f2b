@@ -345,6 +345,30 @@
       "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "479d80e7_609a8ef5",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-03-07T19:11:22Z",
+      "side": 1,
+      "message": "If we call Sum again then either we either (a) haven\u0027t written anything else to the buffer, so the 1 we write in just overwrites the previous 1, or (b) have written to the buffer in which case we overwrote the 1. So I think it is always OK, but it is a bit hacky.\n\nThe current code is fine though, probably not worth changing.\n\n(The zero-ing code would be for Write rather than here.)",
+      "parentUuid": "7a303b83_3006ea7f",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "b74c696f853404938d9167a421771be9b86d3f2b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
