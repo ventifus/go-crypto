@@ -194,6 +194,24 @@
       "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b676ca11_0fced9d3",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-03-07T22:59:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40b511f2_28057b15",
+      "revId": "2b4c5ceb7368da349d83f27f831716a1194541b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
