@@ -87,7 +87,7 @@ type Request struct {
 	Payload   []byte
 
 	ch  *channel
-	mux *mux
+	mux *Mux
 }
 
 // Reply sends a response to a request. It must be called for all requests
@@ -160,7 +160,7 @@ type channel struct {
 	maxIncomingPayload uint32
 	maxRemotePayload   uint32
 
-	mux *mux
+	mux *Mux
 
 	// decided is set to true if an accept or reject message has been sent
 	// (for outbound channels) or received (for inbound channels).
@@ -191,7 +191,7 @@ type channel struct {
 	windowMu sync.Mutex
 	myWindow uint32
 
-	// writeMu serializes calls to mux.conn.writePacket() and
+	// writeMu serializes calls to mux.conn.WritePacket() and
 	// protects sentClose and packetPool. This mutex must be
 	// different from windowMu, as writePacket can block if there
 	// is a key exchange pending.
@@ -212,7 +212,7 @@ func (ch *channel) writePacket(packet []byte) error {
 		return io.EOF
 	}
 	ch.sentClose = (packet[0] == msgChannelClose)
-	err := ch.mux.conn.writePacket(packet)
+	err := ch.mux.conn.WritePacket(packet)
 	ch.writeMu.Unlock()
 	return err
 }
@@ -454,7 +454,7 @@ func (ch *channel) handlePacket(packet []byte) error {
 	return nil
 }
 
-func (m *mux) newChannel(chanType string, direction channelDirection, extraData []byte) *channel {
+func (m *Mux) newChannel(chanType string, direction channelDirection, extraData []byte) *channel {
 	ch := &channel{
 		remoteWin:        window{Cond: newCond()},
 		myWindow:         channelWindowSize,
