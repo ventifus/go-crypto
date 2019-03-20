@@ -22,6 +22,30 @@
       "revId": "d76fe73aac9160e2bc7810432adedac00297eb7c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ecab2c7_f8266f98",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 31402
+      },
+      "writtenOn": "2019-03-20T07:44:54Z",
+      "side": 1,
+      "message": "I don\u0027t know a period. The first information about the attribute is in the book \"Active Directory for Windows 2000\": https://books.google.tm/books?id\u003duyaRQnTEY14C\u0026pg\u003dPA479\u0026lpg\u003dPA479\u0026dq\u003dactive+directory+%221.3.6.1.5.5.7.3.2%22\u0026source\u003dbl\u0026ots\u003dGO72sirzWf\u0026sig\u003dACfU3U2e8QJfkOdDzaZFyCEJaBg6u7MIRQ\u0026hl\u003dru\u0026sa\u003dX\u0026ved\u003d2ahUKEwiE64vPlpDhAhXMwosKHWI4B1gQ6AEwAXoECAYQAQ#v\u003donepage\u0026q\u003dactive%20directory%20%221.3.6.1.5.5.7.3.2%22\u0026f\u003dfalse",
+      "parentUuid": "5f5e7e0c_9c0c38e6",
+      "range": {
+        "startLine": 193,
+        "startChar": 50,
+        "endLine": 193,
+        "endChar": 51
+      },
+      "revId": "d76fe73aac9160e2bc7810432adedac00297eb7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
