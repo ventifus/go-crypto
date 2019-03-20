@@ -46,6 +46,30 @@
       "revId": "d76fe73aac9160e2bc7810432adedac00297eb7c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86d0598f_96009395",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-03-20T15:11:47Z",
+      "side": 1,
+      "message": "I just meant a period at the end of the sentence, like the rest of the comments :)\n\"Using in Windows IAS PEAP \u0026 LDAPS certificates.\"",
+      "parentUuid": "3ecab2c7_f8266f98",
+      "range": {
+        "startLine": 193,
+        "startChar": 50,
+        "endLine": 193,
+        "endChar": 51
+      },
+      "revId": "d76fe73aac9160e2bc7810432adedac00297eb7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }

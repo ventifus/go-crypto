@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4afeb11f_a3f541e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-03-20T15:11:47Z",
+      "side": 1,
+      "message": "\"identifier\" ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 68,
+        "endLine": 12,
+        "endChar": 81
+      },
+      "revId": "972ace5c0230f66e2facb728357b8143f19851b3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daee66ef_069071e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-03-20T15:11:47Z",
+      "side": 1,
+      "message": "It looks like issue #24325 is related, and mentions this issue. Can you please add this to your CL description per https://github.com/golang/go/wiki/CommitMessage#commit-messages:\n\nUpdates golang/go#24325",
+      "revId": "972ace5c0230f66e2facb728357b8143f19851b3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
