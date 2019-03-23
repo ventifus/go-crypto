@@ -7,13 +7,7 @@
 package poly1305
 
 //go:noescape
-func initialize(state *[7]uint64, key *[32]byte)
-
-//go:noescape
-func update(state *[7]uint64, msg []byte)
-
-//go:noescape
-func finalize(tag *[TagSize]byte, state *[7]uint64)
+func update(state *state, msg []byte)
 
 // Sum generates an authenticator for m using a one-time key and puts the
 // 16-byte result into out. Authenticating two different messages with the same
@@ -25,13 +19,12 @@ func Sum(out *[16]byte, m []byte, key *[32]byte) {
 }
 
 func newMAC(key *[32]byte) (h mac) {
-	initialize(&h.state, key)
+	initializeGeneric(key, &h.r, &h.s)
 	return
 }
 
 type mac struct {
-	state [7]uint64 // := uint64{ h0, h1, h2, r0, r1, pad0, pad1 }
-
+	state
 	buffer [TagSize]byte
 	offset int
 }
@@ -64,5 +57,5 @@ func (h *mac) Sum(out *[16]byte) {
 	if h.offset > 0 {
 		update(&state, h.buffer[:h.offset])
 	}
-	finalize(out, &state)
+	finalizeGeneric(out, &state.h, &state.s)
 }

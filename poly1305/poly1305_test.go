@@ -5,6 +5,7 @@
 package poly1305
 
 import (
+	"crypto/rand"
 	"encoding/hex"
 	"flag"
 	"testing"
@@ -150,6 +151,7 @@ func benchmarkSum(b *testing.B, size int, unaligned bool) {
 	if unaligned {
 		in = unalignBytes(in)
 	}
+	rand.Read(in)
 	b.SetBytes(int64(len(in)))
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -164,6 +166,7 @@ func benchmarkWrite(b *testing.B, size int, unaligned bool) {
 	if unaligned {
 		in = unalignBytes(in)
 	}
+	rand.Read(in)
 	b.SetBytes(int64(len(in)))
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

@@ -2,18 +2,23 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// This file provides the generic implementation of Sum and MAC, which should
+// be used if no assembly implementations are available.
+
 package poly1305
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+	"math/bits"
+)
 
 const (
-	msgBlock   = uint32(1 << 24)
-	finalBlock = uint32(0)
+	msgBlock   = 1
+	finalBlock = 0
 )
 
 // sumGeneric generates an authenticator for msg using a one-time key and
-// puts the 16-byte result into out. This is the generic implementation of
-// Sum and should be called if no assembly implementation is available.
+// puts the 16-byte result into out.
 func sumGeneric(out *[TagSize]byte, msg []byte, key *[32]byte) {
 	h := newMACGeneric(key)
 	h.Write(msg)
@@ -21,23 +26,18 @@ func sumGeneric(out *[TagSize]byte, msg []byte, key *[32]byte) {
 }
 
 func newMACGeneric(key *[32]byte) (h macGeneric) {
-	h.r[0] = binary.LittleEndian.Uint32(key[0:]) & 0x3ffffff
-	h.r[1] = (binary.LittleEndian.Uint32(key[3:]) >> 2) & 0x3ffff03
-	h.r[2] = (binary.LittleEndian.Uint32(key[6:]) >> 4) & 0x3ffc0ff
-	h.r[3] = (binary.LittleEndian.Uint32(key[9:]) >> 6) & 0x3f03fff
-	h.r[4] = (binary.LittleEndian.Uint32(key[12:]) >> 8) & 0x00fffff
-
-	h.s[0] = binary.LittleEndian.Uint32(key[16:])
-	h.s[1] = binary.LittleEndian.Uint32(key[20:])
-	h.s[2] = binary.LittleEndian.Uint32(key[24:])
-	h.s[3] = binary.LittleEndian.Uint32(key[28:])
+	initializeGeneric(key, &h.r, &h.s)
 	return
 }
 
-type macGeneric struct {
-	h, r [5]uint32
-	s    [4]uint32
+type state struct {
+	h [3]uint64
+	r [2]uint64
+	s [2]uint64
+}
 
+type macGeneric struct {
+	state
 	buffer [TagSize]byte
 	offset int
 }
@@ -53,10 +53,10 @@ func (h *macGeneric) Write(p []byte) (n int, err error) {
 		copy(h.buffer[h.offset:], p[:remaining])
 		p = p[remaining:]
 		h.offset = 0
-		updateGeneric(h.buffer[:], msgBlock, &(h.h), &(h.r))
+		updateGeneric(h.buffer[:], msgBlock, &h.h, &h.r)
 	}
 	if nn := len(p) - (len(p) % TagSize); nn > 0 {
-		updateGeneric(p, msgBlock, &(h.h), &(h.r))
+		updateGeneric(p, msgBlock, &h.h, &h.r)
 		p = p[nn:]
 	}
 	if len(p) > 0 {
@@ -73,100 +73,118 @@ func (h *macGeneric) Sum(out *[16]byte) {
 		buffer[h.offset] = 1 // invariant: h.offset < TagSize
 		updateGeneric(buffer[:], finalBlock, &H, &R)
 	}
-	finalizeGeneric(out, &H, &(h.s))
+	finalizeGeneric(out, &H, &h.s)
 }
 
-func updateGeneric(msg []byte, flag uint32, h, r *[5]uint32) {
-	h0, h1, h2, h3, h4 := h[0], h[1], h[2], h[3], h[4]
-	r0, r1, r2, r3, r4 := uint64(r[0]), uint64(r[1]), uint64(r[2]), uint64(r[3]), uint64(r[4])
-	R1, R2, R3, R4 := r1*5, r2*5, r3*5, r4*5
+func initializeGeneric(key *[32]byte, r, s *[2]uint64) {
+	r[0] = binary.LittleEndian.Uint64(key[0:8]) & 0x0FFFFFFC0FFFFFFF
+	r[1] = binary.LittleEndian.Uint64(key[8:16]) & 0x0FFFFFFC0FFFFFFC
+	s[0] = binary.LittleEndian.Uint64(key[16:24])
+	s[1] = binary.LittleEndian.Uint64(key[24:32])
+}
+
+type uint128 struct {
+	lo, hi uint64
+}
+
+func mul64(a, b uint64) uint128 {
+	hi, lo := bits.Mul64(a, b)
+	return uint128{lo, hi}
+}
+
+func add128(a, b uint128) uint128 {
+	lo, c := bits.Add64(a.lo, b.lo, 0)
+	hi, c := bits.Add64(a.hi, b.hi, c)
+	if c != 0 {
+		panic("poly1305: unexpected overflow")
+	}
+	return uint128{lo, hi}
+}
+
+func shiftRight2(a uint128) uint128 {
+	a.lo = a.lo>>2 | (a.hi&3)<<62
+	a.hi = a.hi >> 2
+	return a
+}
+
+func updateGeneric(msg []byte, flag uint64, h *[3]uint64, r *[2]uint64) {
+	h0, h1, h2 := h[0], h[1], h[2]
+	r0, r1 := r[0], r[1]
 
 	for len(msg) >= TagSize {
-		// h += msg
-		h0 += binary.LittleEndian.Uint32(msg[0:]) & 0x3ffffff
-		h1 += (binary.LittleEndian.Uint32(msg[3:]) >> 2) & 0x3ffffff
-		h2 += (binary.LittleEndian.Uint32(msg[6:]) >> 4) & 0x3ffffff
-		h3 += (binary.LittleEndian.Uint32(msg[9:]) >> 6) & 0x3ffffff
-		h4 += (binary.LittleEndian.Uint32(msg[12:]) >> 8) | flag
+		var c uint64
 
-		// h *= r
-		d0 := (uint64(h0) * r0) + (uint64(h1) * R4) + (uint64(h2) * R3) + (uint64(h3) * R2) + (uint64(h4) * R1)
-		d1 := (d0 >> 26) + (uint64(h0) * r1) + (uint64(h1) * r0) + (uint64(h2) * R4) + (uint64(h3) * R3) + (uint64(h4) * R2)
-		d2 := (d1 >> 26) + (uint64(h0) * r2) + (uint64(h1) * r1) + (uint64(h2) * r0) + (uint64(h3) * R4) + (uint64(h4) * R3)
-		d3 := (d2 >> 26) + (uint64(h0) * r3) + (uint64(h1) * r2) + (uint64(h2) * r1) + (uint64(h3) * r0) + (uint64(h4) * R4)
-		d4 := (d3 >> 26) + (uint64(h0) * r4) + (uint64(h1) * r3) + (uint64(h2) * r2) + (uint64(h3) * r1) + (uint64(h4) * r0)
+		h0, c = bits.Add64(h0, binary.LittleEndian.Uint64(msg[0:8]), 0)
+		h1, c = bits.Add64(h1, binary.LittleEndian.Uint64(msg[8:16]), c)
+		h2 += c + flag
 
-		// h %= p
-		h0 = uint32(d0) & 0x3ffffff
-		h1 = uint32(d1) & 0x3ffffff
-		h2 = uint32(d2) & 0x3ffffff
-		h3 = uint32(d3) & 0x3ffffff
-		h4 = uint32(d4) & 0x3ffffff
+		h0r0 := mul64(h0, r0)
+		h1r0 := mul64(h1, r0)
+		h2r0 := mul64(h2, r0)
+		if h2r0.hi != 0 {
+			panic("poly1305: unexpected overflow")
+		}
+		h0r1 := mul64(h0, r1)
+		h1r1 := mul64(h1, r1)
+		h2r1 := mul64(h2, r1)
+		if h2r1.hi != 0 {
+			panic("poly1305: unexpected overflow")
+		}
 
-		h0 += uint32(d4>>26) * 5
-		h1 += h0 >> 26
-		h0 = h0 & 0x3ffffff
+		m0 := h0r0
+		m1 := add128(h1r0, h0r1)
+		m2 := add128(h2r0, h1r1)
+		m3 := h2r1
+
+		m1.lo, c = bits.Add64(m1.lo, m0.hi, 0)
+		m2.lo, c = bits.Add64(m2.lo, m1.hi, c)
+		m3.lo, _ = bits.Add64(m3.lo, m2.hi, c)
+
+		h0, h1, h2 = m0.lo, m1.lo, m2.lo&3
+		cc := uint128{m2.lo & 0xFFFFFFFFFFFFFFFC, m3.lo}
+
+		h0, c = bits.Add64(h0, cc.lo, 0)
+		h1, c = bits.Add64(h1, cc.hi, c)
+		h2 += c
+
+		cc = shiftRight2(cc)
+
+		h0, c = bits.Add64(h0, cc.lo, 0)
+		h1, c = bits.Add64(h1, cc.hi, c)
+		h2 += c
 
 		msg = msg[TagSize:]
 	}
 
-	h[0], h[1], h[2], h[3], h[4] = h0, h1, h2, h3, h4
+	h[0], h[1], h[2] = h0, h1, h2
 }
 
-func finalizeGeneric(out *[TagSize]byte, h *[5]uint32, s *[4]uint32) {
-	h0, h1, h2, h3, h4 := h[0], h[1], h[2], h[3], h[4]
+// select64 returns x if v == 1 and y if v == 0.
+func select64(v, x, y uint64) uint64 { return ^(v-1)&x | (v-1)&y }
 
-	// h %= p reduction
-	h2 += h1 >> 26
-	h1 &= 0x3ffffff
-	h3 += h2 >> 26
-	h2 &= 0x3ffffff
-	h4 += h3 >> 26
-	h3 &= 0x3ffffff
-	h0 += 5 * (h4 >> 26)
-	h4 &= 0x3ffffff
-	h1 += h0 >> 26
-	h0 &= 0x3ffffff
+// [p0, p1, p2] is 2¹³⁰ - 5 in little endian order.
+const (
+	p0 = 0xFFFFFFFFFFFFFFFB
+	p1 = 0xFFFFFFFFFFFFFFFF
+	p2 = 3
+)
+
+func finalizeGeneric(out *[TagSize]byte, h *[3]uint64, s *[2]uint64) {
+	h0, h1, h2 := h[0], h[1], h[2]
 
 	// h - p
-	t0 := h0 + 5
-	t1 := h1 + (t0 >> 26)
-	t2 := h2 + (t1 >> 26)
-	t3 := h3 + (t2 >> 26)
-	t4 := h4 + (t3 >> 26) - (1 << 26)
-	t0 &= 0x3ffffff
-	t1 &= 0x3ffffff
-	t2 &= 0x3ffffff
-	t3 &= 0x3ffffff
+	t0, b := bits.Sub64(h0, p0, 0)
+	t1, b := bits.Sub64(h1, p1, b)
+	_, b = bits.Sub64(h2, p2, b)
 
 	// select h if h < p else h - p
-	t_mask := (t4 >> 31) - 1
-	h_mask := ^t_mask
-	h0 = (h0 & h_mask) | (t0 & t_mask)
-	h1 = (h1 & h_mask) | (t1 & t_mask)
-	h2 = (h2 & h_mask) | (t2 & t_mask)
-	h3 = (h3 & h_mask) | (t3 & t_mask)
-	h4 = (h4 & h_mask) | (t4 & t_mask)
+	h0 = select64(b, h0, t0)
+	h1 = select64(b, h1, t1)
 
-	// h %= 2^128
-	h0 |= h1 << 26
-	h1 = ((h1 >> 6) | (h2 << 20))
-	h2 = ((h2 >> 12) | (h3 << 14))
-	h3 = ((h3 >> 18) | (h4 << 8))
-
-	// s: the s part of the key
 	// tag = (h + s) % (2^128)
-	t := uint64(h0) + uint64(s[0])
-	h0 = uint32(t)
-	t = uint64(h1) + uint64(s[1]) + (t >> 32)
-	h1 = uint32(t)
-	t = uint64(h2) + uint64(s[2]) + (t >> 32)
-	h2 = uint32(t)
-	t = uint64(h3) + uint64(s[3]) + (t >> 32)
-	h3 = uint32(t)
+	h0, c := bits.Add64(h0, s[0], 0)
+	h1, _ = bits.Add64(h1, s[1], c)
 
-	binary.LittleEndian.PutUint32(out[0:], h0)
-	binary.LittleEndian.PutUint32(out[4:], h1)
-	binary.LittleEndian.PutUint32(out[8:], h2)
-	binary.LittleEndian.PutUint32(out[12:], h3)
+	binary.LittleEndian.PutUint64(out[0:8], h0)
+	binary.LittleEndian.PutUint64(out[8:16], h1)
 }
