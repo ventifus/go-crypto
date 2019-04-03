@@ -33,6 +33,24 @@
       "revId": "e19e1a02deae137265a17f61a8319ad7e8c0ca13",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c10b2d78_65a3bb46",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7050
+      },
+      "writtenOn": "2019-04-03T06:32:59Z",
+      "side": 1,
+      "message": "As it seems like this wasn\u0027t caught by a unit test, it\u0027s probably not a bad candidate for the /x/crypto/cryptotest package.",
+      "parentUuid": "65b838fd_41d1d4f6",
+      "revId": "e19e1a02deae137265a17f61a8319ad7e8c0ca13",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
