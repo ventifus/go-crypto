@@ -22,6 +22,30 @@
       "revId": "6d28c2cc64fdbeb67c952c9fe91d808f76bf4ee4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60193505_eaa58055",
+        "filename": "sha3/kmac.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 11965
+      },
+      "writtenOn": "2019-04-03T14:39:28Z",
+      "side": 1,
+      "message": "I followed crypto/hmac. I\u0027m not sure why it\u0027s not supported there... (maybe some concert about accidentally encoding the secret MAC state?) https://go-review.googlesource.com/c/go/+/66710/ doesn\u0027t mention anything about HMAC.\n\nI can implement it if needed.",
+      "parentUuid": "b636c666_bcc09fc8",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "6d28c2cc64fdbeb67c952c9fe91d808f76bf4ee4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
