@@ -31,12 +31,19 @@ var clientPassword = "tiger"
 // tryAuth runs a handshake with a given config against an SSH server
 // with config serverConfig. Returns both client and server side errors.
 func tryAuth(t *testing.T, config *ClientConfig) error {
-	err, _ := tryAuthBothSides(t, config)
+	err, _ := tryAuthBothSides(t, config, nil)
+	return err
+}
+
+// tryAuth runs a handshake with a given config against an SSH server
+// with a given GSSAPIWithMICConfig and config serverConfig. Returns both client and server side errors.
+func tryAuthWithGSSAPIWithMICConfig(t *testing.T, clientConfig *ClientConfig, gssAPIWithMICConfig *GSSAPIWithMICConfig) error {
+	err, _ := tryAuthBothSides(t, clientConfig, gssAPIWithMICConfig)
 	return err
 }
 
 // tryAuthBothSides runs the handshake and returns the resulting errors from both sides of the connection.
-func tryAuthBothSides(t *testing.T, config *ClientConfig) (clientError error, serverAuthErrors []error) {
+func tryAuthBothSides(t *testing.T, config *ClientConfig, gssAPIWithMICConfig *GSSAPIWithMICConfig) (clientError error, serverAuthErrors []error) {
 	c1, c2, err := netPipe()
 	if err != nil {
 		t.Fatalf("netPipe: %v", err)
@@ -59,7 +66,6 @@ func tryAuthBothSides(t *testing.T, config *ClientConfig) (clientError error, se
 			return c.Serial == 666
 		},
 	}
-
 	serverConfig := &ServerConfig{
 		PasswordCallback: func(conn ConnMetadata, pass []byte) (*Permissions, error) {
 			if conn.User() == "testuser" && string(pass) == clientPassword {
@@ -83,6 +89,7 @@ func tryAuthBothSides(t *testing.T, config *ClientConfig) (clientError error, se
 			}
 			return nil, errors.New("keyboard-interactive failed")
 		},
+		GSSAPIWithMICConfig: gssAPIWithMICConfig,
 	}
 	serverConfig.AddHostKey(testSigners["rsa"])
 
@@ -245,7 +252,7 @@ func TestMethodInvalidAlgorithm(t *testing.T) {
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
 
-	err, serverErrors := tryAuthBothSides(t, config)
+	err, serverErrors := tryAuthBothSides(t, config, nil)
 	if err == nil {
 		t.Fatalf("login succeeded")
 	}
@@ -675,4 +682,179 @@ func TestClientAuthErrorList(t *testing.T) {
 			t.Fatalf("errors: got %v, expected 2 errors", authErrs.Errors)
 		}
 	}
+}
+
+func TestAuthMethodGSSAPIWithMIC(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			GSSAPIWithMICAuthMethod(
+				&FakeGSSAPIClient{t: t}, "testtarget",
+			),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	gssAPIWithMICConfig := &GSSAPIWithMICConfig{
+		AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+			if srcName != conn.User() {
+				return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+			}
+			return nil, nil
+		},
+		Server: &FakeGSSAPIServer{t: t},
+	}
+	err := tryAuthWithGSSAPIWithMICConfig(t, config, gssAPIWithMICConfig)
+	if err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+}
+
+func TestAuthMethodGSSAPIWithMICNotAllowedToLogin(t *testing.T) {
+	config := &ClientConfig{
+		User: "I-am-not-allowed-to-login",
+		Auth: []AuthMethod{
+			GSSAPIWithMICAuthMethod(
+				&FakeGSSAPIClient{t: t}, "testtarget",
+			),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	gssAPIWithMICConfig := &GSSAPIWithMICConfig{
+		AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+			if srcName != conn.User() {
+				return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+			}
+			return nil, nil
+		},
+		Server: &FakeGSSAPIServer{t: t},
+	}
+	if err := tryAuthWithGSSAPIWithMICConfig(t, config, gssAPIWithMICConfig); err == nil {
+		t.Fatal("error expected")
+	}
+}
+
+func fakeInitSecContext(target string, token []byte, isGSSDelegCreds bool) (outputToken []byte, needContinue bool, err error) {
+	return nil, false, errors.New("InitSecContext err")
+}
+
+func fakeGetMIC(micFiled []byte) ([]byte, error) {
+	return nil, errors.New("GetMIC err")
+}
+
+func TestAuthMethodGSSAPIWithMICClientErr(t *testing.T) {
+	configs := []*ClientConfig{
+		{
+			User: "testuser",
+			Auth: []AuthMethod{
+				GSSAPIWithMICAuthMethod(
+					&FakeGSSAPIClient{t: t, fakeInitSecContext: fakeInitSecContext}, "testtarget",
+				),
+			},
+			HostKeyCallback: InsecureIgnoreHostKey(),
+		},
+		{
+			User: "testuser",
+			Auth: []AuthMethod{
+				GSSAPIWithMICAuthMethod(
+					&FakeGSSAPIClient{t: t, fakeGetMIC: fakeGetMIC}, "testtarget",
+				),
+			},
+			HostKeyCallback: InsecureIgnoreHostKey(),
+		},
+	}
+	expectedErrs := []error{
+		errors.New("ssh: handshake failed: InitSecContext err"),
+		errors.New("ssh: handshake failed: GetMIC err"),
+	}
+	gssAPIWithMICConfig := &GSSAPIWithMICConfig{
+		AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+			if srcName != conn.User() {
+				return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+			}
+			return nil, nil
+		},
+		Server: &FakeGSSAPIServer{t: t},
+	}
+	for i, config := range configs {
+		expectedErr := expectedErrs[i]
+		if err := tryAuthWithGSSAPIWithMICConfig(t, config, gssAPIWithMICConfig); err != nil && err.Error() != expectedErr.Error() {
+			t.Fatalf("client: Got %v, want %v", err, expectedErr)
+		}
+	}
+}
+
+func fakeAcceptSecContext(token []byte) (outputToken []byte, needContinue bool, err error) {
+	return nil, false, errors.New("AcceptSecContext err")
+}
+
+func fakeVerifyMIC(micField []byte, micToken []byte) error {
+	return errors.New("VerifyMIC err")
+}
+
+func fakeGetSrcName() (string, error) {
+	return "", errors.New("GetSrcName err")
+}
+
+func TestAuthMethodGSSAPIWithMICServerErr(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			GSSAPIWithMICAuthMethod(
+				&FakeGSSAPIClient{t: t}, "testtarget",
+			),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	gssConfigs := []*GSSAPIWithMICConfig{
+		{
+			AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+				if srcName != conn.User() {
+					return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+				}
+				return nil, nil
+			},
+			Server: &FakeGSSAPIServer{t: t, fakeAcceptSecContext: fakeAcceptSecContext},
+		},
+		{
+			AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+				if srcName != conn.User() {
+					return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+				}
+				return nil, nil
+			},
+			Server: &FakeGSSAPIServer{t: t, fakeVerifyMIC: fakeVerifyMIC},
+		},
+		{
+			AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+				if srcName != conn.User() {
+					return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+				}
+				return nil, nil
+			},
+			Server: &FakeGSSAPIServer{t: t, fakeGetSrcName: fakeGetSrcName},
+		},
+	}
+
+	expectedErrs := []error{
+		errors.New("AcceptSecContext err"),
+		errors.New("VerifyMIC err"),
+		errors.New("GetSrcName err"),
+	}
+
+	for i, gssConfig := range gssConfigs {
+		expectedErr := expectedErrs[i]
+		_, serverErrs := tryAuthBothSides(t, config, gssConfig)
+		if serverErrs == nil {
+			t.Fatalf("server: got nil, expected errors")
+		}
+
+		if len(serverErrs) != 2 {
+			t.Fatalf("server: got length %d, want 2", len(serverErrs))
+		}
+		if serverErrs[1].Error() != expectedErr.Error() {
+			t.Fatalf("server: Got %v, want %v", serverErrs[1], expectedErr)
+		}
+	}
+
 }
