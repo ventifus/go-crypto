@@ -523,3 +523,85 @@ func (r *retryableAuthMethod) method() string {
 func RetryableAuthMethod(auth AuthMethod, maxTries int) AuthMethod {
 	return &retryableAuthMethod{authMethod: auth, maxTries: maxTries}
 }
+
+// "GSS-API-With-MIC" authentication, RFC 4462 session 3
+type GSSAPIWithMICCallback struct {
+	GSSAPIClient GSSAPIClient
+}
+
+func (g GSSAPIWithMICCallback) auth(session []byte, user string, c packetConn, rand io.Reader) (authResult, []string, error) {
+	if g.GSSAPIClient == nil {
+		return authFailure, nil, errors.New("gss-api client must be not nil with enable gssapi-with-mic")
+	}
+	defer g.GSSAPIClient.Release()
+	type userAuthRequest struct {
+		User    string `sshtype:"50"`
+		Service string
+		Method  string
+		N       uint32
+		OIDS    string
+	}
+	if err := c.writePacket(Marshal(&userAuthRequest{
+		User:    user,
+		Service: serviceSSH,
+		Method:  g.method(),
+		N:       1,
+		OIDS:    string(sshgssoids()),
+	})); err != nil {
+		return authFailure, nil, err
+	}
+	packet, err := c.readPacket()
+	if err != nil {
+		return authFailure, nil, err
+	}
+	userAuthGSSAPIResp := &userAuthGSSAPIResponse{}
+	if err := Unmarshal(packet, userAuthGSSAPIResp); err != nil {
+		return authFailure, nil, err
+	}
+	// TODO check it is krb5 mech
+	// loop exchange token
+	var token []byte
+	for {
+		nextToken, needContinue, err := g.GSSAPIClient.InitSecContext("host@10.8.124.30", token, false)
+		if err != nil {
+			return authFailure, nil, err
+		}
+		if len(nextToken) > 0 {
+			if err := c.writePacket(Marshal(&userAuthGSSAPIToken{
+				Token: nextToken,
+			})); err != nil {
+				return authFailure, nil, err
+			}
+		}
+		if !needContinue {
+			break
+		}
+
+		packet, err = c.readPacket()
+		if err != nil {
+			return authFailure, nil, err
+		}
+		userAuthGSSAPITokenReq := &userAuthGSSAPIToken{}
+		if err := Unmarshal(packet, userAuthGSSAPITokenReq); err != nil {
+			return authFailure, nil, err
+		} else {
+			token = userAuthGSSAPITokenReq.Token
+		}
+
+	}
+	micField := buildMIC(string(session), user, "ssh-connection", "gssapi-with-mic")
+	micToken, err := g.GSSAPIClient.GetMIC(micField)
+	if err != nil {
+		return authFailure, nil, err
+	}
+	if err := c.writePacket(Marshal(&userAuthGSSAPIMIC{
+		MIC: micToken,
+	})); err != nil {
+		return authFailure, nil, err
+	}
+	return authSuccess, nil, nil
+}
+
+func (g *GSSAPIWithMICCallback) method() string {
+	return "gssapi-with-mic"
+}
