@@ -275,6 +275,35 @@ type userAuthPubKeyOkMsg struct {
 	PubKey []byte
 }
 
+// See RFC 4462, section 3
+const msgUserAuthGSSAPIResponse = 60
+
+type userAuthGSSAPIResponse struct {
+	SupportMech []byte `sshtype:"60"`
+}
+
+const msgUserAuthGSSAPIToken = 61
+
+type userAuthGSSAPIToken struct {
+	Token []byte `sshtype:"61"`
+}
+
+const msgUserAuthGSSAPIMIC = 66
+
+type userAuthGSSAPIMIC struct {
+	MIC []byte `sshtype:"66"`
+}
+
+// The GSS-API authentication method is initiated when the client sends an SSH_MSG_USERAUTH_REQUEST.
+// See RFC 4462 section 3.2.
+type userAuthRequest struct {
+	User    string `sshtype:"50"`
+	Service string
+	Method  string
+	N       uint32
+	OIDS    string
+}
+
 // typeTags returns the possible type bytes for the given reflect.Type, which
 // should be a struct. The possible values are separated by a '|' character.
 func typeTags(structType reflect.Type) (tags []byte) {
