@@ -275,6 +275,25 @@ type userAuthPubKeyOkMsg struct {
 	PubKey []byte
 }
 
+// See RFC 4462, section 3
+const msgUserAuthGSSAPIResponse = 60
+
+type userAuthGSSAPIResponse struct {
+	SupportMech []byte `sshtype:"60"`
+}
+
+const msgUserAuthGSSAPIToken = 61
+
+type userAuthGSSAPIToken struct {
+	Token []byte `sshtype:"61"`
+}
+
+const msgUserAuthGSSAPIMIC = 66
+
+type userAuthGSSAPIMIC struct {
+	MIC []byte `sshtype:"66"`
+}
+
 // typeTags returns the possible type bytes for the given reflect.Type, which
 // should be a struct. The possible values are separated by a '|' character.
 func typeTags(structType reflect.Type) (tags []byte) {
@@ -756,6 +775,10 @@ func decode(packet []byte) (interface{}, error) {
 		msg = new(channelRequestSuccessMsg)
 	case msgChannelFailure:
 		msg = new(channelRequestFailureMsg)
+	case msgUserAuthGSSAPIToken:
+		msg = new(userAuthGSSAPIToken)
+	case msgUserAuthGSSAPIMIC:
+		msg = new(userAuthGSSAPIMIC)
 	default:
 		return nil, unexpectedMessageError(0, packet[0])
 	}
