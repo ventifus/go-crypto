@@ -523,3 +523,102 @@ func (r *retryableAuthMethod) method() string {
 func RetryableAuthMethod(auth AuthMethod, maxTries int) AuthMethod {
 	return &retryableAuthMethod{authMethod: auth, maxTries: maxTries}
 }
+
+// GSSAPIWithMICCallback is an AuthMethod with "gssappi-with-mic" authentication.
+// See RFC 4462 session 3
+type GSSAPIWithMICCallback struct {
+	// GSSAPIClient implements the GSSAPIClient interface, see the definition of the interface for details.
+	GSSAPIClient GSSAPIClient
+	// The server host you want to log in
+	// TODO why not get it from dialAddr
+	Target string
+}
+
+func (g GSSAPIWithMICCallback) auth(session []byte, user string, c packetConn, rand io.Reader) (authResult, []string, error) {
+	if g.GSSAPIClient == nil {
+		return authFailure, nil, errors.New("gss-api client must be not nil with enable gssapi-with-mic")
+	}
+	defer g.GSSAPIClient.Release()
+	// The GSS-API authentication method is initiated when the client sends an SSH_MSG_USERAUTH_REQUEST
+	// See 4462 session 3.2
+	type userAuthRequest struct {
+		User    string `sshtype:"50"`
+		Service string
+		Method  string
+		N       uint32
+		OIDS    string
+	}
+	if err := c.writePacket(Marshal(&userAuthRequest{
+		User:    user,
+		Service: serviceSSH,
+		Method:  g.method(),
+		N:       1,
+		OIDS:    string(sshgssoids()),
+	})); err != nil {
+		return authFailure, nil, err
+	}
+	// The server responds to the SSH_MSG_USERAUTH_REQUEST with either an
+	// SSH_MSG_USERAUTH_FAILURE if none of the mechanisms are supported or
+	// with an SSH_MSG_USERAUTH_GSSAPI_RESPONSE
+	// See RFC 4462 session 3.3
+	// OpenSSH supports Kerberos V5 mechanism only for GSS-API authentication,so I don't want to check
+	// selected mech if it is valid
+	packet, err := c.readPacket()
+	if err != nil {
+		return authFailure, nil, err
+	}
+	userAuthGSSAPIResp := &userAuthGSSAPIResponse{}
+	if err := Unmarshal(packet, userAuthGSSAPIResp); err != nil {
+		return authFailure, nil, err
+	}
+	// Start the loop into the exchange token
+	// See RFC 4462 session 3.4
+	var token []byte
+	for {
+		// Initiates the establishment of a security context between the application and a remote peer.
+		// See RFC 2744 session 5.19
+		nextToken, needContinue, err := g.GSSAPIClient.InitSecContext("host@"+g.Target, token, false)
+		if err != nil {
+			return authFailure, nil, err
+		}
+		if len(nextToken) > 0 {
+			if err := c.writePacket(Marshal(&userAuthGSSAPIToken{
+				Token: nextToken,
+			})); err != nil {
+				return authFailure, nil, err
+			}
+		}
+		// The gss_init_sec_context returns a status not containing the bit GSS_S_CONTINUE_NEEDED
+		if !needContinue {
+			break
+		}
+		packet, err = c.readPacket()
+		if err != nil {
+			return authFailure, nil, err
+		}
+		userAuthGSSAPITokenReq := &userAuthGSSAPIToken{}
+		if err := Unmarshal(packet, userAuthGSSAPITokenReq); err != nil {
+			return authFailure, nil, err
+		} else {
+			token = userAuthGSSAPITokenReq.Token
+		}
+
+	}
+	// Binding Encryption Keys
+	// See RFC 4462 session 3.5
+	micField := buildMIC(string(session), user, "ssh-connection", "gssapi-with-mic")
+	micToken, err := g.GSSAPIClient.GetMIC(micField)
+	if err != nil {
+		return authFailure, nil, err
+	}
+	if err := c.writePacket(Marshal(&userAuthGSSAPIMIC{
+		MIC: micToken,
+	})); err != nil {
+		return authFailure, nil, err
+	}
+	return authSuccess, nil, nil
+}
+
+func (g *GSSAPIWithMICCallback) method() string {
+	return "gssapi-with-mic"
+}
