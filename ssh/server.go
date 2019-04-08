@@ -45,6 +45,19 @@ type Permissions struct {
 	Extensions map[string]string
 }
 
+type GSSAPIWithMICConfig struct {
+	// GetUserPermissions, if non-nil, is called when gssapi-with-mic
+	// authentication is selected (RFC 4462 section 3). The srcName is from the
+	// results of the GSS-API authentication. The format is username@DOMAIN.
+	// GSSAPI just guarantees to the server who the user is, but not if they can log in, and with what permissions.
+	// The callback may return the permissions for the user or if the user can log in.
+	GetUserPermissions func(conn ConnMetadata, srcName string) (*Permissions, error)
+
+	// Server must be set if GetUserPermissions is not nil. It's the implementation
+	// of the GSSAPIServer interface. See GSSAPIServer interface for details.
+	Server GSSAPIServer
+}
+
 // ServerConfig holds server specific configuration data.
 type ServerConfig struct {
 	// Config contains configuration shared between client and server.
@@ -99,6 +112,10 @@ type ServerConfig struct {
 	// BannerCallback, if present, is called and the return string is sent to
 	// the client after key exchange completed but before authentication.
 	BannerCallback func(conn ConnMetadata) string
+
+	// GSSAPIWithMICConfig includes gssapi server and callback, which if both non-nil, is used
+	// when gssapi-with-mic authentication is selected (RFC 4462 section 3).
+	GSSAPIWithMICConfig GSSAPIWithMICConfig
 }
 
 // AddHostKey adds a private key as a host key. If an existing host
@@ -204,7 +221,8 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 		return nil, errors.New("ssh: server has no host keys")
 	}
 
-	if !config.NoClientAuth && config.PasswordCallback == nil && config.PublicKeyCallback == nil && config.KeyboardInteractiveCallback == nil {
+	if !config.NoClientAuth && config.PasswordCallback == nil && config.PublicKeyCallback == nil &&
+		config.KeyboardInteractiveCallback == nil && (config.GSSAPIWithMICConfig.GetUserPermissions == nil || config.GSSAPIWithMICConfig.Server == nil) {
 		return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
 	}
 
@@ -293,6 +311,54 @@ func checkSourceAddress(addr net.Addr, sourceAddrs string) error {
 	}
 
 	return fmt.Errorf("ssh: remote address %v is not allowed because of source-address restriction", addr)
+}
+
+func gssExchangeToken(gssapiConfig GSSAPIWithMICConfig, firstToken []byte, s *connection,
+	sessionID []byte, userAuthReq userAuthRequestMsg) (authErr error, perms *Permissions, err error) {
+	gssapiServer := gssapiConfig.Server
+	defer gssapiServer.DeleteSecContext()
+	for {
+		outToken, needContinue, err := gssapiServer.AcceptSecContext(firstToken)
+		if err != nil {
+			return err, nil, nil
+		}
+		if len(outToken) != 0 {
+			if err := s.transport.writePacket(Marshal(&userAuthGSSAPIToken{
+				Token: outToken,
+			})); err != nil {
+				return nil, nil, err
+			}
+		}
+		if !needContinue {
+			break
+		}
+		packet, err := s.transport.readPacket()
+		if err != nil {
+			return nil, nil, err
+		}
+		userAuthGSSAPITokenReq := &userAuthGSSAPIToken{}
+		if err := Unmarshal(packet, userAuthGSSAPITokenReq); err != nil {
+			return nil, nil, err
+		}
+	}
+	packet, err := s.transport.readPacket()
+	if err != nil {
+		return nil, nil, err
+	}
+	userAuthGSSAPIMICReq := &userAuthGSSAPIMIC{}
+	if err := Unmarshal(packet, userAuthGSSAPIMICReq); err != nil {
+		return nil, nil, err
+	}
+	mic := buildMIC(string(sessionID), userAuthReq.User, userAuthReq.Service, userAuthReq.Method)
+	if err := gssapiServer.VerifyMIC(mic, userAuthGSSAPIMICReq.MIC); err != nil {
+		return err, nil, err
+	}
+	srcName, err := gssapiServer.GetSrcName()
+	if err != nil {
+		return nil, nil, err
+	}
+	perms, authErr = gssapiConfig.GetUserPermissions(s, srcName)
+	return authErr, perms, nil
 }
 
 // ServerAuthError represents server authentication errors and is
@@ -496,6 +562,41 @@ userAuthLoop:
 				authErr = candidate.result
 				perms = candidate.perms
 			}
+		case "gssapi-with-mic":
+			gssapiConfig := config.GSSAPIWithMICConfig
+			userAuthRequestGSSAPI, err := parseGSSAPIPayload(userAuthReq.Payload)
+			if err != nil {
+				return nil, parseError(msgUserAuthRequest)
+			}
+			// OpenSSH supports Kerberos V5 mechanism only for GSS-API authentication.
+			if userAuthRequestGSSAPI.N != 1 {
+				authErr = fmt.Errorf("ssh: Received more than one GSS-API OID mechanism")
+				break
+			}
+			if !userAuthRequestGSSAPI.OIDS[0].Equal(krb5Mesh) {
+				authErr = fmt.Errorf("ssh: OpenSSH supports Kerberos V5 mechanism only for GSS-API authentication.")
+				break
+			}
+			// Initial server response, see RFC 4462 section 3.3.
+			if err := s.transport.writePacket(Marshal(&userAuthGSSAPIResponse{
+				SupportMech: krb5OID,
+			})); err != nil {
+				return nil, err
+			}
+			// Exchange token, see RFC 4462 section 3.4.
+			packet, err := s.transport.readPacket()
+			if err != nil {
+				return nil, err
+			}
+			userAuthGSSAPITokenReq := &userAuthGSSAPIToken{}
+			if err := Unmarshal(packet, userAuthGSSAPITokenReq); err != nil {
+				return nil, err
+			}
+			authErr, perms, err = gssExchangeToken(gssapiConfig, userAuthGSSAPITokenReq.Token, s, sessionID,
+				userAuthReq)
+			if err != nil {
+				return nil, err
+			}
 		default:
 			authErr = fmt.Errorf("ssh: unknown method %q", userAuthReq.Method)
 		}
@@ -521,6 +622,9 @@ userAuthLoop:
 		}
 		if config.KeyboardInteractiveCallback != nil {
 			failureMsg.Methods = append(failureMsg.Methods, "keyboard-interactive")
+		}
+		if config.GSSAPIWithMICConfig.Server != nil && config.GSSAPIWithMICConfig.GetUserPermissions != nil {
+			failureMsg.Methods = append(failureMsg.Methods, "gssapi-with-mic")
 		}
 
 		if len(failureMsg.Methods) == 0 {
