@@ -83,6 +83,15 @@ func tryAuthBothSides(t *testing.T, config *ClientConfig) (clientError error, se
 			}
 			return nil, errors.New("keyboard-interactive failed")
 		},
+		GSSAPIWithMICConfig: GSSAPIWithMICConfig{
+			AllowLogin: func(conn ConnMetadata, srcName string) (*Permissions, error) {
+				if srcName != conn.User() {
+					return nil, fmt.Errorf("srcName is %s, conn user is %s", srcName, conn.User())
+				}
+				return nil, nil
+			},
+			Server: &FakeGSSAPIServer{t},
+		},
 	}
 	serverConfig.AddHostKey(testSigners["rsa"])
 
@@ -674,5 +683,37 @@ func TestClientAuthErrorList(t *testing.T) {
 		default:
 			t.Fatalf("errors: got %v, expected 2 errors", authErrs.Errors)
 		}
+	}
+}
+
+func TestAuthMethodGSSAPIWithMIC(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			GSSAPIWithMICAuthMethod(
+				&FakeGSSAPIClient{t}, "testtarget",
+			),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	err, tryAuthBothSides := tryAuthBothSides(t, config)
+	if err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+	t.Log(tryAuthBothSides)
+}
+
+func TestAuthMethodGSSAPIWithMICFail(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser1",
+		Auth: []AuthMethod{
+			GSSAPIWithMICAuthMethod(
+				&FakeGSSAPIClient{t}, "testtarget",
+			),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	if err := tryAuth(t, config); err == nil {
+		t.Fatal("error expected")
 	}
 }
