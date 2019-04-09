@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19db1a91_556be27f",
+        "filename": "ssh/test/dial_unix_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-09T11:51:11Z",
+      "side": 0,
+      "message": "you need to rebase your change as well.",
+      "range": {
+        "startLine": 5,
+        "startChar": 20,
+        "endLine": 5,
+        "endChar": 27
+      },
+      "revId": "38d8ce5564a5b71b2e3a00553993f1b9a7ae852f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
