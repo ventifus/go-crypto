@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e752db79_aee4a695",
+        "filename": "poly1305/bits_compat.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-04-10T11:09:35Z",
+      "side": 1,
+      "message": "For instance this bitsAdd64 fundamentally differs from https://golang.org/src/math/bits/bits.go?s\u003d10694:10747#L353 - AFAICS `bitsAdd64` is a constant time implementation of `bits.Add64`. However, if we switch from constant time to non-constant time by switching to Go 1.12 then, is it fine to use `bits.Add64` at all?\n  - If yes, why not copy the (simpler) non-constant time version? (performance?)\n  - If no then we cannot use e.g. `bits.Add64` and should keep this version also for \u003e Go1.12\n    until `bits` uses a constant time implementation.",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21aa1c62_14f895d6",
+        "filename": "poly1305/bits_compat.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-04-10T11:09:35Z",
+      "side": 1,
+      "message": "Same as for `bitsAdd64`.",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5cde349_e6dca676",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-04-10T11:09:35Z",
+      "side": 1,
+      "message": "Is it guaranteed that `macState` aligns with the memory layout expected by the assembler code of `update` (https://go-review.googlesource.com/c/crypto/+/169037/6/poly1305/sum_amd64.s#59). So, is it guaranteed that `struct{[3]uint64, [2]uint64, [2]uint64} \u003d [7]uint64` from memory alignment perspective?\nSince `macState` is passed to asm function `update` here (https://go-review.googlesource.com/c/crypto/+/169037/6/poly1305/sum_amd64.go#40)\n\n(Q for the compiler experts here...)",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
