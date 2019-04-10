@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "388ecae4_ad688bfb",
+        "filename": "poly1305/bits_compat.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-04-10T15:28:13Z",
+      "side": 1,
+      "message": "This is https://golang.org/issue/31229",
+      "parentUuid": "e752db79_aee4a695",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21aa1c62_14f895d6",
         "filename": "poly1305/bits_compat.go",
         "patchSetId": 6
@@ -47,6 +65,24 @@
       "writtenOn": "2019-04-10T11:09:35Z",
       "side": 1,
       "message": "Is it guaranteed that `macState` aligns with the memory layout expected by the assembler code of `update` (https://go-review.googlesource.com/c/crypto/+/169037/6/poly1305/sum_amd64.s#59). So, is it guaranteed that `struct{[3]uint64, [2]uint64, [2]uint64} \u003d [7]uint64` from memory alignment perspective?\nSince `macState` is passed to asm function `update` here (https://go-review.googlesource.com/c/crypto/+/169037/6/poly1305/sum_amd64.go#40)\n\n(Q for the compiler experts here...)",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8bc279b_ac8e6d4b",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-04-10T15:28:13Z",
+      "side": 1,
+      "message": "As far as I know, uint64s are never padded, but would appreciate a confirmation from compiler folks, too.",
+      "parentUuid": "e5cde349_e6dca676",
       "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
