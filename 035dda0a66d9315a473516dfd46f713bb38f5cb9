@@ -1,0 +1,389 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e04d916_50eccdde",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "gssapi",
+      "range": {
+        "startLine": 527,
+        "startChar": 50,
+        "endLine": 527,
+        "endChar": 57
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "027fa6bb_25fae0be",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "pointer receiver",
+      "range": {
+        "startLine": 541,
+        "startChar": 8,
+        "endLine": 541,
+        "endChar": 29
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "239abf4a_80c58491",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "move tihs check to l.532",
+      "range": {
+        "startLine": 542,
+        "startChar": 6,
+        "endLine": 542,
+        "endChar": 18
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c09eb57_fb162b5f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this seems wrong. If you log in with public-key auth, you\u0027d be leaking the gss API client.",
+      "range": {
+        "startLine": 545,
+        "startChar": 22,
+        "endLine": 545,
+        "endChar": 29
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf6869e8_da88409f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "can you move this to messages.go ?",
+      "range": {
+        "startLine": 548,
+        "startChar": 6,
+        "endLine": 548,
+        "endChar": 21
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f6ae407_7f83062f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 606,
+        "startChar": 4,
+        "endLine": 606,
+        "endChar": 10
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28efa600_d2199847",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this changes the config, which is unexpected. Is there a way to create a config that can be reused across auth attempts and across connections?",
+      "range": {
+        "startLine": 512,
+        "startChar": 16,
+        "endLine": 512,
+        "endChar": 28
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c03e3783_17d3b348",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this should continue the auth loop, and offer other auth mechanisms.\n\n(return is only for non-recoverable errors like I/O)\n\ncan you double check all error handling below, that you are only exiting for fatal errors?",
+      "range": {
+        "startLine": 520,
+        "startChar": 16,
+        "endLine": 520,
+        "endChar": 23
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d18d2ef_12a4f628",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "why treat this specially?",
+      "range": {
+        "startLine": 526,
+        "startChar": 17,
+        "endLine": 526,
+        "endChar": 20
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5998ab31_9e3ac8ec",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this is usually called Close()",
+      "range": {
+        "startLine": 24,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "236daa72_ec83832b",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "what is gss_accept_sec_context ?\n\nGetStrName -\u003e GetSrcName",
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7715f1d0_3323c07c",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "stray space?",
+      "range": {
+        "startLine": 35,
+        "startChar": 30,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3088817d_c3f6bb55",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "s/rfs/RFC/",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 12
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "453b64d6_f989d828",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "document type",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92e7b72a_895bebad",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "move both decls into loop",
+      "range": {
+        "startLine": 64,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 8
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2908e75f_6fe40222",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this is effectively a constant, no? If so, can you init in a func init() ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 8
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39c70ab6_2236fd10",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-10T12:29:50Z",
+      "side": 1,
+      "message": "this is exactly krb5Mesh, right? Why do you reconstruct the OID here?",
+      "range": {
+        "startLine": 15,
+        "startChar": 18,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "035dda0a66d9315a473516dfd46f713bb38f5cb9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
