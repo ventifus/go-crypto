@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0107db08_4158f73e",
+        "filename": "poly1305/bits_compat.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 14805
+      },
+      "writtenOn": "2019-04-10T18:23:20Z",
+      "side": 1,
+      "message": "Okay, in general, sounds good. But the current build tags would cause falling back to non-constant time implementations on Go 1.12. It should be either `// +build !go1.13` (and `// +build go1.13` in s/bits_go1.12.go/bits_go1.13.go) or no build tags + removing bits_go1.12.go and adding it again for Go 1.13 (if #31229 is resolved), right?!",
+      "parentUuid": "388ecae4_ad688bfb",
+      "revId": "ce51763a19da40e3e54ccd36a0bd2b398246170c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21aa1c62_14f895d6",
         "filename": "poly1305/bits_compat.go",
         "patchSetId": 6
