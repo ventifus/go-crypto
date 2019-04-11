@@ -7,6 +7,7 @@ package ssh
 import (
 	"bufio"
 	"bytes"
+	"compress/zlib"
 	"errors"
 	"io"
 	"log"
@@ -37,16 +38,81 @@ type packetConn interface {
 	Close() error
 }
 
+// compressor implements the zlib@openssh.com compression method. An
+// instance should be used in only one direction (read or write).
+type compressor struct {
+	buf    bytes.Buffer
+	writer *zlib.Writer
+	reader io.ReadCloser
+	out    []byte
+}
+
+func newCompressor() *compressor {
+	c := &compressor{}
+	c.writer = zlib.NewWriter(&c.buf)
+	// cannot init zlib.Reader yet, as it will try to read the header
+
+	// XXX - how much do we need for framing data?
+	c.out = make([]byte, 2*channelMaxPacket)
+	return c
+}
+
+// decompress decompresses the given data. The resulting slice is
+// valid until the next call of decompress.
+func (c *compressor) decompress(in []byte) ([]byte, error) {
+	c.buf.Write(in)
+	if c.reader == nil {
+		var err error
+		c.reader, err = zlib.NewReader(&c.buf)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	out := c.out[:cap(c.out)]
+	var total int
+	for c.buf.Len() > 0 {
+		n, err := c.reader.Read(out)
+		if err != nil {
+			return nil, err
+		}
+		total += n
+		out = out[n:]
+	}
+	return c.out[:total], nil
+}
+
+// compress compresses the given packet.
+func (c *compressor) compress(in []byte) []byte {
+	c.buf.Truncate(0)
+	n, err := c.writer.Write(in)
+	if n != len(in) || err != nil {
+		panic("short write")
+	}
+
+	c.writer.Flush()
+	out := c.buf.Bytes()
+	return out
+}
+
 // transport is the keyingTransport that implements the SSH packet
 // protocol.
 type transport struct {
 	reader connectionState
 	writer connectionState
 
+	// If set, the compression (decompression) should be applied
+	// to the written (read) packets.
+	decompressor, compressor *compressor
+
+	// bufReader is a buffer wrapped around the bare network connection
 	bufReader *bufio.Reader
-	bufWriter *bufio.Writer
-	rand      io.Reader
-	isClient  bool
+
+	// bufWriter is a buffer wrapped around the bare network connection
+	bufWriter     *bufio.Writer
+	rand          io.Reader
+	isClient      bool
+	authenticated bool
 	io.Closer
 }
 
@@ -70,7 +136,19 @@ type connectionState struct {
 	packetCipher
 	seqNum           uint32
 	dir              direction
-	pendingKeyChange chan packetCipher
+	pendingKeyChange chan keyChange
+}
+
+// keyChange contains the data to prepare for switching to a new
+// cipher and compression method.
+type keyChange struct {
+	cipher packetCipher
+
+	// compressor indicates whether to use compression. This
+	// cannot be folded into the packetCipher, since compression is
+	// triggered by msgUserAuthSuccess message rather than
+	// msgNewKey.
+	compressor *compressor
 }
 
 // prepareKeyChange sets up key material for a keychange. The key changes in
@@ -81,13 +159,29 @@ func (t *transport) prepareKeyChange(algs *algorithms, kexResult *kexResult) err
 	if err != nil {
 		return err
 	}
-	t.reader.pendingKeyChange <- ciph
+	var rc *compressor
+	if algs.r.Compression == compressionZlib {
+		rc = newCompressor()
+	}
+
+	t.reader.pendingKeyChange <- keyChange{
+		ciph,
+		rc,
+	}
 
 	ciph, err = newPacketCipher(t.writer.dir, algs.w, kexResult)
 	if err != nil {
 		return err
 	}
-	t.writer.pendingKeyChange <- ciph
+	var wc *compressor
+	if algs.w.Compression == compressionZlib {
+		wc = newCompressor()
+	}
+
+	t.writer.pendingKeyChange <- keyChange{
+		ciph,
+		wc,
+	}
 
 	return nil
 }
@@ -98,47 +192,39 @@ func (t *transport) printPacket(p []byte, write bool) {
 	}
 	who := "server"
 	if t.isClient {
-		who = "client"
+		who = "  client"
 	}
 	what := "read"
 	if write {
 		what = "write"
 	}
 
-	log.Println(what, who, p[0])
+	log.Printf("%s %s type %s (%d) sz %d", who, what, packetTypeNames[p[0]], p[0], len(p))
 }
 
 // Read and decrypt next packet.
 func (t *transport) readPacket() (p []byte, err error) {
+
+readloop:
 	for {
 		p, err = t.reader.readPacket(t.bufReader)
 		if err != nil {
 			break
 		}
-		if len(p) == 0 || (p[0] != msgIgnore && p[0] != msgDebug) {
+
+		if t.decompressor != nil && t.authenticated {
+			p, err = t.decompressor.decompress(p)
+		}
+		if err != nil {
 			break
 		}
-	}
-	if debugTransport {
-		t.printPacket(p, false)
-	}
 
-	return p, err
-}
-
-func (s *connectionState) readPacket(r *bufio.Reader) ([]byte, error) {
-	packet, err := s.packetCipher.readCipherPacket(s.seqNum, r)
-	s.seqNum++
-	if err == nil && len(packet) == 0 {
-		err = errors.New("ssh: zero length packet")
-	}
-
-	if len(packet) > 0 {
-		switch packet[0] {
+		switch p[0] {
 		case msgNewKeys:
 			select {
-			case cipher := <-s.pendingKeyChange:
-				s.packetCipher = cipher
+			case keyCh := <-t.reader.pendingKeyChange:
+				t.reader.packetCipher = keyCh.cipher
+				t.decompressor = keyCh.compressor
 			default:
 				return nil, errors.New("ssh: got bogus newkeys message")
 			}
@@ -150,31 +236,87 @@ func (s *connectionState) readPacket(r *bufio.Reader) ([]byte, error) {
 			// ensures that we don't have to handle it
 			// elsewhere.
 			var msg disconnectMsg
-			if err := Unmarshal(packet, &msg); err != nil {
+			if err := Unmarshal(p, &msg); err != nil {
 				return nil, err
 			}
 			return nil, &msg
+
+		case msgDebug, msgIgnore:
+			continue readloop
+
+		case msgUserAuthSuccess:
+			if t.isClient {
+				t.authenticated = true
+			}
 		}
+
+		break
+	}
+
+	if debugTransport {
+		t.printPacket(p, false)
 	}
 
 	// The packet may point to an internal buffer, so copy the
 	// packet out here.
-	fresh := make([]byte, len(packet))
-	copy(fresh, packet)
+	fresh := make([]byte, len(p))
+	copy(fresh, p)
 
 	return fresh, err
 }
 
+// writePacket writes the next packet.
 func (t *transport) writePacket(packet []byte) error {
 	if debugTransport {
 		t.printPacket(packet, true)
 	}
-	return t.writer.writePacket(t.bufWriter, t.rand, packet)
+
+	if len(packet) == 0 {
+		return nil
+	}
+	changeKeys := packet[0] == msgNewKeys
+	authSuccess := packet[0] == msgUserAuthSuccess
+
+	if t.compressor != nil && t.authenticated {
+		packet = t.compressor.compress(packet)
+	}
+
+	if err := t.writer.writePacket(t.bufWriter, t.rand, packet); err != nil {
+		return err
+	}
+	if changeKeys {
+		select {
+		case keyCh := <-t.writer.pendingKeyChange:
+			t.writer.packetCipher = keyCh.cipher
+			t.compressor = keyCh.compressor
+		default:
+			panic("ssh: no key material for msgNewKeys")
+		}
+	}
+
+	if authSuccess && !t.isClient {
+		t.authenticated = true
+	}
+
+	return nil
 }
 
-func (s *connectionState) writePacket(w *bufio.Writer, rand io.Reader, packet []byte) error {
-	changeKeys := len(packet) > 0 && packet[0] == msgNewKeys
+// readPacket fetches the next plaintext, but possibly compressed
+// packet.  It is guaranteed to return a non-empty packet.
+func (s *connectionState) readPacket(r *bufio.Reader) ([]byte, error) {
+	packet, err := s.packetCipher.readCipherPacket(s.seqNum, r)
+	s.seqNum++
+	if err == nil && len(packet) == 0 {
+		err = errors.New("ssh: zero length packet")
+	}
 
+	return packet, err
+}
+
+// writePacket sends the next plaintext packet to the cipher. The
+// plaintext packet may have been compressed, so it cannot be
+// introspected
+func (s *connectionState) writePacket(w *bufio.Writer, rand io.Reader, packet []byte) error {
 	err := s.packetCipher.writeCipherPacket(s.seqNum, w, rand, packet)
 	if err != nil {
 		return err
@@ -183,14 +325,6 @@ func (s *connectionState) writePacket(w *bufio.Writer, rand io.Reader, packet []
 		return err
 	}
 	s.seqNum++
-	if changeKeys {
-		select {
-		case cipher := <-s.pendingKeyChange:
-			s.packetCipher = cipher
-		default:
-			panic("ssh: no key material for msgNewKeys")
-		}
-	}
 	return err
 }
 
@@ -201,11 +335,11 @@ func newTransport(rwc io.ReadWriteCloser, rand io.Reader, isClient bool) *transp
 		rand:      rand,
 		reader: connectionState{
 			packetCipher:     &streamPacketCipher{cipher: noneCipher{}},
-			pendingKeyChange: make(chan packetCipher, 1),
+			pendingKeyChange: make(chan keyChange, 1),
 		},
 		writer: connectionState{
 			packetCipher:     &streamPacketCipher{cipher: noneCipher{}},
-			pendingKeyChange: make(chan packetCipher, 1),
+			pendingKeyChange: make(chan keyChange, 1),
 		},
 		Closer: rwc,
 	}
