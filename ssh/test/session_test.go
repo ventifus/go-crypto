@@ -447,3 +447,35 @@ func TestClientAuthAlgorithms(t *testing.T) {
 		})
 	}
 }
+
+func TestCompressions(t *testing.T) {
+	var config ssh.Config
+	config.SetDefaults()
+	compOrder := config.Compressions
+
+	for _, comp := range compOrder {
+		t.Run(comp, func(t *testing.T) {
+			server := newServer(t)
+			defer server.Shutdown()
+			conf := clientConfig()
+			conf.Compressions = []string{comp}
+			// Don't fail if sshd doesn't have the algorithm.
+			conf.CompressionMethods = append(conf.CompressionMethods, compOrder...)
+			conn, err := server.TryDial(conf)
+			if err != nil {
+				t.Fatalf("failed for compression %q", comp)
+			}
+			defer conn.Close()
+
+			session, err := conn.NewSession()
+			if err != nil {
+				t.Fatalf("session failed: %v", err)
+			}
+			defer session.Close()
+			err = session.Run("true")
+			if err != nil {
+				t.Fatalf("session failed: %v", err)
+			}
+		})
+	}
+}
