@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67c5595d_71114d96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T19:17:48Z",
+      "side": 1,
+      "message": "ssh: ...",
+      "revId": "467dc9413be0c103ce7d5c96d50293a2b77bbce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d002e720_da0aa5f0",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T19:17:48Z",
+      "side": 1,
+      "message": ".... list of supported compression methods.",
+      "revId": "467dc9413be0c103ce7d5c96d50293a2b77bbce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "602b9bf1_bc7502f3",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T19:17:48Z",
+      "side": 1,
+      "message": "Most of these fields are in the wrong style.\n\nhttps://github.com/golang/go/wiki/CodeReviewComments#comment-sentences\n\n// Foo optionally lists the supported compression algorithms.\n// If nil, blah is used. To disable compression, use a non-nil empty slice.\n\nOr whatever behavior. But document what the zero value (nil) means.",
+      "revId": "467dc9413be0c103ce7d5c96d50293a2b77bbce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bfdf696_6023c22a",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T19:17:48Z",
+      "side": 1,
+      "message": "Compressions is a weird field name.\n\nCompressionMethods is longer but not awkward, and we don\u0027t aim for brevity in field names.",
+      "revId": "467dc9413be0c103ce7d5c96d50293a2b77bbce3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
