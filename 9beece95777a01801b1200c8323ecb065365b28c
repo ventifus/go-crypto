@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d0e0d5e_e42a7a65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T13:43:26Z",
+      "side": 1,
+      "message": "drop the \"x/crypto/\" prefix (https://github.com/golang/go/wiki/CommitMessage).\n\nWe only do that in the issue tracker (because the github/golang repo\u0027s issue tracker is used for many repos). Here we have our own Gerrit repo, so the x/crypto/ is redundant.",
+      "revId": "9beece95777a01801b1200c8323ecb065365b28c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
