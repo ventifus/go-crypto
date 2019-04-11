@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62129051_7f9c5e98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-11T19:23:20Z",
+      "side": 1,
+      "message": "change \"updates\" to \"update\"\n\nBut better would be to use a more specific verb, like \"support\" or \"accept\" or \"reject\".\n\nAll changes are an \"update\" somehow.",
+      "revId": "a0f04aa557bbff912202914301c04f9372fd4a55",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
