@@ -450,8 +450,8 @@ func (t *handshakeTransport) sendKexInit() error {
 		CiphersServerClient:     t.config.Ciphers,
 		MACsClientServer:        t.config.MACs,
 		MACsServerClient:        t.config.MACs,
-		CompressionClientServer: supportedCompressions,
-		CompressionServerClient: supportedCompressions,
+		CompressionClientServer: t.config.CompressionMethods,
+		CompressionServerClient: t.config.CompressionMethods,
 	}
 	io.ReadFull(rand.Reader, msg.Cookie[:])
 

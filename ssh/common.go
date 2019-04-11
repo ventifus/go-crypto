@@ -20,6 +20,7 @@ import (
 // These are string constants in the SSH protocol.
 const (
 	compressionNone = "none"
+	compressionZlib = "zlib@openssh.com"
 	serviceUserAuth = "ssh-userauth"
 	serviceSSH      = "ssh-connection"
 )
@@ -70,7 +71,11 @@ var supportedMACs = []string{
 	"hmac-sha2-256-etm@openssh.com", "hmac-sha2-256", "hmac-sha1", "hmac-sha1-96",
 }
 
-var supportedCompressions = []string{compressionNone}
+// supportedCompressionMethods is the list of compression methods supported.
+var supportedCompressionMethods = []string{
+	compressionNone,
+	compressionZlib,
+}
 
 // hashFuncs keeps the mapping of supported algorithms to their respective
 // hashes needed for signature verification.
@@ -217,6 +222,10 @@ type Config struct {
 	// The allowed MAC algorithms. If unspecified then a sensible default
 	// is used.
 	MACs []string
+
+	// CompressionMethods contains the allowed compression
+	// algorithms. If unspecified a sensible default is used.
+	CompressionMethods []string
 }
 
 // SetDefaults sets sensible values for unset fields in config. This is
@@ -244,6 +253,9 @@ func (c *Config) SetDefaults() {
 
 	if c.MACs == nil {
 		c.MACs = supportedMACs
+	}
+	if c.CompressionMethods == nil {
+		c.CompressionMethods = supportedCompressionMethods
 	}
 
 	if c.RekeyThreshold == 0 {
