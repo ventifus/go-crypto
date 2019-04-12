@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72847a27_f4f0cef3",
+        "filename": "ssh/test/dial_unix_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-12T16:16:47Z",
+      "side": 1,
+      "message": "typo: or, not ir",
+      "range": {
+        "startLine": 108,
+        "startChar": 27,
+        "endLine": 108,
+        "endChar": 29
+      },
+      "revId": "3be76700ac91c072f0d696069064bc2e123daa24",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0860a270_fff79410",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-12T16:16:47Z",
+      "side": 1,
+      "message": "I don\u0027t know what this means. You mean as not root? \n\nThen: \"if launched as a regular user\" or \"if launched as a non-root user\".",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 58
+      },
+      "revId": "3be76700ac91c072f0d696069064bc2e123daa24",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1212d186_0f2d68ba",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-12T16:16:47Z",
+      "side": 1,
+      "message": "same",
+      "revId": "3be76700ac91c072f0d696069064bc2e123daa24",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cccbfc35_50b8d888",
+        "filename": "ssh/test/test_unix_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-12T16:16:47Z",
+      "side": 1,
+      "message": "revert this line? temporary debugging I assume?",
+      "revId": "3be76700ac91c072f0d696069064bc2e123daa24",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
