@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build !windows,!solaris,!aix
+// +build !windows,!solaris
 
 package test
 
@@ -13,6 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -217,6 +218,11 @@ func TestKeyChange(t *testing.T) {
 }
 
 func TestInvalidTerminalMode(t *testing.T) {
+	if runtime.GOOS == "aix" {
+		// On AIX, sshd cannot acquire /dev/pts/* if launched on
+		// a user.
+		t.Skipf("skipping on %s", runtime.GOOS)
+	}
 	server := newServer(t)
 	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
@@ -234,6 +240,11 @@ func TestInvalidTerminalMode(t *testing.T) {
 }
 
 func TestValidTerminalMode(t *testing.T) {
+	if runtime.GOOS == "aix" {
+		// On AIX, sshd cannot acquire /dev/pts/* if launched on
+		// a user.
+		t.Skipf("skipping on %s", runtime.GOOS)
+	}
 	server := newServer(t)
 	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
@@ -278,6 +289,11 @@ func TestValidTerminalMode(t *testing.T) {
 }
 
 func TestWindowChange(t *testing.T) {
+	if runtime.GOOS == "aix" {
+		// On AIX, sshd cannot acquire /dev/pts/* if launched on
+		// a user.
+		t.Skipf("skipping on %s", runtime.GOOS)
+	}
 	server := newServer(t)
 	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
@@ -351,7 +367,15 @@ func testOneCipher(t *testing.T, cipher string, cipherOrder []string) {
 		t.Fatalf("NewSession: %v", err)
 	}
 
-	out, err := session.Output(fmt.Sprintf("dd if=/dev/zero of=/dev/stdout bs=%d count=1", numBytes))
+	var ofargs string
+	if runtime.GOOS != "aix" {
+		// /dev/stdout doesn't exist on AIX. But the default output of dd
+		// is stdout, so of can be omitted.
+		ofargs = "of=/dev/stdout"
+	}
+	cmd := fmt.Sprintf("dd if=/dev/zero %s bs=%d count=1", ofargs, numBytes)
+
+	out, err := session.Output(cmd)
 	if err != nil {
 		t.Fatalf("Output: %v", err)
 	}
