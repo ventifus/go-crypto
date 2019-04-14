@@ -62,10 +62,13 @@ type HostPolicy func(ctx context.Context, host string) error
 // HostWhitelist returns a policy where only the specified host names are allowed.
 // Only exact matches are currently supported. Subdomains, regexp or wildcard
 // will not match.
+//
+// Note that all hosts will be converted to lowercase via strings.ToLower so that
+// Manager.GetCertificate can handle mixedcase hosts correctly.
 func HostWhitelist(hosts ...string) HostPolicy {
 	whitelist := make(map[string]bool, len(hosts))
 	for _, h := range hosts {
-		whitelist[h] = true
+		whitelist[strings.ToLower(h)] = true
 	}
 	return func(_ context.Context, host string) error {
 		if !whitelist[host] {
@@ -236,7 +239,7 @@ func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, 
 		return nil, errors.New("acme/autocert: Manager.Prompt not set")
 	}
 
-	name := hello.ServerName
+	name := strings.ToLower(hello.ServerName)
 	if name == "" {
 		return nil, errors.New("acme/autocert: missing server name")
 	}
