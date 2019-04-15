@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72f3f703_c989c107",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2019-04-15T10:04:53Z",
+      "side": 1,
+      "message": "The prefix should be \"ssh/test\" as per https://golang.org/wiki/CommitMessage\n\nFor the golang.org/x/* repos the repo name is not mentioned in the commit message (only in issues).",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "3842bb5705915818d37f384bda3b9d2951a1aca2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
