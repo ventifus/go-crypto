@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a406b39_6f9cc3b5",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": ".. want to log in to",
+      "range": {
+        "startLine": 530,
+        "startChar": 35,
+        "endLine": 530,
+        "endChar": 37
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f263c4f9_88d24c88",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "this will go into the function doc. Can you find a better place for this comment? CAn you make this comment more verbose? I don\u0027t know if this is a question for me or for yourself.",
+      "range": {
+        "startLine": 531,
+        "startChar": 3,
+        "endLine": 531,
+        "endChar": 7
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b242b47_5fe85736",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "you do this on all exit paths. Have you considered defer ?",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9932d6bc_9723dd36",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "drop \u0027,\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a43f816f_ae51462a",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "you mean GSSAPIServer?",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca3288b2_fa06ad11",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "this should be in a separate (parent) change, and should be used for all relevant break/continue calls.",
+      "range": {
+        "startLine": 395,
+        "startChar": 1,
+        "endLine": 395,
+        "endChar": 13
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d98f05d_33006e65",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "RFC 2744 is for the C library implementing GSSAPI. SInce we are nominally language independent, can you phrase this using terminology in RFC 2743 ? RFC 4462 also only references 2743.",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d7baf8f_c8fa1ddd",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "can you document how this should be used? Should it always be paired with InitSecContext ?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f17eeb95_0fadea71",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "section?",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77eb410d_f2a917ac",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-16T11:20:17Z",
+      "side": 1,
+      "message": "RFC 4462",
+      "range": {
+        "startLine": 56,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 11
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
