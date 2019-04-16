@@ -22,6 +22,30 @@
       "revId": "5cfc4abd6dee1211132b3575d4c5c1870e78eab0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3386eb0b_2601c1ba",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2019-04-16T13:30:35Z",
+      "side": 1,
+      "message": "I just verified this works on macOS too:\n\n  % dd if\u003d/dev/zero bs\u003d3 count\u003d1 \u003e /tmp/out\n  1+0 records in\n  1+0 records out\n  3 bytes transferred in 0.000102 secs (29399 bytes/sec)\n  % ls -l /tmp/out\n  -rw-r--r--  1 tklauser  wheel  3 16 Apr 15:27 /tmp/out",
+      "parentUuid": "cf6d4114_e3ead6c5",
+      "range": {
+        "startLine": 373,
+        "startChar": 37,
+        "endLine": 374,
+        "endChar": 27
+      },
+      "revId": "5cfc4abd6dee1211132b3575d4c5c1870e78eab0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
