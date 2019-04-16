@@ -22,6 +22,30 @@
       "revId": "cbb0ff26128d23fa98128d34b110b72d92a4ef6f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "887a0913_d9c42bb9",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 8600
+      },
+      "writtenOn": "2019-04-16T15:45:52Z",
+      "side": 1,
+      "message": "Good call, updated and expanded a bit more. Let me know if the details are counterproductive.\n\n// SetEnterClear controls whether the input line should be cleared upon\n// pressing Enter. When false (the default), the input line is pushed up with a\n// new-line and the prompt is repainted. When true, the input line is cleared\n// without any new lines.",
+      "parentUuid": "b443a114_f7b1d659",
+      "range": {
+        "startLine": 896,
+        "startChar": 0,
+        "endLine": 896,
+        "endChar": 75
+      },
+      "revId": "cbb0ff26128d23fa98128d34b110b72d92a4ef6f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
