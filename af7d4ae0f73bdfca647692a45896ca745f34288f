@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa436462_da015960",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "Can you redo these and use benchstat? Also, we probably only need one set of numbers here (i.e. just MB/s, drop the ns/op).",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba76331_d0e7499c",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "This code is now in Cryptogams. Please double check if the code still matches what is in that repo and change the link to point at the correct revision of the original file:\n\nhttps://github.com/dot-asm/cryptogams/blob/master/ppc/chacha-ppc.pl",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c31d17_5e90e728",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "vector registers?",
+      "range": {
+        "startLine": 18,
+        "startChar": 36,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "568bcd68_d21d764a",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "out, inp *byte",
+      "range": {
+        "startLine": 131,
+        "startChar": 26,
+        "endLine": 131,
+        "endChar": 41
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2de427d0_da4e1190",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "We should use arithmetic when it makes sense and let the compiler substitute bitwise operations. So change this to len(src) - len(src)%bufSize.",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 60
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70a14fee_eae88893",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "Might be worth an experiment to replace this code with:\n\nstart :\u003d len(src) - len(src)%bufSize\ncopy(c.buf[:bufSize], src[start:])\nChaCha20_ctr32_vmx(\u0026c.buf[0], \u0026c.buf[0], bufSize, \u0026c.key, \u0026c.counter)\nc.len \u003d bufSize - copy(dst[start:], c.buf[:bufSize])\nreturn\n\nIt will probably be a bit slower, but worth a try in case the performance hit isn\u0027t large.",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e29526ae_a0b16060",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "len(src) - len(src) % bufSize",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "803367e9_cfe18c79",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "We should add a comment here saying something like \"Unroll loop to XOR 32 bytes per iteration.\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b035d389_71b14baf",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-16T08:40:48Z",
+      "side": 1,
+      "message": "It might be faster to avoid reslicing here (i.e. use something like: for i :\u003d 0; i \u003c len(ts)-32; i +\u003d 32 { ... })",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
