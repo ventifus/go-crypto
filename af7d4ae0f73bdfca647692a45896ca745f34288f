@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "fdbe5d38_fd3cd49b",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-04-16T19:48:18Z",
+      "side": 1,
+      "message": "I believe what Paulo had done is very close to what\u0027s in cryptogams ChaCha20_ctr32_vmx. There is some reordering but basically the same. Carlos please verify that you agree.",
+      "parentUuid": "1ba76331_d0e7499c",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36c31d17_5e90e728",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 1
