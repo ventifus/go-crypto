@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b443a114_f7b1d659",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-16T15:32:53Z",
+      "side": 1,
+      "message": "It\u0027s not obvious from these docs which behavior (true vs false) means which.\n\nMaybe more like:\n\n// SetEnterClear controls whether the input line should be cleared upon\n// pressing Enter. If false (the default), it is echoed.",
+      "range": {
+        "startLine": 896,
+        "startChar": 0,
+        "endLine": 896,
+        "endChar": 75
+      },
+      "revId": "cbb0ff26128d23fa98128d34b110b72d92a4ef6f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
