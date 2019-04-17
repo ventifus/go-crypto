@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "5b7159f1_9dec74f7",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T11:40:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9c83cd91_867d8a02",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9932d6bc_9723dd36",
         "filename": "ssh/server.go",
         "patchSetId": 8
