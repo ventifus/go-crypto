@@ -140,6 +140,30 @@
       "revId": "4f923f44d3ac4b9e88bad36844ecf7a584b032dc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfcc9c2a_6ba1fd35",
+        "filename": "sha3/shake.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-04-17T17:05:20Z",
+      "side": 1,
+      "message": "I meant revert the change, not remove the functions. This is a cSHAKE CL, it should not touch ShakeSum128/256 unnecessarily.",
+      "parentUuid": "916b5f53_3e7d8132",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "4f923f44d3ac4b9e88bad36844ecf7a584b032dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
