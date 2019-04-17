@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b8e4d21_1e7bd019",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2019-04-17T16:55:31Z",
+      "side": 1,
+      "message": "I don\u0027t understand why |len(reset)| is added to |cursorX| here. The contents of reset are non-printing characters so why should the cursor position be updated? In fact, if the line has been cleared, shouldn\u0027t |cursorX| (and y?) be set to zero?",
+      "revId": "fdb031718c61050a0b436dfc81c4ce0ebab268ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21d1bb93_b0c76244",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2019-04-17T16:55:31Z",
+      "side": 1,
+      "message": "This name doesn\u0027t strike me as terrible communicative. SetClearLineOnEnter?",
+      "revId": "fdb031718c61050a0b436dfc81c4ce0ebab268ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
