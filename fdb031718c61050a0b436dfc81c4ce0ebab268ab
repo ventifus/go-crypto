@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f9abc579_460c44d4",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 8600
+      },
+      "writtenOn": "2019-04-17T19:24:33Z",
+      "side": 1,
+      "message": "I assumed the same thing in the beginning, but experimentally discovered that setting t.cursorX \u003d 0 will create an offset in the line rendered. Leaving it alone will also create an offset, but only in some cases (e.g. compound emojis seem to trigger it). Adding the length of the reset sequence was the only thing that yielded consistent results. Adding an arbitrary larger length seems to have other undesired side effects.\n\nI ended up digging into how terminals do rendering, and discovered the magic that is unicode grapheme clustering and how string length !\u003d byte size !\u003d grapheme clusters ?\u003d visual monospace width, and how practically every terminal implements this counting differently (at least ones I tested: Terminal.app vs iTerm2.app vs xterm vs urxvt vs kitty vs alacritty).\n\nIn the end, I came out more confused than before.\n\nIn fact, I discovered that there are already bugs in this terminal implementation pertaining to this. An easy way to reproduce: Open up a terminal with some prompt, write a bunch of compound emojis like ⛑🏻⛑🏻⛑🏻⛑🏻, then hit Ctrl+U and you\u0027ll notice a different behaviour on most terminals. Most likely you\u0027ll get a temporary or permanent offset, depending on the terminal. I\u0027ve been looking for a more generalized solution to this, but have not had much luck.\n\nAnyways, all of this is to say: I don\u0027t know the precise answer to your question, but the comment above is my best guess of why this works reliably in this specific case (while other values do not).\n\nNot sure where to go from here. Want me to provide an reproducing code snippet with some screenshots?",
+      "parentUuid": "6b8e4d21_1e7bd019",
+      "revId": "fdb031718c61050a0b436dfc81c4ce0ebab268ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21d1bb93_b0c76244",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-17T16:55:31Z",
       "side": 1,
       "message": "This name doesn\u0027t strike me as terrible communicative. SetClearLineOnEnter?",
+      "revId": "fdb031718c61050a0b436dfc81c4ce0ebab268ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edaec9b0_00c60bca",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 8600
+      },
+      "writtenOn": "2019-04-17T19:24:33Z",
+      "side": 1,
+      "message": "Not opposed to changing the name.\n\nTo me, SetClearLineOnEnter reads more ambiguous, like you get a clear (as in clean/fresh) prompt line when you press enter, which is already true in either case?\n\nThe contrapositive could be clearer, though it opposes the default: SetEchoInputLine or something?\n\nI tried a bunch of variations, ultimately felt most comfortable with SetEnterClear. Those were the keywords I was searching for when I was looking for this API, so it seemed like a good entry-point.\n\nI\u0027m happy to modify into whatever decision you\u0027d like, though. Want to go with SetClearLineOnEnter?",
+      "parentUuid": "21d1bb93_b0c76244",
       "revId": "fdb031718c61050a0b436dfc81c4ce0ebab268ab",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
