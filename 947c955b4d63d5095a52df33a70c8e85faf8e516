@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba62c3b6_5e392734",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-17T11:56:19Z",
+      "side": 1,
+      "message": "add this as a comment. I\u0027m mainly curious about this because if you do\n\n\n  cl.InitSecContext()\n   ...\n  cl.InitSecContext()\n    ..\n\n\nthen, how often should you call DeleteSecContext, and where?\n\n(maybe this is obvious if you know the standard, but it should make sense to people that didn\u0027t read the standard too.)",
+      "parentUuid": "8f3a8f1f_2c1fc29a",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "947c955b4d63d5095a52df33a70c8e85faf8e516",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c84d2e5d_d7465016",
         "filename": "ssh/ssh_gss.go",
         "patchSetId": 10
