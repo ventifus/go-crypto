@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a4bce33_01604a2c",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-17T10:43:11Z",
+      "side": 1,
+      "message": "what happens if you call it twice?",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "947c955b4d63d5095a52df33a70c8e85faf8e516",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c84d2e5d_d7465016",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-17T10:43:11Z",
+      "side": 1,
+      "message": "but there is no InitSecContext here. Do you mean AcceptSecContext?",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "947c955b4d63d5095a52df33a70c8e85faf8e516",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "9c83cd91_867d8a02",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-17T10:43:11Z",
+      "side": 1,
+      "message": "right. Can you find a way to clean it up using a single DeleteSecContext? in the way you are doing it now, it is easy to introduce leaks when the logic is refactored.",
+      "parentUuid": "eb7f2ae2_b270f2c7",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9932d6bc_9723dd36",
         "filename": "ssh/server.go",
         "patchSetId": 8
