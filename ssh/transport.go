@@ -15,7 +15,7 @@ import (
 
 // debugTransport if set, will print packet types as they go over the
 // wire. No message decoding is done, to minimize the impact on timing.
-const debugTransport = false
+const debugTransport = true
 
 const (
 	gcmCipherID    = "aes128-gcm@openssh.com"
@@ -65,6 +65,7 @@ func (c *compressor) decompress(in []byte) ([]byte, error) {
 		var err error
 		c.reader, err = zlib.NewReader(&c.buf)
 		if err != nil {
+			log.Printf("in %q, err %v", in, err)
 			return nil, err
 		}
 	}
@@ -73,11 +74,16 @@ func (c *compressor) decompress(in []byte) ([]byte, error) {
 	var total int
 	for c.buf.Len() > 0 {
 		n, err := c.reader.Read(out)
-		if err != nil {
-			return nil, err
-		}
 		total += n
 		out = out[n:]
+		if c.buf.Len() == 0 {
+			// exhausted read.
+			break
+		}
+		if err != nil {
+			log.Println("err", err, c.buf.Len())
+			return nil, err
+		}
 	}
 	return c.out[:total], nil
 }
@@ -213,7 +219,11 @@ readloop:
 		}
 
 		if t.decompressor != nil && t.authenticated {
-			p, err = t.decompressor.decompress(p)
+			in := p
+			p, err = t.decompressor.decompress(in)
+			log.Printf("decompress %d %v", len(p), err)
+			log.Printf("decompress in  %q", in)
+			log.Printf("decompress out %q", p)
 		}
 		if err != nil {
 			break
