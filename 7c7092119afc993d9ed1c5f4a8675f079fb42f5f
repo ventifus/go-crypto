@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b3eb741_327cc627",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a406b39_6f9cc3b5",
+      "range": {
+        "startLine": 530,
+        "startChar": 35,
+        "endLine": 530,
+        "endChar": 37
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f263c4f9_88d24c88",
         "filename": "ssh/client_auth.go",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cd4412be_4aa7f674",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f263c4f9_88d24c88",
+      "range": {
+        "startLine": 531,
+        "startChar": 3,
+        "endLine": 531,
+        "endChar": 7
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b242b47_5fe85736",
         "filename": "ssh/client_auth.go",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2019-04-16T11:20:17Z",
       "side": 1,
       "message": "you do this on all exit paths. Have you considered defer ?",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb7f2ae2_b270f2c7",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "the \"secContext\" exists after \"InitSecContext\"",
+      "parentUuid": "9b242b47_5fe85736",
       "range": {
         "startLine": 618,
         "startChar": 16,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "0a1b0e97_4db04c00",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9932d6bc_9723dd36",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a43f816f_ae51462a",
         "filename": "ssh/server.go",
         "patchSetId": 8
@@ -114,6 +210,30 @@
       "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9946c2b_95252313",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a43f816f_ae51462a",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "519fafb4_a9ede727",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7baf8f_c8fa1ddd",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f17eeb95_0fadea71",
         "filename": "ssh/ssh_gss.go",
         "patchSetId": 8
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "0c5faf08_c24c89f6",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f17eeb95_0fadea71",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77eb410d_f2a917ac",
         "filename": "ssh/ssh_gss.go",
         "patchSetId": 8
@@ -229,6 +397,30 @@
       "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc60f4ed_129555b1",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-17T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77eb410d_f2a917ac",
+      "range": {
+        "startLine": 56,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 11
+      },
+      "revId": "7c7092119afc993d9ed1c5f4a8675f079fb42f5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
