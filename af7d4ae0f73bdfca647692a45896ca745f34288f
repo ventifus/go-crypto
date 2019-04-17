@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "136edc07_0d315865",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aa436462_da015960",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ba76331_d0e7499c",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 1
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "34eea7cb_8db706a1",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Yes, apart from some instruction reordering and ABI details, it\u0027s the same code.",
+      "parentUuid": "fdbe5d38_fd3cd49b",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36c31d17_5e90e728",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 1
@@ -74,6 +110,30 @@
       "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebda062c_5fd81ccb",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36c31d17_5e90e728",
+      "range": {
+        "startLine": 18,
+        "startChar": 36,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -100,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "8689437f_218b1faa",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "568bcd68_d21d764a",
+      "range": {
+        "startLine": 131,
+        "startChar": 26,
+        "endLine": 131,
+        "endChar": 41
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2de427d0_da4e1190",
         "filename": "internal/chacha20/chacha_ppc64le.go",
         "patchSetId": 1
@@ -123,6 +207,30 @@
     },
     {
       "key": {
+        "uuid": "767428f7_2ce5bf27",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2de427d0_da4e1190",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 60
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70a14fee_eae88893",
         "filename": "internal/chacha20/chacha_ppc64le.go",
         "patchSetId": 1
@@ -134,6 +242,24 @@
       "writtenOn": "2019-04-16T08:40:48Z",
       "side": 1,
       "message": "Might be worth an experiment to replace this code with:\n\nstart :\u003d len(src) - len(src)%bufSize\ncopy(c.buf[:bufSize], src[start:])\nChaCha20_ctr32_vmx(\u0026c.buf[0], \u0026c.buf[0], bufSize, \u0026c.key, \u0026c.counter)\nc.len \u003d bufSize - copy(dst[start:], c.buf[:bufSize])\nreturn\n\nIt will probably be a bit slower, but worth a try in case the performance hit isn\u0027t large.",
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "554a7b81_04137c7d",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "OK, I\u0027ll try that.",
+      "parentUuid": "70a14fee_eae88893",
       "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -160,6 +286,30 @@
       "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56894204_ebf46b23",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e29526ae_a0b16060",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -206,6 +356,54 @@
       "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02a23b7c_1630b70e",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "803367e9_cfe18c79",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84684215_6fd73f38",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-17T17:36:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b035d389_71b14baf",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "af7d4ae0f73bdfca647692a45896ca745f34288f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
