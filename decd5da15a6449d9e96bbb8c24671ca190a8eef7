@@ -22,6 +22,30 @@
       "revId": "decd5da15a6449d9e96bbb8c24671ca190a8eef7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1928801b_d7427157",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-17T17:28:50Z",
+      "side": 1,
+      "message": "the relevant code is https://go.googlesource.com/crypto/+/88737f569e3a9c7ab309cdc09a07fe7fc87233c3/ssh/handshake.go#447\n\nI don\u0027t see an obvious way to inject something in it that is not overkill (given that we don\u0027t want to expose this as a feature).\n\nThe only reason I found this problem was that I wanted to debug something where I had to change the algorithm in just one direction.",
+      "parentUuid": "effc58e0_6cf2ed29",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 6
+      },
+      "revId": "decd5da15a6449d9e96bbb8c24671ca190a8eef7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
