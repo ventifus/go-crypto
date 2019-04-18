@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93b80e1f_fb02f025",
+        "filename": "ssh/messages.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-18T13:06:58Z",
+      "side": 1,
+      "message": "could you use the struct from l.117 with a non-empty payload instead?",
+      "range": {
+        "startLine": 299,
+        "startChar": 5,
+        "endLine": 299,
+        "endChar": 20
+      },
+      "revId": "b005c2e82a4f83f282d2cd24736e9b3ecb4490eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8a904aa_a01f7258",
+        "filename": "ssh/server.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-18T13:06:58Z",
+      "side": 1,
+      "message": "can you make a descriptive name? It is callback because it is a function pointer, but can you describe what it does? I guess it gets the permissions for the user? SHould it do anything else?",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "b005c2e82a4f83f282d2cd24736e9b3ecb4490eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e54f59d7_6335dc2a",
+        "filename": "ssh/server.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-18T13:06:58Z",
+      "side": 1,
+      "message": "space before (",
+      "range": {
+        "startLine": 115,
+        "startChar": 51,
+        "endLine": 115,
+        "endChar": 52
+      },
+      "revId": "b005c2e82a4f83f282d2cd24736e9b3ecb4490eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
