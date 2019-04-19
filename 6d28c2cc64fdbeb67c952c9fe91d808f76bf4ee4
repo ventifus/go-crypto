@@ -94,6 +94,30 @@
       "revId": "6d28c2cc64fdbeb67c952c9fe91d808f76bf4ee4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d93b1b1_55ff9ecf",
+        "filename": "sha3/kmac.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 11965
+      },
+      "writtenOn": "2019-04-19T18:35:06Z",
+      "side": 1,
+      "message": "It should work - unless I\u0027m missing something, KMAC does not keep track of the amount of data fed into it.",
+      "parentUuid": "e3bd631b_c168e64e",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "6d28c2cc64fdbeb67c952c9fe91d808f76bf4ee4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
