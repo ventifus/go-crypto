@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "86694138_981151a2",
+        "filename": "ssh/server.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T14:57:46Z",
+      "side": 1,
+      "message": "\"gssapi just guarantees to the server who the user is, but not if they can log in, and with what permissions\" that\u0027s right.",
+      "parentUuid": "42d0a6a1_9ea7ac52",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 22
+      },
+      "revId": "fdf7ba98f53578c238ad54e6a5dbebe3a7360dca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "328bd43b_d20eb07c",
         "filename": "ssh/server.go",
         "patchSetId": 18
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3c04fcba_3917a50f",
+        "filename": "ssh/server.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T14:57:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "328bd43b_d20eb07c",
+      "range": {
+        "startLine": 316,
+        "startChar": 52,
+        "endLine": 316,
+        "endChar": 57
+      },
+      "revId": "fdf7ba98f53578c238ad54e6a5dbebe3a7360dca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d62cab4_0cf21c96",
         "filename": "ssh/server.go",
         "patchSetId": 18
@@ -68,6 +116,30 @@
       "revId": "fdf7ba98f53578c238ad54e6a5dbebe3a7360dca",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a2d4be5_fdcd3ebe",
+        "filename": "ssh/server.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T14:57:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d62cab4_0cf21c96",
+      "range": {
+        "startLine": 571,
+        "startChar": 30,
+        "endLine": 571,
+        "endChar": 31
+      },
+      "revId": "fdf7ba98f53578c238ad54e6a5dbebe3a7360dca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
