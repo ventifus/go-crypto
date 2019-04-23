@@ -16,6 +16,24 @@
       "revId": "4182194d62a355e0326fcc4b6cf83d2f872b4604",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b74fe0c_7a5583e7",
+        "filename": "ssh/gss/test/docker/service/main.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T16:13:32Z",
+      "side": 1,
+      "message": "I think you misunderstood me.  I am asking for a test that is entirely in the ssh/ directory.\n\nIt would exercise the code you added, but not without starting up kdc, docker images or anything alike.\n\nRather, add a struct that implements GSSAPIClient and GSSAPIServer in a simplistic way, running inside the same process (a so-called Fake), and then check that this client can establish an SSH session using this mechanism.",
+      "parentUuid": "f631356b_c01d838f",
+      "revId": "4182194d62a355e0326fcc4b6cf83d2f872b4604",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
