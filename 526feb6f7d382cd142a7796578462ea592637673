@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c377912f_cfd8954b",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "can you do like this\n\n  first  :\u003d true\n  for {\n\n     .. InitSecContext()\n\n     if first {\n         defer g.gssAPIClient.DeleteSecContext()\n         first \u003d true\n     }\n\n\nthis saves one level on indent, and looks a bit more idiomatic.",
+      "range": {
+        "startLine": 572,
+        "startChar": 2,
+        "endLine": 572,
+        "endChar": 7
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de879498_1d1f169d",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "the code below looks self-explanatory here, so drop comment",
+      "range": {
+        "startLine": 586,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 92
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d909351_a9ecb164",
+        "filename": "ssh/messages.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "can you add entries here too? This helps debug printing.",
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ddf966c_a04d09a8",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "still not resolved.",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "121c0757_da4b17f9",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "this is a configuration error. can you move it to the  other config errors, in line l.219 ?",
+      "range": {
+        "startLine": 518,
+        "startChar": 3,
+        "endLine": 518,
+        "endChar": 5
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa34432f_72d3682c",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "add \"ssh: \" prefix",
+      "range": {
+        "startLine": 519,
+        "startChar": 28,
+        "endLine": 519,
+        "endChar": 31
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67cd517f_01e217ac",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "the client sends sshgssoids() in the payload too. Shouldn\u0027t you check that here too?",
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb0e6ad1_7f49c686",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "this is also very deeply nested. Can you decrease indent by not having the func() ? Or, put this  in a separate function",
+      "range": {
+        "startLine": 549,
+        "startChar": 5,
+        "endLine": 549,
+        "endChar": 13
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd0e5a1_d362a667",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T10:43:25Z",
+      "side": 1,
+      "message": "this function is now superfluous. CAn you inline this?",
+      "range": {
+        "startLine": 132,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 15
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
