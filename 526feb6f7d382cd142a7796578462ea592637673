@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b7c6542d_88fbc416",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T12:34:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c377912f_cfd8954b",
+      "range": {
+        "startLine": 572,
+        "startChar": 2,
+        "endLine": 572,
+        "endChar": 7
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de879498_1d1f169d",
         "filename": "ssh/client_auth.go",
         "patchSetId": 17
@@ -48,6 +72,53 @@
     },
     {
       "key": {
+        "uuid": "e723e077_fd6649ed",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T12:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de879498_1d1f169d",
+      "range": {
+        "startLine": 586,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 92
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb750e89_5dce111f",
+        "filename": "ssh/messages.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T12:34:25Z",
+      "side": 1,
+      "message": "The sshtype is the same value 60.",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 1
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d909351_a9ecb164",
         "filename": "ssh/messages.go",
         "patchSetId": 17
@@ -62,6 +133,24 @@
       "revId": "526feb6f7d382cd142a7796578462ea592637673",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af5a9e45_58b31b92",
+        "filename": "ssh/messages.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T12:34:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5d909351_a9ecb164",
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {

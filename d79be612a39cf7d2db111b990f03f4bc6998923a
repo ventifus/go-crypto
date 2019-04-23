@@ -45,6 +45,30 @@
       "revId": "d79be612a39cf7d2db111b990f03f4bc6998923a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8700d72e_addc0d57",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T12:34:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b38e01aa_2a32492a",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "d79be612a39cf7d2db111b990f03f4bc6998923a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
