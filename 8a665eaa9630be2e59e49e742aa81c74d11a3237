@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cacc79e9_bc32f6b7",
+        "filename": "ssh/server.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T16:16:40Z",
+      "side": 1,
+      "message": "\"This callback is called after the user identity is established with GSSAPI to decide if the user can login with which permissions. If the user is allowed to login, it should return a nil error\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 112
+      },
+      "revId": "8a665eaa9630be2e59e49e742aa81c74d11a3237",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d79c1f50_f6b5dc53",
+        "filename": "ssh/server.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T16:16:40Z",
+      "side": 1,
+      "message": "how about AllowLogin ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "8a665eaa9630be2e59e49e742aa81c74d11a3237",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
