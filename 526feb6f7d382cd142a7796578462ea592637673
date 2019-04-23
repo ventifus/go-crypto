@@ -240,6 +240,24 @@
     },
     {
       "key": {
+        "uuid": "3d54d6bc_d9cb632d",
+        "filename": "ssh/server.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T13:39:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67cd517f_01e217ac",
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb0e6ad1_7f49c686",
         "filename": "ssh/server.go",
         "patchSetId": 17
@@ -256,6 +274,29 @@
         "startChar": 5,
         "endLine": 549,
         "endChar": 13
+      },
+      "revId": "526feb6f7d382cd142a7796578462ea592637673",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbd50c43_43a3868d",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-04-23T13:39:45Z",
+      "side": 1,
+      "message": "Can you add a test that creates a fake GSS client and server, and verifies that the whole thing can complete without OOB or nil-ptr access?\n\nYou don\u0027t have to hook it up to krb server; you could just use something that sends back and forth hardcoded []byte for the tokens.",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 17
       },
       "revId": "526feb6f7d382cd142a7796578462ea592637673",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
