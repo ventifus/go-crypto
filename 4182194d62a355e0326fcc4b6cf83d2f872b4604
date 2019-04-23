@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f631356b_c01d838f",
+        "filename": "ssh/gss/test/docker/service/main.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-23T14:15:13Z",
+      "side": 1,
+      "message": "For test, then I will remove the dir ssh/gss.\nFirstly, we should start up kdc: In dir ssh/gss/test/docker, docker-compose up kdc.\nSecondly, run server: In dir ssh/gss/test/docker, docker-compose up service.\nFinally,  run client: In dir ssh/gss/test/docker, docker-compose up client",
+      "revId": "4182194d62a355e0326fcc4b6cf83d2f872b4604",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
