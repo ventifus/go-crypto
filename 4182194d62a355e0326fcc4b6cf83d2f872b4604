@@ -34,6 +34,24 @@
       "revId": "4182194d62a355e0326fcc4b6cf83d2f872b4604",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98e5c8ed_947ba2e8",
+        "filename": "ssh/gss/test/docker/service/main.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-04-24T01:29:48Z",
+      "side": 1,
+      "message": "I got it. I\u0027ll be out in few days. I will solve it when I come back.",
+      "parentUuid": "4b74fe0c_7a5583e7",
+      "revId": "4182194d62a355e0326fcc4b6cf83d2f872b4604",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
