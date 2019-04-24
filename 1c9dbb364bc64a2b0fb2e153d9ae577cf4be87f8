@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94fd0b4b_97103888",
+        "filename": "poly1305/sum_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-04-24T21:28:56Z",
+      "side": 1,
+      "message": "I don\u0027t think we need this check, since the minimum processor version is POWER8. We can assume that we always have VMX/VSX.",
+      "revId": "1c9dbb364bc64a2b0fb2e153d9ae577cf4be87f8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
