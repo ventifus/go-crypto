@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f08ae6f_1604ff87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-04-24T00:11:42Z",
+      "side": 1,
+      "message": "The prefix shouldn\u0027t include the subrepo name, just the directory inside.\n\nThe first word should be lower case.\n\nSo, this should be:\n\n    ssh: document that ...\n\nSee https://golang.org/wiki/CommitMessage#other-repos for reference.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "30723a7353fa30ea655d892bc7b44ea4952dc156",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
