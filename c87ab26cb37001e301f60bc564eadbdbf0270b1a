@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4fceac1_49bd5d3c",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-04-25T09:02:29Z",
+      "side": 1,
+      "message": "Please add a git revision here (makes it easier to see if there have been upstream changes).",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 1
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
