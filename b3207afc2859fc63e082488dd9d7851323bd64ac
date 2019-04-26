@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2c1fbf_c041ad86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-04-26T14:48:34Z",
+      "side": 1,
+      "message": "s/not/nor/\n\nAlso, wrap this at ~76-ish chars. Or reword to be shorter:\n\n    This makes code more readable and idiomatic. No change in benchmarks.",
+      "range": {
+        "startLine": 9,
+        "startChar": 96,
+        "endLine": 9,
+        "endChar": 99
+      },
+      "revId": "b3207afc2859fc63e082488dd9d7851323bd64ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
