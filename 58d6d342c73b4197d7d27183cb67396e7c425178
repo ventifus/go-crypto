@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6a02b523_ccdc4d14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11bbe2e1_8803c89f",
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ce4a4e0_fab836b1",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a031621f_593f77cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ce4a4e0_fab836b1",
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "49e9cc55_e88a5d82",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a4c753_9c141ff6",
+      "range": {
+        "startLine": 41,
+        "startChar": 25,
+        "endLine": 41,
+        "endChar": 37
+      },
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "671dc822_0e6605bf",
         "filename": "openpgp/packet/signature.go",
         "patchSetId": 2
@@ -73,6 +133,24 @@
       "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3975c561_6d8f7abb",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "Right now, this is only being used in crypto/openpgp/keys.go for validating the given revocation reason. I\u0027ve moved this method to an unexported method in the keys.go file.",
+      "parentUuid": "671dc822_0e6605bf",
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "4c2e88c9_618dccb7",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e18f35e6_b0f38037",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 14
+      },
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69a96707_8d00c799",
         "filename": "openpgp/packet/signature.go",
         "patchSetId": 2
@@ -113,6 +215,24 @@
       "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2460f8d2_832ab6a9",
+        "filename": "openpgp/packet/signature.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-04-29T06:48:59Z",
+      "side": 1,
+      "message": "The existing code in this file has the same usage in line 535, 605, 616 and 626. Although I agree that sensible seems redundant here. I\u0027ve gone ahead and removed other instances of this as well.",
+      "parentUuid": "69a96707_8d00c799",
+      "revId": "58d6d342c73b4197d7d27183cb67396e7c425178",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
