@@ -22,6 +22,92 @@
       "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71a30617_9a431274",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-01T14:54:42Z",
+      "side": 1,
+      "message": "This (and all other references to OpenSSL) should probably be replaced with cryptogams.",
+      "range": {
+        "startLine": 16,
+        "startChar": 38,
+        "endLine": 16,
+        "endChar": 45
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fa1ca2e_6ec4b91e",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-01T14:54:42Z",
+      "side": 1,
+      "message": "Can you add a comment explaining what this loop is doing? We should especially draw attention to the fact that we are doing one \u0027lane\u0027 in scalar code and 3 (?) \u0027lanes\u0027 in VMX code.",
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a742b0_4067b63a",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-01T14:54:42Z",
+      "side": 1,
+      "message": "Can we add an overview comment to this part of the code too? In particular it would be good to know that the goal of this code is to XOR the contents of the src slice with the keystream (which is currently in registers) and then write the result to the dst slice. I\u0027d also like to understand how the alignment code is working. In particular is it reading prior to or beyond the end of the src slice?",
+      "range": {
+        "startLine": 479,
+        "startChar": 21,
+        "endLine": 623,
+        "endChar": 18
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "970cd2f6_d0a7de0e",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-01T14:54:42Z",
+      "side": 1,
+      "message": "This needs to be lower case so it isn\u0027t exported.",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
