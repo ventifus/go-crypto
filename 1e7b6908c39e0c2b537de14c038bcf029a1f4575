@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "01ca9eb5_fc77fc5b",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-02T17:58:53Z",
+      "side": 1,
+      "message": "This is just bog standard DH, but the server proposes the prime modulus of the group, rather than having a pre-agreed modulus.\n\nSince the security conscious user is supposed to generate these moduli by themselves, we can\u0027t whitelist values (Although I suspect 99% of the servers just use the OpenSSH precooked moduli file).  (You can run\n\n time ssh-keygen -G moduli-2048.candidates -b 2048\n\nto see what is going on)\n\nthe RFC says\n\n  \"A prime p is safe if p \u003d 2q + 1 and q is\n   prime. \"\n\nIIUC, any choice for G !\u003d 1 is safe as long as P safe, so we don\u0027t have to check G, just that P is prime and (P-1)/2 is prime.",
+      "parentUuid": "c81f7d39_27fe6d34",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
