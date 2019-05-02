@@ -167,6 +167,24 @@
     },
     {
       "key": {
+        "uuid": "d4a30442_f77990aa",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-02T18:30:52Z",
+      "side": 1,
+      "message": "yes, you need to use ProbablyPrime() on P and (P-1)/2.",
+      "parentUuid": "35249a1d_2db70fc2",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -196,6 +214,24 @@
       "side": 1,
       "message": "I am completely fine with implementing this key exchange only for the client, because I agree, that the use case to add this in the first place is to be able to talk to legacy servers. We could even go so far that we have a panic-ing Server implementation and a minimal server implementation (with only one hard coded moduli) in _test.go for tests only.\n\nExample:\n\nvar gexServerFunc func(gex *dhGEXSHA, p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error)\n\nfunc (gex *dhGEXSHA) Server(p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error) {\n\tif gexServerFunc !\u003d nil {\n\t\treturn gexServerFunc(gex, p, rand, magics, s)\n\t}\n\tpanic(\"server is not implemented for diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256\")\n}",
       "parentUuid": "c46eaa7e_6d487d24",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32085886_66f10ae8",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-02T18:30:52Z",
+      "side": 1,
+      "message": "We must have the server half too, otherwise we can\u0027t test the client side. So, no panicking.",
+      "parentUuid": "87a20c82_c3439a3c",
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
