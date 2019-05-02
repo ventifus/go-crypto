@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3eec89de_686a04aa",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-02T10:23:02Z",
+      "side": 1,
+      "message": "shouldn\u0027t this check if P is a prime with the required characteristics? And G ? \n\nAdam, Filippo,\n\ncan a cryptographer comment here?",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c46eaa7e_6d487d24",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-02T10:23:02Z",
+      "side": 1,
+      "message": "If you want to use group-exchange b/c security considerations (ie. you\u0027re worried that the NSA has a solved discrete log for some primes), you shouldn\u0027t hard code any prime at all.\n\nSince we\u0027re doing this so modern clients (us) can connect to backward servers, adding moduli has no real application for us.\n\nI propose hardcoding a single 2048 bit modulus, preferably the one from group14 (that\u0027s 2048 bit, right?), and documenting that the group exchange kex is not recommended server side. (we can always reconsider when we get requests for this).",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
