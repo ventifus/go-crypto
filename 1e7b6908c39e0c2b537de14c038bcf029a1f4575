@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "5c034c9f_b1c03a1e",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T18:13:18Z",
+      "side": 1,
+      "message": "will fix",
+      "parentUuid": "a4befd24_7112abdb",
+      "range": {
+        "startLine": 594,
+        "startChar": 26,
+        "endLine": 594,
+        "endChar": 27
+      },
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77b96980_db237793",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T18:13:18Z",
+      "side": 1,
+      "message": "will fix",
+      "parentUuid": "05572e5a_72a58e29",
+      "range": {
+        "startLine": 594,
+        "startChar": 49,
+        "endLine": 594,
+        "endChar": 62
+      },
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eec89de_686a04aa",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -101,6 +149,24 @@
     },
     {
       "key": {
+        "uuid": "35249a1d_2db70fc2",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T18:13:18Z",
+      "side": 1,
+      "message": "My fear is, that whitelisting some \"very popular values\" would limit the application of this key exchange to such an extend, that it becomes use less. I could even imagine scenarios, where the connection could be established in 1 of n attempts, because the server uses a set of moduli, which shares some but not all values with the whitelist.\n\nWhat about big.ProbablyPrime (https://golang.org/pkg/math/big/#Int.ProbablyPrime)? This is used in crypto/dsa to \"verify\" if a p is actually a prime.",
+      "parentUuid": "c81f7d39_27fe6d34",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -112,6 +178,24 @@
       "writtenOn": "2019-05-02T10:23:02Z",
       "side": 1,
       "message": "If you want to use group-exchange b/c security considerations (ie. you\u0027re worried that the NSA has a solved discrete log for some primes), you shouldn\u0027t hard code any prime at all.\n\nSince we\u0027re doing this so modern clients (us) can connect to backward servers, adding moduli has no real application for us.\n\nI propose hardcoding a single 2048 bit modulus, preferably the one from group14 (that\u0027s 2048 bit, right?), and documenting that the group exchange kex is not recommended server side. (we can always reconsider when we get requests for this).",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87a20c82_c3439a3c",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T18:13:18Z",
+      "side": 1,
+      "message": "I am completely fine with implementing this key exchange only for the client, because I agree, that the use case to add this in the first place is to be able to talk to legacy servers. We could even go so far that we have a panic-ing Server implementation and a minimal server implementation (with only one hard coded moduli) in _test.go for tests only.\n\nExample:\n\nvar gexServerFunc func(gex *dhGEXSHA, p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error)\n\nfunc (gex *dhGEXSHA) Server(p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error) {\n\tif gexServerFunc !\u003d nil {\n\t\treturn gexServerFunc(gex, p, rand, magics, s)\n\t}\n\tpanic(\"server is not implemented for diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256\")\n}",
+      "parentUuid": "c46eaa7e_6d487d24",
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
