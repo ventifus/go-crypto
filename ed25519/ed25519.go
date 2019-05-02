@@ -60,17 +60,24 @@ func (priv PrivateKey) Seed() []byte {
 	return seed
 }
 
-// Sign signs the given message with priv.
-// Ed25519 performs two passes over messages to be signed and therefore cannot
-// handle pre-hashed messages. Thus opts.HashFunc() must return zero to
-// indicate the message hasn't been hashed. This can be achieved by passing
-// crypto.Hash(0) as the value for opts.
+// Sign signs the given message with priv. rand is ignored. If opts.HashFunc()
+// is crypto.SHA512, the pre-hashed variant Ed25519ph is used and message is
+// expected to be a SHA-512 hash, otherwise opts.HashFunc() must be
+// crypto.Hash(0) and the message must not be hashed, as Ed25519 performs two
+// passes over messages to be signed.
 func (priv PrivateKey) Sign(rand io.Reader, message []byte, opts crypto.SignerOpts) (signature []byte, err error) {
-	if opts.HashFunc() != crypto.Hash(0) {
-		return nil, errors.New("ed25519: cannot sign hashed message")
+	switch opts.HashFunc() {
+	case crypto.SHA512:
+		if l := len(message); l != sha512.Size {
+			return nil, errors.New("ed25519: bad message hash length: " + strconv.Itoa(l))
+		}
+		return sign(priv, message, true), nil
+	case crypto.Hash(0):
+		return sign(priv, message, false), nil
+	default:
+		return nil, errors.New("ed25519: expected opts zero (unhashed message, for standard Ed25519) or SHA-512 (for Ed25519ph)")
 	}
 
-	return Sign(priv, message), nil
 }
 
 // GenerateKey generates a public/private key pair using entropy from rand.
@@ -123,6 +130,14 @@ func NewKeyFromSeed(seed []byte) PrivateKey {
 // Sign signs the message with privateKey and returns a signature. It will
 // panic if len(privateKey) is not PrivateKeySize.
 func Sign(privateKey PrivateKey, message []byte) []byte {
+	return sign(privateKey, message, false)
+}
+
+// phDomainSeparationPrefix is used to disambiguate Ed25519ph from Ed25519 (the
+// dom2 byte prefix in RFC 8032)
+const phDomainSeparationPrefix = "SigEd25519 no Ed25519 collisions\x01\x00"
+
+func sign(privateKey PrivateKey, message []byte, preHashed bool) []byte {
 	if l := len(privateKey); l != PrivateKeySize {
 		panic("ed25519: bad private key length: " + strconv.Itoa(l))
 	}
@@ -139,6 +154,9 @@ func Sign(privateKey PrivateKey, message []byte) []byte {
 	expandedSecretKey[31] |= 64
 
 	h.Reset()
+	if preHashed {
+		h.Write([]byte(phDomainSeparationPrefix))
+	}
 	h.Write(digest1[32:])
 	h.Write(message)
 	h.Sum(messageDigest[:0])
@@ -152,6 +170,9 @@ func Sign(privateKey PrivateKey, message []byte) []byte {
 	R.ToBytes(&encodedR)
 
 	h.Reset()
+	if preHashed {
+		h.Write([]byte(phDomainSeparationPrefix))
+	}
 	h.Write(encodedR[:])
 	h.Write(privateKey[32:])
 	h.Write(message)
@@ -172,6 +193,19 @@ func Sign(privateKey PrivateKey, message []byte) []byte {
 // Verify reports whether sig is a valid signature of message by publicKey. It
 // will panic if len(publicKey) is not PublicKeySize.
 func Verify(publicKey PublicKey, message, sig []byte) bool {
+	return verify(publicKey, message, sig, false)
+}
+
+// VerifyHashed reports whether sig is a valid Ed25519ph signature by publicKey of the SHA-512 digest hash. It
+// will panic if len(publicKey) is not PublicKeySize or if len(hash) is not sha512.Size.
+func VerifyHashed(publicKey PublicKey, hash, sig []byte) bool {
+	if l := len(hash); l != sha512.Size {
+		panic("ed25519: bad message hash length: " + strconv.Itoa(l))
+	}
+	return verify(publicKey, hash, sig, true)
+}
+
+func verify(publicKey PublicKey, message, sig []byte, preHashed bool) bool {
 	if l := len(publicKey); l != PublicKeySize {
 		panic("ed25519: bad public key length: " + strconv.Itoa(l))
 	}
@@ -190,6 +224,9 @@ func Verify(publicKey PublicKey, message, sig []byte) bool {
 	edwards25519.FeNeg(&A.T, &A.T)
 
 	h := sha512.New()
+	if preHashed {
+		h.Write([]byte(phDomainSeparationPrefix))
+	}
 	h.Write(sig[:32])
 	h.Write(publicKey[:])
 	h.Write(message)
