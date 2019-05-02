@@ -185,6 +185,24 @@
     },
     {
       "key": {
+        "uuid": "26dabba4_a36719ef",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T19:00:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a30442_f77990aa",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -232,6 +250,24 @@
       "side": 1,
       "message": "We must have the server half too, otherwise we can\u0027t test the client side. So, no panicking.",
       "parentUuid": "87a20c82_c3439a3c",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f540636_9ec54233",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-02T19:00:05Z",
+      "side": 1,
+      "message": "Yes, I am aware, that we need the server half during test. So for the test the gexServerFunc would be set to the server implementation (in init() func in _test.go) and therefore it does not panic in test but only when used in a real application.",
+      "parentUuid": "32085886_66f10ae8",
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
