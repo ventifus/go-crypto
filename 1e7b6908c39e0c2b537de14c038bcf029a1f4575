@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a4befd24_7112abdb",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-02T17:41:26Z",
+      "side": 1,
+      "message": "Errors start lowercase.",
+      "range": {
+        "startLine": 594,
+        "startChar": 26,
+        "endLine": 594,
+        "endChar": 27
+      },
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05572e5a_72a58e29",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-02T17:41:26Z",
+      "side": 1,
+      "message": "This is indeed surprising, but telling the user we are surprised does not help.",
+      "range": {
+        "startLine": 594,
+        "startChar": 49,
+        "endLine": 594,
+        "endChar": 62
+      },
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3eec89de_686a04aa",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -13,6 +59,24 @@
       "writtenOn": "2019-05-02T10:23:02Z",
       "side": 1,
       "message": "shouldn\u0027t this check if P is a prime with the required characteristics? And G ? \n\nAdam, Filippo,\n\ncan a cryptographer comment here?",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c81f7d39_27fe6d34",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-02T17:41:26Z",
+      "side": 1,
+      "message": "Yes, if it\u0027s negotiated we would have to validate it, which has caused endless issues.\n\nCan we not whitelist a very popular value? (I don\u0027t actually know the protocol well.)",
+      "parentUuid": "3eec89de_686a04aa",
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
