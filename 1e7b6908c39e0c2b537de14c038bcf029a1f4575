@@ -203,6 +203,24 @@
     },
     {
       "key": {
+        "uuid": "545656b4_1d610f19",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 32021
+      },
+      "writtenOn": "2019-05-03T03:08:04Z",
+      "side": 1,
+      "message": "\u003e IIUC, any choice for G !\u003d 1 is safe as long as P safe, so we don\u0027t have to check G\n\nShould we at least do some basic sanity checks on G? I might have missed it, but what stops the server from setting G\u003d1, or G\u003d0, or G\u003dP, or silly values like G\u003eP?",
+      "parentUuid": "26dabba4_a36719ef",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
