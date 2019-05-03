@@ -221,6 +221,24 @@
     },
     {
       "key": {
+        "uuid": "febdb147_1703ac19",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-03T16:48:45Z",
+      "side": 1,
+      "message": "DH with negotiated parameters is one of those things we kind of agreed never to do again, because literally everyone got it wrong at least once (https://cryptopals.com/sets/5) so let\u0027s check everything we can without breaking honest servers.\n\nSo yeah, prime(p), prime((p-1)/2), and g, K, and f all in the (1, p-1) range (1 and p-1 not included).",
+      "parentUuid": "545656b4_1d610f19",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -286,6 +304,24 @@
       "side": 1,
       "message": "Yes, I am aware, that we need the server half during test. So for the test the gexServerFunc would be set to the server implementation (in init() func in _test.go) and therefore it does not panic in test but only when used in a real application.",
       "parentUuid": "32085886_66f10ae8",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bc74d88_c856f057",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-03T16:48:45Z",
+      "side": 1,
+      "message": "Implementing (or enabling) the server side only for tests sounds like the right call. We shouldn\u0027t add application-facing functionality just to make our tests easier.",
+      "parentUuid": "7f540636_9ec54233",
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true

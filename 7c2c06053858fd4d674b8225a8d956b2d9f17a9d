@@ -33,6 +33,24 @@
       "revId": "7c2c06053858fd4d674b8225a8d956b2d9f17a9d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b9dcfcf_44170391",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-05-03T16:48:45Z",
+      "side": 1,
+      "message": "Yes, 1 \u003c x \u003c (p-1)/2",
+      "parentUuid": "c1409234_3dc3402f",
+      "revId": "7c2c06053858fd4d674b8225a8d956b2d9f17a9d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
