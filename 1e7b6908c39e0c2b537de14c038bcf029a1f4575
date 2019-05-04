@@ -239,6 +239,24 @@
     },
     {
       "key": {
+        "uuid": "c0d50583_5292fc72",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-04T06:21:06Z",
+      "side": 1,
+      "message": "I added the checks for g and K. But I do not understand what f is.",
+      "parentUuid": "febdb147_1703ac19",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c46eaa7e_6d487d24",
         "filename": "ssh/kex.go",
         "patchSetId": 3
@@ -325,6 +343,24 @@
       "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7231b95_7d46ea61",
+        "filename": "ssh/kex.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-04T06:21:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bc74d88_c856f057",
+      "revId": "1e7b6908c39e0c2b537de14c038bcf029a1f4575",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
