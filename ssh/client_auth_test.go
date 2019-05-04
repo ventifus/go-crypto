@@ -309,7 +309,7 @@ func TestClientUnsupportedKex(t *testing.T) {
 			PublicKeys(),
 		},
 		Config: Config{
-			KeyExchanges: []string{"diffie-hellman-group-exchange-sha256"}, // not currently supported
+			KeyExchanges: []string{"diffie-hellman-group-exchange-sha1"}, // not currently supported
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
