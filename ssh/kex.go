@@ -10,7 +10,9 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/subtle"
+	"encoding/binary"
 	"errors"
+	"fmt"
 	"io"
 	"math/big"
 
@@ -24,6 +26,10 @@ const (
 	kexAlgoECDH384          = "ecdh-sha2-nistp384"
 	kexAlgoECDH521          = "ecdh-sha2-nistp521"
 	kexAlgoCurve25519SHA256 = "curve25519-sha256@libssh.org"
+
+	// For the following kex only the client half is implemented.
+	kexAlgoDHGEXSHA1   = "diffie-hellman-group-exchange-sha1"
+	kexAlgoDHGEXSHA256 = "diffie-hellman-group-exchange-sha256"
 )
 
 // kexResult captures the outcome of a key exchange.
@@ -402,6 +408,8 @@ func init() {
 	kexAlgoMap[kexAlgoECDH384] = &ecdh{elliptic.P384()}
 	kexAlgoMap[kexAlgoECDH256] = &ecdh{elliptic.P256()}
 	kexAlgoMap[kexAlgoCurve25519SHA256] = &curve25519sha256{}
+	kexAlgoMap[kexAlgoDHGEXSHA1] = &dhGEXSHA{hashFunc: crypto.SHA1}
+	kexAlgoMap[kexAlgoDHGEXSHA256] = &dhGEXSHA{hashFunc: crypto.SHA256}
 }
 
 // curve25519sha256 implements the curve25519-sha256@libssh.org key
@@ -537,4 +545,138 @@ func (kex *curve25519sha256) Server(c packetConn, rand io.Reader, magics *handsh
 		Signature: sig,
 		Hash:      crypto.SHA256,
 	}, nil
+}
+
+// dhGEXSHA implements the diffie-hellman-group-exchange-sha1 and
+// diffie-hellman-group-exchange-sha256 key agreement protocols,
+// as described in RFC 4419
+type dhGEXSHA struct {
+	g, p     *big.Int
+	hashFunc crypto.Hash
+}
+
+const numMRTests = 64
+
+const (
+	dhGroupExchangeMinimumBits   = 2048
+	dhGroupExchangePreferredBits = 2048
+	dhGroupExchangeMaximumBits   = 8192
+)
+
+func (gex *dhGEXSHA) diffieHellman(theirPublic, myPrivate *big.Int) (*big.Int, error) {
+	if theirPublic.Sign() <= 0 || theirPublic.Cmp(gex.p) >= 0 {
+		return nil, fmt.Errorf("ssh: DH parameter out of bounds")
+	}
+	return new(big.Int).Exp(theirPublic, myPrivate, gex.p), nil
+}
+
+func (gex *dhGEXSHA) Client(c packetConn, randSource io.Reader, magics *handshakeMagics) (*kexResult, error) {
+	// Send GexRequest
+	kexDHGexRequest := kexDHGexRequestMsg{
+		MinBits:      dhGroupExchangeMinimumBits,
+		PreferedBits: dhGroupExchangePreferredBits,
+		MaxBits:      dhGroupExchangeMaximumBits,
+	}
+	if err := c.writePacket(Marshal(&kexDHGexRequest)); err != nil {
+		return nil, err
+	}
+
+	// Receive GexGroup
+	packet, err := c.readPacket()
+	if err != nil {
+		return nil, err
+	}
+
+	var kexDHGexGroup kexDHGexGroupMsg
+	if err = Unmarshal(packet, &kexDHGexGroup); err != nil {
+		return nil, err
+	}
+
+	// reject if p's bit length < dhGroupExchangeMinimumBits or > dhGroupExchangeMaximumBits
+	if kexDHGexGroup.P.BitLen() < dhGroupExchangeMinimumBits || kexDHGexGroup.P.BitLen() > dhGroupExchangeMaximumBits {
+		return nil, fmt.Errorf("server-generated gex p is out of range (%d bits)", kexDHGexGroup.P.BitLen())
+	}
+
+	gex.p = kexDHGexGroup.P
+	gex.g = kexDHGexGroup.G
+
+	// Check if p is safe by verifing that p and (p-1)/2 are primes
+	one := big.NewInt(1)
+	var pHalf = &big.Int{}
+	pHalf.Rsh(gex.p, 1)
+	if !gex.p.ProbablyPrime(numMRTests) || !pHalf.ProbablyPrime(numMRTests) {
+		return nil, fmt.Errorf("server provided gex p is not safe")
+	}
+
+	// Check if g is safe by verifing that g > 1 and g < p - 1
+	var pMinusOne = &big.Int{}
+	pMinusOne.Sub(gex.p, one)
+	if gex.g.Cmp(one) != 1 && gex.g.Cmp(pMinusOne) != -1 {
+		return nil, fmt.Errorf("server provided gex g is not safe")
+	}
+
+	// Send GexInit
+	x, err := rand.Int(randSource, pHalf)
+	if err != nil {
+		return nil, err
+	}
+	X := new(big.Int).Exp(gex.g, x, gex.p)
+	kexDHGexInit := kexDHGexInitMsg{
+		X: X,
+	}
+	if err := c.writePacket(Marshal(&kexDHGexInit)); err != nil {
+		return nil, err
+	}
+
+	// Receive GexReply
+	packet, err = c.readPacket()
+	if err != nil {
+		return nil, err
+	}
+
+	var kexDHGexReply kexDHGexReplyMsg
+	if err = Unmarshal(packet, &kexDHGexReply); err != nil {
+		return nil, err
+	}
+
+	kInt, err := gex.diffieHellman(kexDHGexReply.Y, x)
+	if err != nil {
+		return nil, err
+	}
+
+	// Check if k is safe by verifing that k > 1 and k < p - 1
+	if kInt.Cmp(one) != 1 && kInt.Cmp(pMinusOne) != -1 {
+		return nil, fmt.Errorf("derived k is not safe")
+	}
+
+	h := gex.hashFunc.New()
+	magics.write(h)
+	writeString(h, kexDHGexReply.HostKey)
+	binary.Write(h, binary.BigEndian, uint32(dhGroupExchangeMinimumBits))
+	binary.Write(h, binary.BigEndian, uint32(dhGroupExchangePreferredBits))
+	binary.Write(h, binary.BigEndian, uint32(dhGroupExchangeMaximumBits))
+	writeInt(h, gex.p)
+	writeInt(h, gex.g)
+	writeInt(h, X)
+	writeInt(h, kexDHGexReply.Y)
+	K := make([]byte, intLength(kInt))
+	marshalInt(K, kInt)
+	h.Write(K)
+
+	return &kexResult{
+		H:         h.Sum(nil),
+		K:         K,
+		HostKey:   kexDHGexReply.HostKey,
+		Signature: kexDHGexReply.Signature,
+		Hash:      gex.hashFunc,
+	}, nil
+}
+
+var gexServerFunc func(gex *dhGEXSHA, p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error)
+
+func (gex *dhGEXSHA) Server(p packetConn, rand io.Reader, magics *handshakeMagics, s Signer) (*kexResult, error) {
+	if gexServerFunc != nil {
+		return gexServerFunc(gex, p, rand, magics, s)
+	}
+	panic("server is not implemented for diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256")
 }
