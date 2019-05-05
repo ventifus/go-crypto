@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec303265_13ccf178",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 32037
+      },
+      "writtenOn": "2019-05-05T12:05:19Z",
+      "side": 1,
+      "message": "We were previously only adding the identity to the list if it was followed by a valid positive/generic cert signature. On the other hand we were incorrectly adding the identity to the list if it was revoked (scenario A).\n\nFrom an API safety point-of-view, do we want to have revoked identities in this list? If yes, we probably want to add documentation about this.\n\nFrom an API compatibility point-of-view, one could say that scenario A was a bug (see comment line 402).",
+      "revId": "f377c33d8a0674717230bd3cb5f0b6bfbbf5edc0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
