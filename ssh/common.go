@@ -51,6 +51,11 @@ var supportedKexAlgos = []string{
 	kexAlgoDH14SHA1, kexAlgoDH1SHA1,
 }
 
+var serverForbiddenKexAlgos = map[string]struct{}{
+	kexAlgoDHGEXSHA1:   {},
+	kexAlgoDHGEXSHA256: {},
+}
+
 // supportedHostKeyAlgos specifies the supported host-key algorithms (i.e. methods
 // of authenticating servers) in preference order.
 var supportedHostKeyAlgos = []string{
