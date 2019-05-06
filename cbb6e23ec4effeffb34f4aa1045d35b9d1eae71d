@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "a5c0a5a4_835fd157",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T12:43:01Z",
+      "side": 1,
+      "message": "I know, but here\n\n  https://go-review.googlesource.com/c/crypto/+/170919/1/ssh/gss/server.go#34\n\nYou actually get the srcname together with the AcceptSecContext call. Why not return the srcName  directly from AcceptSecContext ?",
+      "parentUuid": "f59153e5_2d1dafb4",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 76
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c16ed599_1df14f4b",
         "filename": "ssh/ssh_gss_test.go",
         "patchSetId": 24
@@ -249,6 +273,30 @@
       "side": 1,
       "message": "Sorry, I don\u0027t understand, can you say more in detail?",
       "parentUuid": "f988ea62_13e78440",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397c93b8_80eca3d9",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T12:43:01Z",
+      "side": 1,
+      "message": "you are optionally swapping out different functions, but I think you can get coverage if you simply softcode the tokens (eg. []byte{1} ). You could have the client send a different token (eg. []byte(\"not-a-valid-token\") ) and then check that the login fails. This is is a little bit shorter and easier to understand than having fake functions.",
+      "parentUuid": "f840e231_38cb49de",
       "range": {
         "startLine": 43,
         "startChar": 11,

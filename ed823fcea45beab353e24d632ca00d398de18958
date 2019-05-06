@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "834c86be_edc842aa",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T12:43:01Z",
+      "side": 1,
+      "message": "do like this:\n\n type testcase  struct {\n  config ClientConfig \n  wantErr string\n  } \n\n cases :\u003d []testcase{ {\n     config: ClientConfig{ .. },\n     want: \"InitSecContext error\",\n  }, {\n     ..\n  }\n }\n\n\nhere and below",
+      "revId": "ed823fcea45beab353e24d632ca00d398de18958",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
