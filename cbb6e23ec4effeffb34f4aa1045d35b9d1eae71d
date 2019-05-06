@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3c61d66_1fd71d0f",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T11:17:05Z",
+      "side": 1,
+      "message": "can you make this stand out more? Maybe something like \n\n  User: \"I-am-not-allowed-to-login\"",
+      "range": {
+        "startLine": 714,
+        "startChar": 9,
+        "endLine": 714,
+        "endChar": 18
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd6c871_81409c64",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T11:17:05Z",
+      "side": 1,
+      "message": "these methods look like cut \u0026 paste. Can you loop over different FakeGSSAPIServer instances that should fail in a signle function?",
+      "range": {
+        "startLine": 836,
+        "startChar": 5,
+        "endLine": 836,
+        "endChar": 45
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a89211ff_34aaf111",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T11:17:05Z",
+      "side": 1,
+      "message": "AcceptSecContext doesn\u0027t return this, though.  \n\nCouldn\u0027t the srcName be a return value from AcceptSecContext() ? In the code, you could store the srcname in a local variable.",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 76
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c16ed599_1df14f4b",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T11:17:05Z",
+      "side": 1,
+      "message": "are you using this?",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f988ea62_13e78440",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T11:17:05Z",
+      "side": 1,
+      "message": "this is possilbe, but wouldn\u0027t it work to simply do something like\n\n  type FakeClient struct {\n     token []byte\n     expected []byte\n     mic []byte\n  }\n\n..\nif c.token \u003d\u003d nil { return []byte{1} }",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
