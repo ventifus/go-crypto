@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fb68a8f4_3d30539d",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-06T12:30:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ae6514c_019f15fe",
+      "range": {
+        "startLine": 714,
+        "startChar": 9,
+        "endLine": 714,
+        "endChar": 18
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fd6c871_81409c64",
         "filename": "ssh/client_auth_test.go",
         "patchSetId": 24
@@ -201,6 +225,30 @@
       "writtenOn": "2019-05-06T11:17:05Z",
       "side": 1,
       "message": "this is possilbe, but wouldn\u0027t it work to simply do something like\n\n  type FakeClient struct {\n     token []byte\n     expected []byte\n     mic []byte\n  }\n\n..\nif c.token \u003d\u003d nil { return []byte{1} }",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f840e231_38cb49de",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-06T12:30:17Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t understand, can you say more in detail?",
+      "parentUuid": "f988ea62_13e78440",
       "range": {
         "startLine": 43,
         "startChar": 11,
