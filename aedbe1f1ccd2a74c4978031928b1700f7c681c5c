@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a14fcb5_bea18f17",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "yes, this is what I was looking for. thanks for bearing with me.",
+      "range": {
+        "startLine": 694,
+        "startChar": 17,
+        "endLine": 694,
+        "endChar": 25
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81ee61c1_fb85f2fd",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "user",
+      "range": {
+        "startLine": 763,
+        "startChar": 29,
+        "endLine": 763,
+        "endChar": 32
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10cf5b85_103ca80f",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "no need. - nil is the default.",
+      "range": {
+        "startLine": 832,
+        "startChar": 26,
+        "endLine": 832,
+        "endChar": 30
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038d675e_fe6aab52",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "you can just leave this out.  the default nil will also work.",
+      "range": {
+        "startLine": 835,
+        "startChar": 26,
+        "endLine": 835,
+        "endChar": 30
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d80f269_94372f97",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "how about\n\n  if (c.clientWantErr !\u003d \"\") !\u003d (clientErr !\u003d nil) { t.Fatal( .. ) }",
+      "range": {
+        "startLine": 871,
+        "startChar": 6,
+        "endLine": 871,
+        "endChar": 7
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a900e814_dd4299e0",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "\"The srcName return value is the authenticated username.\"",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 19
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bb51e3e_3abe6fe7",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-06T15:41:48Z",
+      "side": 1,
+      "message": "nit: you could use a string here and avoid all the type casting here and in the test setup.",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
