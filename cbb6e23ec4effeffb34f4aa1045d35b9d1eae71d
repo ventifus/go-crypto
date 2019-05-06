@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "d27e9be2_83b36c3f",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-06T12:46:48Z",
+      "side": 1,
+      "message": "You are right. I just thought about it, I changed it.",
+      "parentUuid": "a5c0a5a4_835fd157",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 76
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c16ed599_1df14f4b",
         "filename": "ssh/ssh_gss_test.go",
         "patchSetId": 24
@@ -306,6 +330,30 @@
       "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27f06277_ef139c38",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 24
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-06T12:46:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "397c93b8_80eca3d9",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "cbb6e23ec4effeffb34f4aa1045d35b9d1eae71d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
