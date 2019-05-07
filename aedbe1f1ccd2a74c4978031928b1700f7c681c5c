@@ -256,6 +256,30 @@
       "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa2afa72_597f2951",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T09:54:53Z",
+      "side": 1,
+      "message": "is there a difference between nil and empty for the []byte tokens? I didn\u0027t recall that, and if it is the case, we should revisit, because it breaks conventions for Go code.",
+      "parentUuid": "bcce7ca7_ac7c3fee",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
