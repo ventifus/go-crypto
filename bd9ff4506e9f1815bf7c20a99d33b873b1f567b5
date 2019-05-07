@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3801abc_50e1148a",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "target is ..",
+      "range": {
+        "startLine": 530,
+        "startChar": 2,
+        "endLine": 530,
+        "endChar": 19
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "178dd7b2_2b062c4c",
+        "filename": "ssh/server.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "what if it is nil? will the user be logged in? I thought it was a configuration error.",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d95501de_37bfe4ad",
+        "filename": "ssh/server.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "non-nil",
+      "range": {
+        "startLine": 57,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b500b51c_10c51a67",
+        "filename": "ssh/server.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "we\u0027re not OpenSSH. how about \n\n  ssh: GSSAPI authentication must use the Kerberos V5 mechanism",
+      "range": {
+        "startLine": 588,
+        "startChar": 31,
+        "endLine": 588,
+        "endChar": 38
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e24d2ec3_397a2e23",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "\"GSSAPIClient provides the API to plug-in GSSAPI authentication for client logins. \"",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25487113_afb1d675",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "\"GSSAPIServer provides the API to plug in GSSAPI authentication for server logins. \"",
+      "range": {
+        "startLine": 57,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 15
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "071c12a4_7ee6d90c",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T13:25:08Z",
+      "side": 1,
+      "message": "how about \n\n  round -\u003e maxRound \n  i -\u003e round\n\n?",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 14
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
