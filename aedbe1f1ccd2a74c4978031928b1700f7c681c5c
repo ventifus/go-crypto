@@ -304,6 +304,30 @@
       "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "043004ba_9881b1ed",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-07T11:26:53Z",
+      "side": 1,
+      "message": "if empty []byte and nil []byte are equivalent for the API, then you can use just string. Empty string (\"\") will be converted to []byte{} which would be equivalent to nil []byte.",
+      "parentUuid": "33455b8e_f0a8362c",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
