@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4f20d239_78805b20",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T13:50:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3801abc_50e1148a",
+      "range": {
+        "startLine": 530,
+        "startChar": 2,
+        "endLine": 530,
+        "endChar": 19
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "178dd7b2_2b062c4c",
         "filename": "ssh/server.go",
         "patchSetId": 30
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6f82a975_a0675c30",
+        "filename": "ssh/server.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T13:50:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "178dd7b2_2b062c4c",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d95501de_37bfe4ad",
         "filename": "ssh/server.go",
         "patchSetId": 30
@@ -68,6 +116,30 @@
       "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7159121a_2d7d3d7a",
+        "filename": "ssh/server.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T13:50:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d95501de_37bfe4ad",
+      "range": {
+        "startLine": 57,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "11a4d7e3_3267df3a",
+        "filename": "ssh/ssh_gss.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T13:50:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e24d2ec3_397a2e23",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25487113_afb1d675",
         "filename": "ssh/ssh_gss.go",
         "patchSetId": 30
@@ -160,6 +256,30 @@
       "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e995645_68b60f5e",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T13:50:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "071c12a4_7ee6d90c",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 14
+      },
+      "revId": "bd9ff4506e9f1815bf7c20a99d33b873b1f567b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
