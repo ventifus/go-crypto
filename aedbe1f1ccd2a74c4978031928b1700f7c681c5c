@@ -280,6 +280,30 @@
       "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33455b8e_f0a8362c",
+        "filename": "ssh/ssh_gss_test.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-07T11:19:03Z",
+      "side": 1,
+      "message": "no, but there is a difference between the string and the []byte. I should change it to string or string pointer avoding the type casting",
+      "parentUuid": "aa2afa72_597f2951",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "aedbe1f1ccd2a74c4978031928b1700f7c681c5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
