@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21413c11_9e722ec2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5184
+      },
+      "writtenOn": "2019-05-08T14:05:03Z",
+      "side": 1,
+      "message": "Update #17889",
+      "revId": "19bc885ea56d788eea51553949c65a1b527c09e9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62971cd1_eb7ab77e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5184
+      },
+      "writtenOn": "2019-05-08T14:05:03Z",
+      "side": 1,
+      "message": "Update #17934",
+      "revId": "19bc885ea56d788eea51553949c65a1b527c09e9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d8afcf_a67ab92b",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5184
+      },
+      "writtenOn": "2019-05-08T14:05:03Z",
+      "side": 1,
+      "message": "NextAuthMethodsCallback, if non-nil, is called when authentication methods return ErrPartialSuccess. It returns a list of methods with which to continue authentication.",
+      "revId": "19bc885ea56d788eea51553949c65a1b527c09e9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
