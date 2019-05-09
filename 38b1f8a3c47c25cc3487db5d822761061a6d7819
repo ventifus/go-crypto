@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dad75ed_dd847c9c",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-09T20:47:29Z",
+      "side": 1,
+      "message": "It looks like you are reading either 8 bytes or 16 bytes here. Which means reading beyond the end of the slice if the remainder is 1-7 or 9-15 bytes long. I don\u0027t think that is safe. The input isn\u0027t necessarily aligned to 8 bytes so a read beyond the end of the slice might cross a page boundary and trigger a segmentation fault.\n\nProbably better to stick to loading one byte at a time like the original code does.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 13
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c5d494_69b59649",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-09T20:47:29Z",
+      "side": 1,
+      "message": "This bit needs to be constant time (which is why conditional moves are used on amd64).\n\nCan you use ISEL instructions?",
+      "range": {
+        "startLine": 217,
+        "startChar": 14,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
