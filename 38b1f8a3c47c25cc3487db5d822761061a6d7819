@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d96ee0f6_73e6ab78",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-05-10T13:06:42Z",
+      "side": 1,
+      "message": "I\u0027ve seen too many profiles where the performance is very bad when loading a byte at a time. I will try something else so it doesn\u0027t try to read off the end of the slice.",
+      "parentUuid": "8dad75ed_dd847c9c",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 13
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7c5d494_69b59649",
         "filename": "poly1305/sum_ppc64le.s",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-09T20:47:29Z",
       "side": 1,
       "message": "This bit needs to be constant time (which is why conditional moves are used on amd64).\n\nCan you use ISEL instructions?",
+      "range": {
+        "startLine": 217,
+        "startChar": 14,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b4ab55_71cbbd55",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-05-10T13:06:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure exactly what you mean by \"constant time\". The isel instructions are expensive so I don\u0027t like to use them. But can try.",
+      "parentUuid": "a7c5d494_69b59649",
       "range": {
         "startLine": 217,
         "startChar": 14,
