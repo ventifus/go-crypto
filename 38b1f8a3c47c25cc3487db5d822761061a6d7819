@@ -93,6 +93,30 @@
       "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "855e1ccb_375b5c4a",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-10T13:31:31Z",
+      "side": 1,
+      "message": "Constant-time means that the execution time of the code does not depend on the value of any secrets (in this case the value of the tag). In the code here we do slightly more work when we have a carry and by timing the execution of this code an attacker may be able to extract information about the secret. Branch prediction will make the timing attack easier because this branch will likely be predicted taken (the carry is rare) and so when there *is* a carry execution will most likely stall increasing the execution time significantly.\n\nISEL is \u0027slow\u0027 because it is not branch predicted but that is the behaviour we want in this situation.\n\nHere\u0027s the wikipedia page for timing attacks if you want to do more digging: https://en.wikipedia.org/wiki/Timing_attack.",
+      "parentUuid": "71b4ab55_71cbbd55",
+      "range": {
+        "startLine": 217,
+        "startChar": 14,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
