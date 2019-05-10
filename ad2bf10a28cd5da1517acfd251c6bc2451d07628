@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfdc1867_c8a5d74f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 35
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 31745
+      },
+      "writtenOn": "2019-05-10T09:35:26Z",
+      "side": 1,
+      "message": "this result is random, I fix my unit test right now",
+      "range": {
+        "startLine": 75,
+        "startChar": 101,
+        "endLine": 75,
+        "endChar": 112
+      },
+      "revId": "ad2bf10a28cd5da1517acfd251c6bc2451d07628",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
