@@ -34,6 +34,24 @@
       "revId": "a0f04aa557bbff912202914301c04f9372fd4a55",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8db366ed_75b264c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 31402
+      },
+      "writtenOn": "2019-05-14T06:32:44Z",
+      "side": 1,
+      "message": "Please code review.",
+      "parentUuid": "72619e95_90087fd3",
+      "revId": "a0f04aa557bbff912202914301c04f9372fd4a55",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
