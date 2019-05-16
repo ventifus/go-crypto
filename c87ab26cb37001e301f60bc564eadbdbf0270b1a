@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "222addcd_ba456a79",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-16T21:41:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d4fceac1_49bd5d3c",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 1
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71a30617_9a431274",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8c46f5d0_7e33e7b4",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-16T21:41:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "71a30617_9a431274",
+      "range": {
+        "startLine": 16,
+        "startChar": 38,
+        "endLine": 16,
+        "endChar": 45
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fa1ca2e_6ec4b91e",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 2
@@ -62,6 +110,24 @@
       "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c91f54_3ee5a57a",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-16T21:41:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6fa1ca2e_6ec4b91e",
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "1ea9b5f4_a54b6480",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-16T21:41:52Z",
+      "side": 1,
+      "message": "If I understand correctly what Paulo did, it\u0027s reading beyond. If you look at line 518, it\u0027s adding 64 to INP.",
+      "parentUuid": "b2a742b0_4067b63a",
+      "range": {
+        "startLine": 479,
+        "startChar": 21,
+        "endLine": 623,
+        "endChar": 18
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "970cd2f6_d0a7de0e",
         "filename": "internal/chacha20/chacha_ppc64le.go",
         "patchSetId": 2
@@ -108,6 +198,30 @@
       "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c06f74_60cb0028",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-16T21:41:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "970cd2f6_d0a7de0e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "c87ab26cb37001e301f60bc564eadbdbf0270b1a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
