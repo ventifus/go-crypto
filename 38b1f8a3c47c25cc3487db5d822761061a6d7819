@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ed6be658_0593e0d5",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-05-16T18:04:03Z",
+      "side": 1,
+      "message": "My latest update avoids reading off the end of the slice.",
+      "parentUuid": "d96ee0f6_73e6ab78",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 13
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7c5d494_69b59649",
         "filename": "poly1305/sum_ppc64le.s",
         "patchSetId": 2
@@ -117,6 +141,30 @@
       "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f0443ea_2a044baf",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-05-16T18:04:03Z",
+      "side": 1,
+      "message": "Latest implementation uses ISEL.",
+      "parentUuid": "855e1ccb_375b5c4a",
+      "range": {
+        "startLine": 217,
+        "startChar": 14,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "38b1f8a3c47c25cc3487db5d822761061a6d7819",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
