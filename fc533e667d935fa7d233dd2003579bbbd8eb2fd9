@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5254068e_30b6171d",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T15:12:42Z",
+      "side": 1,
+      "message": "I think \u0027rounds\u0027 is the wrong terminology here. There are 20 \u0027rounds\u0027 in ChaCha20. Using the term \u0027blocks\u0027 would probably make more sense:\n\n// This loop generates three keystream blocks using VMX instructions and, in parallel, one\n// keystream block using scalar instructions.",
+      "range": {
+        "startLine": 242,
+        "startChar": 29,
+        "endLine": 242,
+        "endChar": 35
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98cbbf8f_ee4f358f",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T15:12:42Z",
+      "side": 1,
+      "message": "replace tab with space to match rest of file",
+      "range": {
+        "startLine": 527,
+        "startChar": 18,
+        "endLine": 527,
+        "endChar": 19
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0db7d8_05e7066c",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T15:12:42Z",
+      "side": 1,
+      "message": "This can read beyond the end of the slice. I think this is safe because the address of the load is always rounded down to the nearest 16 byte boundary and the address points at most 15 bytes beyond the end of the slice, meaning we can\u0027t cross a page boundary. It would be good to have a comment to that effect somewhere here.",
+      "range": {
+        "startLine": 585,
+        "startChar": 0,
+        "endLine": 585,
+        "endChar": 50
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
