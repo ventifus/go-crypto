@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2db1dd8_4e00fd09",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T14:21:46Z",
+      "side": 1,
+      "message": "Maybe add t0, t1 and t2 to this parameter list and pass in R20, R21 and R22? That would make it more consistent with POLY1305_MUL.\n\n#define POLY1305_ADD(msg, h0, h1, h2, t0, t1, t2) \\\n    MOVD (msg), t0;  \\\n...\nPOLY1305_ADD(R4, R8, R9, R10, R20, R21, R22)",
+      "revId": "b7fa5c195d6dd783c5781eb841c6edfe7b436ba3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "192a89ca_968edae6",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T14:21:46Z",
+      "side": 1,
+      "message": "The t[0-3] parameters are temporary registers that this macro can clobber. It is strange to mix these with hardcoded R20 and R21. Can you add two more temp registers (i.e. t4 and t5) and use those instead (with R20 and R21 passed in)?",
+      "range": {
+        "startLine": 20,
+        "startChar": 21,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "b7fa5c195d6dd783c5781eb841c6edfe7b436ba3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f5447ac_5db8f63e",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-05-21T14:21:46Z",
+      "side": 1,
+      "message": "Space after each \u0027,\u0027 to match the rest of the file.",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 18
+      },
+      "revId": "b7fa5c195d6dd783c5781eb841c6edfe7b436ba3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
