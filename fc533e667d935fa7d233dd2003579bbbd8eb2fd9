@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5da7ef74_1aa8ee2b",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-23T20:28:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5254068e_30b6171d",
+      "range": {
+        "startLine": 242,
+        "startChar": 29,
+        "endLine": 242,
+        "endChar": 35
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98cbbf8f_ee4f358f",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c2d737b9_35ae8ab4",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-23T20:28:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "98cbbf8f_ee4f358f",
+      "range": {
+        "startLine": 527,
+        "startChar": 18,
+        "endLine": 527,
+        "endChar": 19
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0db7d8_05e7066c",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "286e79ed_172b507b",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-05-23T20:28:05Z",
+      "side": 1,
+      "message": "Correct. LVX doesn\u0027t even work (i.e. crashes) when the address is not rounded down to the nearest 16 byte boundary.",
+      "parentUuid": "fa0db7d8_05e7066c",
+      "range": {
+        "startLine": 585,
+        "startChar": 0,
+        "endLine": 585,
+        "endChar": 50
+      },
+      "revId": "fc533e667d935fa7d233dd2003579bbbd8eb2fd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
