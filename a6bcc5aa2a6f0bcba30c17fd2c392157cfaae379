@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "43d61240_ea04c0db",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-25T08:34:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a191cdc_633ccb60",
+      "range": {
+        "startLine": 312,
+        "startChar": 57,
+        "endLine": 312,
+        "endChar": 61
+      },
+      "revId": "a6bcc5aa2a6f0bcba30c17fd2c392157cfaae379",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebc001c5_47301569",
         "filename": "ssh/kex.go",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dbfbf248_69a9db2a",
+        "filename": "ssh/kex.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-25T08:34:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebc001c5_47301569",
+      "range": {
+        "startLine": 599,
+        "startChar": 26,
+        "endLine": 599,
+        "endChar": 30
+      },
+      "revId": "a6bcc5aa2a6f0bcba30c17fd2c392157cfaae379",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18cb778c_b6c3b393",
         "filename": "ssh/kex.go",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2019-05-22T11:23:23Z",
       "side": 1,
       "message": "this is by construction, no?",
+      "range": {
+        "startLine": 649,
+        "startChar": 49,
+        "endLine": 649,
+        "endChar": 10
+      },
+      "revId": "a6bcc5aa2a6f0bcba30c17fd2c392157cfaae379",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cb6578a_370b11b3",
+        "filename": "ssh/kex.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-25T08:34:02Z",
+      "side": 1,
+      "message": "I am not sure about this. I prefer to keep the check as is.",
+      "parentUuid": "18cb778c_b6c3b393",
       "range": {
         "startLine": 649,
         "startChar": 49,
@@ -91,6 +163,30 @@
       "revId": "a6bcc5aa2a6f0bcba30c17fd2c392157cfaae379",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9309275_6835fc33",
+        "filename": "ssh/kex.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-05-25T08:34:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c3ae3c0_1a11c3f8",
+      "range": {
+        "startLine": 679,
+        "startChar": 3,
+        "endLine": 679,
+        "endChar": 18
+      },
+      "revId": "a6bcc5aa2a6f0bcba30c17fd2c392157cfaae379",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
