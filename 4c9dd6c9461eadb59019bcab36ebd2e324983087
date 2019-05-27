@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5963e62f_65aa73cd",
+        "filename": "curve25519/internal/fp/fp_amd64.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16006
+      },
+      "writtenOn": "2019-05-27T16:16:10Z",
+      "side": 1,
+      "message": "var hasBMI2ADX \u003d cpu.X86.HasBMI2 \u0026\u0026 cpu.X86.HasADX\n\ninstead of the init?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "4c9dd6c9461eadb59019bcab36ebd2e324983087",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
