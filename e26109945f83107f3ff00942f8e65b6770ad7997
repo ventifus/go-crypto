@@ -46,6 +46,30 @@
       "revId": "e26109945f83107f3ff00942f8e65b6770ad7997",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a9399ee_fd3471c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-05-28T20:12:43Z",
+      "side": 1,
+      "message": "still looks wrong over here: https://go-review.googlesource.com/174257. I\u0027m not sure if the copy PR workflow supports updating commit msg.",
+      "parentUuid": "5e1fc1ee_21a2aa65",
+      "range": {
+        "startLine": 10,
+        "startChar": 54,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "e26109945f83107f3ff00942f8e65b6770ad7997",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
