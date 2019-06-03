@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "66340b80_604f6255",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-06-03T19:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "552e39df_32393c3e",
+      "range": {
+        "startLine": 312,
+        "startChar": 54,
+        "endLine": 312,
+        "endChar": 63
+      },
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bba71cb9_27fa8e97",
         "filename": "ssh/common.go",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-29T15:17:06Z",
       "side": 1,
       "message": "Just use a bool -\u003e true.",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3057c9a4_59f35b50",
+        "filename": "ssh/common.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-06-03T19:41:02Z",
+      "side": 1,
+      "message": "Why? What is better with a map[string]bool?",
+      "parentUuid": "bba71cb9_27fa8e97",
       "range": {
         "startLine": 54,
         "startChar": 41,
@@ -62,6 +110,24 @@
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb394377_3935e6b0",
+        "filename": "ssh/common.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-06-03T19:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "783aa920_e813ddb3",
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +199,30 @@
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784b5b0d_7b29f6a3",
+        "filename": "ssh/kex.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 16630
+      },
+      "writtenOn": "2019-06-03T19:41:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a806df55_125d8dc5",
+      "range": {
+        "startLine": 764,
+        "startChar": 1,
+        "endLine": 764,
+        "endChar": 2
+      },
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
