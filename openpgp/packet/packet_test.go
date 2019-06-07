@@ -212,8 +212,10 @@ func TestSerializeHeader(t *testing.T) {
 
 func TestPartialLengths(t *testing.T) {
 	buf := bytes.NewBuffer(nil)
-	w := new(partialLengthWriter)
-	w.w = noOpCloser{buf}
+	w := &partialLengthWriter{
+		w:   noOpCloser{buf},
+		buf: make([]byte, 0, minFirstPartialWrite),
+	}
 
 	const maxChunkSize = 64
 
@@ -233,6 +235,18 @@ func TestPartialLengths(t *testing.T) {
 		}
 	}
 	w.Close()
+
+	// The first packet should be at least 512 bytes.
+	first, err := buf.ReadByte()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if plen := 1 << (first & 0x1f); plen < 512 {
+		t.Errorf("first packet too short: got %d want at least %d", plen, 512)
+	}
+	if err := buf.UnreadByte(); err != nil {
+		t.Fatal(err)
+	}
 
 	want := (maxChunkSize * (maxChunkSize + 1)) / 2
 	copyBuf := bytes.NewBuffer(nil)
