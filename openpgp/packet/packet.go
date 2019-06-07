@@ -103,25 +103,25 @@ type partialLengthWriter struct {
 }
 
 func (w *partialLengthWriter) Write(p []byte) (n int, err error) {
+	power := uint8(30)
 	for len(p) > 0 {
-		for power := uint(14); power < 32; power-- {
-			l := 1 << power
-			if len(p) >= l {
-				w.lengthByte[0] = 224 + uint8(power)
-				_, err = w.w.Write(w.lengthByte[:])
-				if err != nil {
-					return
-				}
-				var m int
-				m, err = w.w.Write(p[:l])
-				n += m
-				if err != nil {
-					return
-				}
-				p = p[l:]
-				break
-			}
+		l := 1 << power
+		for len(p) < l {
+			power--
+			l >>= 1
 		}
+		w.lengthByte[0] = 224 + power
+		_, err = w.w.Write(w.lengthByte[:])
+		if err != nil {
+			return
+		}
+		var m int
+		m, err = w.w.Write(p[:l])
+		n += m
+		if err != nil {
+			return
+		}
+		p = p[l:]
 	}
 	return
 }
