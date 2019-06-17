@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "85f857ec_98db4392",
+        "filename": "ssh/common.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-06-17T10:33:43Z",
+      "side": 1,
+      "message": "It\u0027s not exposed as a public API, so I am fine either with way.",
+      "parentUuid": "3057c9a4_59f35b50",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "783aa920_e813ddb3",
         "filename": "ssh/common.go",
         "patchSetId": 13
