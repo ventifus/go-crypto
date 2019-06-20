@@ -109,6 +109,13 @@ type Client struct {
 	// The jitter is a random value up to 1 second.
 	RetryBackoff func(n int, r *http.Request, resp *http.Response) time.Duration
 
+	// UserAgent is sent to the ACME server as part on the User-Agent HTTP
+	// header, along with the name and version of this package.
+	//
+	// Reusable libraries and tools in particular should set this value to be
+	// identifiable by the server, in case they are causing issues.
+	UserAgent string
+
 	dirMu sync.Mutex // guards writes to dir
 	dir   *Directory // cached result of Client's Discover method
 
