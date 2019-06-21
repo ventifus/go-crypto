@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6f33c66_751fe8c9",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-06-21T17:10:03Z",
+      "side": 1,
+      "message": "Make this more clear that this is an optional string that\u0027s appended/prepended (whichever) to the User-Agent which is set unconditionally. That is, even if this is blank, we still send a User-Agent and there\u0027s no way to disable the automatic user agent.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 64
+      },
+      "revId": "3a3d0b3d3d8b50137194c39ade0ee6921c6046a7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15f3442b_362910a2",
         "filename": "acme/http.go",
         "patchSetId": 1
