@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04f4be02_0e5d068d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-07-01T16:43:05Z",
+      "side": 1,
+      "message": "I think this diagnosis is incorrect; see https://golang.org/issue/32840#issuecomment-507340061.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
