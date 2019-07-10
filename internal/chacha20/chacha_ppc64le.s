@@ -20,7 +20,7 @@
 // counter. The original code uses ctr to name the counter. Here we use CNT
 // because golang uses CTR as the counter register name.
 
-// +build ppc64le,!gccgo,!appengine
+// +build !gccgo,!appengine
 
 #include "textflag.h"
 
