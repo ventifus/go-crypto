@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7605157a_cdcaef43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-10T08:53:58Z",
+      "side": 1,
+      "message": "My suspicion is that this is affecting register allocation. By saving the precomputed values into the state struct you are forcing them to be reloaded on every loop iteration which means that they aren\u0027t competing with other, more critical, variables for register space. The register allocator doesn\u0027t always do a great job when register pressure is high in nested loops.",
+      "range": {
+        "startLine": 21,
+        "startChar": 34,
+        "endLine": 21,
+        "endChar": 61
+      },
+      "revId": "998fa1329d40684bb2f2f5f8cc032db21d714de6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
