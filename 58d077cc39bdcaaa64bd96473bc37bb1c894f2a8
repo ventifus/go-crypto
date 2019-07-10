@@ -16,6 +16,87 @@
       "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a14e324_eb7469fb",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-10T08:40:31Z",
+      "side": 1,
+      "message": "It would be nice to figure out a simpler way to do this check but I don\u0027t think we should worry about doing 64 bit arithmetic here, given that this code is only executed once per call.",
+      "parentUuid": "6607ba2d_66fcf395",
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32a6536d_445e794d",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-10T08:40:31Z",
+      "side": 1,
+      "message": "Maybe the column/diagonal patterns would be clearer if we used matrix indices as suffixes for our variable names, so instead of x0, x1, etc. we\u0027d have:\n\nx00 x01 x02 x03\nx10 x11 x12 x13\nx20 x21 x22 x23\nx30 x31 x32 x33\n\nNot sure if that is better or worse.",
+      "range": {
+        "startLine": 143,
+        "startChar": 3,
+        "endLine": 148,
+        "endChar": 3
+      },
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2441eb6b_3813bc8e",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-10T08:40:31Z",
+      "side": 1,
+      "message": "Personally I think the data flow was clearer when we used these variables directly and didn\u0027t assign them to c0..c15, but I can see how it makes the row/column clearer.",
+      "range": {
+        "startLine": 149,
+        "startChar": 52,
+        "endLine": 155,
+        "endChar": 2
+      },
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd2ed8a6_7b5b617c",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-10T08:40:31Z",
+      "side": 1,
+      "message": "It might be better to reload the initial state here, if you are happy with the readability of the old code. c0..c15 are going to have to be spilled to the stack.",
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
