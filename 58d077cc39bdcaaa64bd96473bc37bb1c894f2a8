@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6607ba2d_66fcf395",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 20556
+      },
+      "writtenOn": "2019-07-10T05:17:12Z",
+      "side": 1,
+      "message": "This overflow check can be reworked to only use 32bit integers, so you don\u0027t need the 64bit arithmetic on 32bit machines. What you\u0027re looking for is just whether it wrapped.",
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
