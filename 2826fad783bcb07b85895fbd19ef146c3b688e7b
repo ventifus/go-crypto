@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae1790b4_c7a675c0",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-07-14T10:24:52Z",
+      "side": 1,
+      "message": "Just FYI, the reason I went with the simpler New method above was because it inlines nicely. This is important because it allows the returned Cipher to live on the stack (i.e. it no longer escapes) which really helps the performance of chacha20-poly1305 when you have assembly implementations of the individual components. IIRC the reduction in allocations is one of the main benefits of the combined chacha20-poly1305 assembly (which as I mentioned before I\u0027d like to avoid having to write/review for other platforms... :)).\n\nI do get the requirement to be consistent with other APIs though (although I do like that using fixed-size arrays avoids having to return an error), so I\u0027m not really sure of the best course of action here. One option is maybe to try and figure out a way for the New-idiom to avoid escaping more generally. Another thing that might help is making binary.LittleEndian.UInt32 an intrinsic (like we did with bits.RotateLeft) to reduce its inlining cost. That might be an easy short term fix if it works.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "2826fad783bcb07b85895fbd19ef146c3b688e7b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
