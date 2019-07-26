@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "507e0ac5_63ad0b1e",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:05:36Z",
+      "side": 1,
+      "message": "// Sign signs the given message with priv. rand is ignored. If opts.HashFunc()\n// is crypto.SHA512, the pre-hashed variant Ed25519ph is used and message is\n// expected to be a SHA-512 hash, otherwise opts.HashFunc() must be\n// crypto.Hash(0) and the message must not be hashed, as Ed25519 performs two\n// passes over messages to be signed.",
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b5809ab_2c71ddfe",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:05:36Z",
+      "side": 1,
+      "message": "switch opts.HashFunc() {\n    case crypto.SHA512:\n        ...\n    case crypto.Hash(0):\n        return sign(priv, message, false), nil\n    default:\n        return nil, errors.New(\"ed25519: expected opts zero (unhashed message, for standard Ed25519) or SHA-512 (for Ed25519ph)\")\n}",
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d53373f1_f73c838b",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:05:36Z",
+      "side": 1,
+      "message": "Make this a const string, name it something longer like phDomainSeparationPrefix, and add a comment mentioning what it\u0027s for and citing the RFC.",
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6457a34_2cee2078",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:05:36Z",
+      "side": 1,
+      "message": "preHashed",
+      "range": {
+        "startLine": 138,
+        "startChar": 49,
+        "endLine": 138,
+        "endChar": 58
+      },
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c95c3800_0e13572e",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:05:36Z",
+      "side": 1,
+      "message": "preHashed",
+      "range": {
+        "startLine": 206,
+        "startChar": 54,
+        "endLine": 206,
+        "endChar": 63
+      },
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
