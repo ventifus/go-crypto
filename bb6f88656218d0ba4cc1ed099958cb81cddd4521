@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a6e012f2_20165349",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:07:43Z",
+      "side": 1,
+      "message": "Lowercase.",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb271411_9064470a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-07-26T20:07:43Z",
+      "side": 1,
+      "message": "Fixes",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "bb6f88656218d0ba4cc1ed099958cb81cddd4521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "507e0ac5_63ad0b1e",
         "filename": "ed25519/ed25519.go",
         "patchSetId": 1
