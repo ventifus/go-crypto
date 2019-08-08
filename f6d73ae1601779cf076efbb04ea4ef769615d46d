@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "126719ee_fb412724",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-08T00:06:27Z",
+      "side": 1,
+      "message": "If the tempfile was successfully wrote, remove it if we get ctx canceled?",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 59
+      },
+      "revId": "f6d73ae1601779cf076efbb04ea4ef769615d46d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25ddf918_596139b1",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 1
