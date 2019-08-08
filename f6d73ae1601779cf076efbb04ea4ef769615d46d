@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b810ae0e_92436e87",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-08T15:05:58Z",
+      "side": 1,
+      "message": "what if we modify the Put function to something like this, remove temp file here once we got any error?\n\n\tvar (\n                tmp string\n                err error\n                done \u003d make(chan struct{})\n        )\n\tgo func() {\n\t\tdefer close(done)\n\t\tif tmp, err \u003d d.writeTempFile(name, data); err !\u003d nil {\n\t\t\treturn\n\t\t}\n\t\tselect {\n\t\tcase \u003c-ctx.Done():\n\t\t\t// Don\u0027t overwrite the file if the context was canceled.\n\t\tdefault:\n\t\t\tnewName :\u003d filepath.Join(string(d), name)\n\t\t\terr \u003d os.Rename(tmp, newName)\n\t\t}\n\t}()\n\tselect {\n        case \u003c-ctx.Done():\n                err \u003d ctx.Err()\n        case \u003c-done:\n        }\n        if err !\u003d nil {\n                os.Remove(tmp)\n        }\n\treturn err",
+      "parentUuid": "233ba778_773fd95f",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 59
+      },
+      "revId": "f6d73ae1601779cf076efbb04ea4ef769615d46d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25ddf918_596139b1",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Maybe instead of os.Remove calls below there could be defer? Something like:\n\n  defer func() {\n    if reterr !\u003d nil {\n      os.Remove(f.Name())\n    }\n  }()\n\nThis would be placed just above f.Write(b) on line 125 and needs named return values.",
       "parentUuid": "25ddf918_596139b1",
+      "range": {
+        "startLine": 130,
+        "startChar": 18,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "f6d73ae1601779cf076efbb04ea4ef769615d46d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01f41747_d6fef9ed",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-08T15:05:58Z",
+      "side": 1,
+      "message": "I think maybe we left temp file created, and remove it once at caller function Put.\n\nI have some questions, what will happen if caller function got canceled while writing, will the f.Close() at line 126 or even line 130 be executed?\nCould defer f.Close() execute correctly in this case?\nif so, maybe, could we named the return values and add something like:\n\n  defer func() {\n    reterr \u003d f.Close()\n  }\n\nor simply\n  \n  defer f.Close()\n\nThese would be placed above f.Write(b) on line 125",
+      "parentUuid": "248586ed_60aa972a",
       "range": {
         "startLine": 130,
         "startChar": 18,
