@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "233ba778_773fd95f",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-08T08:56:21Z",
+      "side": 1,
+      "message": "I think it\u0027s a good idea. But regardless of the context being done, the temp file should not exist after Put returns. So, if os.Rename \u003d\u003d err should also be covered and possibly other places.",
+      "parentUuid": "126719ee_fb412724",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 59
+      },
+      "revId": "f6d73ae1601779cf076efbb04ea4ef769615d46d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25ddf918_596139b1",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-07T21:39:19Z",
       "side": 1,
       "message": "What about here?",
+      "range": {
+        "startLine": 130,
+        "startChar": 18,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "f6d73ae1601779cf076efbb04ea4ef769615d46d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "248586ed_60aa972a",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-08T08:56:21Z",
+      "side": 1,
+      "message": "Maybe instead of os.Remove calls below there could be defer? Something like:\n\n  defer func() {\n    if reterr !\u003d nil {\n      os.Remove(f.Name())\n    }\n  }()\n\nThis would be placed just above f.Write(b) on line 125 and needs named return values.",
+      "parentUuid": "25ddf918_596139b1",
       "range": {
         "startLine": 130,
         "startChar": 18,
