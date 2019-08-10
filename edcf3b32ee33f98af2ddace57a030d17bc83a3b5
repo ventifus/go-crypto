@@ -16,6 +16,24 @@
       "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e727ba9_df66c790",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-10T11:25:02Z",
+      "side": 1,
+      "message": "Wow~~~ It is so COOL! Sorry for my immature pr and stupid head!\nSo this will be a time to practice \"shared memory by communicating\" right?",
+      "parentUuid": "305aa9eb_0b991ecd",
+      "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
