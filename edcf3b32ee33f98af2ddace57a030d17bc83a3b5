@@ -106,6 +106,24 @@
       "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e743750_7a9284de",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-10T13:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e531933_09989f3d",
+      "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
