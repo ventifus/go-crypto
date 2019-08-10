@@ -34,6 +34,24 @@
       "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36fbbeb3_0d493fa8",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-10T11:45:18Z",
+      "side": 1,
+      "message": "Introducing another channel or repurposing done might overcomplicate things imho.\nHow about reverting everything and just replacing defer close(done) on line 78 with something like:\n\n  defer func() {\n    os.Remove(tmp)\n    close(done)\n  }()\n\nThis however still wouldn\u0027t cover the case where writeTempFile func below returns a non-nil error yet it creates a possibly empty temp file on the filesystem. Not sure how often this would happen though.",
+      "parentUuid": "2e727ba9_df66c790",
+      "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
