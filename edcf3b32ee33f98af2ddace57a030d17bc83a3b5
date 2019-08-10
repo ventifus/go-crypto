@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "305aa9eb_0b991ecd",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-10T10:47:07Z",
+      "side": 1,
+      "message": "There may be race conditions here, I believe:\n\n1. ctx isn\u0027t done yet so the goroutine proceeds to err \u003d os.Rename(tmp, newName) on line 87.\n2. At that moment ctx is done, so err \u003d ctx.Err() takes place on line 92.\n3. It then may happen that err is accessed concurrently on lines 87+92 or 87+95, or os.Rename(tmp, newName) and os.Remove(tmp) on lines 87 and 96 are called.\n\nAnother concurrent access may happen now on lines 79+92 or 79+95.",
+      "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
