@@ -72,8 +72,11 @@ func (d DirCache) Put(ctx context.Context, name string, data []byte) error {
 	done := make(chan struct{})
 	var err error
 	go func() {
-		defer close(done)
 		var tmp string
+		defer func() {
+			os.Remove(tmp)
+			close(done)
+		}()
 		if tmp, err = d.writeTempFile(name, data); err != nil {
 			return
 		}
@@ -116,12 +119,17 @@ func (d DirCache) Delete(ctx context.Context, name string) error {
 }
 
 // writeTempFile writes b to a temporary file, closes the file and returns its path.
-func (d DirCache) writeTempFile(prefix string, b []byte) (string, error) {
+func (d DirCache) writeTempFile(prefix string, b []byte) (name string, reterr error) {
 	// TempFile uses 0600 permissions
 	f, err := ioutil.TempFile(string(d), prefix)
 	if err != nil {
 		return "", err
 	}
+	defer func() {
+		if reterr != nil {
+			os.Remove(f.Name())
+		}
+	}()
 	if _, err := f.Write(b); err != nil {
 		f.Close()
 		return "", err
