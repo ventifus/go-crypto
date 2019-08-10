@@ -70,6 +70,24 @@
       "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ecafe1_7645a074",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-10T12:44:27Z",
+      "side": 1,
+      "message": "Looking at the writeTempFile below, I imagined:\n\n    func (d DirCache) writeTempFile(prefix string, b []byte) (string, error) {\n \tf, err :\u003d ioutil.TempFile(string(d), prefix)\n\tif err !\u003d nil {\n\t\treturn \"\", err\n\t}\n\tif _, err :\u003d f.Write(b); err !\u003d nil {\n\t\tf.Close()\n\t\treturn \"\", err\n\t}\n\treturn f.Name(), f.Close()\n    }\n\ncould fail at f.Write(b) or f.Close() on the last line.\n\nEspecially f.Write is clear: when write fails it just closes the file and returns leaving it in tmp and the returned value is zero string. So, os.Remove(\"\") here which won\u0027t work and either way the temp file name returned from writeTempFile should be considered undefined if err is not nil.",
+      "parentUuid": "7e774105_fe6eb4c2",
+      "revId": "edcf3b32ee33f98af2ddace57a030d17bc83a3b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
