@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b33047f_be82cfa9",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-12T17:32:58Z",
+      "side": 1,
+      "message": "It seems the deferred os.Remove(tmp) isn\u0027t needed at all now that writeTempFile handles the error within the function too removing the temp file.\n\nSo, maybe put defer close(done) back to where it originally was and add a separate defer os.Remove(tmp) right after \"if tmp, err \u003d d.writeTempfile(name, data)\"? Because when d.writeTempFile returns an error, os.Remove will always be called with tmp \u003d \"\".\n\nAlso, would be nice to have a test confirming the temp file is actually deleted.",
+      "revId": "af20fdebec115be1f87633ec8d80a192b28b055b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
