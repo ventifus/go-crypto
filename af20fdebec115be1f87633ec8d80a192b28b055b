@@ -16,6 +16,24 @@
       "revId": "af20fdebec115be1f87633ec8d80a192b28b055b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40f13455_c003669b",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-14T12:00:20Z",
+      "side": 1,
+      "message": "okay. I will relocate os.Remove(tmp) after writeTempfile and learn to write test for this.\nhmm.. not trying to be hair-splitting, just want to make sure that line:137 could still return an error with a filename right? although I wonder if it could happen XD\nthanks!",
+      "parentUuid": "9b33047f_be82cfa9",
+      "revId": "af20fdebec115be1f87633ec8d80a192b28b055b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
