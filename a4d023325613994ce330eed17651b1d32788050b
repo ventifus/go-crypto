@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "789c8787_57d25cd3",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-08-20T12:00:20Z",
+      "side": 1,
+      "message": "Let\u0027s move this where it originally was, just 2 lines above, between 74 and 75. That way, this block of code will remain completely unchanged which it really is semantically speaking.",
+      "revId": "a4d023325613994ce330eed17651b1d32788050b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
