@@ -71,6 +71,10 @@ func checksumKeyMaterial(key []byte) uint16 {
 // private key must have been decrypted first.
 // If config is nil, sensible defaults will be used.
 func (e *EncryptedKey) Decrypt(priv *PrivateKey, config *Config) error {
+	if priv.Stub {
+		return errors.ErrStubPrivateKey
+	}
+
 	var err error
 	var b []byte
 

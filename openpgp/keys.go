@@ -599,9 +599,11 @@ func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error
 		if err != nil {
 			return
 		}
-		err = ident.SelfSignature.SignUserId(ident.UserId.Id, e.PrimaryKey, e.PrivateKey, config)
-		if err != nil {
-			return
+		if !e.PrivateKey.Stub {
+			err = ident.SelfSignature.SignUserId(ident.UserId.Id, e.PrimaryKey, e.PrivateKey, config)
+			if err != nil {
+				return
+			}
 		}
 		err = ident.SelfSignature.Serialize(w)
 		if err != nil {
@@ -613,9 +615,11 @@ func (e *Entity) SerializePrivate(w io.Writer, config *packet.Config) (err error
 		if err != nil {
 			return
 		}
-		err = subkey.Sig.SignKey(subkey.PublicKey, e.PrivateKey, config)
-		if err != nil {
-			return
+		if !e.PrivateKey.Stub {
+			err = subkey.Sig.SignKey(subkey.PublicKey, e.PrivateKey, config)
+			if err != nil {
+				return
+			}
 		}
 		err = subkey.Sig.Serialize(w)
 		if err != nil {

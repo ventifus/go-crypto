@@ -132,6 +132,42 @@ func TestRevokedUserID(t *testing.T) {
 	}
 }
 
+func TestGNUDummyPrivateKey(t *testing.T) {
+	// This public key has a signing subkey, but has a dummy placeholder
+	// instead of the real private key. It's used in scenarios where the
+	// main private key is withheld and only signing is allowed (e.g. build
+	// servers).
+	keys, err := ReadArmoredKeyRing(bytes.NewBufferString(onlySubkeyNoPrivateKey))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(keys) != 1 {
+		t.Errorf("Failed to accept key with dummy private key, %d", len(keys))
+	}
+	if !keys[0].PrivateKey.Stub {
+		t.Errorf("Primary private key should be marked as a stub")
+	}
+	if len(keys[0].Subkeys) != 1 {
+		t.Errorf("Failed to accept good subkey, %d", len(keys[0].Subkeys))
+	}
+
+	// Test serialization of stub private key via entity.SerializePrivate().
+	serializedEntity := bytes.NewBuffer(nil)
+	keys[0].SerializePrivate(serializedEntity, nil)
+
+	entity, err := ReadEntity(packet.NewReader(bytes.NewBuffer(serializedEntity.Bytes())))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !entity.PrivateKey.Stub {
+		t.Errorf("Primary private key should be marked as a stub after serialisation")
+	}
+	if len(entity.Subkeys) != 1 {
+		t.Errorf("Failed to accept good subkey, %d", len(keys[0].Subkeys))
+	}
+}
+
 // TestExternallyRevokableKey attempts to load and parse a key with a third party revocation permission.
 func TestExternallyRevocableKey(t *testing.T) {
 	kring, err := ReadKeyRing(readerFromHex(subkeyUsageHex))

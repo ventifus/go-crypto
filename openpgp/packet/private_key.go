@@ -28,6 +28,7 @@ import (
 type PrivateKey struct {
 	PublicKey
 	Encrypted     bool // if true then the private key is unavailable until Decrypt has been called.
+	Stub          bool // indicates that the private key is a stub. This is a GNU extension.
 	encryptedData []byte
 	cipher        CipherFunction
 	s2k           func(out, in []byte)
@@ -109,11 +110,15 @@ func (pk *PrivateKey) parse(r io.Reader) (err error) {
 			return
 		}
 		pk.cipher = CipherFunction(buf[0])
-		pk.Encrypted = true
-		pk.s2k, err = s2k.Parse(r)
-		if err != nil {
+		var missingKey bool
+		if pk.s2k, missingKey, err = s2k.Parse(r); err != nil {
 			return
 		}
+		if missingKey {
+			pk.Stub = true
+			return
+		}
+		pk.Encrypted = true
 		if s2kType == 254 {
 			pk.sha1Checksum = true
 		}
@@ -160,26 +165,39 @@ func (pk *PrivateKey) Serialize(w io.Writer) (err error) {
 	if err != nil {
 		return
 	}
-	buf.WriteByte(0 /* no encryption */)
+	if pk.Stub {
+		b := []byte{255, 0, 101, 0}
+		b = append(b, []byte("GNU")...)
+		b = append(b, 1)
+		buf.Write(b)
+	} else {
+		buf.WriteByte(0 /* no encryption */)
+	}
 
 	privateKeyBuf := bytes.NewBuffer(nil)
 
-	switch priv := pk.PrivateKey.(type) {
-	case *rsa.PrivateKey:
-		err = serializeRSAPrivateKey(privateKeyBuf, priv)
-	case *dsa.PrivateKey:
-		err = serializeDSAPrivateKey(privateKeyBuf, priv)
-	case *elgamal.PrivateKey:
-		err = serializeElGamalPrivateKey(privateKeyBuf, priv)
-	case *ecdsa.PrivateKey:
-		err = serializeECDSAPrivateKey(privateKeyBuf, priv)
-	default:
-		err = errors.InvalidArgumentError("unknown private key type")
-	}
-	if err != nil {
-		return
+	if !pk.Stub {
+		switch priv := pk.PrivateKey.(type) {
+		case *rsa.PrivateKey:
+			err = serializeRSAPrivateKey(privateKeyBuf, priv)
+		case *dsa.PrivateKey:
+			err = serializeDSAPrivateKey(privateKeyBuf, priv)
+		case *elgamal.PrivateKey:
+			err = serializeElGamalPrivateKey(privateKeyBuf, priv)
+		case *ecdsa.PrivateKey:
+			err = serializeECDSAPrivateKey(privateKeyBuf, priv)
+		default:
+			err = errors.InvalidArgumentError("unknown private key type")
+		}
+		if err != nil {
+			return
+		}
 	}
 
+	if pk.Stub {
+		// Do not write any private key data for a stub key.
+		privateKeyBuf = bytes.NewBuffer(nil)
+	}
 	ptype := packetTypePrivateKey
 	contents := buf.Bytes()
 	privateKeyBytes := privateKeyBuf.Bytes()
@@ -192,6 +210,9 @@ func (pk *PrivateKey) Serialize(w io.Writer) (err error) {
 	}
 	_, err = w.Write(contents)
 	if err != nil {
+		return
+	}
+	if pk.Stub {
 		return
 	}
 	_, err = w.Write(privateKeyBytes)
@@ -238,6 +259,9 @@ func serializeECDSAPrivateKey(w io.Writer, priv *ecdsa.PrivateKey) error {
 
 // Decrypt decrypts an encrypted private key using a passphrase.
 func (pk *PrivateKey) Decrypt(passphrase []byte) error {
+	if pk.Stub {
+		return errors.ErrStubPrivateKey
+	}
 	if !pk.Encrypted {
 		return nil
 	}
