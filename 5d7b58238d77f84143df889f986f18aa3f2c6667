@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "141fe588_e0cd5e80",
+        "filename": "acme/autocert/cache_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-20T16:06:27Z",
+      "side": 1,
+      "message": "I think it looks okay to me since the cached file is deleted after each put in the test.\nwill add the comment.",
+      "parentUuid": "6f0b980e_46f91f46",
+      "revId": "5d7b58238d77f84143df889f986f18aa3f2c6667",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee4bb86b_55163f8c",
         "filename": "acme/autocert/cache_test.go",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2019-08-20T15:10:01Z",
       "side": 1,
       "message": "Actually, \"get\" here is a bit misleading. In other messages it refers to the cache.Get method call.\nBut here cache.Get is unrelated. How about this:\n\n  t.Errorf(\"temp file exists: %s\", tmp)",
+      "revId": "5d7b58238d77f84143df889f986f18aa3f2c6667",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d36e49f3_f5c3b4d2",
+        "filename": "acme/autocert/cache_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 33327
+      },
+      "writtenOn": "2019-08-20T16:06:27Z",
+      "side": 1,
+      "message": "understood",
+      "parentUuid": "ee4bb86b_55163f8c",
       "revId": "5d7b58238d77f84143df889f986f18aa3f2c6667",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
