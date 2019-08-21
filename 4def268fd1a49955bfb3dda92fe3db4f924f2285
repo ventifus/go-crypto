@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad87c84d_df2ea69e",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-08-21T03:42:12Z",
+      "side": 0,
+      "message": "This function controls when reterr may become non-nil. There are only two such places, which isn\u0027t many. So it might make the code simpler and more readable to not use defer, but rather call os.Remove(f.Name()) when it needs to called (similar to how f.Close is called). E.g.:\n\n    if _, err :\u003d f.Write(b); err !\u003d nil {\n        f.Close()\n        os.Remove(f.Name())\n        return \"\", err\n    }\n    if err :\u003d f.Close(); err !\u003d nil {\n        os.Remove(f.Name())\n        return \"\", err\n    }\n    return f.Name(), nil",
+      "revId": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

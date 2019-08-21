@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2756c2e_dc51e75c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-08-21T03:42:12Z",
+      "side": 1,
+      "message": "For future commit messages, please remember to wrap the body text, as described at https://golang.org/wiki/CommitMessage:\n\n\u003e - the text should be wrapped to ~76 characters (to appease git viewing tools, mainly), unless you really need longer lines (e.g. for ASCII art, tables, or long links)",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07bfe000_61580834",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-08-21T03:42:12Z",
+      "side": 1,
+      "message": "Can this code be simplified further?\n\nIt currently uses defer, but this function call ends soon with only two possible outcomes, and as far as I can tell, os.Remove(tmp) only needs to be used in one of them, not both.\n\nIf so, we can move os.Remove(tmp) to the \u003c-ctx.Done() select case below. That gets rid of defer, makes the code more readable, and removes the unnecessary os.Remove(tmp) call after tmp was renamed to newName.",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ca00b27_b09390a9",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-08-21T03:42:12Z",
+      "side": 1,
+      "message": "Adding this new code block changes the behavior of this function. Its documentation should be updated accordingly, otherwise it gets out of sync with the implementation and becomes misleading.",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
