@@ -16,6 +16,24 @@
       "revId": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df491091_ecb2c209",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 8870
+      },
+      "writtenOn": "2019-08-21T06:50:04Z",
+      "side": 0,
+      "message": "That seem much less readable to me.",
+      "parentUuid": "ad87c84d_df2ea69e",
+      "revId": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }

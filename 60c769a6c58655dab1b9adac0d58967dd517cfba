@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8fef07c2_69b1df3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8870
+      },
+      "writtenOn": "2019-08-21T06:50:04Z",
+      "side": 1,
+      "message": "Maybe git-codereview could enforce it like it does for code with gofmt via a commit hook?",
+      "parentUuid": "d2756c2e_dc51e75c",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07bfe000_61580834",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b8e9fead_0afe40ed",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8870
+      },
+      "writtenOn": "2019-08-21T06:50:04Z",
+      "side": 1,
+      "message": "This is as simple as it gets. Please, read earlier patch sets and their comments. There are many edge cases without defer.",
+      "parentUuid": "07bfe000_61580834",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ca00b27_b09390a9",
         "filename": "acme/autocert/cache.go",
         "patchSetId": 8
@@ -50,6 +86,24 @@
       "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26fbd8fb_4a408ed0",
+        "filename": "acme/autocert/cache.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8870
+      },
+      "writtenOn": "2019-08-21T06:50:04Z",
+      "side": 1,
+      "message": "Everyone understands that when err is non-nil, the other returned value is undefined. It still holds, no change there. The new code block is well within the current doc comment.\n\nOr is the suggestion to start documenting what happens for every case where returned err is non-nil for every function?",
+      "parentUuid": "2ca00b27_b09390a9",
+      "revId": "60c769a6c58655dab1b9adac0d58967dd517cfba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
