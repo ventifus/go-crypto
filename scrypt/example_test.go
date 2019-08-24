@@ -13,8 +13,12 @@ import (
 )
 
 func Example() {
-	// DO NOT use this salt value; generate your own random salt. 8 bytes is
-	// a good length.
+	// DO NOT use this salt value. Generate your own salt by running:
+	//
+	// salt := make([]byte, 8)           // 8 bytes is a good length.
+	// _, err := rand.Read(salt)         // from crypto/rand
+	// fmt.Printf("%#v\n", salt)
+	//
 	salt := []byte{0xc8, 0x28, 0xf2, 0x58, 0xa7, 0x6a, 0xad, 0x7b}
 
 	dk, err := scrypt.Key([]byte("some password"), salt, 1<<15, 8, 1, 32)
