@@ -108,6 +108,16 @@ func retryAfter(v string) time.Duration {
 // It is expected to keep the response body unread.
 type resOkay func(*http.Response) bool
 
+// wantStatusOK reports res as okay when its status code is 200 OK.
+var wantStatusOK = func(res *http.Response) bool {
+	return res.StatusCode == http.StatusOK
+}
+
+// wantStatusOK reports res as okay when its status code is 201 Created.
+var wantStatusCreated = func(res *http.Response) bool {
+	return res.StatusCode == http.StatusCreated
+}
+
 // wantStatus returns a function which reports whether the code
 // matches the status code of a response.
 func wantStatus(codes ...int) resOkay {
