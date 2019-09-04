@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da966018_d01c738f",
+        "filename": "openpgp/keys_data_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "Nit: perhaps name this gnuDummyPrivateKey or some such as well?",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea0b0708_8cded6a6",
+        "filename": "openpgp/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "Perhaps you could try to serialize and parse the entire key, instead of just this packet, in order to catch the `+2` bug below? (And/or compare the serialized key with the original key, if it comes out identical.)",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f98501d_8b8ee7c6",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "Very nitpicky, but: `Encrypted` and `encryptedData` are sort of a pair of fields; I wouldn\u0027t add `Stub` between them, but perhaps after `s2k`.\n\nAlso, I\u0027d call it `Dummy` instead, as I think the term \"gnu-dummy\" is more common for these keys.",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74a4f133_1ea423d2",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "This `if` block is not necessary, `privateKeyBuf` already has that value. The comment is useful though IMO, you could move it above the previous `if` block.",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "170175f9_0227168b",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "For a GNU-dummy key, this `+2` seems incorrect, since you\u0027re not writing the checksum below.",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8d634af_d4cdf7fa",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-09-04T17:48:50Z",
+      "side": 1,
+      "message": "Although this function is probably not used much outside openpgp/, it\u0027s still part of the public API, so it might be preferable to return `(nil, errors.ErrStubPrivateKey)` for GNU-dummy keys here instead of changing the signature.",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
