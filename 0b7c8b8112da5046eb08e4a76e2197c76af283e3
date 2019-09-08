@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "848230c2_62df28a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 17921
+      },
+      "writtenOn": "2019-09-08T01:13:43Z",
+      "side": 1,
+      "message": "Prefix the commit title with \"bcrypt: \"\nTitle shouldn\u0027t be capitalized.\nChange to \"bcrypt: add easy example\".",
+      "revId": "0b7c8b8112da5046eb08e4a76e2197c76af283e3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ecc2981_ce57140a",
+        "filename": "bcrypt/bcrypt_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 17921
+      },
+      "writtenOn": "2019-09-08T01:13:43Z",
+      "side": 1,
+      "message": "I don’t think we should continue executing the example if hashing fails——especially since GenerateFromPassword doesn’t say anything about returning a nil slice on error. The convention in crypto examples is to panic on error.",
+      "revId": "0b7c8b8112da5046eb08e4a76e2197c76af283e3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
