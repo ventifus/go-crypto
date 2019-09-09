@@ -18,10 +18,11 @@ import (
 // See https://tools.ietf.org/html/rfc8555#section-7.1.6 for details.
 const (
 	StatusDeactivated = "deactivated"
+	StatusExpired     = "expired"
 	StatusInvalid     = "invalid"
-	StatusReady       = "ready"
 	StatusPending     = "pending"
 	StatusProcessing  = "processing"
+	StatusReady       = "ready"
 	StatusRevoked     = "revoked"
 	StatusUnknown     = "unknown"
 	StatusValid       = "valid"
@@ -104,16 +105,19 @@ func (a *AuthorizationError) Error() string {
 	return fmt.Sprintf("acme: authorization error for %s: %s", a.Identifier, strings.Join(e, "; "))
 }
 
-// WaitOrderError is returned from Client's WaitOrder.
+// OrderError is returned from Client's order related methods.
 // It indicates the order is unusable and the clients should start over with
 // AuthorizeOrder.
-type WaitOrderError struct {
+//
+// The clients can still fetch the order object from CA using GetOrder
+// to inspect its state.
+type OrderError struct {
 	OrderURL string
 	Status   string
 }
 
-func (we *WaitOrderError) Error() string {
-	return fmt.Sprintf("acme: wait order %s: status %s", we.OrderURL, we.Status)
+func (oe *OrderError) Error() string {
+	return fmt.Sprintf("acme: order %s status: %s", oe.OrderURL, oe.Status)
 }
 
 // RateLimit reports whether err represents a rate limit error and
@@ -323,15 +327,26 @@ type Authorization struct {
 	// URI uniquely identifies a authorization.
 	URI string
 
-	// Status identifies the status of an authorization.
+	// Status is the current status of an authorization.
+	// Possible values are "pending", "valid", "invalid", "deactivated",
+	// "expired", and "revoked".
 	Status string
 
 	// Identifier is what the account is authorized to represent.
 	Identifier AuthzID
 
+	// The timestamp after which the CA considers the authorization invalid.
+	Expires time.Time
+
+	// Wildcard is true for authorizations of a wildcard domain name.
+	Wildcard bool
+
 	// Challenges that the client needs to fulfill in order to prove possession
 	// of the identifier (for pending authorizations).
-	// For final authorizations, the challenges that were used.
+	// For valid authorizations, the challenge that was validated.
+	// For invalid authorizations, the challenge that was attempted and failed.
+	//
+	// RFC8555 compatible CAs require users to fuflfill only one of the challenges.
 	Challenges []*Challenge
 
 	// A collection of sets of challenges, each of which would be sufficient
@@ -339,6 +354,8 @@ type Authorization struct {
 	// Clients must complete a set of challenges that covers at least one set.
 	// Challenges are identified by their indices in the challenges array.
 	// If this field is empty, the client needs to complete all challenges.
+	//
+	// This field is unused in RFC8555.
 	Combinations [][]int
 }
 
@@ -377,10 +394,12 @@ type wireAuthzID struct {
 
 // wireAuthz is ACME JSON representation of Authorization objects.
 type wireAuthz struct {
+	Identifier   wireAuthzID
 	Status       string
+	Expires      time.Time
+	Wildcard     bool
 	Challenges   []wireChallenge
 	Combinations [][]int
-	Identifier   wireAuthzID
 }
 
 func (z *wireAuthz) authorization(uri string) *Authorization {
@@ -388,8 +407,10 @@ func (z *wireAuthz) authorization(uri string) *Authorization {
 		URI:          uri,
 		Status:       z.Status,
 		Identifier:   AuthzID{Type: z.Identifier.Type, Value: z.Identifier.Value},
-		Combinations: z.Combinations, // shallow copy
+		Expires:      z.Expires,
+		Wildcard:     z.Wildcard,
 		Challenges:   make([]*Challenge, len(z.Challenges)),
+		Combinations: z.Combinations, // shallow copy
 	}
 	for i, v := range z.Challenges {
 		a.Challenges[i] = v.challenge()
@@ -414,7 +435,7 @@ func (z *wireAuthz) error(uri string) *AuthorizationError {
 // Its Error field may be non-nil if the challenge is part of an Authorization
 // with StatusInvalid.
 type Challenge struct {
-	// Type is the challenge type, e.g. "http-01", "tls-sni-02", "dns-01".
+	// Type is the challenge type, e.g. "http-01", "tls-alpn-01", "dns-01".
 	Type string
 
 	// URI is where a challenge response can be posted to.
@@ -424,7 +445,12 @@ type Challenge struct {
 	Token string
 
 	// Status identifies the status of this challenge.
+	// In RFC8555, possible values are "pending", "processing", "valid", and "invalid".
 	Status string
+
+	// Validated is the time at which the CA validated this challenge.
+	// Always zero value in pre-RFC8555.
+	Validated time.Time
 
 	// Error indicates the reason for an authorization failure
 	// when this challenge was used.
@@ -434,19 +460,24 @@ type Challenge struct {
 
 // wireChallenge is ACME JSON challenge representation.
 type wireChallenge struct {
-	URI    string `json:"uri"`
-	Type   string
-	Token  string
-	Status string
-	Error  *wireError
+	URL       string `json:"url"` // RFC
+	URI       string `json:"uri"` // pre-RFC
+	Type      string
+	Token     string
+	Status    string
+	Validated time.Time
+	Error     *wireError
 }
 
 func (c *wireChallenge) challenge() *Challenge {
 	v := &Challenge{
-		URI:    c.URI,
+		URI:    c.URL,
 		Type:   c.Type,
 		Token:  c.Token,
 		Status: c.Status,
+	}
+	if v.URI == "" {
+		v.URI = c.URI // c.URL was empty; use legacy
 	}
 	if v.Status == "" {
 		v.Status = StatusPending
