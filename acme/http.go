@@ -165,6 +165,14 @@ func (c *Client) get(ctx context.Context, url string, ok resOkay) (*http.Respons
 	}
 }
 
+// getpost is POST-as-GET, a replacement for GET in RFC8555
+// as described in https://tools.ietf.org/html/rfc8555#section-6.3.
+// It makes a POST request in KID form with zero JWS payload.
+// See nopayload doc comments.
+func (c *Client) getpost(ctx context.Context, url string, ok resOkay) (*http.Response, error) {
+	return c.post(ctx, nil /* use c.key */, url, nopayload, ok)
+}
+
 // post issues a signed POST request in JWS format using the provided key
 // to the specified URL. If key is nil, c.Key is used instead.
 // It returns a non-error value only when ok reports true.

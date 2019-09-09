@@ -60,7 +60,10 @@ var idPeACMEIdentifierV1 = asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 1, 30, 1}
 
 const (
 	maxChainLen = 5       // max depth and breadth of a certificate chain
-	maxCertSize = 1 << 20 // max size of a certificate, in bytes
+	maxCertSize = 1 << 20 // max size of a certificate, in DER bytes
+	// Used for decoding certs from application/pem-certificate-chain response,
+	// the default when in RFC mode.
+	maxCertChainSize = maxCertSize * maxChainLen
 
 	// Max number of collected nonces kept in memory.
 	// Expect usual peak of 1 or 2.
@@ -233,6 +236,9 @@ func (c *Client) directoryURL() string {
 }
 
 // CreateCert requests a new certificate using the Certificate Signing Request csr encoded in DER format.
+// It is incompatible with RFC8555. Callers should use CreateOrderCert when interfacing
+// with an RFC compliant CA.
+//
 // The exp argument indicates the desired certificate validity duration. CA may issue a certificate
 // with a different duration.
 // If the bundle argument is true, the returned value will also contain the CA (issuer) certificate chain.
@@ -284,12 +290,23 @@ func (c *Client) CreateCert(ctx context.Context, csr []byte, exp time.Duration, 
 // It retries the request until the certificate is successfully retrieved,
 // context is cancelled by the caller or an error response is received.
 //
-// The returned value will also contain the CA (issuer) certificate if the bundle argument is true.
+// If the bundle argument is true, the returned value also contains the CA (issuer)
+// certificate chain.
 //
 // FetchCert returns an error if the CA's response or chain was unreasonably large.
 // Callers are encouraged to parse the returned value to ensure the certificate is valid
 // and has expected features.
 func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]byte, error) {
+	dir, err := c.Discover(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if dir.OrderURL != "" {
+		// Assume RFC conformant CA.
+		return c.fetchCertRFC(ctx, url, bundle)
+	}
+
+	// Legacy non-authenticated GET request.
 	res, err := c.get(ctx, url, wantStatus(http.StatusOK))
 	if err != nil {
 		return nil, err
@@ -304,10 +321,16 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 // For instance, the key pair of the certificate may be authorized.
 // If the key is nil, c.Key is used instead.
 func (c *Client) RevokeCert(ctx context.Context, key crypto.Signer, cert []byte, reason CRLReasonCode) error {
-	if _, err := c.Discover(ctx); err != nil {
+	dir, err := c.Discover(ctx)
+	if err != nil {
 		return err
 	}
+	if dir.OrderURL != "" {
+		// Assume RFC8555 conformant CA.
+		return c.revokeCertRFC(ctx, key, cert, reason)
+	}
 
+	// Legacy CA.
 	body := &struct {
 		Resource string `json:"resource"`
 		Cert     string `json:"certificate"`
@@ -317,7 +340,7 @@ func (c *Client) RevokeCert(ctx context.Context, key crypto.Signer, cert []byte,
 		Cert:     base64.RawURLEncoding.EncodeToString(cert),
 		Reason:   int(reason),
 	}
-	res, err := c.post(ctx, key, c.dir.RevokeURL, body, wantStatus(http.StatusOK))
+	res, err := c.post(ctx, key, dir.RevokeURL, body, wantStatus(http.StatusOK))
 	if err != nil {
 		return err
 	}
@@ -418,13 +441,21 @@ func (c *Client) UpdateReg(ctx context.Context, acct *Account) (*Account, error)
 	return a, nil
 }
 
-// Authorize performs the initial step in an authorization flow.
+// Authorize performs the initial step in the pre-authorization flow,
+// as opposed to order based flow.
 // The caller will then need to choose from and perform a set of returned
 // challenges using c.Accept in order to successfully complete authorization.
 //
+// Once complete, the caller can follow using AuthorizeOrder which the CA
+// should provision with the already satisfied authorization.
+// For pre-RFC CAs, the caller can proceed directly to requesting a certificate
+// using CreateCert method.
+//
 // If an authorization has been previously granted, the CA may return
-// a valid authorization (Authorization.Status is StatusValid). If so, the caller
-// need not fulfill any challenge and can proceed to requesting a certificate.
+// a valid authorization which has its Status field set to StatusValid.
+//
+// More about pre-authorization can be found at
+// https://tools.ietf.org/html/rfc8555#section-7.4.1.
 func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, error) {
 	return c.authorize(ctx, "dns", domain)
 }
@@ -437,6 +468,12 @@ func (c *Client) Authorize(ctx context.Context, domain string) (*Authorization, 
 // https://tools.ietf.org/html/draft-ietf-acme-ip.
 func (c *Client) AuthorizeIP(ctx context.Context, ipaddr string) (*Authorization, error) {
 	return c.authorize(ctx, "ip", ipaddr)
+}
+
+// AuthorizeID is a handy alternative to Authorize and AuthorizeIP.
+// To start pre-authorization flow for an IP address, set Type of AuthzID to "ip".
+func (c *Client) AuthorizeID(ctx context.Context, id AuthzID) (*Authorization, error) {
+	return c.authorize(ctx, id.Type, id.Value)
 }
 
 func (c *Client) authorize(ctx context.Context, typ, val string) (*Authorization, error) {
@@ -476,7 +513,19 @@ func (c *Client) authorize(ctx context.Context, typ, val string) (*Authorization
 // If a caller needs to poll an authorization until its status is final,
 // see the WaitAuthorization method.
 func (c *Client) GetAuthorization(ctx context.Context, url string) (*Authorization, error) {
-	res, err := c.get(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
+	dir, err := c.Discover(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var res *http.Response
+	if dir.OrderURL != "" {
+		// Assume RFC8555 compliant CA.
+		res, err = c.getpost(ctx, url, wantStatusOK)
+	} else {
+		// Legacy pre-RFC world.
+		res, err = c.get(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -493,8 +542,8 @@ func (c *Client) GetAuthorization(ctx context.Context, url string) (*Authorizati
 // The url argument is an Authorization.URI value.
 //
 // If successful, the caller will be required to obtain a new authorization
-// using the Authorize method before being able to request a new certificate
-// for the domain associated with the authorization.
+// using the Authorize or AuthorizeOrder methods before being able to request
+// a new certificate for the domain associated with the authorization.
 //
 // It does not revoke existing certificates.
 func (c *Client) RevokeAuthorization(ctx context.Context, url string) error {
@@ -528,8 +577,19 @@ func (c *Client) RevokeAuthorization(ctx context.Context, url string) error {
 // In all other cases WaitAuthorization returns an error.
 // If the Status is StatusInvalid, the returned error is of type *AuthorizationError.
 func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorization, error) {
+	// Required for c.accountKID() when in RFC mode.
+	dir, err := c.Discover(ctx)
+	if err != nil {
+		return nil, err
+	}
+	getfn := c.get
+	if dir.OrderURL != "" {
+		// Assume RFC compliant CA.
+		getfn = c.getpost
+	}
+
 	for {
-		res, err := c.get(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
+		res, err := getfn(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
 		if err != nil {
 			return nil, err
 		}
@@ -572,10 +632,22 @@ func (c *Client) WaitAuthorization(ctx context.Context, url string) (*Authorizat
 //
 // A client typically polls a challenge status using this method.
 func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, error) {
-	res, err := c.get(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
+	// Required for c.accountKID() when in RFC mode.
+	dir, err := c.Discover(ctx)
 	if err != nil {
 		return nil, err
 	}
+
+	getfn := c.get
+	if dir.OrderURL != "" {
+		// Assume RFC compliant CA.
+		getfn = c.getpost
+	}
+	res, err := getfn(ctx, url, wantStatus(http.StatusOK, http.StatusAccepted))
+	if err != nil {
+		return nil, err
+	}
+
 	defer res.Body.Close()
 	v := wireChallenge{URI: url}
 	if err := json.NewDecoder(res.Body).Decode(&v); err != nil {
@@ -590,23 +662,27 @@ func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, erro
 // The server will then perform the validation asynchronously.
 func (c *Client) Accept(ctx context.Context, chal *Challenge) (*Challenge, error) {
 	// Required for c.accountKID() when in RFC mode.
-	if _, err := c.Discover(ctx); err != nil {
-		return nil, err
-	}
-
-	auth, err := keyAuth(c.Key.Public(), chal.Token)
+	dir, err := c.Discover(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	req := struct {
-		Resource string `json:"resource"`
-		Type     string `json:"type"`
-		Auth     string `json:"keyAuthorization"`
-	}{
-		Resource: "challenge",
-		Type:     chal.Type,
-		Auth:     auth,
+	var req interface{} = json.RawMessage("{}") // RFC compliant CA
+	if dir.OrderURL == "" {
+		// Assume pre-RFC legacy CA.
+		auth, err := keyAuth(c.Key.Public(), chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		req = struct {
+			Resource string `json:"resource"`
+			Type     string `json:"type"`
+			Auth     string `json:"keyAuthorization"`
+		}{
+			Resource: "challenge",
+			Type:     chal.Type,
+			Auth:     auth,
+		}
 	}
 	res, err := c.post(ctx, nil /* c.Key */, chal.URI, req, wantStatus(
 		http.StatusOK,       // according to the spec
@@ -658,21 +734,7 @@ func (c *Client) HTTP01ChallengePath(token string) string {
 }
 
 // TLSSNI01ChallengeCert creates a certificate for TLS-SNI-01 challenge response.
-// Servers can present the certificate to validate the challenge and prove control
-// over a domain name.
-//
-// The implementation is incomplete in that the returned value is a single certificate,
-// computed only for Z0 of the key authorization. ACME CAs are expected to update
-// their implementations to use the newer version, TLS-SNI-02.
-// For more details on TLS-SNI-01 see https://tools.ietf.org/html/draft-ietf-acme-acme-01#section-7.3.
-//
-// The token argument is a Challenge.Token value.
-// If a WithKey option is provided, its private part signs the returned cert,
-// and the public part is used to specify the signee.
-// If no WithKey option is provided, a new ECDSA key is generated using P-256 curve.
-//
-// The returned certificate is valid for the next 24 hours and must be presented only when
-// the server name of the TLS ClientHello matches exactly the returned name value.
+// DEPRECATED: This challenge type is unused in both draft-02 and RFC versions of ACME spec.
 func (c *Client) TLSSNI01ChallengeCert(token string, opt ...CertOption) (cert tls.Certificate, name string, err error) {
 	ka, err := keyAuth(c.Key.Public(), token)
 	if err != nil {
@@ -689,17 +751,7 @@ func (c *Client) TLSSNI01ChallengeCert(token string, opt ...CertOption) (cert tl
 }
 
 // TLSSNI02ChallengeCert creates a certificate for TLS-SNI-02 challenge response.
-// Servers can present the certificate to validate the challenge and prove control
-// over a domain name. For more details on TLS-SNI-02 see
-// https://tools.ietf.org/html/draft-ietf-acme-acme-03#section-7.3.
-//
-// The token argument is a Challenge.Token value.
-// If a WithKey option is provided, its private part signs the returned cert,
-// and the public part is used to specify the signee.
-// If no WithKey option is provided, a new ECDSA key is generated using P-256 curve.
-//
-// The returned certificate is valid for the next 24 hours and must be presented only when
-// the server name in the TLS ClientHello matches exactly the returned name value.
+// DEPRECATED: This challenge type is unused in both draft-02 and RFC versions of ACME spec.
 func (c *Client) TLSSNI02ChallengeCert(token string, opt ...CertOption) (cert tls.Certificate, name string, err error) {
 	b := sha256.Sum256([]byte(token))
 	h := hex.EncodeToString(b[:])
@@ -766,7 +818,7 @@ func (c *Client) TLSALPN01ChallengeCert(token, domain string, opt ...CertOption)
 	return tlsChallengeCert([]string{domain}, newOpt)
 }
 
-// doReg sends all types of registration requests.
+// doReg sends all types of registration requests in pre-RFC world.
 // The type of request is identified by typ argument, which is a "resource"
 // in the ACME spec terms.
 //
