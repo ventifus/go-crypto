@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "187f813b_d892c2b8",
+        "filename": "acme/jws.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-10T22:16:25Z",
+      "side": 1,
+      "message": "Add docs",
+      "revId": "8a1a450e062b5294c124531b3b00b14fb574811f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e76518_f64ef5a8",
+        "filename": "acme/jws.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-10T22:16:25Z",
+      "side": 1,
+      "message": "non-empty would be more clear for a string. \"zero value\" works in general, but for a string I\u0027d just say empty or non-empty.",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "8a1a450e062b5294c124531b3b00b14fb574811f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
