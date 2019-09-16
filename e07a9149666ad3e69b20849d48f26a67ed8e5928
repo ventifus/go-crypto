@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "332a9ac1_9d03696b",
+        "filename": "openpgp/keys_data_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "All the other keys in the file seem to be named according to the testcase they are intended for. I\u0027m planning to follow the same since it is helpful in associating the keys with testcases.",
+      "parentUuid": "da966018_d01c738f",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea0b0708_8cded6a6",
         "filename": "openpgp/keys_test.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf481017_6682fefc",
+        "filename": "openpgp/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "We cannot check for exact equality between serialized and original keyrings because the Serialize* methods in the library re-sign identities and signatures leading to the output be different. That\u0027s why we check for the contents of the key rings to make sure contents are as expected. Otherwise modified the test to serialise and deserialise an armored key.",
+      "parentUuid": "ea0b0708_8cded6a6",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "75682667_c36015fc",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f98501d_8b8ee7c6",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74a4f133_1ea423d2",
         "filename": "openpgp/packet/private_key.go",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1982721_cd02651d",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74a4f133_1ea423d2",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "4b682637_ca93d86d",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "170175f9_0227168b",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8d634af_d4cdf7fa",
         "filename": "openpgp/s2k/s2k.go",
         "patchSetId": 1
@@ -101,6 +191,24 @@
       "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a59d9fe9_8b865333",
+        "filename": "openpgp/s2k/s2k.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-09-16T05:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d634af_d4cdf7fa",
+      "revId": "e07a9149666ad3e69b20849d48f26a67ed8e5928",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
