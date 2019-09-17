@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a6ec592_7c5cc460",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-09-17T18:30:49Z",
+      "side": 1,
+      "message": "This probably won\u0027t help performance much here, but we should try to keep the loads in groups of 4 to take advantage of 4 L/S issue ports (i.e. move the ADD to right before the VXOR).",
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "198d6326_b91ae2dc",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-09-17T18:30:49Z",
+      "side": 1,
+      "message": "The patch for these instructions is already in. Can\u0027t we just replace these by the actual instructions?",
+      "range": {
+        "startLine": 272,
+        "startChar": 22,
+        "endLine": 272,
+        "endChar": 28
+      },
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74dd5cdd_744c852c",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-09-17T18:30:49Z",
+      "side": 1,
+      "message": "This can be moved to a bit early, so the compare latency is masked. There are more places below where this can be done.",
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8149b38a_3eb99d17",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 13015
+      },
+      "writtenOn": "2019-09-17T18:30:49Z",
+      "side": 1,
+      "message": "I think it would help if these stores are grouped together (i.e. nove the ADDs after them). There are more places below where this can be changed.",
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
