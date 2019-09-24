@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a765c0f_e7740eab",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "order-based",
+      "range": {
+        "startLine": 445,
+        "startChar": 17,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3f87169_2448b123",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "can use",
+      "range": {
+        "startLine": 449,
+        "startChar": 29,
+        "endLine": 449,
+        "endChar": 45
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7249dd61_d7d6068a",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "Drop \"handy\". That\u0027s informal and vague and subjective.\n\nAlso, why do we want more alternatives? This package already is super complicated to use.\n\nRewrite these docs to say what it actually does and why you\u0027d pick it instead of something else.",
+      "range": {
+        "startLine": 473,
+        "startChar": 15,
+        "endLine": 473,
+        "endChar": 37
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf00a46e_c3c2fe18",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "shouldn\u0027t we have a constant for that instead?",
+      "range": {
+        "startLine": 474,
+        "startChar": 54,
+        "endLine": 474,
+        "endChar": 82
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6e236c_0af8d746",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "See https://golang.org/wiki/Deprecated and fix here and elsewhere.\n\nBlank line before, and NOT ALL CAPS.",
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24bc52ba_7775bbcf",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "the old way (pre-RFC).",
+      "range": {
+        "startLine": 821,
+        "startChar": 50,
+        "endLine": 821,
+        "endChar": 66
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e5c9077_bc9b7584",
+        "filename": "acme/http.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "postAsGet?",
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81d7c480_a62cd176",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "// It is only supported by CAs implementing RFC 8555.",
+      "range": {
+        "startLine": 133,
+        "startChar": 27,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1361f1f1_cbda1164",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "is the",
+      "range": {
+        "startLine": 275,
+        "startChar": 11,
+        "endLine": 275,
+        "endChar": 25
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "323fd1eb_02592ef4",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "only a leaf",
+      "range": {
+        "startLine": 278,
+        "startChar": 33,
+        "endLine": 278,
+        "endChar": 42
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e603da26_c3563f01",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-09-24T15:30:45Z",
+      "side": 1,
+      "message": "RFCNNNN without a space looks weird. Reword to \"CAs implementing RFC 85555\" or \"RFC 8555-compliant CAs\"?",
+      "range": {
+        "startLine": 281,
+        "startChar": 36,
+        "endLine": 281,
+        "endChar": 43
+      },
+      "revId": "19fb39295cd8046dd38f233f243bac3935b89b76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
