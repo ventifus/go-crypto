@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "eed1171a_1d708e09",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-09-24T16:36:29Z",
+      "side": 1,
+      "message": "I was trying to keep this exactly like the cryptogams\u0027 implementation unless there is a significant improvement.",
+      "parentUuid": "5a6ec592_7c5cc460",
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "198d6326_b91ae2dc",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "8fca373f_a570613d",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-09-24T16:36:29Z",
+      "side": 1,
+      "message": "I don\u0027t think these repos are built with upstream golang but the latest release, and these instructions are not in Go 1.13. I could be wrong on how this works. In any case if I add the instructions then there needs to be a tag that says it requires Go 1.14 to build with.",
+      "parentUuid": "198d6326_b91ae2dc",
+      "range": {
+        "startLine": 272,
+        "startChar": 22,
+        "endLine": 272,
+        "endChar": 28
+      },
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74dd5cdd_744c852c",
         "filename": "internal/chacha20/asm_ppc64le.s",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2019-09-17T18:30:49Z",
       "side": 1,
       "message": "This can be moved to a bit early, so the compare latency is masked. There are more places below where this can be done.",
+      "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5efb2f61_5e4493b6",
+        "filename": "internal/chacha20/asm_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2019-09-24T16:36:29Z",
+      "side": 1,
+      "message": "I mainly just went with the implementation by Andy from cryptogams.",
+      "parentUuid": "74dd5cdd_744c852c",
       "revId": "2e3bda1eddf9b0fd34ef2accac766be3282185fb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
