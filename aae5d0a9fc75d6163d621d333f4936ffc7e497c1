@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "434984ea_ef3ca030",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-09-27T12:29:26Z",
+      "side": 1,
+      "message": "I struggle with this bit. I guess I just wanted to show that c.Key is used without people checking what that second argument of c.post is.\n\n\"noKey\" feels like it won\u0027t use any key but in reality it will use c.Key.\n\nOpted for just removing /* c.Key */ comment and leaving only nil. Not ideal but can always revisit in the future.",
+      "parentUuid": "b7163c99_4bd3efba",
+      "range": {
+        "startLine": 266,
+        "startChar": 32,
+        "endLine": 266,
+        "endChar": 36
+      },
+      "revId": "aae5d0a9fc75d6163d621d333f4936ffc7e497c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07c88dc5_d7251f2f",
         "filename": "acme/http.go",
         "patchSetId": 5
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "198b0178_55ae87a1",
+        "filename": "acme/http.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-09-27T12:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07c88dc5_d7251f2f",
+      "revId": "aae5d0a9fc75d6163d621d333f4936ffc7e497c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1706f3f_edba4d49",
         "filename": "acme/types.go",
         "patchSetId": 5
@@ -56,6 +98,24 @@
       "revId": "aae5d0a9fc75d6163d621d333f4936ffc7e497c1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8a3790f_04ca7ab9",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-09-27T12:29:26Z",
+      "side": 1,
+      "message": "Good catch. I then fixed it in the next CL and forgot to port back here but the truth is I\u0027ve never actually needed to exercise a code path to encode in lower case in the end. So, it did in fact work all the time decoding as \"Type\".\n\nI realize this was premature and isn\u0027t needed - there are no tests which would fail due to case sensitivity.\nRemoved JSON tags.",
+      "parentUuid": "d1706f3f_edba4d49",
+      "revId": "aae5d0a9fc75d6163d621d333f4936ffc7e497c1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
