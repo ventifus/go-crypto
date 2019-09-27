@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cf7110a_e21daa32",
+        "filename": "acme/acme.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T18:31:38Z",
+      "side": 1,
+      "message": "This could be made into a self-documenting dir.rfcCompliant() bool method, and then you can skip the comment below.",
+      "range": {
+        "startLine": 328,
+        "startChar": 4,
+        "endLine": 328,
+        "endChar": 22
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "702ad591_2bb7346f",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T18:31:38Z",
+      "side": 1,
+      "message": "if err !\u003d nil {\n    if isAlreadyRevoked(err) {\n        // Assume it is not an error to revoke an already revoked cert.\n        return nil\n    }\n    return err\n}\ndefer res.Body.Close()",
+      "range": {
+        "startLine": 380,
+        "startChar": 1,
+        "endLine": 385,
+        "endChar": 2
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68b2cc09_84742aeb",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T18:31:38Z",
+      "side": 1,
+      "message": "Make this change in the CL that introduced it, so there is not an API break in the history.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
