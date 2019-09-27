@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06e8af17_1ada4433",
+        "filename": "acme/http.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "Typo.",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 15
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f614fe_879ed0cf",
+        "filename": "acme/http.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "wantStatusOK makes me think the function tells me if 200 is required or optional. statusOK/statusCreated would be better names, but I am also not sure why replace wantStatus(http.StatusOK) where \"wantStatus\" makes more sense because it returns a function not a bool.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69d6b1d2_6900a395",
+        "filename": "acme/jws.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "noPayload",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "220f36de_daae011a",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "\"the Authorize method\" or just \"Authorize\". Personally prefer the latter.\n\nSame below with Accept and CerateCert.",
+      "range": {
+        "startLine": 126,
+        "startChar": 38,
+        "endLine": 126,
+        "endChar": 54
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b49fa86_f285f5a0",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "Any HTTP error code, not just 4xx, right?",
+      "range": {
+        "startLine": 188,
+        "startChar": 68,
+        "endLine": 188,
+        "endChar": 84
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19fc537e_9dc43cea",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "Why retry a network/parsing error here but not during c.post?",
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2283b99a_56e44863",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "wireAuthzID?",
+      "range": {
+        "startLine": 235,
+        "startChar": 19,
+        "endLine": 235,
+        "endChar": 47
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22c48432_60b2afae",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "This could also be a network error from Read.\n\nA generic \"error reading order\"?",
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "814f1dc3_dcb2e2a0",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "Maybe use the constant names, so users learn about them?",
+      "range": {
+        "startLine": 249,
+        "startChar": 24,
+        "endLine": 249,
+        "endChar": 79
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1527be22_40870ec0",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "+the or -method. Same with FetchCert below.",
+      "range": {
+        "startLine": 252,
+        "startChar": 47,
+        "endLine": 252,
+        "endChar": 73
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daacb16e_b1f22cbb",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "DomainIDs",
+      "range": {
+        "startLine": 353,
+        "startChar": 5,
+        "endLine": 353,
+        "endChar": 13
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5792feee_b4c2c35b",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-27T17:53:46Z",
+      "side": 1,
+      "message": "IPIDs",
+      "range": {
+        "startLine": 364,
+        "startChar": 5,
+        "endLine": 364,
+        "endChar": 9
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
