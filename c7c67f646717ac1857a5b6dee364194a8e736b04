@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a452e45_d39b835a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-30T22:36:20Z",
+      "side": 1,
+      "message": "openpgp/packet: support crypto.Decrypter in EncryptedKey.Decrypt",
+      "revId": "c7c67f646717ac1857a5b6dee364194a8e736b04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dce425f_3f8a5c88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-09-30T22:36:20Z",
+      "side": 1,
+      "message": "Fixes golang/go#33301",
+      "revId": "c7c67f646717ac1857a5b6dee364194a8e736b04",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
