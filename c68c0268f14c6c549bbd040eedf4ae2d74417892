@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "38675976_70129084",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:31:28Z",
+      "side": 1,
+      "message": "Actually, I don\u0027t believe there\u0027s such word \"unretriable\". Replaced with \"non-retryable\" in patch set 10.",
+      "parentUuid": "b4bfccd8_fdb3b48f",
+      "range": {
+        "startLine": 188,
+        "startChar": 68,
+        "endLine": 188,
+        "endChar": 84
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19fc537e_9dc43cea",
         "filename": "acme/rfc8555.go",
         "patchSetId": 8
