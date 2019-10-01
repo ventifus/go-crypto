@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9fdc2af1_139aa314",
+        "filename": "acme/acme.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T13:51:15Z",
+      "side": 1,
+      "message": "Done, in all places.",
+      "parentUuid": "8cf7110a_e21daa32",
+      "range": {
+        "startLine": 328,
+        "startChar": 4,
+        "endLine": 328,
+        "endChar": 22
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "702ad591_2bb7346f",
         "filename": "acme/rfc8555.go",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f3585a7_41f6e0d5",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T13:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "702ad591_2bb7346f",
+      "range": {
+        "startLine": 380,
+        "startChar": 1,
+        "endLine": 385,
+        "endChar": 2
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -83,6 +131,30 @@
       "side": 1,
       "message": "Oh crap. I\u0027m seeing this only now and golang.org/cl/192779 is already submitted.\nTotally forgot about this. Sorry.",
       "parentUuid": "68b2cc09_84742aeb",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "334ffc4b_250e2548",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T13:51:15Z",
+      "side": 1,
+      "message": "On the bright side, this was introduced to the upstream only a couple hours ago. Hopefully not too big of a deal unless of course someone will specifically check out at that commit, use it and then move forward.",
+      "parentUuid": "b88dffe3_7254f08d",
       "range": {
         "startLine": 108,
         "startChar": 0,
