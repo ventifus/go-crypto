@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "87fc8edb_7fe8c199",
+        "filename": "acme/http.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done. Actually, removed the function altogether.",
+      "parentUuid": "06e8af17_1ada4433",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 15
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4f614fe_879ed0cf",
         "filename": "acme/http.go",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d77b113_181c6a03",
+        "filename": "acme/http.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Oh, you mean \"OK\" is confusing in that it could mean anything between 200..299. Yeah, I agree.\nThis was probably a premature impulse. Reverted to wantStatus(...) everywhere.",
+      "parentUuid": "d4f614fe_879ed0cf",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "372aec3b_99817ed6",
+        "filename": "acme/jws.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69d6b1d2_6900a395",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "220f36de_daae011a",
         "filename": "acme/rfc8555.go",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8e0c3e3_3fee227c",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done, the latter.",
+      "parentUuid": "220f36de_daae011a",
+      "range": {
+        "startLine": 126,
+        "startChar": 38,
+        "endLine": 126,
+        "endChar": 54
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "b4bfccd8_fdb3b48f",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Not any error code really because we actually retry on 5xx server errors.\nSo, reworded as \"... CA responded with an unretriable error code\"",
+      "parentUuid": "8b49fa86_f285f5a0",
+      "range": {
+        "startLine": 188,
+        "startChar": 68,
+        "endLine": 188,
+        "endChar": 84
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19fc537e_9dc43cea",
         "filename": "acme/rfc8555.go",
         "patchSetId": 8
@@ -131,6 +251,24 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbbb6b47_4c4782e9",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "A network error isn\u0027t retried. It is returned immediately above on line 199.\nWhy not retry a parsing error in c.post: because c.post doesn\u0027t know what to parse the body into. Its retries are based only on status code.\n\nWe can of course revisit this later on.",
+      "parentUuid": "19fc537e_9dc43cea",
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "e7ddcab4_d845466c",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Thanks! Done.",
+      "parentUuid": "2283b99a_56e44863",
+      "range": {
+        "startLine": 235,
+        "startChar": 19,
+        "endLine": 235,
+        "endChar": 47
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22c48432_60b2afae",
         "filename": "acme/rfc8555.go",
         "patchSetId": 8
@@ -171,6 +333,24 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74e3232d_e6c4d838",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Agree but I don\u0027t usually like \"error\" word in an error message... Anyway, done. Can revisit later.",
+      "parentUuid": "22c48432_60b2afae",
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -197,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "c4b300fd_5f7cb2f6",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done, here and in a couple other places.",
+      "parentUuid": "814f1dc3_dcb2e2a0",
+      "range": {
+        "startLine": 249,
+        "startChar": 24,
+        "endLine": 249,
+        "endChar": 79
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1527be22_40870ec0",
         "filename": "acme/types.go",
         "patchSetId": 8
@@ -217,6 +421,30 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "282c3c75_3f813d5f",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done, the latter.",
+      "parentUuid": "1527be22_40870ec0",
+      "range": {
+        "startLine": 252,
+        "startChar": 47,
+        "endLine": 252,
+        "endChar": 73
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -243,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "c3dc8c16_3db21a3f",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daacb16e_b1f22cbb",
+      "range": {
+        "startLine": 353,
+        "startChar": 5,
+        "endLine": 353,
+        "endChar": 13
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5792feee_b4c2c35b",
         "filename": "acme/types.go",
         "patchSetId": 8
@@ -263,6 +515,30 @@
       "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c881ca4_c8d37ad2",
+        "filename": "acme/types.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5792feee_b4c2c35b",
+      "range": {
+        "startLine": 364,
+        "startChar": 5,
+        "endLine": 364,
+        "endChar": 9
+      },
+      "revId": "c68c0268f14c6c549bbd040eedf4ae2d74417892",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
