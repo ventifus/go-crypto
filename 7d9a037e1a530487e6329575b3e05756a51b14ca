@@ -68,6 +68,30 @@
       "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88dffe3_7254f08d",
+        "filename": "acme/types.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-01T10:45:29Z",
+      "side": 1,
+      "message": "Oh crap. I\u0027m seeing this only now and golang.org/cl/192779 is already submitted.\nTotally forgot about this. Sorry.",
+      "parentUuid": "68b2cc09_84742aeb",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "7d9a037e1a530487e6329575b3e05756a51b14ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
