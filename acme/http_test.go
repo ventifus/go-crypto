@@ -216,11 +216,15 @@ func TestUserAgent(t *testing.T) {
 	for _, custom := range []string{"", "CUSTOM_UA"} {
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			t.Log(r.UserAgent())
-			if s := "golang.org/x/crypto/acme"; !strings.Contains(r.UserAgent(), s) {
-				t.Errorf("expected User-Agent to contain %q, got %q", s, r.UserAgent())
-			}
-			if !strings.Contains(r.UserAgent(), custom) {
-				t.Errorf("expected User-Agent to contain %q, got %q", custom, r.UserAgent())
+			switch custom {
+			case "CUSTOM_UA":
+				if r.UserAgent() != custom {
+					t.Errorf("r.UserAgent() = %q; want %q", r.UserAgent(), custom)
+				}
+			default:
+				if s := "golang.org/x/crypto/acme"; !strings.Contains(r.UserAgent(), s) {
+					t.Errorf("expected User-Agent to contain %q, got %q", s, r.UserAgent())
+				}
 			}
 
 			w.WriteHeader(http.StatusOK)
