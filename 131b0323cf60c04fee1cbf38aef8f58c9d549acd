@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84d4c83f_138418e1",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-10T22:26:56Z",
+      "side": 1,
+      "message": "This sentence needs work.\n\nMaybe just \"with the directory URL pointing to Let\u0027s Encrypt.\"",
+      "range": {
+        "startLine": 138,
+        "startChar": 60,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "997a935a_213a0638",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-10T22:26:56Z",
+      "side": 1,
+      "message": "verifyRFC",
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c185458_89906396",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-10T22:26:56Z",
+      "side": 1,
+      "message": "this should probably be a const with docs",
+      "range": {
+        "startLine": 1057,
+        "startChar": 17,
+        "endLine": 1057,
+        "endChar": 65
+      },
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
