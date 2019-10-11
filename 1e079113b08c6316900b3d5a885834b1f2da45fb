@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c24e36b_d65151d2",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T17:26:37Z",
+      "side": 1,
+      "message": "should it still have some sort of timeout, though? 5 minutes? 10 minutes?",
+      "range": {
+        "startLine": 710,
+        "startChar": 26,
+        "endLine": 710,
+        "endChar": 46
+      },
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0b44e61_8a82e687",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T17:26:37Z",
+      "side": 1,
+      "message": "why is this way up here? can\u0027t this by a local variable on the same line as 734? and then call it \"i\" ?",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "336b85d5_424abb80",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T17:26:37Z",
+      "side": 1,
+      "message": "same comment as above. move down, name it \"i\"?",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a731668_ce90f4e5",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T17:26:37Z",
+      "side": 1,
+      "message": "likewise.\n\nif so, unify into a helper func that does it for both places",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe9304e9_06e1c117",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T17:26:37Z",
+      "side": 1,
+      "message": "This name \"tokensMu\" is too overloaded at this point. It\u0027s documented well, at least, but let\u0027s rename it in a future CL.",
+      "range": {
+        "startLine": 852,
+        "startChar": 1,
+        "endLine": 853,
+        "endChar": 27
+      },
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
