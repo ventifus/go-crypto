@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5cefe0b_5bec2fcd",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T14:58:09Z",
+      "side": 1,
+      "message": "or pull this out into a \"func newTestClient() *Client\" func with a comment only there.",
+      "range": {
+        "startLine": 912,
+        "startChar": 8,
+        "endLine": 912,
+        "endChar": 52
+      },
+      "revId": "15988d54584fe67b21002392c69392e9c5c23fc5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
