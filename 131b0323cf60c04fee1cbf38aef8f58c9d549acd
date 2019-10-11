@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c3660cc6_7c1f972b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T10:46:37Z",
+      "side": 1,
+      "message": "Done. Actually, reverted back but referring to LetsEncryptURL const defined in this package, as opposed to acme.LetsEncryptURL originally. See related comment down below around line 1057.",
+      "parentUuid": "84d4c83f_138418e1",
+      "range": {
+        "startLine": 138,
+        "startChar": 60,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "997a935a_213a0638",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d477c24b_44e65084",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T10:46:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "997a935a_213a0638",
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ce7d215_a24fa1f9",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T10:46:37Z",
+      "side": 1,
+      "message": "Done. Defined LetsEncryptURL const in this package, similar to acme.LetsEncryptURL.\nIt always bugged me that a CL modifying acme.LetsEncryptURL would potentially make a big impact on autocert package, intentionally or otherwise.\n\nI think it\u0027s worth using a separate const here in autocert independently of what acme.LetsEncryptURL points to.",
+      "parentUuid": "4c185458_89906396",
+      "range": {
+        "startLine": 1057,
+        "startChar": 17,
+        "endLine": 1057,
+        "endChar": 65
+      },
+      "revId": "131b0323cf60c04fee1cbf38aef8f58c9d549acd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
