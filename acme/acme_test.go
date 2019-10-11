@@ -909,7 +909,8 @@ func TestFetchCertCancel(t *testing.T) {
 	done := make(chan struct{})
 	var err error
 	go func() {
-		_, err = (&Client{}).FetchCert(ctx, ts.URL, false)
+		cl := &Client{dir: &Directory{}} // skip discovery
+		_, err = cl.FetchCert(ctx, ts.URL, false)
 		close(done)
 	}()
 	cancel()
@@ -932,7 +933,8 @@ func TestFetchCertDepth(t *testing.T) {
 		w.Write([]byte{count})
 	}))
 	defer ts.Close()
-	_, err := (&Client{}).FetchCert(context.Background(), ts.URL, true)
+	cl := &Client{dir: &Directory{}} // skip discovery
+	_, err := cl.FetchCert(context.Background(), ts.URL, true)
 	if err == nil {
 		t.Errorf("err is nil")
 	}
@@ -947,7 +949,8 @@ func TestFetchCertBreadth(t *testing.T) {
 		w.Write([]byte{1})
 	}))
 	defer ts.Close()
-	_, err := (&Client{}).FetchCert(context.Background(), ts.URL, true)
+	cl := &Client{dir: &Directory{}} // skip discovery
+	_, err := cl.FetchCert(context.Background(), ts.URL, true)
 	if err == nil {
 		t.Errorf("err is nil")
 	}
@@ -959,7 +962,8 @@ func TestFetchCertSize(t *testing.T) {
 		w.Write(b)
 	}))
 	defer ts.Close()
-	_, err := (&Client{}).FetchCert(context.Background(), ts.URL, false)
+	cl := &Client{dir: &Directory{}} // skip discovery
+	_, err := cl.FetchCert(context.Background(), ts.URL, false)
 	if err == nil {
 		t.Errorf("err is nil")
 	}
