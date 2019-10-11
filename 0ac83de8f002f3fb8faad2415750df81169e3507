@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccefe24c_18b88fc7",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-10-11T16:06:18Z",
+      "side": 1,
+      "message": "Is it LetsEncrypt or is it the default?\n\nThe default might change. No need to call it LetsEncryptURL, really.\n\nHow about DefaultACMEDirectory?",
+      "revId": "0ac83de8f002f3fb8faad2415750df81169e3507",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
