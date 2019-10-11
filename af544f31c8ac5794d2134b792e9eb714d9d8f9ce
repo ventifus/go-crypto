@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4e795d0_7a465637",
+        "filename": "internal/chacha20/chacha_ppc64le.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 16005
+      },
+      "writtenOn": "2019-10-11T08:39:30Z",
+      "side": 1,
+      "message": "Why did this become a var?",
+      "revId": "af544f31c8ac5794d2134b792e9eb714d9d8f9ce",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
