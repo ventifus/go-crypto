@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "95447f3d_f2207ec5",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T18:35:49Z",
+      "side": 1,
+      "message": "Yeah, let\u0027s say 2 challenge types where each creates a separate order containing 3 authorizations. Each deactivation takes few seconds. So, 5min is probably a lot more than enough.",
+      "parentUuid": "2c24e36b_d65151d2",
+      "range": {
+        "startLine": 710,
+        "startChar": 26,
+        "endLine": 710,
+        "endChar": 46
+      },
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0b44e61_8a82e687",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "772d21ba_0903fd6b",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T18:35:49Z",
+      "side": 1,
+      "message": "If I put it on line 734 then it would always start from 0 on each outer for loop iteraction which will make it run forever until context is done if we can\u0027t solve any of the challenges.\n\nWe want it to be global to track which challenge type we tried last and continue searching for suitable challenge on the next iteraction.\n\nI agree though it\u0027s way more complicated that it should be. Will try to simplify it in a future CL.",
+      "parentUuid": "c0b44e61_8a82e687",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "f50e2299_40ce13f4",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T18:35:49Z",
+      "side": 1,
+      "message": "Right. The problem is it\u0027ll then run forever if we can\u0027t solve any known challenges until context is done.\nI\u0027ll try to simplify this in a future CL.",
+      "parentUuid": "336b85d5_424abb80",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a731668_ce90f4e5",
         "filename": "acme/autocert/autocert.go",
         "patchSetId": 5
@@ -73,6 +133,24 @@
       "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d480a6b0_f7a53f45",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T18:35:49Z",
+      "side": 1,
+      "message": "Done. Moved context to inside m.revokePendingAuthz.\nAlso, renamed revokePendingAuthz to deactivatePendingAuthz. The former comes from early drafts and might mislead occasional readers.",
+      "parentUuid": "9a731668_ce90f4e5",
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -96,6 +174,30 @@
       "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98a04415_9955b526",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T18:35:49Z",
+      "side": 1,
+      "message": "Sent you golang.org/cl/200680.",
+      "parentUuid": "fe9304e9_06e1c117",
+      "range": {
+        "startLine": 852,
+        "startChar": 1,
+        "endLine": 853,
+        "endChar": 27
+      },
+      "revId": "1e079113b08c6316900b3d5a885834b1f2da45fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
