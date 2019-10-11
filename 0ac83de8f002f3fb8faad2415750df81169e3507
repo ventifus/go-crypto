@@ -16,6 +16,24 @@
       "revId": "0ac83de8f002f3fb8faad2415750df81169e3507",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5000862_c564d0ef",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T16:30:49Z",
+      "side": 1,
+      "message": "Done. DefaultACMEDirectory sounds good.",
+      "parentUuid": "ccefe24c_18b88fc7",
+      "revId": "0ac83de8f002f3fb8faad2415750df81169e3507",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
