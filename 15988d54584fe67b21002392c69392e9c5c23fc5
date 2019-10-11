@@ -22,6 +22,30 @@
       "revId": "15988d54584fe67b21002392c69392e9c5c23fc5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fdc22f4_de0aa740",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-11T16:14:21Z",
+      "side": 1,
+      "message": "Done: newTestClient() and updated few other places but not all. Will need to refactor many of them anyway while removing draft-02 code.",
+      "parentUuid": "f5cefe0b_5bec2fcd",
+      "range": {
+        "startLine": 912,
+        "startChar": 8,
+        "endLine": 912,
+        "endChar": 52
+      },
+      "revId": "15988d54584fe67b21002392c69392e9c5c23fc5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
