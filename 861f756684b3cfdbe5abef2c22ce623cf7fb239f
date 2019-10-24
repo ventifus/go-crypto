@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8363f32_fda25d5a",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-10-24T18:48:55Z",
+      "side": 1,
+      "message": "Adding this `if` (and the next one) scares me slightly. The comment above this functions says,\n\n    Identities and subkeys are re-signed in case they changed since NewEntry. (sic)\n\nSo, users of this function have the expectation that if, let\u0027s say, they change `ident.SelfSignature.KeyLifetimeSecs`, and then call `entity.SerializePrivate()`, their change will have effect. Now for a dummy key it won\u0027t, and there won\u0027t be any indication or warning that it didn\u0027t. This may have security implications (the key may expire later than they expect). So I would just leave this function as-is and return an error for dummy keys.\n\nIf you still need a way to serialize them, I would add a separate function that\u0027s very explicit in what it does. I see a few options for that:\n\n- `SerializePrivateWithoutSigning` (might have to come up with a better name), which could be more generally useful for non-dummy keys as well for performance reasons, since `NewEntity` already signs everything, so there\u0027s no need to sign things again\n- `SerializePrivateSubkeys`, which would export the primary key as a dummy key even if it isn\u0027t currently, similar to the `gpg --export-secret-subkeys` option that started this all\n- Both of the above\n- None of the above; since all the functions that `SerializePrivate` calls are exported, you could just write a function in your own code that does exactly what you need and don\u0027t add it to this PR; although I personally think both of the above could be useful for others.",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d085086d_9e4e6731",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-10-24T18:48:55Z",
+      "side": 1,
+      "message": "I know I said these keys are often referred to as \"gnu-dummy\", but I wouldn\u0027t refer to \"gnu\" in the exported name here. If this extension ever gets added to the spec itself (and it seems useful enough to do so) then we\u0027d have to change this name again. Similarly for `ErrGnuDummyPrivateKey`, I\u0027d call it `ErrDummyPrivateKey` instead.",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17763cbd_a8065b3c",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 33767
+      },
+      "writtenOn": "2019-10-24T18:48:55Z",
+      "side": 1,
+      "message": "This is called either packetLength or pLength elsewhere, I\u0027d follow that. Also, instead of duplicating the calculation, you could do:\n\n\tpacketLength :\u003d len(contents)+len(privateKeyBytes)\n\tif !pk.Dummy {\n\t\tpacketLength +\u003d 2\n\t}",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
