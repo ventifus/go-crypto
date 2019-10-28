@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12158e6a_c374e170",
+        "filename": "sha3/xor_unaligned.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-10-28T14:30:33Z",
+      "side": 1,
+      "message": "This makes the test pass under -d\u003dcheckptr, but it\u0027s probably still technically wrong, depending on what the caller passes to the Write method.",
+      "revId": "0a455609f11a122f1a782cf4e983331232be73e5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
