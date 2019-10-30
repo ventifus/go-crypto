@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14fd56b5_bd8c7132",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2019-10-30T19:02:58Z",
+      "side": 1,
+      "message": "No Markdown please.\nhttps://golang.org/doc/contribute.html#main_content",
+      "revId": "b6902a5ba64328247b4d3857a1e15b5e356ace11",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
