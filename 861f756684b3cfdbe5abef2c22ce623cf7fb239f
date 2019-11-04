@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0088de90_c30fb4af",
+        "filename": "openpgp/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-11-04T09:21:13Z",
+      "side": 1,
+      "message": "I agree with the idea of removing the if from here to preserve the original intention of the API. I\u0027m onboard with having a SerializePrivateWithoutSigning. I had to implement this in one of the libraries I\u0027m working on and this method is needed for the unit test written for verifying proper serialization for dummy keys. IMO SerializePrivateSubkeys is not needed as the output of SerializePrivateWithoutSigning and SerializePrivateSubkeys should be the same for a dummy key.",
+      "parentUuid": "b8363f32_fda25d5a",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d085086d_9e4e6731",
         "filename": "openpgp/packet/private_key.go",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "fbf8d6af_c2b36b54",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-11-04T09:21:13Z",
+      "side": 1,
+      "message": "Agreed. Changed GnuDummy to Dummy.",
+      "parentUuid": "d085086d_9e4e6731",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17763cbd_a8065b3c",
         "filename": "openpgp/packet/private_key.go",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f896a5d3_f3c2e4c2",
+        "filename": "openpgp/packet/private_key.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 30964
+      },
+      "writtenOn": "2019-11-04T09:21:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17763cbd_a8065b3c",
+      "revId": "861f756684b3cfdbe5abef2c22ce623cf7fb239f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
