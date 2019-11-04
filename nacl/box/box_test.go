@@ -76,3 +76,59 @@ func TestBox(t *testing.T) {
 		t.Fatalf("box didn't match, got\n%x\n, expected\n%x", box, expected)
 	}
 }
+
+func TestSealOpenAnonymous(t *testing.T) {
+	publicKey, privateKey, _ := GenerateKey(rand.Reader)
+	message := []byte("test message")
+
+	box, err := SealAnonymous(nil, message, publicKey, nil)
+	if err != nil {
+		t.Fatalf("Unexpected error sealing %v", err)
+	}
+	opened, ok := OpenAnonymous(nil, box, privateKey)
+	if !ok {
+		t.Fatalf("failed to open box")
+	}
+
+	if !bytes.Equal(opened, message) {
+		t.Fatalf("got %x, want %x", opened, message)
+	}
+
+	for i := range box {
+		box[i] ^= 0x40
+		_, ok := OpenAnonymous(nil, box, privateKey)
+		if ok {
+			t.Fatalf("opened box with byte %d corrupted", i)
+		}
+		box[i] ^= 0x40
+	}
+}
+
+func TestSealedBox(t *testing.T) {
+	var privateKey [32]byte
+	for i := range privateKey[:] {
+		privateKey[i] = 1
+	}
+
+	var publicKey [32]byte
+	curve25519.ScalarBaseMult(&publicKey, &privateKey)
+	var message [64]byte
+	for i := range message[:] {
+		message[i] = 3
+	}
+
+	fakeRand := bytes.NewReader([]byte{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5})
+	box, err := SealAnonymous(nil, message[:], &publicKey, fakeRand)
+	if err != nil {
+		t.Fatalf("Unexpected error sealing %v", err)
+	}
+
+	// expected was generated using the C implementation of libsodium with a
+	// random implementation that always returns 5.
+	// https://gist.github.com/mastahyeti/942ec3f175448d68fed25018adbce5a7
+	expected, _ := hex.DecodeString("50a61409b1ddd0325e9b16b700e719e9772c07000b1bd7786e907c653d20495d2af1697137a53b1b1dfc9befc49b6eeb38f86be720e155eb2be61976d2efb34d67ecd44a6ad634625eb9c288bfc883431a84ab0f5557dfe673aa6f74c19f033e648a947358cfcc606397fa1747d5219a")
+
+	if !bytes.Equal(box, expected) {
+		t.Fatalf("box didn't match, got\n%x\n, expected\n%x", box, expected)
+	}
+}
