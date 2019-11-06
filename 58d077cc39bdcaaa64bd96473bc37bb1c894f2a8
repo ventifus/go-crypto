@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bd397ef7_c1d57650",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-06T20:15:28Z",
+      "side": 1,
+      "message": "I tried a number of ways to do it, and this was the clearest I could come up with. In particular 32-bit ones were way more obscure.\n\nI welcome code suggestions, but I don\u0027t have ideas to make it better myself.",
+      "parentUuid": "7a14e324_eb7469fb",
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32a6536d_445e794d",
         "filename": "internal/chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -57,6 +75,30 @@
       "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d4feb73_160f6d7c",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-06T20:15:28Z",
+      "side": 1,
+      "message": "I like it a lot better, and was halfway through changing it, but then I realized the RFC uses the sequential numbers, and I think it\u0027s worth matching the RFC pseudocode.",
+      "parentUuid": "32a6536d_445e794d",
+      "range": {
+        "startLine": 143,
+        "startChar": 3,
+        "endLine": 148,
+        "endChar": 3
+      },
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -83,6 +125,30 @@
     },
     {
       "key": {
+        "uuid": "018b5755_dffb72e5",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-06T20:15:28Z",
+      "side": 1,
+      "message": "I prefer splitting the state loading (here) and the rounds (below), I remember finding it hard to follow why the main loop was loading j0, key[0] and key[4]. The counter\u0027s flow is unfortunate though.",
+      "parentUuid": "2441eb6b_3813bc8e",
+      "range": {
+        "startLine": 149,
+        "startChar": 52,
+        "endLine": 155,
+        "endChar": 2
+      },
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd2ed8a6_7b5b617c",
         "filename": "internal/chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -97,6 +163,24 @@
       "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d98689d_e8df7903",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-06T20:15:28Z",
+      "side": 1,
+      "message": "The performance change was negligible (and negative).\n\n    name                old time/op   new time/op   delta\n    ChaCha20/64-8         267ns ± 3%    264ns ± 5%    ~     (p\u003d0.236 n\u003d10+10)\n    ChaCha20/256-8        778ns ± 1%    784ns ± 1%  +0.82%  (p\u003d0.013 n\u003d10+10)\n    ChaCha20/10x25-8     1.27µs ± 0%   1.29µs ± 1%  +1.00%  (p\u003d0.000 n\u003d9+10)\n    ChaCha20/4096-8       785ns ± 2%    789ns ± 1%    ~     (p\u003d0.249 n\u003d10+9)\n    ChaCha20/100x40-8    12.9µs ± 1%   12.9µs ± 1%    ~     (p\u003d0.239 n\u003d10+10)\n    ChaCha20/65536-8      173µs ± 0%    175µs ± 1%  +1.42%  (p\u003d0.000 n\u003d10+10)\n    ChaCha20/1000x65-8    176µs ± 0%    177µs ± 0%  +0.82%  (p\u003d0.000 n\u003d10+9)\n\n    name                old speed     new speed     delta\n    ChaCha20/64-8       240MB/s ± 3%  242MB/s ± 5%    ~     (p\u003d0.247 n\u003d10+10)\n    ChaCha20/256-8      329MB/s ± 1%  326MB/s ± 1%  -0.81%  (p\u003d0.015 n\u003d10+10)\n    ChaCha20/10x25-8    196MB/s ± 0%  194MB/s ± 1%  -1.00%  (p\u003d0.000 n\u003d9+10)\n    ChaCha20/4096-8     326MB/s ± 2%  325MB/s ± 1%    ~     (p\u003d0.278 n\u003d10+9)\n    ChaCha20/100x40-8   310MB/s ± 1%  310MB/s ± 1%    ~     (p\u003d0.247 n\u003d10+10)\n    ChaCha20/65536-8    380MB/s ± 0%  374MB/s ± 1%  -1.40%  (p\u003d0.000 n\u003d10+10)\n    ChaCha20/1000x65-8  370MB/s ± 0%  367MB/s ± 0%  -0.82%  (p\u003d0.000 n\u003d10+9)",
+      "parentUuid": "cd2ed8a6_7b5b617c",
+      "revId": "58d077cc39bdcaaa64bd96473bc37bb1c894f2a8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
