@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8973a3f5_ad26d221",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2019-11-07T01:18:16Z",
+      "side": 1,
+      "message": "(You could probably just always do the compare against the known base-point value and use ScalarBaseMult if the point happens to be equal.)",
+      "revId": "095e1fa51bb255d3857a86f36466782c880eed67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e3ce6b_1477bc4b",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5425
+      },
+      "writtenOn": "2019-11-07T01:18:16Z",
+      "side": 1,
+      "message": "I think a test of at least one low-order point is worthwhile before landing.",
+      "revId": "095e1fa51bb255d3857a86f36466782c880eed67",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
