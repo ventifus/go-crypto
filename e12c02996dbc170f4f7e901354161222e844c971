@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "796f29d0_6765ea1d",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-07T12:16:00Z",
+      "side": 1,
+      "message": "len(src) might be 0 here. This caused TestAdvance to panic on my machine - the larger bufSize causes s.len to be non-zero. I think it would be worth adding an explicit test for a 0 length source input (I think your outstanding cryptotest CL does add tests like that?).\n\nYou could incorporate the bounds check elimination into the loop:\n\nfor i :\u003d range src[:len(keyStream)] {\n    dst[i] \u003d src[i] ^ keyStream[i]\n}\n\nOr you could just replace the current bounds check with something like this:\n\n_ \u003d src[:len(keyStream)]\n\nWhatever technique you use it is probably worth double checking that afterwards all the bounds checks are removed in this loop since it is critical for small size performance when the chacha code is in assembly.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 60
+      },
+      "revId": "e12c02996dbc170f4f7e901354161222e844c971",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "445f8263_0362196d",
+        "filename": "internal/chacha20/chacha_generic.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-07T12:16:00Z",
+      "side": 1,
+      "message": "If we want to enforce in code that bufSize is a multiple of blockSize then we could assert that by adding a function like this:\n\nfunc _() {\n    // Assert that bufSize is a multiple of blockSize.\n    var b [1]byte\n    _ \u003d b[bufSize % blockSize]\n}\n\nI don\u0027t suppose that anyone would add a blockSize where that didn\u0027t hold but it doesn\u0027t hurt to add the assertion somewhere in this file.",
+      "range": {
+        "startLine": 108,
+        "startChar": 22,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "e12c02996dbc170f4f7e901354161222e844c971",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caceabe4_a3424ec0",
+        "filename": "internal/chacha20/chacha_noasm.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-07T12:16:00Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "e12c02996dbc170f4f7e901354161222e844c971",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
