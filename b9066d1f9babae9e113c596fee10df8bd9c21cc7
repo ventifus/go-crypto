@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14581d4e_b79311cf",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-11-07T21:42:19Z",
+      "side": 1,
+      "message": "\"Deprecated: \"?",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 27,
+        "endChar": 9
+      },
+      "revId": "b9066d1f9babae9e113c596fee10df8bd9c21cc7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa56a2b3_0edf32df",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-11-07T21:42:19Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 66
+      },
+      "revId": "b9066d1f9babae9e113c596fee10df8bd9c21cc7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
