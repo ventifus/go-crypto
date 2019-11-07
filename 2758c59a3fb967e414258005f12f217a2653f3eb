@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1053890e_f6ad6bb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-07T22:06:50Z",
+      "side": 1,
+      "message": "Not really related, but we have #31470 for these refactors. Done.",
+      "parentUuid": "16598e85_edf91afd",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "2758c59a3fb967e414258005f12f217a2653f3eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b13129a4_0ca7ee0b",
         "filename": "curve25519/curve25519.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "2758c59a3fb967e414258005f12f217a2653f3eb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19a59080_a5c76fa9",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-07T22:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b13129a4_0ca7ee0b",
+      "range": {
+        "startLine": 6,
+        "startChar": 72,
+        "endLine": 6,
+        "endChar": 73
+      },
+      "revId": "2758c59a3fb967e414258005f12f217a2653f3eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
