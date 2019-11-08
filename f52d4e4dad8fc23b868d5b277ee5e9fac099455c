@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bd0e664_81877736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-08T12:01:57Z",
+      "side": 1,
+      "message": "Needs commit message.",
+      "revId": "f52d4e4dad8fc23b868d5b277ee5e9fac099455c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4bb6fa9_f4207f12",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-08T12:01:57Z",
+      "side": 1,
+      "message": "I\u0027d be a bit more comfortable with a different constructor for the XChaCha20 variant to be honest. Especially since it is still a draft (though I guess it is unlikely to change further?).\n\nMaybe we should also mention that explicitly here, saying that the XChaCha20 specification is still in draft form and that this implementation may change without notice.",
+      "range": {
+        "startLine": 60,
+        "startChar": 22,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "f52d4e4dad8fc23b868d5b277ee5e9fac099455c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
