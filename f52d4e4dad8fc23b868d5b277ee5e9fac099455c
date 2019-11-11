@@ -83,6 +83,30 @@
       "revId": "f52d4e4dad8fc23b868d5b277ee5e9fac099455c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5e65e32_fa24e861",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2019-11-11T16:50:47Z",
+      "side": 1,
+      "message": "I think NewUnauthenticatedCipherX would be more explicit, I guess that\u0027s all really. Happy to stick with the current scheme if there is no chance XChaCha20 will change any more.",
+      "parentUuid": "9be7c8e2_017495a6",
+      "range": {
+        "startLine": 60,
+        "startChar": 22,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "f52d4e4dad8fc23b868d5b277ee5e9fac099455c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
