@@ -56,6 +56,24 @@
     },
     {
       "key": {
+        "uuid": "e41b8e52_51e274bf",
+        "filename": "chacha20poly1305/chacha20poly1305_generic.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-11-11T17:55:25Z",
+      "side": 0,
+      "message": "Done, and removed an outdated mention of the old XChaCha20 draft.",
+      "parentUuid": "54dd0e49_409c50da",
+      "revId": "39fdb34dd0e568e657266fd5cef5723e330b6f4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c7263d6_30e42531",
         "filename": "chacha20poly1305/chacha20poly1305_generic.go",
         "patchSetId": 5
