@@ -110,6 +110,41 @@ func TestStep(t *testing.T) {
 	}
 }
 
+func TestSetCounter(t *testing.T) {
+	s, _ := NewUnauthenticatedCipher(make([]byte, KeySize), make([]byte, NonceSize))
+	src := bytes.Repeat([]byte("test"), 32) // two 64-byte blocks
+	dst1 := make([]byte, len(src))
+	s.XORKeyStream(dst1, src)
+	// reset counter and xor again; should produce same output
+	s.SetCounter(0)
+	dst2 := make([]byte, len(src))
+	s.XORKeyStream(dst2, src)
+	if !bytes.Equal(dst1, dst2) {
+		t.Error("failed to produce identical output using SetCounter")
+	}
+
+	// test again with unaligned blocks; SetCounter should reset the buffer
+	s.SetCounter(0)
+	s.XORKeyStream(dst1[:70], src[:70]) // s.buf now holds a full 64-byte block
+	s.SetCounter(0)
+	s.XORKeyStream(dst2[:70], src[:70])
+	if !bytes.Equal(dst1, dst2) {
+		t.Error("SetCounter did not reset buffer")
+	}
+
+	// setting the counter to ^uint32(0) should trigger an overflow on next use,
+	// causing a panic
+	s.SetCounter(^uint32(0))
+	var panicked bool
+	func() {
+		defer func() { panicked = recover() != nil }()
+		s.XORKeyStream([]byte{0}, []byte{0})
+	}()
+	if !panicked {
+		t.Error("counter overflow should trigger a panic")
+	}
+}
+
 func benchmarkChaCha20(b *testing.B, step, count int) {
 	tot := step * count
 	src := make([]byte, tot)
