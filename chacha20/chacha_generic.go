@@ -136,6 +136,13 @@ func quarterRound(a, b, c, d uint32) (uint32, uint32, uint32, uint32) {
 	return a, b, c, d
 }
 
+// SetCounter updates the Cipher counter. The next XORKeyStream invocation
+// will behave as if (64 * counter) bytes had been encrypted so far.
+func (s *Cipher) SetCounter(counter uint32) {
+	s.counter = counter
+	s.len = 0
+}
+
 // XORKeyStream XORs each byte in the given slice with a byte from the
 // cipher's key stream. Dst and src must overlap entirely or not at all.
 //
