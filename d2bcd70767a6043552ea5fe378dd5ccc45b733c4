@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c905c61b_f5fea4a1",
+        "filename": "ssh/test/forward_unix_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-16T06:08:07Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 49,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "d2bcd70767a6043552ea5fe378dd5ccc45b733c4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
