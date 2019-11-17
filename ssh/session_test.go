@@ -10,6 +10,7 @@ import (
 	"bytes"
 	crypto_rand "crypto/rand"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"math/rand"
@@ -648,36 +649,57 @@ func TestSessionID(t *testing.T) {
 		User:            "user",
 	}
 
+	srvErrCh := make(chan error, 1)
 	go func() {
+		defer close(srvErrCh)
 		conn, chans, reqs, err := NewServerConn(c1, serverConf)
 		if err != nil {
-			t.Fatalf("server handshake: %v", err)
+			srvErrCh <- fmt.Errorf("NewServerConn: %v", err)
+			return
 		}
 		serverID <- conn.SessionID()
-		go DiscardRequests(reqs)
+		DiscardRequests(reqs)
 		for ch := range chans {
 			ch.Reject(Prohibited, "")
 		}
 	}()
 
+	clientErrCh := make(chan error, 1)
 	go func() {
+		defer close(clientErrCh)
 		conn, chans, reqs, err := NewClientConn(c2, "", clientConf)
 		if err != nil {
-			t.Fatalf("client handshake: %v", err)
+			clientErrCh <- fmt.Errorf("NewClientConn: %v", err)
+			return
 		}
 		clientID <- conn.SessionID()
-		go DiscardRequests(reqs)
+		DiscardRequests(reqs)
 		for ch := range chans {
 			ch.Reject(Prohibited, "")
 		}
 	}()
 
-	s := <-serverID
-	c := <-clientID
-	if bytes.Compare(s, c) != 0 {
-		t.Errorf("server session ID (%x) != client session ID (%x)", s, c)
-	} else if len(s) == 0 {
-		t.Errorf("client and server SessionID were empty.")
+	var s []byte
+	select {
+	case s = <-serverID:
+		// the result channel came in first, no error expected
+	case err = <-srvErrCh:
+		if err != nil {
+			t.Fatalf("server: %v", err)
+		}
+	}
+
+	select {
+	case c := <-clientID:
+		if bytes.Compare(s, c) != 0 {
+			t.Errorf("server session ID (%x) != client session ID (%x)", s, c)
+		} else if len(s) == 0 {
+			t.Errorf("client and server SessionID were empty.")
+		}
+	case err := <-clientErrCh:
+		if err != nil {
+			t.Fatalf("client: %v", err)
+		}
 	}
 }
 
