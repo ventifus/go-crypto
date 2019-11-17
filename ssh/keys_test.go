@@ -204,7 +204,7 @@ func TestParseEncryptedPrivateKeysWithPassphrase(t *testing.T) {
 		}
 		sig, err := s.Sign(rand.Reader, data)
 		if err != nil {
-			t.Fatalf("dsa.Sign: %v", err)
+			t.Fatalf("Signer.Sign: %v", err)
 		}
 		if err := s.PublicKey().Verify(data, sig); err != nil {
 			t.Errorf("Verify failed: %v", err)
