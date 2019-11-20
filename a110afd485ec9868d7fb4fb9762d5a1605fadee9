@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cce63c0f_79a4b47c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2019-11-20T01:04:36Z",
+      "side": 1,
+      "message": "Go doesn\u0027t use these lines, BTW. CLAs are enforced by Gerrit instead.\n\nWe generally ask people to remove them so other readers later don\u0027t get confused by our processes.",
+      "revId": "a110afd485ec9868d7fb4fb9762d5a1605fadee9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
