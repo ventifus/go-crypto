@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36341256_0e3761db",
+        "filename": "chacha20poly1305/chacha20poly1305_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2019-11-25T06:19:34Z",
+      "side": 1,
+      "message": "var buf [8]byte",
+      "revId": "7347fd8dd1b83f1535fe7c2e22250e6ba14b8541",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
