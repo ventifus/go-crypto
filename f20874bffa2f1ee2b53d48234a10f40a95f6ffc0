@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a86e98bc_9a378dc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-11-27T22:58:57Z",
+      "side": 1,
+      "message": "Nit from https://golang.org/wiki/CommitMessage:\n\n\u003e • the verb after the colon is lowercase",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "f20874bffa2f1ee2b53d48234a10f40a95f6ffc0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064195ff_b3b462ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-11-27T22:58:57Z",
+      "side": 1,
+      "message": "As an observation, the size of the working directory of this repository (without .git directory) increases from 3.9 MB to 38.1 MB with this change. The internal/wycheproof/vendor directory contributes 34.2 MB.\n\nWe might want to consider alternatives to vendoring that much testdata. For example, one option may be to require \"github.com/google/wycheproof\" as a Go module, and then access its test data during tests.\n\nDepending on how frequently we want these tests to run (every commit, or less frequently), other options may involve fetching the test data as part of executing the test (and making it an opt-in test).",
+      "revId": "f20874bffa2f1ee2b53d48234a10f40a95f6ffc0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
