@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73580022_32883304",
+        "filename": "ssh/keys.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-27T13:18:36Z",
+      "side": 1,
+      "message": "nit: shouldn\u0027t this be called curveID ?",
+      "range": {
+        "startLine": 708,
+        "startChar": 27,
+        "endLine": 708,
+        "endChar": 33
+      },
+      "revId": "ad9561cab51f0d611eb38de9d4ca1e2a772fe222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
