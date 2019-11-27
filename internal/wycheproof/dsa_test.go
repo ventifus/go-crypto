@@ -1,0 +1,106 @@
+// Copyright 2019 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package wycheproof
+
+import (
+	"crypto/dsa"
+	"encoding/json"
+	"testing"
+
+	wdsa "golang.org/x/crypto/internal/wycheproof/internal/dsa"
+)
+
+func TestDsa(t *testing.T) {
+	// flagsShouldPass is a map associated with whether or not
+	// a flag for an "acceptable" result should pass.
+	// Every possible flag value that's associated with an
+	// "acceptable" result should be explicitly specified,
+	// otherwise the test will panic.
+	flagsShouldPass := map[string]bool{
+		"EdgeCase":      true,
+		"NoLeadingZero": false, // An encoded integer missing a leading zero can lead to an invalid signature.
+	}
+
+	b := readTestVector("dsa_test.json")
+	var root DsaRoot
+	if err := json.Unmarshal(b, &root); err != nil {
+		t.Fatalf("failed to unmarshal json file: %v", err)
+	}
+	for _, tg := range root.TestGroups {
+		pub := decodeKey(tg.KeyDer).(*dsa.PublicKey)
+		h, _ := parseHash(tg.Sha)
+		for _, sig := range tg.Tests {
+			h.Reset()
+			h.Write(decodeHex(sig.Msg))
+			hashed := h.Sum(nil)
+			hashed = hashed[:pub.Q.BitLen()/8] // Truncate to the byte-length of the subgroup (Q)
+			result := wdsa.VerifyASN1(pub, hashed, decodeHex(sig.Sig))
+			if got, want := result, shouldPass(sig.Result, sig.Flags, flagsShouldPass); got != want {
+				t.Errorf("tcid=%d, type: %s, comment: %q, wanted success = %t", sig.TcId, sig.Result, sig.Comment, want)
+			}
+		}
+	}
+}
+
+// DsaPublicKey
+type DsaPublicKey struct {
+
+	// the generator of the multiplicative subgroup
+	G string `json:"g,omitempty"`
+
+	// the key size in bits
+	KeySize int `json:"keySize,omitempty"`
+
+	// the modulus p
+	P string `json:"p,omitempty"`
+
+	// the order of the generator g
+	Q string `json:"q,omitempty"`
+
+	// the key type
+	Type string `json:"type,omitempty"`
+
+	// the public key value
+	Y string `json:"y,omitempty"`
+}
+
+// DsaTestGroup
+type DsaTestGroup struct {
+
+	// unenocded DSA public key
+	Key *DsaPublicKey `json:"key,omitempty"`
+
+	// DER encoded public key
+	KeyDer string `json:"keyDer,omitempty"`
+
+	// Pem encoded public key
+	KeyPem string `json:"keyPem,omitempty"`
+
+	// the hash function used for DSA
+	Sha   string                 `json:"sha,omitempty"`
+	Tests []*SignatureTestVector `json:"tests,omitempty"`
+	Type  interface{}            `json:"type,omitempty"`
+}
+
+// DsaRoot
+type DsaRoot struct {
+
+	// the primitive tested in the test file
+	Algorithm string `json:"algorithm,omitempty"`
+
+	// the version of the test vectors.
+	GeneratorVersion string `json:"generatorVersion,omitempty"`
+
+	// additional documentation
+	Header []string `json:"header,omitempty"`
+
+	// a description of the labels used in the test vectors
+	Notes *Notes `json:"notes,omitempty"`
+
+	// the number of test vectors in this test
+	NumberOfTests int             `json:"numberOfTests,omitempty"`
+	Schema        interface{}     `json:"schema,omitempty"`
+	TestGroups    []*DsaTestGroup `json:"testGroups,omitempty"`
+}

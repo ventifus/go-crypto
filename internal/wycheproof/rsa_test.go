@@ -1,0 +1,102 @@
+// Copyright 2019 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package wycheproof
+
+import (
+	"crypto/rsa"
+	"encoding/json"
+	"testing"
+)
+
+func TestRsa(t *testing.T) {
+	// flagsShouldPass is a map associated with whether or not
+	// a flag for an "acceptable" result should pass.
+	// Every possible flag value that's associated with an
+	// "acceptable" result should be explicitly specified,
+	// otherwise the test will panic.
+	flagsShouldPass := map[string]bool{
+		"MissingNull":    false, // Omitting the parameter field in an ASN encoded integer is a legacy behavior.
+		"SmallModulus":   true,
+		"SmallPublicKey": true,
+	}
+
+	b := readTestVector("rsa_signature_test.json")
+	var root RsaRoot
+	if err := json.Unmarshal(b, &root); err != nil {
+		t.Fatalf("failed to unmarshal json file: %v", err)
+	}
+	for _, tg := range root.TestGroups {
+		pub := decodeKey(tg.KeyDer).(*rsa.PublicKey)
+		h, ch := parseHash(tg.Sha)
+		for _, sig := range tg.Tests {
+			h.Reset()
+			h.Write(decodeHex(sig.Msg))
+			hashed := h.Sum(nil)
+			err := rsa.VerifyPKCS1v15(pub, ch, hashed, decodeHex(sig.Sig))
+			want := shouldPass(sig.Result, sig.Flags, flagsShouldPass)
+			if (err == nil) != want {
+				t.Errorf("tcid=%d, type: %s, comment: %q, wanted success = %t", sig.TcId, sig.Result, sig.Comment, want)
+			}
+		}
+	}
+}
+
+// KeyJwk Public key in JWK format
+type KeyJwk struct {
+}
+
+// RsassaPkcs1TestGroup
+type RsassaPkcs1TestGroup struct {
+
+	// The private exponent
+	D string `json:"d,omitempty"`
+
+	// The public exponent
+	E string `json:"e,omitempty"`
+
+	// ASN encoding of the sequence [n, e]
+	KeyAsn string `json:"keyAsn,omitempty"`
+
+	// ASN encoding of the public key
+	KeyDer string `json:"keyDer,omitempty"`
+
+	// Public key in JWK format
+	KeyJwk *KeyJwk `json:"keyJwk,omitempty"`
+
+	// Pem encoded public key
+	KeyPem string `json:"keyPem,omitempty"`
+
+	// the size of the modulus in bits
+	KeySize int `json:"keySize,omitempty"`
+
+	// The modulus of the key
+	N string `json:"n,omitempty"`
+
+	// the hash function used for the message
+	Sha   string                 `json:"sha,omitempty"`
+	Tests []*SignatureTestVector `json:"tests,omitempty"`
+	Type  interface{}            `json:"type,omitempty"`
+}
+
+// RsaRoot
+type RsaRoot struct {
+
+	// the primitive tested in the test file
+	Algorithm string `json:"algorithm,omitempty"`
+
+	// the version of the test vectors.
+	GeneratorVersion string `json:"generatorVersion,omitempty"`
+
+	// additional documentation
+	Header []string `json:"header,omitempty"`
+
+	// a description of the labels used in the test vectors
+	Notes *Notes `json:"notes,omitempty"`
+
+	// the number of test vectors in this test
+	NumberOfTests int                     `json:"numberOfTests,omitempty"`
+	Schema        interface{}             `json:"schema,omitempty"`
+	TestGroups    []*RsassaPkcs1TestGroup `json:"testGroups,omitempty"`
+}
