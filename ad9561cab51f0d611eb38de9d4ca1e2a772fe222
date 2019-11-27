@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5ef9c47a_1a919818",
+        "filename": "ssh/keys.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-27T13:19:55Z",
+      "side": 1,
+      "message": "add documentation comments to all types, including references to specific sections of the standard.\n\nin particular, also document what goes into the instance vars (counter, flags, etc.)",
+      "range": {
+        "startLine": 694,
+        "startChar": 5,
+        "endLine": 694,
+        "endChar": 13
+      },
+      "revId": "ad9561cab51f0d611eb38de9d4ca1e2a772fe222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "73580022_32883304",
         "filename": "ssh/keys.go",
         "patchSetId": 7
