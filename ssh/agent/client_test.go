@@ -13,6 +13,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -317,6 +318,8 @@ func TestServerResponseTooLarge(t *testing.T) {
 	if err != nil {
 		t.Fatalf("netPipe: %v", err)
 	}
+	done := make(chan struct{})
+	defer func() { <-done }()
 
 	defer a.Close()
 	defer b.Close()
@@ -327,9 +330,16 @@ func TestServerResponseTooLarge(t *testing.T) {
 
 	agent := NewClient(a)
 	go func() {
-		n, _ := b.Write(ssh.Marshal(response))
+		defer close(done)
+		n, err := b.Write(ssh.Marshal(response))
 		if n < 4 {
-			t.Fatalf("At least 4 bytes (the response size) should have been successfully written: %d < 4", n)
+			if runtime.GOOS == "plan9" &&
+				(strings.HasSuffix(err.Error(), ": Hangup") ||
+					strings.HasSuffix(err.Error(), ": i/o on hungup channel")) {
+				// syscall.Pwrite returns -1 in this case even when some data did get written.
+				return
+			}
+			t.Errorf("At least 4 bytes (the response size) should have been successfully written: %d < 4: %v", n, err)
 		}
 	}()
 	_, err = agent.List()
