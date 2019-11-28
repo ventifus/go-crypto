@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "326744d9_54d946cf",
+        "filename": "ssh/keys.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 34531
+      },
+      "writtenOn": "2019-11-28T02:18:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ef9c47a_1a919818",
+      "range": {
+        "startLine": 694,
+        "startChar": 5,
+        "endLine": 694,
+        "endChar": 13
+      },
+      "revId": "ad9561cab51f0d611eb38de9d4ca1e2a772fe222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73580022_32883304",
         "filename": "ssh/keys.go",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-27T13:18:36Z",
       "side": 1,
       "message": "nit: shouldn\u0027t this be called curveID ?",
+      "range": {
+        "startLine": 708,
+        "startChar": 27,
+        "endLine": 708,
+        "endChar": 33
+      },
+      "revId": "ad9561cab51f0d611eb38de9d4ca1e2a772fe222",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812f6c2c_5a3185ce",
+        "filename": "ssh/keys.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 34531
+      },
+      "writtenOn": "2019-11-28T02:18:58Z",
+      "side": 1,
+      "message": "Happy to rename it, but I wanted to keep it in line with the existing ECDSA implementation.",
+      "parentUuid": "73580022_32883304",
       "range": {
         "startLine": 708,
         "startChar": 27,
