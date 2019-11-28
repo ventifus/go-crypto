@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9323c8b5_dadcc946",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-28T10:48:25Z",
+      "side": 1,
+      "message": "a",
+      "range": {
+        "startLine": 871,
+        "startChar": 50,
+        "endLine": 871,
+        "endChar": 54
+      },
+      "revId": "178fe9c9d16b8495b8398077ddb7b80dabcc4047",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d838bd3_471f65ed",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-28T10:48:25Z",
+      "side": 1,
+      "message": "PassphraseNeededErr per https://cs.bazel.build/search?q\u003dr%3Ago.goog+%5Etype.*err\u0026num\u003d50\n\nMaybe PassphraseMissingErr ?",
+      "range": {
+        "startLine": 873,
+        "startChar": 5,
+        "endLine": 873,
+        "endChar": 26
+      },
+      "revId": "178fe9c9d16b8495b8398077ddb7b80dabcc4047",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
