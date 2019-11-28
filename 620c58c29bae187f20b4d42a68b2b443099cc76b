@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56a85a98_be435bec",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-28T10:54:45Z",
+      "side": 1,
+      "message": "move this to l. 331 just before the goroutine, to avoid people adding returns between here and the goroutine.",
+      "range": {
+        "startLine": 321,
+        "startChar": 1,
+        "endLine": 321,
+        "endChar": 28
+      },
+      "revId": "620c58c29bae187f20b4d42a68b2b443099cc76b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b962fb4_ed9f7db5",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-11-28T10:54:45Z",
+      "side": 1,
+      "message": "this looks kludgey. Can you unpack the error and check for a specific error code? Where does this string come from?",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 338,
+        "endChar": 33
+      },
+      "revId": "620c58c29bae187f20b4d42a68b2b443099cc76b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
