@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4320d3c1_69de62a2",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 5280
+      },
+      "writtenOn": "2019-11-28T15:55:53Z",
+      "side": 1,
+      "message": "We need to do this before we defer a.Close() and b.Close() below. Otherwise b.Write will just hang (even on Linux).\n\nI could move the goroutine up, but that would put more distance between netPipe() and the two Close(). I\u0027m inclined to leave it as is, unless you have some other suggestion.",
+      "parentUuid": "56a85a98_be435bec",
+      "range": {
+        "startLine": 321,
+        "startChar": 1,
+        "endLine": 321,
+        "endChar": 28
+      },
+      "revId": "620c58c29bae187f20b4d42a68b2b443099cc76b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b962fb4_ed9f7db5",
         "filename": "ssh/agent/client_test.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "620c58c29bae187f20b4d42a68b2b443099cc76b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "249a3c8f_6b2ddf21",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 5280
+      },
+      "writtenOn": "2019-11-28T15:55:53Z",
+      "side": 1,
+      "message": "Done\n\nThe string is from Plan 9 kernel. Plan 9 uses strings for error code instead of integer.",
+      "parentUuid": "2b962fb4_ed9f7db5",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 338,
+        "endChar": 33
+      },
+      "revId": "620c58c29bae187f20b4d42a68b2b443099cc76b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
