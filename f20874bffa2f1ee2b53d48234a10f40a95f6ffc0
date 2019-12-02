@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1961180d_0b129a19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-02T17:51:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a86e98bc_9a378dc0",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "f20874bffa2f1ee2b53d48234a10f40a95f6ffc0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "064195ff_b3b462ab",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2019-11-27T22:58:57Z",
       "side": 1,
       "message": "As an observation, the size of the working directory of this repository (without .git directory) increases from 3.9 MB to 38.1 MB with this change. The internal/wycheproof/vendor directory contributes 34.2 MB.\n\nWe might want to consider alternatives to vendoring that much testdata. For example, one option may be to require \"github.com/google/wycheproof\" as a Go module, and then access its test data during tests.\n\nDepending on how frequently we want these tests to run (every commit, or less frequently), other options may involve fetching the test data as part of executing the test (and making it an opt-in test).",
+      "revId": "f20874bffa2f1ee2b53d48234a10f40a95f6ffc0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c7300d3_779a9c79",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-02T17:51:10Z",
+      "side": 1,
+      "message": "Thanks Dmitri! Good observation. Yeah we need to do something else here.\n\nBrainstormed with Filippo, Jay, and Rebecca and we\u0027ve come up with the solution of running `go mod download -m -json` in a test main, and using the Dir in the JSON given back to read the json tests we need.\nI\u0027ll just leave out the schemas, since we aren\u0027t using them directly in the tests anyway, and they were just here for reference. Going to leave this un-resolved until I do this.",
+      "parentUuid": "064195ff_b3b462ab",
       "revId": "f20874bffa2f1ee2b53d48234a10f40a95f6ffc0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
