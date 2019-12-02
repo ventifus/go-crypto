@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a0a58ad_46ebaa5d",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-12-02T14:24:20Z",
+      "side": 1,
+      "message": "corrupt",
+      "range": {
+        "startLine": 610,
+        "startChar": 28,
+        "endLine": 610,
+        "endChar": 34
+      },
+      "revId": "413c4215b785211a781115fb46e8a4d9a36121d7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
