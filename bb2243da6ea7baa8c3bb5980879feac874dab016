@@ -1,0 +1,255 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46dcb56f_32f6b460",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "No Markdown, lowercase after :, no cc, line wrap, add Fixes line.\n\nSee golang.org/wiki/CommitMessage.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b8c31c1_017048cd",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "No need for the \"aside\" part, we can just add the sentence about the anonymous extension.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "933fe852_92c9c0a9",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "Missing .",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "917b2fc8_b11cf379",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "No need to rename the import.",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d198dba_4f992641",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "anonymous boxes",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "834e7a92_f995f73d",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "No parens",
+      "range": {
+        "startLine": 118,
+        "startChar": 37,
+        "endLine": 118,
+        "endChar": 39
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "163cac1c_47f81460",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 118,
+        "startChar": 48,
+        "endLine": 118,
+        "endChar": 52
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad0aec4c_98acb4a0",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "We prefer not to use new().\n\n    var ephemeralPub [32]byte",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c68d889_03f9b422",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec435ff5_4aead710",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "Oh this is unfortunate. libsodium asks for the recipient public key in this API. Let\u0027s discuss on the issue.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f18dc4_5c977f94",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "We can avoid this allocation by passing the *[24]byte from the caller.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f02c7404_ac74588f",
+        "filename": "nacl/box/box_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "Let\u0027s test that an existing slice doesn\u0027t get mangled, since you we the copy manually.",
+      "range": {
+        "startLine": 84,
+        "startChar": 27,
+        "endLine": 84,
+        "endChar": 30
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de50e12c_3db0cfb3",
+        "filename": "nacl/box/box_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-02T18:14:45Z",
+      "side": 1,
+      "message": "Thanks for generating the vector for SealAnonymous! Can we get a vector for OpenAnonymous, too? Should be much easier.",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
