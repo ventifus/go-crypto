@@ -22,6 +22,30 @@
       "revId": "cd2811f46eefacf5147775f82b681c9bf3735315",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fc21b66_630b4fc3",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-03T17:41:10Z",
+      "side": 1,
+      "message": "Great tip. Thanks.",
+      "parentUuid": "5eb8e6fd_1f280e09",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "cd2811f46eefacf5147775f82b681c9bf3735315",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
