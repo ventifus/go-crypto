@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "21d23491_ddc00d65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-03T20:47:06Z",
+      "side": 1,
+      "message": "Yeah it\u0027s pulled from the PR description because there might be multiple commits in a PR but not in a CL. We know it\u0027s confusing, we plan to improve it. You can edit the message by editing the PR body and title.",
+      "parentUuid": "f4001e62_75bd88b5",
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3b8c31c1_017048cd",
         "filename": "nacl/box/box.go",
         "patchSetId": 1
@@ -151,6 +169,30 @@
       "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30246060_9165f6de",
+        "filename": "nacl/box/box.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-03T20:47:06Z",
+      "side": 1,
+      "message": "Oh my bad, didn\u0027t notice that.",
+      "parentUuid": "59090164_dc779611",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "bb2243da6ea7baa8c3bb5980879feac874dab016",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
