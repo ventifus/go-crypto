@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eb8e6fd_1f280e09",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2019-12-03T04:13:25Z",
+      "side": 1,
+      "message": "You\u0027re using this type only once, and accessing only one of its fields. The above can be reduced to:\n\n    var m struct {\n        Dir string // Absolute path to cached source root directory.\n    }\n    if err :\u003d json.Unmarshal(output, \u0026m); err !\u003d nil {\n        ...\n\n(If you want, see https://github.com/golang/tools/blob/2b6af5f9ace725aefaab9e4e3abbcdd9f07ef5bc/cmd/godoc/main.go#L417-L422 for an example of other code doing a similar task.)",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "cd2811f46eefacf5147775f82b681c9bf3735315",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
