@@ -166,6 +166,24 @@
     },
     {
       "key": {
+        "uuid": "98a032e9_c711553e",
+        "filename": "internal/wycheproof/dsa_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "Oh now I understand what EdgeCase means. I would expect all these test cases to be invalid though, not acceptable, so there shouldn\u0027t be an entry in this map for it, because it\u0027s not a choice we need to make.",
+      "parentUuid": "6aa4540e_ea41dd4e",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd5d8e84_7fa06f29",
         "filename": "internal/wycheproof/dsa_test.go",
         "patchSetId": 8
@@ -195,6 +213,24 @@
       "side": 1,
       "message": "Done\n\nI actually think that commenting on falses is even more important that commenting on trues, because it\u0027s saying that \"this case is acceptable by many implementations, but we are specifically not going to allow it because of X reason\".",
       "parentUuid": "dd5d8e84_7fa06f29",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f70b039c_e20bf368",
+        "filename": "internal/wycheproof/dsa_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "More comments the better. Trues are important here because accepting an invalid signature is a security vulnerability, while rejecting a valid one is just a bug.\n\nIn general Go aims to be strict about everything we can get away with, so ideally we\u0027d want all entries to be falses.",
+      "parentUuid": "fb618c77_9df749ea",
       "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
@@ -551,6 +587,24 @@
       "side": 1,
       "message": "Nice! Done.\nFwiw it didn\u0027t look like _ import was necessary for the hash functions. The tests pass without them at least. You think it\u0027s necessary?",
       "parentUuid": "3b1b45a9_4f90c403",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "915745cf_517607d5",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "That means some other package is importing them, but if they were to stop the tests would break. It\u0027s best to be explicit and import them.",
+      "parentUuid": "a38c605d_8570f329",
       "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true

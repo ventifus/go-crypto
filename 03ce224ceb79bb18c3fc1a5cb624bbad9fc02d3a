@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d45fe99d_7bc74766",
+        "filename": "internal/wycheproof/dsa_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "h :\u003d parseHash(tg.Sha).New()",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32e67d36_a4b4953e",
+        "filename": "internal/wycheproof/ecdsa_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "+ \", as long as the hash is secure.\"\n\nAnd maybe a link to https://www.imperialviolet.org/2014/05/25/strengthmatching.html.",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb68faa3_d3b46049",
+        "filename": "internal/wycheproof/ecdsa_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "h :\u003d parseHash(tg.Sha).New()",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75435a32_1ac4ed2d",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f33f68_327a6a19",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "Maybe easier to use as\n\noverrideAsValid :\u003d map[int]bool{\n    // comment\n    67: true, 68: true,\n}",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f72bc02_99c4cf14",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "TODO:",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccbd70d0_bf4fce27",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "h :\u003d parseHash(tg.Sha).New()",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d5e832b_b70d3ea0",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "I think we should run valid tests twice, once with SLen and once with PSSSaltLengthAuto, because the latter should work, too.",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a9d0fd9_fceb8d0e",
+        "filename": "internal/wycheproof/rsa_signature_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-04T20:31:34Z",
+      "side": 1,
+      "message": "h :\u003d parseHash(tg.Sha).New()",
+      "revId": "03ce224ceb79bb18c3fc1a5cb624bbad9fc02d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
