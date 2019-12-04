@@ -167,6 +167,23 @@
     },
     {
       "key": {
+        "uuid": "c7d6aef9_0b115b2a",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-04T14:33:44Z",
+      "side": 1,
+      "message": "This test should be skipped if there isn\u0027t an executable `go` command (can happen on mobile; see also https://github.com/golang/tools/blob/9611592c72f63638cf256c3dcd605a106f4aa79d/internal/testenv/testenv.go#L85-L113).\n\nIt should probably also be skipped if network access is not available and the required version is not already present in the module cache (see https://golang.org/pkg/internal/testenv/#HasExternalNetwork, https://golang.org/issue/31310, and https://golang.org/issue/23799).\n\n(Alternately, you could consider using a `//go:generate` binary to make a local copy of the test vectors and avoid this run-time dependency.)",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf42e684_3ac0902f",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 8
