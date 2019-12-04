@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "808ebb49_05b9c039",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 879,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-12-04T18:10:12Z",
+      "side": 1,
+      "message": "(is it normal to skip the doc comment here?)",
+      "range": {
+        "startLine": 879,
+        "startChar": 31,
+        "endLine": 879,
+        "endChar": 36
+      },
+      "revId": "2eb4b7c21708e229ac674c9b3ea422d31bbc9775",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b95981_1a0c4ecb",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2019-12-04T18:10:12Z",
+      "side": 1,
+      "message": "this would probably be better written as subtest with t.Run()",
+      "range": {
+        "startLine": 208,
+        "startChar": 3,
+        "endLine": 208,
+        "endChar": 11
+      },
+      "revId": "2eb4b7c21708e229ac674c9b3ea422d31bbc9775",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
