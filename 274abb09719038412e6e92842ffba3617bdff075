@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "66740894_3eb556de",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-05T20:51:03Z",
+      "side": 1,
+      "message": "Filippo explained the suggestion to me 😊\nI still think I\u0027d prefer to go this route. I\u0027d rather see a test newly fail and add it to this list, than eagerly skip tests without noticing. If someone is using a custom environment that doesn\u0027t have go, then they can just not run this test.",
+      "parentUuid": "7a133be0_23e2c4a0",
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d663c822_5c8d22de",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 13
