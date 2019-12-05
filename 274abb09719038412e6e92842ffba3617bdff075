@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a133be0_23e2c4a0",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-05T20:34:08Z",
+      "side": 1,
+      "message": "I don\u0027t understand how this suggestion would work based on reading the godoc for exec.LookPath. I also don\u0027t see any examples of this in the std library. I do see a lot of tests in the std library doing \"runtime.GOOS \u003d\u003d \"js\"\" in tests though. Why is that not sufficient?",
+      "parentUuid": "26c14eff_323ac01a",
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d663c822_5c8d22de",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 13
@@ -39,6 +57,30 @@
       "revId": "274abb09719038412e6e92842ffba3617bdff075",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e18aa5a_79858a0d",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-05T20:34:08Z",
+      "side": 1,
+      "message": "Gotcha, thanks. I\u0027ll remove the TODO.\n\nI think it\u0027s less important for x/ repos. And in this case, these tests only run if someone explicitly runs the wycheproof tests which are in their own package. It won\u0027t be part of all.bash or something similar, so someone would have to run this explicitly without internet access to run into it.",
+      "parentUuid": "d663c822_5c8d22de",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
