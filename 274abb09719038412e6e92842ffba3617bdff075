@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "26c14eff_323ac01a",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-05T20:18:58Z",
+      "side": 1,
+      "message": "exec.LookPath(\"go\") would be more robust here — it would catch not only the `js` builders, but also anybody\u0027s custom test environment. (Consider what this test would do, say, if run under Bazel or some other build system that runs `go test -c` separately from invoking the compiled test binary.)",
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d663c822_5c8d22de",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 13
