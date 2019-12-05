@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7b679549_c76479ed",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-05T21:03:44Z",
+      "side": 1,
+      "message": "Some examples in other x/ repos:\n\nwebsite/cmd/golangorg/godoc_test.go:32: if _, err :\u003d exec.LookPath(\"go\"); err !\u003d nil {\ntour/content/content_test.go:24:        if _, err :\u003d exec.LookPath(\"go\"); err !\u003d nil {\ntext/message/pipeline/pipeline_test.go:36:      if _, err :\u003d exec.LookPath(\"go\"); err !\u003d nil {\n\n\nThe standard library uses a similar pattern for a few other binaries, but apparently not \"go\". (We may have some lurking bugs, but we also tend to put new tests of anything that requires the `go` command in `src/cmd/go/testdata/script`. Also, many of the existing integration tests are in the `misc` module — which cannot be used as a dependency of any user\u0027s module, and so isn\u0027t as much of a concern as far as the portability of its tests.)\n\n\nruntime.GOOS \u003d\u003d \"js\" might suffice for the Go project builders (I\u0027m not sure), but it also won\u0027t necessarily work for alternate Go toolchains (like Bazel, gccgo, and TinyGo). But I think the tests that check `runtime.GOOS \u003d\u003d \"js\"` are usually doing that for other reasons, like missing syscalls or funky goroutine scheduling.",
+      "parentUuid": "7a133be0_23e2c4a0",
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d663c822_5c8d22de",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 13
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "Gotcha, thanks. I\u0027ll remove the TODO.\n\nI think it\u0027s less important for x/ repos. And in this case, these tests only run if someone explicitly runs the wycheproof tests which are in their own package. It won\u0027t be part of all.bash or something similar, so someone would have to run this explicitly without internet access to run into it.",
       "parentUuid": "d663c822_5c8d22de",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "512e88d5_7cfb14f5",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-05T21:03:44Z",
+      "side": 1,
+      "message": "Being in its own package makes it a bit better because users won\u0027t pick it up in `go test all`, but they could still end up running it via `go test ...`, which should become a more reasonable thing over time.",
+      "parentUuid": "5e18aa5a_79858a0d",
       "range": {
         "startLine": 41,
         "startChar": 0,
