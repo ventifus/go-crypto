@@ -184,6 +184,24 @@
     },
     {
       "key": {
+        "uuid": "57564b15_b8febd40",
+        "filename": "internal/wycheproof/dsa_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-05T02:53:07Z",
+      "side": 1,
+      "message": "Oh yeah you\u0027re totally right. I added the EdgeCase ones before I realized that some of the flags are for invalid/valid. Deleted.",
+      "parentUuid": "98a032e9_c711553e",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd5d8e84_7fa06f29",
         "filename": "internal/wycheproof/dsa_test.go",
         "patchSetId": 8
@@ -608,6 +626,24 @@
       "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a403f4c_bca8c33b",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-05T02:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "915745cf_517607d5",
+      "revId": "f3e003d2489733f204fbbdc38d75be1067803db5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
