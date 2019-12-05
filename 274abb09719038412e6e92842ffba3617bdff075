@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d663c822_5c8d22de",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-05T20:16:17Z",
+      "side": 1,
+      "message": "`go mod download -json` will be a no-op if the module is already downloaded.\n\nI\u0027m more concerned about the download failing outright on CI systems with very strict firewalls. (For example, a lot of distro packagers do their final testing with all networking disabled.)\n\nFor the Go standard library, I believe that `go test -short` never requires (or is supposed to never require) network access. I\u0027m not sure to what extent that holds for the x/ repos.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
