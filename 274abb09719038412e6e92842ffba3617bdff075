@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "38b7c068_91196854",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2019-12-06T16:29:26Z",
+      "side": 1,
+      "message": "Thanks for the examples! I\u0027m not sure whether or not one solution is ultimately better than the other - I think there are tradeoffs either way. Using runtime.GOOS may not work for alternate Go toolchains, and exec.LookPath(\"go\") may start skipping tests in other environments without our knowledge if the environment changes. I\u0027m okay with going the more extensible route though, since we\u0027d have to skip newly failing tests that don\u0027t support the go command anyway.",
+      "parentUuid": "7b679549_c76479ed",
+      "revId": "274abb09719038412e6e92842ffba3617bdff075",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d663c822_5c8d22de",
         "filename": "internal/wycheproof/wycheproof_test.go",
         "patchSetId": 13
