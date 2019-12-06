@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b919e368_70199161",
+        "filename": "internal/wycheproof/wycheproof_test.go",
+        "patchSetId": 21
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2019-12-06T17:46:17Z",
+      "side": 1,
+      "message": "FYI, this may start failing in Go 1.15 or later. (See https://golang.org/issue/29062.)\n\n(Any kind of output explaining the skip will suppress the failure.)",
+      "revId": "e9b2fee46413994441b28dfca259d911d963dfed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
