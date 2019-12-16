@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2667cca7_7004472a",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-16T20:43:04Z",
+      "side": 1,
+      "message": "Advance sets the Cipher counter.",
+      "range": {
+        "startLine": 139,
+        "startChar": 3,
+        "endLine": 139,
+        "endChar": 46
+      },
+      "revId": "5336ecb1a29a3ced6590f668277e59d25b8fd5d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c421d208_7a019932",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-16T20:43:04Z",
+      "side": 1,
+      "message": "current",
+      "range": {
+        "startLine": 144,
+        "startChar": 17,
+        "endLine": 144,
+        "endChar": 25
+      },
+      "revId": "5336ecb1a29a3ced6590f668277e59d25b8fd5d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43f92397_64213377",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2019-12-16T20:43:04Z",
+      "side": 1,
+      "message": "Draw less than 64 bytes before this call, to check it discards the buffer.",
+      "revId": "5336ecb1a29a3ced6590f668277e59d25b8fd5d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
