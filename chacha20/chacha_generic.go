@@ -136,6 +136,20 @@ func quarterRound(a, b, c, d uint32) (uint32, uint32, uint32, uint32) {
 	return a, b, c, d
 }
 
+// AdvanceCounter increments the Cipher counter by n. The next invocation of
+// XORKeyStream will behave as if (64 * (counter+n)) bytes had been encrypted
+// so far.
+//
+// To prevent accidental counter reuse, AdvanceCounter panics if the new counter
+// value would not be not strictly greater than the previous value.
+func (s *Cipher) AdvanceCounter(n uint32) {
+	if s.counter+n <= s.counter {
+		panic("chacha20: counter was not incremented")
+	}
+	s.counter += n
+	s.len = 0
+}
+
 // XORKeyStream XORs each byte in the given slice with a byte from the
 // cipher's key stream. Dst and src must overlap entirely or not at all.
 //
