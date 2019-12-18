@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"errors"
+	"fmt"
 	"io"
 	"net"
 	"os"
@@ -382,13 +383,27 @@ func TestAuth(t *testing.T) {
 		return nil, errors.New("pubkey rejected")
 	}
 
+	errCh := make(chan error, 1)
 	go func() {
+		defer close(errCh)
 		conn, _, _, err := ssh.NewServerConn(a, &serverConf)
 		if err != nil {
-			t.Fatalf("Server: %v", err)
+			errCh <- fmt.Errorf("Server: %v", err)
+			return
 		}
 		conn.Close()
 	}()
+
+	// be sure NewServerConn hasn't already failed
+	select {
+	case err := <-errCh:
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Fatal("Server returned before accepting NewClientConn")
+	case <-time.After(time.Second):
+		// No error from server yet, set up client connection
+	}
 
 	conf := ssh.ClientConfig{
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
@@ -399,6 +414,12 @@ func TestAuth(t *testing.T) {
 		t.Fatalf("NewClientConn: %v", err)
 	}
 	conn.Close()
+
+	// check for Server error after client connection
+	err = <-errCh
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestLockOpenSSHAgent(t *testing.T) {
