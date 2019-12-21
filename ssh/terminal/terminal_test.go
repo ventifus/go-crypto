@@ -334,6 +334,9 @@ func TestReadPasswordLineEnd(t *testing.T) {
 		{"testtesttesttes\r\n", "testtesttesttes"},
 		{"testtesttesttesttest\n", "testtesttesttesttest"},
 		{"testtesttesttesttest\r\n", "testtesttesttesttest"},
+		{"testtest\rtesttesttest\r\n", "testtesttesttesttest"},
+		{"testtest\rtesttesttest\r", "testtesttesttesttest"},
+		{"testtest\rtesttesttest", "testtesttesttesttest"},
 	}
 	for _, test := range tests {
 		buf := new(bytes.Buffer)
