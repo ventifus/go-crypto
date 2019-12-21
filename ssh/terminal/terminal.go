@@ -946,11 +946,17 @@ func readPasswordLine(reader io.Reader) ([]byte, error) {
 	for {
 		n, err := reader.Read(buf[:])
 		if n > 0 {
-			switch buf[0] {
+			switch byte(buf[0]) {
+			case '\b':
+				if len(ret) > 0 {
+					ret = ret[:len(ret)-1]
+				}
 			case '\n':
 				return ret, nil
 			case '\r':
-				// remove \r from passwords on Windows
+				// On Windows, \n never read when ENABLE_LINE_INPUT is
+				// disabled.
+				return ret, nil
 			default:
 				ret = append(ret, buf[0])
 			}
