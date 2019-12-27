@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e66f30bd_b2852dcd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2019-12-27T21:39:19Z",
+      "side": 1,
+      "message": "s/Stop/stop/",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "094f76f3_cc3c5232",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2019-12-27T21:39:19Z",
+      "side": 1,
+      "message": "Remove conversion to byte\n\ns/byte//\n\nbuf[0] is byte already.",
+      "range": {
+        "startLine": 949,
+        "startChar": 10,
+        "endLine": 949,
+        "endChar": 14
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb1f619_6150da12",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2019-12-27T21:39:19Z",
+      "side": 1,
+      "message": "I think\n\n// Windows sends \\r at the end of input when ENABLE_LINE_INPUT is disabled.\n\nis better comment here. Feel free to adjust it.",
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4053f5b2_6c44bac4",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2019-12-27T21:39:19Z",
+      "side": 1,
+      "message": "Why are you disabling ENABLE_PROCESSED_INPUT. According to\n\nhttps://docs.microsoft.com/en-us/windows/console/setconsolemode\n\n\"... ENABLE_PROCESSED_INPUT 0x0001\t\nCTRL+C is processed by the system and is not placed in the input buffer. ...\"\n\nThis issue is about password length problem, not about CTRL+C handling.",
+      "range": {
+        "startLine": 88,
+        "startChar": 73,
+        "endLine": 88,
+        "endChar": 95
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
