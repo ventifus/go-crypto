@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23a63205_fe335e68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2020-01-06T16:16:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e66f30bd_b2852dcd",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "094f76f3_cc3c5232",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a7aa20c9_e7f990b2",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2020-01-06T16:16:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "094f76f3_cc3c5232",
+      "range": {
+        "startLine": 949,
+        "startChar": 10,
+        "endLine": 949,
+        "endChar": 14
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "beb1f619_6150da12",
         "filename": "ssh/terminal/terminal.go",
         "patchSetId": 1
@@ -62,6 +110,24 @@
       "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8580cc7b_d7ed0abb",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2020-01-06T16:16:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beb1f619_6150da12",
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +151,30 @@
       "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "818bf305_71060b66",
+        "filename": "ssh/terminal/util_windows.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2020-01-06T16:16:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4053f5b2_6c44bac4",
+      "range": {
+        "startLine": 88,
+        "startChar": 73,
+        "endLine": 88,
+        "endChar": 95
+      },
+      "revId": "48b9b19c07bbfc3ab127823b842820cf8ada6e48",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
