@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "470b6d27_cc055198",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 103
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9372f41a_d467a51c",
+        "filename": "ssh/internal/bcrypt_pbkdf/bcrypt_pbkdf.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "do you want to keep this pristine relative to its source? \n\nIf so, document where this code came from.\n\nIf not, cnt and tmp should move to its use?",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49930a72_dbe931c5",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "cipherName, kdfName etc.",
+      "range": {
+        "startLine": 985,
+        "startChar": 28,
+        "endLine": 985,
+        "endChar": 54
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4abc6bbd_fc78d051",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "here too",
+      "range": {
+        "startLine": 996,
+        "startChar": 14,
+        "endLine": 996,
+        "endChar": 57
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e2d3247_6c5e7836",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "maybe: only support \"bcrypt\"  ?\n\nsince you only support bcrypt, maybe you can avoid lugging the parameter around and do the validation where you extract it from the input. Or are you planning to support more cipher types soon?",
+      "range": {
+        "startLine": 1001,
+        "startChar": 32,
+        "endLine": 1001,
+        "endChar": 43
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06a20e88_d685122a",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-08T11:12:00Z",
+      "side": 1,
+      "message": "the same here",
+      "range": {
+        "startLine": 1019,
+        "startChar": 29,
+        "endLine": 1019,
+        "endChar": 63
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
