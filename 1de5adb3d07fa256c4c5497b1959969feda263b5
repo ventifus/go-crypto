@@ -22,6 +22,30 @@
       "revId": "1de5adb3d07fa256c4c5497b1959969feda263b5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497cdd72_11831b68",
+        "filename": "sha3/sha3_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-01-08T21:47:33Z",
+      "side": 1,
+      "message": "Yep :(",
+      "parentUuid": "4b9c9d0f_b9177bcc",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 23
+      },
+      "revId": "1de5adb3d07fa256c4c5497b1959969feda263b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
