@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b9c9d0f_b9177bcc",
+        "filename": "sha3/sha3_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2020-01-08T21:45:01Z",
+      "side": 1,
+      "message": "Ah, this was always 0 before (per line 112 above).",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 23
+      },
+      "revId": "1de5adb3d07fa256c4c5497b1959969feda263b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
