@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56508685_c8c2e612",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2020-01-11T07:22:51Z",
+      "side": 1,
+      "message": "I think this \"continue\" is pointless, because, if you remove it, then \"continue\" on line 963 will run instead. And it will do the same thing - jump onto line 946.\n\nI don\u0027t think you want to change code under `case \u0027r\u0027` - original code version is fine as is. And original comment is shorter and nicer. Just restore original version.",
+      "revId": "9e5b1660c9f862a4ecdb253cfb0846a2a78208ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50fbd2c7_dfd419a3",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2020-01-11T07:22:51Z",
+      "side": 1,
+      "message": "I don\u0027t see how passwords with \\r in the middle are possible. Please explain.\n\nIf they are not possible, please, remove test changes.",
+      "revId": "9e5b1660c9f862a4ecdb253cfb0846a2a78208ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
