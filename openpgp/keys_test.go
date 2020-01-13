@@ -3,6 +3,7 @@ package openpgp
 import (
 	"bytes"
 	"crypto"
+	"sort"
 	"strings"
 	"testing"
 	"time"
@@ -129,6 +130,43 @@ func TestRevokedUserID(t *testing.T) {
 
 	if identityName, expectedName := identities[0].Name, "Golang Gopher <no-reply@golang.com>"; identityName != expectedName {
 		t.Errorf("obtained identity %s expected %s", identityName, expectedName)
+	}
+}
+
+func TestContainsUnsupportedEdDSA(t *testing.T) {
+	// This keyring contains packets with signatures made using algo 22
+	// (EdDSA according to the draft https://datatracker.ietf.org/doc/draft-koch-eddsa-for-openpgp/)
+	// which at this time is unsupported.
+	keys, err := ReadArmoredKeyRing(bytes.NewBufferString(keyContainingEdDSASignatures))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(keys) != 1 {
+		t.Fatal("Failed to read keyring with an EdDSA signature")
+	}
+
+	var identities []*Identity
+	for _, identity := range keys[0].Identities {
+		identities = append(identities, identity)
+	}
+
+	expectedIdentityNames := []string{"Matt Caswell <matt@openssl.org>", "Matt Caswell <frodo@baggins.org>"}
+	var readIdentityNames []string
+	for _, id := range keys[0].Identities {
+		readIdentityNames = append(readIdentityNames, id.Name)
+	}
+
+	if numIdentities, numExpected := len(identities), 2; numIdentities != numExpected {
+		t.Fatalf("obtained %d identities, expected %d", numIdentities, numExpected)
+	}
+
+	sort.Strings(expectedIdentityNames)
+	sort.Strings(readIdentityNames)
+	for i := range readIdentityNames {
+		if readIdentityNames[i] != expectedIdentityNames[i] {
+			t.Errorf("obtained identity %s expected %s", readIdentityNames[i], expectedIdentityNames[i])
+		}
 	}
 }
 

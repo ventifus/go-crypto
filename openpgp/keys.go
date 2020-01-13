@@ -406,11 +406,16 @@ func addUserID(e *Entity, packets *packet.Reader, pkt *packet.UserId) error {
 	identity.Name = pkt.Id
 	identity.UserId = pkt
 
+	var lastUnsupportedError error
 	for {
 		p, err := packets.Next()
 		if err == io.EOF {
 			break
 		} else if err != nil {
+			if _, ok := err.(errors.UnsupportedError); ok {
+				lastUnsupportedError = err
+				continue
+			}
 			return err
 		}
 
@@ -429,6 +434,10 @@ func addUserID(e *Entity, packets *packet.Reader, pkt *packet.UserId) error {
 		} else {
 			identity.Signatures = append(identity.Signatures, sig)
 		}
+	}
+
+	if len(e.Identities) == 0 {
+		return lastUnsupportedError
 	}
 
 	return nil
