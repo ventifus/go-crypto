@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "df236f30_001c999f",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 5070
+      },
+      "writtenOn": "2020-01-13T09:01:13Z",
+      "side": 1,
+      "message": "You removed continue.\n\nBut you did not restore original comment.\n\nPlease, replace lines 957 and 958 with\n\n// remove \\r from passwords on Windows\n\nso there is no diff here.",
+      "parentUuid": "95e0d4d2_dfe049ce",
+      "revId": "9e5b1660c9f862a4ecdb253cfb0846a2a78208ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50fbd2c7_dfd419a3",
         "filename": "ssh/terminal/terminal_test.go",
         "patchSetId": 4
