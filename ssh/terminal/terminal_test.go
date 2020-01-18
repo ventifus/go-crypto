@@ -323,18 +323,25 @@ func TestTerminalSetSize(t *testing.T) {
 }
 
 func TestReadPasswordLineEnd(t *testing.T) {
-	var tests = []struct {
+	type testType struct {
 		input string
 		want  string
-	}{
-		{"\n", ""},
+	}
+	var tests = []testType{
 		{"\r\n", ""},
 		{"test\r\n", "test"},
+		{"test\r", "test"},
+		{"test\n", "test"},
 		{"testtesttesttes\n", "testtesttesttes"},
 		{"testtesttesttes\r\n", "testtesttesttes"},
 		{"testtesttesttesttest\n", "testtesttesttesttest"},
 		{"testtesttesttesttest\r\n", "testtesttesttesttest"},
 	}
+	eol := "\n"
+	if runtime.GOOS == "windows" {
+		eol = "\r"
+	}
+	tests = append(tests, testType{eol, ""})
 	for _, test := range tests {
 		buf := new(bytes.Buffer)
 		if _, err := buf.WriteString(test.input); err != nil {
