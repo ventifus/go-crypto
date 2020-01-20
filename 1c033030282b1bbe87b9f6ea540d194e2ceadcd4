@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3607f542_d18fe727",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-01-20T13:34:02Z",
+      "side": 1,
+      "message": "I think you can use something like the logic below (untested) to avoid discarding any existing buffered data when advancing the counter by a small number. This is worth doing as part of the Poly1305-ChaCha20 AEAD, for example, where we always skip to the end of the first block by setting the counter value to 1 and don\u0027t really want to discard all the values we\u0027ve computed.\n\nI don\u0027t think there is any reason that the counter value needs to be a multiple of the number of blocks buffered, all assembly should be trivially able to handle arbitrary counter values.\n\n    if s.counter \u003c counter + (uint32(s.len)/blockSize) {\n        panic(\"chacha20: Advance attempted to rollback counter\")\n    }\n    if s.counter \u003c counter {\n        // New counter corresponds to a preexisting block of data in the \nbuffer.\n        s.len \u003d int((s.counter - counter) * blockSize)\n    } else {\n        // New counter has advanced beyond any buffered data.\n        s.len \u003d 0\n    }\n    s.counter \u003d counter",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 67
+      },
+      "revId": "1c033030282b1bbe87b9f6ea540d194e2ceadcd4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
