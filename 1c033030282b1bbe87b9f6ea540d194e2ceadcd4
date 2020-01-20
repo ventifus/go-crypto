@@ -46,6 +46,30 @@
       "revId": "1c033030282b1bbe87b9f6ea540d194e2ceadcd4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91fb6be7_b130d8bb",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-01-20T18:16:54Z",
+      "side": 1,
+      "message": "Ah, I see. I\u0027ve pushed a new patch that should address this -- let me know what you think.",
+      "parentUuid": "90bab953_cf2ae6a4",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 67
+      },
+      "revId": "1c033030282b1bbe87b9f6ea540d194e2ceadcd4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
