@@ -22,6 +22,30 @@
       "revId": "1c033030282b1bbe87b9f6ea540d194e2ceadcd4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90bab953_cf2ae6a4",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-01-20T14:06:19Z",
+      "side": 1,
+      "message": "Sorry, that last line should probably be something like:\n\n    s.counter \u003d counter + (s.len / blockSize)\n\nYou might need also to check that s.counter doesn\u0027t wrap to 0.",
+      "parentUuid": "3607f542_d18fe727",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 67
+      },
+      "revId": "1c033030282b1bbe87b9f6ea540d194e2ceadcd4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
