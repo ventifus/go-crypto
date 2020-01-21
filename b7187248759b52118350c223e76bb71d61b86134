@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2df402e9_87151753",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-21T03:13:33Z",
+      "side": 1,
+      "message": "Not sure this should be a division rounding up. For example, if s.counter is 4 and s.len is 1, it will let counter be set back to 3, repeating most of the 4th block, right?",
+      "revId": "b7187248759b52118350c223e76bb71d61b86134",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d501492_c9dab619",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-21T03:13:33Z",
+      "side": 1,
+      "message": "nit: needless parentheses",
+      "range": {
+        "startLine": 149,
+        "startChar": 43,
+        "endLine": 149,
+        "endChar": 56
+      },
+      "revId": "b7187248759b52118350c223e76bb71d61b86134",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
