@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d02e589_e5d1a28b",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-01-21T16:27:02Z",
+      "side": 0,
+      "message": "can you clarify why nacl is redundant here, thus okay to delete?",
+      "range": {
+        "startLine": 5,
+        "startChar": 63,
+        "endLine": 5,
+        "endChar": 67
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
