@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c47741b0_af7def95",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-01-21T10:29:30Z",
+      "side": 1,
+      "message": "can you put this on top of https://go-review.googlesource.com/c/crypto/+/207600/ ? You could reuse the padding check from there.",
+      "range": {
+        "startLine": 1316,
+        "startChar": 1,
+        "endLine": 1316,
+        "endChar": 2
+      },
+      "revId": "0a37f9d65c90761bee0c09316ae42ab75b64a4a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
