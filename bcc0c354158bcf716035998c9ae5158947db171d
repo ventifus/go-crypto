@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ad1ee414_c414e654",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "It\u0027s a permanent link to the written permission by Dmitry, referred to by the paragraph above.",
+      "parentUuid": "470b6d27_cc055198",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 103
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9372f41a_d467a51c",
         "filename": "ssh/internal/bcrypt_pbkdf/bcrypt_pbkdf.go",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82b33b18_25b754b0",
+        "filename": "ssh/internal/bcrypt_pbkdf/bcrypt_pbkdf.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9372f41a_d467a51c",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0e0616fd_6a2e8a45",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49930a72_dbe931c5",
+      "range": {
+        "startLine": 985,
+        "startChar": 28,
+        "endLine": 985,
+        "endChar": 54
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4abc6bbd_fc78d051",
         "filename": "ssh/keys.go",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e00d6a_c4162098",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4abc6bbd_fc78d051",
+      "range": {
+        "startLine": 996,
+        "startChar": 14,
+        "endLine": 996,
+        "endChar": 57
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "08ddd8e3_1fe9e0a6",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "Bringing the kdfName along lets us do the check in passphraseProtectedOpenSSHKey vs unencryptedOpenSSHKey for bcrypt vs none, and keeps the function signature consistent.\n\nUpdated the error message.",
+      "parentUuid": "7e2d3247_6c5e7836",
+      "range": {
+        "startLine": 1001,
+        "startChar": 32,
+        "endLine": 1001,
+        "endChar": 43
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06a20e88_d685122a",
         "filename": "ssh/keys.go",
         "patchSetId": 4
@@ -137,6 +257,30 @@
       "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af99e580_b301950c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-01-22T20:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06a20e88_d685122a",
+      "range": {
+        "startLine": 1019,
+        "startChar": 29,
+        "endLine": 1019,
+        "endChar": 63
+      },
+      "revId": "bcc0c354158bcf716035998c9ae5158947db171d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
