@@ -181,18 +181,36 @@ var signatureAlgorithmDetails = []struct {
 	{x509.ECDSAWithSHA512, oidSignatureECDSAWithSHA512, x509.ECDSA, crypto.SHA512},
 }
 
+func signingParamsForAlgo(requestedSigAlgo x509.SignatureAlgorithm) (sigAlgo pkix.AlgorithmIdentifier, err error) {
+	found := false
+	for _, details := range signatureAlgorithmDetails {
+		if details.algo == requestedSigAlgo {
+			found = true
+			sigAlgo.Algorithm = details.oid
+			if details.pubKeyAlgo == x509.RSA {
+				sigAlgo.Parameters = asn1.RawValue{
+					Tag: 5,
+				}
+			}
+		}
+	}
+	if !found {
+		err = fmt.Errorf("invalid requestedSigAlgo: %s", requestedSigAlgo)
+	}
+	return
+}
+
 // TODO(rlb): This is also from crypto/x509, so same comment as AGL's below
-func signingParamsForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureAlgorithm) (hashFunc crypto.Hash, sigAlgo pkix.AlgorithmIdentifier, err error) {
+// NOTE(nej) - modified this a bit to return x509.SignatureAlgorithm instead of the pkix.AlgorithmIdentifier, see
+// signingParamsForAlgo above.
+func signingAlgoForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureAlgorithm) (hashFunc crypto.Hash, sigAlgo x509.SignatureAlgorithm, err error) {
 	var pubType x509.PublicKeyAlgorithm
 
 	switch pub := pub.(type) {
 	case *rsa.PublicKey:
 		pubType = x509.RSA
 		hashFunc = crypto.SHA256
-		sigAlgo.Algorithm = oidSignatureSHA256WithRSA
-		sigAlgo.Parameters = asn1.RawValue{
-			Tag: 5,
-		}
+		sigAlgo = x509.SHA256WithRSA
 
 	case *ecdsa.PublicKey:
 		pubType = x509.ECDSA
@@ -200,13 +218,13 @@ func signingParamsForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureA
 		switch pub.Curve {
 		case elliptic.P224(), elliptic.P256():
 			hashFunc = crypto.SHA256
-			sigAlgo.Algorithm = oidSignatureECDSAWithSHA256
+			sigAlgo = x509.ECDSAWithSHA256
 		case elliptic.P384():
 			hashFunc = crypto.SHA384
-			sigAlgo.Algorithm = oidSignatureECDSAWithSHA384
+			sigAlgo = x509.ECDSAWithSHA384
 		case elliptic.P521():
 			hashFunc = crypto.SHA512
-			sigAlgo.Algorithm = oidSignatureECDSAWithSHA512
+			sigAlgo = x509.ECDSAWithSHA512
 		default:
 			err = errors.New("x509: unknown elliptic curve")
 		}
@@ -230,7 +248,7 @@ func signingParamsForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureA
 				err = errors.New("x509: requested SignatureAlgorithm does not match private key type")
 				return
 			}
-			sigAlgo.Algorithm, hashFunc = details.oid, details.hash
+			hashFunc, sigAlgo = details.hash, details.algo
 			if hashFunc == 0 {
 				err = errors.New("x509: cannot sign with hash function requested")
 				return
@@ -405,6 +423,54 @@ var (
 // resp.Certificate remains to be validated.
 func (resp *Response) CheckSignatureFrom(issuer *x509.Certificate) error {
 	return issuer.CheckSignature(resp.SignatureAlgorithm, resp.TBSResponseData, resp.Signature)
+}
+
+// Marshal marshals the OCSP response to ASN.1 DER encoded form
+func (resp *Response) Marshal() ([]byte, error) {
+
+	var tbsResponseData responseData
+
+	rest, err := asn1.Unmarshal(resp.TBSResponseData, &tbsResponseData)
+
+	if len(rest) != 0 {
+		return nil, errors.New("trailing data in resp.TBSResponseData")
+	}
+
+	if err != nil {
+		return nil, err
+	}
+
+	signatureAlgorithm, err := signingParamsForAlgo(resp.SignatureAlgorithm)
+	if err != nil {
+		return nil, err
+	}
+	response := basicResponse{
+		TBSResponseData:    tbsResponseData,
+		SignatureAlgorithm: signatureAlgorithm,
+		Signature: asn1.BitString{
+			Bytes:     resp.Signature,
+			BitLength: 8 * len(resp.Signature),
+		},
+	}
+
+	if resp.Certificate != nil {
+		response.Certificates = []asn1.RawValue{
+			{FullBytes: resp.Certificate.Raw},
+		}
+	}
+
+	responseDER, err := asn1.Marshal(response)
+	if err != nil {
+		return nil, err
+	}
+
+	return asn1.Marshal(responseASN1{
+		Status: asn1.Enumerated(Success),
+		Response: responseBytes{
+			ResponseType: idPKIXOCSPBasic,
+			Response:     responseDER,
+		},
+	})
 }
 
 // ParseError results from an invalid OCSP response.
@@ -744,7 +810,7 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		return nil, err
 	}
 
-	hashFunc, signatureAlgorithm, err := signingParamsForPublicKey(priv.Public(), template.SignatureAlgorithm)
+	hashFunc, sigAlgo, err := signingAlgoForPublicKey(priv.Public(), template.SignatureAlgorithm)
 	if err != nil {
 		return nil, err
 	}
@@ -756,29 +822,22 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		return nil, err
 	}
 
-	response := basicResponse{
-		TBSResponseData:    tbsResponseData,
-		SignatureAlgorithm: signatureAlgorithm,
-		Signature: asn1.BitString{
-			Bytes:     signature,
-			BitLength: 8 * len(signature),
-		},
-	}
-	if template.Certificate != nil {
-		response.Certificates = []asn1.RawValue{
-			{FullBytes: template.Certificate.Raw},
-		}
-	}
-	responseDER, err := asn1.Marshal(response)
-	if err != nil {
-		return nil, err
+	resp := &Response{
+		Status:             template.Status,
+		SerialNumber:       template.SerialNumber,
+		ProducedAt:         time.Now().Truncate(time.Minute).UTC(),
+		ThisUpdate:         template.ThisUpdate,
+		NextUpdate:         template.NextUpdate,
+		RevokedAt:          template.RevokedAt,
+		RevocationReason:   template.RevocationReason,
+		Certificate:        template.Certificate,
+		TBSResponseData:    tbsResponseDataDER,
+		Signature:          signature,
+		SignatureAlgorithm: sigAlgo,
+		IssuerHash:         template.IssuerHash,
+		RawResponderName:   responderCert.RawSubject,
+		ExtraExtensions:    template.ExtraExtensions,
 	}
 
-	return asn1.Marshal(responseASN1{
-		Status: asn1.Enumerated(Success),
-		Response: responseBytes{
-			ResponseType: idPKIXOCSPBasic,
-			Response:     responseDER,
-		},
-	})
+	return resp.Marshal()
 }
