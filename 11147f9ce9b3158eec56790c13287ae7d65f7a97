@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d36c134_170a40cd",
+        "filename": "ssh/terminal/terminal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-04T23:29:25Z",
+      "side": 1,
+      "message": "These docs should be updated as well.",
+      "revId": "11147f9ce9b3158eec56790c13287ae7d65f7a97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9371ddc6_4c9d2584",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-04T23:29:25Z",
+      "side": 1,
+      "message": "Add a test for \\b too, both at the beginning and not?",
+      "revId": "11147f9ce9b3158eec56790c13287ae7d65f7a97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
