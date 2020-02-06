@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4d57ec6_71b6240c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1373,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-06T20:07:45Z",
+      "side": 1,
+      "message": "Ah, the issue is that this should be a *big.Int.\n\nThe SSH wire format uses the top bit to encode the sign, and if a number has it set, it has to add an extra leading zero to make the number positive, like ASN.1.",
+      "revId": "3d922249cae3055373996ebaac3cc1ea52c42a89",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
