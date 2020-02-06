@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76305e65_90fac086",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-06T18:17:58Z",
+      "side": 1,
+      "message": "Usually ed25519.PrivateKey are not pointers, as they are already slices. Are you sure *ed25519.PrivateKey works here?",
+      "range": {
+        "startLine": 106,
+        "startChar": 26,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "1ff37a2f109c39d561a4dfcc6bb0a5a960415cda",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
