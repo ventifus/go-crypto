@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "614e3590_66676fae",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-02-06T21:14:32Z",
+      "side": 1,
+      "message": "resolving",
+      "parentUuid": "28de61c6_85f2f907",
+      "revId": "002eb6a467fcf5846824dff5dec7e4e6968c8e06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a28ba8e_9b619e33",
         "filename": "internal/wycheproof/chacha20_poly1305_test.go",
         "patchSetId": 5
@@ -69,6 +87,24 @@
       "revId": "002eb6a467fcf5846824dff5dec7e4e6968c8e06",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c813760_f1d4c9a0",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-02-06T21:14:32Z",
+      "side": 1,
+      "message": "Discussed offline, and worked this out.",
+      "parentUuid": "95955462_9b5ce11c",
+      "revId": "002eb6a467fcf5846824dff5dec7e4e6968c8e06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
