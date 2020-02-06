@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec85d05f_b30f1689",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-06T01:25:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we just recover the panic and treat it as a failure?",
+      "revId": "002eb6a467fcf5846824dff5dec7e4e6968c8e06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a28ba8e_9b619e33",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-06T01:25:57Z",
+      "side": 1,
+      "message": "If there is no error, we should also check that\n\n    ciphertext \u003d\u003d tv.Ct + tv.Tag",
+      "revId": "002eb6a467fcf5846824dff5dec7e4e6968c8e06",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
