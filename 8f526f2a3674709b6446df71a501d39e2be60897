@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "56199c71_31c0af7d",
+        "filename": "chacha20poly1305/chacha20poly1305_generic.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:47:47Z",
+      "side": 1,
+      "message": "out is ciphertext + tag. It\u0027s ok to pass a longer output slice to XORKeyStream than the input, so passing out also work, but ciphertext is cleaner.",
+      "parentUuid": "2a4a8b26_d4c69646",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "8f526f2a3674709b6446df71a501d39e2be60897",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e0f0dc2_29eae07f",
         "filename": "poly1305/poly1305_test.go",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-21T17:54:02Z",
       "side": 1,
       "message": "Point of clarification: It looks like the data is being written here. So at line 63, all that\u0027s happening is a check that it is correct, since the work to write it has already been done. Wouldn\u0027t that mean that some of the logic in Verify isn\u0027t being fully tested, if the work is already done in Sum? Meaning that these unit tests would still pass if the first 3 lines of the Verify function were deleted. Or am I misunderstanding the logic?",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 25
+      },
+      "revId": "8f526f2a3674709b6446df71a501d39e2be60897",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0f89b13_1335d745",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:47:47Z",
+      "side": 1,
+      "message": "I am not sure I understand; how Verify works is that it runs Sum (again, separately), and then compares this new result with the input.",
+      "parentUuid": "9e0f0dc2_29eae07f",
       "range": {
         "startLine": 59,
         "startChar": 2,
