@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "974b1d0f_a8d25b15",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Yep.",
+      "parentUuid": "e2977f07_c7e1e909",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18a92d1f_b04419b9",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Yep.",
+      "parentUuid": "147b61ad_9c604c79",
+      "range": {
+        "startLine": 5,
+        "startChar": 16,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75aaebc7_40f587f0",
         "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "341e697e_6d6a81a2",
+        "filename": "chacha20poly1305/chacha20poly1305_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "75aaebc7_40f587f0",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3fb3588a_2541932b",
+        "filename": "chacha20poly1305/chacha20poly1305_noasm.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "9d104a94_190f067c",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7feb2e38_71e49e81",
         "filename": "poly1305/sum_amd64.go",
         "patchSetId": 1
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a63834d3_d2623089",
+        "filename": "poly1305/sum_amd64.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "7feb2e38_71e49e81",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18e5c131_2d2f1374",
         "filename": "poly1305/sum_amd64.s",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "865eafb3_3ac8ce5e",
+        "filename": "poly1305/sum_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "18e5c131_2d2f1374",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "b0b64787_4f6f6c5c",
+        "filename": "poly1305/sum_noasm.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "The nacl GOOS is only supported on 386, amd64p32, and arm. None of those have an assembly implementation here, so nacl is implied by !amd64,!s390x,!ppc64le.",
+      "parentUuid": "2d0ad294_1ba1d396",
+      "range": {
+        "startLine": 5,
+        "startChar": 63,
+        "endLine": 5,
+        "endChar": 67
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5be44f16_28e503ce",
         "filename": "poly1305/sum_ppc64le.go",
         "patchSetId": 1
@@ -207,6 +375,30 @@
       "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "028a3b8c_0aad9120",
+        "filename": "poly1305/sum_ppc64le.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "5be44f16_28e503ce",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 17
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -233,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "4417a956_99e95b2a",
+        "filename": "poly1305/sum_ppc64le.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "e7283806_f83c0029",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 17
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bdfb5f3_c1d43573",
         "filename": "poly1305/sum_s390x.go",
         "patchSetId": 1
@@ -253,6 +469,30 @@
       "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f9cc99_1efc2ec6",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-07T17:36:53Z",
+      "side": 0,
+      "message": "Ditto.",
+      "parentUuid": "6bdfb5f3_c1d43573",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "38aa7762a28bd92a272ce813cec1f7e7436b9131",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
