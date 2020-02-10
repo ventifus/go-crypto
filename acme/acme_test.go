@@ -1317,7 +1317,7 @@ func TestTLSALPN01ChallengeCert(t *testing.T) {
 	}
 	acmeExts := []pkix.Extension{}
 	for _, ext := range cert.Extensions {
-		if idPeACMEIdentifier.Equal(ext.Id) {
+		if idPeACMEIdentifierV1.Equal(ext.Id) {
 			acmeExts = append(acmeExts, ext)
 		}
 	}
