@@ -5,8 +5,10 @@
 package poly1305
 
 import (
+	"bytes"
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/binary"
 	"flag"
 	"testing"
 	"unsafe"
@@ -152,6 +154,74 @@ func testWrite(t *testing.T, unaligned bool) {
 		h.Sum(out[:0])
 		if tag := v.Tag(); out != tag {
 			t.Errorf("%d: expected %x, got %x", i, tag[:], out[:])
+		}
+	}
+}
+
+func TestFuzz(t *testing.T) {
+	n := 1000
+	if *stressFlag {
+		n = 100000
+	} else if testing.Short() {
+		n = 10
+	}
+
+	// allocate a backing buffer for the randomly generate message
+	buffer := make([]byte, 2 << 20) // 2MiB limit
+
+	for i := 0; i < n; i++ {
+		// refresh the message data initially and then once every
+		// 100 iterations
+		// (this is much faster than doing it every iteration)
+		if i%100 == 0 {
+			if _, err := rand.Read(buffer[:]); err != nil {
+				t.Fatal(err)
+			}
+		}
+
+		// randomly generate a key
+		var key [32]byte
+		if _, err := rand.Read(key[:]); err != nil {
+			t.Fatal(err)
+		}
+
+		// randomly generate a message (with random length)
+		var tmp [4]byte
+		if _, err := rand.Read(tmp[:]); err != nil {
+			t.Fatal(err)
+		}
+		msg := buffer[:int(binary.LittleEndian.Uint32(tmp[:]))%len(buffer)]
+
+		// generate a tag using the generic implementation
+		g := newMACGeneric(&key)
+		if n, err := g.Write(msg); n != len(msg) || err != nil {
+			t.Errorf("generic implementation write error: len=%v n=%v err=%v", len(msg), n, err)
+		}
+		var gtag [16]byte
+		g.Sum(&gtag)
+
+		// generate a tag using the default implementation (which may or may not be assembly)
+		d := New(&key)
+		if n, err := d.Write(msg); n != len(msg) || err != nil {
+			t.Errorf("default implementation write error: len=%v n=%v err=%v", len(msg), n, err)
+		}
+		dtag := d.Sum(nil)
+
+		// check that the tags match
+		if !bytes.Equal(gtag[:], dtag) {
+			t.Error("tags do not match:")
+			t.Errorf("  generic: %s", hex.EncodeToString(gtag[:]))
+			t.Errorf("  default: %s", hex.EncodeToString(dtag))
+			t.Error()
+
+			// generate a test case that can be used in the test vector
+			t.Error("test case:")
+			t.Error("	{")
+			t.Errorf("		key: %#v,", hex.EncodeToString(key[:]))
+			t.Errorf("		tag: %#v, // based on generic implementation output", hex.EncodeToString(gtag[:]))
+			// the in field is all on one line to avoid terminals truncating it
+			t.Errorf("		in: %#v,", hex.EncodeToString(msg[:]))
+			t.Error("	}")
 		}
 	}
 }

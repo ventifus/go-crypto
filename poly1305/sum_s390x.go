@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build s390x,go1.11,!gccgo,!appengine
+// +build s390x,!gccgo,!appengine
 
 package poly1305
 
@@ -10,30 +10,61 @@ import (
 	"golang.org/x/sys/cpu"
 )
 
-// poly1305vx is an assembly implementation of Poly1305 that uses vector
-// instructions. It must only be called if the vector facility (vx) is
-// available.
 //go:noescape
-func poly1305vx(out *[16]byte, m *byte, mlen uint64, key *[32]byte)
+func updateVX(state *macState, msg []byte)
 
-// poly1305vmsl is an assembly implementation of Poly1305 that uses vector
-// instructions, including VMSL. It must only be called if the vector facility (vx) is
-// available and if VMSL is supported.
-//go:noescape
-func poly1305vmsl(out *[16]byte, m *byte, mlen uint64, key *[32]byte)
+func update(state *macState, msg []byte) {
+	if cpu.S390X.HasVX {
+		updateVX(state, msg)
+		return
+	}
+	updateGeneric(state, msg)
+}
 
 func sum(out *[16]byte, m []byte, key *[32]byte) {
-	if cpu.S390X.HasVX {
-		var mPtr *byte
-		if len(m) > 0 {
-			mPtr = &m[0]
+	h := newMAC(key)
+	h.Write(m)
+	h.Sum(out)
+}
+
+func newMAC(key *[32]byte) (h mac) {
+	initialize(key, &h.r, &h.s)
+	return
+}
+
+// mac is a wrapper for macGeneric that redirects calls that would have gone to
+// updateGeneric to update.
+//
+// Its Write and Sum methods are otherwise identical to the macGeneric ones, but
+// using function pointers would carry a major performance cost.
+type mac struct{ macGeneric }
+
+func (h *mac) Write(p []byte) (int, error) {
+	nn := len(p)
+	if h.offset > 0 {
+		n := copy(h.buffer[h.offset:], p)
+		if h.offset+n < TagSize {
+			h.offset += n
+			return nn, nil
 		}
-		if cpu.S390X.HasVXE && len(m) > 256 {
-			poly1305vmsl(out, mPtr, uint64(len(m)), key)
-		} else {
-			poly1305vx(out, mPtr, uint64(len(m)), key)
-		}
-	} else {
-		sumGeneric(out, m, key)
+		p = p[n:]
+		h.offset = 0
+		update(&h.macState, h.buffer[:])
 	}
+	if n := len(p) - (len(p) % TagSize); n > 0 {
+		update(&h.macState, p[:n])
+		p = p[n:]
+	}
+	if len(p) > 0 {
+		h.offset += copy(h.buffer[h.offset:], p)
+	}
+	return nn, nil
+}
+
+func (h *mac) Sum(out *[16]byte) {
+	state := h.macState
+	if h.offset > 0 {
+		update(&state, h.buffer[:h.offset])
+	}
+	finalize(out, &state.h, &state.s)
 }
