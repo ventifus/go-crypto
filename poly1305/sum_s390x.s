@@ -55,10 +55,6 @@
 #define H_3 V26
 #define H_4 V27
 
-GLOBL ·keyMask<>(SB), RODATA, $16
-DATA ·keyMask<>+0(SB)/8, $0xffffff0ffcffff0f
-DATA ·keyMask<>+8(SB)/8, $0xfcffff0ffcffff0f
-
 GLOBL ·bswapMask<>(SB), RODATA, $16
 DATA ·bswapMask<>+0(SB)/8, $0x0f0e0d0c0b0a0908
 DATA ·bswapMask<>+8(SB)/8, $0x0706050403020100
@@ -183,23 +179,27 @@ DATA ·constants<>+56(SB)/8, $0x1d1d1d1d1d1f1e1d
 	VNC   t0, t1, t1  \
 	VO    t1, t2, h0
 
-// func poly1305vx(out *[16]byte, m *byte, mlen uint64, key *[32]key)
-TEXT ·poly1305vx(SB), $0-32
+// func updateVX(state *macState, msg []byte)
+TEXT ·updateVX(SB), NOSPLIT, $0
 	// This code processes up to 2 blocks (32 bytes) per iteration
 	// using the algorithm described in:
 	// NEON crypto, Daniel J. Bernstein & Peter Schwabe
 	// https://cryptojedi.org/papers/neoncrypto-20120320.pdf
-	LMG out+0(FP), R1, R4 // R1=out, R2=m, R3=mlen, R4=key
+	MOVD state+0(FP), R1
+	LMG  msg+8(FP), R2, R3
 
 	// load MOD26, EX0, EX1 and EX2
 	MOVD $·constants<>(SB), R5
 	VLM  (R5), MOD26, EX2
 
-	// setup r
-	VL   (R4), T_0
-	MOVD $·keyMask<>(SB), R6
-	VL   (R6), T_1
-	VN   T_0, T_1, T_0
+	// TODO(mundaym): this is putting r into big-endian order
+	// and then into little-endian order so that we can use the
+	// EXPAND macro to put it back into big-endian order...
+	MOVD  $·bswapMask<>(SB), R5
+	VL    (R5), T_1
+	VLEG  $1, 24(R1), T_0
+	VLEG  $0, 32(R1), T_0
+	VPERM T_0, T_0, T_1, T_0 // reverse bytes (to little)
 	EXPAND(T_0, T_0, R_0, R_1, R_2, R_3, R_4)
 
 	// setup r*5
@@ -211,16 +211,11 @@ TEXT ·poly1305vx(SB), $0-32
 	VMLOF T_0, R_2, R5SAVE_2
 	VMLOF T_0, R_3, R5SAVE_3
 	VMLOF T_0, R_4, R5SAVE_4
-	VLGVG $0, R_0, RSAVE_0
-	VLGVG $0, R_1, RSAVE_1
-	VLGVG $0, R_2, RSAVE_2
-	VLGVG $0, R_3, RSAVE_3
-	VLGVG $0, R_4, RSAVE_4
 
-	// skip r**2 calculation
+	// skip r² calculation
 	CMPBLE R3, $16, skip
 
-	// calculate r**2
+	// calculate r²
 	MULTIPLY(R_0, R_1, R_2, R_3, R_4, R_0, R_1, R_2, R_3, R_4, R5SAVE_1, R5SAVE_2, R5SAVE_3, R5SAVE_4, H_0, H_1, H_2, H_3, H_4)
 	REDUCE(H_0, H_1, H_2, H_3, H_4)
 	VLEIG $0, $5, T_0
@@ -236,11 +231,27 @@ TEXT ·poly1305vx(SB), $0-32
 	VLR   H_4, R_4
 
 	// initialize h
+	LMG    0(R1), R7, R9
+	RISBGZ $38, $63, $0, R7, R5        // h0
+	RISBGZ $38, $63, $(-26&63), R7, R6 // h1
+	RISBGZ $52, $63, $(-52&63), R7, R7 // h2 (low only)
+	RISBG  $38, $51, $12, R8, R7       // h2
+	RISBGZ $40, $63, $(-40&63), R8, R0 // h4 (low only)
+	RISBGZ $38, $63, $(-14&63), R8, R8 // h3
+	RISBG  $38, $39, $24, R9, R0       // h4
+	MOVD   R0, R9
+
+	// load h
 	VZERO H_0
 	VZERO H_1
 	VZERO H_2
 	VZERO H_3
 	VZERO H_4
+	VLVGG $0, R5, H_0
+	VLVGG $0, R6, H_1
+	VLVGG $0, R7, H_2
+	VLVGG $0, R8, H_3
+	VLVGG $0, R9, H_4
 
 loop:
 	CMPBLE R3, $32, b2
@@ -291,15 +302,10 @@ finish:
 	// if h > 2**130-5 then h -= 2**130-5
 	MOD(H_0, H_1, T_0, T_1, T_2)
 
-	// h += s
-	MOVD  $·bswapMask<>(SB), R5
-	VL    (R5), T_1
-	VL    16(R4), T_0
-	VPERM T_0, T_0, T_1, T_0    // reverse bytes (to big)
-	VAQ   T_0, H_0, H_0
-	VPERM H_0, H_0, T_1, H_0    // reverse bytes (to little)
-	VST   H_0, (R1)
-
+	// update state
+	VSTEG $1, H_0, 0(R1)
+	VSTEG $0, H_0, 8(R1)
+	VSTEG $1, H_1, 16(R1)
 	RET
 
 b2:
@@ -319,25 +325,49 @@ b2:
 	VLEIB  $4, $1, F_4
 
 	// setup [r²,r]
-	VLVGG $1, RSAVE_0, R_0
-	VLVGG $1, RSAVE_1, R_1
-	VLVGG $1, RSAVE_2, R_2
-	VLVGG $1, RSAVE_3, R_3
-	VLVGG $1, RSAVE_4, R_4
-	VPDI  $0, R5_1, R5SAVE_1, R5_1
-	VPDI  $0, R5_2, R5SAVE_2, R5_2
-	VPDI  $0, R5_3, R5SAVE_3, R5_3
-	VPDI  $0, R5_4, R5SAVE_4, R5_4
+	LMG    24(R1), R7, R8
+	RISBGZ $38, $63, $0, R7, R5        // r0
+	RISBGZ $38, $63, $(-26&63), R7, R6 // r1
+	RISBGZ $52, $63, $(-52&63), R7, R7 // r2 (low only)
+	RISBG  $38, $51, $12, R8, R7       // r2
+	RISBGZ $40, $63, $(-40&63), R8, R9 // r4
+	RISBGZ $38, $63, $(-14&63), R8, R8 // r3
+	VLVGG  $1, R5, R_0
+	VLVGG  $1, R6, R_1
+	VLVGG  $1, R7, R_2
+	VLVGG  $1, R8, R_3
+	VLVGG  $1, R9, R_4
+	VPDI   $0, R5_1, R5SAVE_1, R5_1
+	VPDI   $0, R5_2, R5SAVE_2, R5_2
+	VPDI   $0, R5_3, R5SAVE_3, R5_3
+	VPDI   $0, R5_4, R5SAVE_4, R5_4
 
 	MOVD $0, R3
 	BR   multiply
 
 skip:
+	// initialize h
+	LMG    0(R1), R7, R9
+	RISBGZ $38, $63, $0, R7, R5        // h0
+	RISBGZ $38, $63, $(-26&63), R7, R6 // h1
+	RISBGZ $52, $63, $(-52&63), R7, R7 // h2 (low only)
+	RISBG  $38, $51, $12, R8, R7       // h2
+	RISBGZ $40, $63, $(-40&63), R8, R0 // h4 (low only)
+	RISBGZ $38, $63, $(-14&63), R8, R8 // h3
+	RISBG  $38, $39, $24, R9, R0       // h4
+	MOVD   R0, R9
+
+	// load h
 	VZERO H_0
 	VZERO H_1
 	VZERO H_2
 	VZERO H_3
 	VZERO H_4
+	VLVGG $0, R5, H_0
+	VLVGG $0, R6, H_1
+	VLVGG $0, R7, H_2
+	VLVGG $0, R8, H_3
+	VLVGG $0, R9, H_4
 
 	CMPBEQ R3, $0, finish
 
@@ -364,15 +394,22 @@ b1:
 	VZERO  R5_4
 
 	// setup [r, 1]
-	VLVGG $0, RSAVE_0, R_0
-	VLVGG $0, RSAVE_1, R_1
-	VLVGG $0, RSAVE_2, R_2
-	VLVGG $0, RSAVE_3, R_3
-	VLVGG $0, RSAVE_4, R_4
-	VPDI  $0, R5SAVE_1, R5_1, R5_1
-	VPDI  $0, R5SAVE_2, R5_2, R5_2
-	VPDI  $0, R5SAVE_3, R5_3, R5_3
-	VPDI  $0, R5SAVE_4, R5_4, R5_4
+	LMG    24(R1), R7, R8
+	RISBGZ $38, $63, $0, R7, R5        // r0
+	RISBGZ $38, $63, $(-26&63), R7, R6 // r1
+	RISBGZ $52, $63, $(-52&63), R7, R7 // r2 (low only)
+	RISBG  $38, $51, $12, R8, R7       // r2
+	RISBGZ $40, $63, $(-40&63), R8, R9 // r4
+	RISBGZ $38, $63, $(-14&63), R8, R8 // r3
+	VLVGG  $0, R5, R_0
+	VLVGG  $0, R6, R_1
+	VLVGG  $0, R7, R_2
+	VLVGG  $0, R8, R_3
+	VLVGG  $0, R9, R_4
+	VPDI   $0, R5SAVE_1, R5_1, R5_1
+	VPDI   $0, R5SAVE_2, R5_2, R5_2
+	VPDI   $0, R5SAVE_3, R5_3, R5_3
+	VPDI   $0, R5SAVE_4, R5_4, R5_4
 
 	MOVD $0, R3
 	BR   multiply
