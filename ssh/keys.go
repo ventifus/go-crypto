@@ -1365,7 +1365,7 @@ func parseOpenSSHPrivateKey(key []byte, decrypt openSSHDecryptFunc) (crypto.Priv
 
 		pk := ed25519.PrivateKey(make([]byte, ed25519.PrivateKeySize))
 		copy(pk, key.Priv)
-		return &pk, nil
+		return pk, nil
 	case KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521:
 		key := struct {
 			Curve   string
