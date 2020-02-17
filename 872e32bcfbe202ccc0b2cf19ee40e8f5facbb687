@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5cff0df_1f0357dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2020-02-17T08:54:52Z",
+      "side": 1,
+      "message": "Please, use correct format:\n\n\"acme/autocert: ....\"\n\nAlso, would be nice to have a short justification in the message description.\n\nhttps://golang.org/doc/contribute.html#commit_messages",
+      "revId": "872e32bcfbe202ccc0b2cf19ee40e8f5facbb687",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d46184_ec9b501b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6347
+      },
+      "writtenOn": "2020-02-17T08:54:52Z",
+      "side": 1,
+      "message": "It isn\u0027t really a \"cert length\".",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "872e32bcfbe202ccc0b2cf19ee40e8f5facbb687",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
