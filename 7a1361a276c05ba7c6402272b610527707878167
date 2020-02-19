@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06efc09c_e65f6acd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-19T21:07:30Z",
+      "side": 1,
+      "message": "nit: lowercase after colon",
+      "revId": "7a1361a276c05ba7c6402272b610527707878167",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b91eeb8_f5bad9f9",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-19T21:07:30Z",
+      "side": 1,
+      "message": "This changes the (undocumented) type returned by ParseRawPrivateKey. I am willing to try that, but it should be in its own CL with a very clear commit message.\n\nAlso, update the NewSignerFromKey docs, ideally by just redirecting to the NewPublicKey docs (because the Public() method has to work there).",
+      "revId": "7a1361a276c05ba7c6402272b610527707878167",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
