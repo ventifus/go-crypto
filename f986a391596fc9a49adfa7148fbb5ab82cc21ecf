@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5fcb7600_3e52d59f",
+        "filename": "internal/wycheproof/aes_cbc_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-02-19T22:28:03Z",
+      "side": 1,
+      "message": "This will be annoying for someone in the future that bumps the wycheproof module version in order to pull in new tests, and this all of a sudden starts failing. However, better to fail loudly than silently skip a test that should be checked. So I\u0027m good with this.",
+      "parentUuid": "a9052a51_3694a6d3",
+      "revId": "f986a391596fc9a49adfa7148fbb5ab82cc21ecf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50d6daa3_f9c6492f",
         "filename": "internal/wycheproof/aes_cbc_test.go",
         "patchSetId": 5
@@ -39,6 +57,30 @@
       "revId": "f986a391596fc9a49adfa7148fbb5ab82cc21ecf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f08957dd_ffdc63d4",
+        "filename": "internal/wycheproof/aes_cbc_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-02-19T22:28:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50d6daa3_f9c6492f",
+      "range": {
+        "startLine": 102,
+        "startChar": 47,
+        "endLine": 102,
+        "endChar": 57
+      },
+      "revId": "f986a391596fc9a49adfa7148fbb5ab82cc21ecf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
