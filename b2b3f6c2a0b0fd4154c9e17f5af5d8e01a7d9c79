@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61384691_3cfc77b7",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-19T21:31:45Z",
+      "side": 1,
+      "message": "Not sure why these are hardcoded, it seems hasBadNonce could just be \n\n    tg.IvSize/8 !\u003d chacha20poly1305.NonceSize",
+      "revId": "b2b3f6c2a0b0fd4154c9e17f5af5d8e01a7d9c79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
