@@ -16,6 +16,24 @@
       "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95cb96fb_91f24a2f",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2020-02-19T18:38:54Z",
+      "side": 1,
+      "message": "It\u0027s a good idea but I\u0027m not sure it makes sense in practice. OpenSSH still treats the key format for these keys as `ssh-rsa`, even when generating new ones with e.g. `ssh-keygen -t rsa-sha2-256`. Additionally, there\u0027s a lot of code that relies heavily on the public key type being `ssh-rsa`. I think it\u0027s a lot of work that would be better solved by changing the default host key algorithms.",
+      "parentUuid": "24a3746d_23d84c13",
+      "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
