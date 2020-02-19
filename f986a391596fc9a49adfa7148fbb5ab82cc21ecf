@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9052a51_3694a6d3",
+        "filename": "internal/wycheproof/aes_cbc_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-19T21:17:10Z",
+      "side": 1,
+      "message": "This is correct because we are not testing the code that checks the padding, and all invalid test vectors are only invalid because of the padding.\n\nA more explicit and future-proof way to check this would be to skip based on the BadPadding flag, not just skip all invalid entries, and then panic if there are any invalid left.",
+      "revId": "f986a391596fc9a49adfa7148fbb5ab82cc21ecf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d6daa3_f9c6492f",
+        "filename": "internal/wycheproof/aes_cbc_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-19T21:17:10Z",
+      "side": 1,
+      "message": "nit: ciphertext",
+      "range": {
+        "startLine": 102,
+        "startChar": 47,
+        "endLine": 102,
+        "endChar": 57
+      },
+      "revId": "f986a391596fc9a49adfa7148fbb5ab82cc21ecf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
