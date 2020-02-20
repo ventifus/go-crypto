@@ -34,6 +34,24 @@
       "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c4b7e63_154d0ff4",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2020-02-20T02:06:14Z",
+      "side": 1,
+      "message": "Agreed that it\u0027s no worse. Fine by me to add the knob later; I just wanted to call it out!",
+      "parentUuid": "ff862cdb_f568085e",
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
