@@ -633,7 +633,7 @@ func (t *handshakeTransport) client(kex kexAlgorithm, algs *algorithms, magics *
 		return nil, err
 	}
 
-	if err := verifyHostKeySignature(hostKey, result); err != nil {
+	if err := verifyHostKeySignature(hostKey, algs.hostKey, result); err != nil {
 		return nil, err
 	}
 
