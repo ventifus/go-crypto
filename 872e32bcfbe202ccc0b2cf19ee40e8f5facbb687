@@ -39,6 +39,48 @@
       "revId": "872e32bcfbe202ccc0b2cf19ee40e8f5facbb687",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c94d1217_43c38686",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 35041
+      },
+      "writtenOn": "2020-02-20T11:16:33Z",
+      "side": 1,
+      "message": "Updated the title to say bit size instead.",
+      "parentUuid": "35d46184_ec9b501b",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "872e32bcfbe202ccc0b2cf19ee40e8f5facbb687",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25e62625_1bb34d14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 35041
+      },
+      "writtenOn": "2020-02-20T11:16:33Z",
+      "side": 1,
+      "message": "Added a description with justification. Also, made another commit allowing it to be configurable. Looking into it further showed that not all providers have support for 4096 bit RSA keypairs as well as some developers may not want the longer TLS handshake time and higher CPU usage for slightly increased security.",
+      "parentUuid": "e5cff0df_1f0357dc",
+      "revId": "872e32bcfbe202ccc0b2cf19ee40e8f5facbb687",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
