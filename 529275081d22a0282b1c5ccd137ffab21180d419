@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63b93cb3_6590b017",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2020-02-20T01:57:15Z",
+      "side": 1,
+      "message": "On the client side, the `HostKeyAlgorithms` field can be used to select allowable signature algorithms. There\u0027s no good option on the server side -- either we support the algorithm, or we don\u0027t. This didn\u0027t matter before because you could filter by `ssh.PublicKey.Type()` in the `PublicKeyCallback`, but now there\u0027s no way to say \"I want SHA-2 RSA pubkey signatures, but not SHA-1\". I\u0027m not sure how to expose this configuration but it\u0027s clearly desirable.",
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
