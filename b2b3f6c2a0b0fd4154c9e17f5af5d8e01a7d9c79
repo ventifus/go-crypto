@@ -16,6 +16,24 @@
       "revId": "b2b3f6c2a0b0fd4154c9e17f5af5d8e01a7d9c79",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c313f2_6ed971b4",
+        "filename": "internal/wycheproof/chacha20_poly1305_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-02-21T15:55:30Z",
+      "side": 1,
+      "message": "Yeah that works. The checks I was doing were overkill. 😊\nThis simplifies the code a bit.",
+      "parentUuid": "61384691_3cfc77b7",
+      "revId": "b2b3f6c2a0b0fd4154c9e17f5af5d8e01a7d9c79",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
