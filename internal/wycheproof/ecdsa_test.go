@@ -2,13 +2,15 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// +build !go1.15
+
+// ecdsa.VerifyASN1 was added in Go 1.15.
+
 package wycheproof
 
 import (
 	"crypto/ecdsa"
 	"testing"
-
-	wecdsa "golang.org/x/crypto/internal/wycheproof/internal/ecdsa"
 )
 
 func TestEcdsa(t *testing.T) {
@@ -157,7 +159,7 @@ func TestEcdsa(t *testing.T) {
 			h.Reset()
 			h.Write(decodeHex(sig.Msg))
 			hashed := h.Sum(nil)
-			got := wecdsa.VerifyASN1(pub, hashed, decodeHex(sig.Sig))
+			got := verifyASN1(pub, hashed, decodeHex(sig.Sig))
 			if want := shouldPass(sig.Result, sig.Flags, flagsShouldPass); got != want {
 				t.Errorf("tcid: %d, type: %s, comment: %q, wanted success: %t", sig.TcId, sig.Result, sig.Comment, want)
 			}
