@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df469fa0_b0b7b9f4",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-24T23:24:54Z",
+      "side": 1,
+      "message": "I suspect checking s.overflow after this block allows a failure:\n\n- the counter is 0xffffffff and s.len is 0\n- bufSize is bigger than blockSize\n- a bufSize worth of output is generated which includes overflow blocks\n- s.overflow is set\n- the next call drains s.buf and returns overflow blocks\n\nIf that\u0027s the case, please make sure to add a test that would catch it.",
+      "revId": "04d77b36dd866578d1c7b2d9d063324a9c8c6dc4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
