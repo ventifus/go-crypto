@@ -16,6 +16,24 @@
       "revId": "04d77b36dd866578d1c7b2d9d063324a9c8c6dc4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "633bcc3a_1bfd05a9",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-02-25T05:33:16Z",
+      "side": 1,
+      "message": "Good catch. The call will still panic, but only after writing into dst. I doubt anyone is going to recover from the panic and then use the partially-written contents of dst, but better safe than sorry.\n\nThat led me to find another bug: if the counter is 0xffffffff and you crypt 1 byte, then crypt another byte, the second call will panic due to s.overflow being set.\n\nI\u0027ve fixed both bugs in the latest patch, but it\u0027s not pretty. :(",
+      "parentUuid": "df469fa0_b0b7b9f4",
+      "revId": "04d77b36dd866578d1c7b2d9d063324a9c8c6dc4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
