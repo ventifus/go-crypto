@@ -16,6 +16,24 @@
       "revId": "7cadfa27e4f712f25e7aa062d45add9281a74e78",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de7eeb68_1a8fff8c",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-02-25T15:53:35Z",
+      "side": 1,
+      "message": "Yes, its the same effect as the original code. The code here is just reading the value of r straight out of the state rather than saving and restoring it in registers.",
+      "parentUuid": "f9fd8ae0_b2636035",
+      "revId": "7cadfa27e4f712f25e7aa062d45add9281a74e78",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
