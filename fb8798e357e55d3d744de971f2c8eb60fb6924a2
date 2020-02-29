@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "588a153c_91b44093",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-29T17:42:21Z",
+      "side": 1,
+      "message": "No markdown in the commit message, and just \"Fixes #37340\" for context is enough. See golang.org/wiki/CommitMessage.",
+      "revId": "fb8798e357e55d3d744de971f2c8eb60fb6924a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d1c4b8_1239c992",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-02-29T17:42:21Z",
+      "side": 1,
+      "message": "nit: a.Identifier !\u003d \"\" is a more standard way to check for the zero value of a string, as it makes it clear it\u0027s a string and not a slice.",
+      "revId": "fb8798e357e55d3d744de971f2c8eb60fb6924a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
