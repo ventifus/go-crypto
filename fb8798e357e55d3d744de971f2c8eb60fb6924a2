@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cd4e514f_881a68c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 35118
+      },
+      "writtenOn": "2020-02-29T20:32:02Z",
+      "side": 1,
+      "message": "Thanks for taking a look Filippo! And 👍about the Markdown comment haha, this was muscle memory :)\n\nDoes the commit message get pulled from the PR description? The actual commit message is different, also not in convention though judging from the link you shared.",
+      "parentUuid": "588a153c_91b44093",
+      "revId": "fb8798e357e55d3d744de971f2c8eb60fb6924a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96d1c4b8_1239c992",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "fb8798e357e55d3d744de971f2c8eb60fb6924a2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d49a6bd0_4110cb52",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 35118
+      },
+      "writtenOn": "2020-02-29T20:32:02Z",
+      "side": 1,
+      "message": "Good call out 👍 amending.",
+      "parentUuid": "96d1c4b8_1239c992",
+      "revId": "fb8798e357e55d3d744de971f2c8eb60fb6924a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
