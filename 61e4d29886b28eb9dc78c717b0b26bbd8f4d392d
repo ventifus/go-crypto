@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fba5742_336a055f",
+        "filename": "openpgp/packet/packet_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2020-03-01T05:17:21Z",
+      "side": 1,
+      "message": "Let\u0027s perhaps check this error:\n\n      if err :\u003d w.Close(); err !\u003d nil {\n             t.Fatalf(\"Unexpected close error: %v\", err)\n      }",
+      "revId": "61e4d29886b28eb9dc78c717b0b26bbd8f4d392d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
