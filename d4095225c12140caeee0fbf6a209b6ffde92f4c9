@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb6e13b1_cdd0486a",
+        "filename": "openpgp/packet/packet.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2020-03-01T03:01:57Z",
+      "side": 1,
+      "message": "I read this code as us trying to reduce l to the power \u003e\u003d log2(len(p)).\nPerhaps we can further simplify this into an if and a constant time computation,\ninstead of a for loop:\n\nif diff :\u003d l - len(p); diff \u003e 0 {\n    // Reduce l and power, by the bit difference of the power of 2 closest to len(p).\n    reduction :\u003d 1 + power - uint8(bits.Len32(uint32(len(p))))\n    power -\u003d reduction\n    l \u003e\u003e\u003d reduction\n}\n\nWe could go wilder with that reduction computation but using bits is more legible and perhaps\neven faster than using math.Pow2(.., math.Log2)",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 3
+      },
+      "revId": "d4095225c12140caeee0fbf6a209b6ffde92f4c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
