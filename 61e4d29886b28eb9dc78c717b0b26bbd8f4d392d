@@ -16,6 +16,24 @@
       "revId": "61e4d29886b28eb9dc78c717b0b26bbd8f4d392d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b030d85e_fa784f6a",
+        "filename": "openpgp/packet/packet_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2020-03-01T15:16:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fba5742_336a055f",
+      "revId": "61e4d29886b28eb9dc78c717b0b26bbd8f4d392d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
