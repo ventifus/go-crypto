@@ -22,6 +22,30 @@
       "revId": "d4095225c12140caeee0fbf6a209b6ffde92f4c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee1f8023_49c84327",
+        "filename": "openpgp/packet/packet.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2020-03-01T04:05:49Z",
+      "side": 1,
+      "message": "Thanks, done.\n\nI also revised the CL to implement the RFC requirement that the first partial write be at 512 bytes.",
+      "parentUuid": "eb6e13b1_cdd0486a",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 3
+      },
+      "revId": "d4095225c12140caeee0fbf6a209b6ffde92f4c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
