@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36d0fa7c_f130133e",
+        "filename": "ssh/kex.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-03-04T22:47:00Z",
+      "side": 1,
+      "message": "maybe just remove the * here?",
+      "range": {
+        "startLine": 575,
+        "startChar": 10,
+        "endLine": 575,
+        "endChar": 11
+      },
+      "revId": "29db1423485fe4ffd3c554ba33ce05854d205eee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "750e241c_65c58342",
+        "filename": "ssh/test/concurrent_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-03-04T22:47:00Z",
+      "side": 1,
+      "message": "why? I think you could do a concurrent unittest, no? the tests against ssh have poor platform coverage.",
+      "range": {
+        "startLine": 16,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "29db1423485fe4ffd3c554ba33ce05854d205eee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
