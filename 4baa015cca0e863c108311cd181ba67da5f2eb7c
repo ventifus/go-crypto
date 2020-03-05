@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef3ce1e3_d4ae932a",
+        "filename": "ssh/kex_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-03-05T21:18:01Z",
+      "side": 1,
+      "message": "detect race conditions.",
+      "range": {
+        "startLine": 18,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 9
+      },
+      "revId": "4baa015cca0e863c108311cd181ba67da5f2eb7c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
