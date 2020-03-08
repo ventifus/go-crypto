@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ffb2ea4_46358aa5",
+        "filename": "bcrypt/bcrypt_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-03-08T23:16:27Z",
+      "side": 1,
+      "message": "Please move this example into a new file so that the test can be made \"external\", ie package bcrypt_test. In this way the example code will appear as an external user of the package will see it, eg, with the bcrypt prefix.\n\nSo that the example is associated with the correct function I believe it should be renamed ExampleGenerateFromPassword.",
+      "revId": "a9a45686b7a2ff2db6fbe6e10173d1af94ae812d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
