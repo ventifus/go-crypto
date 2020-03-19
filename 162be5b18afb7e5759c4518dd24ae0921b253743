@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57527b86_5c516be6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T21:43:43Z",
+      "side": 1,
+      "message": "Just \"bcrypt:\" without the \"golang.org/x/crypto/\" prefix.",
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afe5804b_26f1603a",
+        "filename": "bcrypt/example_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T21:43:43Z",
+      "side": 1,
+      "message": "Missing file copyright header.",
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "707e5fce_ff124fe1",
+        "filename": "bcrypt/example_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T21:43:43Z",
+      "side": 1,
+      "message": "\"storedPassword\" gives a better idea of what to do with it.",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5df3efc_d2d2536a",
+        "filename": "bcrypt/example_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T21:43:43Z",
+      "side": 1,
+      "message": "log.Fatal(err)",
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75700425_e69aaa85",
+        "filename": "bcrypt/example_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T21:43:43Z",
+      "side": 1,
+      "message": "Better make this into an if, as that\u0027s how it should be used:\n\n    if err :\u003d bcrypt.CompareHashAndPassword(securedPassword, password); err !\u003d nil {\n        log.Fatal(\"invalid password!\")\n    }",
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
