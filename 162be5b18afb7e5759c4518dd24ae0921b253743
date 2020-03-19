@@ -76,6 +76,24 @@
     },
     {
       "key": {
+        "uuid": "6d586a16_2abe7bbd",
+        "filename": "bcrypt/example_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 17921
+      },
+      "writtenOn": "2020-03-19T22:20:09Z",
+      "side": 1,
+      "message": "Is it not convention to panic on error in crypto examples, though? E.g. https://tip.golang.org/pkg/crypto/cipher/#example_NewCBCDecrypter, https://tip.golang.org/pkg/crypto/ecdsa/#example_, etc...",
+      "parentUuid": "c5df3efc_d2d2536a",
+      "revId": "162be5b18afb7e5759c4518dd24ae0921b253743",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "75700425_e69aaa85",
         "filename": "bcrypt/example_test.go",
         "patchSetId": 6
