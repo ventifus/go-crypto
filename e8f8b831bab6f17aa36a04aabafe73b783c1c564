@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4559e5f0_60a3fdea",
+        "filename": "internal/wycheproof/ecdsa_compat_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T22:28:39Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce78c69d_ca9f47da",
+        "filename": "internal/wycheproof/ecdsa_compat_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T22:28:39Z",
+      "side": 1,
+      "message": "I\u0027d just move the code in here and delete the package, but up to you.",
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d5e4fd6_288e64a1",
+        "filename": "internal/wycheproof/ecdsa_go115_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-19T22:28:39Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
