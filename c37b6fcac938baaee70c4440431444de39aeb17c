@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "873372dd_09bbe2fc",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-20T18:22:08Z",
+      "side": 1,
+      "message": "Yeah, no XORKeyStream implementation can be constant-time relative to the order of calls, but what this is saying is that if you set the counter to 0xffffffff the next XORKeyStream call will take a different time than if you set it to a lower value, because we use a different implementation.\n\nI agree it\u0027s not super clear but I don\u0027t know how else to word it, and accept suggestions.",
+      "parentUuid": "75aa0e86_2b022228",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8c7082d_edab073e",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "eb003f65_586964da",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-20T18:22:08Z",
+      "side": 1,
+      "message": "I generally prefer not to nest ifs if the condition is not actually nested: that is, the condition to return is that src is empty, not that src is empty AND we drained the buffer. Since the former is sufficient for correctness, it makes understanding a little easier IMHO.",
+      "parentUuid": "e8c7082d_edab073e",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98d477c9_94f5fc53",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8733aafe_6eb09bae",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-20T18:22:08Z",
+      "side": 1,
+      "message": "The only tricky part is that we need to right-align the buffer not to change the s.len logic, but it\u0027s totally doable and better than the loop.\n\nDone, thank you!",
+      "parentUuid": "98d477c9_94f5fc53",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
