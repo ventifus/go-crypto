@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6c6dc65f_370980cc",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-20T23:25:38Z",
+      "side": 1,
+      "message": "Is it necessary to document this at all? XORKeyStream isn\u0027t claimed to be constant time anyway, so this warning feels redundant. If anything, maybe put a warning on XORKeyStream.",
+      "parentUuid": "873372dd_09bbe2fc",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8c7082d_edab073e",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I generally prefer not to nest ifs if the condition is not actually nested: that is, the condition to return is that src is empty, not that src is empty AND we drained the buffer. Since the former is sufficient for correctness, it makes understanding a little easier IMHO.",
       "parentUuid": "e8c7082d_edab073e",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddd03c37_6ded3287",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-20T23:25:38Z",
+      "side": 1,
+      "message": "Huh. That makes a lot of sense.\n\nThe redundancy still bothers me; maybe we could remove the first len(src) \u003d\u003d 0 check? Not a big deal though.",
+      "parentUuid": "eb003f65_586964da",
       "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
