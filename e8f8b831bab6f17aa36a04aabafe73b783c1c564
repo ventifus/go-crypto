@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "43e0c5a6_376eead2",
+        "filename": "internal/wycheproof/ecdsa_compat_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-20T14:49:33Z",
+      "side": 1,
+      "message": "Done, good catch 😊",
+      "parentUuid": "4559e5f0_60a3fdea",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce78c69d_ca9f47da",
         "filename": "internal/wycheproof/ecdsa_compat_test.go",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55883213_d03588dc",
+        "filename": "internal/wycheproof/ecdsa_compat_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-20T14:49:33Z",
+      "side": 1,
+      "message": "Yeah that\u0027s easier, done.",
+      "parentUuid": "ce78c69d_ca9f47da",
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5238e9e6_5b9bc8d2",
+        "filename": "internal/wycheproof/ecdsa_go115_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-20T14:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d5e4fd6_288e64a1",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "e8f8b831bab6f17aa36a04aabafe73b783c1c564",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
