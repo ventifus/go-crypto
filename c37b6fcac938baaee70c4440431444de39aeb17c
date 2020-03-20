@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75aa0e86_2b022228",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-20T15:57:09Z",
+      "side": 1,
+      "message": "I *think* I understand what this means (XORKeyStream crypts fewer blocks when it would otherwise overflow), but it\u0027s a bit vague. And doesn\u0027t s.buf also cause XORKeyStream to be non-constant-time, irrespective of the counter value?",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c7082d_edab073e",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-20T15:57:09Z",
+      "side": 1,
+      "message": "I put this inside the if block because we already check len(src) \u003d\u003d 0 at the top of the function",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98d477c9_94f5fc53",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-20T15:57:09Z",
+      "side": 1,
+      "message": "Is it possible to do this with a single call to xorKeyStreamBlocksGeneric? s.buf should be large enough to hold the remainder of src, so you can do n :\u003d copy(s.buf, src), round n up to the next block, and xor(s.buf[:n], s.buf[:n]).",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
