@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "9eb3190e_26f59bfe",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-21T01:40:31Z",
+      "side": 1,
+      "message": "A caller that makes differently-sized calls to XORKeyStream is responsible for the variance so is definitely aware of it, but it would be reasonable to expect that the value passed to SetCounter doesn\u0027t leak through side channels, which instead it does.\n\nFor example, if the QUIC counter value were secret we\u0027d have a problem here.",
+      "parentUuid": "6c6dc65f_370980cc",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8c7082d_edab073e",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Huh. That makes a lot of sense.\n\nThe redundancy still bothers me; maybe we could remove the first len(src) \u003d\u003d 0 check? Not a big deal though.",
       "parentUuid": "eb003f65_586964da",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43033a48_1a83a2d4",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-21T01:40:31Z",
+      "side": 1,
+      "message": "We can\u0027t drop the first one or we will panic at src[len(keyStream)-1] (and even if we fix that there\u0027s a risk we\u0027ll introduce something similar). If at any time src is empty we are ready to return, so I\u0027m not very worried by having multiple of those checks.",
+      "parentUuid": "ddd03c37_6ded3287",
       "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
