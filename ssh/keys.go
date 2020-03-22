@@ -1246,15 +1246,21 @@ func passphraseProtectedOpenSSHKey(passphrase []byte) openSSHDecryptFunc {
 		}
 		key, iv := k[:32], k[32:]
 
-		if cipherName != "aes256-ctr" {
+		if cipherName != "aes256-ctr" && cipherName != "aes256-cbc" {
 			return nil, fmt.Errorf("ssh: unknown cipher %q, only supports %q", cipherName, "aes256-ctr")
 		}
 		c, err := aes.NewCipher(key)
 		if err != nil {
 			return nil, err
 		}
-		ctr := cipher.NewCTR(c, iv)
-		ctr.XORKeyStream(privKeyBlock, privKeyBlock)
+		switch cipherName {
+		case "aes256-ctr":
+			ctr := cipher.NewCTR(c, iv)
+			ctr.XORKeyStream(privKeyBlock, privKeyBlock)
+		case "aes256-cbc":
+			cbc := cipher.NewCBCDecrypter(c, iv)
+			cbc.CryptBlocks(privKeyBlock, privKeyBlock)
+		}
 
 		return privKeyBlock, nil
 	}
