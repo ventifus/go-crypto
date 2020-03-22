@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76685b65_7206090c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-22T22:48:18Z",
+      "side": 1,
+      "message": "Move this error to a default clause of the switch.",
+      "revId": "b58323a978e403183d55ccba84b603752b14fd91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd96592a_70b6dfa8",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-03-22T22:48:18Z",
+      "side": 1,
+      "message": "Check that len(privKeyBlock) is a multiple of cbc.BlockSize() or this will panic.",
+      "revId": "b58323a978e403183d55ccba84b603752b14fd91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
