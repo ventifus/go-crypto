@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "c7d778ee_6d621b1c",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 24748
+      },
+      "writtenOn": "2020-03-23T18:09:08Z",
+      "side": 1,
+      "message": "Following the language in math/bits, how about: \"Note that the execution time of XORKeyStream is not independent of the counter value.\"",
+      "parentUuid": "9eb3190e_26f59bfe",
+      "revId": "c37b6fcac938baaee70c4440431444de39aeb17c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8c7082d_edab073e",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
