@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bd270508_c54f9e0b",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 34937
+      },
+      "writtenOn": "2020-03-23T14:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76685b65_7206090c",
+      "revId": "b58323a978e403183d55ccba84b603752b14fd91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd96592a_70b6dfa8",
         "filename": "ssh/keys.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "b58323a978e403183d55ccba84b603752b14fd91",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "953a28b3_7bdd7b4a",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 34937
+      },
+      "writtenOn": "2020-03-23T14:59:55Z",
+      "side": 1,
+      "message": "Done, returns nil and a descriptive Error if size is wrong",
+      "parentUuid": "fd96592a_70b6dfa8",
+      "revId": "b58323a978e403183d55ccba84b603752b14fd91",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
