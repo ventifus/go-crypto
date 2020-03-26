@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b486e1c_8ccf195d",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "Maybe a slightly more explicit way to write this:\n\n  numBlocks \u003d (uint64(len(src))/blockSize\n  if uint64(len(src))%blockSize \u003e 0 {\n    numBlocks++ // any overflow will need a new block\n  }\n\nWhat you have works, but took me a bit to understand. Perhaps a comment would be enough, but I think this lets the code speak for itself a bit more.",
+      "range": {
+        "startLine": 211,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 60
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8bd2004_ab82ad61",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "Can you add a comment before this block explaining what is being checked and why it\u0027s necessary?",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 2
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abd44878_d0d438f7",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "do we not need to convert this to a unit64 since we\u0027re sure it won\u0027t overflow, due to the checks at line 212?",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 24
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e86ee690_20a18896",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "I don\u0027t think I understand this section completely, but if you have really good tests then it seems reasonable to me. We can also talk through this section offline, too.\n\nA few more comments inside this function may be enough to clarify, or splitting some of the math into descriptive variables. For example, I don\u0027t understand the creation of buf (with s.buf[bufSize-numBlocks*blockSize:]). Why that size (what does that mean exactly) and why are we copying the src into it?",
+      "range": {
+        "startLine": 218,
+        "startChar": 1,
+        "endLine": 239,
+        "endChar": 2
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a158400_d2e88777",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "Are we able to test this with different buffer sizes to make sure we\u0027re covering edge cases? Not sure how feasible that would be, or if you feel the test coverage is enough based on the src len.",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 18
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3a51e7f_fcea593c",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "\"however\" here feels awkward, when the check before it also panicked. I would just drop this word. You could say:\n// crypting a subsequent block should panic because it would overflow the counter",
+      "range": {
+        "startLine": 180,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 11
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "552aa63f_79862522",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "any benefit to making these more specific (since we have the same error text here and in line 191)?",
+      "range": {
+        "startLine": 194,
+        "startChar": 11,
+        "endLine": 194,
+        "endChar": 69
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9685a2f2_95146a00",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-03-26T19:40:47Z",
+      "side": 1,
+      "message": "suggest:\n// as before, a third call should trigger a panic because the block has already been encrypted\n\n(or is that not correct?)",
+      "range": {
+        "startLine": 196,
+        "startChar": 1,
+        "endLine": 196,
+        "endChar": 50
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
