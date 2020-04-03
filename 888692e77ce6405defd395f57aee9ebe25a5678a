@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd310c74_fec69c57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-03T16:37:10Z",
+      "side": 1,
+      "message": "I\u0027d use \"clarify difference between blake2b and blake2s\" as \"optimizations of functions\" sounds like it\u0027s about the optimization we wrote for the Go functions, rather than the design of the hash.",
+      "revId": "888692e77ce6405defd395f57aee9ebe25a5678a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
