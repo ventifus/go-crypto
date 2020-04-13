@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad3814b4_11f61e52",
+        "filename": "chacha20poly1305/chacha20poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-13T16:58:39Z",
+      "side": 1,
+      "message": "The curly braces feel weird here now that there is no loop. Any reason to keep them around?",
+      "range": {
+        "startLine": 236,
+        "startChar": 1,
+        "endLine": 236,
+        "endChar": 2
+      },
+      "revId": "36118d948b0d03a417eabfc1f1ff022f0ae3aadc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2762abb3_c6086033",
+        "filename": "chacha20poly1305/chacha20poly1305_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-13T16:58:39Z",
+      "side": 1,
+      "message": "why nonce here? The docs say \"To reuse plaintext\u0027s storage for the encrypted output, use plaintext[:0] as dst\" so should this be msg[:0]? Although we aren\u0027t using this dst field at all since we\u0027re using the returned output of the function for encryptedMsg, so could it just be nil like before?",
+      "range": {
+        "startLine": 246,
+        "startChar": 27,
+        "endLine": 246,
+        "endChar": 32
+      },
+      "revId": "36118d948b0d03a417eabfc1f1ff022f0ae3aadc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
