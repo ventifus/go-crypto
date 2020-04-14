@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1672c0c2_91c5ff8c",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "I find the if to cause more cognitive overload because now there is a condition to take into account. This kind of division rounding up is a pattern a bit all over, and I think it\u0027s clear after encountering it the first time.",
+      "parentUuid": "0b486e1c_8ccf195d",
+      "range": {
+        "startLine": 211,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 60
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8bd2004_ab82ad61",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed662135_7d575f5d",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8bd2004_ab82ad61",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 2
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fc390a64_f2e6c391",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "For this to overflow on a 32-bit machine, src would have to be as large as all addressable memory. On a 64-bit machine it just can\u0027t.\n\nAbove we convert it to uint64 because then we add the counter, which we know might be high enough to overflow.",
+      "parentUuid": "abd44878_d0d438f7",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 24
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86ee690_20a18896",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2020-03-26T19:40:47Z",
       "side": 1,
       "message": "I don\u0027t think I understand this section completely, but if you have really good tests then it seems reasonable to me. We can also talk through this section offline, too.\n\nA few more comments inside this function may be enough to clarify, or splitting some of the math into descriptive variables. For example, I don\u0027t understand the creation of buf (with s.buf[bufSize-numBlocks*blockSize:]). Why that size (what does that mean exactly) and why are we copying the src into it?",
+      "range": {
+        "startLine": 218,
+        "startChar": 1,
+        "endLine": 239,
+        "endChar": 2
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ac40179_3939f1da",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "I can\u0027t remember, did we discuss this offline?",
+      "parentUuid": "e86ee690_20a18896",
       "range": {
         "startLine": 218,
         "startChar": 1,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "dd417480_a62fc7e9",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "No, the code doesn\u0027t really let us, and abstracting it would have a performance cost, because it\u0027s embedded in the Cipher struct.\n\nInstead, I ran the test on all architectures with SlowBots, getting it exposed to all bufSizes.",
+      "parentUuid": "0a158400_d2e88777",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 18
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3a51e7f_fcea593c",
         "filename": "chacha20/chacha_test.go",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a18db89_16a7ca03",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3a51e7f_fcea593c",
+      "range": {
+        "startLine": 180,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 11
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "bcf47a06_8f2d8f1b",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "Couldn\u0027t come up with better messages, and test logs have lines anyway.",
+      "parentUuid": "552aa63f_79862522",
+      "range": {
+        "startLine": 194,
+        "startChar": 11,
+        "endLine": 194,
+        "endChar": 69
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9685a2f2_95146a00",
         "filename": "chacha20/chacha_test.go",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "444208fa_503ea573",
+        "filename": "chacha20/chacha_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-14T22:43:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9685a2f2_95146a00",
+      "range": {
+        "startLine": 196,
+        "startChar": 1,
+        "endLine": 196,
+        "endChar": 50
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
