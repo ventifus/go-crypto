@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0f63cf4_47fd2696",
+        "filename": "ocsp/ocsp_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-15T20:20:50Z",
+      "side": 1,
+      "message": "Looks like this error needs updating.",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "a216d4721f726d0c69493b6cff8ce43bf891e42b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
