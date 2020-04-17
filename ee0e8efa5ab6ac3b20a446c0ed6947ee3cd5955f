@@ -59,6 +59,24 @@
     },
     {
       "key": {
+        "uuid": "3f43148b_774df9b0",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "Similar to the situation in addXor, this does make it slower, but only a tiny bit (by 0.3-2%), presumably because this is only called once every key stream.\n\nI\u0027ve changed it to\n _, _ \u003d key[KeySize-1], nonce[NonceSize-1] // bounds check elimination hint\n\nHopefully this is more readable",
+      "parentUuid": "8d17bdf1_6818fc9e",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3bdea81b_4d79d83b",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -70,6 +88,30 @@
       "writtenOn": "2020-04-17T17:04:27Z",
       "side": 1,
       "message": "This is neat, but it mixes BCE hints and logic. By reading the rest of the code one can tell it\u0027s equivalent, but only looking at this we\u0027d wonder \"why check both dst and src? what if they are 1-63 bytes?\n\nWould it be noticeably slower to do this?\n\n    for len(src) \u003e 0 {\n        _, _ \u003d src[:blockSize], dst[:blockSize] // bounds check elimination hint",
+      "range": {
+        "startLine": 264,
+        "startChar": 5,
+        "endLine": 264,
+        "endChar": 37
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5867c262_02850d7c",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "I don\u0027t think src or dst can be 1-63 bytes, because at the top there is a check on len(dst) \u003d\u003d len(src) and len(dst)%blockSize\u003d\u003d0. Since we are reslicing them by 64 bytes after each loop, src and dst are either a multiple of 64 bytes long or empty (i.e. we are done).\n\nDoing\n    for len(src) \u003e 0 {\n        _, _ \u003d src[:blockSize], dst[:blockSize] // bounds check elimination hint\n\nis surprisingly very expensive\n benchmark                        old ns/op     new ns/op     delta\n BenchmarkChaCha20/64-12          129           141           +9.30%\n BenchmarkChaCha20/256-12         433           480           +10.85%\n BenchmarkChaCha20/10x25-12       769           814           +5.85%\n BenchmarkChaCha20/4096-12        433           479           +10.62%\n BenchmarkChaCha20/100x40-12      7911          8652          +9.37%\n BenchmarkChaCha20/65536-12       103723        115899        +11.74%\n BenchmarkChaCha20/1000x65-12     106253        117951        +11.01%\n\n benchmark                        old MB/s     new MB/s     speedup\n BenchmarkChaCha20/64-12          494.42       452.39       0.91x\n BenchmarkChaCha20/256-12         590.71       533.55       0.90x\n BenchmarkChaCha20/10x25-12       325.11       307.00       0.94x\n BenchmarkChaCha20/4096-12        591.66       534.14       0.90x\n BenchmarkChaCha20/100x40-12      505.65       462.34       0.91x\n BenchmarkChaCha20/65536-12       631.83       565.46       0.89x\n BenchmarkChaCha20/1000x65-12     611.75       551.08       0.90x\n\nThis also doesn\u0027t eliminate the BCE at the end of the loop\n src, dst \u003d src[blockSize:], dst[blockSize:]\n\nDoing\n _, _ \u003d src[blockSize-1], dst[blockSize-1]\n\ninstead eliminates the BCE on the reslicing at the end of the loop, but it still slows down the benchmark by 1.6-4.8%",
+      "parentUuid": "3bdea81b_4d79d83b",
       "range": {
         "startLine": 264,
         "startChar": 5,
@@ -105,6 +147,30 @@
     },
     {
       "key": {
+        "uuid": "6f529e68_e7605297",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dce066d1_6c83dd80",
+      "range": {
+        "startLine": 313,
+        "startChar": 17,
+        "endLine": 313,
+        "endChar": 19
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03ff3021_bdd5ba35",
         "filename": "chacha20/xor.go",
         "patchSetId": 1
@@ -125,6 +191,30 @@
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95d42748_89782526",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03ff3021_bdd5ba35",
+      "range": {
+        "startLine": 18,
+        "startChar": 29,
+        "endLine": 18,
+        "endChar": 47
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -162,6 +252,48 @@
       "writtenOn": "2020-04-17T17:04:27Z",
       "side": 1,
       "message": "If [:4] is not slower, let\u0027s change this one too.",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23674b16_d3cc45cd",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a02f68a5_c91c8282",
+      "range": {
+        "startLine": 19,
+        "startChar": 26,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a3fe01e_f0409095",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-17T19:48:13Z",
+      "side": 1,
+      "message": "Unfortunately changing this to [:4] leads to a pretty big performance hit:\n benchmark                        old ns/op     new ns/op     delta\n BenchmarkChaCha20/64-12          129           139           +7.75%\n BenchmarkChaCha20/256-12         433           469           +8.31%\n BenchmarkChaCha20/10x25-12       769           805           +4.68%\n BenchmarkChaCha20/4096-12        433           470           +8.55%\n BenchmarkChaCha20/100x40-12      7911          8436          +6.64%\n BenchmarkChaCha20/65536-12       103723        113718        +9.64%\n BenchmarkChaCha20/1000x65-12     106253        115295        +8.51%\n\n benchmark                        old MB/s     new MB/s     speedup\n BenchmarkChaCha20/64-12          494.42       459.09       0.93x\n BenchmarkChaCha20/256-12         590.71       545.46       0.92x\n BenchmarkChaCha20/10x25-12       325.11       310.55       0.96x\n BenchmarkChaCha20/4096-12        591.66       544.52       0.92x\n BenchmarkChaCha20/100x40-12      505.65       474.15       0.94x\n BenchmarkChaCha20/65536-12       631.83       576.30       0.91x\n BenchmarkChaCha20/1000x65-12     611.75       563.77       0.92x\n\nLooking at bce debug output, it looks like doing [:4] doesn\u0027t eliminate the bounds checks somehow. Checks are inserted for doing [:4], and then all subsequent accesses to dst and src from line 26 to line 34. Somehow there are no checks for when unaligned is false.\n\nThis also lead to checks being inserted in xorKeyStreamBlocksGeneric, where addXor is called. Weirdly, calling addXor with the slicing [0:4] doesn\u0027t trigger a bounds check, but all subsequent slicings ([4:8], [8:12] etc.) do. I think the SSA prover is quite flimsy on this:\n\n .\\xor.go:19:12: Found IsSliceInBounds\n .\\xor.go:19:21: Found IsSliceInBounds\n .\\xor.go:26:18: Found IsInBounds\n .\\xor.go:27:18: Found IsInBounds\n .\\xor.go:28:18: Found IsInBounds\n .\\xor.go:29:18: Found IsInBounds\n .\\xor.go:31:6: Found IsInBounds\n .\\xor.go:32:6: Found IsInBounds\n .\\xor.go:33:6: Found IsInBounds\n .\\xor.go:34:6: Found IsInBounds\n .\\chacha_generic.go:292:9: Found IsSliceInBounds\n .\\chacha_generic.go:293:9: Found IsSliceInBounds\n .\\chacha_generic.go:294:9: Found IsSliceInBounds\n .\\chacha_generic.go:295:9: Found IsSliceInBounds\n .\\chacha_generic.go:296:9: Found IsSliceInBounds\n .\\chacha_generic.go:297:9: Found IsSliceInBounds\n .\\chacha_generic.go:298:9: Found IsSliceInBounds\n .\\chacha_generic.go:299:9: Found IsSliceInBounds\n .\\chacha_generic.go:300:9: Found IsSliceInBounds\n .\\chacha_generic.go:301:9: Found IsSliceInBounds\n .\\chacha_generic.go:302:9: Found IsSliceInBounds\n .\\chacha_generic.go:303:9: Found IsSliceInBounds\n .\\chacha_generic.go:304:9: Found IsSliceInBounds\n .\\chacha_generic.go:305:9: Found IsSliceInBounds\n .\\chacha_generic.go:306:9: Found IsSliceInBounds",
+      "parentUuid": "1134ed59_2faa2b99",
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
