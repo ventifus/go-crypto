@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "eb896489_a6de3e1b",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-17T19:51:21Z",
+      "side": 1,
+      "message": "Sounds good",
+      "parentUuid": "1672c0c2_91c5ff8c",
+      "range": {
+        "startLine": 211,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 60
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8bd2004_ab82ad61",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 2
@@ -187,6 +211,30 @@
       "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3f39246_f7347744",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-17T19:51:21Z",
+      "side": 1,
+      "message": "I don\u0027t think we discussed this particular section offline, but I think I understand enough of it now 👍",
+      "parentUuid": "6ac40179_3939f1da",
+      "range": {
+        "startLine": 218,
+        "startChar": 1,
+        "endLine": 239,
+        "endChar": 2
+      },
+      "revId": "d41b7cb1a20ea548e5f7f5f9fa5d1b275a73464f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
