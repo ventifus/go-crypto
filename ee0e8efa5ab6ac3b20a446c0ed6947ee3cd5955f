@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ab2e839_5e2bcfa1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "improve generic implementation performance",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff68a1e_50a67458",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "No markdown, and wrap lines below, see https://golang.org/wiki/CommitMessage",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d17bdf1_6818fc9e",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "is [:32] and [:12] slower? If not, I find it more readable.",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bdea81b_4d79d83b",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "This is neat, but it mixes BCE hints and logic. By reading the rest of the code one can tell it\u0027s equivalent, but only looking at this we\u0027d wonder \"why check both dst and src? what if they are 1-63 bytes?\n\nWould it be noticeably slower to do this?\n\n    for len(src) \u003e 0 {\n        _, _ \u003d src[:blockSize], dst[:blockSize] // bounds check elimination hint",
+      "range": {
+        "startLine": 264,
+        "startChar": 5,
+        "endLine": 264,
+        "endChar": 37
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dce066d1_6c83dd80",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "blockSize",
+      "range": {
+        "startLine": 313,
+        "startChar": 17,
+        "endLine": 313,
+        "endChar": 19
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03ff3021_bdd5ba35",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "a, b uint32\n\nThey are not different so might as well give them generic names.",
+      "range": {
+        "startLine": 18,
+        "startChar": 29,
+        "endLine": 18,
+        "endChar": 47
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a02f68a5_c91c8282",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "Might as well turn this into \"bounds check elimination hint\" as well to be consistent.",
+      "range": {
+        "startLine": 19,
+        "startChar": 26,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1134ed59_2faa2b99",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T17:04:27Z",
+      "side": 1,
+      "message": "If [:4] is not slower, let\u0027s change this one too.",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
