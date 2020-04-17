@@ -22,6 +22,30 @@
       "revId": "4d288d1b4d34e2f3fc4ba7e4dc5b4be03d9c1d0e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a8d2d6_c0cee789",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:30:38Z",
+      "side": 1,
+      "message": "I don\u0027t follow, if len(src) is a multiple of bufSize, lines 226-230 will consume it all and this will be false. If it\u0027s not, there will be some leftover, and this will be true.",
+      "parentUuid": "78b25db8_711d6323",
+      "range": {
+        "startLine": 247,
+        "startChar": 1,
+        "endLine": 247,
+        "endChar": 18
+      },
+      "revId": "4d288d1b4d34e2f3fc4ba7e4dc5b4be03d9c1d0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
