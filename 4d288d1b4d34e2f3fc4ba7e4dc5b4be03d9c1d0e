@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78b25db8_711d6323",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-17T19:50:09Z",
+      "side": 1,
+      "message": "If you already checked that full \u003e 0 at line 227, then aren\u0027t we guaranteed that len(src) \u003e 0 once we get here? (ie. can you remove this if check?) If so, then I think the comment should also be updated.",
+      "range": {
+        "startLine": 247,
+        "startChar": 1,
+        "endLine": 247,
+        "endChar": 18
+      },
+      "revId": "4d288d1b4d34e2f3fc4ba7e4dc5b4be03d9c1d0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
