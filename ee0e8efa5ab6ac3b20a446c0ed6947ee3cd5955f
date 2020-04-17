@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "de2c8a21_0d6f170d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ab2e839_5e2bcfa1",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aff68a1e_50a67458",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8535b677_c9acfa5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff68a1e_50a67458",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -77,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "33749882_8697fc5e",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "Yup, thanks.",
+      "parentUuid": "3f43148b_774df9b0",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bdea81b_4d79d83b",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -112,6 +172,30 @@
       "side": 1,
       "message": "I don\u0027t think src or dst can be 1-63 bytes, because at the top there is a check on len(dst) \u003d\u003d len(src) and len(dst)%blockSize\u003d\u003d0. Since we are reslicing them by 64 bytes after each loop, src and dst are either a multiple of 64 bytes long or empty (i.e. we are done).\n\nDoing\n    for len(src) \u003e 0 {\n        _, _ \u003d src[:blockSize], dst[:blockSize] // bounds check elimination hint\n\nis surprisingly very expensive\n benchmark                        old ns/op     new ns/op     delta\n BenchmarkChaCha20/64-12          129           141           +9.30%\n BenchmarkChaCha20/256-12         433           480           +10.85%\n BenchmarkChaCha20/10x25-12       769           814           +5.85%\n BenchmarkChaCha20/4096-12        433           479           +10.62%\n BenchmarkChaCha20/100x40-12      7911          8652          +9.37%\n BenchmarkChaCha20/65536-12       103723        115899        +11.74%\n BenchmarkChaCha20/1000x65-12     106253        117951        +11.01%\n\n benchmark                        old MB/s     new MB/s     speedup\n BenchmarkChaCha20/64-12          494.42       452.39       0.91x\n BenchmarkChaCha20/256-12         590.71       533.55       0.90x\n BenchmarkChaCha20/10x25-12       325.11       307.00       0.94x\n BenchmarkChaCha20/4096-12        591.66       534.14       0.90x\n BenchmarkChaCha20/100x40-12      505.65       462.34       0.91x\n BenchmarkChaCha20/65536-12       631.83       565.46       0.89x\n BenchmarkChaCha20/1000x65-12     611.75       551.08       0.90x\n\nThis also doesn\u0027t eliminate the BCE at the end of the loop\n src, dst \u003d src[blockSize:], dst[blockSize:]\n\nDoing\n _, _ \u003d src[blockSize-1], dst[blockSize-1]\n\ninstead eliminates the BCE on the reslicing at the end of the loop, but it still slows down the benchmark by 1.6-4.8%",
       "parentUuid": "3bdea81b_4d79d83b",
+      "range": {
+        "startLine": 264,
+        "startChar": 5,
+        "endLine": 264,
+        "endChar": 37
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d515540c_866c1362",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "Yeah, I am totally convinced it\u0027s impossible for them to be 1-63, but it makes it harder to read the code if everyone has to come to the same conclusion by looking around.\n\nCan include this in the cmd/compile issue?\n\nFor this CL, just add a comment above the loop like\n\n    // A condition of len(src) \u003e 0 would be sufficient, but this also\n    // acts as a bounds check elimination hint.\n\nso the reader is not confused and no one refactors it away.",
+      "parentUuid": "5867c262_02850d7c",
       "range": {
         "startLine": 264,
         "startChar": 5,
@@ -218,6 +302,30 @@
     },
     {
       "key": {
+        "uuid": "4541b2a3_c133bd16",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "I was suggesting calling them a and b, too, as they are commutative (like, u is not special).",
+      "parentUuid": "95d42748_89782526",
+      "range": {
+        "startLine": 18,
+        "startChar": 29,
+        "endLine": 18,
+        "endChar": 47
+      },
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a02f68a5_c91c8282",
         "filename": "chacha20/xor.go",
         "patchSetId": 1
@@ -297,6 +405,24 @@
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f49a776_a00a311a",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-17T21:25:09Z",
+      "side": 1,
+      "message": "Thanks for looking into it. This is unfortunate, would you mind opening a cmd/compile issue about it and tagging it Performance? Ok to keep them as is for this CL.",
+      "parentUuid": "8a3fe01e_f0409095",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
