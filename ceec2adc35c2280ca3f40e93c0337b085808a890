@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b61505ba_e3552999",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-04-17T20:36:17Z",
+      "side": 1,
+      "message": "Can you regenerate these using benchstat? It gives you some nice statistics on the performance improvement that benchcmp doesn\u0027t give you: golang.org/x/perf/cmd/benchstat\n\nExample usage:\n\n  go test -a -run XXX -bench . -count 20 \u003e new.txt\n  git checkout HEAD~1\n  go test -a -run XXX -bench . -count 20 \u003e old.txt\n  benchstat old.txt new.txt",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "ceec2adc35c2280ca3f40e93c0337b085808a890",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c67af54_3c56b83e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-04-17T20:36:17Z",
+      "side": 1,
+      "message": "The existing code does try to get rid of those bounds checks (and they did used to work):\n\n  in, out :\u003d src[i:], dst[i:]\n  in, out \u003d in[:blockSize], out[:blockSize] // bounds check elimination hint\n\nAny idea why the new bounds hints work better? It would be nice to understand the difference, especially if it is a compiler regression that we can open an issue for.\n\nBTW the original code used an index as the loop condition to help reduce register pressure (reslicing a slice in a loop requires that the capacity be brought into a register and modified - forcing something else out). It is definitely nicer to reslice though (I did put together CL 170125 at one point to try and make reslicing cheaper) so if we can do it and still be performant then great.",
+      "revId": "ceec2adc35c2280ca3f40e93c0337b085808a890",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
