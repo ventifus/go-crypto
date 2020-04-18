@@ -137,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "9c31fa3d_02833325",
+        "filename": "chacha20/chacha_generic.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-18T01:52:52Z",
+      "side": 1,
+      "message": "Good shout on reassigning. Changing this line to\n key, nonce \u003d key[:KeySize], nonce[:NonceSize] // bounds check elimination hint\n\nproduces no impact on performance. SSA does a good job here. I\u0027ve pushed this change.",
+      "parentUuid": "33749882_8697fc5e",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bdea81b_4d79d83b",
         "filename": "chacha20/chacha_generic.go",
         "patchSetId": 1
@@ -444,6 +462,24 @@
       "side": 1,
       "message": "Thanks for looking into it. This is unfortunate, would you mind opening a cmd/compile issue about it and tagging it Performance? Ok to keep them as is for this CL.",
       "parentUuid": "8a3fe01e_f0409095",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2ef7112_d3d5a8f1",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 35525
+      },
+      "writtenOn": "2020-04-18T01:52:52Z",
+      "side": 1,
+      "message": "\u003e Thanks for looking into it. This is unfortunate, would you mind opening a cmd/compile issue about it and tagging it Performance? Ok to keep them as is for this CL.\n\nChanging this line to\n src, dst \u003d src[0:4], dst[0:4] // bounds check elimination hint\n\neliminates all other bounds checks in this function, but it introduces 14 new bounds checks in xorKeyStreamBlocksGeneric at the addXor calls. It inserts bounds checks on every line other than\n addXor(dst[0:4], src[0:4], x0, c0)\n\nI tried to assign to new variables on the LHS instead, like this\n out, in:\u003d dst[0:4], src[0:4] // bounds check elimination hint\n\nwhich drops the throughput by 30%, ouch",
+      "parentUuid": "2f49a776_a00a311a",
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
