@@ -483,6 +483,24 @@
       "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b84aefef_9cc15d12",
+        "filename": "chacha20/xor.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-20T20:01:55Z",
+      "side": 1,
+      "message": "Ok, this might be worth a cmd/compile issue, if nothing else to investigate why, and learn something from it.",
+      "parentUuid": "a2ef7112_d3d5a8f1",
+      "revId": "ee0e8efa5ab6ac3b20a446c0ed6947ee3cd5955f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
