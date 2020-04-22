@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a5519a8_8b3cbfe4",
+        "filename": "poly1305/poly1305_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-04-22T14:08:49Z",
+      "side": 1,
+      "message": "s/independently/independent",
+      "range": {
+        "startLine": 66,
+        "startChar": 54,
+        "endLine": 66,
+        "endChar": 67
+      },
+      "revId": "3e543ab0193c75d1f205e5f85a29f3706863a4ea",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
