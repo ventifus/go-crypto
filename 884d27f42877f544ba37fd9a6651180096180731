@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64ea9141_69b51a93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-22T16:20:21Z",
+      "side": 1,
+      "message": "This should have started with \"ssh: update ...\"",
+      "revId": "884d27f42877f544ba37fd9a6651180096180731",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
