@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build go1.11,!gccgo,!purego
+// +build !gccgo,!purego
 
 package poly1305
 
@@ -10,30 +10,62 @@ import (
 	"golang.org/x/sys/cpu"
 )
 
-// poly1305vx is an assembly implementation of Poly1305 that uses vector
+// updateVX is an assembly implementation of Poly1305 that uses vector
 // instructions. It must only be called if the vector facility (vx) is
 // available.
 //go:noescape
-func poly1305vx(out *[16]byte, m *byte, mlen uint64, key *[32]byte)
+func updateVX(state *macState, msg []byte)
 
-// poly1305vmsl is an assembly implementation of Poly1305 that uses vector
-// instructions, including VMSL. It must only be called if the vector facility (vx) is
-// available and if VMSL is supported.
-//go:noescape
-func poly1305vmsl(out *[16]byte, m *byte, mlen uint64, key *[32]byte)
+// mac is a wrapper for macGeneric that redirects calls that would have gone to
+// updateGeneric to update.
+//
+// A larger buffer is used than in the generic implementation. This is because
+// the vector implementation has a high fixed cost per call relative to its
+// speed overall.
+type mac struct {
+	macState
 
-func sum(out *[16]byte, m []byte, key *[32]byte) {
-	if cpu.S390X.HasVX {
-		var mPtr *byte
-		if len(m) > 0 {
-			mPtr = &m[0]
+	buffer [256]byte // size must be a multiple of 16
+	offset int
+}
+
+func (h *mac) Write(p []byte) (int, error) {
+	nn := len(p)
+	if h.offset > 0 {
+		n := copy(h.buffer[h.offset:], p)
+		if n == len(p) {
+			h.offset += n
+			return nn, nil
 		}
-		if cpu.S390X.HasVXE && len(m) > 256 {
-			poly1305vmsl(out, mPtr, uint64(len(m)), key)
+		p = p[n:]
+		h.offset = 0
+		if cpu.S390X.HasVX {
+			updateVX(&h.macState, h.buffer[:])
 		} else {
-			poly1305vx(out, mPtr, uint64(len(m)), key)
+			updateGeneric(&h.macState, h.buffer[:])
 		}
-	} else {
-		sumGeneric(out, m, key)
 	}
+
+	tail := len(p) % len(h.buffer) // number of bytes to copy into buffer
+	body := len(p) - tail          // number of bytes to process now
+	if body > 0 {
+		if cpu.S390X.HasVX {
+			updateVX(&h.macState, p[:body])
+		} else {
+			updateGeneric(&h.macState, p[:body])
+		}
+	}
+	h.offset = copy(h.buffer[:], p[body:]) // copy tail bytes - can be 0
+	return nn, nil
+}
+
+func (h *mac) Sum(out *[16]byte) {
+	state := h.macState
+	remainder := h.buffer[:h.offset]
+	if cpu.S390X.HasVX && len(remainder) > 32 {
+		updateVX(&state, remainder)
+	} else if h.offset > 0 {
+		updateGeneric(&state, remainder)
+	}
+	finalize(out, &state.h, &state.s)
 }
