@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcf3ee7b_c6c232c0",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Would it make sense to use updateVX only for messages above a certain size? Then the smaller messages wouldn\u0027t take the performance penalty.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8548f0b3_d62d71ae",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "achieved?",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a5b5474_46c8deb6",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "It would be helpful to have more detail in the following, such as what is the mask in T_0 and what values end up in H_0 - H_4.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85ab090d_c6fffed2",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Comment that partial message is loaded as determined by R0 and \u00271\u0027 put at the end?",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa2c8746_6504e81e",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Comment on why \u00271\u0027 is put at bytes 4 and 12.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "342b52f5_a3328404",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Describe what\u0027s happening here.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6edb1f61_5d0c55bb",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Same as above. A little more info on the partial load being done by the VLL and that \u00271\u0027 is added to the end of the partial message.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11557d39_c57c4349",
+        "filename": "poly1305/sum_s390x.s",
+        "patchSetId": 7
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 6320
+      },
+      "writtenOn": "2020-04-27T17:30:01Z",
+      "side": 1,
+      "message": "Explain what\u0027s happening below.",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
