@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c29ed7fa_a375092f",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-04-28T11:41:08Z",
+      "side": 1,
+      "message": "It\u0027s subtle but that is actually what the \u0027len(remainder) \u003e 32\u0027 check is for on line 65. If an update is called during Write it will always be for 256 bytes or more thanks to the large buffer, so we only need to worry about seeing small update calls inside Sum.\n\nI\u0027ll add a comment in Sum though.",
+      "parentUuid": "dcf3ee7b_c6c232c0",
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8548f0b3_d62d71ae",
         "filename": "poly1305/sum_s390x.s",
         "patchSetId": 7
