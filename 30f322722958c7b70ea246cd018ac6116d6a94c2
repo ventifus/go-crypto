@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "133455cf_bc037a60",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-28T20:01:03Z",
+      "side": 1,
+      "message": "Not a wrapper, maybe \"mac is similar to macGeneric, but uses a larger buffer and redirects...\"",
+      "revId": "30f322722958c7b70ea246cd018ac6116d6a94c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d49e15a1_93244129",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-28T20:01:03Z",
+      "side": 1,
+      "message": "This is not the same as \"h.offset+n \u003c len(h.buffer)\" in macGeneric, but equivalent to \"h.offset+n \u003c\u003d len(h.buffer)\". I think it still works, but any reason to make it different?",
+      "revId": "30f322722958c7b70ea246cd018ac6116d6a94c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

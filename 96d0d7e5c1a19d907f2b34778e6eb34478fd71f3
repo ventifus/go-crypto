@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3ca1fb2d_75c43f15",
+        "filename": "poly1305/sum_generic.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-04-28T20:01:03Z",
+      "side": 1,
+      "message": "tiiiny nit: spaces around operators",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 14
+      },
+      "revId": "96d0d7e5c1a19d907f2b34778e6eb34478fd71f3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dcf3ee7b_c6c232c0",
         "filename": "poly1305/sum_s390x.go",
         "patchSetId": 7
