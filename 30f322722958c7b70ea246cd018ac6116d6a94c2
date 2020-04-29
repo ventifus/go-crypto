@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3b12fa57_9a822d95",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-04-29T11:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "133455cf_bc037a60",
+      "revId": "30f322722958c7b70ea246cd018ac6116d6a94c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d49e15a1_93244129",
         "filename": "poly1305/sum_s390x.go",
         "patchSetId": 10
@@ -33,6 +51,24 @@
       "revId": "30f322722958c7b70ea246cd018ac6116d6a94c2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98ce9250_2ab5cae8",
+        "filename": "poly1305/sum_s390x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-04-29T11:20:13Z",
+      "side": 1,
+      "message": "No particular reason. I\u0027ve switched it back.",
+      "parentUuid": "d49e15a1_93244129",
+      "revId": "30f322722958c7b70ea246cd018ac6116d6a94c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
