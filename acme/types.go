@@ -57,6 +57,32 @@ var (
 	ErrNoAccount = errors.New("acme: account does not exist")
 )
 
+// SubError is an ACME subproblem.
+type SubError struct {
+	// ProblemType is a URI reference that identifies the problem type,
+	// typically in a "urn:acme:error:xxx" form.
+	ProblemType string
+	// Detail is a human-readable explanation specific to this occurrence of the problem.
+	Detail string
+	// Instance indicates a URL that the client should direct a human user to visit
+	// in order for instructions on how to agree to the updated Terms of Service.
+	// In such an event CA sets StatusCode to 403, ProblemType to
+	// "urn:ietf:params:acme:error:userActionRequired" and a Link header with relation
+	// "terms-of-service" containing the latest TOS URL.
+	Instance string
+	// Identifier may contain the ACME identifier that the error is for.
+	Identifier *AuthzID
+}
+
+func (se *SubError) Error() string {
+	str := fmt.Sprintf("%s: ", se.ProblemType)
+	if se.Identifier != nil {
+		str += fmt.Sprintf("[%s: %s] ", se.Identifier.Type, se.Identifier.Value)
+	}
+	str += se.Detail
+	return str
+}
+
 // Error is an ACME error, defined in Problem Details for HTTP APIs doc
 // http://tools.ietf.org/html/draft-ietf-appsawg-http-problem.
 type Error struct {
@@ -76,10 +102,22 @@ type Error struct {
 	// Header is the original server error response headers.
 	// It may be nil.
 	Header http.Header
+	// Subproblems may contain more detailed information about the individual problems
+	// that caused the error. This field is only sent by RFC 8555 compatible ACME
+	// servers. Defined in RFC 8555 Section 6.7.1.
+	Subproblems []SubError
 }
 
 func (e *Error) Error() string {
-	return fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
+	str := fmt.Sprintf("%d %s: %s", e.StatusCode, e.ProblemType, e.Detail)
+	if len(e.Subproblems) > 0 {
+		var probStrs []string
+		for _, sp := range e.Subproblems {
+			probStrs = append(probStrs, sp.Error())
+		}
+		str = fmt.Sprintf("%s. This error contains the following subproblems: [%s]", str, strings.Join(probStrs, ", "))
+	}
+	return str
 }
 
 // AuthorizationError indicates that an authorization for an identifier
@@ -508,23 +546,40 @@ func (c *wireChallenge) challenge() *Challenge {
 	return v
 }
 
+type subproblemError struct {
+	Type       string
+	Detail     string
+	Instance   string
+	Identifier *AuthzID
+}
+
 // wireError is a subset of fields of the Problem Details object
 // as described in https://tools.ietf.org/html/rfc7807#section-3.1.
 type wireError struct {
-	Status   int
-	Type     string
-	Detail   string
-	Instance string
+	Status      int
+	Type        string
+	Detail      string
+	Instance    string
+	SubProblems []subproblemError
 }
 
 func (e *wireError) error(h http.Header) *Error {
-	return &Error{
+	err := &Error{
 		StatusCode:  e.Status,
 		ProblemType: e.Type,
 		Detail:      e.Detail,
 		Instance:    e.Instance,
 		Header:      h,
 	}
+	for _, sp := range e.SubProblems {
+		err.Subproblems = append(err.Subproblems, SubError{
+			ProblemType: sp.Type,
+			Detail:      sp.Detail,
+			Instance:    sp.Instance,
+			Identifier:  sp.Identifier,
+		})
+	}
+	return err
 }
 
 // CertOption is an optional argument type for the TLS ChallengeCert methods for
