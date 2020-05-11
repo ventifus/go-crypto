@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "076893bb_d8b9295b",
+        "filename": "acme/rfc8555_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 36133
+      },
+      "writtenOn": "2020-05-11T22:18:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7989978_bfa2bd16",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "400a18fc_404a261b",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-05-11T19:34:58Z",
       "side": 1,
       "message": "Are there any ACME servers that do set this field? Probably should wait until someone actually starts using it to add support. Also this doesn\u0027t really seem related to the larger issue of subproblem support, might make sense to open a separate issue/CL for adding titles.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c257c93_d2668186",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 36133
+      },
+      "writtenOn": "2020-05-11T22:18:41Z",
+      "side": 1,
+      "message": "No strong feelings on keeping it -- will remove.",
+      "parentUuid": "400a18fc_404a261b",
       "revId": "7761e46a3f78223adda818ea9462f1442a052486",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6284b066_f9fa1063",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 36133
+      },
+      "writtenOn": "2020-05-11T22:18:41Z",
+      "side": 1,
+      "message": "\u003e a subproblem cannot itself contain subproblems\nYeah that\u0027s true. I *may* have been influenced by how Boulder set their types up. I like this suggestion!",
+      "parentUuid": "a121299f_64d10535",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29809525_fe8d5fb0",
         "filename": "acme/types.go",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2020-05-11T19:34:58Z",
       "side": 1,
       "message": "Identifier should be a pointer, since it\u0027s not a required field and may not be returned be the server.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e19ef971_d0b3417d",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 36133
+      },
+      "writtenOn": "2020-05-11T22:18:41Z",
+      "side": 1,
+      "message": "Good catch. I thought they were required in subproblems, but they aren\u0027t.",
+      "parentUuid": "29809525_fe8d5fb0",
       "revId": "7761e46a3f78223adda818ea9462f1442a052486",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
