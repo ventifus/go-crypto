@@ -49,10 +49,6 @@ var (
 	// ErrUnsupportedKey is returned when an unsupported key type is encountered.
 	ErrUnsupportedKey = errors.New("acme: unknown key type; only RSA and ECDSA are supported")
 
-	// ErrAccountAlreadyExists indicates that the Client's key has already been registered
-	// with the CA. It is returned by Register method.
-	ErrAccountAlreadyExists = errors.New("acme: account already exists")
-
 	// ErrNoAccount indicates that the Client's key has not been registered with the CA.
 	ErrNoAccount = errors.New("acme: account does not exist")
 )

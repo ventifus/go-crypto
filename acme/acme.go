@@ -362,6 +362,9 @@ func AcceptTOS(tosURL string) bool { return true }
 // and prompt is called if Directory's Terms field is non-zero.
 // Also see Error's Instance field for when a CA requires already registered accounts to agree
 // to an updated Terms of Service.
+//
+// If an account already exists using c.Key the associated Account object
+// provided by the server is returned and with no error.
 func (c *Client) Register(ctx context.Context, acct *Account, prompt func(tosURL string) bool) (*Account, error) {
 	dir, err := c.Discover(ctx)
 	if err != nil {

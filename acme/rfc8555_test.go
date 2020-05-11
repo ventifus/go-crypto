@@ -280,10 +280,11 @@ func (s *acmeServer) error(w http.ResponseWriter, e *wireError) {
 func TestRFC_Register(t *testing.T) {
 	const email = "mailto:user@example.org"
 
+	var httpStatusReturn int
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
-		w.WriteHeader(http.StatusCreated) // 201 means new account created
+		w.WriteHeader(httpStatusReturn)
 		fmt.Fprintf(w, `{
 			"status": "valid",
 			"contact": [%q],
@@ -316,54 +317,39 @@ func TestRFC_Register(t *testing.T) {
 		DirectoryURL: s.url("/"),
 	}
 
-	var didPrompt bool
-	a := &Account{Contact: []string{email}}
-	acct, err := cl.Register(ctx, a, func(tos string) bool {
-		didPrompt = true
-		terms := s.url("/terms")
-		if tos != terms {
-			t.Errorf("tos = %q; want %q", tos, terms)
+	// Check register behaves the same for new accounts and existing accounts.
+	// http.StatusCreated is returned when the account has been created and
+	// http.StatusOK is returned when the account already existed.
+	for _, returnCode := range []int{http.StatusCreated, http.StatusOK} {
+		httpStatusReturn = returnCode
+		var didPrompt bool
+		a := &Account{Contact: []string{email}}
+		acct, err := cl.Register(ctx, a, func(tos string) bool {
+			didPrompt = true
+			terms := s.url("/terms")
+			if tos != terms {
+				t.Errorf("tos = %q; want %q", tos, terms)
+			}
+			return true
+		})
+		if err != nil {
+			t.Fatal(err)
 		}
-		return true
-	})
-	if err != nil {
-		t.Fatal(err)
-	}
-	okAccount := &Account{
-		URI:       s.url("/accounts/1"),
-		Status:    StatusValid,
-		Contact:   []string{email},
-		OrdersURL: s.url("/accounts/1/orders"),
-	}
-	if !reflect.DeepEqual(acct, okAccount) {
-		t.Errorf("acct = %+v; want %+v", acct, okAccount)
-	}
-	if !didPrompt {
-		t.Error("tos prompt wasn't called")
-	}
-	if v := cl.accountKID(ctx); v != keyID(okAccount.URI) {
-		t.Errorf("account kid = %q; want %q", v, okAccount.URI)
-	}
-}
-
-func TestRFC_RegisterExisting(t *testing.T) {
-	s := newACMEServer()
-	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Location", s.url("/accounts/1"))
-		w.WriteHeader(http.StatusOK) // 200 means account already exists
-		w.Write([]byte(`{"status": "valid"}`))
-	})
-	s.start()
-	defer s.close()
-
-	cl := &Client{Key: testKeyEC, DirectoryURL: s.url("/")}
-	_, err := cl.Register(context.Background(), &Account{}, AcceptTOS)
-	if err != ErrAccountAlreadyExists {
-		t.Errorf("err = %v; want %v", err, ErrAccountAlreadyExists)
-	}
-	kid := keyID(s.url("/accounts/1"))
-	if v := cl.accountKID(context.Background()); v != kid {
-		t.Errorf("account kid = %q; want %q", v, kid)
+		okAccount := &Account{
+			URI:       s.url("/accounts/1"),
+			Status:    StatusValid,
+			Contact:   []string{email},
+			OrdersURL: s.url("/accounts/1/orders"),
+		}
+		if !reflect.DeepEqual(acct, okAccount) {
+			t.Errorf("acct = %+v; want %+v", acct, okAccount)
+		}
+		if !didPrompt {
+			t.Error("tos prompt wasn't called")
+		}
+		if v := cl.accountKID(ctx); v != keyID(okAccount.URI) {
+			t.Errorf("account kid = %q; want %q", v, okAccount.URI)
+		}
 	}
 }
 
