@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7989978_bfa2bd16",
+        "filename": "acme/rfc8555_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-05-11T19:34:58Z",
+      "side": 1,
+      "message": "Could you add a test where the server doesn\u0027t send a Identifier.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "400a18fc_404a261b",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-05-11T19:34:58Z",
+      "side": 1,
+      "message": "Are there any ACME servers that do set this field? Probably should wait until someone actually starts using it to add support. Also this doesn\u0027t really seem related to the larger issue of subproblem support, might make sense to open a separate issue/CL for adding titles.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a121299f_64d10535",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-05-11T19:34:58Z",
+      "side": 1,
+      "message": "Rather than putting this field in ProblemDetails, and causing a cyclic type, it might be cleaner to move it into Error. This more closely matches how subproblems are defined in 8555 (i.e. a subproblem cannot itself contain subproblems). This should still fit the RFC/golang type match since subproblems are a 8555 invention, rather than a generic 7807 field.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29809525_fe8d5fb0",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-05-11T19:34:58Z",
+      "side": 1,
+      "message": "Identifier should be a pointer, since it\u0027s not a required field and may not be returned be the server.",
+      "revId": "7761e46a3f78223adda818ea9462f1442a052486",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
