@@ -1070,21 +1070,11 @@ func (m *Manager) acmeClient(ctx context.Context) (*acme.Client, error) {
 	}
 	a := &acme.Account{Contact: contact}
 	_, err := client.Register(ctx, a, m.Prompt)
-	if err == nil || isAccountAlreadyExist(err) {
-		m.client = client
-		err = nil
+	if err != nil {
+		return nil, err
 	}
-	return m.client, err
-}
-
-// isAccountAlreadyExist reports whether the err, as returned from acme.Client.Register,
-// indicates the account has already been registered.
-func isAccountAlreadyExist(err error) bool {
-	if err == acme.ErrAccountAlreadyExists {
-		return true
-	}
-	ae, ok := err.(*acme.Error)
-	return ok && ae.StatusCode == http.StatusConflict
+	m.client = client
+	return m.client, nil
 }
 
 func (m *Manager) hostPolicy() HostPolicy {
