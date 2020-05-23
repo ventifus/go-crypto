@@ -4,6 +4,8 @@
 
 package salsa
 
+import "encoding/binary"
+
 // Core208 applies the Salsa20/8 core function to the 64-byte array in and puts
 // the result into the 64-byte array out. The input and output may be the same array.
 func Core208(out *[64]byte, in *[64]byte) {
@@ -28,77 +30,17 @@ func Core208(out *[64]byte, in *[64]byte) {
 	x9, x10, x11, x12, x13, x14, x15 := j9, j10, j11, j12, j13, j14, j15
 
 	for i := 0; i < 8; i += 2 {
-		u := x0 + x12
-		x4 ^= u<<7 | u>>(32-7)
-		u = x4 + x0
-		x8 ^= u<<9 | u>>(32-9)
-		u = x8 + x4
-		x12 ^= u<<13 | u>>(32-13)
-		u = x12 + x8
-		x0 ^= u<<18 | u>>(32-18)
+		// columns
+		x0, x4, x8, x12 = quarterRound(x0, x4, x8, x12)
+		x5, x9, x13, x1 = quarterRound(x5, x9, x13, x1)
+		x10, x14, x2, x6 = quarterRound(x10, x14, x2, x6)
+		x15, x3, x7, x11 = quarterRound(x15, x3, x7, x11)
 
-		u = x5 + x1
-		x9 ^= u<<7 | u>>(32-7)
-		u = x9 + x5
-		x13 ^= u<<9 | u>>(32-9)
-		u = x13 + x9
-		x1 ^= u<<13 | u>>(32-13)
-		u = x1 + x13
-		x5 ^= u<<18 | u>>(32-18)
-
-		u = x10 + x6
-		x14 ^= u<<7 | u>>(32-7)
-		u = x14 + x10
-		x2 ^= u<<9 | u>>(32-9)
-		u = x2 + x14
-		x6 ^= u<<13 | u>>(32-13)
-		u = x6 + x2
-		x10 ^= u<<18 | u>>(32-18)
-
-		u = x15 + x11
-		x3 ^= u<<7 | u>>(32-7)
-		u = x3 + x15
-		x7 ^= u<<9 | u>>(32-9)
-		u = x7 + x3
-		x11 ^= u<<13 | u>>(32-13)
-		u = x11 + x7
-		x15 ^= u<<18 | u>>(32-18)
-
-		u = x0 + x3
-		x1 ^= u<<7 | u>>(32-7)
-		u = x1 + x0
-		x2 ^= u<<9 | u>>(32-9)
-		u = x2 + x1
-		x3 ^= u<<13 | u>>(32-13)
-		u = x3 + x2
-		x0 ^= u<<18 | u>>(32-18)
-
-		u = x5 + x4
-		x6 ^= u<<7 | u>>(32-7)
-		u = x6 + x5
-		x7 ^= u<<9 | u>>(32-9)
-		u = x7 + x6
-		x4 ^= u<<13 | u>>(32-13)
-		u = x4 + x7
-		x5 ^= u<<18 | u>>(32-18)
-
-		u = x10 + x9
-		x11 ^= u<<7 | u>>(32-7)
-		u = x11 + x10
-		x8 ^= u<<9 | u>>(32-9)
-		u = x8 + x11
-		x9 ^= u<<13 | u>>(32-13)
-		u = x9 + x8
-		x10 ^= u<<18 | u>>(32-18)
-
-		u = x15 + x14
-		x12 ^= u<<7 | u>>(32-7)
-		u = x12 + x15
-		x13 ^= u<<9 | u>>(32-9)
-		u = x13 + x12
-		x14 ^= u<<13 | u>>(32-13)
-		u = x14 + x13
-		x15 ^= u<<18 | u>>(32-18)
+		// rows
+		x0, x1, x2, x3 = quarterRound(x0, x1, x2, x3)
+		x5, x6, x7, x4 = quarterRound(x5, x6, x7, x4)
+		x10, x11, x8, x9 = quarterRound(x10, x11, x8, x9)
+		x15, x12, x13, x14 = quarterRound(x15, x12, x13, x14)
 	}
 	x0 += j0
 	x1 += j1
@@ -117,83 +59,20 @@ func Core208(out *[64]byte, in *[64]byte) {
 	x14 += j14
 	x15 += j15
 
-	out[0] = byte(x0)
-	out[1] = byte(x0 >> 8)
-	out[2] = byte(x0 >> 16)
-	out[3] = byte(x0 >> 24)
-
-	out[4] = byte(x1)
-	out[5] = byte(x1 >> 8)
-	out[6] = byte(x1 >> 16)
-	out[7] = byte(x1 >> 24)
-
-	out[8] = byte(x2)
-	out[9] = byte(x2 >> 8)
-	out[10] = byte(x2 >> 16)
-	out[11] = byte(x2 >> 24)
-
-	out[12] = byte(x3)
-	out[13] = byte(x3 >> 8)
-	out[14] = byte(x3 >> 16)
-	out[15] = byte(x3 >> 24)
-
-	out[16] = byte(x4)
-	out[17] = byte(x4 >> 8)
-	out[18] = byte(x4 >> 16)
-	out[19] = byte(x4 >> 24)
-
-	out[20] = byte(x5)
-	out[21] = byte(x5 >> 8)
-	out[22] = byte(x5 >> 16)
-	out[23] = byte(x5 >> 24)
-
-	out[24] = byte(x6)
-	out[25] = byte(x6 >> 8)
-	out[26] = byte(x6 >> 16)
-	out[27] = byte(x6 >> 24)
-
-	out[28] = byte(x7)
-	out[29] = byte(x7 >> 8)
-	out[30] = byte(x7 >> 16)
-	out[31] = byte(x7 >> 24)
-
-	out[32] = byte(x8)
-	out[33] = byte(x8 >> 8)
-	out[34] = byte(x8 >> 16)
-	out[35] = byte(x8 >> 24)
-
-	out[36] = byte(x9)
-	out[37] = byte(x9 >> 8)
-	out[38] = byte(x9 >> 16)
-	out[39] = byte(x9 >> 24)
-
-	out[40] = byte(x10)
-	out[41] = byte(x10 >> 8)
-	out[42] = byte(x10 >> 16)
-	out[43] = byte(x10 >> 24)
-
-	out[44] = byte(x11)
-	out[45] = byte(x11 >> 8)
-	out[46] = byte(x11 >> 16)
-	out[47] = byte(x11 >> 24)
-
-	out[48] = byte(x12)
-	out[49] = byte(x12 >> 8)
-	out[50] = byte(x12 >> 16)
-	out[51] = byte(x12 >> 24)
-
-	out[52] = byte(x13)
-	out[53] = byte(x13 >> 8)
-	out[54] = byte(x13 >> 16)
-	out[55] = byte(x13 >> 24)
-
-	out[56] = byte(x14)
-	out[57] = byte(x14 >> 8)
-	out[58] = byte(x14 >> 16)
-	out[59] = byte(x14 >> 24)
-
-	out[60] = byte(x15)
-	out[61] = byte(x15 >> 8)
-	out[62] = byte(x15 >> 16)
-	out[63] = byte(x15 >> 24)
+	binary.LittleEndian.PutUint32(out[0:4], x0)
+	binary.LittleEndian.PutUint32(out[4:8], x1)
+	binary.LittleEndian.PutUint32(out[8:12], x2)
+	binary.LittleEndian.PutUint32(out[12:16], x3)
+	binary.LittleEndian.PutUint32(out[16:20], x4)
+	binary.LittleEndian.PutUint32(out[20:24], x5)
+	binary.LittleEndian.PutUint32(out[24:28], x6)
+	binary.LittleEndian.PutUint32(out[28:32], x7)
+	binary.LittleEndian.PutUint32(out[32:36], x8)
+	binary.LittleEndian.PutUint32(out[36:40], x9)
+	binary.LittleEndian.PutUint32(out[40:44], x10)
+	binary.LittleEndian.PutUint32(out[44:48], x11)
+	binary.LittleEndian.PutUint32(out[48:52], x12)
+	binary.LittleEndian.PutUint32(out[52:56], x13)
+	binary.LittleEndian.PutUint32(out[56:60], x14)
+	binary.LittleEndian.PutUint32(out[60:64], x15)
 }
