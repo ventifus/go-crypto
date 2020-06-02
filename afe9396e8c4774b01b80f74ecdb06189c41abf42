@@ -1,0 +1,175 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6de3b495_524bb783",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "ssh: don\u0027t err out on channel request msgs to unknown channels",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5e85668_9f77488c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "Duplicate Change-Id, gerritbot adds it for you, no need to put it in the PR description.",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1a818b8_e03da65f",
+        "filename": "ssh/mux.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "Specify the section, and move this to \"case *channelRequestMsg\" if it\u0027s specific to that message type.",
+      "range": {
+        "startLine": 333,
+        "startChar": 4,
+        "endLine": 333,
+        "endChar": 12
+      },
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "085c24fa_674b1692",
+        "filename": "ssh/mux.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "nit: use msg.PeersID, it\u0027s a little cleaner here.",
+      "range": {
+        "startLine": 344,
+        "startChar": 13,
+        "endLine": 344,
+        "endChar": 15
+      },
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea458e53_a7072ee7",
+        "filename": "ssh/mux_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "This risks getting called after the main test is over, which is not allowed. Add a synchronization point, maybe by reusing kDone (turning the first close into a send).",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d200cdd9_39c22177",
+        "filename": "ssh/mux_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "This might be flaky on slower buildbots, make it 10 seconds.",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a762a2c_6d4d52a7",
+        "filename": "ssh/mux_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a3e0cc8_066b88dd",
+        "filename": "ssh/mux_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25016c2b_f00de3dc",
+        "filename": "ssh/mux_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-06-02T17:02:52Z",
+      "side": 1,
+      "message": "client",
+      "range": {
+        "startLine": 481,
+        "startChar": 12,
+        "endLine": 481,
+        "endChar": 19
+      },
+      "revId": "afe9396e8c4774b01b80f74ecdb06189c41abf42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
