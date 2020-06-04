@@ -179,6 +179,26 @@ type ServerConn struct {
 	Permissions *Permissions
 }
 
+// Helper function to find unsupported items such as key exchanges, MACs and ciphers
+func findUnsupported(name string, requestedList []string, supportedList []string, forbiddenList map[string]struct{}) error {
+	for _, requestedItem := range requestedList {
+		if _, ok := forbiddenList[requestedItem]; ok {
+			return fmt.Errorf("ssh: unsupported %s %s for server", name, requestedItem)
+		}
+		found := false
+		for _, supportedItem := range supportedList {
+			if supportedItem == requestedItem {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return fmt.Errorf("ssh: unsupported %s %s for server", name, requestedItem)
+		}
+	}
+	return nil
+}
+
 // NewServerConn starts a new SSH server with c as the underlying
 // transport.  It starts with a handshake and, if the handshake is
 // unsuccessful, it closes the connection and returns an error.  The
@@ -193,11 +213,23 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 	if fullConf.MaxAuthTries == 0 {
 		fullConf.MaxAuthTries = 6
 	}
+
 	// Check if the config contains any unsupported key exchanges
-	for _, kex := range fullConf.KeyExchanges {
-		if _, ok := serverForbiddenKexAlgos[kex]; ok {
-			return nil, nil, nil, fmt.Errorf("ssh: unsupported key exchange %s for server", kex)
-		}
+	err := findUnsupported("key exchange", fullConf.KeyExchanges, supportedKexAlgos, serverForbiddenKexAlgos)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	// Check if the config contains any unsupported MACs
+	err = findUnsupported("MAC", fullConf.MACs, supportedMACs, map[string]struct{}{})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	// Check if the config contains any unsupported Ciphers
+	err = findUnsupported("cipher", fullConf.Ciphers, supportedCiphers, map[string]struct{}{})
+	if err != nil {
+		return nil, nil, nil, err
 	}
 
 	s := &connection{
