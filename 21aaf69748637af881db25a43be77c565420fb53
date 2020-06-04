@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39aa5ffc_b332ae67",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-06-04T17:34:06Z",
+      "side": 1,
+      "message": "Do you think this should be an error, rather than silently changing the tag?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "21aaf69748637af881db25a43be77c565420fb53",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3006da14_24647dea",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-06-04T17:34:06Z",
+      "side": 1,
+      "message": "Can simplify this to:\n\n```\nif wantPass !\u003d bytes.Equal(decodeHex(tv.Tag), tag) {\n  t.Errorf(\"...\")\n}\n```\n\n\nOr you can do it like the dsa_test.go:\n\n```\ngot :\u003d bytes.Equal(decodeHex(tv.Tag), tag)\nif want :\u003d shouldPass(tv.Result, tv.Flags, nil); got !\u003d want {\n  t.Errorf(\"%s, tcid: %s, type: %s, comment: %q, wanted success: %t\", f, tv.TcId, tv.Result, tv.Comment, want)\n}\n```",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "21aaf69748637af881db25a43be77c565420fb53",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
