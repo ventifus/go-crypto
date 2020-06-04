@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "258ebd37_a646fe53",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-06-04T18:45:17Z",
+      "side": 1,
+      "message": "The package docs say that hmac.Equal should be used to avoid timing side-channels. Not really a concern here in a test, but we might as well use hmac.Equal instead of bytes.Equal just to get more test coverage for the package.",
+      "range": {
+        "startLine": 96,
+        "startChar": 11,
+        "endLine": 96,
+        "endChar": 46
+      },
+      "revId": "9edae54f3376fb9ad888b0e1a858be458e7bf8a1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

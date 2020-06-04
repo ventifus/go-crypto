@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "50370918_368a19dc",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-06-04T18:45:17Z",
+      "side": 1,
+      "message": "Strange. Yeah let\u0027s go ahead and skip those tests then.",
+      "parentUuid": "6fdec663_2c2c814a",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "21aaf69748637af881db25a43be77c565420fb53",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3006da14_24647dea",
         "filename": "internal/wycheproof/hmac_test.go",
         "patchSetId": 1
