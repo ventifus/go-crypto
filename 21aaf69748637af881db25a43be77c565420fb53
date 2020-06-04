@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6fdec663_2c2c814a",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-06-04T18:02:38Z",
+      "side": 1,
+      "message": "I think the reason I did this silently is crypto/hmac always creates hash length tags, but the test vectors include tests (with result \u003d valid) for tags \u003c the hash size. Probably it makes sense to just skip those tests, since it\u0027s not really natively supported?",
+      "parentUuid": "39aa5ffc_b332ae67",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "21aaf69748637af881db25a43be77c565420fb53",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3006da14_24647dea",
         "filename": "internal/wycheproof/hmac_test.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "21aaf69748637af881db25a43be77c565420fb53",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "716edd33_c5bee8cc",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-06-04T18:02:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3006da14_24647dea",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "21aaf69748637af881db25a43be77c565420fb53",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
