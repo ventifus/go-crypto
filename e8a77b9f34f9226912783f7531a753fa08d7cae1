@@ -22,6 +22,30 @@
       "revId": "e8a77b9f34f9226912783f7531a753fa08d7cae1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "415f17e0_7ec5484e",
+        "filename": "internal/wycheproof/hmac_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-06-04T19:06:32Z",
+      "side": 1,
+      "message": "Done, good call.",
+      "parentUuid": "729f0e86_c558ebeb",
+      "range": {
+        "startLine": 94,
+        "startChar": 9,
+        "endLine": 94,
+        "endChar": 35
+      },
+      "revId": "e8a77b9f34f9226912783f7531a753fa08d7cae1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
