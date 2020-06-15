@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f4731da_67adc48a",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "t.fatalf",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81ac9ed4_21fcdf56",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "t.fatalf",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b83a8a10_5e495ea1",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "no need to assign to _",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34354a60_3e1bd958",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "what is the rationale for these defers?",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "729e8bb5_003e3d60",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "I don’t think you need to check err here, just send err on the channel unconditionally",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa443df1_5f67ea77",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "no need to return after fatalf",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96306bb2_3b7f22d8",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T16:30:16Z",
+      "side": 1,
+      "message": "what about return client.Close() ?",
+      "revId": "91bb73de1e881332e9be726b841789e20fffbbbd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
