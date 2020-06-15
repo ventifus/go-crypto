@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "43c37fe0_06326a2e",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T23:14:58Z",
+      "side": 1,
+      "message": "oops, my mistake, I missed the success case on line 67",
+      "parentUuid": "f16a9182_3c62f45b",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "23b74441_6edf1372",
         "filename": "ssh/server_test.go",
         "patchSetId": 5
