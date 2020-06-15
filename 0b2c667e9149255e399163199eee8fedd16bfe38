@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9778fdd0_b338fa71",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T22:25:41Z",
+      "side": 1,
+      "message": "no need to assign to _\n\nalso, rather than defering this anonymous function, what about simply defer listener.Close",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b8d3625_8b6810bf",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T22:25:41Z",
+      "side": 1,
+      "message": "look closely at line 50 and 53, if err is nil the line 50 is the same as line 53, so you can write \n\nclientError \u003c- err\n\nunconditionally",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f11df16_fedf0eb1",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T22:25:41Z",
+      "side": 1,
+      "message": "same as above, please remove this patten throughout",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f16a9182_3c62f45b",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T22:25:41Z",
+      "side": 1,
+      "message": "does this test pass? the logic seems to drive it to one of the three fatal conditions",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23b74441_6edf1372",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-15T22:25:41Z",
+      "side": 1,
+      "message": "could a better name for this function be found? it doesn’t test anything as it doesn’t take a testing.T",
+      "revId": "0b2c667e9149255e399163199eee8fedd16bfe38",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
