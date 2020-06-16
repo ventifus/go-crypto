@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12367b51_cfa81e49",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "traditional t *testing.T comes before all other parameters for testing helpers.\n\nAlso, the name of the function doesn\u0027t accurately describe what it does. This function does not return any kind of server or connection. Also, ForUnsupportedConfigOptions is not what the function does, the unsupported options are encoded in the *ServerConfig which is passed into the function.\n\nPerhaps something like \n\n`func createServerAndDial`\n\nmight be better. That\u0027s about the best I can come up with at the moment.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d27ce63e_96e056e5",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "suggestion: the traditional form of an error message would be\n\nt.Fatalf(\"failed to generate temporary host key: %v\", err)\n\nnote the lack of capitalisation in the message, this is because the output could be further prefixed.\n: %v\", err is the tradition. By placing the error at the end of the message, not delimiters like \"\" or () are required.\n\nHere, and also below.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3ec8da_33e6bd4d",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "please check the error here, then immediately afterwards\n\ndefer listener.Close()",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49d358f1_9d784a6c",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "Please review my comments about the name of serverForUnsupportedConfigOptions and consider renaming this function.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a682a4_105a1777",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "no return is needed after t.Fatalf",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4695f280_74a62a90",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "If the TCP connection is being closed here, why is it closeure being attempted on line 41. I think the latter is probably redundant.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada78e97_ded73f84",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "Thank you for renaming this function. Regretably the new name is not an improvement. A function should be named for what it returns. This function returns an error, so that that isn\u0027t much help, so perhaps naming it for the operation it performs would be clear.\n\nMaybe something like `dialServer` would be clearer.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66bd989b_689667e6",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "Please place a space after the //. This is important for the tooling.\n\nA piece of advice that Kate Gregory gives is sometimes a better name for an identifier is found in its comment. In this case perhaps something like\n\nfunc TestDialFailsAgainstServerWithAnUnsupportedMac\n\nwould more descriptive for someone reading the go test -v output.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5d5b4cc_a4dea5c8",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5150
+      },
+      "writtenOn": "2020-06-16T06:11:11Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "08c4e0e38573539de6774dc43e937c87d153ce5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
