@@ -333,6 +333,51 @@ type AlgorithmSigner interface {
 	SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error)
 }
 
+// An AlgorithmSignerWithAlgoName is a Signer that also supports specifying a
+// specific algorithm to use for signing, and can provide the name of the
+// algorithm being used to sign.
+type AlgorithmSignerWithAlgoName interface {
+	AlgorithmSigner
+
+	// AlgorithmName returns the name of the algorithm being used by the
+	// AlgorithmSigner.
+	AlgorithmName() string
+}
+
+// algorithmSignerWithAlgoName is a struct that implements the
+// AlgorithmSignerWithAlgoName interface. Use NewAlgorithmSignerFromSigner
+// to instantiate it outside of the ssh library.
+type algorithmSignerWithAlgoName struct {
+	AlgorithmSigner
+	algorithm string
+}
+
+func (s *algorithmSignerWithAlgoName) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	return s.SignWithAlgorithm(rand, data, s.algorithm)
+}
+
+func (s *algorithmSignerWithAlgoName) AlgorithmName() string {
+	return s.algorithm
+}
+
+// NewAlgorithmSignerFromSigner takes any ssh.AlgorithmSigner implementation and
+// an algorithm name to sign with, and returns an AlgorithmSignerWithAlgoName.
+// This can be used in PublicKeysCallback to set custom algorithms during the
+// ssh handshake.
+func NewAlgorithmSignerFromSigner(signer Signer, algorithm string) (Signer, error) {
+	algorithmSigner, ok := signer.(AlgorithmSigner)
+	if !ok {
+		return nil, errors.New("unable to cast to ssh.AlgorithmSigner")
+	}
+
+	s := algorithmSignerWithAlgoName{
+		algorithmSigner,
+		algorithm,
+	}
+
+	return &s, nil
+}
+
 type rsaPublicKey rsa.PublicKey
 
 func (r *rsaPublicKey) Type() string {

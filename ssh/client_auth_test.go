@@ -272,6 +272,36 @@ func TestMethodInvalidAlgorithm(t *testing.T) {
 	}
 }
 
+func TestMethodAlgorithmSignerWithAlgoName(t *testing.T) {
+	algSigner, _ := NewAlgorithmSignerFromSigner(testSigners["rsa"], SigAlgoRSASHA2256)
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(algSigner),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	// Once SigAlgoRSASHA2256 is implemented in the ssh server, this test
+	// will pass, and will need to be updated.
+	err, serverErrors := tryAuthBothSides(t, config, nil)
+	if err == nil {
+		t.Fatalf("login succeeded")
+	}
+
+	found := false
+	want := "\"rsa-sha2-256\" not accepted"
+
+	var errStrings []string
+	for _, err := range serverErrors {
+		found = found || (err != nil && strings.Contains(err.Error(), want))
+		errStrings = append(errStrings, err.Error())
+	}
+	if !found {
+		t.Errorf("server got error %q, want substring %q", errStrings, want)
+	}
+}
+
 func TestClientHMAC(t *testing.T) {
 	for _, mac := range supportedMACs {
 		config := &ClientConfig{

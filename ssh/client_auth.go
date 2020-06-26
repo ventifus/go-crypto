@@ -201,7 +201,19 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 	}
 	var methods []string
 	for _, signer := range signers {
-		ok, err := validateKey(signer.PublicKey(), user, c)
+
+		// In order for the publicKeyCallback to play nice with custom
+		// AlgorithmSigners, it needs to know which algorithm the key is signed
+		// with. In most cases, this is just the key type, but in some special
+		// cases these won't match. For example, it is valid to sign an ssh-rsa
+		// key with the algorithm "rsa-sha2-256"
+		pub := signer.PublicKey()
+		algoname := pub.Type()
+		if algoNameSigner, ok := signer.(AlgorithmSignerWithAlgoName); ok {
+			algoname = algoNameSigner.AlgorithmName()
+		}
+
+		ok, err := validateKey(pub, user, c, algoname)
 		if err != nil {
 			return authFailure, nil, err
 		}
@@ -209,13 +221,12 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 			continue
 		}
 
-		pub := signer.PublicKey()
 		pubKey := pub.Marshal()
 		sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
 			User:    user,
 			Service: serviceSSH,
 			Method:  cb.method(),
-		}, []byte(pub.Type()), pubKey))
+		}, []byte(algoname), pubKey))
 		if err != nil {
 			return authFailure, nil, err
 		}
@@ -229,7 +240,7 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 			Service:  serviceSSH,
 			Method:   cb.method(),
 			HasSig:   true,
-			Algoname: pub.Type(),
+			Algoname: algoname,
 			PubKey:   pubKey,
 			Sig:      sig,
 		}
@@ -266,26 +277,25 @@ func containsMethod(methods []string, method string) bool {
 }
 
 // validateKey validates the key provided is acceptable to the server.
-func validateKey(key PublicKey, user string, c packetConn) (bool, error) {
+func validateKey(key PublicKey, user string, c packetConn, algoname string) (bool, error) {
 	pubKey := key.Marshal()
 	msg := publickeyAuthMsg{
 		User:     user,
 		Service:  serviceSSH,
 		Method:   "publickey",
 		HasSig:   false,
-		Algoname: key.Type(),
+		Algoname: algoname,
 		PubKey:   pubKey,
 	}
 	if err := c.writePacket(Marshal(&msg)); err != nil {
 		return false, err
 	}
 
-	return confirmKeyAck(key, c)
+	return confirmKeyAck(key, c, algoname)
 }
 
-func confirmKeyAck(key PublicKey, c packetConn) (bool, error) {
+func confirmKeyAck(key PublicKey, c packetConn, algoname string) (bool, error) {
 	pubKey := key.Marshal()
-	algoname := key.Type()
 
 	for {
 		packet, err := c.readPacket()
