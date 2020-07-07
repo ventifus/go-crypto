@@ -21,6 +21,7 @@ import (
 	"encoding/hex"
 	"encoding/pem"
 	"errors"
+	"fmt"
 )
 
 var (
@@ -135,6 +136,9 @@ func convertBag(bag *safeBag, password []byte) (*pem.Block, error) {
 
 	for _, attribute := range bag.Attributes {
 		k, v, err := convertAttribute(&attribute)
+		if errors.Is(err, ErrUnknownAttributeOID) {
+			continue
+		}
 		if err != nil {
 			return nil, err
 		}
@@ -188,7 +192,7 @@ func convertAttribute(attribute *pkcs12Attribute) (key, value string, err error)
 		key = "Microsoft CSP Name"
 		isString = true
 	default:
-		return "", "", errors.New("pkcs12: unknown attribute with OID " + attribute.Id.String())
+		return "", "", fmt.Errorf("%w %s", attribute.Id.String(), ErrUnknownAttributeOID)
 	}
 
 	if isString {

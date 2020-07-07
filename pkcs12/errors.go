@@ -13,6 +13,8 @@ var (
 	// ErrIncorrectPassword is returned when an incorrect password is detected.
 	// Usually, P12/PFX data is signed to be able to verify the password.
 	ErrIncorrectPassword = errors.New("pkcs12: decryption password incorrect")
+
+	ErrUnknownAttributeOID = errors.New("pkcs12: unknown attribute OID")
 )
 
 // NotImplementedError indicates that the input is not currently supported.
