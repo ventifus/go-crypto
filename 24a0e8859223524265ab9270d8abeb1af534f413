@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75457cdc_a81db764",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-07-07T20:50:10Z",
+      "side": 1,
+      "message": "Looks like we don\u0027t use a space in the x509 docs for PKCS #1 (we use \"PKCS#1\"): https://pkg.go.dev/crypto/x509?tab\u003ddoc#MarshalPKCS1PrivateKey\n\nWe should probably be consistent, even if it\u0027s small. The RFC adds a space, so I\u0027d say we go with that and update the x509 docs. LMK if that sounds right and I can create a little CL if that\u0027s easier.",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 13
+      },
+      "revId": "24a0e8859223524265ab9270d8abeb1af534f413",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
