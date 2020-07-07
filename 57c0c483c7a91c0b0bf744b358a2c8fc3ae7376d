@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ecfd252f_3b57b656",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28857
+      },
+      "writtenOn": "2020-07-07T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1db48e79_f9a01689",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80b21d16_7389c3e6",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -39,6 +63,41 @@
       "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94b28831_cce41a8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 28857
+      },
+      "writtenOn": "2020-07-07T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80b21d16_7389c3e6",
+      "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "660cc4da_1178ea04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28857
+      },
+      "writtenOn": "2020-07-07T18:36:28Z",
+      "side": 1,
+      "message": "Addressed the comments.\n\nLooks like I accidentally closed the GitHub PR and now this change is marked as abandoned.\n\nAny way to unabandon it or should I open a new PR?",
+      "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
