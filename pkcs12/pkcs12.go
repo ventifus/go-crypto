@@ -30,6 +30,8 @@ var (
 	oidFriendlyName     = asn1.ObjectIdentifier([]int{1, 2, 840, 113549, 1, 9, 20})
 	oidLocalKeyID       = asn1.ObjectIdentifier([]int{1, 2, 840, 113549, 1, 9, 21})
 	oidMicrosoftCSPName = asn1.ObjectIdentifier([]int{1, 3, 6, 1, 4, 1, 311, 17, 1})
+
+	errUnknownAttributeOID = errors.New("pkcs12: unknown attribute OID")
 )
 
 type pfxPdu struct {
@@ -104,6 +106,7 @@ func unmarshal(in []byte, out interface{}) error {
 }
 
 // ToPEM converts all "safe bags" contained in pfxData to PEM blocks.
+// Unknown attributes are discarded.
 func ToPEM(pfxData []byte, password string) ([]*pem.Block, error) {
 	encodedPassword, err := bmpString(password)
 	if err != nil {
@@ -135,6 +138,9 @@ func convertBag(bag *safeBag, password []byte) (*pem.Block, error) {
 
 	for _, attribute := range bag.Attributes {
 		k, v, err := convertAttribute(&attribute)
+		if err == errUnknownAttributeOID {
+			continue
+		}
 		if err != nil {
 			return nil, err
 		}
@@ -188,7 +194,7 @@ func convertAttribute(attribute *pkcs12Attribute) (key, value string, err error)
 		key = "Microsoft CSP Name"
 		isString = true
 	default:
-		return "", "", errors.New("pkcs12: unknown attribute with OID " + attribute.Id.String())
+		return "", "", errUnknownAttributeOID
 	}
 
 	if isString {
