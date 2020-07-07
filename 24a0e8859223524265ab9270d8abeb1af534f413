@@ -22,6 +22,30 @@
       "revId": "24a0e8859223524265ab9270d8abeb1af534f413",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f29b8eda_4fc944c4",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-07T23:50:35Z",
+      "side": 1,
+      "message": "Yeah I think the correct form is with a space. Should probably update all \"PKCS#X\" occurrences, feel free to go for it.",
+      "parentUuid": "75457cdc_a81db764",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 13
+      },
+      "revId": "24a0e8859223524265ab9270d8abeb1af534f413",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
