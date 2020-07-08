@@ -50,6 +50,24 @@
       "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba43fbe_8e3eec81",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 37433
+      },
+      "writtenOn": "2020-07-08T19:00:34Z",
+      "side": 1,
+      "message": "Looking at our own use case as well as people running into the same issue [1][2], it seems like users usually don\u0027t care about decoding unknown PKCS12Attributes. encoding might be a different story and it looks like openssl goes to some trouble to ensure that this can happen when creating a PKCS12 cert.\n\nNow I am inclined to simply drop this error. If that is okay, let me know and I can make the changes.\n\n[1]: https://github.com/golang/go/issues/24325\n[2]: https://github.com/SSLMate/go-pkcs12/pull/4",
+      "parentUuid": "b8b51e2b_d49863ed",
+      "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
