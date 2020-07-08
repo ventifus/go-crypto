@@ -98,6 +98,23 @@
       "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94507998_c3e85c7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28857
+      },
+      "writtenOn": "2020-07-08T18:10:39Z",
+      "side": 1,
+      "message": "Looks like gobot is just going to keep closing.\n\nIf I reopen the GitHub PR, it\u0027ll close that and if you restore this CL, it\u0027ll close it too.\n\nI guess we\u0027d have to open both at the same time?\n\nAnyway, I opened https://go-review.googlesource.com/c/crypto/+/241282 so let\u0027s just go with that instead.",
+      "revId": "57c0c483c7a91c0b0bf744b358a2c8fc3ae7376d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
