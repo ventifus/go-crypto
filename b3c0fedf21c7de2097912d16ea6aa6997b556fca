@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9df802e_79dcf59a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2020-07-08T18:56:41Z",
+      "side": 1,
+      "message": "Ed25519, nchange throughout.",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "b3c0fedf21c7de2097912d16ea6aa6997b556fca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
