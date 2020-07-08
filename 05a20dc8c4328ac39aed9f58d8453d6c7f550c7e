@@ -68,6 +68,24 @@
       "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d96bd791_57480161",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-08T19:19:59Z",
+      "side": 1,
+      "message": "Yeah let\u0027s just drop the error. This is an advantage of not supporting encoding in this package at all.",
+      "parentUuid": "1ba43fbe_8e3eec81",
+      "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
