@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d15fe3d_a8bcbc5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "pkcs12: drop PKCS #12 attributes with unknown OIDs",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7910716_c1b10568",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "Wrap line.",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d8609e_40f019b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "Fixes",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12379404_508a4739",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "Looks good to me with minor changes (most important one being not exporting the internal error value).",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ae90108_625bb6f9",
+        "filename": "pkcs12/errors.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "This should not be exported. It can just be defined as errUnknownAttributeOID above convertBag.",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "435af4c9_fe49b403",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "// Unknown attributes are discarded.",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1496cd8_f9ea9b37",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-07-09T22:07:25Z",
+      "side": 1,
+      "message": "Can just return the error itself without wrapping if the only caller is convertBag, and use \u003d\u003d for checking.",
+      "revId": "99e9e12af22b8ece7fc4cb1bb49e65a92486a76f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
