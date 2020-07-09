@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dde4b5d8_4eafdb44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37433
+      },
+      "writtenOn": "2020-07-09T22:02:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "43082c43_2b4b1dda",
+      "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44f7cf6c_ad3d204a",
         "filename": "pkcs12/pkcs12.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf1c399_6a77e960",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 37433
+      },
+      "writtenOn": "2020-07-09T22:02:31Z",
+      "side": 1,
+      "message": "resolving",
+      "parentUuid": "44f7cf6c_ad3d204a",
+      "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -86,6 +122,24 @@
       "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd249af7_126a2f55",
+        "filename": "pkcs12/pkcs12.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 37433
+      },
+      "writtenOn": "2020-07-09T22:02:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d96bd791_57480161",
+      "revId": "05a20dc8c4328ac39aed9f58d8453d6c7f550c7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
