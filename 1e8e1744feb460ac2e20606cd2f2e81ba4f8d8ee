@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79b71624_ee4b47b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5440
+      },
+      "writtenOn": "2020-07-12T04:43:10Z",
+      "side": 1,
+      "message": "On ppc64le:\n\n    name               old time/op   new time/op   delta\n    ScalarBaseMult-32    152µs ± 1%     92µs ± 4%  -39.82%  (p\u003d0.000 n\u003d17+20)\n\n    name               old speed     new speed     delta\n    ScalarBaseMult-32  210kB/s ± 0%  347kB/s ± 2%  +65.27%  (p\u003d0.000 n\u003d17+17)\n",
+      "revId": "1e8e1744feb460ac2e20606cd2f2e81ba4f8d8ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
