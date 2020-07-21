@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d6906c9_196d973a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-07-21T21:35:08Z",
+      "side": 1,
+      "message": "Knocked out a generic version covering AES GCM, ChaCha20-Poly1305, and XChaCha20-Poly1305. Mostly re-used the code I wrote for the AES GCM version over the ChaCha20-Poly1305 test because I found it a bit easier to read (but that\u0027s probably because I wrote it 😊, happy to take more cues from the previous test).",
+      "revId": "2da1ad912aab62c0684f904afede3370cf29c9d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
