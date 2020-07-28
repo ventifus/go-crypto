@@ -16,6 +16,46 @@
       "revId": "2da1ad912aab62c0684f904afede3370cf29c9d3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95f95e5f_54736b9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-07-28T15:03:36Z",
+      "side": 1,
+      "message": "Thanks Roland!",
+      "revId": "2da1ad912aab62c0684f904afede3370cf29c9d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "238d15b8_92f21682",
+        "filename": "internal/wycheproof/aead_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-07-28T15:03:36Z",
+      "side": 1,
+      "message": "how about genMsg for consistency?",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 7
+      },
+      "revId": "2da1ad912aab62c0684f904afede3370cf29c9d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
