@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5362a6a4_b1941c4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2020-08-14T22:00:20Z",
+      "side": 1,
+      "message": "\u003e Patch Set 2:\n\u003e \n\u003e I actually needed this functionality as well. However this change is missing the addition of the aes*cbcID const values, adding them to the supportedCiphers list, as well as the rekey logic.\n\u003e \n\u003e I have a more complete change, is it worth submitting separately?\n\nFWIW I\u0027ve gone ahead and submitted it at:\n\nhttps://go-review.googlesource.com/c/crypto/+/248457",
+      "revId": "b0daf01d30abe575693d4ff9373062dc6967d7bb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
