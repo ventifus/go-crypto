@@ -356,7 +356,7 @@ func testOneCipher(t *testing.T, cipher string, cipherOrder []string) {
 }
 
 var deprecatedCiphers = []string{
-	"aes128-cbc", "3des-cbc",
+	"aes128-cbc", "aes192-cbc", "aes256-cbc", "3des-cbc",
 	"arcfour128", "arcfour256",
 }
 
