@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7c9cca_8e1dccbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-08-24T23:44:03Z",
+      "side": 1,
+      "message": "Sorry, but the package is frozen and this counts definitely as a new feature. I recommend looking into software.sslmate.com/src/go-pkcs12 and maybe sending this PR there.",
+      "revId": "e40b19fffd3ad1274a0c54e8999560717de2fae7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
