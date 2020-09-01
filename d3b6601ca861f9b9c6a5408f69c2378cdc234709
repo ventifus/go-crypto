@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16221795_c396e8ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-09-01T21:35:51Z",
+      "side": 1,
+      "message": "ssh: remove slow unnecessary diffie-hellman-group-exchange primalty check",
+      "revId": "d3b6601ca861f9b9c6a5408f69c2378cdc234709",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
