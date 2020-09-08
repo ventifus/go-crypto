@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e553e8ee_09a65ac9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-09-08T14:28:07Z",
+      "side": 1,
+      "message": "I suppose that once we added the 128-bit variant for compatibility, we might as well add all of them if there are servers that support only one of them. They are not worse.\n\nCan we get a test to make sure everything is wired up?",
+      "revId": "1e2c04ef335cdf17f3544d2928b3cf7519a3eaad",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
