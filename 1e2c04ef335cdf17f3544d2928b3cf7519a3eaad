@@ -16,6 +16,24 @@
       "revId": "1e2c04ef335cdf17f3544d2928b3cf7519a3eaad",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abbacb8a_bf789b84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2020-09-09T19:04:31Z",
+      "side": 1,
+      "message": "I\u0027ve added aes192-cbc and aes256-cbc to the list of deprecated ciphers in session_test.go. Let me know if you had something else in mind.",
+      "parentUuid": "e553e8ee_09a65ac9",
+      "revId": "1e2c04ef335cdf17f3544d2928b3cf7519a3eaad",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     }
   ]
 }
