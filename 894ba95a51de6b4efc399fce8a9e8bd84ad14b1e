@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "152b69c5_36758b63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2020-09-10T14:08:08Z",
+      "side": 1,
+      "message": "What is tis function good for? What do\nyou do with the returned salt?",
+      "revId": "894ba95a51de6b4efc399fce8a9e8bd84ad14b1e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
