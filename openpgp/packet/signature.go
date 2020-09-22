@@ -600,6 +600,18 @@ func (sig *Signature) SignKey(pub *PublicKey, priv *PrivateKey, config *Config) 
 	return sig.Sign(h, priv, config)
 }
 
+// CrossSignKey updates sig to contain a signature from priv asserting that pub
+// is its parent key. If config is nil, sensible defaults will be used.
+func (sig *Signature) CrossSignKey(pub *PublicKey, priv *PrivateKey, config *Config) error {
+	// Cross-signatures are computed on the same data as the binding signature,
+	// so we have to reverse the keys.
+	h, err := keySignatureHash(pub, &priv.PublicKey, sig.Hash)
+	if err != nil {
+		return err
+	}
+	return sig.Sign(h, priv, config)
+}
+
 // Serialize marshals sig to w. Sign, SignUserId or SignKey must have been
 // called first.
 func (sig *Signature) Serialize(w io.Writer) error {

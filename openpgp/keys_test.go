@@ -3,6 +3,8 @@ package openpgp
 import (
 	"bytes"
 	"crypto"
+	"crypto/rand"
+	"crypto/rsa"
 	"strings"
 	"testing"
 	"time"
@@ -102,6 +104,63 @@ func TestGoodCrossSignature(t *testing.T) {
 	}
 	if len(keys[0].Subkeys) != 1 {
 		t.Errorf("Failed to accept good subkey, %d", len(keys[0].Subkeys))
+	}
+}
+
+func TestGeneratedCrossSignature(t *testing.T) {
+	var config *packet.Config
+	entity, err := NewEntity("Golang Gopher", "Test Key", "no-reply@golang.com", config)
+	if err != nil {
+		t.Fatal(err)
+	}
+	subkeyRaw, err := rsa.GenerateKey(rand.Reader, 1024)
+	if err != nil {
+		t.Fatal(err)
+	}
+	creationTime := time.Now()
+	subkeyPriv := packet.NewRSAPrivateKey(creationTime, subkeyRaw)
+	subkeyPriv.IsSubkey = true
+	sk := Subkey{
+		PublicKey:  &subkeyPriv.PublicKey,
+		PrivateKey: subkeyPriv,
+		Sig: &packet.Signature{
+			CreationTime: creationTime,
+			FlagSign:     true,
+			FlagsValid:   true,
+			Hash:         config.Hash(),
+			IssuerKeyId:  &entity.PrivateKey.KeyId,
+			PubKeyAlgo:   entity.PrivateKey.PubKeyAlgo,
+			SigType:      packet.SigTypeSubkeyBinding,
+			EmbeddedSignature: &packet.Signature{
+				CreationTime: creationTime,
+				Hash:         config.Hash(),
+				IssuerKeyId:  &subkeyPriv.KeyId,
+				PubKeyAlgo:   subkeyPriv.PubKeyAlgo,
+				SigType:      packet.SigTypePrimaryKeyBinding,
+			},
+		},
+	}
+	if err := sk.Sig.EmbeddedSignature.CrossSignKey(entity.PrimaryKey, sk.PrivateKey, config); err != nil {
+		t.Errorf("CrossSignKey(primary, subkey, nil) = %v", err)
+	}
+	if err := sk.Sig.SignKey(sk.PublicKey, entity.PrivateKey, config); err != nil {
+		t.Errorf("SignKey(subkey, primary, nil) = %v", err)
+	}
+	entity.Subkeys[0] = sk
+
+	var b bytes.Buffer
+	if err := entity.Serialize(&b); err != nil {
+		t.Fatalf("entity.Serialize(): %v", err)
+	}
+
+	el, err := ReadKeyRing(&b)
+	if err != nil {
+		t.Fatalf("ReadKeyRing() after entity.Serialize(): %v", err)
+	}
+	if len(el[0].Subkeys) != 1 {
+		t.Errorf("Readback key has wrong number of subkeys: %#v", el[0])
+	} else if el[0].Subkeys[0].Sig.EmbeddedSignature == nil {
+		t.Errorf("Readback key is missing embedded signature:\nentity = %#vl\nsig = %#v", el[0], el[0].Subkeys[0].Sig)
 	}
 }
 
