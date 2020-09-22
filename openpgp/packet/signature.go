@@ -11,6 +11,7 @@ import (
 	"crypto/ecdsa"
 	"encoding/asn1"
 	"encoding/binary"
+	"fmt"
 	"hash"
 	"io"
 	"math/big"
@@ -508,11 +509,15 @@ func (sig *Signature) signPrepareHash(h hash.Hash) (digest []byte, err error) {
 // the hash of the message to be signed and will be mutated by this function.
 // On success, the signature is stored in sig. Call Serialize to write it out.
 // If config is nil, sensible defaults will be used.
-func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err error) {
-	sig.outSubpackets = sig.buildSubpackets()
+func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) error {
+	var err error
+	sig.outSubpackets, err = sig.buildSubpackets()
+	if err != nil {
+		return err
+	}
 	digest, err := sig.signPrepareHash(h)
 	if err != nil {
-		return
+		return err
 	}
 
 	switch priv.PubKeyAlgo {
@@ -529,33 +534,37 @@ func (sig *Signature) Sign(h hash.Hash, priv *PrivateKey, config *Config) (err e
 			digest = digest[:subgroupSize]
 		}
 		r, s, err := dsa.Sign(config.Random(), dsaPriv, digest)
-		if err == nil {
-			sig.DSASigR.bytes = r.Bytes()
-			sig.DSASigR.bitLength = uint16(8 * len(sig.DSASigR.bytes))
-			sig.DSASigS.bytes = s.Bytes()
-			sig.DSASigS.bitLength = uint16(8 * len(sig.DSASigS.bytes))
+		if err != nil {
+			return err
 		}
+		sig.DSASigR.bytes = r.Bytes()
+		sig.DSASigR.bitLength = uint16(8 * len(sig.DSASigR.bytes))
+		sig.DSASigS.bytes = s.Bytes()
+		sig.DSASigS.bitLength = uint16(8 * len(sig.DSASigS.bytes))
 	case PubKeyAlgoECDSA:
 		var r, s *big.Int
 		if pk, ok := priv.PrivateKey.(*ecdsa.PrivateKey); ok {
 			// direct support, avoid asn1 wrapping/unwrapping
 			r, s, err = ecdsa.Sign(config.Random(), pk, digest)
+			if err != nil {
+				return err
+			}
 		} else {
-			var b []byte
-			b, err = priv.PrivateKey.(crypto.Signer).Sign(config.Random(), digest, sig.Hash)
+			b, err := priv.PrivateKey.(crypto.Signer).Sign(config.Random(), digest, sig.Hash)
 			if err == nil {
 				r, s, err = unwrapECDSASig(b)
 			}
+			if err != nil {
+				return err
+			}
 		}
-		if err == nil {
-			sig.ECDSASigR = fromBig(r)
-			sig.ECDSASigS = fromBig(s)
-		}
+		sig.ECDSASigR = fromBig(r)
+		sig.ECDSASigS = fromBig(s)
 	default:
-		err = errors.UnsupportedError("public key algorithm: " + strconv.Itoa(int(sig.PubKeyAlgo)))
+		return errors.UnsupportedError("public key algorithm: " + strconv.Itoa(int(sig.PubKeyAlgo)))
 	}
 
-	return
+	return nil
 }
 
 // unwrapECDSASig parses the two integer components of an ASN.1-encoded ECDSA
@@ -565,10 +574,7 @@ func unwrapECDSASig(b []byte) (r, s *big.Int, err error) {
 		R, S *big.Int
 	}
 	_, err = asn1.Unmarshal(b, &ecsdaSig)
-	if err != nil {
-		return
-	}
-	return ecsdaSig.R, ecsdaSig.S, nil
+	return ecsdaSig.R, ecsdaSig.S, err
 }
 
 // SignUserId computes a signature from priv, asserting that pub is a valid
@@ -596,7 +602,20 @@ func (sig *Signature) SignKey(pub *PublicKey, priv *PrivateKey, config *Config) 
 
 // Serialize marshals sig to w. Sign, SignUserId or SignKey must have been
 // called first.
-func (sig *Signature) Serialize(w io.Writer) (err error) {
+func (sig *Signature) Serialize(w io.Writer) error {
+	var b bytes.Buffer
+	if err := sig.SerializeRaw(&b); err != nil {
+		return err
+	}
+	if err := serializeHeader(w, packetTypeSignature, b.Len()); err != nil {
+		return err
+	}
+	_, err := w.Write(b.Bytes())
+	return err
+}
+
+// SerializeRaw marshals sig to w without the packet header.
+func (sig *Signature) SerializeRaw(w io.Writer) error {
 	if len(sig.outSubpackets) == 0 {
 		sig.outSubpackets = sig.rawSubpackets
 	}
@@ -604,59 +623,33 @@ func (sig *Signature) Serialize(w io.Writer) (err error) {
 		return errors.InvalidArgumentError("Signature: need to call Sign, SignUserId or SignKey before Serialize")
 	}
 
-	sigLength := 0
-	switch sig.PubKeyAlgo {
-	case PubKeyAlgoRSA, PubKeyAlgoRSASignOnly:
-		sigLength = 2 + len(sig.RSASignature.bytes)
-	case PubKeyAlgoDSA:
-		sigLength = 2 + len(sig.DSASigR.bytes)
-		sigLength += 2 + len(sig.DSASigS.bytes)
-	case PubKeyAlgoECDSA:
-		sigLength = 2 + len(sig.ECDSASigR.bytes)
-		sigLength += 2 + len(sig.ECDSASigS.bytes)
-	default:
-		panic("impossible")
+	if _, err := w.Write(sig.HashSuffix[:len(sig.HashSuffix)-6]); err != nil {
+		return err
 	}
 
 	unhashedSubpacketsLen := subpacketsLength(sig.outSubpackets, false)
-	length := len(sig.HashSuffix) - 6 /* trailer not included */ +
-		2 /* length of unhashed subpackets */ + unhashedSubpacketsLen +
-		2 /* hash tag */ + sigLength
-	err = serializeHeader(w, packetTypeSignature, length)
-	if err != nil {
-		return
-	}
-
-	_, err = w.Write(sig.HashSuffix[:len(sig.HashSuffix)-6])
-	if err != nil {
-		return
-	}
-
 	unhashedSubpackets := make([]byte, 2+unhashedSubpacketsLen)
 	unhashedSubpackets[0] = byte(unhashedSubpacketsLen >> 8)
 	unhashedSubpackets[1] = byte(unhashedSubpacketsLen)
 	serializeSubpackets(unhashedSubpackets[2:], sig.outSubpackets, false)
 
-	_, err = w.Write(unhashedSubpackets)
-	if err != nil {
-		return
+	if _, err := w.Write(unhashedSubpackets); err != nil {
+		return err
 	}
-	_, err = w.Write(sig.HashTag[:])
-	if err != nil {
-		return
+	if _, err := w.Write(sig.HashTag[:]); err != nil {
+		return err
 	}
 
 	switch sig.PubKeyAlgo {
 	case PubKeyAlgoRSA, PubKeyAlgoRSASignOnly:
-		err = writeMPIs(w, sig.RSASignature)
+		return writeMPIs(w, sig.RSASignature)
 	case PubKeyAlgoDSA:
-		err = writeMPIs(w, sig.DSASigR, sig.DSASigS)
+		return writeMPIs(w, sig.DSASigR, sig.DSASigS)
 	case PubKeyAlgoECDSA:
-		err = writeMPIs(w, sig.ECDSASigR, sig.ECDSASigS)
+		return writeMPIs(w, sig.ECDSASigR, sig.ECDSASigS)
 	default:
-		panic("impossible")
+		return errors.UnsupportedError(fmt.Sprintf("public key algorithm %v", sig.PubKeyAlgo))
 	}
-	return
 }
 
 // outputSubpacket represents a subpacket to be marshaled.
@@ -667,10 +660,10 @@ type outputSubpacket struct {
 	contents      []byte
 }
 
-func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
+func (sig *Signature) buildSubpackets() ([]outputSubpacket, error) {
 	creationTime := make([]byte, 4)
 	binary.BigEndian.PutUint32(creationTime, uint32(sig.CreationTime.Unix()))
-	subpackets = append(subpackets, outputSubpacket{true, creationTimeSubpacket, false, creationTime})
+	subpackets := []outputSubpacket{{true, creationTimeSubpacket, false, creationTime}}
 
 	if sig.IssuerKeyId != nil {
 		keyId := make([]byte, 8)
@@ -682,6 +675,14 @@ func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
 		sigLifetime := make([]byte, 4)
 		binary.BigEndian.PutUint32(sigLifetime, *sig.SigLifetimeSecs)
 		subpackets = append(subpackets, outputSubpacket{true, signatureExpirationSubpacket, true, sigLifetime})
+	}
+
+	if sig.EmbeddedSignature != nil {
+		var b bytes.Buffer
+		if err := sig.EmbeddedSignature.SerializeRaw(&b); err != nil {
+			return nil, err
+		}
+		subpackets = append(subpackets, outputSubpacket{false, embeddedSignatureSubpacket, false, b.Bytes()})
 	}
 
 	// Key flags may only appear in self-signatures or certification signatures.
@@ -727,5 +728,5 @@ func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
 		subpackets = append(subpackets, outputSubpacket{true, prefCompressionSubpacket, false, sig.PreferredCompression})
 	}
 
-	return
+	return subpackets, nil
 }

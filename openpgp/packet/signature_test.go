@@ -11,12 +11,16 @@ import (
 	"testing"
 )
 
-func TestSignatureRead(t *testing.T) {
-	packet, err := Read(readerFromHex(signatureDataHex))
+func mustReadHex(s string) Packet {
+	p, err := Read(readerFromHex(s))
 	if err != nil {
-		t.Error(err)
-		return
+		panic(err)
 	}
+	return p
+}
+
+func TestSignatureRead(t *testing.T) {
+	packet := mustReadHex(signatureDataHex)
 	sig, ok := packet.(*Signature)
 	if !ok || sig.SigType != SigTypeBinary || sig.PubKeyAlgo != PubKeyAlgoRSA || sig.Hash != crypto.SHA1 {
 		t.Errorf("failed to parse, got: %#v", packet)
@@ -24,8 +28,7 @@ func TestSignatureRead(t *testing.T) {
 }
 
 func TestSignatureReserialize(t *testing.T) {
-	packet, _ := Read(readerFromHex(signatureDataHex))
-	sig := packet.(*Signature)
+	sig := mustReadHex(signatureDataHex).(*Signature)
 	out := new(bytes.Buffer)
 	err := sig.Serialize(out)
 	if err != nil {
@@ -39,6 +42,43 @@ func TestSignatureReserialize(t *testing.T) {
 	}
 }
 
+func TestEmbeddedSignature(t *testing.T) {
+	privKey := mustReadHex(privKeyRSAHex).(*PrivateKey)
+	if err := privKey.Decrypt([]byte("testing")); err != nil {
+		t.Fatalf("PrivateKey.Decrypt('testing') failed: %v", err)
+	}
+
+	esig := &Signature{
+		SigType:    SigTypePrimaryKeyBinding,
+		PubKeyAlgo: privKey.PubKeyAlgo,
+		Hash:       crypto.SHA256,
+	}
+	if err := esig.Sign(crypto.SHA256.New(), privKey, nil); err != nil {
+		t.Fatalf("Sign embedded: %v", err)
+	}
+	sig := &Signature{
+		SigType:           SigTypeGenericCert,
+		PubKeyAlgo:        privKey.PubKeyAlgo,
+		Hash:              crypto.SHA256,
+		EmbeddedSignature: esig,
+	}
+	if err := sig.Sign(crypto.SHA256.New(), privKey, nil); err != nil {
+		t.Fatalf("Sign with embedded: %v", err)
+	}
+
+	var b bytes.Buffer
+	if err := sig.Serialize(&b); err != nil {
+		t.Fatalf("Serialize with embedded: %v", err)
+	}
+	got, err := Read(&b)
+	if err != nil {
+		t.Fatalf("Readback of sig with embedded: %v", err)
+	}
+	if got.(*Signature).EmbeddedSignature == nil {
+		t.Errorf("Round-trip of sig with embedded is missing embedded sig:\ngot = %#v\nwant = %#v", got, sig)
+	}
+}
+
 func TestSignUserId(t *testing.T) {
 	sig := &Signature{
 		SigType:    SigTypeGenericCert,
@@ -46,32 +86,20 @@ func TestSignUserId(t *testing.T) {
 		Hash:       0, // invalid hash function
 	}
 
-	packet, err := Read(readerFromHex(rsaPkDataHex))
-	if err != nil {
-		t.Fatalf("failed to deserialize public key: %v", err)
-	}
-	pubKey := packet.(*PublicKey)
+	pubKey := mustReadHex(rsaPkDataHex).(*PublicKey)
+	privKey := mustReadHex(privKeyRSAHex).(*PrivateKey)
 
-	packet, err = Read(readerFromHex(privKeyRSAHex))
-	if err != nil {
-		t.Fatalf("failed to deserialize private key: %v", err)
+	if err := sig.SignUserId("", pubKey, privKey, nil); err == nil {
+		t.Errorf("SignUserId on %#v did not receive an error when expected", sig)
 	}
-	privKey := packet.(*PrivateKey)
 
-	err = sig.SignUserId("", pubKey, privKey, nil)
-	if err == nil {
-		t.Errorf("did not receive an error when expected")
+	if err := privKey.Decrypt([]byte("testing")); err != nil {
+		t.Fatalf("PrivateKey.Decrypt('testing') failed: %v", err)
 	}
 
 	sig.Hash = crypto.SHA256
-	err = privKey.Decrypt([]byte("testing"))
-	if err != nil {
-		t.Fatalf("failed to decrypt private key: %v", err)
-	}
-
-	err = sig.SignUserId("", pubKey, privKey, nil)
-	if err != nil {
-		t.Errorf("failed to sign user id: %v", err)
+	if err := sig.SignUserId("", pubKey, privKey, nil); err != nil {
+		t.Errorf("SignUserId failed: %v", err)
 	}
 }
 
