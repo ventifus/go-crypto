@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abe35d5a_7eb3f8bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-09-30T12:09:09Z",
+      "side": 1,
+      "message": "Need a Trust+1, please :)",
+      "revId": "30c51f378c4c2aef4659e0fab56b0c7f3a6cd43f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
