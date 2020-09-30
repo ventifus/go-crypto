@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02f7a89c_b90581c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-09-30T12:24:21Z",
+      "side": 1,
+      "message": "nacl/auth: use Size instead of KeySize for Sum output",
+      "revId": "14aac948aff5908c80b1c6ffc6f4e126eddf9747",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d277e5_d1a047d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-09-30T12:24:21Z",
+      "side": 1,
+      "message": "Thank you!\n\nKatie/Roland, need a Trust+1 :)",
+      "revId": "14aac948aff5908c80b1c6ffc6f4e126eddf9747",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
