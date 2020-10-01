@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e227108e_a03b4274",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4c05b34_5792984c",
+      "range": {
+        "startLine": 448,
+        "startChar": 68,
+        "endLine": 449,
+        "endChar": 65
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a6f727b_4a952de1",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b3b89d3f_a77d8a6e",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a6f727b_4a952de1",
+      "range": {
+        "startLine": 450,
+        "startChar": 48,
+        "endLine": 450,
+        "endChar": 51
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5962384_08cbf360",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa42e43_6b263d4e",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5962384_08cbf360",
+      "range": {
+        "startLine": 449,
+        "startChar": 67,
+        "endLine": 451,
+        "endChar": 52
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "0386badf_fd1ec7eb",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8a378c5_0132cddc",
+      "range": {
+        "startLine": 453,
+        "startChar": 39,
+        "endLine": 453,
+        "endChar": 50
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68874733_34894649",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd3697f4_046d1826",
+      "range": {
+        "startLine": 453,
+        "startChar": 28,
+        "endLine": 453,
+        "endChar": 29
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e8a17af_1c447bda",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 3
@@ -163,6 +283,54 @@
     },
     {
       "key": {
+        "uuid": "a12a3808_7c655818",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a64df6_27454408",
+      "range": {
+        "startLine": 467,
+        "startChar": 76,
+        "endLine": 467,
+        "endChar": 79
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e531f890_3b07f006",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Done, tried to clarify the difference between these two methods. The complexity is kind of a side effect of the API being not ideal...",
+      "parentUuid": "3e8a17af_1c447bda",
+      "range": {
+        "startLine": 467,
+        "startChar": 3,
+        "endLine": 467,
+        "endChar": 60
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5b940c6_0da0c984",
         "filename": "ocsp/ocsp.go",
         "patchSetId": 3
@@ -174,6 +342,30 @@
       "writtenOn": "2020-10-01T16:16:01Z",
       "side": 1,
       "message": "Avoiding the text duplication between here and ParseReponse would be nice, but maybe not avoidable. I wanted to find examples in other places in the standard library where it says something like \"X does the same thing as Y but with \u003cinsert features that are different\u003e\" but didn\u0027t find one. Will keep looking.",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 65
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e246a0_c6f120c2",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-01T17:52:39Z",
+      "side": 1,
+      "message": "Yeah it\u0027s definitely not ideal. ParseResponseForCert and ParseResponse do essentially the exact same signature verification steps, so we could just say \"ParseResponseForCert provides the same  signature verification and error handling behavior as ParseResponse\"... ¯\\_(ツ)_/¯",
+      "parentUuid": "b5b940c6_0da0c984",
       "range": {
         "startLine": 472,
         "startChar": 0,
