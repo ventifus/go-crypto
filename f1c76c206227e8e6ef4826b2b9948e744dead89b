@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd9fac0d_81df11b1",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-10-01T19:21:19Z",
+      "side": 1,
+      "message": "\"If the response contains multiple responses..\"? Should it be \"multiple statuses\"?",
+      "range": {
+        "startLine": 469,
+        "startChar": 12,
+        "endLine": 469,
+        "endChar": 21
+      },
+      "revId": "f1c76c206227e8e6ef4826b2b9948e744dead89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b442d6f1_b663874b",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-10-01T19:21:19Z",
+      "side": 1,
+      "message": "double space",
+      "range": {
+        "startLine": 469,
+        "startChar": 42,
+        "endLine": 469,
+        "endChar": 44
+      },
+      "revId": "f1c76c206227e8e6ef4826b2b9948e744dead89b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}
