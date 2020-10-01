@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e424931_d588b670",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-10-01T18:38:05Z",
+      "side": 1,
+      "message": "\"x509.Certificate\"? Otherwise I\u0027d leave it lowercase.",
+      "range": {
+        "startLine": 449,
+        "startChar": 68,
+        "endLine": 449,
+        "endChar": 69
+      },
+      "revId": "b18bf4b39cf5d0e920890146e0a9c35e38f95287",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece7c526_244fe5dd",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-10-01T18:38:05Z",
+      "side": 1,
+      "message": "status",
+      "range": {
+        "startLine": 449,
+        "startChar": 30,
+        "endLine": 449,
+        "endChar": 32
+      },
+      "revId": "b18bf4b39cf5d0e920890146e0a9c35e38f95287",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

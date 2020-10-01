@@ -375,6 +375,30 @@
       "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4093860_4bd00f5d",
+        "filename": "ocsp/ocsp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-10-01T18:38:05Z",
+      "side": 1,
+      "message": "https://pkg.go.dev/net/http#ListenAndServe is an example of this I suppose.\n\"ListenAndServeTLS acts identically to ListenAndServe, except that it expects HTTPS connections.\"\n\nSo in this context, it could be \"ParseResponseForCert acts identically to ParseResponse, except that it also parses the response in the provided certificate\", or something like that. Then the extra few lines about how the certificate is parsed.\nThat might clean things up a bit, and make the distinction clearer.",
+      "parentUuid": "35e246a0_c6f120c2",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 65
+      },
+      "revId": "229f4070383242ade0c8be9f434cb7cca771d116",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
     }
   ]
 }
