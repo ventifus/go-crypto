@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "797a2504_8907fcfd",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-02T09:49:08Z",
+      "side": 0,
+      "message": "We don\u0027t remove symbols that can break existing code. Instead, if we decide to make this change, we\u0027d mark this as deprecated and explain that nothing returns it anymore.",
+      "revId": "06a226fb4e3765ef3f48aa2852b401bc7b98e981",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    }
+  ]
+}

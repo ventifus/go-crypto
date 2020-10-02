@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75fd3a1d_911368d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-02T09:49:08Z",
+      "side": 1,
+      "message": "Just \"acme\".",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f52081dc_e0ac6bbb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-02T09:49:08Z",
+      "side": 1,
+      "message": "... when account exists",
+      "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5b6f6c8_353debe3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-02T09:49:08Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 10,
+        "startChar": 34,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939fd1af_05b499f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-02T09:49:08Z",
+      "side": 1,
+      "message": "Hmm, the inconsistency is unfortunate, and maybe returning the account is the better behavior, but arguably the 8555 behavior is the only one that\u0027s documented, so I am not convinced we should change documented behavior to match undocumented ones. (For sure we should not remove the error and break code.)",
+      "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
+      "unresolved": false
+    }
+  ]
+}
