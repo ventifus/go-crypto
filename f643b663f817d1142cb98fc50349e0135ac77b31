@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb84aee_583bfc7e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-06T14:32:51Z",
+      "side": 1,
+      "message": "\"It supports RSA, DSA, ECDSA, and Ed25519 private keys in PKCS#1, PKCS#8, OpenSSL, and OpenSSH formats.\"",
+      "revId": "f643b663f817d1142cb98fc50349e0135ac77b31",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
