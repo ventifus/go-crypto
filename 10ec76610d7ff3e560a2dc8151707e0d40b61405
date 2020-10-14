@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff2c4bb_a37ed5c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 44344
+      },
+      "writtenOn": "2020-10-14T17:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bcadca9_241695ad",
+      "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "229aaf2e_db2244c9",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-10-14T10:28:31Z",
       "side": 1,
       "message": "\"Fixes golang/go#41823\"",
+      "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8f8a80_be96ace5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 44344
+      },
+      "writtenOn": "2020-10-14T17:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "229aaf2e_db2244c9",
       "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
