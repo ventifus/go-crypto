@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcadca9_241695ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-14T10:28:31Z",
+      "side": 1,
+      "message": "Lowercase letter after colon.",
+      "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229aaf2e_db2244c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-14T10:28:31Z",
+      "side": 1,
+      "message": "\"Fixes golang/go#41823\"",
+      "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3183c474_30676c54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-10-14T10:28:31Z",
+      "side": 1,
+      "message": "Thank you! Just a couple nits on the commit message, which you can change by editing the PR title and description.\n\nKatie/Roland, Trust+1 please?",
+      "revId": "10ec76610d7ff3e560a2dc8151707e0d40b61405",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
