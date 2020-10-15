@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be53434b_0e60a87c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 44458
+      },
+      "writtenOn": "2020-10-15T16:32:41Z",
+      "side": 1,
+      "message": "Notations can have multiple with the same key name. \nFor example the proof@metacode.biz namespace described here: https://metacode.biz/openpgp/proofs\n\nso a map[string]string wont be sufficient. maybe if it were a map[string][]string ?",
+      "revId": "c9d8d1f02962581054e66600a8a9060b2e13234c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
