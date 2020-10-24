@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42af57a_afe3f3a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2020-10-24T04:34:53Z",
+      "side": 1,
+      "message": "Thank you for this change Nathan, thank you for the review Filippo! Here is a Trust+1 to unblock y\u0027all.",
+      "revId": "5f741069272b7f896afd36296a37620c9b1d7da9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
