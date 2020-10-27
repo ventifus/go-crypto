@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70bcff97_6c86d437",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-27T22:27:33Z",
+      "side": 1,
+      "message": "Probably should also add a check to Client.doReg that rejects registration requests for pre-8555 servers if Account.ExternalAccountBinding is set since it isn\u0027t implemented (I don\u0027t think EAB was around in LE-v1-style ACME).",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8da195c_1c5284ab",
+        "filename": "acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-27T22:27:33Z",
+      "side": 1,
+      "message": "Should we reject requests with an empty key slice?",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c652df5_db9dc82f",
+        "filename": "acme/jws_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-27T22:27:33Z",
+      "side": 1,
+      "message": "Could you add a case for an unknown MacAlgorithm as well.",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3baddd7_e79905e3",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-10-27T22:27:33Z",
+      "side": 1,
+      "message": "This will panic if c.Key is nil (which as far as I remember is weirdly not actually enforced anywhere). Probably we should just add a check in Client.Register for c.Key \u003d\u003d nil and return an error.",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
