@@ -18,6 +18,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b5df116_b94ad1cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-10-30T01:09:04Z",
+      "side": 1,
+      "message": "Thanks for the review, Roland. It looks like the cla-bot reverted the approved status when I pushed the commit to GitHub. \n\nHappy to add more tests if desired. ",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8da195c_1c5284ab",
@@ -31,6 +48,24 @@
       "writtenOn": "2020-10-27T22:27:33Z",
       "side": 1,
       "message": "Should we reject requests with an empty key slice?",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d2d408_a4ad5062",
+        "filename": "acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-10-30T01:09:04Z",
+      "side": 1,
+      "message": "Sure. Doesn\u0027t hurt and it could save the user some time debugging.\nAdditionally added some failure test cases.",
+      "parentUuid": "b8da195c_1c5284ab",
       "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -52,6 +87,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "402e7090_c8f0c090",
+        "filename": "acme/jws_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-10-30T01:09:04Z",
+      "side": 1,
+      "message": "Sure, done.",
+      "parentUuid": "5c652df5_db9dc82f",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3baddd7_e79905e3",
@@ -65,6 +118,24 @@
       "writtenOn": "2020-10-27T22:27:33Z",
       "side": 1,
       "message": "This will panic if c.Key is nil (which as far as I remember is weirdly not actually enforced anywhere). Probably we should just add a check in Client.Register for c.Key \u003d\u003d nil and return an error.",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "656f67db_82bc2ad7",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-10-30T01:09:04Z",
+      "side": 1,
+      "message": "I have now added a check for c.Key within Register and added a basic test. I suspect the other code paths will still panic for a nil key, but it is a step in the right direction.",
+      "parentUuid": "e3baddd7_e79905e3",
       "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
