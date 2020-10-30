@@ -35,6 +35,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79b4dbf6_371d31d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-10-30T18:11:55Z",
+      "side": 1,
+      "message": "Gerrit didn\u0027t pull the commit in. (Either due to the cla-bot redenying PR or I unwittingly missed a step. Sorry for the trouble!\nhttps://github.com/golang/crypto/pull/162/commits/91def998cdae9e0536f74e8604132213b52ccaaa",
+      "revId": "b0a9700dd15d3dbf24475ebfe8beece55932f779",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8da195c_1c5284ab",
