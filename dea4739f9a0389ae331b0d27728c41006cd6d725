@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e89ed3d_de175ef1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2020-11-11T17:07:54Z",
+      "side": 1,
+      "message": "Typo: s/termianl/terminal/\n\nFor the golang.org/x repos, we don\u0027t mention the repo name in the commit package, i.e. the \"crypto/\" prefix should be droppped. See golang.org/wiki/CommitMessage\n\nAlso, it seems this isn\u0027t specific to s390x (even though this seems to be the only GOARCH supported by zos currently), so it\u0027s probably better to say:\n\n  ssh/terminal: add support for zos",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "dea4739f9a0389ae331b0d27728c41006cd6d725",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806faf17_240a1fba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2020-11-11T17:07:54Z",
+      "side": 1,
+      "message": "Same here, I don\u0027t think there\u0027s anything s390x specific in this change. In fact, this entire paragraph can probably be dropped as the commit subject and the change itself are explanation enough.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "dea4739f9a0389ae331b0d27728c41006cd6d725",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "442211cd_13b4ec8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2020-11-11T17:07:54Z",
+      "side": 1,
+      "message": "Few nits regarding the commit message.",
+      "revId": "dea4739f9a0389ae331b0d27728c41006cd6d725",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
