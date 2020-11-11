@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eeb7160_43afc617",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-11-11T09:29:10Z",
+      "side": 1,
+      "message": "Nit: don\u0027t indent the commit message. Also try to ensure the commit message is formatted with line breaks in the correct places otherwise it is difficult to read.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 4
+      },
+      "revId": "db4090ac048ac7f20a2d0f43b7fdfd10f2b8bde1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7f7ec70_400c6194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-11-11T09:29:10Z",
+      "side": 1,
+      "message": "Side note: the util_aix.go, util_linux.go and now util_zos.go files appear to be functionally identical. I\u0027m not sure if it is worth combining them (util_tc.go?) or better just to leave separate. I\u0027m leaning toward leaving separate at the moment.",
+      "revId": "db4090ac048ac7f20a2d0f43b7fdfd10f2b8bde1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de6f17e_91c44e4a",
+        "filename": "ssh/terminal/util_zos.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11990
+      },
+      "writtenOn": "2020-11-11T09:29:10Z",
+      "side": 1,
+      "message": "s/2013/2020/",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "db4090ac048ac7f20a2d0f43b7fdfd10f2b8bde1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
