@@ -188,6 +188,21 @@ func TestRegister(t *testing.T) {
 	}
 }
 
+func TestRegisterNoKey(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprint(w, `{}`)
+	}))
+	defer ts.Close()
+	c := Client{
+		DirectoryURL: ts.URL,
+		dir:          &Directory{RegURL: ts.URL},
+	}
+	if _, err := c.Register(context.Background(), &Account{}, AcceptTOS); err == nil {
+		t.Errorf("c.Register() from client without key succeeded, wanted error")
+	}
+}
+
 func TestUpdateReg(t *testing.T) {
 	const terms = "https://ca.tld/acme/terms"
 	contacts := []string{"mailto:admin@example.com"}
