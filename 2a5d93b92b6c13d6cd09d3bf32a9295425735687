@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ee2624a_37fdbbda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-11-12T23:38:54Z",
+      "side": 1,
+      "message": "Thanks for comments. Sorry for the sloppiness on my part.",
+      "revId": "2a5d93b92b6c13d6cd09d3bf32a9295425735687",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
