@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c47b823_1593004c",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-12T19:23:36Z",
+      "side": 1,
+      "message": "nit: here and elsewhere errors should be prefixed with \"acme: \".",
+      "range": {
+        "startLine": 367,
+        "startChar": 26,
+        "endLine": 367,
+        "endChar": 60
+      },
+      "revId": "0b47e727c4f0ef35c6fe0308f341eada9cf757df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a99deb_75e0d2c2",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-12T19:23:36Z",
+      "side": 1,
+      "message": "/fmt.Errorf/errors.New/",
+      "revId": "0b47e727c4f0ef35c6fe0308f341eada9cf757df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a28e9ea_1734c1c0",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-12T19:23:36Z",
+      "side": 1,
+      "message": "I think switching \"uses\" with \"provides\" might be a bit clearer here and below.",
+      "range": {
+        "startLine": 213,
+        "startChar": 56,
+        "endLine": 213,
+        "endChar": 63
+      },
+      "revId": "0b47e727c4f0ef35c6fe0308f341eada9cf757df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "751dae15_02885e73",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-12T19:23:36Z",
+      "side": 1,
+      "message": "/a/the/",
+      "range": {
+        "startLine": 217,
+        "startChar": 24,
+        "endLine": 217,
+        "endChar": 25
+      },
+      "revId": "0b47e727c4f0ef35c6fe0308f341eada9cf757df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122ad176_4ccd68bf",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-12T19:23:36Z",
+      "side": 1,
+      "message": "I think cutting the \"that the CA holds\" might make this slightly clearer.",
+      "range": {
+        "startLine": 218,
+        "startChar": 17,
+        "endLine": 218,
+        "endChar": 73
+      },
+      "revId": "0b47e727c4f0ef35c6fe0308f341eada9cf757df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
