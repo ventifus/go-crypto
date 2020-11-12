@@ -16,6 +16,23 @@
       "message": "Thanks, I fixed the typo and commit message as you suggested.",
       "revId": "8913d46d4745562737eb0ff3e0f03291b684615d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f7a8d9_81833521",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2020-11-12T15:41:46Z",
+      "side": 1,
+      "message": "Thanks",
+      "revId": "8913d46d4745562737eb0ff3e0f03291b684615d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
