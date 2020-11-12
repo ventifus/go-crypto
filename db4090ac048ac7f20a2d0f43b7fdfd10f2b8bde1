@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "234cce7e_7cebd061",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 46866
+      },
+      "writtenOn": "2020-11-12T15:28:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eeb7160_43afc617",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 4
+      },
+      "revId": "db4090ac048ac7f20a2d0f43b7fdfd10f2b8bde1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d7f7ec70_400c6194",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2020-11-11T09:29:10Z",
       "side": 1,
       "message": "s/2013/2020/",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "db4090ac048ac7f20a2d0f43b7fdfd10f2b8bde1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52741c9c_36050216",
+        "filename": "ssh/terminal/util_zos.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 46866
+      },
+      "writtenOn": "2020-11-12T15:28:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de6f17e_91c44e4a",
       "range": {
         "startLine": 1,
         "startChar": 13,
