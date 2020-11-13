@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac97146e_ff1baaf8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-13T23:10:09Z",
+      "side": 1,
+      "message": "It\u0027d be good to actually mention the build tags in the first line in case someone is skimming for changes that might affect them.\n\nall: use more precise gc,!purego build tags in place of !gccgo,!appengine",
+      "parentUuid": "9fcf4931_441aca3d",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee89ece8_81d27da9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Done. Not sure what version, but at least since this commit in 2016.\n\nhttps://github.com/cockroachdb/cockroach/pull/8515/commits/ce6c652e8f4355d5a8ee90aebdd7e129f1b53300",
       "parentUuid": "ee89ece8_81d27da9",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4731e1a_3e385920",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-13T23:10:09Z",
+      "side": 1,
+      "message": "Huh, it\u0027s been there forever. TIL.\n\nhttps://golang.org/cl/6823055\n\nUpdated https://golang.org/wiki/TargetSpecific.",
+      "parentUuid": "0947a588_d8690002",
       "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
