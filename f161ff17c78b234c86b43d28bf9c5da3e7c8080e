@@ -54,6 +54,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80b96466_ceeed636",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-13T23:23:53Z",
+      "side": 1,
+      "message": "Done, though slightly differently to get under 50 characters.",
+      "parentUuid": "ac97146e_ff1baaf8",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee89ece8_81d27da9",

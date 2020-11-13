@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f605ce_99ced9ba",
+        "filename": "internal/subtle/aliasing_appengine.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-13T23:23:53Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "bb2ca16c_7664ae29",
+      "revId": "0c6587e931a935f573efb6988c8470cd8c0a58de",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a7ad586_e2472a42",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-11-13T23:10:09Z",
       "side": 0,
       "message": "You can drop these two changes in ssh/terminal, as that package will be removed anyway after CL 258001 and this might save a merge conflict.",
+      "revId": "0c6587e931a935f573efb6988c8470cd8c0a58de",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba570e41_677ae565",
+        "filename": "ssh/terminal/terminal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-13T23:23:53Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "0a7ad586_e2472a42",
       "revId": "0c6587e931a935f573efb6988c8470cd8c0a58de",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
