@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fcf4931_441aca3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-13T22:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd3e0726_8b0200f9",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee89ece8_81d27da9",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-11-13T22:23:24Z",
       "side": 1,
       "message": "Nice! Since what version is the gc tag available?\n\nAt the same time, could you apply the purego tag and remove the obsolete appengine tag?",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0947a588_d8690002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-13T22:37:29Z",
+      "side": 1,
+      "message": "Done. Not sure what version, but at least since this commit in 2016.\n\nhttps://github.com/cockroachdb/cockroach/pull/8515/commits/ce6c652e8f4355d5a8ee90aebdd7e129f1b53300",
+      "parentUuid": "ee89ece8_81d27da9",
       "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
