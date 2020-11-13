@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd3e0726_8b0200f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-13T22:23:24Z",
+      "side": 1,
+      "message": "all: use gc build tag in place of gccgo\n\n(or similar if we also change the other build tags)",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee89ece8_81d27da9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-13T22:23:24Z",
+      "side": 1,
+      "message": "Nice! Since what version is the gc tag available?\n\nAt the same time, could you apply the purego tag and remove the obsolete appengine tag?",
+      "revId": "f161ff17c78b234c86b43d28bf9c5da3e7c8080e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
