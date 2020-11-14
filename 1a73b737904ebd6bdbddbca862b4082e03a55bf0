@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e1db260_05e304f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-14T03:15:31Z",
+      "side": 1,
+      "message": "Now that CL 258001 landed, it would be nice to submit this soon, so that the implementation in x/crypto doesn\u0027t diverge.",
+      "revId": "1a73b737904ebd6bdbddbca862b4082e03a55bf0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
