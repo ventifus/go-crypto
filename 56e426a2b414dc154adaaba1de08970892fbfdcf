@@ -34,6 +34,24 @@
       "parentUuid": "3313d1d6_bd10c653",
       "revId": "56e426a2b414dc154adaaba1de08970892fbfdcf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5e338b_c535a60d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-14T02:37:28Z",
+      "side": 1,
+      "message": "Anyone in the approvers group (including the author) can Trust+1 after just checking the change is not malicious, no need to do code review. It\u0027s to make sure every change had two known people look at it.",
+      "parentUuid": "34e16b30_9b8327ba",
+      "revId": "56e426a2b414dc154adaaba1de08970892fbfdcf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
