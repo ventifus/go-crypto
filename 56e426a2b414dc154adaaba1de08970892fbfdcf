@@ -16,6 +16,24 @@
       "message": "nit: not an alias, \"appengine is obsolete and superseded by purego\"\n\n(Sorry for all the commit message nitpicking! This is ready to submit as soon as someone votes Trust+1)",
       "revId": "56e426a2b414dc154adaaba1de08970892fbfdcf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e16b30_9b8327ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 28615
+      },
+      "writtenOn": "2020-11-14T00:29:51Z",
+      "side": 1,
+      "message": "No problem. Done! Not sure what the criteria is for Trust+1.",
+      "parentUuid": "3313d1d6_bd10c653",
+      "revId": "56e426a2b414dc154adaaba1de08970892fbfdcf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
