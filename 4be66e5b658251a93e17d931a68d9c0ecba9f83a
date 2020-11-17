@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c80bda9_3361b32c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2020-11-17T14:07:42Z",
+      "side": 1,
+      "message": "This change appears to have broken the js-wasm builder:\nhttps://build.golang.org/log/382c244b1b8e249a25140aa3f2c75965722f288a",
+      "revId": "4be66e5b658251a93e17d931a68d9c0ecba9f83a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
