@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02fb1802_b3df8194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-11-17T14:23:42Z",
+      "side": 1,
+      "message": "TRY\u003dsolaris, freebsd, windows, js, darwin",
+      "revId": "3ce6bfea6971ec4b6a1bebe7467add07ad06a4b5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
