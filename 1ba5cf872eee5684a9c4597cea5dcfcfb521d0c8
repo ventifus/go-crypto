@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "ebc53adc_64081259",
         "filename": "/PATCHSET_LEVEL",
@@ -14,8 +15,24 @@
       "side": 1,
       "message": "\u003e Patch Set 2:\n\u003e \n\u003e \u003e Patch Set 2: Code-Review+1\n\u003e \u003e \n\u003e \u003e \u003e Patch Set 2:\n\u003e \u003e \u003e \n\u003e \u003e \u003e Hi! Any updates?\n\u003e \u003e \n\u003e \u003e Ping\n\u003e \n\u003e Ping\n\n@filippo ping",
       "revId": "1ba5cf872eee5684a9c4597cea5dcfcfb521d0c8",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3aa98a4_49bac1b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35788
+      },
+      "writtenOn": "2020-11-22T17:37:50Z",
+      "side": 1,
+      "message": "Ping",
+      "revId": "1ba5cf872eee5684a9c4597cea5dcfcfb521d0c8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
