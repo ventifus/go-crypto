@@ -139,7 +139,7 @@ func (c *Client) get(ctx context.Context, url string, ok resOkay) (*http.Respons
 			return nil, err
 		case ok(res):
 			return res, nil
-		case isRetriable(res.StatusCode):
+		case isRetriable(res.StatusCode) || res.StatusCode == http.StatusTooManyRequests:
 			retry.inc()
 			resErr := responseError(res)
 			res.Body.Close()
@@ -299,7 +299,7 @@ func isBadNonce(err error) bool {
 // Note that a "bad nonce" error is returned with a non-retriable 400 Bad Request code.
 // Callers should parse the response and check with isBadNonce.
 func isRetriable(code int) bool {
-	return code <= 399 || code >= 500 || code == http.StatusTooManyRequests
+	return code <= 399 || code >= 500
 }
 
 // responseError creates an error of Error type from resp.

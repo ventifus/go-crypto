@@ -107,7 +107,8 @@ type Client struct {
 	// is returned to the caller of the original method.
 	//
 	// Requests which result in a 4xx client error are not retried,
-	// except for 400 Bad Request due to "bad nonce" errors and 429 Too Many Requests.
+	// except for 400 Bad Request due to "bad nonce" errors, and 429 Too Many Requests
+	// if the request was a GET.
 	//
 	// If RetryBackoff is nil, a truncated exponential backoff algorithm
 	// with the ceiling of 10 seconds is used, where each subsequent retry n
