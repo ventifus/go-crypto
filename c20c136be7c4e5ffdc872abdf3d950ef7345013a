@@ -16,6 +16,24 @@
       "message": "GTS does use 429s to provide temporary rate-limiting of individual accounts along with an appropriate Retry-After header for POST requests. I think this conforms to all specs.\n\nWould it be possible to retry the request if a 429 response contained a Retry-After header? Any 429 that didn\u0027t contain the guidance would immediately return?\n\nRoland probably has context on LE\u0027s thoughts here.\nhttps://github.com/letsencrypt/boulder/issues/4104",
       "revId": "c20c136be7c4e5ffdc872abdf3d950ef7345013a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97a361a_ce0f303d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-11-25T16:42:43Z",
+      "side": 1,
+      "message": "Oh hm, that is completely reasonable and would be good to support. At LE we never implemented Retry-After for most rate limits because it was incredibly hard to calculate for more complex limits, but it is entirely spec compliant.\n\nGating retrying on 429 on the presence of a Retry-After header seems reasonable (although I guess we could run into the same issue where a server sets a Retry-After that is hours or days in the future... that is fixed by just setting a reasonable context though I guess).",
+      "parentUuid": "6c1d079c_37afc578",
+      "revId": "c20c136be7c4e5ffdc872abdf3d950ef7345013a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
