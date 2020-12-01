@@ -115,6 +115,26 @@ func TestReadASN1OptionalInteger(t *testing.T) {
 	}
 }
 
+var optionalBoolTestData = []readASN1Test{
+	{"empty", []byte{}, 0xa0, true, false},
+	{"invalid", []byte{0xa1, 3, 0x1, 2, 127}, 0xa1, false, false},
+	{"missing", []byte{0xa1, 3, 0x1, 1, 127}, 0xa0, true, false},
+	{"present", []byte{0xa1, 3, 0x1, 1, 255}, 0xa1, true, true},
+}
+
+func TestReadASN1OptionalBoolean(t *testing.T) {
+	for _, test := range optionalBoolTestData {
+		t.Run(test.name, func(t *testing.T) {
+			in := String(test.in)
+			var out bool
+			ok := in.ReadOptionalASN1Boolean(&out, test.tag, false)
+			if ok != test.ok || ok && out != test.out.(bool) {
+				t.Errorf("in.ReadOptionalASN1Boolean() = %v, want %v; out = %v, want %v", ok, test.ok, out, test.out)
+			}
+		})
+	}
+}
+
 func TestReadASN1IntegerSigned(t *testing.T) {
 	testData64 := []struct {
 		in  []byte
