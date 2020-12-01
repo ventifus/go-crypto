@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88baca47_aaaa2b56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-12-01T17:20:17Z",
+      "side": 1,
+      "message": "Two small nits, but the structure generally looks good. Thanks for iterating on this.",
+      "revId": "71cb213fea16240cdd3133d8fd7cc5cd8ccf7d9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f876fbcc_017eedaa",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-12-01T17:20:17Z",
+      "side": 1,
+      "message": "nit: this can just be \u003d\u003d.",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 28
+      },
+      "revId": "71cb213fea16240cdd3133d8fd7cc5cd8ccf7d9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b50b3a9_e6ce3d7e",
+        "filename": "acme/jws_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2020-12-01T17:20:17Z",
+      "side": 1,
+      "message": "nit: I think this should be just \u0027var j jsonWebSignature\u0027, you\u0027re passing a **jsonWebSignature into json.Unmarshal.",
+      "range": {
+        "startLine": 379,
+        "startChar": 3,
+        "endLine": 380,
+        "endChar": 46
+      },
+      "revId": "71cb213fea16240cdd3133d8fd7cc5cd8ccf7d9e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
