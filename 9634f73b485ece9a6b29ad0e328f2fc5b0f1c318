@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43bbd1dd_fb18f2c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-01T14:41:28Z",
+      "side": 1,
+      "message": "Haven\u0027t reviewed this yet, but based on the sounds of it, we should probably wait for 1.17 at this point since it\u0027s a breaking change (even if it\u0027s a breaking change for the better).",
+      "revId": "9634f73b485ece9a6b29ad0e328f2fc5b0f1c318",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
