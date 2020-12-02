@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f284cb_4d8e50d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "Just a few small comments, mostly about improving the tests. Can give +1 after that (I\u0027m assuming that Roland has more context and is fine with the change considering his +1)",
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f51ea6fe_9c4d7e22",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "Error messages typically wouldn\u0027t fall under the backwards compatibility rules, and changing the error message slightly shouldn\u0027t cause a failing test. So we should adjust this test to check the existence of the error, without looking at the text. You could do something like this (setting whatever fields need to be set to ensure that the only difference between the two cases is the Client):\n\tc :\u003d \u0026Client{}\n\t_, err :\u003d c.Register(context.Background(), \u0026Account{}, AcceptTOS)\n\tif err \u003d\u003d nil {\n\t\tt.Errorf(\"c.Register() with empty client succeeded, wanted error\")\n\t}\n\tc \u003d newTestClient()\n\t_, err :\u003d c.Register(context.Background(), \u0026Account{}, AcceptTOS)\n\tif err !\u003d nil {\n\t\tt.Errorf(\"c.Register() should succeed with a non-empty client\")\n\t}",
+      "range": {
+        "startLine": 193,
+        "startChar": 1,
+        "endLine": 193,
+        "endChar": 54
+      },
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "058ef3a4_356da592",
+        "filename": "acme/jws.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "nit: missing a period at the end of the sentence",
+      "range": {
+        "startLine": 49,
+        "startChar": 49,
+        "endLine": 49,
+        "endChar": 50
+      },
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20aded9_c30e3916",
+        "filename": "acme/rfc8555_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "Just to double check, are these flipped? It looks like it\u0027s printing eab.KID second, when the print statement seems to indicate that it\u0027s what\u0027s printed first.\n\n(here and throughout)",
+      "range": {
+        "startLine": 404,
+        "startChar": 58,
+        "endLine": 404,
+        "endChar": 75
+      },
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754650e1_7761c74e",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "What was the reason behind dropping this comment from the proposal?\n\n     // Only the HMAC algorithms are supported\n     // https://tools.ietf.org/html/rfc7518#section-3.1\n\nSeems like it\u0027s relevant to keep.",
+      "range": {
+        "startLine": 221,
+        "startChar": 34,
+        "endLine": 221,
+        "endChar": 35
+      },
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8829ecee_8f620fae",
+        "filename": "acme/types_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-02T17:54:41Z",
+      "side": 1,
+      "message": "Alternatively, this test could just check that the key value (which you could define above) isn\u0027t anywhere in the string? ie. !strings.Contains(eab.String(), eab.Key)\nRegardless, we should probably put a Key value in the ExternalAccoutnBinding type above for testing.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "d705dbd61455d7245c8b174268f8b947578086eb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
