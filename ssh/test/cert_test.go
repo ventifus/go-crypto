@@ -20,7 +20,7 @@ func TestCertLogin(t *testing.T) {
 	defer s.Shutdown()
 
 	// Use a key different from the default.
-	clientKey := testSigners["dsa"]
+	clientKey := testSigners["rsa"]
 	caAuthKey := testSigners["ecdsa"]
 	cert := &ssh.Certificate{
 		Key:             clientKey.PublicKey(),

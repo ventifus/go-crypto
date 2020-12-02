@@ -6,7 +6,6 @@ package ssh
 
 import (
 	"bytes"
-	"crypto/dsa"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
@@ -29,8 +28,6 @@ func rawKey(pub PublicKey) interface{} {
 	switch k := pub.(type) {
 	case *rsaPublicKey:
 		return (*rsa.PublicKey)(k)
-	case *dsaPublicKey:
-		return (*dsa.PublicKey)(k)
 	case *ecdsaPublicKey:
 		return (*ecdsa.PublicKey)(k)
 	case ed25519PublicKey:
@@ -218,26 +215,6 @@ func TestParseEncryptedPrivateKeysWithPassphrase(t *testing.T) {
 				}
 			}
 		})
-	}
-}
-
-func TestParseDSA(t *testing.T) {
-	// We actually exercise the ParsePrivateKey codepath here, as opposed to
-	// using the ParseRawPrivateKey+NewSignerFromKey path that testdata_test.go
-	// uses.
-	s, err := ParsePrivateKey(testdata.PEMBytes["dsa"])
-	if err != nil {
-		t.Fatalf("ParsePrivateKey returned error: %s", err)
-	}
-
-	data := []byte("sign me")
-	sig, err := s.Sign(rand.Reader, data)
-	if err != nil {
-		t.Fatalf("dsa.Sign: %v", err)
-	}
-
-	if err := s.PublicKey().Verify(data, sig); err != nil {
-		t.Errorf("Verify failed: %v", err)
 	}
 }
 
@@ -551,7 +528,6 @@ func TestInvalidKeys(t *testing.T) {
 		"RSA PRIVATE KEY",
 		"PRIVATE KEY",
 		"EC PRIVATE KEY",
-		"DSA PRIVATE KEY",
 		"OPENSSH PRIVATE KEY",
 	}
 

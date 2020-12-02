@@ -13,7 +13,6 @@ package agent // import "golang.org/x/crypto/ssh/agent"
 
 import (
 	"bytes"
-	"crypto/dsa"
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rsa"
@@ -26,6 +25,7 @@ import (
 	"sync"
 
 	"crypto"
+
 	"golang.org/x/crypto/ed25519"
 	"golang.org/x/crypto/ssh"
 )
@@ -102,7 +102,7 @@ type ConstraintExtension struct {
 
 // AddedKey describes an SSH key to be added to an Agent.
 type AddedKey struct {
-	// PrivateKey must be a *rsa.PrivateKey, *dsa.PrivateKey,
+	// PrivateKey must be a *rsa.PrivateKey,
 	// ed25519.PrivateKey or *ecdsa.PrivateKey, which will be inserted into the
 	// agent.
 	PrivateKey interface{}
@@ -546,17 +546,6 @@ func (c *client) insertKey(s interface{}, comment string, constraints []byte) er
 			Comments:    comment,
 			Constraints: constraints,
 		})
-	case *dsa.PrivateKey:
-		req = ssh.Marshal(dsaKeyMsg{
-			Type:        ssh.KeyAlgoDSA,
-			P:           k.P,
-			Q:           k.Q,
-			G:           k.G,
-			Y:           k.Y,
-			X:           k.X,
-			Comments:    comment,
-			Constraints: constraints,
-		})
 	case *ecdsa.PrivateKey:
 		nistID := fmt.Sprintf("nistp%d", k.Params().BitSize)
 		req = ssh.Marshal(ecdsaKeyMsg{
@@ -676,14 +665,6 @@ func (c *client) insertCert(s interface{}, cert *ssh.Certificate, comment string
 			Iqmp:        k.Precomputed.Qinv,
 			P:           k.Primes[0],
 			Q:           k.Primes[1],
-			Comments:    comment,
-			Constraints: constraints,
-		})
-	case *dsa.PrivateKey:
-		req = ssh.Marshal(dsaCertMsg{
-			Type:        cert.Type(),
-			CertBytes:   cert.Marshal(),
-			X:           k.X,
 			Comments:    comment,
 			Constraints: constraints,
 		})

@@ -47,7 +47,6 @@ func TestHostKeyCheck(t *testing.T) {
 
 	// change the keys.
 	hostDB.keys[ssh.KeyAlgoRSA][25]++
-	hostDB.keys[ssh.KeyAlgoDSA][25]++
 	hostDB.keys[ssh.KeyAlgoECDSA256][25]++
 
 	conn, err := server.TryDial(conf)
@@ -423,7 +422,6 @@ func TestKeyExchanges(t *testing.T) {
 func TestClientAuthAlgorithms(t *testing.T) {
 	for _, key := range []string{
 		"rsa",
-		"dsa",
 		"ecdsa",
 		"ed25519",
 	} {

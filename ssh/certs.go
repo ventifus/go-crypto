@@ -18,7 +18,7 @@ import (
 // for certificate types supported by this package.
 const (
 	CertAlgoRSAv01        = "ssh-rsa-cert-v01@openssh.com"
-	CertAlgoDSAv01        = "ssh-dss-cert-v01@openssh.com"
+	CertAlgoDSAv01        = "ssh-dss-cert-v01@openssh.com" // Unsupported
 	CertAlgoECDSA256v01   = "ecdsa-sha2-nistp256-cert-v01@openssh.com"
 	CertAlgoECDSA384v01   = "ecdsa-sha2-nistp384-cert-v01@openssh.com"
 	CertAlgoECDSA521v01   = "ecdsa-sha2-nistp521-cert-v01@openssh.com"
@@ -433,7 +433,6 @@ func (c *Certificate) SignCert(rand io.Reader, authority Signer) error {
 
 var certAlgoNames = map[string]string{
 	KeyAlgoRSA:        CertAlgoRSAv01,
-	KeyAlgoDSA:        CertAlgoDSAv01,
 	KeyAlgoECDSA256:   CertAlgoECDSA256v01,
 	KeyAlgoECDSA384:   CertAlgoECDSA384v01,
 	KeyAlgoECDSA521:   CertAlgoECDSA521v01,

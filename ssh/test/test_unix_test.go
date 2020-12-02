@@ -32,7 +32,6 @@ const (
 Protocol 2
 Banner {{.Dir}}/banner
 HostKey {{.Dir}}/id_rsa
-HostKey {{.Dir}}/id_dsa
 HostKey {{.Dir}}/id_ecdsa
 HostCertificate {{.Dir}}/id_rsa-cert.pub
 Pidfile {{.Dir}}/sshd.pid
@@ -126,7 +125,6 @@ func hostKeyDB() *storedHostKey {
 	keyChecker := &storedHostKey{}
 	keyChecker.Add(testPublicKeys["ecdsa"])
 	keyChecker.Add(testPublicKeys["rsa"])
-	keyChecker.Add(testPublicKeys["dsa"])
 	return keyChecker
 }
 
@@ -139,7 +137,7 @@ func clientConfig() *ssh.ClientConfig {
 		HostKeyCallback: hostKeyDB().Check,
 		HostKeyAlgorithms: []string{ // by default, don't allow certs as this affects the hostKeyDB checker
 			ssh.KeyAlgoECDSA256, ssh.KeyAlgoECDSA384, ssh.KeyAlgoECDSA521,
-			ssh.KeyAlgoRSA, ssh.KeyAlgoDSA,
+			ssh.KeyAlgoRSA,
 			ssh.KeyAlgoED25519,
 		},
 	}

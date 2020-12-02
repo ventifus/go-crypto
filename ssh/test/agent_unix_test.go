@@ -21,17 +21,17 @@ func TestAgentForward(t *testing.T) {
 	defer conn.Close()
 
 	keyring := agent.NewKeyring()
-	if err := keyring.Add(agent.AddedKey{PrivateKey: testPrivateKeys["dsa"]}); err != nil {
+	if err := keyring.Add(agent.AddedKey{PrivateKey: testPrivateKeys["rsa"]}); err != nil {
 		t.Fatalf("Error adding key: %s", err)
 	}
 	if err := keyring.Add(agent.AddedKey{
-		PrivateKey:       testPrivateKeys["dsa"],
+		PrivateKey:       testPrivateKeys["rsa"],
 		ConfirmBeforeUse: true,
 		LifetimeSecs:     3600,
 	}); err != nil {
 		t.Fatalf("Error adding key with constraints: %s", err)
 	}
-	pub := testPublicKeys["dsa"]
+	pub := testPublicKeys["rsa"]
 
 	sess, err := conn.NewSession()
 	if err != nil {

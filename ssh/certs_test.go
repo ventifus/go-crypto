@@ -266,13 +266,6 @@ func TestCertTypes(t *testing.T) {
 				return s
 			},
 		},
-		{
-			name: CertAlgoDSAv01,
-			keys: func() Signer {
-				s, _ := ParsePrivateKey(testdata.PEMBytes["dsa"])
-				return s
-			},
-		},
 	}
 
 	k, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)

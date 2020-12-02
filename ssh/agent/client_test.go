@@ -260,7 +260,7 @@ func TestMalformedRequests(t *testing.T) {
 }
 
 func TestAgent(t *testing.T) {
-	for _, keyType := range []string{"rsa", "dsa", "ecdsa", "ed25519"} {
+	for _, keyType := range []string{"rsa", "ecdsa", "ed25519"} {
 		testOpenSSHAgent(t, testPrivateKeys[keyType], nil, 0)
 		testKeyringAgent(t, testPrivateKeys[keyType], nil, 0)
 	}
@@ -417,7 +417,7 @@ func testLockAgent(agent Agent, t *testing.T) {
 	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["rsa"], Comment: "comment 1"}); err != nil {
 		t.Errorf("Add: %v", err)
 	}
-	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["dsa"], Comment: "comment dsa"}); err != nil {
+	if err := agent.Add(AddedKey{PrivateKey: testPrivateKeys["ecdsa"], Comment: "comment ecdsa"}); err != nil {
 		t.Errorf("Add: %v", err)
 	}
 	if keys, err := agent.List(); err != nil {
@@ -481,7 +481,7 @@ func testKeyringAgentLifetime(t *testing.T) {
 }
 
 func testAgentLifetime(t *testing.T, agent Agent) {
-	for _, keyType := range []string{"rsa", "dsa", "ecdsa"} {
+	for _, keyType := range []string{"rsa", "ecdsa"} {
 		// Add private keys to the agent.
 		err := agent.Add(AddedKey{
 			PrivateKey:   testPrivateKeys[keyType],
