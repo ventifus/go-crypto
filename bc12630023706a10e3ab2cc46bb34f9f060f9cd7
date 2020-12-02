@@ -16,6 +16,24 @@
       "message": "Hi! Was this prompted by a practical use case or just completeness? DSA is a legacy, deprecated key type, and we don\u0027t want to encourage its use. Also, it\u0027s not clear to me what system would support the OpenSSh key format but still require DSA.",
       "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a501b6a3_0ef2220b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 48983
+      },
+      "writtenOn": "2020-12-02T09:51:26Z",
+      "side": 1,
+      "message": "Hi Filippo!\n\nSome context - we use the Go SSH library at CircleCI in combination with Java\u0027s Apache MINA SSHD for management and use of SSH keys.\n\nOur users can add arbitrary SSH keys to their jobs that they can use to SSH into their own systems / GitHub / etc.\n\nThe Java/Clojure services support the complete range of ciphers and encodings that OpenSSH supports, while the Go services are missing DSA in OpenSSH encoding.\n\nAt present we are running a forked copy of x/crypto with this patch, as what we want to avoid is having to mention DSA anywhere in our docs (especially instructions for how to generate a DSA key in PEM encoding). Then to discourage users from using the cipher, we\u0027d just add a warning in the UI saying something like \"this is an unsafe cipher, see: http://www.openssh.com/legacy.html\" if they do add a DSA key.\n\nWe\u0027d also like to follow the same deprecation cycle as OpenSSH for ciphers, and only remove DSA completely when the same is done in OpenSSH.\n\nI hope that, rather long, answer makes sense!",
+      "parentUuid": "e645c9fb_05419835",
+      "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
