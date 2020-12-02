@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e645c9fb_05419835",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-12-02T01:04:32Z",
+      "side": 1,
+      "message": "Hi! Was this prompted by a practical use case or just completeness? DSA is a legacy, deprecated key type, and we don\u0027t want to encourage its use. Also, it\u0027s not clear to me what system would support the OpenSSh key format but still require DSA.",
+      "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
