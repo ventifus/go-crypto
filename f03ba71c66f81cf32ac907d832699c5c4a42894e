@@ -16,6 +16,24 @@
       "message": "Oh sorry, one last thing, \u0027Add\u0027 here should be lowercased.",
       "revId": "f03ba71c66f81cf32ac907d832699c5c4a42894e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65f35377_7527b169",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-12-02T17:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32baf452_bfb239ae",
+      "revId": "f03ba71c66f81cf32ac907d832699c5c4a42894e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
