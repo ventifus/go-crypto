@@ -38,23 +38,11 @@ const (
 	PointSize = 32
 )
 
-// Basepoint is the canonical Curve25519 generator.
-var Basepoint []byte
+// Basepoint is a placeholder for the canonical Curve25519 generator.
+var Basepoint = []byte{0}[:]
 
+// basePoint is the actual private basePoint value used for calculations.
 var basePoint = [32]byte{9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-
-func init() { Basepoint = basePoint[:] }
-
-func checkBasepoint() {
-	if subtle.ConstantTimeCompare(Basepoint, []byte{
-		0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	}) != 1 {
-		panic("curve25519: global Basepoint value was modified")
-	}
-}
 
 // X25519 returns the result of the scalar multiplication (scalar * point),
 // according to RFC 7748, Section 5. scalar, point and the return value are
@@ -77,14 +65,13 @@ func x25519(dst *[32]byte, scalar, point []byte) ([]byte, error) {
 	if l := len(scalar); l != 32 {
 		return nil, fmt.Errorf("bad scalar length: %d, expected %d", l, 32)
 	}
-	if l := len(point); l != 32 {
-		return nil, fmt.Errorf("bad point length: %d, expected %d", l, 32)
-	}
 	copy(in[:], scalar)
 	if &point[0] == &Basepoint[0] {
-		checkBasepoint()
 		ScalarBaseMult(dst, &in)
 	} else {
+		if l := len(point); l != 32 {
+			return nil, fmt.Errorf("bad point length: %d, expected %d", l, 32)
+		}
 		var base, zero [32]byte
 		copy(base[:], point)
 		ScalarMult(dst, &in, &base)
