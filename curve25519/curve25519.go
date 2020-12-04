@@ -18,7 +18,7 @@ import (
 // Deprecated: when provided a low-order point, ScalarMult will set dst to all
 // zeroes, irrespective of the scalar. Instead, use the X25519 function, which
 // will return an error.
-func ScalarMult(dst, scalar, point *[32]byte) {
+func ScalarMult(dst *[PointSize]byte, scalar *[ScalarSize]byte, point *[PointSize]byte) {
 	scalarMult(dst, scalar, point)
 }
 
@@ -27,7 +27,7 @@ func ScalarMult(dst, scalar, point *[32]byte) {
 //
 // It is recommended to use the X25519 function with Basepoint instead, as
 // copying into fixed size arrays can lead to unexpected bugs.
-func ScalarBaseMult(dst, scalar *[32]byte) {
+func ScalarBaseMult(dst *[PointSize]byte, scalar *[ScalarSize]byte) {
 	ScalarMult(dst, scalar, &basePoint)
 }
 
@@ -42,7 +42,7 @@ const (
 var Basepoint = []byte{0}[:]
 
 // basePoint is the actual private basePoint value used for calculations.
-var basePoint = [32]byte{9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+var basePoint = [PointSize]byte{9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 // X25519 returns the result of the scalar multiplication (scalar * point),
 // according to RFC 7748, Section 5. scalar, point and the return value are
@@ -56,23 +56,23 @@ var basePoint = [32]byte{9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 func X25519(scalar, point []byte) ([]byte, error) {
 	// Outline the body of function, to let the allocation be inlined in the
 	// caller, and possibly avoid escaping to the heap.
-	var dst [32]byte
+	var dst [PointSize]byte
 	return x25519(&dst, scalar, point)
 }
 
-func x25519(dst *[32]byte, scalar, point []byte) ([]byte, error) {
-	var in [32]byte
-	if l := len(scalar); l != 32 {
+func x25519(dst *[PointSize]byte, scalar, point []byte) ([]byte, error) {
+	var in [ScalarSize]byte
+	if l := len(scalar); l != ScalarSize {
 		return nil, fmt.Errorf("bad scalar length: %d, expected %d", l, 32)
 	}
 	copy(in[:], scalar)
 	if &point[0] == &Basepoint[0] {
 		ScalarBaseMult(dst, &in)
 	} else {
-		if l := len(point); l != 32 {
+		if l := len(point); l != PointSize {
 			return nil, fmt.Errorf("bad point length: %d, expected %d", l, 32)
 		}
-		var base, zero [32]byte
+		var base, zero [PointSize]byte
 		copy(base[:], point)
 		ScalarMult(dst, &in, &base)
 		if subtle.ConstantTimeCompare(dst[:], zero[:]) == 1 {
