@@ -99,6 +99,28 @@ func TestHighBitIgnored(t *testing.T) {
 	}
 }
 
+func TestGenerateKeypair(t *testing.T) {
+	private1, public1, err := GenerateKeypair()
+	if err != nil {
+		t.Fatal(err)
+	}
+	private2, public2, err := GenerateKeypair()
+	if err != nil {
+		t.Fatal(err)
+	}
+	dhA, err := X25519(private1, public2)
+	if err != nil {
+		t.Fatal(err)
+	}
+	dhB, err := X25519(private2, public1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(dhA, dhB) {
+		t.Fatal("did not generate keys such that s1p2==s2p1")
+	}
+}
+
 func BenchmarkScalarBaseMult(b *testing.B) {
 	var in, out [32]byte
 	in[0] = 1

@@ -8,6 +8,7 @@
 package curve25519 // import "golang.org/x/crypto/curve25519"
 
 import (
+	"crypto/rand"
 	"crypto/subtle"
 	"fmt"
 )
@@ -92,4 +93,19 @@ func x25519(dst *[32]byte, scalar, point []byte) ([]byte, error) {
 		}
 	}
 	return dst[:], nil
+}
+
+// GenerateKeypair generates a properly-clamped keypair, consisting of a private key
+// scalar and a public key point, handling the necessary buffer allocations.
+func GenerateKeypair() (privateScalar []byte, publicPoint []byte, err error) {
+	var scalar [ScalarSize]byte
+	var point [PointSize]byte
+	_, err = rand.Read(scalar[:])
+	if err != nil {
+		return
+	}
+	scalar[0] &= 248
+	scalar[31] = (scalar[31] & 127) | 64
+	ScalarBaseMult(&point, &scalar)
+	return scalar[:], point[:], nil
 }
