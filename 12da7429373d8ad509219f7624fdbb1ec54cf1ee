@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f60a8a_a184754d",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 20556
+      },
+      "writtenOn": "2020-12-04T13:41:49Z",
+      "side": 1,
+      "message": "If you don\u0027t like that this no longer has the real value in it, the other solution is to just assign the same value to each the public symbol and the private symbol, but use the private symbol in calculations.",
+      "revId": "12da7429373d8ad509219f7624fdbb1ec54cf1ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
