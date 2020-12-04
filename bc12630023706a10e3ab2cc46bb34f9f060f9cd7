@@ -34,6 +34,24 @@
       "parentUuid": "e645c9fb_05419835",
       "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3291a3_b70d9acf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2020-12-04T01:06:08Z",
+      "side": 1,
+      "message": "Thank you for the context!\n\nHave you actually ever had a user attempt to upload a DSA key in OpenSSH encoding? I\u0027d find that pretty surprising, because if users still have any DSA keys (which they shouldn\u0027t) they would have been generated before OpenSSH encoding was a thing.",
+      "parentUuid": "a501b6a3_0ef2220b",
+      "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
