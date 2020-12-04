@@ -52,6 +52,24 @@
       "parentUuid": "a501b6a3_0ef2220b",
       "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c6367d3_1d38166c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 48983
+      },
+      "writtenOn": "2020-12-04T09:40:13Z",
+      "side": 1,
+      "message": "The honest answer is I don\u0027t know, and to find out I\u0027d have to go and decrypt all users\u0027 private keys, which while technically possible, is not something I feel particularly comfortable with.\n\nI do agree that it\u0027s likely there are very few, despite our large user-base.\n\nBasically it\u0027s just a scenario we didn\u0027t want to have to deal with support issues for. If someone desperately wants to use an old cipher for some reason and is happy to ignore warnings, then I\u0027d rather that just quietly worked, than them ending up having to ask our support people how to make it work.",
+      "parentUuid": "0f3291a3_b70d9acf",
+      "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
