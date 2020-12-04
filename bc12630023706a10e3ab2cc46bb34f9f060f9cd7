@@ -88,6 +88,24 @@
       "parentUuid": "6c6367d3_1d38166c",
       "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ea2e2c2_c61d26be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 48983
+      },
+      "writtenOn": "2020-12-04T16:40:17Z",
+      "side": 1,
+      "message": "Fair enough. Well at least I have a heads-up about DSA being removed completely from Go SSH!\n\nWe should start blocking users from adding DSA keys of any kind, and root out existing cases.\n\nThanks for your time!",
+      "parentUuid": "94da57bd_12106894",
+      "revId": "bc12630023706a10e3ab2cc46bb34f9f060f9cd7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
