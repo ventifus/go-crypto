@@ -34,6 +34,24 @@
       "parentUuid": "0cdfe892_dfb1ec6b",
       "revId": "a5deb8602a37b5b126131ea3a319828daa829c0e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b8c52a_7a01e465",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 28325
+      },
+      "writtenOn": "2020-12-11T23:05:22Z",
+      "side": 1,
+      "message": "The change LGTM now.  Thanks!",
+      "parentUuid": "820c6ab3_e9758837",
+      "revId": "a5deb8602a37b5b126131ea3a319828daa829c0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
