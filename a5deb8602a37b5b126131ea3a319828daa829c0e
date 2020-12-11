@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "0cdfe892_dfb1ec6b",
         "filename": "ssh/common.go",
@@ -14,8 +15,25 @@
       "side": 1,
       "message": "I think hmac-sha2-512 should be put after hmac-sha2-256 given that this list is in the preference order for negotiation. I believe 256 would have speed advantages over 512 yet have sufficient security.",
       "revId": "a5deb8602a37b5b126131ea3a319828daa829c0e",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820c6ab3_e9758837",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 49178
+      },
+      "writtenOn": "2020-12-11T06:53:30Z",
+      "side": 1,
+      "message": "Are we still waiting for the author on this?",
+      "parentUuid": "0cdfe892_dfb1ec6b",
+      "revId": "a5deb8602a37b5b126131ea3a319828daa829c0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
