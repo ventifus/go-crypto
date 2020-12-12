@@ -390,3 +390,29 @@ func isAlreadyRevoked(err error) bool {
 	e, ok := err.(*Error)
 	return ok && e.ProblemType == "urn:ietf:params:acme:error:alreadyRevoked"
 }
+
+// ListCertAlternates retrieves any alternate certificate URLs for the given
+// certificate URL. These alternate URLs can be passed to FetchCert in order to
+// retrieve the alternate certificate.
+//
+// ListCertAlternates returns a nil slice if there are no alternate
+// certificates.
+func (c *Client) ListCertAlternates(ctx context.Context, url string) ([]string, error) {
+	if _, err := c.Discover(ctx); err != nil { // required by c.accountKID
+		return nil, err
+	}
+
+	res, err := c.postAsGet(ctx, url, wantStatus(http.StatusOK))
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	// We don't need the body but we need to discard it so we don't end up
+	// preventing keep-alive
+	if _, err := io.Copy(ioutil.Discard, res.Body); err != nil {
+		return nil, fmt.Errorf("acme: cert alternates response stream: %v", err)
+	}
+	alts := linkHeader(res.Header, "alternate")
+	return alts, nil
+}
