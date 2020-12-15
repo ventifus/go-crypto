@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30f317d_60e8f313",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2020-12-15T17:35:38Z",
+      "side": 1,
+      "message": "I just had one last nit, otherwise looks good. Thanks.",
+      "revId": "c36aee95da085f3d0cd84be3e2613629c3cf1009",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
