@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ede24d8_829ef6e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32631
+      },
+      "writtenOn": "2020-12-16T01:42:30Z",
+      "side": 1,
+      "message": "Thank you for the reviews. I appreciate the feedback and apologize for how many round trips were required.",
+      "revId": "07ff083e91aff33543efea1c203c2a64f5f9f5c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
