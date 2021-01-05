@@ -22,6 +22,30 @@
       },
       "revId": "bf17ac35fe31e58642348105cac72044450238e8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "074be84a_26f97774",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 22250
+      },
+      "writtenOn": "2021-01-05T16:02:58Z",
+      "side": 1,
+      "message": "\u003e what tooling is flagging this as an issue\n\nMy very own rationality-limited eyes are flagging the issue 😊\n\nI understand that net does not import ssh; I am aware that my patch is not addressing any security issue, but rather I am proposing a quality-of-life improvement.\n\nLet\u0027s say I am a package owner, and I find this line in my go.sum:\ngolang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w\u003d\n\nKnowing that CVE-2020-29652 was fixed in v0.0.0-20201203163018-be400aefbc4c, how can I be sure I am not really depending on the vulnerable logic of the vulnerable lib? I thought that just removing that line (by explicitly bumping the dependency) was the best way of clearing out the concern. But apparently there\u0027s a better way?",
+      "parentUuid": "4874e5c0_cdf68c4a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "bf17ac35fe31e58642348105cac72044450238e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
