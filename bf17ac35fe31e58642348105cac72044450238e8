@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4874e5c0_cdf68c4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-01-05T15:44:46Z",
+      "side": 1,
+      "message": "That\u0027s not how Minimum Version Selection works. If you depend on a recent version of golang.org/x/crypto, that\u0027s the only version you build. golang.org/x/crypto can\u0027t depend on an older version of itself.\n\ngolang.org/x/net is not affected by CVE-2020-29652 because it does not import golang.org/x/crypto/ssh, so it\u0027s also not golang.org/x/net\u0027s responsibility to pull up the golang.org/x/crypto version, and if an application only depends on the vulnerable golang.org/x/crypto through golang.org/x/net, it\u0027s not affected.\n\nIf you feel like sharing, I am interested in knowing what tooling is flagging this as an issue. I care that the Go ecosystem doesn\u0027t start flooding with false positive vulnerability reports, because they reduce the effectiveness of the accurate ones. Correct handling of MVS is fundamental to limiting false positives.\n\n(You can email me if you don\u0027t want to comment publicly. I\u0027m filippo@golang.org. Thank you!)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "bf17ac35fe31e58642348105cac72044450238e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
