@@ -52,10 +52,10 @@ type Signature struct {
 	// The following are optional so are nil when not included in the
 	// signature.
 
-	SigLifetimeSecs, KeyLifetimeSecs                        *uint32
-	PreferredSymmetric, PreferredHash, PreferredCompression []uint8
-	IssuerKeyId                                             *uint64
-	IsPrimaryId                                             *bool
+	SigLifetimeSecs, KeyLifetimeSecs                                   *uint32
+	PreferredSymmetric, PreferredHash, PreferredCompression, PolicyURI []uint8
+	IssuerKeyId                                                        *uint64
+	IsPrimaryId                                                        *bool
 
 	// FlagsValid is set if any flags were given. See RFC 4880, section
 	// 5.2.3.21 for details.
@@ -201,6 +201,7 @@ const (
 	prefHashAlgosSubpacket       signatureSubpacketType = 21
 	prefCompressionSubpacket     signatureSubpacketType = 22
 	primaryUserIdSubpacket       signatureSubpacketType = 25
+	policyUriSubpacket           signatureSubpacketType = 26
 	keyFlagsSubpacket            signatureSubpacketType = 27
 	reasonForRevocationSubpacket signatureSubpacketType = 29
 	featuresSubpacket            signatureSubpacketType = 30
@@ -382,6 +383,13 @@ func parseSignatureSubpacket(sig *Signature, subpacket []byte, isHashed bool) (r
 		if sigType := sig.EmbeddedSignature.SigType; sigType != SigTypePrimaryKeyBinding {
 			return nil, errors.StructuralError("cross-signature has unexpected type " + strconv.Itoa(int(sigType)))
 		}
+	case policyUriSubpacket:
+		// Policy URI, section 5.2.3.20
+		if !isHashed {
+			return
+		}
+		sig.PolicyURI = make([]byte, len(subpacket))
+		copy(subpacket, sig.PolicyURI)
 	default:
 		if isCritical {
 			err = errors.UnsupportedError("unknown critical signature subpacket type " + strconv.Itoa(int(packetType)))
@@ -725,6 +733,10 @@ func (sig *Signature) buildSubpackets() (subpackets []outputSubpacket) {
 
 	if len(sig.PreferredCompression) > 0 {
 		subpackets = append(subpackets, outputSubpacket{true, prefCompressionSubpacket, false, sig.PreferredCompression})
+	}
+
+	if len(sig.PolicyURI) > 0 {
+		subpackets = append(subpackets, outputSubpacket{true, policyUriSubpacket, false, sig.PolicyURI})
 	}
 
 	return
