@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b4a68e_3bb315c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 49460
+      },
+      "writtenOn": "2021-01-14T17:40:42Z",
+      "side": 1,
+      "message": "I didn\u0027t know if I should add a ..20 routine to complete the set:\n\nRe: salsa20/salsa20.go\n\nXORKeyStream8\nXORKeyStream12\nXORKeyStream  -- which really should be XORKeyStream20\n\nI left out XORKeyStream20 as I don\u0027t know if this would be considered language bloat or would it be better to have this for convenience?",
+      "revId": "acd5eaf6fd01ba17ffd85aada6658a8e24fcb8b7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
