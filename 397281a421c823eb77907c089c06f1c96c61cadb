@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e51f59b0_71da7d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 49893
+      },
+      "writtenOn": "2021-01-24T15:13:34Z",
+      "side": 1,
+      "message": "In addition, the  pre-computed values are written[1] but never read (they are re-computed instead). If that\u0027s for compatibility, maybe a test would make sense to ensure the format is correct?\n\n[1]: https://github.com/golang/crypto/blob/fd8ae15701e12eee8e03ed6bfc12106a215d4e7e/openpgp/packet/private_key.go#L224",
+      "revId": "397281a421c823eb77907c089c06f1c96c61cadb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
