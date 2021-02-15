@@ -41,6 +41,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b279708_146a7e24",
+        "filename": "blake2s/blake2s_386.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-02-15T17:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36f42942_5387df57",
+      "range": {
+        "startLine": 327,
+        "startChar": 12,
+        "endLine": 327,
+        "endChar": 14
+      },
+      "revId": "556883ae0d11610c05dd89e984550d0e69c95006",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2a1c2c2_0dd7f770",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-02-15T16:56:25Z",
       "side": 1,
       "message": "This should be DI.",
+      "range": {
+        "startLine": 398,
+        "startChar": 12,
+        "endLine": 398,
+        "endChar": 14
+      },
+      "revId": "556883ae0d11610c05dd89e984550d0e69c95006",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66fa0aa5_74387a4e",
+        "filename": "blake2s/blake2s_386.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-02-15T17:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2a1c2c2_0dd7f770",
       "range": {
         "startLine": 398,
         "startChar": 12,
