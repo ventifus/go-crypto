@@ -16,6 +16,23 @@
       "message": "Thanks for the bug fixes.",
       "revId": "d274665163f2641b1c0fd60198f61f79c4014206",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c90fea5c_8fcae1bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-02-15T17:31:12Z",
+      "side": 1,
+      "message": "Thanks for the reviews. I\u0027m going to hold off submitting these until the main tree reopens, even though these specific CLs don\u0027t affect the release.\n\nFWIW, you don\u0027t need to set Trust+1 explicitly when you are setting Code-Review+2.\n(The Trusted computation infers trust from Code-Review+2.)\n",
+      "revId": "d274665163f2641b1c0fd60198f61f79c4014206",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
