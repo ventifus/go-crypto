@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5194522b_f063428b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2021-02-19T21:58:07Z",
+      "side": 1,
+      "message": "The prefix should be \"acme/autocert:\".\n\nLower case \u0027include\u0027 after.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "b013cff664ecdb2cbcd2aa731405ac42f4279bae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8838103c_fc26d914",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2021-02-19T21:58:07Z",
+      "side": 1,
+      "message": "Please wrap these lines, and move the fixes line separately:\n\n    More compliant ...\n    with Pebble ...\n\n    Fixes golang/go#39746.\n\nSee https://golang.org/wiki/CommitMessage for commit message style information.\n\nSince this is a PR, please take a look at https://golang.org/wiki/CommitMessage#github-pull-requests for how to update the commit message.",
+      "revId": "b013cff664ecdb2cbcd2aa731405ac42f4279bae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
