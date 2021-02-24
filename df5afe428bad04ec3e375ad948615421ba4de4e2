@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3906c37_51b132fa",
+        "filename": "sha3/keccakf_arm.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-02-24T19:31:09Z",
+      "side": 1,
+      "message": "This is not really assembly. It is a binary blob.\nI don\u0027t think this is at all compatible with the assembly policy.\nMaybe we forgot to say it, but assembly has to be actual assembly.",
+      "revId": "df5afe428bad04ec3e375ad948615421ba4de4e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
