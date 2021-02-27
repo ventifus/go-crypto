@@ -33,6 +33,23 @@
       "message": "another ping",
       "revId": "e580dfdb2a46daaaa846af899e1553eb36ef5d8b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49044e4b_b34d49fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 49713
+      },
+      "writtenOn": "2021-02-27T05:34:54Z",
+      "side": 1,
+      "message": "ping again after 2 weeks (6 weeks total)",
+      "revId": "e580dfdb2a46daaaa846af899e1553eb36ef5d8b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
