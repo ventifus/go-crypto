@@ -16,6 +16,24 @@
       "message": "This CL probably needs a rebase to fix the SPWRITE failures.",
       "revId": "0d648f90da8082a77ee8fc8f5846457e2c792ed0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19d3b045_f1901d86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 43358
+      },
+      "writtenOn": "2021-03-13T20:43:37Z",
+      "side": 1,
+      "message": "Rebased, PTAL.",
+      "parentUuid": "37a408c9_d80ef9b5",
+      "revId": "0d648f90da8082a77ee8fc8f5846457e2c792ed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
