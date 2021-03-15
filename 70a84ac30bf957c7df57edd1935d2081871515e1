@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6943df55_49c9d580",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-03-15T16:41:42Z",
+      "side": 0,
+      "message": "Since there is no reason to make SAN-less CSRs, let\u0027s change certRequest instead not to take a san argument and always use the name argument for both CN and SAN.",
+      "revId": "70a84ac30bf957c7df57edd1935d2081871515e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
