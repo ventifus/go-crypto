@@ -1134,10 +1134,10 @@ func (s *certState) tlscert() (*tls.Certificate, error) {
 }
 
 // certRequest generates a CSR for the given common name cn and optional SANs.
-func certRequest(key crypto.Signer, cn string, ext []pkix.Extension, san ...string) ([]byte, error) {
+func certRequest(key crypto.Signer, cn string, ext []pkix.Extension) ([]byte, error) {
 	req := &x509.CertificateRequest{
 		Subject:         pkix.Name{CommonName: cn},
-		DNSNames:        san,
+		DNSNames:        []string{cn},
 		ExtraExtensions: ext,
 	}
 	return x509.CreateCertificateRequest(rand.Reader, req, key)
