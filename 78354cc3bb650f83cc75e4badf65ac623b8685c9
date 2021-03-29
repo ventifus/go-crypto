@@ -63,6 +63,24 @@
       "message": "Thank you for this change Povsister, and welcome to the Go project!\n\nI\u0027ve added some suggestions, but also please add a test to ensure\nthat this never regresses.",
       "revId": "78354cc3bb650f83cc75e4badf65ac623b8685c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5ac1f99_7fdfecc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 51235
+      },
+      "writtenOn": "2021-03-29T05:24:05Z",
+      "side": 1,
+      "message": "Thanks for your warm welcome. Changes are applied as required, PTAL.",
+      "parentUuid": "f3cc3e23_408b5467",
+      "revId": "78354cc3bb650f83cc75e4badf65ac623b8685c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
