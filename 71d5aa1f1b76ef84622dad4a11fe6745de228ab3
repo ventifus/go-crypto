@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a6c0737_73ecc232",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2021-03-30T11:57:39Z",
+      "side": 1,
+      "message": "The golang.org/x/ssh/terminal package is deprecated and its functionality was moved to golang.org/x/term. Please consider sending a change for golang.org/x/term if you think this change is still needed.\n\nThanks",
+      "revId": "71d5aa1f1b76ef84622dad4a11fe6745de228ab3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
