@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "106cb1df_b47ea0cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19560
+      },
+      "writtenOn": "2021-03-30T11:53:17Z",
+      "side": 1,
+      "message": "The golang.org/x/ssh/terminal package is deprecated and its functionality was moved to golang.org/x/term. From a quick look it seems that package already provides the necessary stubs for js/wasm.\n\nIf this still doesn\u0027t work for you, please consider sending a change for golang.org/x/term.\n\nThanks.",
+      "revId": "48c3beb57a7deb7d0ae851fc74047548b9530bd5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
