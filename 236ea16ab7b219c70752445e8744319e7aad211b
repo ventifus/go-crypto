@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9bdf280_715587cf",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-03-30T18:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4e91f40_45d99369",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d54194e_fce5e2fb",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-03-30T17:35:48Z",
       "side": 1,
       "message": "The RFC calls this \"type\" so the field might be better as just Type.",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1a5933_60673cd6",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-03-30T18:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d54194e_fce5e2fb",
       "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -52,6 +88,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "103bd36c_701f4e66",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-03-30T18:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd5927a6_3b466573",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36117d10_97cb6dd6",
@@ -65,6 +119,24 @@
       "writtenOn": "2021-03-30T17:35:48Z",
       "side": 1,
       "message": "lowercase P (subproblem is a single word)",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc0d7f8f_6283748d",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-03-30T18:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36117d10_97cb6dd6",
       "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
