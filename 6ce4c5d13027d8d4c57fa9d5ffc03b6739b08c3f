@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c672ab_52b91c37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-03-30T20:08:13Z",
+      "side": 1,
+      "message": "This looks good to me. Please update the issue with the API changes for proposal review. Thanks!\n",
+      "revId": "6ce4c5d13027d8d4c57fa9d5ffc03b6739b08c3f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "998d86d4_826b8835",
