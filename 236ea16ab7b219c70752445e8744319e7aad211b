@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4e91f40_45d99369",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-03-30T17:35:48Z",
+      "side": 1,
+      "message": "Suggest calling this type Subproblem, and drop the Error method, because we don\u0027t want to suggest that an \u0027err error\u0027 might contain only a *Subproblem.",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d54194e_fce5e2fb",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-03-30T17:35:48Z",
+      "side": 1,
+      "message": "The RFC calls this \"type\" so the field might be better as just Type.",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd5927a6_3b466573",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-03-30T17:35:48Z",
+      "side": 1,
+      "message": "Error text usually not full english sentences like this. So it might be enough to just say\n\n    str +\u003d fmt.Sprintf(\"; subproblems:\")\n    for _, sp :\u003d range e.Subproblems{\n        str +\u003d fmt.Sprintf(\"\\n\\t%v\", sp)\n    }\n\nand then put an appropriate String method on Subproblem.",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36117d10_97cb6dd6",
+        "filename": "acme/types.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2021-03-30T17:35:48Z",
+      "side": 1,
+      "message": "lowercase P (subproblem is a single word)",
+      "revId": "236ea16ab7b219c70752445e8744319e7aad211b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
