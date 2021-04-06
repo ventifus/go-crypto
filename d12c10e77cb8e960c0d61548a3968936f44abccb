@@ -39,6 +39,30 @@
       },
       "revId": "d12c10e77cb8e960c0d61548a3968936f44abccb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7573e2_4f7adc39",
+        "filename": "cryptobyte/asn1_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-04-06T22:12:34Z",
+      "side": 1,
+      "message": "Technically there is no way to test this. Because there are only two digits used for the year, anything from 0-49 is interpreted as 2000-2049 and anything from 50-99 is interpreted as 1950-1999. Probably we could have more tests on the boundaries though.",
+      "parentUuid": "b1ad9212_fe475a41",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 102
+      },
+      "revId": "d12c10e77cb8e960c0d61548a3968936f44abccb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
