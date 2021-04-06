@@ -50,6 +50,24 @@
       "message": "This deserves an issue, and we should look at whether any code anywhere uses this method.",
       "revId": "9634f73b485ece9a6b29ad0e328f2fc5b0f1c318",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be5c93a_b6321f65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-04-06T20:23:45Z",
+      "side": 1,
+      "message": "From https://github.com/golang/go/issues/43019:\n\u003e As far as I can tell there are no uses of this method in the standard library, and after a quick search of GitHub I was unable to find any third-party packages using this (if any are, they are likely quite broken since this method should never really work).\n\nI can also confirm that there are no usages anywhere in the stdlib or even in any of the golang repos, so we\u0027re good there at least.",
+      "parentUuid": "3b5e363e_7613c5db",
+      "revId": "9634f73b485ece9a6b29ad0e328f2fc5b0f1c318",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

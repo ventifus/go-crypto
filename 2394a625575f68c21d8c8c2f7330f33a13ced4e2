@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce59ad46_5147a5d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-04-06T20:23:45Z",
+      "side": 1,
+      "message": "Looks like a reasonable change to me. I\u0027ll let Filippo give the final +2 since it\u0027s a breaking change, to make the final call.",
+      "revId": "2394a625575f68c21d8c8c2f7330f33a13ced4e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6023d25d_a3ae39ae",
+        "filename": "cryptobyte/asn1_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-04-06T20:23:45Z",
+      "side": 1,
+      "message": "Maybe a const above for defaultBool and you can just use it in the optionalBoolTestData above as well, like the TestReadASN1OptionalInteger test.",
+      "range": {
+        "startLine": 130,
+        "startChar": 52,
+        "endLine": 130,
+        "endChar": 57
+      },
+      "revId": "2394a625575f68c21d8c8c2f7330f33a13ced4e2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
