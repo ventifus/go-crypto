@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bb2bd57_c6a11863",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-04-16T21:46:16Z",
+      "side": 1,
+      "message": "superfluous space",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "54c254a53ff30ef7fdc8427f3424600b89e2a678",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0aa607e_05db9b3d",
+        "filename": "acme/types.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-04-16T21:46:16Z",
+      "side": 1,
+      "message": "I\u0027m almost surely missing something, but why can\u0027t this just be the Subproblem type above, since the structs have the same types? If you use the same type, that eliminates the need for the for-loop, too.\nProbably worth a comment describing why, if this is required.",
+      "range": {
+        "startLine": 584,
+        "startChar": 15,
+        "endLine": 584,
+        "endChar": 30
+      },
+      "revId": "54c254a53ff30ef7fdc8427f3424600b89e2a678",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
