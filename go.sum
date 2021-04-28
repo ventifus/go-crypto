@@ -1,3 +1,5 @@
+github.com/mit-plv/fiat-crypto/fiat-go v0.0.0-20210427131854-3f4581b87435 h1:lgVfYoM89UoOtGwmi4FVl9fmuSA0/sBTDMTe8oThWA0=
+github.com/mit-plv/fiat-crypto/fiat-go v0.0.0-20210427131854-3f4581b87435/go.mod h1:59UI5/2yBTcSl1/+qCCOTsfXYy290H670oWjGFRqOLs=
 golang.org/x/net v0.0.0-20210226172049-e18ecbb05110 h1:qWPm9rbaAMKs8Bq/9LRpbMqxWRVUAQwMI9fVrssnTfw=
 golang.org/x/net v0.0.0-20210226172049-e18ecbb05110/go.mod h1:m0MpNAwzfU5UDzcl9v0D8zg8gWTRqZa9RBIspLL5mdg=
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68 h1:nxC68pudNYkKU6jWhgrqdreuFiOQWj1Fs7T3VrH4Pjw=
