@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "965bc7bf_baf41237",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-04-29T19:23:30Z",
+      "side": 1,
+      "message": "As an experiment I dropped the amd64 assembly, pulled in the test changes of CL 315269, and ran the same benchmarks (comparing current master with fiat).\n\nApple M1\n\n name               old time/op  new time/op  delta\n X25519Basepoint-8  85.0µs ± 1%  49.5µs ± 0%  -41.73%  (p\u003d0.000 n\u003d10+9)\n X25519-8           84.4µs ± 0%  50.2µs ± 3%  -40.60%  (p\u003d0.000 n\u003d8+10)\n\nIntel(R) Core(TM) i5-7400 CPU @ 3.00GHz\n\n name               old time/op  new time/op  delta\n X25519Basepoint-4  42.6µs ± 1%  88.8µs ± 1%  +108.58%  (p\u003d0.000 n\u003d9+10)\n X25519-4           42.5µs ± 1%  88.6µs ± 1%  +108.39%  (p\u003d0.000 n\u003d9+10)\n\nIntel(R) Core(TM) i5-7400 CPU @ 3.00GHz [GOARCH\u003d386]\n\n name               old time/op  new time/op  delta\n X25519Basepoint-4   530µs ± 1%   339µs ± 1%  -36.07%  (p\u003d0.000 n\u003d10+10)\n X25519-4            530µs ± 1%   339µs ± 0%  -36.06%  (p\u003d0.000 n\u003d10+9)\n\nCL 315269 is slightly faster on arm64, and dramatically faster on amd64. Not sure why, probably the avo assembly core.\n\nOn 32 bits, fiat is twice as fast, unsurprisingly, since CL 315269 is uint64 everywhere.\n\nOn balance, I think CL 315269 makes it more viable to drop the giant amd64 assembly, and lets us maintain only one codebase along with crypto/ed25519. We should maybe consider importing fiat for 32 bits into both codebases, though.",
+      "revId": "30d77440f6708c6a7eca6d65c52590e14d09e1fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
