@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestBcryptingIsEasy(t *testing.T) {
@@ -203,6 +204,26 @@ func TestMinorNotRequired(t *testing.T) {
 
 	if !bytes.Equal(noMinorHash, h.Hash()) {
 		t.Errorf("Should generate hash %v, but created %v", noMinorHash, h.Hash())
+	}
+}
+
+func TestCalibrateValid(t *testing.T) {
+	cost, err := Calibrate(5 * time.Millisecond)
+	if err != nil {
+		t.Fatalf("Calibrate returned an error: %s", err)
+	}
+	if cost < MinCost || cost > MaxCost {
+		t.Errorf("Calibrate returned a cost outside of bounds: %d", cost)
+	}
+}
+
+func TestCalibrateMeaningful(t *testing.T) {
+	cost, err := Calibrate(50 * time.Millisecond)
+	if err != nil {
+		t.Fatalf("Calibrate returned an error: %s", err)
+	}
+	if cost == MinCost {
+		t.Errorf("Calibrate returned min cost (node was too busy?): %d", cost)
 	}
 }
 
