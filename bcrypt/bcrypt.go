@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+	"time"
 
 	"golang.org/x/crypto/blowfish"
 )
@@ -134,6 +135,24 @@ func Cost(hashedPassword []byte) (int, error) {
 		return 0, err
 	}
 	return p.cost, nil
+}
+
+// Returns the cost factor which will result in computation times less than
+// upperLimitDuration. This helps to build applications which are future-proof
+// against greater computational power. Can be called during application startup
+// to find the optimal cost.
+func Calibrate(upperLimitDuration time.Duration) (int, error) {
+	// SHA1 sum of "test" string
+	var testSlice = []byte("a94a8fe5ccb19ba61c4c0873d391e987982fbbd3")
+	for i := MinCost; i <= MaxCost; i++ {
+		start := time.Now()
+		GenerateFromPassword(testSlice, i+1)
+		elapsed := time.Now().Sub(start)
+		if elapsed > upperLimitDuration {
+			return i, nil
+		}
+	}
+	return MaxCost, nil
 }
 
 func newFromPassword(password []byte, cost int) (*hashed, error) {
