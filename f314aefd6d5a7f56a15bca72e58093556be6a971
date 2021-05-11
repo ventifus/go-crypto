@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bcbe1b_12d3d581",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 52056
+      },
+      "writtenOn": "2021-05-11T12:57:17Z",
+      "side": 1,
+      "message": "This is my first-time contribution and I forgot to enter commit message (we do keep them empty and fill description via github).\n\nThe purpose of this patch is to introduce calibration method which ensures computation time. Web application typically can get the value during startup. An extended version could also have a second argument with minimum required cost, the minimum (4) is currently not good default value. That was not yet implemented, I think it is required to cover cases when CPU was busy during the calibration.",
+      "revId": "f314aefd6d5a7f56a15bca72e58093556be6a971",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
