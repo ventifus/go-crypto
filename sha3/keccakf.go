@@ -35,9 +35,9 @@ var rc = [24]uint64{
 	0x8000000080008008,
 }
 
-// keccakF1600 applies the Keccak permutation to a 1600b-wide
+// keccakF1600Generic applies the Keccak permutation to a 1600b-wide
 // state represented as a slice of 25 uint64s.
-func keccakF1600(a *[25]uint64) {
+func keccakF1600Generic(a *[25]uint64) {
 	// Implementation translated from Keccak-inplace.c
 	// in the keccak reference code.
 	var t, bc0, bc1, bc2, bc3, bc4, d0, d1, d2, d3, d4 uint64
