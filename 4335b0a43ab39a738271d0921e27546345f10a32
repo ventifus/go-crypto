@@ -40,6 +40,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78e97376_610b48c4",
+        "filename": "argon2/blamka_amd64.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 20185
+      },
+      "writtenOn": "2021-05-12T17:26:33Z",
+      "side": 1,
+      "message": "It might be just me, but I think having an explicit `\u0026\u0026 amd64` is much more readable than having to look at the file name and figure out that it is only applicable for amd64, sorry.\n\n//go:build amd64 \u0026\u0026 gc \u0026\u0026 !purego",
+      "revId": "4335b0a43ab39a738271d0921e27546345f10a32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19a572a1_422f46da",
         "filename": "curve25519/internal/field/_asm/fe_amd64_asm.go",
         "patchSetId": 1
