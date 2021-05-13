@@ -34,6 +34,24 @@
       "parentUuid": "c5bf7ad2_0f752f01",
       "revId": "cd7d49e622d578c4836740578d4bd1680bd789d6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd2ea7a7_5d674451",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-05-13T16:46:10Z",
+      "side": 1,
+      "message": "No hard deadline, for now we manually patched the generated file, but it would be nice not to have them divergent for long. Realistically it won\u0027t be that much of an annoyance until the release, when the tree reopens.",
+      "parentUuid": "c558af0c_0e8e8fc8",
+      "revId": "cd7d49e622d578c4836740578d4bd1680bd789d6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
