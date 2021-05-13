@@ -34,6 +34,24 @@
       "parentUuid": "31928d07_05e88edf",
       "revId": "0b9fe562f5c06e77c61d0df1a11c3bfdbdcf6046",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ad72062_82b0b096",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2021-05-13T14:31:56Z",
+      "side": 1,
+      "message": "The benchmark was running on Macbook pro with M1 chip",
+      "parentUuid": "a6e0970d_e58af054",
+      "revId": "0b9fe562f5c06e77c61d0df1a11c3bfdbdcf6046",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
