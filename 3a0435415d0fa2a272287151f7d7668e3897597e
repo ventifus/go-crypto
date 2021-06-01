@@ -55,6 +55,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c10c248b_5736717b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10927
+      },
+      "writtenOn": "2021-06-01T17:27:42Z",
+      "side": 1,
+      "message": "Hi Roland! :D",
+      "parentUuid": "8163f729_de17a555",
+      "revId": "3a0435415d0fa2a272287151f7d7668e3897597e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdec3fb0_dd11f881",
@@ -68,6 +86,24 @@
       "writtenOn": "2021-06-01T15:02:50Z",
       "side": 1,
       "message": "Is my memory correct that boulder will explicitly reject contact addresses with example-like suffixes?",
+      "revId": "3a0435415d0fa2a272287151f7d7668e3897597e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc76ce3f_b3da0b44",
+        "filename": "acme/autocert/example_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 10927
+      },
+      "writtenOn": "2021-06-01T17:27:42Z",
+      "side": 1,
+      "message": "Yep, that\u0027s correct. example.org, example.com, and example.net.",
+      "parentUuid": "bdec3fb0_dd11f881",
       "revId": "3a0435415d0fa2a272287151f7d7668e3897597e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
