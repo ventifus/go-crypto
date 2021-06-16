@@ -76,6 +76,30 @@
       },
       "revId": "51f4d46043f93c2d55158d59ada888dc27c05dd9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "897147c0_010a78aa",
+        "filename": "go.sum",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2021-06-16T21:14:49Z",
+      "side": 1,
+      "message": "That\u0027s an unfortunate consequence of #46141 (and, presumably, some transitive dependencies in the module graph).",
+      "parentUuid": "fabfb90f_304f4da4",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 106
+      },
+      "revId": "51f4d46043f93c2d55158d59ada888dc27c05dd9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
