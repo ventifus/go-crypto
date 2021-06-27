@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5bc00d2_4b14b1bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28719
+      },
+      "writtenOn": "2021-06-27T19:52:58Z",
+      "side": 1,
+      "message": "OpenSSH continues to signal that they intend to remove RSA SHA-1 support in their release notes: https://www.openssh.com/releasenotes.html\n\nThey also note: \"This algorithm is unfortunately still used widely despite the existence of better alternatives\" It\u0027d be unfortunate if Go was contributing to a situation where bad crypto couldn\u0027t be removed because otherwise excellent SSH implementations don\u0027t support better options.",
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "63b93cb3_6590b017",
         "filename": "ssh/server.go",
@@ -14,10 +32,10 @@
       "side": 1,
       "message": "On the client side, the `HostKeyAlgorithms` field can be used to select allowable signature algorithms. There\u0027s no good option on the server side -- either we support the algorithm, or we don\u0027t. This didn\u0027t matter before because you could filter by `ssh.PublicKey.Type()` in the `PublicKeyCallback`, but now there\u0027s no way to say \"I want SHA-2 RSA pubkey signatures, but not SHA-1\". I\u0027m not sure how to expose this configuration but it\u0027s clearly desirable.",
       "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ff862cdb_f568085e",
         "filename": "ssh/server.go",
@@ -32,10 +50,10 @@
       "message": "I\u0027m fairly convinced that the right move is to land this with that missing knob, then decide about the knob in the future. I don\u0027t think there\u0027s any case where you are _worse off_ with this?",
       "parentUuid": "63b93cb3_6590b017",
       "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "9c4b7e63_154d0ff4",
         "filename": "ssh/server.go",
@@ -50,8 +68,7 @@
       "message": "Agreed that it\u0027s no worse. Fine by me to add the knob later; I just wanted to call it out!",
       "parentUuid": "ff862cdb_f568085e",
       "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
