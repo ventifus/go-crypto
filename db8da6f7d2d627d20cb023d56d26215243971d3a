@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b70d52f_23e6276f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2021-07-10T17:38:42Z",
+      "side": 1,
+      "message": "sha3: fix typo in comment",
+      "revId": "db8da6f7d2d627d20cb023d56d26215243971d3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
