@@ -573,9 +573,9 @@ func (gex *dhGEXSHA) diffieHellman(theirPublic, myPrivate *big.Int) (*big.Int, e
 func (gex dhGEXSHA) Client(c packetConn, randSource io.Reader, magics *handshakeMagics) (*kexResult, error) {
 	// Send GexRequest
 	kexDHGexRequest := kexDHGexRequestMsg{
-		MinBits:      dhGroupExchangeMinimumBits,
-		PreferedBits: dhGroupExchangePreferredBits,
-		MaxBits:      dhGroupExchangeMaximumBits,
+		MinBits:       dhGroupExchangeMinimumBits,
+		PreferredBits: dhGroupExchangePreferredBits,
+		MaxBits:       dhGroupExchangeMaximumBits,
 	}
 	if err := c.writePacket(Marshal(&kexDHGexRequest)); err != nil {
 		return nil, err
@@ -682,20 +682,20 @@ func (gex dhGEXSHA) Server(c packetConn, randSource io.Reader, magics *handshake
 	}
 
 	// smoosh the user's preferred size into our own limits
-	if kexDHGexRequest.PreferedBits > dhGroupExchangeMaximumBits {
-		kexDHGexRequest.PreferedBits = dhGroupExchangeMaximumBits
+	if kexDHGexRequest.PreferredBits > dhGroupExchangeMaximumBits {
+		kexDHGexRequest.PreferredBits = dhGroupExchangeMaximumBits
 	}
-	if kexDHGexRequest.PreferedBits < dhGroupExchangeMinimumBits {
-		kexDHGexRequest.PreferedBits = dhGroupExchangeMinimumBits
+	if kexDHGexRequest.PreferredBits < dhGroupExchangeMinimumBits {
+		kexDHGexRequest.PreferredBits = dhGroupExchangeMinimumBits
 	}
 	// fix min/max if they're inconsistent.  technically, we could just pout
 	// and hang up, but there's no harm in giving them the benefit of the
 	// doubt and just picking a bitsize for them.
-	if kexDHGexRequest.MinBits > kexDHGexRequest.PreferedBits {
-		kexDHGexRequest.MinBits = kexDHGexRequest.PreferedBits
+	if kexDHGexRequest.MinBits > kexDHGexRequest.PreferredBits {
+		kexDHGexRequest.MinBits = kexDHGexRequest.PreferredBits
 	}
-	if kexDHGexRequest.MaxBits < kexDHGexRequest.PreferedBits {
-		kexDHGexRequest.MaxBits = kexDHGexRequest.PreferedBits
+	if kexDHGexRequest.MaxBits < kexDHGexRequest.PreferredBits {
+		kexDHGexRequest.MaxBits = kexDHGexRequest.PreferredBits
 	}
 
 	// Send GexGroup
