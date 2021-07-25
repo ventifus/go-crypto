@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ec5157_f9549206",
+        "filename": "ssh/messages.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2021-07-25T00:02:26Z",
+      "side": 0,
+      "message": "This is an exported field and as such is part of the public API.  We can\u0027t change it at this point, unfortunately.",
+      "revId": "a769d52b0f97a420f3dcafc17f8b3384217859a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
