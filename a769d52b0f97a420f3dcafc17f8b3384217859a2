@@ -16,6 +16,24 @@
       "message": "This is an exported field and as such is part of the public API.  We can\u0027t change it at this point, unfortunately.",
       "revId": "a769d52b0f97a420f3dcafc17f8b3384217859a2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd50cc5_a0bd9b45",
+        "filename": "ssh/messages.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5025
+      },
+      "writtenOn": "2021-07-25T14:16:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a2ec5157_f9549206",
+      "revId": "a769d52b0f97a420f3dcafc17f8b3384217859a2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
