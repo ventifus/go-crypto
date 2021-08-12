@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d29c177_2e45edc7",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-08-12T22:57:21Z",
+      "side": 1,
+      "message": "While at it, might as well drop the second \"maintained\".",
+      "range": {
+        "startLine": 10,
+        "startChar": 53,
+        "endLine": 10,
+        "endChar": 63
+      },
+      "revId": "0ba0e8f031222feafe2c6fe04ba9c3da11dd361a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03cf13d9_392f816d",
+        "filename": "openpgp/read.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-08-12T22:57:21Z",
+      "side": 1,
+      "message": "Siiiigh this was meant to be #44226. Roland, do you mind fixing it? Sorry -.-",
+      "range": {
+        "startLine": 11,
+        "startChar": 32,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "0ba0e8f031222feafe2c6fe04ba9c3da11dd361a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
