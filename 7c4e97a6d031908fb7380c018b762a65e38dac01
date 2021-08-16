@@ -33,6 +33,23 @@
       "message": "Hi Alex and Filippo, this issue and the fix was created in July, and we still haven\u0027t been able to attract any attention to this fix. \n\nSince then the issue has generated more interest, and more folks stumbling into this bug (see: https://github.com/golang/go/issues/40376), but the issue has not moved forward since.\n\nWould appreciate any guidance with getting this moved forwards.",
       "revId": "7c4e97a6d031908fb7380c018b762a65e38dac01",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "954a33db_566ea044",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2021-08-16T20:27:00Z",
+      "side": 1,
+      "message": "I don\u0027t think ever users of LetsEncrypt should need to worry about implementing this new hook.\n\nShouldn\u0027t we just do something sensible by default in the package?",
+      "revId": "7c4e97a6d031908fb7380c018b762a65e38dac01",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
