@@ -473,98 +473,9 @@ type getCertificateFunc func(domain string) (*tls.Certificate, error)
 
 // startACMEServerStub runs an ACME server
 // The domain argument is the expected domain name of a certificate request.
-// TODO: Drop this in favour of x/crypto/acme/autocert/internal/acmetest.
 func startACMEServerStub(t *testing.T, tokenCert getCertificateFunc, domain string) (url string, finish func()) {
-	verifyTokenCert := func() {
-		tlscert, err := tokenCert(domain)
-		if err != nil {
-			t.Errorf("verifyTokenCert: tokenCert(%q): %v", domain, err)
-			return
-		}
-		crt, err := x509.ParseCertificate(tlscert.Certificate[0])
-		if err != nil {
-			t.Errorf("verifyTokenCert: x509.ParseCertificate: %v", err)
-		}
-		if err := crt.VerifyHostname(domain); err != nil {
-			t.Errorf("verifyTokenCert: %v", err)
-		}
-		// See https://tools.ietf.org/html/draft-ietf-acme-tls-alpn-05#section-5.1
-		oid := asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 1, 31}
-		for _, x := range crt.Extensions {
-			if x.Id.Equal(oid) {
-				// No need to check the extension value here.
-				// This is done in acme package tests.
-				return
-			}
-		}
-		t.Error("verifyTokenCert: no id-pe-acmeIdentifier extension found")
-	}
-
 	// ACME CA server stub
-	var ca *httptest.Server
-	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Replay-Nonce", "nonce")
-		if r.Method == "HEAD" {
-			// a nonce request
-			return
-		}
-
-		switch r.URL.Path {
-		// discovery
-		case "/":
-			if err := discoTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("discoTmpl: %v", err)
-			}
-		// client key registration
-		case "/new-reg":
-			w.Write([]byte("{}"))
-		// domain authorization
-		case "/new-authz":
-			w.Header().Set("Location", ca.URL+"/authz/1")
-			w.WriteHeader(http.StatusCreated)
-			if err := authzTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("authzTmpl: %v", err)
-			}
-		// accept tls-alpn-01 challenge
-		case "/challenge/tls-alpn-01":
-			verifyTokenCert()
-			w.Write([]byte("{}"))
-		// authorization status
-		case "/authz/1":
-			w.Write([]byte(`{"status": "valid"}`))
-		// cert request
-		case "/new-cert":
-			var req struct {
-				CSR string `json:"csr"`
-			}
-			decodePayload(&req, r.Body)
-			b, _ := base64.RawURLEncoding.DecodeString(req.CSR)
-			csr, err := x509.ParseCertificateRequest(b)
-			if err != nil {
-				t.Errorf("new-cert: CSR: %v", err)
-			}
-			if csr.Subject.CommonName != domain {
-				t.Errorf("CommonName in CSR = %q; want %q", csr.Subject.CommonName, domain)
-			}
-			der, err := dummyCert(csr.PublicKey, domain)
-			if err != nil {
-				t.Errorf("new-cert: dummyCert: %v", err)
-			}
-			chainUp := fmt.Sprintf("<%s/ca-cert>; rel=up", ca.URL)
-			w.Header().Set("Link", chainUp)
-			w.WriteHeader(http.StatusCreated)
-			w.Write(der)
-		// CA chain cert
-		case "/ca-cert":
-			der, err := dummyCert(nil, "ca")
-			if err != nil {
-				t.Errorf("ca-cert: dummyCert: %v", err)
-			}
-			w.Write(der)
-		default:
-			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
-		}
-	}))
+	ca := acmetest.NewCAServer([]string{"tls-alpn-01"}, nil)
 	finish = func() {
 		ca.Close()
 
@@ -717,7 +628,7 @@ func TestVerifyHTTP01(t *testing.T) {
 	if err != nil {
 		t.Fatalf("m.acmeClient: %v", err)
 	}
-	if err := m.verify(ctx, client, "example.org"); err != nil {
+	if _, err := m.verifyRFC(ctx, client, "example.org"); err != nil {
 		t.Errorf("m.verify: %v", err)
 	}
 	// Only tls-alpn-01 and http-01 must be accepted.
