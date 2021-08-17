@@ -16,6 +16,24 @@
       "message": "just \"acme: \"\n\nThe x/crypto/ prefix is only for GitHub issues.",
       "revId": "b20cf67a4fcc52645edb7fa8d30983ba2d0b59a3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f6c90d_86e78957",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-17T16:40:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "800fe19a_f3ae72ef",
+      "revId": "b20cf67a4fcc52645edb7fa8d30983ba2d0b59a3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
