@@ -18,6 +18,7 @@ func TestReadVersion(t *testing.T) {
 	cases := map[string]string{
 		"SSH-2.0-bla\r\n":    "SSH-2.0-bla",
 		"SSH-2.0-bla\n":      "SSH-2.0-bla",
+		"SSH-1.99-bla\r\n":   "SSH-1.99-bla",
 		multiLineVersion:     "SSH-2.0-bla",
 		longVersion + "\r\n": longVersion,
 	}
@@ -40,6 +41,7 @@ func TestReadVersionError(t *testing.T) {
 	cases := []string{
 		longVersion + "too-long\r\n",
 		multiLineVersion,
+		"SSH-1.5-bla\r\n",
 	}
 	for _, in := range cases {
 		if _, err := readVersion(bytes.NewBufferString(in)); err == nil {
