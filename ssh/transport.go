@@ -8,6 +8,7 @@ import (
 	"bufio"
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 )
@@ -349,5 +350,13 @@ func readVersion(r io.Reader) ([]byte, error) {
 	if len(versionString) > 0 && versionString[len(versionString)-1] == '\r' {
 		versionString = versionString[:len(versionString)-1]
 	}
+
+	version := bytes.Split(versionString, []byte("-"))[1]
+	// RFC 4253, section 5.1 says that version '1.99' used to
+	// identify compability with older versions of protocol.
+	if !bytes.Equal(version, []byte("1.99")) && !bytes.Equal(version, []byte("2.0")) {
+		return nil, fmt.Errorf("ssh: incompatible versions (%s and 2.0)", version)
+	}
+
 	return versionString, nil
 }
