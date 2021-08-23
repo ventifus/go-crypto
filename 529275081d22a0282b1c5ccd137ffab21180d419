@@ -20,6 +20,161 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6c0f036_4610a1c7",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "Since t.hostKeys is switched to a map the ordering will now be randomized, meaning the order in which supported key algorithms is advertised will also be randomized, which is probably not what we want?\n\nhostKeys should probably just be switched to a slice of structs which contain the Signer and it\u0027s alg type (or just take the extra steps and extra the alg with `PublicKey().Type()`).",
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7614cf0e_4312ba67",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "Similarly, we probably don\u0027t want this to be randomized.",
+      "range": {
+        "startLine": 615,
+        "startChar": 1,
+        "endLine": 619,
+        "endChar": 2
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c99c1838_6babff45",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "Since RSA is the only key type that can have multiple signature algorithms it probably makes sense to just call this `rsaSigner`.",
+      "range": {
+        "startLine": 934,
+        "startChar": 5,
+        "endLine": 934,
+        "endChar": 27
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5948f776_d7169e4e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "defaultAlgorithm",
+      "range": {
+        "startLine": 936,
+        "startChar": 1,
+        "endLine": 936,
+        "endChar": 10
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d5670b_3087d8dd",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "This is unnecessary since it is defined by the embedded AlgorithmSigner.",
+      "range": {
+        "startLine": 939,
+        "startChar": 0,
+        "endLine": 941,
+        "endChar": 1
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d969e1cd_b264f2e4",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "Similarly unnecessary.",
+      "range": {
+        "startLine": 947,
+        "startChar": 0,
+        "endLine": 949,
+        "endChar": 1
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "284a359d_33e7a91a",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "If we\u0027re switching the default, should this not be SigAlgoRSASHA2512?",
+      "range": {
+        "startLine": 135,
+        "startChar": 21,
+        "endLine": 135,
+        "endChar": 31
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63b93cb3_6590b017",
         "filename": "ssh/server.go",
         "patchSetId": 3

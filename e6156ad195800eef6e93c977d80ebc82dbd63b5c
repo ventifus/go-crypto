@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "24a3746d_23d84c13",
         "filename": "ssh/server.go",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "My key is typed as `KeyAlgoRSASHA2256` should it really be allowing it to be used with SHA1 or SHA512?",
       "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "95cb96fb_91f24a2f",
         "filename": "ssh/server.go",
@@ -32,8 +33,25 @@
       "message": "It\u0027s a good idea but I\u0027m not sure it makes sense in practice. OpenSSH still treats the key format for these keys as `ssh-rsa`, even when generating new ones with e.g. `ssh-keygen -t rsa-sha2-256`. Additionally, there\u0027s a lot of code that relies heavily on the public key type being `ssh-rsa`. I think it\u0027s a lot of work that would be better solved by changing the default host key algorithms.",
       "parentUuid": "24a3746d_23d84c13",
       "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2bea0d_fffb0d43",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-08-23T17:32:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure I entirely follow the reasoning here. If a user passes a key with type KeyAlgoRSA it seems perfectly reasonable to add support for each of the RSA types, and defaulting to SHA2-512. But if the user explicitly passes a key with type KeyAlgoRSASHA2256 it seems reasonable that they only want to support that particular signature algorithm, if the client doesn\u0027t understand \"rsa-sha2-512\" then that seems fine?\n\nIf it\u0027s the server-side code that would choke on this, it seems like that is something we should fix, rather than ignoring the user preference in favor of convenience.",
+      "parentUuid": "95cb96fb_91f24a2f",
+      "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
