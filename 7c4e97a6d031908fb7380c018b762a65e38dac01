@@ -50,6 +50,23 @@
       "message": "I don\u0027t think ever users of LetsEncrypt should need to worry about implementing this new hook.\n\nShouldn\u0027t we just do something sensible by default in the package?",
       "revId": "7c4e97a6d031908fb7380c018b762a65e38dac01",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d934d68f_656edd7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 53373
+      },
+      "writtenOn": "2021-08-25T16:27:02Z",
+      "side": 1,
+      "message": "The reason I introduced ShouldRetry on the client configuration was to allow back compatibility first but also to stop retrying on 429 rate limit errors b/c that is a terminal state.\nIf you can point to an alternative approach or suggest something else that would allow us to bypass this issue it would be greatly appreciated. Thank you very much.",
+      "revId": "7c4e97a6d031908fb7380c018b762a65e38dac01",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
