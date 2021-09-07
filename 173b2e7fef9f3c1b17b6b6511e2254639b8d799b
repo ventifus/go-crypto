@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a531bd2_e58b7593",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2021-09-07T19:09:33Z",
+      "side": 1,
+      "message": "Only the issue titles need \"x/crypto/\" prefix (since there\u0027s one issue tracker for all repos), CL subjects don\u0027t need them. It should be \"curve25519: remove ...\", which corresponds to the path in the repository. (See https://golang.org/wiki/CommitMessage.)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "173b2e7fef9f3c1b17b6b6511e2254639b8d799b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8627491_6e3cf3f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2021-09-07T19:09:33Z",
+      "side": 1,
+      "message": "As I mentioned on the issue, I think to consider it fixed, it would help to include a small test in this CL that just verifies this property (the package doesn\u0027t import \"fmt\") hasn\u0027t regressed, as otherwise it may be easy for human reviewers to miss it.\n\nI think we eventually could remove such a test when we improve our testing strategy for packages that are vendored into the main Go tree, but until then, a short and simple test here will work well.",
+      "revId": "173b2e7fef9f3c1b17b6b6511e2254639b8d799b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "908f025d_602f7fa0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
