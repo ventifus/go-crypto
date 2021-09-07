@@ -7,7 +7,11 @@ package curve25519
 import (
 	"bytes"
 	"crypto/rand"
-	"fmt"
+	"encoding/hex"
+	"go/ast"
+	"go/parser"
+	"go/token"
+	"strconv"
 	"testing"
 )
 
@@ -25,7 +29,7 @@ func TestX25519Basepoint(t *testing.T) {
 		}
 	}
 
-	result := fmt.Sprintf("%x", x)
+	result := hex.EncodeToString(x)
 	if result != expectedHex {
 		t.Errorf("incorrect result: got %s, want %s", result, expectedHex)
 	}
@@ -136,5 +140,38 @@ func BenchmarkX25519(b *testing.B) {
 			b.Fatal(err)
 		}
 		benchmarkSink ^= out[0]
+	}
+}
+
+// isImportPath returns whether f imports path.
+func isImportPath(f *ast.File, path string) bool {
+	for _, s := range f.Imports {
+		if importPath(s) == path {
+			return true
+		}
+	}
+	return false
+}
+
+// importPath returns the unquoted import path of s,
+// or empty string if the path is not properly quoted.
+func importPath(s *ast.ImportSpec) string {
+	t, err := strconv.Unquote(s.Path.Value)
+	if err == nil {
+		return t
+	}
+	return ""
+}
+
+func TestNofmtImport(t *testing.T) {
+	fset := token.NewFileSet()
+	packageFile, err := parser.ParseFile(fset, "curve25519.go", nil, parser.ImportsOnly)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	isPackageImported := isImportPath(packageFile, "fmt")
+	if isPackageImported {
+		t.Fatal("The package imports 'fmt'")
 	}
 }
