@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "908f025d_602f7fa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5021
+      },
+      "writtenOn": "2021-09-07T19:01:40Z",
+      "side": 1,
+      "message": "Small suggestion for further improvement. ",
+      "revId": "173b2e7fef9f3c1b17b6b6511e2254639b8d799b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8e35a7_d80b0fe7",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 5021
+      },
+      "writtenOn": "2021-09-07T19:01:40Z",
+      "side": 1,
+      "message": "strconv.Itoa(32) could be the string \"32\" instead, so you could save a string concatenation and a call.",
+      "revId": "173b2e7fef9f3c1b17b6b6511e2254639b8d799b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b0826cb_8f6dd939",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5021
+      },
+      "writtenOn": "2021-09-07T19:01:40Z",
+      "side": 1,
+      "message": "same here.",
+      "revId": "173b2e7fef9f3c1b17b6b6511e2254639b8d799b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
