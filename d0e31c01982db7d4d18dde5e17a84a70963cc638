@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd51a2f2_26347071",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2021-09-08T21:34:36Z",
+      "side": 1,
+      "message": "Added spec for checking whether fmt is imported or not.\nLet me know if the approach I took works or not. \n\n",
+      "revId": "d0e31c01982db7d4d18dde5e17a84a70963cc638",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
