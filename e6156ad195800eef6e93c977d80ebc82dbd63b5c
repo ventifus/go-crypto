@@ -52,6 +52,24 @@
       "parentUuid": "95cb96fb_91f24a2f",
       "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f3be60_d7b7f07e",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2021-09-11T06:12:03Z",
+      "side": 1,
+      "message": "This code is somewhat confusing to me now that I am revisiting it (and it might be wrong!). There\u0027s some subtlety here because I don\u0027t think we\u0027d ever see a type that\u0027s not KeyAlgoRSA for two reasons. First, NewSignerFromKey and friends always returns an RSA key with the type \"ssh-rsa\". Second, per RFC 7332, \"ssh-rsa\" is the only key type for RSA.\n\nI\u0027m going to rethink whether we even want KeyAlgoRSASHA2256 and KeyAlgoRSASHA2512 as KeyAlgo constants (and possibly switch to using SigAlgo in places where we need to reference the algorithms).",
+      "parentUuid": "6a2bea0d_fffb0d43",
+      "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
