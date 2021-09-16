@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ee03f5_9539a280",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T09:26:41Z",
+      "side": 1,
+      "message": "This probably should be revised to reflect what actually happened.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f564aa0b_f1677652",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T09:26:41Z",
+      "side": 1,
+      "message": "Ping?\n\nSome platforms, such as those that are still using OpenSSL 1.0 will fail to verify the default chain that Let\u0027s Encrypt is returning after September 29th 2021. As such, the alternate certificate chain is necessary and it would be good if this could land ASAP (otherwise we\u0027ll need to fork golang.org/x/crypto).",
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be7fc46f_056bc138",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T09:26:41Z",
+      "side": 1,
+      "message": "I\u0027d probably say \"issuer\" or \"certificate chain\" here.",
+      "range": {
+        "startLine": 394,
+        "startChar": 46,
+        "endLine": 394,
+        "endChar": 57
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fddc0d5_a2e2cfc2",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T09:26:41Z",
+      "side": 1,
+      "message": "\"certificate chain\" or \"issuer certificates\"?",
+      "range": {
+        "startLine": 396,
+        "startChar": 26,
+        "endLine": 396,
+        "endChar": 37
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbb17440_6a601636",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T09:26:41Z",
+      "side": 1,
+      "message": "Perhaps \"If there are no alternate issuer certificate chains, a nil slice will be returned.\"",
+      "range": {
+        "startLine": 398,
+        "startChar": 3,
+        "endLine": 399,
+        "endChar": 16
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
