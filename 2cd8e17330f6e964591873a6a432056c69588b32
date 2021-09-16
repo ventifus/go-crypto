@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c394233d_2ef3631c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83ee03f5_9539a280",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f564aa0b_f1677652",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73ad35f5_a344e5a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Actually, after reading [1], it seems like nothing will break after September 29th. The longer cross-signed chain will still be returned as the default. This is still necessary if you don\u0027t need to support older Android devices and want the shorter chain but the default chain isn\u0027t changing any time soon.\n\n[1] https://community.letsencrypt.org/t/production-chain-changes/150739",
+      "parentUuid": "f564aa0b_f1677652",
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be7fc46f_056bc138",
         "filename": "acme/rfc8555.go",
         "patchSetId": 1
@@ -54,6 +96,30 @@
       "writtenOn": "2021-09-16T09:26:41Z",
       "side": 1,
       "message": "I\u0027d probably say \"issuer\" or \"certificate chain\" here.",
+      "range": {
+        "startLine": 394,
+        "startChar": 46,
+        "endLine": 394,
+        "endChar": 57
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2e8a2f_fa6a703a",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be7fc46f_056bc138",
       "range": {
         "startLine": 394,
         "startChar": 46,
@@ -87,6 +153,54 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce3e6af2_53d4d674",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fddc0d5_a2e2cfc2",
+      "range": {
+        "startLine": 396,
+        "startChar": 26,
+        "endLine": 396,
+        "endChar": 37
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84ecb55_d4e66352",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fddc0d5_a2e2cfc2",
+      "range": {
+        "startLine": 396,
+        "startChar": 26,
+        "endLine": 396,
+        "endChar": 37
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbb17440_6a601636",
@@ -100,6 +214,30 @@
       "writtenOn": "2021-09-16T09:26:41Z",
       "side": 1,
       "message": "Perhaps \"If there are no alternate issuer certificate chains, a nil slice will be returned.\"",
+      "range": {
+        "startLine": 398,
+        "startChar": 3,
+        "endLine": 399,
+        "endChar": 16
+      },
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb66e5f_d8137668",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 17920
+      },
+      "writtenOn": "2021-09-16T13:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbb17440_6a601636",
       "range": {
         "startLine": 398,
         "startChar": 3,
