@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b29325cb_ac41ad61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-16T15:21:37Z",
+      "side": 1,
+      "message": "The DST Root CA X3 expires on the 30th of September 2021 (as noted in the referenced document) - some things (e.g. Android) ignore the not after date for trusted certificates and will continue to verify to DST Root CA X3, while many others will verify to the ISRG Root X1 (ignoring the DST Root CA X3 based intermediate). \n\nHowever, some older (broken) platforms will fail to verify with the default certificate chain, as they build a chain up to the DST Root CA X3 using the supplied intermediates, before checking the not after date and failing hard (rather than considering alternate chains):\n\n$ openssl version\nOpenSSL 1.0.1f\n$ echo Q | openssl s_client -CApath /etc/ssl/certs -connect community.letsencrypt.org:443 | grep \u0027Verify return code\u0027\n    Verify return code: 0 (ok)\n$ echo Q | faketime 2021-10-02 openssl s_client -CApath /etc/ssl/certs -connect community.letsencrypt.org:443 | grep \u0027Verify return code\u0027\n    Verify return code: 10 (certificate has expired)\n\nThat said, I think the commit message update is fine.",
+      "parentUuid": "73ad35f5_a344e5a0",
+      "revId": "2cd8e17330f6e964591873a6a432056c69588b32",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be7fc46f_056bc138",
         "filename": "acme/rfc8555.go",
         "patchSetId": 1
