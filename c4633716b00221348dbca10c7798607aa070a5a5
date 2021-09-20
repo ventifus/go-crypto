@@ -56,6 +56,30 @@
       },
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c5c4249_f8cef721",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2021-09-20T15:12:53Z",
+      "side": 1,
+      "message": "I have created the CL for sha3 detection, at the time I opened this CL.\nHere is the link https://go-review.googlesource.com/c/sys/+/332729\nThank you",
+      "parentUuid": "14213f53_5b8e8a19",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 87
+      },
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
