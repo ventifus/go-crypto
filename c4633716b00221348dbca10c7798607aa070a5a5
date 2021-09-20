@@ -33,6 +33,29 @@
       "message": "Hi may I ask is there anything I could do to proceed this PR?",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14213f53_5b8e8a19",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7530
+      },
+      "writtenOn": "2021-09-20T12:57:02Z",
+      "side": 1,
+      "message": "Maybe a separate CL in internal/cpu/cpu_arm64.go for sha3 detection first?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 87
+      },
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
