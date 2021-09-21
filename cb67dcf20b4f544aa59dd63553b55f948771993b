@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ee77566_b2e1d4eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-21T13:40:37Z",
+      "side": 1,
+      "message": "Filippo/Roland, could you please review/land?",
+      "revId": "cb67dcf20b4f544aa59dd63553b55f948771993b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee7d192f_f2c0d24c",
+        "filename": "acme/rfc8555_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 13640
+      },
+      "writtenOn": "2021-09-21T13:40:37Z",
+      "side": 1,
+      "message": "Nit: The Go testing idiom is \"got X, want Y\" - as such I\u0027d s/exp/want/ here.",
+      "range": {
+        "startLine": 905,
+        "startChar": 1,
+        "endLine": 905,
+        "endChar": 4
+      },
+      "revId": "cb67dcf20b4f544aa59dd63553b55f948771993b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
