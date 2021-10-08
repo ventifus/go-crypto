@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "956ab978_d6065c7f",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 30038
+      },
+      "writtenOn": "2021-10-08T19:50:56Z",
+      "side": 1,
+      "message": "should this field be deleted?",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 87
+      },
+      "revId": "1e74e53ddc2dcf70833449d881f19e4f2d2af34d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
