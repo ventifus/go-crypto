@@ -311,6 +311,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c9aea7_f1ce0c3d",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2021-10-14T06:56:43Z",
+      "side": 1,
+      "message": "I ended up restructuring the code so we\u0027re not comparing key types everywhere.",
+      "parentUuid": "284a359d_33e7a91a",
+      "range": {
+        "startLine": 135,
+        "startChar": 21,
+        "endLine": 135,
+        "endChar": 31
+      },
+      "revId": "529275081d22a0282b1c5ccd137ffab21180d419",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63b93cb3_6590b017",

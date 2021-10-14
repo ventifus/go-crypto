@@ -70,6 +70,24 @@
       "parentUuid": "6a2bea0d_fffb0d43",
       "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da366330_9700da50",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 35051
+      },
+      "writtenOn": "2021-10-14T06:56:43Z",
+      "side": 1,
+      "message": "I\u0027ve switched to using SigAlgo constants since indeed \"ssh-rsa\" is the only valid SSH RSA public key type. For this code, it means that we\u0027ll always see the \"ssh-rsa\" key type but support (by default) any RSA signature algorithm for host keys.",
+      "parentUuid": "90f3be60_d7b7f07e",
+      "revId": "e6156ad195800eef6e93c977d80ebc82dbd63b5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
