@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ca4a2c1_9ef08e2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2021-10-15T15:55:04Z",
+      "side": 1,
+      "message": "Will wait to review until the proposal is accepted 👍",
+      "revId": "1e74e53ddc2dcf70833449d881f19e4f2d2af34d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "956ab978_d6065c7f",
