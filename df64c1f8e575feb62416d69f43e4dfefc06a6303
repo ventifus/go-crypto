@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a71ab2_427e9a7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2021-10-26T16:06:44Z",
+      "side": 1,
+      "message": "Ping, Filippo/Roland.",
+      "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
