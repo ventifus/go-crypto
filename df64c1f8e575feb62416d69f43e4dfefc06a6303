@@ -16,6 +16,40 @@
       "message": "Ping, Filippo/Roland.",
       "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684843d7_d91bfa56",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2021-10-26T16:13:39Z",
+      "side": 1,
+      "message": "I forget from limited context here: is this the pre-RFC or RFC way?\n\nI was trying to delete all the old unused pre-RFC code (in https://go-review.googlesource.com/c/crypto/+/342449) but didn\u0027t quite finish yet, as I got stuck by the tests all assuming they could work in pre-RFC mode only (our tests were the only user of the pre-RFC code)\n\nI don\u0027t want to add more dependence on the old way, if this isn\u0027t the new RFC way.",
+      "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a5cf7a_95529a67",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2021-10-26T16:13:39Z",
+      "side": 1,
+      "message": "no JWS for EAB\n\n(capitalize acronyms for humans)",
+      "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
