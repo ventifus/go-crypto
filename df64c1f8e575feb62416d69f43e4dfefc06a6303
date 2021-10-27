@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32b746a1_ed0a3a95",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2021-10-27T16:42:38Z",
+      "side": 1,
+      "message": "It\u0027s the old path style, but it\u0027s an RFC compliant server. I have a branch that swaps \"/new-reg\" for \"/new-account\", and also picks up where CL342449 left off. Would you like that submitted as a new CL?",
+      "parentUuid": "684843d7_d91bfa56",
+      "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35a5cf7a_95529a67",
         "filename": "acme/autocert/internal/acmetest/ca.go",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2021-10-26T16:13:39Z",
       "side": 1,
       "message": "no JWS for EAB\n\n(capitalize acronyms for humans)",
+      "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07eb1ff6_43861d4f",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2021-10-27T16:42:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35a5cf7a_95529a67",
       "revId": "df64c1f8e575feb62416d69f43e4dfefc06a6303",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
