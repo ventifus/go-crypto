@@ -8,6 +8,10 @@ package ssh
 
 import (
 	"crypto/rand"
+	"crypto/rsa"
+	"crypto/x509"
+	"encoding/pem"
+	"log"
 	"reflect"
 	"sync"
 	"testing"
@@ -61,5 +65,35 @@ func TestKexes(t *testing.T) {
 			}
 			wg.Wait()
 		})
+	}
+}
+
+func TestParseRawPrivateKeyWithPassphraseSupportsPKCS8EncryptedKeys(t *testing.T) {
+	// make a test key and convert it to an encrypted pem block
+	pk, err := rsa.GenerateKey(rand.Reader, 1024)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	const encPassword = "mypassword"
+
+	x509Enc, _ := x509.MarshalPKCS8PrivateKey(pk)
+	eb, err := x509.EncryptPEMBlock(rand.Reader, "PRIVATE KEY", x509Enc, []byte(encPassword), x509.PEMCipherAES256)
+	if err != nil {
+		t.Fatal(err)
+	}
+	pemKeyEnc := pem.EncodeToMemory(eb)
+
+	// Parsing the encrypted key
+	pkEncrypt, err := ParseRawPrivateKeyWithPassphrase(pemKeyEnc, []byte(encPassword))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	shouldKey := pk.D
+	isKey := pkEncrypt.(*rsa.PrivateKey).D
+
+	if shouldKey.Cmp(isKey) != 0 {
+		t.Errorf("decrypted private key differs:\nis:     %v\nshould: %v", isKey, shouldKey)
 	}
 }

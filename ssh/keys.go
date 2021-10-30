@@ -1176,6 +1176,8 @@ func ParseRawPrivateKeyWithPassphrase(pemBytes, passphrase []byte) (interface{},
 		return x509.ParseECPrivateKey(buf)
 	case "DSA PRIVATE KEY":
 		return ParseDSAPrivateKey(buf)
+	case "PRIVATE KEY":
+		return x509.ParsePKCS8PrivateKey(buf)
 	default:
 		return nil, fmt.Errorf("ssh: unsupported key type %q", block.Type)
 	}
