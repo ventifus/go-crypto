@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e7089b_c1971ec2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 54598
+      },
+      "writtenOn": "2021-11-01T21:17:16Z",
+      "side": 1,
+      "message": "This PR isn\u0027t ready for merging yet! I created the PR to get some initial feedback to see if the direction it\u0027s going is appropriate or if there are larger changes that need to be handled. I have a number of \"// TODO(kxd)\" comments where I called out specific questions I was hoping to get upstream feedback on as well!\n\nThe client side of server-sig-algs isn\u0027t implemented yet because I wanted to have a discussion about how that should integrate into choosing a pubkey auth algorithm.\n\nAlso I apologize if I Gerrit wrong, this is the first time I\u0027m using it. 😊",
+      "revId": "5a705c32465ba72977bb09b920f98abd75a0fc83",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
