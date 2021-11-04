@@ -249,9 +249,9 @@ func (e *gfP6) Invert(a *gfP6, pool *bnPool) *gfP6 {
 	// = (x³ξ²+y³ξ+z³-3ξxyz) = F is an element of the base field (the norm).
 	//
 	// On the other hand (xj²τ² + yjτ + z)(xjτ² + yj²τ + z)
-	// = τ²(y²-ξxz) + τ(ξx²-yz) + (z²-ξxy)
+	// = τ²(y²-xz) + τ(ξx²-yz) + (z²-ξxy)
 	//
-	// So that's why A = (z²-ξxy), B = (ξx²-yz), C = (y²-ξxz)
+	// So that's why A = (z²-ξxy), B = (ξx²-yz), C = (y²-xz)
 	t1 := newGFp2(pool)
 
 	A := newGFp2(pool)
