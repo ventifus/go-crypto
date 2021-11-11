@@ -1,6 +1,57 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69228f6c_29f945d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-11-11T17:30:35Z",
+      "side": 1,
+      "message": "Thanks for keeping this going. A few nits from me, but otherwise looks good. Filippo should really do a once over before we submit though, since he is a bit more familiar with SSH ins and outs than I am.",
+      "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a7971a_2466ea3f",
+        "filename": "ssh/certs.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-11-11T17:30:35Z",
+      "side": 1,
+      "message": "A comment here might be useful to explain why some are SigAlgoXXX and why the rest are KeyAlgoXXX.",
+      "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3011b41d_129dbede",
+        "filename": "ssh/client.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-11-11T17:30:35Z",
+      "side": 1,
+      "message": "Seems like you can just move the error return up here, since there should only be one matching thing in certAlgoNames, i.e. (also makes the switch from algo being the public to private alg slightly less confusing)\n\n  if pubAlgo \u003d\u003d algo \u0026\u0026 sig.Format !\u003d privAlgo {\n    returnfmt.Errorf(\"ssh: invalid signature algorithm %q, expected %q\", sig.Format, privAlgo)\n  }",
+      "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74b48129_bff62b2a",
@@ -14,6 +65,47 @@
       "writtenOn": "2021-10-14T06:56:43Z",
       "side": 1,
       "message": "This defaults to advertising all RSA signature algorithms including the deprecated SHA-1 based algorithm. Should we remove SigAlgoRSA by default?",
+      "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90afb24_47771c3e",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-11-11T17:30:35Z",
+      "side": 1,
+      "message": "I think it\u0027s fine to keep this for now. We can deprecate it later.",
+      "parentUuid": "74b48129_bff62b2a",
+      "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c0d1fef_f8a9e765",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2021-11-11T17:30:35Z",
+      "side": 1,
+      "message": "nit: this block can be somewhat simplified\n\n  signer, ok :\u003d k.(AlgorithmSigner)\n  if !ok {\n    continue\n  }\n  switch kt :\u003d k.PublicKey().Type() {\n    case KeyAlgoRSA:\n      if algs.hostKey \u003d\u003d SigAlgoRSASHA2256 || algs.hostKey \u003d\u003d SigAlgoRSASHA2512 {\n        hostKey \u003d \u0026rsaSigner{v, algs.hostKey}\n      }\n    case CertAlgoRSAv01:\n      if algs.hostKey \u003d\u003d CertSigAlgoRSASHA2256v01 || algs.hostKey \u003d\u003d CertSigAlgoRSASHA2512v01 {\n        hostKey \u003d \u0026rsaSigner{v, certToPrivAlgo(algs.hostKey)}\n      }\n  }",
+      "range": {
+        "startLine": 624,
+        "startChar": 2,
+        "endLine": 641,
+        "endChar": 3
+      },
       "revId": "c906c4730ead9d77b8a63a34b7d8d42fd2b3ac10",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
