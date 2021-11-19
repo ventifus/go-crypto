@@ -16,6 +16,24 @@
       "message": "On 32-bit systems an |int| is a signed, 32-bit value, I think. But five chunks of seven bits can cause an overflow in that case. So getting right up to the 31-bit limit will need a more complex overflow check.",
       "revId": "6e87a0a3e28be4add3ccfcf257d89297a1f6bb96",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327c327d_f597af15",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 54880
+      },
+      "writtenOn": "2021-11-19T19:46:55Z",
+      "side": 1,
+      "message": "fixed in new pathset, \naccording to https://misc.daniel-marschall.de/asn.1/oid_facts.html\n\"The OID standards have no limit whatsoever about the depth of an OID in the OID tree (i.e., number of arcs) and the size of the integer associated to each OID arc. However, some tools may have size limitations.\"\nSo I choose limit as 2**31-1",
+      "parentUuid": "86d14699_b6c7c06e",
+      "revId": "6e87a0a3e28be4add3ccfcf257d89297a1f6bb96",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
