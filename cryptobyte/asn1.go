@@ -407,7 +407,7 @@ func (s *String) ReadASN1Enum(out *int) bool {
 func (s *String) readBase128Int(out *int) bool {
 	ret := 0
 	for i := 0; len(*s) > 0; i++ {
-		if i == 4 {
+		if i == 5 {
 			return false
 		}
 		ret <<= 7
