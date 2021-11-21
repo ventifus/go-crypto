@@ -52,6 +52,24 @@
       "parentUuid": "327c327d_f597af15",
       "revId": "6e87a0a3e28be4add3ccfcf257d89297a1f6bb96",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2531dbe_11038652",
+        "filename": "cryptobyte/asn1.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 54880
+      },
+      "writtenOn": "2021-11-21T20:07:24Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "500bc566_e8f84f31",
+      "revId": "6e87a0a3e28be4add3ccfcf257d89297a1f6bb96",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
