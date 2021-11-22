@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e0019b_51e3d9d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2021-11-22T03:17:22Z",
+      "side": 1,
+      "message": "Commit message should be:\n\ncryptobyte: fix error parsing ASN1 identifiers\n\nFixes golang/go#49678",
+      "revId": "0d7e28e51e78a3a8e015ca553d1ff83e047f978a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
