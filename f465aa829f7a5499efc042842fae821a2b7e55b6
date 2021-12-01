@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e9766e_e965c28b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-12-01T19:11:01Z",
+      "side": 1,
+      "message": "Any reason not to go with the Options proposed API in https://github.com/golang/go/issues/31804#issuecomment-537230419?\n\nAlso, this needs a rebase on crypto/ed25519, rather than x/crypto.",
+      "revId": "f465aa829f7a5499efc042842fae821a2b7e55b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "312f5bf2_1a9e49c4",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-12-01T19:11:01Z",
+      "side": 1,
+      "message": "Instead of a bool, here and in verify() take a prefix []byte. Ed25519 will use nil, and Ed25519ph will use phDomainSeparationPrefix. Then there is no need for an if.",
+      "range": {
+        "startLine": 145,
+        "startChar": 49,
+        "endLine": 145,
+        "endChar": 63
+      },
+      "revId": "f465aa829f7a5499efc042842fae821a2b7e55b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71545cd7_107af39f",
+        "filename": "ed25519/ed25519.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2021-12-01T19:11:01Z",
+      "side": 1,
+      "message": "Return false rather than panic\u0027ing, and change the panic in Verify, too.\n\nToo easy to cause a DoS by piping an attacker controlled slice into Verify, and signatures are quite by definition attacker controlled.",
+      "revId": "f465aa829f7a5499efc042842fae821a2b7e55b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
