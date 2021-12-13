@@ -26,7 +26,7 @@ func counter(prf func() hash.Hash, keyLen int, label, context []byte) []byte {
 	if keyLen < 0 {
 		panic("kbkdf: negative amount of key data requested")
 	}
-	if keyLen > (math.MaxUint32 / 8) {
+	if keyLen >= (math.MaxUint32 / 8) {
 		panic("kbkdf: 2^32 or more bits of key data requested")
 	}
 	hashLen := prf().Size()
