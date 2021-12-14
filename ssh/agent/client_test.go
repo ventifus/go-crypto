@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"errors"
+	"fmt"
 	"io"
 	"net"
 	"os"
@@ -213,8 +214,10 @@ func TestMalformedRequests(t *testing.T) {
 	testCase := func(t *testing.T, requestBytes []byte, wantServerErr bool) {
 		var wg sync.WaitGroup
 		wg.Add(1)
+		ready := make(chan bool, 1)
 		go func() {
 			defer wg.Done()
+			<-ready
 			c, err := listener.Accept()
 			if err != nil {
 				t.Errorf("listener.Accept: %v", err)
@@ -227,7 +230,7 @@ func TestMalformedRequests(t *testing.T) {
 				t.Error("ServeAgent should have returned an error to malformed input")
 			} else {
 				if (err != io.EOF) != wantServerErr {
-					t.Errorf("ServeAgent returned expected error: %v", err)
+					t.Errorf("ServeAgent returned unexpected error: %v", err)
 				}
 			}
 		}()
@@ -238,9 +241,11 @@ func TestMalformedRequests(t *testing.T) {
 		}
 		_, err = c.Write(requestBytes)
 		if err != nil {
+			fmt.Println("write error?", err)
 			t.Errorf("Unexpected error writing raw bytes on connection: %v", err)
 		}
 		c.Close()
+		ready <- true
 		wg.Wait()
 	}
 
