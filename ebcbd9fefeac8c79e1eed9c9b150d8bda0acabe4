@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "429c082e_2fcf7f42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2021-12-26T23:59:08Z",
+      "side": 1,
+      "message": "go.mod: update imports to latest versions",
+      "revId": "ebcbd9fefeac8c79e1eed9c9b150d8bda0acabe4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62323da_58443e5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2021-12-26T23:59:08Z",
+      "side": 1,
+      "message": "Drop this line, it just repeats the topic.",
+      "revId": "ebcbd9fefeac8c79e1eed9c9b150d8bda0acabe4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
