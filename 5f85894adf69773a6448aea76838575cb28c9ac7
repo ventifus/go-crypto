@@ -33,6 +33,24 @@
       "message": "Can someone review this PR as the current text version(golang.org/x/text v0.3.6) dependency has a Security Vulnerability.",
       "revId": "5f85894adf69773a6448aea76838575cb28c9ac7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1856c6e7_57ab7e85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-11T13:05:47Z",
+      "side": 1,
+      "message": "Does the x/text security vulnerability affect x/crypto? If not, it\u0027s not a reason to update x/crypto\u0027s version of the x/test dependency. If it affects your project, you should update your project\u0027s version of x/text, not rely on x/crypto (which might stop depending on x/text tomorrow) to pull the x/text version up for you.",
+      "parentUuid": "83d5965c_364f61d7",
+      "revId": "5f85894adf69773a6448aea76838575cb28c9ac7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
