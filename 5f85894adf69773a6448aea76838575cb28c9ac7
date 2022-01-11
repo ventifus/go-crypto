@@ -16,6 +16,23 @@
       "message": "Hello Ian, I updated the comments as per your feedback. Thanks",
       "revId": "5f85894adf69773a6448aea76838575cb28c9ac7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d5965c_364f61d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55388
+      },
+      "writtenOn": "2022-01-11T02:30:23Z",
+      "side": 1,
+      "message": "Can someone review this PR as the current text version(golang.org/x/text v0.3.6) dependency has a Security Vulnerability.",
+      "revId": "5f85894adf69773a6448aea76838575cb28c9ac7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
