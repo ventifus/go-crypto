@@ -975,6 +975,7 @@ func TestFetchCertRetry(t *testing.T) {
 
 func TestFetchCertCancel(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		<-r.Context().Done()
 		w.Header().Set("Retry-After", "0")
 		w.WriteHeader(http.StatusBadRequest)
 	}))
@@ -987,6 +988,7 @@ func TestFetchCertCancel(t *testing.T) {
 		_, err = cl.FetchCert(ctx, ts.URL, false)
 		close(done)
 	}()
+	time.Sleep(1 * time.Millisecond)
 	cancel()
 	<-done
 	if err != context.Canceled {
