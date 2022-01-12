@@ -89,6 +89,24 @@
       "message": "Having cancel here means by the time cl.FetchCert is called, the context may either be already canceled, or not yet canceled. After looking through what FetchCert does (and how it changed since it was added in 2016), it appears this is intentional, and this test ends up making sure that if the context is canceled sometime while an HTTP request takes flight, the exact expected error is propagated all the way out.",
       "revId": "b254567baea3dd11a731db2d3331bb5860caf1a6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14893703_ccd2f82b",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-01-12T20:19:00Z",
+      "side": 1,
+      "message": "Indeed! I thought about moving the cancel call into the server handler proper to make it more deterministic — but, given that we don\u0027t see failures today from cancellation triggering too early, maybe a little nondeterminism in that direction is actually a good thing. 😅",
+      "parentUuid": "5b4cd4d9_b6b57bad",
+      "revId": "b254567baea3dd11a731db2d3331bb5860caf1a6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
