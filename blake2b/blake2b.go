@@ -39,6 +39,7 @@ var (
 	useAVX2 bool
 	useAVX  bool
 	useSSE4 bool
+	useNEON bool
 )
 
 var (
