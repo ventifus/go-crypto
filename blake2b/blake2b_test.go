@@ -14,6 +14,78 @@ import (
 	"testing"
 )
 
+func TestHashBlocks(t *testing.T) {
+	h := [8]uint64{
+		iv[0] ^ Size256 | (1 << 16) | (1 << 24),
+		iv[1], iv[2], iv[3],
+		iv[4], iv[5], iv[6], iv[7],
+	}
+	for i, tc := range []struct {
+		h     [8]uint64
+		c     [2]uint64
+		flag  uint64
+		block []byte
+	}{
+		// First non-final block.
+		{
+			h:     h,
+			block: make([]byte, BlockSize),
+		},
+		// Final block.
+		{
+			h:     h,
+			c:     [2]uint64{1, 0},
+			flag:  0xFFFFFFFFFFFFFFFF,
+			block: make([]byte, BlockSize),
+		},
+		// Final block (after 2^128).
+		{
+			h:     h,
+			c:     [2]uint64{^uint64(0), ^uint64(0)},
+			flag:  0xFFFFFFFFFFFFFFFF,
+			block: make([]byte, BlockSize),
+		},
+		// Multiple non-final blocks.
+		{
+			h:     h,
+			block: make([]byte, BlockSize*2),
+		},
+		// Non-final with random data.
+		{
+			h: h,
+			block: []byte{
+				0x96, 0x1f, 0x89, 0xbb, 0x16, 0xad, 0x22, 0x56, 0xf4, 0x60, 0x07, 0xb4,
+				0xe6, 0xb1, 0x3b, 0xf1, 0xbe, 0xa1, 0x5a, 0x2c, 0xa9, 0x0f, 0xa3, 0x24,
+				0xc3, 0x26, 0x25, 0xb3, 0x84, 0xdb, 0x6b, 0x91, 0xc9, 0xaa, 0x9a, 0xb7,
+				0x33, 0x8e, 0x99, 0xd7, 0x81, 0xeb, 0xb0, 0xf1, 0x6e, 0x16, 0x15, 0xaf,
+				0xaf, 0x56, 0xcd, 0x36, 0x63, 0x23, 0x36, 0x77, 0xbc, 0xec, 0x6c, 0x0f,
+				0x5d, 0x66, 0x1d, 0x2a, 0x8c, 0xe4, 0xf5, 0x4c, 0x61, 0x0d, 0xb7, 0xd9,
+				0x69, 0xac, 0x12, 0xff, 0xc6, 0x99, 0x24, 0x69, 0x74, 0x13, 0xf9, 0xe8,
+				0x23, 0x97, 0xef, 0xaa, 0xd9, 0xc6, 0x0f, 0xc2, 0xe7, 0x90, 0xec, 0x6b,
+				0xc1, 0x7b, 0xd5, 0x5c, 0x9e, 0x15, 0x01, 0xb9, 0xd5, 0x05, 0x77, 0x84,
+				0x80, 0xb4, 0xb9, 0xf0, 0xfb, 0x6a, 0xcb, 0xf7, 0xd1, 0x42, 0xd3, 0x5a,
+				0xeb, 0x91, 0x23, 0x4e, 0x84, 0xe3, 0x7a, 0x01,
+			},
+		},
+	} {
+		want := tc
+		hashBlocksGeneric(&want.h, &want.c, want.flag, want.block)
+
+		got := tc
+		hashBlocks(&got.h, &got.c, got.flag, got.block)
+
+		if got.c != want.c {
+			fmt.Printf("c: %d\n", got.c)
+			t.Fatalf("#%d: expected %#x, got %#x", i, want.c, got.c)
+		}
+		if got.h != want.h {
+			fmt.Printf("W: %#x\n", want.h)
+			fmt.Printf("G: %#x\n", got.h)
+			t.Fatalf("#%d: expected %#x, got %#x", i, want.h, got.h)
+		}
+	}
+}
+
 func fromHex(s string) []byte {
 	b, err := hex.DecodeString(s)
 	if err != nil {
@@ -23,9 +95,9 @@ func fromHex(s string) []byte {
 }
 
 func TestHashes(t *testing.T) {
-	defer func(sse4, avx, avx2 bool) {
-		useSSE4, useAVX, useAVX2 = sse4, avx, avx2
-	}(useSSE4, useAVX, useAVX2)
+	defer func(sse4, avx, avx2, neon bool) {
+		useSSE4, useAVX, useAVX2, useNEON = sse4, avx, avx2, neon
+	}(useSSE4, useAVX, useAVX2, useNEON)
 
 	if useAVX2 {
 		t.Log("AVX2 version")
@@ -41,15 +113,20 @@ func TestHashes(t *testing.T) {
 		t.Log("SSE4 version")
 		testHashes(t)
 		useSSE4 = false
+	}
+	if useNEON {
+		t.Log("NEON version")
+		testHashes(t)
+		useNEON = false
 	}
 	t.Log("generic version")
 	testHashes(t)
 }
 
 func TestHashes2X(t *testing.T) {
-	defer func(sse4, avx, avx2 bool) {
-		useSSE4, useAVX, useAVX2 = sse4, avx, avx2
-	}(useSSE4, useAVX, useAVX2)
+	defer func(sse4, avx, avx2, neon bool) {
+		useSSE4, useAVX, useAVX2, useNEON = sse4, avx, avx2, neon
+	}(useSSE4, useAVX, useAVX2, useNEON)
 
 	if useAVX2 {
 		t.Log("AVX2 version")
@@ -65,6 +142,11 @@ func TestHashes2X(t *testing.T) {
 		t.Log("SSE4 version")
 		testHashes2X(t)
 		useSSE4 = false
+	}
+	if useNEON {
+		t.Log("NEON version")
+		testHashes2X(t)
+		useNEON = false
 	}
 	t.Log("generic version")
 	testHashes2X(t)
