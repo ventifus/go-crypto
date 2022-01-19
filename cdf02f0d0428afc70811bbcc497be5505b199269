@@ -78,6 +78,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c86831f4_f80830cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32558
+      },
+      "writtenOn": "2022-01-19T17:19:15Z",
+      "side": 1,
+      "message": "Any update on this CL? This issue is marked as a release blocker",
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61688209_e1c1c508",
