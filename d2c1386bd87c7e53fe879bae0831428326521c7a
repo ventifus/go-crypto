@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "006e7f74_589f7116",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-22T19:11:13Z",
+      "side": 1,
+      "message": "This finishes off the work started by bradfitz in https://go-review.googlesource.com/c/crypto/+/342449/",
+      "revId": "d2c1386bd87c7e53fe879bae0831428326521c7a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
