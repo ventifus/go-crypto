@@ -8,6 +8,10 @@ import (
 	"context"
 	"crypto"
 	"crypto/ecdsa"
+	"crypto/tls"
+	"net/http"
+	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -46,11 +50,28 @@ func TestRenewFromCache(t *testing.T) {
 	man.RenewBefore = 24 * time.Hour
 
 	ca := acmetest.NewCAServer(t).Start()
-	ca.ResolveGetCertificate(exampleDomain, man.GetCertificate)
 
 	man.Client = &acme.Client{
 		DirectoryURL: ca.URL(),
 	}
+
+	us := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
+	}))
+	us.TLS = &tls.Config{
+		NextProtos: []string{"http/1.1", acme.ALPNProto},
+		GetCertificate: func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
+			cert, err := man.GetCertificate(hello)
+			if err != nil {
+				t.Errorf("m.GetCertificate: %v", err)
+			}
+			return cert, err
+		},
+	}
+	us.StartTLS()
+	defer us.Close()
+
+	ca.Resolve(exampleDomain, strings.TrimPrefix(us.URL, "https://"))
 
 	// cache an almost expired cert
 	now := time.Now()
