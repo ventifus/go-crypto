@@ -18,6 +18,7 @@ import (
 	"encoding/asn1"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
 	"io"
@@ -473,100 +474,33 @@ type getCertificateFunc func(domain string) (*tls.Certificate, error)
 
 // startACMEServerStub runs an ACME server
 // The domain argument is the expected domain name of a certificate request.
-// TODO: Drop this in favour of x/crypto/acme/autocert/internal/acmetest.
 func startACMEServerStub(t *testing.T, tokenCert getCertificateFunc, domain string) (url string, finish func()) {
-	verifyTokenCert := func() {
-		tlscert, err := tokenCert(domain)
-		if err != nil {
-			t.Errorf("verifyTokenCert: tokenCert(%q): %v", domain, err)
-			return
-		}
-		crt, err := x509.ParseCertificate(tlscert.Certificate[0])
-		if err != nil {
-			t.Errorf("verifyTokenCert: x509.ParseCertificate: %v", err)
-		}
-		if err := crt.VerifyHostname(domain); err != nil {
-			t.Errorf("verifyTokenCert: %v", err)
-		}
-		// See https://tools.ietf.org/html/draft-ietf-acme-tls-alpn-05#section-5.1
-		oid := asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 1, 31}
-		for _, x := range crt.Extensions {
-			if x.Id.Equal(oid) {
-				// No need to check the extension value here.
-				// This is done in acme package tests.
-				return
-			}
-		}
-		t.Error("verifyTokenCert: no id-pe-acmeIdentifier extension found")
-	}
-
 	// ACME CA server stub
-	var ca *httptest.Server
-	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Replay-Nonce", "nonce")
-		if r.Method == "HEAD" {
-			// a nonce request
-			return
-		}
+	ca := acmetest.NewCAServer([]string{"tls-alpn-01"}, nil)
 
-		switch r.URL.Path {
-		// discovery
-		case "/":
-			if err := discoTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("discoTmpl: %v", err)
-			}
-		// client key registration
-		case "/new-reg":
-			w.Write([]byte("{}"))
-		// domain authorization
-		case "/new-authz":
-			w.Header().Set("Location", ca.URL+"/authz/1")
-			w.WriteHeader(http.StatusCreated)
-			if err := authzTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("authzTmpl: %v", err)
-			}
-		// accept tls-alpn-01 challenge
-		case "/challenge/tls-alpn-01":
-			verifyTokenCert()
-			w.Write([]byte("{}"))
-		// authorization status
-		case "/authz/1":
-			w.Write([]byte(`{"status": "valid"}`))
-		// cert request
-		case "/new-cert":
-			var req struct {
-				CSR string `json:"csr"`
-			}
-			decodePayload(&req, r.Body)
-			b, _ := base64.RawURLEncoding.DecodeString(req.CSR)
-			csr, err := x509.ParseCertificateRequest(b)
-			if err != nil {
-				t.Errorf("new-cert: CSR: %v", err)
-			}
-			if csr.Subject.CommonName != domain {
-				t.Errorf("CommonName in CSR = %q; want %q", csr.Subject.CommonName, domain)
-			}
-			der, err := dummyCert(csr.PublicKey, domain)
-			if err != nil {
-				t.Errorf("new-cert: dummyCert: %v", err)
-			}
-			chainUp := fmt.Sprintf("<%s/ca-cert>; rel=up", ca.URL)
-			w.Header().Set("Link", chainUp)
-			w.WriteHeader(http.StatusCreated)
-			w.Write(der)
-		// CA chain cert
-		case "/ca-cert":
-			der, err := dummyCert(nil, "ca")
-			if err != nil {
-				t.Errorf("ca-cert: dummyCert: %v", err)
-			}
-			w.Write(der)
-		default:
-			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
-		}
+	us := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
 	}))
+	us.TLS = &tls.Config{
+		NextProtos: []string{"http/1.1", acme.ALPNProto},
+		GetCertificate: func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
+			if hello.ServerName != domain {
+				return nil, errors.New("server name did not match domain")
+			}
+
+			return tokenCert(domain)
+		},
+	}
+	us.StartTLS()
+
+	// In TLS-ALPN challenge verification, CA connects to the domain:443 in question.
+	// Because the domain won't resolve in tests, we need to tell the CA
+	// where to dial to instead.
+	ca.Resolve(domain, strings.TrimPrefix(us.URL, "https://"))
+
 	finish = func() {
 		ca.Close()
+		us.Close()
 
 		// make sure token cert was removed
 		cancel := make(chan struct{})
@@ -636,74 +570,7 @@ func testGetCertificate(t *testing.T, man *Manager, domain string, hello *tls.Cl
 }
 
 func TestVerifyHTTP01(t *testing.T) {
-	var (
-		http01 http.Handler
-
-		authzCount      int // num. of created authorizations
-		didAcceptHTTP01 bool
-	)
-
-	verifyHTTPToken := func() {
-		r := httptest.NewRequest("GET", "/.well-known/acme-challenge/token-http-01", nil)
-		w := httptest.NewRecorder()
-		http01.ServeHTTP(w, r)
-		if w.Code != http.StatusOK {
-			t.Errorf("http token: w.Code = %d; want %d", w.Code, http.StatusOK)
-		}
-		if v := w.Body.String(); !strings.HasPrefix(v, "token-http-01.") {
-			t.Errorf("http token value = %q; want 'token-http-01.' prefix", v)
-		}
-	}
-
-	// ACME CA server stub, only the needed bits.
-	// TODO: Replace this with x/crypto/acme/autocert/internal/acmetest.
-	var ca *httptest.Server
-	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Replay-Nonce", "nonce")
-		if r.Method == "HEAD" {
-			// a nonce request
-			return
-		}
-
-		switch r.URL.Path {
-		// Discovery.
-		case "/":
-			if err := discoTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("discoTmpl: %v", err)
-			}
-		// Client key registration.
-		case "/new-reg":
-			w.Write([]byte("{}"))
-		// New domain authorization.
-		case "/new-authz":
-			authzCount++
-			w.Header().Set("Location", fmt.Sprintf("%s/authz/%d", ca.URL, authzCount))
-			w.WriteHeader(http.StatusCreated)
-			if err := authzTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("authzTmpl: %v", err)
-			}
-		// Reject tls-alpn-01.
-		case "/challenge/tls-alpn-01":
-			http.Error(w, "won't accept tls-sni-01", http.StatusBadRequest)
-		// Should not accept dns-01.
-		case "/challenge/dns-01":
-			t.Errorf("dns-01 challenge was accepted")
-			http.Error(w, "won't accept dns-01", http.StatusBadRequest)
-		// Accept http-01.
-		case "/challenge/http-01":
-			didAcceptHTTP01 = true
-			verifyHTTPToken()
-			w.Write([]byte("{}"))
-		// Authorization statuses.
-		case "/authz/1": // tls-alpn-01
-			w.Write([]byte(`{"status": "invalid"}`))
-		case "/authz/2": // http-01
-			w.Write([]byte(`{"status": "valid"}`))
-		default:
-			http.NotFound(w, r)
-			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
-		}
-	}))
+	ca := acmetest.NewCAServer([]string{"http-01"}, []string{"example.org"})
 	defer ca.Close()
 
 	m := &Manager{
@@ -711,129 +578,47 @@ func TestVerifyHTTP01(t *testing.T) {
 			DirectoryURL: ca.URL,
 		},
 	}
-	http01 = m.HTTPHandler(nil)
+
+	srv := httptest.NewServer(m.HTTPHandler(nil))
+	defer srv.Close()
+
+	ca.Resolve("example.org", strings.TrimPrefix(srv.URL, "http://"))
+
 	ctx := context.Background()
 	client, err := m.acmeClient(ctx)
 	if err != nil {
 		t.Fatalf("m.acmeClient: %v", err)
 	}
-	if err := m.verify(ctx, client, "example.org"); err != nil {
+
+	if _, err := m.verifyRFC(ctx, client, "example.org"); err != nil {
 		t.Errorf("m.verify: %v", err)
-	}
-	// Only tls-alpn-01 and http-01 must be accepted.
-	// The dns-01 challenge is unsupported.
-	if authzCount != 2 {
-		t.Errorf("authzCount = %d; want 2", authzCount)
-	}
-	if !didAcceptHTTP01 {
-		t.Error("did not accept http-01 challenge")
 	}
 }
 
 func TestRevokeFailedAuthz(t *testing.T) {
-	// Prefill authorization URIs expected to be revoked.
-	// The challenges are selected in a specific order,
-	// each tried within a newly created authorization.
-	// This means each authorization URI corresponds to a different challenge type.
-	revokedAuthz := map[string]bool{
-		"/authz/0": false, // tls-alpn-01
-		"/authz/1": false, // http-01
-		"/authz/2": false, // no viable challenge, but authz is created
-	}
-
-	var authzCount int          // num. of created authorizations
-	var revokeCount int         // num. of revoked authorizations
-	done := make(chan struct{}) // closed when revokeCount is 3
-
-	// ACME CA server stub, only the needed bits.
-	// TODO: Replace this with x/crypto/acme/autocert/internal/acmetest.
-	var ca *httptest.Server
-	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Replay-Nonce", "nonce")
-		if r.Method == "HEAD" {
-			// a nonce request
-			return
-		}
-
-		switch r.URL.Path {
-		// Discovery.
-		case "/":
-			if err := discoTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("discoTmpl: %v", err)
-			}
-		// Client key registration.
-		case "/new-reg":
-			w.Write([]byte("{}"))
-		// New domain authorization.
-		case "/new-authz":
-			w.Header().Set("Location", fmt.Sprintf("%s/authz/%d", ca.URL, authzCount))
-			w.WriteHeader(http.StatusCreated)
-			if err := authzTmpl.Execute(w, ca.URL); err != nil {
-				t.Errorf("authzTmpl: %v", err)
-			}
-			authzCount++
-		// tls-alpn-01 challenge "accept" request.
-		case "/challenge/tls-alpn-01":
-			// Refuse.
-			http.Error(w, "won't accept tls-alpn-01 challenge", http.StatusBadRequest)
-		// http-01 challenge "accept" request.
-		case "/challenge/http-01":
-			// Refuse.
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(`{"status":"invalid"}`))
-		// Authorization requests.
-		case "/authz/0", "/authz/1", "/authz/2":
-			// Revocation requests.
-			if r.Method == "POST" {
-				var req struct{ Status string }
-				if err := decodePayload(&req, r.Body); err != nil {
-					t.Errorf("%s: decodePayload: %v", r.URL, err)
-				}
-				switch req.Status {
-				case "deactivated":
-					revokedAuthz[r.URL.Path] = true
-					revokeCount++
-					if revokeCount >= 3 {
-						// Last authorization is revoked.
-						defer close(done)
-					}
-				default:
-					t.Errorf("%s: req.Status = %q; want 'deactivated'", r.URL, req.Status)
-				}
-				w.Write([]byte(`{"status": "invalid"}`))
-				return
-			}
-			// Authorization status requests.
-			w.Write([]byte(`{"status":"pending"}`))
-		default:
-			http.NotFound(w, r)
-			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
-		}
-	}))
+	ca := acmetest.NewCAServer([]string{"tls-alpn-01", "dns-01", "http-01"}, []string{"unused"})
 	defer ca.Close()
 
 	m := &Manager{
 		Client: &acme.Client{DirectoryURL: ca.URL},
 	}
 	m.HTTPHandler(nil) // enable http-01 challenge type
-	// Should fail and revoke 3 authorizations.
-	// The first 2 are tls-alpn-01 and http-01 challenges.
-	// The third time an authorization is created but no viable challenge is found.
-	// See revokedAuthz above for more explanation.
+
+	// Should fail and revoke the authorization.
 	if _, err := m.createCert(context.Background(), exampleCertKey); err == nil {
 		t.Errorf("m.createCert returned nil error")
 	}
-	select {
-	case <-time.After(3 * time.Second):
-		t.Error("revocations took too long")
-	case <-done:
-		// revokeCount is at least 3.
-	}
-	for uri, ok := range revokedAuthz {
-		if !ok {
-			t.Errorf("%q authorization was not revoked", uri)
+
+	for attempts := 0; attempts < 30; attempts++ {
+		auth, err := m.Client.GetAuthorization(context.Background(), ca.URL+"/authz/"+exampleDomain)
+		if err == nil && auth.Status == acme.StatusDeactivated {
+			return
 		}
+
+		time.Sleep(100 * time.Millisecond)
 	}
+
+	t.Error("revocations took too long")
 }
 
 func TestHTTPHandlerDefaultFallback(t *testing.T) {

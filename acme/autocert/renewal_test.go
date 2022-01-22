@@ -10,15 +10,14 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/tls"
-	"crypto/x509"
-	"encoding/base64"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
 	"golang.org/x/crypto/acme"
+	"golang.org/x/crypto/acme/autocert/internal/acmetest"
 )
 
 func TestRenewalNext(t *testing.T) {
@@ -48,62 +47,7 @@ func TestRenewalNext(t *testing.T) {
 }
 
 func TestRenewFromCache(t *testing.T) {
-	// ACME CA server stub
-	var ca *httptest.Server
-	ca = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Replay-Nonce", "nonce")
-		if r.Method == "HEAD" {
-			// a nonce request
-			return
-		}
-
-		switch r.URL.Path {
-		// discovery
-		case "/":
-			if err := discoTmpl.Execute(w, ca.URL); err != nil {
-				t.Fatalf("discoTmpl: %v", err)
-			}
-		// client key registration
-		case "/new-reg":
-			w.Write([]byte("{}"))
-		// domain authorization
-		case "/new-authz":
-			w.Header().Set("Location", ca.URL+"/authz/1")
-			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"status": "valid"}`))
-		// authorization status request done by Manager's revokePendingAuthz.
-		case "/authz/1":
-			w.Write([]byte(`{"status": "valid"}`))
-		// cert request
-		case "/new-cert":
-			var req struct {
-				CSR string `json:"csr"`
-			}
-			decodePayload(&req, r.Body)
-			b, _ := base64.RawURLEncoding.DecodeString(req.CSR)
-			csr, err := x509.ParseCertificateRequest(b)
-			if err != nil {
-				t.Fatalf("new-cert: CSR: %v", err)
-			}
-			der, err := dummyCert(csr.PublicKey, exampleDomain)
-			if err != nil {
-				t.Fatalf("new-cert: dummyCert: %v", err)
-			}
-			chainUp := fmt.Sprintf("<%s/ca-cert>; rel=up", ca.URL)
-			w.Header().Set("Link", chainUp)
-			w.WriteHeader(http.StatusCreated)
-			w.Write(der)
-		// CA chain cert
-		case "/ca-cert":
-			der, err := dummyCert(nil, "ca")
-			if err != nil {
-				t.Fatalf("ca-cert: dummyCert: %v", err)
-			}
-			w.Write(der)
-		default:
-			t.Errorf("unrecognized r.URL.Path: %s", r.URL.Path)
-		}
-	}))
+	ca := acmetest.NewCAServer([]string{"tls-alpn-01"}, []string{exampleDomain})
 	defer ca.Close()
 
 	man := &Manager{
@@ -115,6 +59,24 @@ func TestRenewFromCache(t *testing.T) {
 		},
 	}
 	defer man.stopRenew()
+
+	us := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
+	}))
+	us.TLS = &tls.Config{
+		NextProtos: []string{"http/1.1", acme.ALPNProto},
+		GetCertificate: func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
+			cert, err := man.GetCertificate(hello)
+			if err != nil {
+				t.Errorf("m.GetCertificate: %v", err)
+			}
+			return cert, err
+		},
+	}
+	us.StartTLS()
+	defer us.Close()
+
+	ca.Resolve(exampleDomain, strings.TrimPrefix(us.URL, "https://"))
 
 	// cache an almost expired cert
 	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)

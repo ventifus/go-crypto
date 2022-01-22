@@ -18,6 +18,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -146,10 +147,10 @@ func (ca *CAServer) Resolve(domain, addr string) {
 }
 
 type discovery struct {
-	NewNonce string `json:"newNonce"`
-	NewReg   string `json:"newAccount"`
-	NewOrder string `json:"newOrder"`
-	NewAuthz string `json:"newAuthz"`
+	NewNonce   string `json:"newNonce"`
+	NewAccount string `json:"newAccount"`
+	NewOrder   string `json:"newOrder"`
+	NewAuthz   string `json:"newAuthz"`
 }
 
 type challenge struct {
@@ -186,10 +187,10 @@ func (ca *CAServer) handle(w http.ResponseWriter, r *http.Request) {
 	// Discovery request.
 	case r.URL.Path == "/":
 		resp := &discovery{
-			NewNonce: ca.serverURL("/new-nonce"),
-			NewReg:   ca.serverURL("/new-reg"),
-			NewOrder: ca.serverURL("/new-order"),
-			NewAuthz: ca.serverURL("/new-authz"),
+			NewNonce:   ca.serverURL("/new-nonce"),
+			NewAccount: ca.serverURL("/new-account"),
+			NewOrder:   ca.serverURL("/new-order"),
+			NewAuthz:   ca.serverURL("/new-authz"),
 		}
 		if err := json.NewEncoder(w).Encode(resp); err != nil {
 			panic(fmt.Sprintf("discovery response: %v", err))
@@ -201,7 +202,7 @@ func (ca *CAServer) handle(w http.ResponseWriter, r *http.Request) {
 		return
 
 	// Client key registration request.
-	case r.URL.Path == "/new-reg":
+	case r.URL.Path == "/new-account":
 		// TODO: Check the user account key against a ca.accountKeys?
 		w.Header().Set("Location", ca.serverURL("/accounts/1"))
 		w.WriteHeader(http.StatusCreated)
@@ -262,9 +263,32 @@ func (ca *CAServer) handle(w http.ResponseWriter, r *http.Request) {
 			panic(fmt.Sprintf("new authz response: %v", err))
 		}
 
+	// Accept http-01 challenge type requests
+	case strings.HasPrefix(r.URL.Path, "/challenge/http-01/"):
+		domain := strings.TrimPrefix(r.URL.Path, "/challenge/http-01/")
+		if err := ca.matchWhitelist([]string{domain}); err != nil {
+			ca.httpErrorf(w, http.StatusUnauthorized, `{"status":"invalid"}`)
+			return
+		}
+
+		ca.mu.Lock()
+		_, exist := ca.authorizations[domain]
+		ca.mu.Unlock()
+		if !exist {
+			ca.httpErrorf(w, http.StatusBadRequest, "challenge accept: no authz for %q", domain)
+			return
+		}
+		go ca.validateChallenge("http-01", domain)
+		w.Write([]byte("{}"))
+
 	// Accept tls-alpn-01 challenge type requests.
 	case strings.HasPrefix(r.URL.Path, "/challenge/tls-alpn-01/"):
 		domain := strings.TrimPrefix(r.URL.Path, "/challenge/tls-alpn-01/")
+		if err := ca.matchWhitelist([]string{domain}); err != nil {
+			ca.httpErrorf(w, http.StatusUnauthorized, `{"status":"invalid"}`)
+			return
+		}
+
 		ca.mu.Lock()
 		_, exist := ca.authorizations[domain]
 		ca.mu.Unlock()
@@ -280,11 +304,22 @@ func (ca *CAServer) handle(w http.ResponseWriter, r *http.Request) {
 		domain := strings.TrimPrefix(r.URL.Path, "/authz/")
 		ca.mu.Lock()
 		defer ca.mu.Unlock()
+
 		authz, ok := ca.authorizations[domain]
 		if !ok {
 			ca.httpErrorf(w, http.StatusNotFound, "no authz for %q", domain)
 			return
 		}
+
+		var req struct {
+			Status string
+		}
+		if err := decodePayload(&req, r.Body); err == nil {
+			if req.Status == acme.StatusDeactivated {
+				authz.Status = acme.StatusDeactivated
+			}
+		}
+
 		if err := json.NewEncoder(w).Encode(authz); err != nil {
 			panic(fmt.Sprintf("get authz for %q response: %v", domain, err))
 		}
@@ -387,6 +422,8 @@ func (ca *CAServer) storedOrder(i string) (*order, error) {
 	if idx > len(ca.orders)-1 {
 		return nil, fmt.Errorf("storedOrder: no such order %d", idx)
 	}
+
+	ca.updatePendingOrders()
 	return ca.orders[idx], nil
 }
 
@@ -451,6 +488,8 @@ func (ca *CAServer) leafCert(csr *x509.CertificateRequest) (der []byte, err erro
 func (ca *CAServer) validateChallenge(typ, identifier string) {
 	var err error
 	switch typ {
+	case "http-01":
+		err = ca.verifyHTTPChallenge(identifier)
 	case "tls-alpn-01":
 		err = ca.verifyALPNChallenge(identifier)
 	default:
@@ -465,30 +504,25 @@ func (ca *CAServer) validateChallenge(typ, identifier string) {
 		authz.Status = "valid"
 	}
 	log.Printf("validated %q for %q; authz status is now: %s", typ, identifier, authz.Status)
+
+	ca.updatePendingOrders()
+}
+
+func (ca *CAServer) updatePendingOrders() {
 	// Update all pending orders.
 	// An order becomes "ready" if all authorizations are "valid".
 	// An order becomes "invalid" if any authorization is "invalid".
 	// Status changes: https://tools.ietf.org/html/rfc8555#section-7.1.6
-OrdersLoop:
 	for i, o := range ca.orders {
 		if o.Status != acme.StatusPending {
 			continue
 		}
-		var countValid int
-		for _, zurl := range o.AuthzURLs {
-			z, ok := ca.authorizations[path.Base(zurl)]
-			if !ok {
-				log.Printf("no authz %q for order %d", zurl, i)
-				continue OrdersLoop
-			}
-			if z.Status == acme.StatusInvalid {
-				o.Status = acme.StatusInvalid
-				log.Printf("order %d is now invalid", i)
-				continue OrdersLoop
-			}
-			if z.Status == acme.StatusValid {
-				countValid++
-			}
+
+		countValid, countInvalid := ca.validateAuthzURLs(o.AuthzURLs)
+		if countInvalid > 0 {
+			o.Status = acme.StatusInvalid
+			log.Printf("order %d is now invalid", i)
+			continue
 		}
 		if countValid == len(o.AuthzURLs) {
 			o.Status = acme.StatusReady
@@ -496,6 +530,45 @@ OrdersLoop:
 			log.Printf("order %d is now ready", i)
 		}
 	}
+}
+
+func (ca *CAServer) validateAuthzURLs(urls []string) (countValid, countInvalid int) {
+	for _, zurl := range urls {
+		z, ok := ca.authorizations[path.Base(zurl)]
+		if !ok {
+			continue
+		}
+		if z.Status == acme.StatusInvalid {
+			countInvalid++
+		}
+		if z.Status == acme.StatusValid {
+			countValid++
+		}
+	}
+	return countValid, countInvalid
+}
+
+func (ca *CAServer) verifyHTTPChallenge(domain string) error {
+	addr, err := ca.addr(domain)
+	if err != nil {
+		return err
+	}
+
+	ca.mu.Lock()
+	authz := ca.authorizations[domain]
+	ca.mu.Unlock()
+
+	challenge := authz.Challenges[0]
+	resp, err := http.Get("http://" + addr + "/.well-known/acme-challenge/" + challenge.Token)
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return errors.New("unexpected http-01 challenge response status")
+	}
+
+	// TODO: verify response body
+	return nil
 }
 
 func (ca *CAServer) verifyALPNChallenge(domain string) error {
