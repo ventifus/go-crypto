@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc85e955_f1efe8af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-01-25T20:48:57Z",
+      "side": 1,
+      "message": "(example of what I mean by using a net.Pipe instead.)",
+      "revId": "3b5e0a5531e524655641ed5faee3fb0a025bc657",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
