@@ -112,6 +112,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8628db7f_4d88ae8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-01-25T20:56:32Z",
+      "side": 1,
+      "message": "Yep, this looks reasonable to me.\n\nI think there may still be something racy in the protocol implementation (#50805), but since this test is really about server validation and responses that seems orthogonal.",
+      "parentUuid": "b0f9479d_9d48a666",
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61688209_e1c1c508",
