@@ -95,6 +95,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f9479d_9d48a666",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-01-25T19:12:12Z",
+      "side": 1,
+      "message": "Sorry it\u0027s taken so long to get back to this. I\u0027ve lost the original context of why I thought this was the correct solution (my only real memory was repeatedly running this code to hit the rare failures).\n\nLooking back at it again, it doesn\u0027t seem like this is testing any specific TCP behavior, just some SSH protocol specific handling of specific malformed requests. Is there reason not to just use a net.Pipe, instead of a real connection, which should always work as expected, without any test induced connection weirdness?",
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61688209_e1c1c508",
