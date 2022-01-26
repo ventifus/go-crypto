@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "de84cc5f_4c0f0a26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-01-26T03:12:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49ae6554_584b727c",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "38de66aa_0c183797",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -147,6 +171,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d68fd76_518fffd4",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-01-26T03:12:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61688209_e1c1c508",
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f910e79_9e79b8da",
@@ -160,6 +202,24 @@
       "writtenOn": "2021-12-14T21:00:00Z",
       "side": 1,
       "message": "I suspect that this may be where the unexpected test failure occurs: perhaps sometimes the client buffers the write into the outgoing connection and then closes the connection immediately, and then when the server picks up the connection it is already broken prematurely?\n\nIf so, you could prevent that by using the synchronization pattern above: receiving from errc before calling c.Close on the server side would guarantee that the server finishes dispatching the request before the connection is closed.",
+      "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8023ec4_df671f02",
+        "filename": "ssh/agent/client_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-01-26T03:12:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0f910e79_9e79b8da",
       "revId": "cdf02f0d0428afc70811bbcc497be5505b199269",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
