@@ -16,6 +16,24 @@
       "message": "I was about to send an alternative change that keeps the to-be-revoked serving from cache for the next day but instead starts the async refresh in the background so users don\u0027t experience a connect pause during cert fetch.\n\nI\u0027ll use my change now for our users and then mail it for the next time certs are revoked with a 3 day warning. It\u0027ll be nice to have an environment variable knob ready for users to set the unix timestamp of the issue/LastBefore cut-off date for which to start an async renewal.\n",
       "revId": "aa10faf2a1f825c8ba49e90899862da2a0d353ca",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a583e6a_d7902042",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-01-27T16:13:35Z",
+      "side": 1,
+      "message": "Something like this: https://go-review.googlesource.com/c/crypto/+/381294\n\nUntested.",
+      "parentUuid": "2c878c1e_f3af3220",
+      "revId": "aa10faf2a1f825c8ba49e90899862da2a0d353ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
