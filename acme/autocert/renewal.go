@@ -21,6 +21,16 @@ type domainRenewal struct {
 	ck  certKey
 	key crypto.Signer
 
+	// reissueIfBefore, if non-zero, says that if the current
+	// cached cert's NotBefore time is before this time, it will
+	// be immediately renewed. This can be used to force renewals
+	// when the CA (such as LetsEncrypt ) notifies you that
+	// they're revoking their certs in 3 days and you need to
+	// reissue.  This lets you reissue the old ones in the
+	// background without any user-visible interruptions, as it
+	// will still serve the soon-to-be-revoked certs from cache.
+	reissueIfBefore time.Time
+
 	timerMu sync.Mutex
 	timer   *time.Timer
 }
@@ -29,13 +39,13 @@ type domainRenewal struct {
 // defined by the certificate expiration time exp.
 //
 // If the timer is already started, calling start is a noop.
-func (dr *domainRenewal) start(exp time.Time) {
+func (dr *domainRenewal) start(notBefore, exp time.Time) {
 	dr.timerMu.Lock()
 	defer dr.timerMu.Unlock()
 	if dr.timer != nil {
 		return
 	}
-	dr.timer = time.AfterFunc(dr.next(exp), dr.renew)
+	dr.timer = time.AfterFunc(dr.next(notBefore, exp), dr.renew)
 }
 
 // stop stops the cert renewal timer.
@@ -92,7 +102,7 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 	// a race is likely unavoidable in a distributed environment
 	// but we try nonetheless
 	if tlscert, err := dr.m.cacheGet(ctx, dr.ck); err == nil {
-		next := dr.next(tlscert.Leaf.NotAfter)
+		next := dr.next(tlscert.Leaf.NotBefore, tlscert.Leaf.NotAfter)
 		if next > dr.m.renewBefore()+renewJitter {
 			signer, ok := tlscert.PrivateKey.(crypto.Signer)
 			if ok {
@@ -124,10 +134,13 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 		return 0, err
 	}
 	dr.updateState(state)
-	return dr.next(leaf.NotAfter), nil
+	return dr.next(leaf.NotBefore, leaf.NotAfter), nil
 }
 
-func (dr *domainRenewal) next(expiry time.Time) time.Duration {
+func (dr *domainRenewal) next(notBefore, expiry time.Time) time.Duration {
+	if notBefore.Before(dr.reissueIfBefore) {
+		return 0
+	}
 	d := expiry.Sub(dr.m.now()) - dr.m.renewBefore()
 	// add a bit of randomness to renew deadline
 	n := pseudoRand.int63n(int64(renewJitter))

@@ -26,7 +26,9 @@ import (
 	mathrand "math/rand"
 	"net"
 	"net/http"
+	"os"
 	"path"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -456,7 +458,7 @@ func (m *Manager) cert(ctx context.Context, ck certKey) (*tls.Certificate, error
 		leaf: cert.Leaf,
 	}
 	m.state[ck] = s
-	go m.renew(ck, s.key, s.leaf.NotAfter)
+	go m.renew(ck, s.key, s.leaf.NotBefore, s.leaf.NotAfter)
 	return cert, nil
 }
 
@@ -601,7 +603,7 @@ func (m *Manager) createCert(ctx context.Context, ck certKey) (*tls.Certificate,
 	}
 	state.cert = der
 	state.leaf = leaf
-	go m.renew(ck, state.key, state.leaf.NotAfter)
+	go m.renew(ck, state.key, state.leaf.NotBefore, state.leaf.NotAfter)
 	return state.tlscert()
 }
 
@@ -974,7 +976,7 @@ func httpTokenCacheKey(tokenPath string) string {
 //
 // The key argument is a certificate private key.
 // The exp argument is the cert expiration time (NotAfter).
-func (m *Manager) renew(ck certKey, key crypto.Signer, exp time.Time) {
+func (m *Manager) renew(ck certKey, key crypto.Signer, notBefore, exp time.Time) {
 	m.renewalMu.Lock()
 	defer m.renewalMu.Unlock()
 	if m.renewal[ck] != nil {
@@ -985,8 +987,11 @@ func (m *Manager) renew(ck certKey, key crypto.Signer, exp time.Time) {
 		m.renewal = make(map[certKey]*domainRenewal)
 	}
 	dr := &domainRenewal{m: m, ck: ck, key: key}
+	if v, err := strconv.ParseInt(os.Getenv("ACME_AUTOCERT_REISSUE_IF_BEFORE"), 10, 64); err == nil {
+		dr.reissueIfBefore = time.Unix(v, 0)
+	}
 	m.renewal[ck] = dr
-	dr.start(exp)
+	dr.start(notBefore, exp)
 }
 
 // stopRenew stops all currently running cert renewal timers.
