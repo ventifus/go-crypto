@@ -34,6 +34,24 @@
       "parentUuid": "2c878c1e_f3af3220",
       "revId": "aa10faf2a1f825c8ba49e90899862da2a0d353ca",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbfb3d66_e12c2d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-27T17:29:41Z",
+      "side": 1,
+      "message": "Yeah, we talked about it with Russ and we landed on something almost exactly the same as CL 381294 (except we called it GOAUTOCERTFORCERENEW).\n\nI decided to ship the easiest thing to test and put out yesterday, to give people more time to roll it out, but I agree it would be nice to have something ready for next time.\n\nEventually, https://www.ietf.org/id/draft-aaron-acme-ari-01.html is the right answer, but it\u0027s moving at IETF speed.",
+      "parentUuid": "3a583e6a_d7902042",
+      "revId": "aa10faf2a1f825c8ba49e90899862da2a0d353ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
