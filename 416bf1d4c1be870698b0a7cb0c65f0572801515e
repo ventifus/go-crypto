@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "787fbc7e_670b120a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-01-27T16:29:00Z",
+      "side": 1,
+      "message": "No tests, but just tested this in production and it worked.\n \nI bounced a server process with this code and clients all immediately reconnected using the yet-unrevoked cert from cache and then this code replaced the cached cert in a few seconds in the background.",
+      "revId": "416bf1d4c1be870698b0a7cb0c65f0572801515e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
