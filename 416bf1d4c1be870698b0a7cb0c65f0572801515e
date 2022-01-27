@@ -33,6 +33,63 @@
       "message": "Can we also get this or some variant in so we\u0027re ready for next time?\n\nHappy to rename the environment variable.\n",
       "revId": "416bf1d4c1be870698b0a7cb0c65f0572801515e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09b21505_7093c203",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-27T19:50:01Z",
+      "side": 1,
+      "message": "I am rewriting the autocert tests to use acmetest. Want to wait for that CL and then write a test for this on top of that?",
+      "revId": "416bf1d4c1be870698b0a7cb0c65f0572801515e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd19079b_33c29036",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-27T19:50:01Z",
+      "side": 1,
+      "message": "All our env vars start with GO and don\u0027t have underscores. GOAUTOCERTREISSUEBEFORE maybe?",
+      "range": {
+        "startLine": 990,
+        "startChar": 42,
+        "endLine": 990,
+        "endChar": 73
+      },
+      "revId": "416bf1d4c1be870698b0a7cb0c65f0572801515e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094578e6_3c636aad",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-27T19:50:01Z",
+      "side": 1,
+      "message": "We should add some text along these lines to the package docs.",
+      "revId": "416bf1d4c1be870698b0a7cb0c65f0572801515e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
