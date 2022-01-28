@@ -41,6 +41,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76107944_e4fb71a6",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2774e803_b925963f",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15a593c4_22f20d6b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-28T22:34:45Z",
       "side": 1,
       "message": "..., it will return an error.",
+      "range": {
+        "startLine": 12,
+        "startChar": 52,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f716889_2478495b",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15a593c4_22f20d6b",
       "range": {
         "startLine": 12,
         "startChar": 52,
@@ -81,6 +129,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba873626_8f9be579",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ff5085a_2e17d9a0",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "493bddb9_9283a182",
@@ -94,6 +160,24 @@
       "writtenOn": "2022-01-28T22:34:45Z",
       "side": 1,
       "message": "The /new-authz path is gone. No tests were using it.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a13fa259_137b8bf8",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "493bddb9_9283a182",
       "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -115,6 +199,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1207b0ec_0090537d",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3476de73_89dc1b42",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1158c3e6_8b6189fd",
@@ -128,6 +230,24 @@
       "writtenOn": "2022-01-28T22:34:45Z",
       "side": 1,
       "message": "Invalid, revoked, deactivated.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98e00e2_4563ef26",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:20:12Z",
+      "side": 1,
+      "message": "Are you requesting that revoked and deactivated authz\u0027 be counted as invalid? The comments on L581 suggests that only StatusInvalid invalidates the order, likewise for my reading of the RFC.",
+      "parentUuid": "1158c3e6_8b6189fd",
       "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
