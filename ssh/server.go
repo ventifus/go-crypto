@@ -635,22 +635,25 @@ userAuthLoop:
 		authFailures++
 
 		var failureMsg userAuthFailureMsg
-		if config.PasswordCallback != nil {
-			failureMsg.Methods = append(failureMsg.Methods, "password")
-		}
-		if config.PublicKeyCallback != nil {
-			failureMsg.Methods = append(failureMsg.Methods, "publickey")
-		}
-		if config.KeyboardInteractiveCallback != nil {
-			failureMsg.Methods = append(failureMsg.Methods, "keyboard-interactive")
-		}
-		if config.GSSAPIWithMICConfig != nil && config.GSSAPIWithMICConfig.Server != nil &&
-			config.GSSAPIWithMICConfig.AllowLogin != nil {
-			failureMsg.Methods = append(failureMsg.Methods, "gssapi-with-mic")
-		}
 
-		if len(failureMsg.Methods) == 0 {
-			return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+		if config.MaxAuthTries <= 0 || authFailures < config.MaxAuthTries {
+			if config.PasswordCallback != nil {
+				failureMsg.Methods = append(failureMsg.Methods, "password")
+			}
+			if config.PublicKeyCallback != nil {
+				failureMsg.Methods = append(failureMsg.Methods, "publickey")
+			}
+			if config.KeyboardInteractiveCallback != nil {
+				failureMsg.Methods = append(failureMsg.Methods, "keyboard-interactive")
+			}
+			if config.GSSAPIWithMICConfig != nil && config.GSSAPIWithMICConfig.Server != nil &&
+				config.GSSAPIWithMICConfig.AllowLogin != nil {
+				failureMsg.Methods = append(failureMsg.Methods, "gssapi-with-mic")
+			}
+
+			if len(failureMsg.Methods) == 0 {
+				return nil, errors.New("ssh: no authentication methods configured but NoClientAuth is also false")
+			}
 		}
 
 		if err := s.transport.writePacket(Marshal(&failureMsg)); err != nil {
