@@ -267,6 +267,24 @@
       "message": "Why this change? This path is covered by TestEndToEndALPN.",
       "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbec0f1f_75bbb806",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-01-28T23:32:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51acb925_f358a84c",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
