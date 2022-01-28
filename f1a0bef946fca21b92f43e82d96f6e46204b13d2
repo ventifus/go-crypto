@@ -16,6 +16,137 @@
       "message": "Thanks Brad, code has been rebased, PTAL.",
       "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2774e803_b925963f",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "Let\u0027s Encrypt",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a593c4_22f20d6b",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "..., it will return an error.",
+      "range": {
+        "startLine": 12,
+        "startChar": 52,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ff5085a_2e17d9a0",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "chain, _, err :\u003d ...",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493bddb9_9283a182",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "The /new-authz path is gone. No tests were using it.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3476de73_89dc1b42",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "Now that we have this, might as well call it when deactivating authz in the /authz/ path.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1158c3e6_8b6189fd",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "Invalid, revoked, deactivated.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51acb925_f358a84c",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-01-28T22:34:45Z",
+      "side": 1,
+      "message": "Why this change? This path is covered by TestEndToEndALPN.",
+      "revId": "f1a0bef946fca21b92f43e82d96f6e46204b13d2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
