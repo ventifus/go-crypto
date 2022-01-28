@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2105468b_f5f089ab",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-01-28T23:19:42Z",
+      "side": 1,
+      "message": "In a future CL, let\u0027s drop all these unexported method RFC suffixes",
+      "revId": "19cf7a1d22ef409b205a47eb8a4e0392154a6165",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b853bf90_87891ff4",
+        "filename": "acme/acme.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-01-28T23:19:42Z",
+      "side": 1,
+      "message": "You could even make it \"_ string\" and say \"The string argument is a legacy artifact ...\"\n\nThen there\u0027s no mistaking it for a URL.",
+      "revId": "19cf7a1d22ef409b205a47eb8a4e0392154a6165",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
