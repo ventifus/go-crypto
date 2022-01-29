@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9979c3d_c0bff432",
+        "filename": "go.mod",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-01-29T00:13:26Z",
+      "side": 0,
+      "message": "Let\u0027s take this change to go.mod out of this patch.  Thanks.",
+      "revId": "32db794688a5a24a23a43f2a984cecd5b3d8da58",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
