@@ -90,6 +90,20 @@ func defaultHostPolicy(context.Context, string) error {
 	return nil
 }
 
+// DNSManager is used by the Manager for handling dns-01 challenges with
+// external DNS systems.
+type DNSManager interface {
+	// Fulfill receives a record in the format returned by
+	// acme.DNS01ChallengeRecord and places it into an external DNS system.
+	// This should also ensure that DNS has propagated so that the ACME server
+	// can validate the record.
+	Fulfill(ctx context.Context, domain string, record string) error
+
+	// Cleanup receives a record in the format returned by
+	// acme.DNS01ChallengeRecord and removes it from an external system.
+	Cleanup(ctx context.Context, domain string, record string)
+}
+
 // Manager is a stateful certificate manager built on top of acme.Client.
 // It obtains and refreshes certificates automatically using "tls-alpn-01"
 // or "http-01" challenge types, as well as providing them to a TLS server
@@ -167,6 +181,11 @@ type Manager struct {
 	// The field value is passed to crypto/x509.CreateCertificateRequest
 	// in the template's ExtraExtensions field as is.
 	ExtraExtensions []pkix.Extension
+
+	// DNSManager provides some glue to an external DNS system and, if present,
+	// is used to fulfill dns-01 challenges returned from the CA. If this field
+	// is nil then DNS challenges will not be requested from the CA.
+	DNSManager DNSManager
 
 	clientMu sync.Mutex
 	client   *acme.Client // initialized by acmeClient method
@@ -844,6 +863,9 @@ func (m *Manager) supportedChallengeTypes() []string {
 	if m.tryHTTP01 {
 		typ = append(typ, "http-01")
 	}
+	if m.DNSManager != nil {
+		typ = append(typ, "dns-01")
+	}
 	return typ
 }
 
@@ -888,6 +910,16 @@ func (m *Manager) fulfill(ctx context.Context, client *acme.Client, chal *acme.C
 		p := client.HTTP01ChallengePath(chal.Token)
 		m.putHTTPToken(ctx, p, resp)
 		return func() { go m.deleteHTTPToken(p) }, nil
+	case "dns-01":
+		rec, err := client.DNS01ChallengeRecord(chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		err = m.DNSManager.Fulfill(ctx, domain, rec)
+		if err != nil {
+			return nil, err
+		}
+		return func() { m.DNSManager.Cleanup(ctx, domain, rec) }, err
 	}
 	return nil, fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
 }

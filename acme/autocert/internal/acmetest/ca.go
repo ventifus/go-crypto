@@ -54,6 +54,7 @@ type CAServer struct {
 	certCount      int                           // number of issued certs
 	acctRegistered bool                          // set once an account has been registered
 	domainAddr     map[string]string             // domain name to addr:port resolution
+	dnsResponses   map[string]string             // responses to dns challenges
 	domainGetCert  map[string]getCertificateFunc // domain name to GetCertificate function
 	domainHandler  map[string]http.Handler       // domain name to Handle function
 	validAuthz     map[string]*authorization     // valid authz, keyed by domain name
@@ -68,11 +69,12 @@ type getCertificateFunc func(hello *tls.ClientHelloInfo) (*tls.Certificate, erro
 // certs signed with the CA roots available in the Roots field.
 func NewCAServer(t *testing.T) *CAServer {
 	ca := &CAServer{t: t,
-		challengeTypes: []string{"fake-01", "tls-alpn-01", "http-01"},
+		challengeTypes: []string{"fake-01", "tls-alpn-01", "http-01", "dns-01"},
 		domainAddr:     make(map[string]string),
 		domainGetCert:  make(map[string]getCertificateFunc),
 		domainHandler:  make(map[string]http.Handler),
 		validAuthz:     make(map[string]*authorization),
+		dnsResponses:   make(map[string]string),
 	}
 
 	ca.server = httptest.NewUnstartedServer(http.HandlerFunc(ca.handle))
@@ -116,6 +118,12 @@ func (ca *CAServer) generateRoot() {
 	ca.rootKey = key
 	ca.rootCert = der
 	ca.rootTemplate = tmpl
+}
+
+func (ca *CAServer) PutDNSResponse(domain, record string) {
+	ca.mu.Lock()
+	defer ca.mu.Unlock()
+	ca.dnsResponses[domain] = record
 }
 
 // IssuerName sets the name of the issuing CA.
@@ -555,6 +563,8 @@ func (ca *CAServer) validateChallenge(authz *authorization, typ string) {
 		err = ca.verifyALPNChallenge(authz)
 	case "http-01":
 		err = ca.verifyHTTPChallenge(authz)
+	case "dns-01":
+		err = ca.verifyDNSChallenge(authz)
 	default:
 		panic(fmt.Sprintf("validation of %q is not implemented", typ))
 	}
@@ -662,6 +672,17 @@ func (ca *CAServer) verifyALPNChallenge(a *authorization) error {
 		}
 	}
 	return fmt.Errorf("verifyTokenCert: no id-pe-acmeIdentifier extension found")
+}
+
+func (ca *CAServer) verifyDNSChallenge(a *authorization) error {
+	ca.mu.Lock()
+	defer ca.mu.Unlock()
+
+	if _, ok := ca.dnsResponses[a.domain]; !ok {
+		return fmt.Errorf("verifyDNSChallenge: no DNS response registered for domain")
+	}
+
+	return nil
 }
 
 func (ca *CAServer) verifyHTTPChallenge(a *authorization) error {
