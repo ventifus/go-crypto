@@ -90,10 +90,28 @@ func defaultHostPolicy(context.Context, string) error {
 	return nil
 }
 
+// DNSManager is used by the Manager for handling dns-01 challenges with
+// external DNS services.
+type DNSManager interface {
+	// Fulfill receives a record in the format returned by
+	// acme.DNS01ChallengeRecord and places it into an external DNS service.
+	//
+	// The ACME challenge will be validated by the CA soon after this function
+	// returns. Therefore, this should ensure that DNS has propagated such that
+	// the ACME server can validate the record and block until it can verify
+	// the propagation.
+	Fulfill(ctx context.Context, domain string, record string) error
+
+	// Cleanup receives a record in the format returned by
+	// acme.DNS01ChallengeRecord and should remove it from the external DNS
+	// service.
+	Cleanup(ctx context.Context, domain string, record string)
+}
+
 // Manager is a stateful certificate manager built on top of acme.Client.
-// It obtains and refreshes certificates automatically using "tls-alpn-01"
-// or "http-01" challenge types, as well as providing them to a TLS server
-// via tls.Config.
+// It obtains and refreshes certificates automatically using "tls-alpn-01",
+// "http-01", or "dns-01" challenge types, as well as providing them to a
+// TLS server via tls.Config.
 //
 // You must specify a cache implementation, such as DirCache,
 // to reuse obtained certificates across program restarts.
@@ -168,6 +186,11 @@ type Manager struct {
 	// in the template's ExtraExtensions field as is.
 	ExtraExtensions []pkix.Extension
 
+	// DNSManager is used to respond to dns-01 challenges returned from the CA.
+	// If this field is nil then DNS challenges will not be requested from the
+	// CA.
+	DNSManager DNSManager
+
 	clientMu sync.Mutex
 	client   *acme.Client // initialized by acmeClient method
 
@@ -239,6 +262,8 @@ func (m *Manager) TLSConfig() *tls.Config {
 //
 // If GetCertificate is used directly, instead of via Manager.TLSConfig, package users will
 // also have to add acme.ALPNProto to NextProtos for tls-alpn-01, or use HTTPHandler for http-01.
+// If DNSManager is specified, no additional configuration is required and GetCertificate
+// can be used directly for dns-01 challenges.
 func (m *Manager) GetCertificate(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 	if m.Prompt == nil {
 		return nil, errors.New("acme/autocert: Manager.Prompt not set")
@@ -378,8 +403,8 @@ func supportsECDSA(hello *tls.ClientHelloInfo) bool {
 // Because the fallback handler is run with unencrypted port 80 requests,
 // the fallback should not serve TLS-only requests.
 //
-// If HTTPHandler is never called, the Manager will only use the "tls-alpn-01"
-// challenge for domain verification.
+// If HTTPHandler is never called, the Manager will use the "tls-alpn-01"
+// challenge for domain verification and/or "dns-01" if DNSManager is specified.
 func (m *Manager) HTTPHandler(fallback http.Handler) http.Handler {
 	m.challengeMu.Lock()
 	defer m.challengeMu.Unlock()
@@ -844,6 +869,9 @@ func (m *Manager) supportedChallengeTypes() []string {
 	if m.tryHTTP01 {
 		typ = append(typ, "http-01")
 	}
+	if m.DNSManager != nil {
+		typ = append(typ, "dns-01")
+	}
 	return typ
 }
 
@@ -888,6 +916,16 @@ func (m *Manager) fulfill(ctx context.Context, client *acme.Client, chal *acme.C
 		p := client.HTTP01ChallengePath(chal.Token)
 		m.putHTTPToken(ctx, p, resp)
 		return func() { go m.deleteHTTPToken(p) }, nil
+	case "dns-01":
+		rec, err := client.DNS01ChallengeRecord(chal.Token)
+		if err != nil {
+			return nil, err
+		}
+		err = m.DNSManager.Fulfill(ctx, domain, rec)
+		if err != nil {
+			return nil, err
+		}
+		return func() { m.DNSManager.Cleanup(ctx, domain, rec) }, err
 	}
 	return nil, fmt.Errorf("acme/autocert: unknown challenge type %q", chal.Type)
 }

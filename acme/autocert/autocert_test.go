@@ -990,3 +990,65 @@ func TestEndToEndHTTP(t *testing.T) {
 		t.Errorf("user server response: %q; want 'OK'", v)
 	}
 }
+
+type dnsManager struct {
+	CA *acmetest.CAServer
+}
+
+func (m *dnsManager) Fulfill(ctx context.Context, domain string, record string) error {
+	m.CA.PutDNSResponse(domain, record)
+	return nil
+}
+
+func (m *dnsManager) Cleanup(ctx context.Context, domain string, record string) {
+}
+
+func TestEndToEndDNS(t *testing.T) {
+	const domain = "example.org"
+
+	// ACME CA server
+	ca := acmetest.NewCAServer(t).ChallengeTypes("dns-01")
+	ca.Start()
+
+	// User HTTPS server.
+	m := &Manager{
+		Prompt:     AcceptTOS,
+		Client:     &acme.Client{DirectoryURL: ca.URL()},
+		DNSManager: &dnsManager{ca},
+	}
+	us := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
+	}))
+	us.TLS = &tls.Config{
+		GetCertificate: func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
+			cert, err := m.GetCertificate(hello)
+			if err != nil {
+				t.Errorf("m.GetCertificate: %v", err)
+			}
+			return cert, err
+		},
+	}
+	us.StartTLS()
+	defer us.Close()
+
+	// A client visiting user's HTTPS server.
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			RootCAs:    ca.Roots(),
+			ServerName: domain,
+		},
+	}
+	client := &http.Client{Transport: tr}
+	res, err := client.Get(us.URL)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer res.Body.Close()
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if v := string(b); v != "OK" {
+		t.Errorf("user server response: %q; want 'OK'", v)
+	}
+}
