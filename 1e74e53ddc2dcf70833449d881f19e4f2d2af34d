@@ -39,6 +39,29 @@
       },
       "revId": "1e74e53ddc2dcf70833449d881f19e4f2d2af34d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4beb8e_f01e7a0a",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 28759
+      },
+      "writtenOn": "2022-01-31T17:59:58Z",
+      "side": 1,
+      "message": "Does this check, and the one immediately preceding it, require the cacheMu to be locked? If not, could the code be re-arranged to something like this?\n\n    func (c *Client) accountKID(ctx context.Context) KeyID {\n\tif !c.dir.rfcCompliant() {\n\t\treturn noKeyID\n\t}\n\tif c.KID !\u003d noKeyID {\n\t\treturn c.KID\n\t}\n\tc.cacheMu.Lock()\n\tdefer c.cacheMu.Unlock()\n\ta, err :\u003d c.getRegRFC(ctx)\n\tif err !\u003d nil {\n\t\treturn noKeyID\n\t}\n\tc.KID \u003d KeyID(a.URI)\n\treturn c.KID\n    }\n\nJust to avoid grabbing the lock if we don\u0027t need it.",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 154,
+        "endChar": 2
+      },
+      "revId": "1e74e53ddc2dcf70833449d881f19e4f2d2af34d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
