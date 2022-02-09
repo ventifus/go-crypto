@@ -16,6 +16,24 @@
       "message": "Is the removal of the timer intentional? I guess there are other tests that will hang if broken, so it might not matter.",
       "revId": "dad33157f4bf4f89d0a15a28ea3ccee0bf2f48a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8657a67_060d7b9a",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-09T21:56:25Z",
+      "side": 0,
+      "message": "Yes, it\u0027s intentional: if a test hangs, a t.Fatal message is almost never helpful in diagnosing it.\n\nGiven the amount of concurrency in this package and the sheer number of different mutexes involved, I believe the most likely timing failure here is a deadlock or livelock involving lock-inversion and/or timers, in which case a goroutine dump is likely to be much more helpful — and a goroutine dump is exactly what we get if we simply allow the test to time out.",
+      "parentUuid": "0edcc1a6_461a1cb3",
+      "revId": "dad33157f4bf4f89d0a15a28ea3ccee0bf2f48a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c0845dd8_1636ee68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-09T21:56:25Z",
+      "side": 1,
+      "message": "Good catch. Updated this paragraph to correct the description of the race.\n\n(I believe that this race was the cause of the `panic: close of closed channel` observed in 2022-02-08T08:41:09-20e1d8d-c856fbf/windows-arm64-10.)",
+      "parentUuid": "c5c151f6_d3cb707a",
+      "revId": "ca09da2fab8f91940171a7e0d7ebcfd36d5fc4ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4fafe365_a6266d2f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -95,6 +113,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61904c2b_a98ac627",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-09T21:56:25Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2a709247_7b5eb085",
+      "range": {
+        "startLine": 897,
+        "startChar": 3,
+        "endLine": 897,
+        "endChar": 8
+      },
+      "revId": "ca09da2fab8f91940171a7e0d7ebcfd36d5fc4ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e86b15de_ef847345",
@@ -112,6 +154,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b62773_db33deb1",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-09T21:56:25Z",
+      "side": 1,
+      "message": "The `renew` timers have to be stopped before the deferred assignment to `testDidRenewLoop` — otherwise that assignment may race with a timer goroutine reading and executing the callback.\n\nMoved into the deferred assignment and added a comment (here and in the other test below).",
+      "parentUuid": "e86b15de_ef847345",
+      "revId": "ca09da2fab8f91940171a7e0d7ebcfd36d5fc4ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "618ea09d_969fa8ca",
@@ -125,6 +185,24 @@
       "writtenOn": "2022-02-09T20:35:55Z",
       "side": 1,
       "message": "Ditto on stopRenew (and ditto on the timer).",
+      "revId": "ca09da2fab8f91940171a7e0d7ebcfd36d5fc4ee",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc7cc6f6_97cab5d6",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-09T21:56:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "618ea09d_969fa8ca",
       "revId": "ca09da2fab8f91940171a7e0d7ebcfd36d5fc4ee",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
