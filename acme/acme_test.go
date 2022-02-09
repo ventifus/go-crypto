@@ -149,13 +149,13 @@ func TestAuthorize(t *testing.T) {
 						{
 							"type":"http-01",
 							"status":"pending",
-							"uri":"https://ca.tld/acme/challenge/publickey/id1",
+							"url":"https://ca.tld/acme/challenge/publickey/id1",
 							"token":"token1"
 						},
 						{
 							"type":"tls-sni-01",
 							"status":"pending",
-							"uri":"https://ca.tld/acme/challenge/publickey/id2",
+							"url":"https://ca.tld/acme/challenge/publickey/id2",
 							"token":"token2"
 						}
 					],
