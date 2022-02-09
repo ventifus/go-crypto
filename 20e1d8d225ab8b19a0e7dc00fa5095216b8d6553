@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74226f82_433cf333",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55943
+      },
+      "writtenOn": "2022-02-09T03:15:30Z",
+      "side": 1,
+      "message": "Is there a path for go1.12 and earlier to use crypto/ed25519 moving forward?\n\nI recently started working on a project that requires support for go1.11+. My first step was to replace `crypto/ed25519` with `golang.org/x/crypto/ed25519`, but it looks like I had really bad timing to start that work today.\n\n(apologies if this isn\u0027t the right place for a conversation, I\u0027m new to gerrit and struggling to find an associated bug / issue)",
+      "revId": "20e1d8d225ab8b19a0e7dc00fa5095216b8d6553",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
