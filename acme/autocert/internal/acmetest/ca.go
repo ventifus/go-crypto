@@ -227,7 +227,7 @@ type discovery struct {
 }
 
 type challenge struct {
-	URI   string `json:"uri"`
+	URL   string `json:"url"`
 	Type  string `json:"type"`
 	Token string `json:"token"`
 }
@@ -476,7 +476,7 @@ func (ca *CAServer) authz(identifier string) *authorization {
 		for _, typ := range ca.challengeTypes {
 			authz.Challenges = append(authz.Challenges, challenge{
 				Type:  typ,
-				URI:   ca.serverURL("/challenge/%s/%d", typ, authzId),
+				URL:   ca.serverURL("/challenge/%s/%d", typ, authzId),
 				Token: challengeToken(authz.domain, typ, authzId),
 			})
 		}

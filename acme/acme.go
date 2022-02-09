@@ -63,8 +63,7 @@ var idPeACMEIdentifier = asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 1, 31}
 const (
 	maxChainLen = 5       // max depth and breadth of a certificate chain
 	maxCertSize = 1 << 20 // max size of a certificate, in DER bytes
-	// Used for decoding certs from application/pem-certificate-chain response,
-	// the default when in RFC mode.
+	// Used for decoding certs from application/pem-certificate-chain response.
 	maxCertChainSize = maxCertSize * maxChainLen
 
 	// Max number of collected nonces kept in memory.
@@ -136,21 +135,18 @@ type Client struct {
 }
 
 // accountKID returns a key ID associated with c.Key, the account identity
-// provided by the CA during RFC based registration.
+// provided by the CA during registration.
 // It assumes c.Discover has already been called.
 //
 // accountKID requires at most one network roundtrip.
 // It caches only successful result.
-//
-// When in pre-RFC mode or when c.getRegRFC responds with an error, accountKID
-// returns noKeyID.
 func (c *Client) accountKID(ctx context.Context) KeyID {
 	c.cacheMu.Lock()
 	defer c.cacheMu.Unlock()
 	if c.KID != noKeyID {
 		return c.KID
 	}
-	a, err := c.getRegRFC(ctx)
+	a, err := c.getReg(ctx)
 	if err != nil {
 		return noKeyID
 	}
@@ -242,7 +238,7 @@ func (c *Client) FetchCert(ctx context.Context, url string, bundle bool) ([][]by
 	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
-	return c.fetchCertRFC(ctx, url, bundle)
+	return c.fetchCert(ctx, url, bundle)
 }
 
 // RevokeCert revokes a previously issued certificate cert, provided in DER format.
@@ -255,7 +251,7 @@ func (c *Client) RevokeCert(ctx context.Context, key crypto.Signer, cert []byte,
 	if _, err := c.Discover(ctx); err != nil {
 		return err
 	}
-	return c.revokeCertRFC(ctx, key, cert, reason)
+	return c.revokeCert(ctx, key, cert, reason)
 }
 
 // AcceptTOS always returns true to indicate the acceptance of a CA's Terms of Service
@@ -270,10 +266,9 @@ func AcceptTOS(tosURL string) bool { return true }
 // Register calls prompt with a TOS URL provided by the CA. Prompt should report
 // whether the caller agrees to the terms. To always accept the terms, the caller can use AcceptTOS.
 //
-// When interfacing with an RFC-compliant CA, non-RFC 8555 fields of acct are ignored
-// and prompt is called if Directory's Terms field is non-zero.
-// Also see Error's Instance field for when a CA requires already registered accounts to agree
-// to an updated Terms of Service.
+// The prompt function is called if Directory's Terms field is non-zero. Also
+// see Error's Instance field for when a CA requires already registered
+// accounts to agree to an updated Terms of Service.
 func (c *Client) Register(ctx context.Context, acct *Account, prompt func(tosURL string) bool) (*Account, error) {
 	if c.Key == nil {
 		return nil, errors.New("acme: client.Key must be set to Register")
@@ -281,18 +276,18 @@ func (c *Client) Register(ctx context.Context, acct *Account, prompt func(tosURL
 	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
-	return c.registerRFC(ctx, acct, prompt)
+	return c.register(ctx, acct, prompt)
 }
 
 // GetReg retrieves an existing account associated with c.Key.
 //
-// The url argument is a legacy artifact of the pre-RFC 8555 API
+// The string argument is a legacy artifact of the pre-RFC 8555 API
 // and is ignored.
-func (c *Client) GetReg(ctx context.Context, url string) (*Account, error) {
+func (c *Client) GetReg(ctx context.Context, _ string) (*Account, error) {
 	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
-	return c.getRegRFC(ctx)
+	return c.getReg(ctx)
 }
 
 // UpdateReg updates an existing registration.
@@ -304,7 +299,7 @@ func (c *Client) UpdateReg(ctx context.Context, acct *Account) (*Account, error)
 	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
-	return c.updateRegRFC(ctx, acct)
+	return c.updateReg(ctx, acct)
 }
 
 // Authorize performs the initial step in the pre-authorization flow,
@@ -314,8 +309,6 @@ func (c *Client) UpdateReg(ctx context.Context, acct *Account) (*Account, error)
 //
 // Once complete, the caller can use AuthorizeOrder which the CA
 // should provision with the already satisfied authorization.
-// For pre-RFC CAs, the caller can proceed directly to requesting a certificate
-// using CreateCert method.
 //
 // If an authorization has been previously granted, the CA may return
 // a valid authorization which has its Status field set to StatusValid.
@@ -485,7 +478,7 @@ func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, erro
 	}
 
 	defer res.Body.Close()
-	v := wireChallenge{URI: url}
+	v := wireChallenge{URL: url}
 	if err := json.NewDecoder(res.Body).Decode(&v); err != nil {
 		return nil, fmt.Errorf("acme: invalid response: %v", err)
 	}

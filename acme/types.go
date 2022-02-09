@@ -531,8 +531,7 @@ type Challenge struct {
 
 // wireChallenge is ACME JSON challenge representation.
 type wireChallenge struct {
-	URL       string `json:"url"` // RFC
-	URI       string `json:"uri"` // pre-RFC
+	URL       string `json:"url"`
 	Type      string
 	Token     string
 	Status    string
@@ -546,9 +545,6 @@ func (c *wireChallenge) challenge() *Challenge {
 		Type:   c.Type,
 		Token:  c.Token,
 		Status: c.Status,
-	}
-	if v.URI == "" {
-		v.URI = c.URI // c.URL was empty; use legacy
 	}
 	if v.Status == "" {
 		v.Status = StatusPending

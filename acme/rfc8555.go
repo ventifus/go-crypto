@@ -21,8 +21,6 @@ import (
 // DeactivateReg permanently disables an existing account associated with c.Key.
 // A deactivated account can no longer request certificate issuance or access
 // resources related to the account, such as orders or authorizations.
-//
-// It only works with CAs implementing RFC 8555.
 func (c *Client) DeactivateReg(ctx context.Context) error {
 	url := string(c.accountKID(ctx))
 	if url == "" {
@@ -37,9 +35,9 @@ func (c *Client) DeactivateReg(ctx context.Context) error {
 	return nil
 }
 
-// registerRFC is equivalent to c.Register but for CAs implementing RFC 8555.
+// register handles account registration as defined in RFC 8555.
 // It expects c.Discover to have already been called.
-func (c *Client) registerRFC(ctx context.Context, acct *Account, prompt func(tosURL string) bool) (*Account, error) {
+func (c *Client) register(ctx context.Context, acct *Account, prompt func(tosURL string) bool) (*Account, error) {
 	c.cacheMu.Lock() // guard c.kid access
 	defer c.cacheMu.Unlock()
 
@@ -95,9 +93,9 @@ func (c *Client) encodeExternalAccountBinding(eab *ExternalAccountBinding) (*jso
 	return jwsWithMAC(eab.Key, eab.KID, c.dir.RegURL, []byte(jwk))
 }
 
-// updateRegRFC is equivalent to c.UpdateReg but for CAs implementing RFC 8555.
+// updateReg updates an existing registration as defined in RFC 8555.
 // It expects c.Discover to have already been called.
-func (c *Client) updateRegRFC(ctx context.Context, a *Account) (*Account, error) {
+func (c *Client) updateReg(ctx context.Context, a *Account) (*Account, error) {
 	url := string(c.accountKID(ctx))
 	if url == "" {
 		return nil, ErrNoAccount
@@ -115,9 +113,9 @@ func (c *Client) updateRegRFC(ctx context.Context, a *Account) (*Account, error)
 	return responseAccount(res)
 }
 
-// getGegRFC is equivalent to c.GetReg but for CAs implementing RFC 8555.
+// getReg retrieves an existing account as defined in RFC 8555.
 // It expects c.Discover to have already been called.
-func (c *Client) getRegRFC(ctx context.Context) (*Account, error) {
+func (c *Client) getReg(ctx context.Context) (*Account, error) {
 	req := json.RawMessage(`{"onlyReturnExisting": true}`)
 	res, err := c.post(ctx, c.Key, c.dir.RegURL, req, wantStatus(http.StatusOK))
 	if e, ok := err.(*Error); ok && e.ProblemType == "urn:ietf:params:acme:error:accountDoesNotExist" {
@@ -150,7 +148,6 @@ func responseAccount(res *http.Response) (*Account, error) {
 
 // AuthorizeOrder initiates the order-based application for certificate issuance,
 // as opposed to pre-authorization in Authorize.
-// It is only supported by CAs implementing RFC 8555.
 //
 // The caller then needs to fetch each authorization with GetAuthorization,
 // identify those with StatusPending status and fulfill a challenge using Accept.
@@ -297,8 +294,6 @@ func responseOrder(res *http.Response) (*Order, error) {
 // certificate chain. Otherwise, only a leaf certificate is returned.
 // The returned URL can be used to re-fetch the certificate using FetchCert.
 //
-// This method is only supported by CAs implementing RFC 8555. See CreateCert for pre-RFC CAs.
-//
 // CreateOrderCert returns an error if the CA's response is unreasonably large.
 // Callers are encouraged to parse the returned value to ensure the certificate is valid and has the expected features.
 func (c *Client) CreateOrderCert(ctx context.Context, url string, csr []byte, bundle bool) (der [][]byte, certURL string, err error) {
@@ -333,15 +328,15 @@ func (c *Client) CreateOrderCert(ctx context.Context, url string, csr []byte, bu
 	if o.Status != StatusValid {
 		return nil, "", &OrderError{OrderURL: o.URI, Status: o.Status}
 	}
-	crt, err := c.fetchCertRFC(ctx, o.CertURL, bundle)
+	crt, err := c.fetchCert(ctx, o.CertURL, bundle)
 	return crt, o.CertURL, err
 }
 
-// fetchCertRFC downloads issued certificate from the given URL.
+// fetchCert downloads issued certificate from the given URL.
 // It expects the CA to respond with PEM-encoded certificate chain.
 //
 // The URL argument is the CertURL field of Order.
-func (c *Client) fetchCertRFC(ctx context.Context, url string, bundle bool) ([][]byte, error) {
+func (c *Client) fetchCert(ctx context.Context, url string, bundle bool) ([][]byte, error) {
 	res, err := c.postAsGet(ctx, url, wantStatus(http.StatusOK))
 	if err != nil {
 		return nil, err
@@ -386,7 +381,7 @@ func (c *Client) fetchCertRFC(ctx context.Context, url string, bundle bool) ([][
 }
 
 // sends a cert revocation request in either JWK form when key is non-nil or KID form otherwise.
-func (c *Client) revokeCertRFC(ctx context.Context, key crypto.Signer, cert []byte, reason CRLReasonCode) error {
+func (c *Client) revokeCert(ctx context.Context, key crypto.Signer, cert []byte, reason CRLReasonCode) error {
 	req := &struct {
 		Cert   string `json:"certificate"`
 		Reason int    `json:"reason"`

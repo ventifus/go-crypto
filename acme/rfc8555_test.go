@@ -26,13 +26,7 @@ import (
 	"time"
 )
 
-// While contents of this file is pertinent only to RFC8555,
-// it is complementary to the tests in the other _test.go files
-// many of which are valid for both pre- and RFC8555.
-// This will make it easier to clean up the tests once non-RFC compliant
-// code is removed.
-
-func TestRFC_Discover(t *testing.T) {
+func TestDiscover(t *testing.T) {
 	const (
 		nonce       = "https://example.com/acme/new-nonce"
 		reg         = "https://example.com/acme/new-acct"
@@ -99,7 +93,7 @@ func TestRFC_Discover(t *testing.T) {
 	}
 }
 
-func TestRFC_popNonce(t *testing.T) {
+func TestPopNonce(t *testing.T) {
 	var count int
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// The Client uses only Directory.NonceURL when specified.
@@ -136,7 +130,7 @@ func TestRFC_popNonce(t *testing.T) {
 	}
 }
 
-func TestRFC_postKID(t *testing.T) {
+func TestPostKID(t *testing.T) {
 	var ts *httptest.Server
 	ts = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
@@ -280,7 +274,7 @@ func (s *acmeServer) error(w http.ResponseWriter, e *wireError) {
 	json.NewEncoder(w).Encode(e)
 }
 
-func TestRFC_Register(t *testing.T) {
+func TestRegister(t *testing.T) {
 	const email = "mailto:user@example.org"
 
 	s := newACMEServer()
@@ -349,7 +343,7 @@ func TestRFC_Register(t *testing.T) {
 	}
 }
 
-func TestRFC_RegisterExternalAccountBinding(t *testing.T) {
+func TestRegisterExternalAccountBinding(t *testing.T) {
 	eab := &ExternalAccountBinding{
 		KID: "kid-1",
 		Key: []byte("secret"),
@@ -487,7 +481,7 @@ func TestRFC_RegisterExternalAccountBinding(t *testing.T) {
 	}
 }
 
-func TestRFC_RegisterExisting(t *testing.T) {
+func TestRegisterExisting(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
@@ -508,7 +502,7 @@ func TestRFC_RegisterExisting(t *testing.T) {
 	}
 }
 
-func TestRFC_UpdateReg(t *testing.T) {
+func TestUpdateReg(t *testing.T) {
 	const email = "mailto:user@example.org"
 
 	s := newACMEServer()
@@ -557,7 +551,7 @@ func TestRFC_UpdateReg(t *testing.T) {
 	}
 }
 
-func TestRFC_GetReg(t *testing.T) {
+func TestGetReg(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
@@ -590,7 +584,7 @@ func TestRFC_GetReg(t *testing.T) {
 	}
 }
 
-func TestRFC_GetRegNoAccount(t *testing.T) {
+func TestGetRegNoAccount(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		s.error(w, &wireError{
@@ -607,7 +601,7 @@ func TestRFC_GetRegNoAccount(t *testing.T) {
 	}
 }
 
-func TestRFC_GetRegOtherError(t *testing.T) {
+func TestGetRegOtherError(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
@@ -621,7 +615,7 @@ func TestRFC_GetRegOtherError(t *testing.T) {
 	}
 }
 
-func TestRFC_AuthorizeOrder(t *testing.T) {
+func TestAuthorizeOrder(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
@@ -665,7 +659,7 @@ func TestRFC_AuthorizeOrder(t *testing.T) {
 	}
 }
 
-func TestRFC_GetOrder(t *testing.T) {
+func TestGetOrder(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
@@ -712,7 +706,7 @@ func TestRFC_GetOrder(t *testing.T) {
 	}
 }
 
-func TestRFC_WaitOrder(t *testing.T) {
+func TestWaitOrder(t *testing.T) {
 	for _, st := range []string{StatusReady, StatusValid} {
 		t.Run(st, func(t *testing.T) {
 			testWaitOrderStatus(t, st)
@@ -762,7 +756,7 @@ func testWaitOrderStatus(t *testing.T, okStatus string) {
 	}
 }
 
-func TestRFC_WaitOrderError(t *testing.T) {
+func TestWaitOrderError(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/new-account", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Location", s.url("/accounts/1"))
@@ -810,7 +804,7 @@ func TestRFC_WaitOrderError(t *testing.T) {
 	}
 }
 
-func TestRFC_CreateOrderCert(t *testing.T) {
+func TestCreateOrderCert(t *testing.T) {
 	q := &x509.CertificateRequest{
 		Subject: pkix.Name{CommonName: "example.org"},
 	}
@@ -865,7 +859,7 @@ func TestRFC_CreateOrderCert(t *testing.T) {
 	}
 }
 
-func TestRFC_AlreadyRevokedCert(t *testing.T) {
+func TestAlreadyRevokedCert(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/acme/revoke-cert", func(w http.ResponseWriter, r *http.Request) {
 		s.error(w, &wireError{
@@ -883,7 +877,7 @@ func TestRFC_AlreadyRevokedCert(t *testing.T) {
 	}
 }
 
-func TestRFC_ListCertAlternates(t *testing.T) {
+func TestListCertAlternates(t *testing.T) {
 	s := newACMEServer()
 	s.handle("/crt", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/pem-certificate-chain")
