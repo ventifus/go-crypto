@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "75fd3a1d_911368d4",
         "filename": "/COMMIT_MSG",
@@ -20,10 +21,10 @@
         "endChar": 13
       },
       "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f52081dc_e0ac6bbb",
         "filename": "/COMMIT_MSG",
@@ -37,10 +38,10 @@
       "side": 1,
       "message": "... when account exists",
       "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d5b6f6c8_353debe3",
         "filename": "/COMMIT_MSG",
@@ -60,10 +61,10 @@
         "endChar": 44
       },
       "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "939fd1af_05b499f8",
         "filename": "/PATCHSET_LEVEL",
@@ -77,10 +78,10 @@
       "side": 1,
       "message": "Hmm, the inconsistency is unfortunate, and maybe returning the account is the better behavior, but arguably the 8555 behavior is the only one that\u0027s documented, so I am not convinced we should change documented behavior to match undocumented ones. (For sure we should not remove the error and break code.)",
       "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5ad1bd7b_c1463a3d",
         "filename": "/PATCHSET_LEVEL",
@@ -95,8 +96,8 @@
       "message": "I think the main problem I see is that while the current behavior is documented, it is not consistent. The doc for ErrAccountAlreadyExists indicates that it is returned if the account already exists, but doesn\u0027t say that this is _only true for 8555 servers_, meaning any code relying on this behavior is already broken if it is used with pre-8555 servers.\n\nAgreed we shouldn\u0027t remove ErrAccountAlreadyExists outright (not entirely sure why I thought that was important previously), but we should choose one consistent behavior. Making both pre/8555 return an error would break any code for pre-only clients that relied on the behavior. Making both return the account shouldn\u0027t break any code relying on the current pre and 8555 behaviors, as any code relying on the 8555-only behavior should just fall through to the success codepath (the one exception is if there is code which is explicitly trying to figure out if an account already exists, but not do anything with it).",
       "parentUuid": "939fd1af_05b499f8",
       "revId": "dc362540ddfd132d9b1b8aa30d31f2a5e0fcd496",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
-  ]
+  ],
+  "submitRequirementResults": []
 }
