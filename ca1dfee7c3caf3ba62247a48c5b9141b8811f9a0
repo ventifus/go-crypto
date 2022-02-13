@@ -53,6 +53,24 @@
       "message": "I think you have to check that config.MaxAuthTries \u003e 0 here.",
       "revId": "ca1dfee7c3caf3ba62247a48c5b9141b8811f9a0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "807587e9_8feb0a52",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-02-13T18:50:47Z",
+      "side": 1,
+      "message": "Oops, yup. MaxAuthTries will never be zero (NewServerConn copies and mutates the config, setting it to 6 if it was originally 0), but it may be less than zero.",
+      "parentUuid": "9ebfe1e3_369fde0a",
+      "revId": "ca1dfee7c3caf3ba62247a48c5b9141b8811f9a0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
