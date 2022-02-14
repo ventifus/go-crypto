@@ -107,6 +107,24 @@
       "message": "link to issue here and below?",
       "revId": "275f32ae64bf587daae245b92d3685d0e14427dc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "631c3cea_25f871db",
+        "filename": "acme/autocert/renewal_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-02-14T20:03:00Z",
+      "side": 1,
+      "message": "It\u0027s in the failure message — seems a little redundant to repeat it in a code comment..?",
+      "parentUuid": "b4916c5d_5a6abcf0",
+      "revId": "275f32ae64bf587daae245b92d3685d0e14427dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
