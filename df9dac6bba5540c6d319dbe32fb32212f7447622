@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "e80ee256_e9ea032b",
         "filename": "/PATCHSET_LEVEL",
@@ -14,8 +15,58 @@
       "side": 1,
       "message": "Hi Katie, is there any update on this PR?",
       "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ae216a_0700eede",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2022-02-17T19:03:15Z",
+      "side": 1,
+      "message": "Not part of the Golang team; just a drive by review of two nits with the proposed patch.",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a5fa2cb_09f87173",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2022-02-17T19:03:15Z",
+      "side": 1,
+      "message": "nit: the PEM block itself isn\u0027t encrypted (it is still plaintext). The serialized format contains an encrypted private key using the specified KDF/...",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c685c2c8_10e290f2",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2022-02-17T19:03:15Z",
+      "side": 1,
+      "message": "nit: I think convention elsewhere in the code base would be to handle this directly in passphraseProtectedOpenSSHMarshaler, like e.g. mime/multipart/writer.go or crypto/tls/key_schedule.go. Especially since it appears to only be used once?",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
