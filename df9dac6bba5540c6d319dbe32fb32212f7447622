@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54f9041c_5a01c7e0",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2022-02-17T20:10:32Z",
+      "side": 1,
+      "message": "Yeah, I think that makes sense.\n\nI\u0027ve got a branch here for testing this with Vault\u0027s SSH engine: https://github.com/cipherboy/vault/commit/switch-ssh-crypto\n\nWorks well and many thanks for this patchset!",
+      "parentUuid": "27bc1d18_31f2e39c",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c685c2c8_10e290f2",
         "filename": "ssh/keys.go",
         "patchSetId": 2
