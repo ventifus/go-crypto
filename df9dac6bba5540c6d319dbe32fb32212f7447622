@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27bc1d18_31f2e39c",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 34882
+      },
+      "writtenOn": "2022-02-17T19:48:35Z",
+      "side": 1,
+      "message": "Do you mean changing the docs to something like:\n\nMarshalPrivateKeyWithPassphrase returns a PEM block holding the encrypted private key serialized in the OpenSSH format.",
+      "parentUuid": "8a5fa2cb_09f87173",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c685c2c8_10e290f2",
         "filename": "ssh/keys.go",
         "patchSetId": 2
@@ -65,6 +83,24 @@
       "writtenOn": "2022-02-17T19:03:15Z",
       "side": 1,
       "message": "nit: I think convention elsewhere in the code base would be to handle this directly in passphraseProtectedOpenSSHMarshaler, like e.g. mime/multipart/writer.go or crypto/tls/key_schedule.go. Especially since it appears to only be used once?",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251b3afc_5a701a91",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 34882
+      },
+      "writtenOn": "2022-02-17T19:48:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c685c2c8_10e290f2",
       "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
