@@ -157,6 +157,24 @@
       "parentUuid": "251b3afc_5a701a91",
       "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbcda26c_a2186afd",
+        "filename": "ssh/keys.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2022-02-18T13:57:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "251b3afc_5a701a91",
+      "revId": "df9dac6bba5540c6d319dbe32fb32212f7447622",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
