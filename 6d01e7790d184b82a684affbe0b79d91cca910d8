@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85f393ce_143d1617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 56133
+      },
+      "writtenOn": "2022-02-21T17:22:24Z",
+      "side": 1,
+      "message": "Hello. Just wanted to say that at HashiCorp we are working on an update to a Terraform Provider (`terraform-provider-tls`) and we have \"cherry-picked\" this change and temporarily included it in our codebase (https://github.com/hashicorp/terraform-provider-tls/pull/151).\n\nThe plan is to rip it out once a version of `x/crypto/ssh` with this change applied is released.",
+      "revId": "6d01e7790d184b82a684affbe0b79d91cca910d8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
