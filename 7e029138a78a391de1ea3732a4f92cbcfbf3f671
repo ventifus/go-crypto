@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2287f997_f5018951",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55983
+      },
+      "writtenOn": "2022-02-24T12:52:15Z",
+      "side": 1,
+      "message": "this issue is a blocker, please take a look, there is only one new constant",
+      "revId": "7e029138a78a391de1ea3732a4f92cbcfbf3f671",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
