@@ -48,6 +48,7 @@ var supportedKexAlgos = []string{
 	// P384 and P521 are not constant-time yet, but since we don't
 	// reuse ephemeral keys, using them for ECDH should be OK.
 	kexAlgoECDH256, kexAlgoECDH384, kexAlgoECDH521,
+	kexAlgoDH14SHA256, kexAlgoDH16SHA512, kexAlgoDH18SHA512,
 	kexAlgoDH14SHA1, kexAlgoDH1SHA1,
 }
 
@@ -63,6 +64,7 @@ var serverForbiddenKexAlgos = map[string]struct{}{
 var preferredKexAlgos = []string{
 	kexAlgoCurve25519SHA256,
 	kexAlgoECDH256, kexAlgoECDH384, kexAlgoECDH521,
+	kexAlgoDH14SHA256, kexAlgoDH16SHA512, kexAlgoDH18SHA512,
 	kexAlgoDH14SHA1,
 }
 
