@@ -70,6 +70,24 @@
       "message": "We can\u0027t go to a production using forked x/crypto due to security approve issue.\nMay be I need to add someone else to this MR?",
       "revId": "d4db4b8f806898143ec705ccf3787eddb70a25d5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "921ba475_6c9b652c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7860
+      },
+      "writtenOn": "2022-03-01T15:18:02Z",
+      "side": 1,
+      "message": "Please be patient and wait for a review from one of the x/crypto maintainers.",
+      "parentUuid": "d5f25006_68715940",
+      "revId": "d4db4b8f806898143ec705ccf3787eddb70a25d5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
