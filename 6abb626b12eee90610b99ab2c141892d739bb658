@@ -53,6 +53,24 @@
       "message": "RELNOTE\u003dyes",
       "revId": "6abb626b12eee90610b99ab2c141892d739bb658",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bbf7084_1615b639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-03-13T00:36:32Z",
+      "side": 1,
+      "message": "I don\u0027t think this package is in the transitive closure of anything that\u0027s released, though?",
+      "parentUuid": "d9e92a4b_71043880",
+      "revId": "6abb626b12eee90610b99ab2c141892d739bb658",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
