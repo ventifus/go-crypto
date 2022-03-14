@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa18bcb3_ebdab01e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T17:21:45Z",
+      "side": 1,
+      "message": "This does not look like correct server behavior.\n\nSection 5.1 says\n\n   The value of \u0027partial success\u0027 MUST be TRUE if the authentication\n   request to which this is a response was successful.\n   \nand Section 7 says\n\n   The server MUST respond to this message with either\n   SSH_MSG_USERAUTH_FAILURE or with the following:\n\n      byte      SSH_MSG_USERAUTH_PK_OK\n\nMy interpretation is that sending a partial success would mean the authentication has completed successfully, which is not possible following a request without a signature. Instead, the sequence should be: request without signature, SSH_MSG_USERAUTH_PK_OK, request with signature, SSH_MSG_USERAUTH_FAILURE with partial success.",
+      "revId": "a094c6e94c171892ee16ca9134a6ea03e5dfea5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
