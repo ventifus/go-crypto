@@ -91,6 +91,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0c9ee6f_d1753825",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "This is a compile-time assertion that *agentKeyringSigner implements ssh.AlgorithmSigner. If the methods were wrong or something, the assignment would fail.",
+      "parentUuid": "4eb06ba7_b1455286",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ff68edf_0ed68fed",
@@ -104,6 +122,24 @@
       "writtenOn": "2022-03-14T23:07:12Z",
       "side": 1,
       "message": "One possible issue here is that we\u0027ll always pick the first common algorithm. If for _whatever reason_ the first algorithm fails, but one of the other common algorithms would work, we will never try it. That might be fine though?",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ab1ebe_5a0d7931",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "I think that\u0027s the intended behavior. The alternatives is to try a failing key multiple times, which will burn through our precious few authentication attempts. We could leave the rest of the overlapping algorithms last, but that feels like too much complexity for little gain.\n\nIn practice, since the preference order is that of algorithmsForKeyFormat, this will pick rsa-sha2-256/512 if available, and ssh-rsa otherwise, which feels like the correct outcome. I expect no server will advertise support for rsa-sha2-256 and then reject it by policy (while I saw evidence of that being true sometimes for ssh-rsa).",
+      "parentUuid": "1ff68edf_0ed68fed",
       "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -125,6 +161,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fd8214_fd8bb691",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "PROTOCOL.certkeys is scant on details, but it does say\n\n    These RSA/SHA-2 types should not appear in keys at rest or transmitted\n    on the wire, but do appear in a SSH_MSG_KEXINIT\u0027s host-key algorithms\n    field or in the \"public key algorithm name\" field of a \"publickey\"\n    SSH_USERAUTH_REQUEST to indicate that the signature will use the\n    specified algorithm.\n    \nreferring to rsa-sha2-256-cert-v01@openssh.com which is not an underlying algorithm.\n\nIn general, the underlying algorithms are only used in sig.Format (and therefor in SignWithAlgorithm and in Verify).",
+      "parentUuid": "e025138f_c530abb5",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2051fef_ec64cf2a",
@@ -138,6 +192,24 @@
       "writtenOn": "2022-03-14T23:07:12Z",
       "side": 1,
       "message": "minor nit: might want to check that we only accept one of these, otherwise the server could just keep sending them forever (extremely unlikely but ¯\\_(ツ)_/¯).",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa40091_9fec66a0",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "Wouldn\u0027t that be the same as sending banners forever? I guess the application\u0027s bannerCallback could limit those, supposedly.\n\nDone.",
+      "parentUuid": "b2051fef_ec64cf2a",
       "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -159,6 +231,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07eeeeb0_75ba17fc",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d0cb399_73606c3e",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2e13f43_79e47375",
@@ -172,6 +262,30 @@
       "writtenOn": "2022-03-14T23:07:12Z",
       "side": 1,
       "message": "I think this is already instantiated above around line 447, should just need to append the extension value.",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 484,
+        "endChar": 63
+      },
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c090c7e_bcf29265",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T23:28:19Z",
+      "side": 1,
+      "message": "Yes, but we don\u0027t own the slice\u0027s backing array, since it\u0027s set in the Config by the application, so we can\u0027t append to it without making a copy. (Imagine it was set to someImportantLargerSlice[:len(someImportantLargerSlice)-2]. We\u0027d overwrite it.)",
+      "parentUuid": "c2e13f43_79e47375",
       "range": {
         "startLine": 483,
         "startChar": 2,
