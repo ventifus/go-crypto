@@ -105,11 +105,44 @@ func tryAuthBothSides(t *testing.T, config *ClientConfig, gssAPIWithMICConfig *G
 	return err, serverAuthErrors
 }
 
+type loggingAlgorithmSigner struct {
+	used []string
+	AlgorithmSigner
+}
+
+func (l *loggingAlgorithmSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	l.used = append(l.used, "[Sign]")
+	return l.AlgorithmSigner.Sign(rand, data)
+}
+
+func (l *loggingAlgorithmSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error) {
+	l.used = append(l.used, algorithm)
+	return l.AlgorithmSigner.SignWithAlgorithm(rand, data, algorithm)
+}
+
 func TestClientAuthPublicKey(t *testing.T) {
+	signer := &loggingAlgorithmSigner{AlgorithmSigner: testSigners["rsa"].(AlgorithmSigner)}
 	config := &ClientConfig{
 		User: "testuser",
 		Auth: []AuthMethod{
-			PublicKeys(testSigners["rsa"]),
+			PublicKeys(signer),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	if err := tryAuth(t, config); err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+	if len(signer.used) != 1 || signer.used[0] != KeyAlgoRSASHA256 {
+		t.Errorf("unexpected Sign/SignWithAlgorithm calls: %q", signer.used)
+	}
+}
+
+// TestClientAuthNoSHA2 tests a ssh-rsa Signer that doesn't implement AlgorithmSigner.
+func TestClientAuthNoSHA2(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(&legacyRSASigner{testSigners["rsa"]}),
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
@@ -659,7 +692,7 @@ func TestClientAuthErrorList(t *testing.T) {
 
 	clientConfig := &ClientConfig{
 		Auth: []AuthMethod{
-			PublicKeys(testSigners["rsa"]),
+			PublicKeys(testSigners["ecdsa"]),
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
