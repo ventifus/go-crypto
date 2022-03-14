@@ -118,6 +118,20 @@ func TestClientAuthPublicKey(t *testing.T) {
 	}
 }
 
+// TestClientAuthNoSHA2 tests a ssh-rsa Signer that doesn't implement AlgorithmSigner.
+func TestClientAuthNoSHA2(t *testing.T) {
+	config := &ClientConfig{
+		User: "testuser",
+		Auth: []AuthMethod{
+			PublicKeys(&legacyRSASigner{testSigners["rsa"]}),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+	if err := tryAuth(t, config); err != nil {
+		t.Fatalf("unable to dial remote side: %s", err)
+	}
+}
+
 func TestAuthMethodPassword(t *testing.T) {
 	config := &ClientConfig{
 		User: "testuser",
@@ -659,7 +673,7 @@ func TestClientAuthErrorList(t *testing.T) {
 
 	clientConfig := &ClientConfig{
 		Auth: []AuthMethod{
-			PublicKeys(testSigners["rsa"]),
+			PublicKeys(testSigners["ecdsa"]),
 		},
 		HostKeyCallback: InsecureIgnoreHostKey(),
 	}
