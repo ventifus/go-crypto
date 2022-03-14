@@ -109,6 +109,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eabca095_9762b1cf",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-03-14T23:31:56Z",
+      "side": 1,
+      "message": "Oh I see, makes sense.",
+      "parentUuid": "c0c9ee6f_d1753825",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ff68edf_0ed68fed",
@@ -140,6 +158,24 @@
       "side": 1,
       "message": "I think that\u0027s the intended behavior. The alternatives is to try a failing key multiple times, which will burn through our precious few authentication attempts. We could leave the rest of the overlapping algorithms last, but that feels like too much complexity for little gain.\n\nIn practice, since the preference order is that of algorithmsForKeyFormat, this will pick rsa-sha2-256/512 if available, and ssh-rsa otherwise, which feels like the correct outcome. I expect no server will advertise support for rsa-sha2-256 and then reject it by policy (while I saw evidence of that being true sometimes for ssh-rsa).",
       "parentUuid": "1ff68edf_0ed68fed",
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4af4f7_34f38e3f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-03-14T23:31:56Z",
+      "side": 1,
+      "message": "Ack, probably the right choice.",
+      "parentUuid": "87ab1ebe_5a0d7931",
       "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -286,6 +322,30 @@
       "side": 1,
       "message": "Yes, but we don\u0027t own the slice\u0027s backing array, since it\u0027s set in the Config by the application, so we can\u0027t append to it without making a copy. (Imagine it was set to someImportantLargerSlice[:len(someImportantLargerSlice)-2]. We\u0027d overwrite it.)",
       "parentUuid": "c2e13f43_79e47375",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 484,
+        "endChar": 63
+      },
+      "revId": "d9f0775eae9a8536139992a522df96311d22da1b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df2425c8_299a792d",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-03-14T23:31:56Z",
+      "side": 1,
+      "message": "Bleh, right, lovely.",
+      "parentUuid": "5c090c7e_bcf29265",
       "range": {
         "startLine": 483,
         "startChar": 2,
