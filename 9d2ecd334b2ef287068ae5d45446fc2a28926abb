@@ -59,6 +59,30 @@
       },
       "revId": "9d2ecd334b2ef287068ae5d45446fc2a28926abb",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9de513e9_78b2b578",
+        "filename": "ssh/kex.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T22:21:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc565752_3dcf0580",
+      "range": {
+        "startLine": 602,
+        "startChar": 41,
+        "endLine": 602,
+        "endChar": 60
+      },
+      "revId": "9d2ecd334b2ef287068ae5d45446fc2a28926abb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
