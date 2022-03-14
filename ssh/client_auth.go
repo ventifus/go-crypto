@@ -201,54 +201,78 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 	}
 	var methods []string
 	for _, signer := range signers {
-		ok, err := validateKey(signer.PublicKey(), user, c)
-		if err != nil {
-			return authFailure, nil, err
-		}
-		if !ok {
-			continue
-		}
-
 		pub := signer.PublicKey()
-		pubKey := pub.Marshal()
-		sign, err := signer.Sign(rand, buildDataSignedForAuth(session, userAuthRequestMsg{
-			User:    user,
-			Service: serviceSSH,
-			Method:  cb.method(),
-		}, []byte(pub.Type()), pubKey))
-		if err != nil {
-			return authFailure, nil, err
+
+		// Like in sendKexInit, if the public key implements AlgorithmSigner we
+		// assume it supports all algorithms, otherwise only the key format one.
+		var algorithms []string
+		as, ok := signer.(AlgorithmSigner)
+		if ok {
+			algorithms = algorithmsForKeyFormat(pub.Type())
+		} else {
+			as = algorithmSignerWrapper{signer}
+			algorithms = []string{pub.Type()}
 		}
 
-		// manually wrap the serialized signature in a string
-		s := Marshal(sign)
-		sig := make([]byte, stringLength(len(s)))
-		marshalString(sig, s)
-		msg := publickeyAuthMsg{
-			User:     user,
-			Service:  serviceSSH,
-			Method:   cb.method(),
-			HasSig:   true,
-			Algoname: pub.Type(),
-			PubKey:   pubKey,
-			Sig:      sig,
-		}
-		p := Marshal(&msg)
-		if err := c.writePacket(p); err != nil {
-			return authFailure, nil, err
-		}
-		var success authResult
-		success, methods, err = handleAuthResponse(c)
-		if err != nil {
-			return authFailure, nil, err
-		}
+		// We don't implement RFC 8308 extensions, somewhat intentionally
+		// (because they involve a speculative read), which means we can't use
+		// the "server-sig-algs" extension to learn about the server's supported
+		// algorithms. The concern with trial and error, besides the
+		// round-trips, is that the server might react poorly upon seeing an
+		// unsupported algorithm. OpenSSH has supported the only "additional"
+		// algorithms we support (the rsa-sha2 ones) since 2016. Feels like it's
+		// fine to default to them. If an application doesn't want that, they
+		// can wrap the HostKey in a Signer without SignWithAlgorithm.
+		for _, algo := range algorithms {
+			ok, err := validateKey(pub, algo, user, c)
+			if err != nil {
+				return authFailure, nil, err
+			}
+			if !ok {
+				continue
+			}
 
-		// If authentication succeeds or the list of available methods does not
-		// contain the "publickey" method, do not attempt to authenticate with any
-		// other keys.  According to RFC 4252 Section 7, the latter can occur when
-		// additional authentication methods are required.
-		if success == authSuccess || !containsMethod(methods, cb.method()) {
-			return success, methods, err
+			pubKey := pub.Marshal()
+			data := buildDataSignedForAuth(session, userAuthRequestMsg{
+				User:    user,
+				Service: serviceSSH,
+				Method:  cb.method(),
+			}, algo, pubKey)
+			sign, err := as.SignWithAlgorithm(rand, data, underlyingAlgo(algo))
+			if err != nil {
+				return authFailure, nil, err
+			}
+
+			// manually wrap the serialized signature in a string
+			s := Marshal(sign)
+			sig := make([]byte, stringLength(len(s)))
+			marshalString(sig, s)
+			msg := publickeyAuthMsg{
+				User:     user,
+				Service:  serviceSSH,
+				Method:   cb.method(),
+				HasSig:   true,
+				Algoname: algo,
+				PubKey:   pubKey,
+				Sig:      sig,
+			}
+			p := Marshal(&msg)
+			if err := c.writePacket(p); err != nil {
+				return authFailure, nil, err
+			}
+			var success authResult
+			success, methods, err = handleAuthResponse(c)
+			if err != nil {
+				return authFailure, nil, err
+			}
+
+			// If authentication succeeds or the list of available methods does not
+			// contain the "publickey" method, do not attempt to authenticate with any
+			// other keys.  According to RFC 4252 Section 7, the latter can occur when
+			// additional authentication methods are required.
+			if success == authSuccess || !containsMethod(methods, cb.method()) {
+				return success, methods, err
+			}
 		}
 	}
 
@@ -266,26 +290,25 @@ func containsMethod(methods []string, method string) bool {
 }
 
 // validateKey validates the key provided is acceptable to the server.
-func validateKey(key PublicKey, user string, c packetConn) (bool, error) {
+func validateKey(key PublicKey, algo string, user string, c packetConn) (bool, error) {
 	pubKey := key.Marshal()
 	msg := publickeyAuthMsg{
 		User:     user,
 		Service:  serviceSSH,
 		Method:   "publickey",
 		HasSig:   false,
-		Algoname: key.Type(),
+		Algoname: algo,
 		PubKey:   pubKey,
 	}
 	if err := c.writePacket(Marshal(&msg)); err != nil {
 		return false, err
 	}
 
-	return confirmKeyAck(key, c)
+	return confirmKeyAck(key, algo, c)
 }
 
-func confirmKeyAck(key PublicKey, c packetConn) (bool, error) {
+func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
 	pubKey := key.Marshal()
-	algoname := key.Type()
 
 	for {
 		packet, err := c.readPacket()
@@ -302,7 +325,7 @@ func confirmKeyAck(key PublicKey, c packetConn) (bool, error) {
 			if err := Unmarshal(packet, &msg); err != nil {
 				return false, err
 			}
-			if msg.Algo != algoname || !bytes.Equal(msg.PubKey, pubKey) {
+			if msg.Algo != algo || !bytes.Equal(msg.PubKey, pubKey) {
 				return false, nil
 			}
 			return true, nil
