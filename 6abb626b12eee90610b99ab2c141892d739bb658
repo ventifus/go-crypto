@@ -71,6 +71,24 @@
       "parentUuid": "d9e92a4b_71043880",
       "revId": "6abb626b12eee90610b99ab2c141892d739bb658",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c6bf112_cdd0ee60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-03-14T22:17:23Z",
+      "side": 1,
+      "message": "Oh, yeah, sorry.\n\nRELNOTE\u003dno",
+      "parentUuid": "7bbf7084_1615b639",
+      "revId": "6abb626b12eee90610b99ab2c141892d739bb658",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ],
   "submitRequirementResults": [
