@@ -70,6 +70,24 @@
       "message": "Does this cover ssh agent provided keys?",
       "revId": "4048420df433ae1ddc8a52a16296d1f4314458b9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a244cbb8_73172938",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 56483
+      },
+      "writtenOn": "2022-03-14T15:51:16Z",
+      "side": 1,
+      "message": "I added something like this to the agent signer:\n\n```\nfunc (s *agentKeyringSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*ssh.Signature, error) {\n\t// The agent has its own entropy source, so the rand argument is ignored.\n\tif s.PublicKey().Type() !\u003d ssh.SigAlgoRSA {\n\t\treturn nil, fmt.Errorf(\"public key must be of type ssh-rsa, but got %v\", s.PublicKey().Type())\n\t}\n\n\tswitch algorithm {\n\tcase ssh.SigAlgoRSASHA2256:\n\t\treturn s.agent.SignWithFlags(s.PublicKey(), data, SignatureFlagRsaSha256)\n\tcase ssh.SigAlgoRSASHA2512:\n\t\treturn s.agent.SignWithFlags(s.PublicKey(), data, SignatureFlagRsaSha512)\n\t}\n\treturn nil, fmt.Errorf(\"algorithm not supported\")\n}\n```\n\nmaybe it is helpful.",
+      "parentUuid": "1b9c2063_a3a6f3e1",
+      "revId": "4048420df433ae1ddc8a52a16296d1f4314458b9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
