@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5516adf2_3004a8fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-14T19:05:11Z",
+      "side": 1,
+      "message": "Went with a different approach that doesn\u0027t require application changes in CL 392394. We might want to eventually expose such an API to control the preference order, but we should just do the right thing by default.",
+      "revId": "c40313d7c888d13183980dca375be0e0d3724043",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
