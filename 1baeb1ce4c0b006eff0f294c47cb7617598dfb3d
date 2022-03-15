@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "032949ef_530d546f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-15T11:25:24Z",
+      "side": 1,
+      "message": "This was assigned CVE-2022-27191 after submission.",
+      "revId": "1baeb1ce4c0b006eff0f294c47cb7617598dfb3d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
