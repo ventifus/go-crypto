@@ -33,6 +33,24 @@
       "message": "Wrap everything from line 480 in the if statement.\n\nAlso, make the if \n\n    if firstKeyExchange :\u003d t.sessionID \u003d\u003d nil; firstKeyExchange {\n\nso you can avoid adding a comment.",
       "revId": "f0181c98f02efba6aa3d3152eb2d404b73044b69",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857ed166_0af616a0",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 56618
+      },
+      "writtenOn": "2022-03-21T12:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf96b1e_4498e18e",
+      "revId": "f0181c98f02efba6aa3d3152eb2d404b73044b69",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
