@@ -227,6 +227,10 @@ func (m *mux) onePacket() error {
 	}
 
 	switch packet[0] {
+	case msgExtInfo:
+		// OpenSSH 7.4p1 sends msgExtInfo at the wrong time, breaking RFC8308. We simply ignore the packet.
+		log.Print("Received msgExtInfo at wrong time")
+		return nil
 	case msgChannelOpen:
 		return m.handleChannelOpen(packet)
 	case msgGlobalRequest, msgRequestSuccess, msgRequestFailure:
