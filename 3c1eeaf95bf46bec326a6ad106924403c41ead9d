@@ -70,6 +70,24 @@
       "message": "couple of comment typos: whend and autenticate",
       "revId": "3c1eeaf95bf46bec326a6ad106924403c41ead9d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72da620b_e7259913",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2022-03-23T22:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1e4df55_1cb5763f",
+      "revId": "3c1eeaf95bf46bec326a6ad106924403c41ead9d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
