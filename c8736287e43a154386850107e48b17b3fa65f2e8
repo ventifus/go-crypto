@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c3b810c_d6f885b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-03-25T12:49:19Z",
+      "side": 1,
+      "message": "\u003e Patch Set 1:\n\u003e \n\u003e Congratulations on opening your first change. Thank you for your contribution!\n\u003e \n\u003e Next steps:\n\u003e Within the next week or so, a maintainer will review your change and provide\n\u003e feedback. See https://golang.org/doc/contribute.html#review for more info and\n\u003e tips to get your patch through code review.\n\u003e \n\u003e Most changes in the Go project go through a few rounds of revision. This can be\n\u003e surprising to people new to the project. The careful, iterative review process\n\u003e is our way of helping mentor contributors and ensuring that their contributions\n\u003e have a lasting impact.\n\u003e \n\u003e During May-July and Nov-Jan the Go project is in a code freeze, during which\n\u003e little code gets reviewed or merged. If a reviewer responds with a comment like\n\u003e R\u003dgo1.11, it means that this CL will be reviewed as part of the next development\n\u003e cycle. See https://golang.org/s/release for more details.\n\nI rebased the patch against the current master but the changes do not appear here\n\nhttps://github.com/golang/crypto/pull/127/files\n",
+      "revId": "c8736287e43a154386850107e48b17b3fa65f2e8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
