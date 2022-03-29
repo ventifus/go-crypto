@@ -469,9 +469,15 @@ func (t *handshakeTransport) sendKexInit() error {
 			// a different default.)
 			keyFormat := k.PublicKey().Type()
 			if _, ok := k.(AlgorithmSigner); ok {
-				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algorithmsForKeyFormat(keyFormat)...)
+				for _, algo := range algorithmsForKeyFormat(keyFormat) {
+					if contains(t.config.HostKeyAlgorithms, algo) {
+						msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algo)
+					}
+				}
 			} else {
-				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
+				if contains(t.config.HostKeyAlgorithms, keyFormat) {
+					msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
+				}
 			}
 		}
 	} else {

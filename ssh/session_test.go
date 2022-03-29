@@ -722,6 +722,9 @@ func TestInvalidServerConfiguration(t *testing.T) {
 func TestHostKeyAlgorithms(t *testing.T) {
 	serverConf := &ServerConfig{
 		NoClientAuth: true,
+		Config: Config{
+			HostKeyAlgorithms: supportedHostKeyAlgos,
+		},
 	}
 	serverConf.AddHostKey(testSigners["rsa"])
 	serverConf.AddHostKey(testSigners["ecdsa"])

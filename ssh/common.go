@@ -80,6 +80,16 @@ var supportedHostKeyAlgos = []string{
 	KeyAlgoED25519,
 }
 
+var preferredServerHostKeyAlgorithms = []string{
+	CertAlgoRSASHA512v01, CertAlgoRSASHA256v01,
+	CertAlgoECDSA256v01, CertAlgoECDSA384v01, CertAlgoECDSA521v01, CertAlgoED25519v01,
+
+	KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521,
+	KeyAlgoRSASHA512, KeyAlgoRSASHA256,
+
+	KeyAlgoED25519,
+}
+
 // supportedMACs specifies a default set of MAC algorithms in preference order.
 // This is based on RFC 4253, section 6.4, but with hmac-md5 variants removed
 // because they have reached the end of their useful life.
@@ -257,6 +267,10 @@ type Config struct {
 	// The allowed MAC algorithms. If unspecified then a sensible default
 	// is used.
 	MACs []string
+
+	// A list of enabled host key algorithms. If unspecified then a sensible
+	// default is used
+	HostKeyAlgorithms []string
 }
 
 // SetDefaults sets sensible values for unset fields in config. This is
@@ -284,6 +298,10 @@ func (c *Config) SetDefaults() {
 
 	if c.MACs == nil {
 		c.MACs = supportedMACs
+	}
+
+	if c.HostKeyAlgorithms == nil {
+		c.HostKeyAlgorithms = preferredServerHostKeyAlgorithms
 	}
 
 	if c.RekeyThreshold == 0 {

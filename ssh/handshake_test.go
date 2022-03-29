@@ -599,6 +599,9 @@ func TestNoSHA2Support(t *testing.T) {
 		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
 			return &Permissions{}, nil
 		},
+		Config: Config{
+			HostKeyAlgorithms: supportedHostKeyAlgos,
+		},
 	}
 	serverConf.AddHostKey(&legacyRSASigner{testSigners["rsa"]})
 	go func() {
