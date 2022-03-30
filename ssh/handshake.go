@@ -11,6 +11,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"strings"
 	"sync"
 )
 
@@ -456,6 +457,7 @@ func (t *handshakeTransport) sendKexInit() error {
 	io.ReadFull(rand.Reader, msg.Cookie[:])
 
 	isServer := len(t.hostKeys) > 0
+	firstKeyExchange := t.sessionID == nil
 	if isServer {
 		for _, k := range t.hostKeys {
 			// If k is an AlgorithmSigner, presume it supports all signature algorithms
@@ -474,16 +476,21 @@ func (t *handshakeTransport) sendKexInit() error {
 				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
 			}
 		}
+		if firstKeyExchange {
+			msg.KexAlgos = make([]string, 0, len(t.config.KeyExchanges)+1)
+			msg.KexAlgos = append(msg.KexAlgos, t.config.KeyExchanges...)
+			msg.KexAlgos = append(msg.KexAlgos, extInfoServer)
+		}
 	} else {
 		msg.ServerHostKeyAlgos = t.hostKeyAlgorithms
 
 		// As a client we opt in to receiving SSH_MSG_EXT_INFO so we know what
 		// algorithms the server supports for public key authentication. See RFC
 		// 8308, Section 2.1.
-		if firstKeyExchange := t.sessionID == nil; firstKeyExchange {
+		if firstKeyExchange {
 			msg.KexAlgos = make([]string, 0, len(t.config.KeyExchanges)+1)
 			msg.KexAlgos = append(msg.KexAlgos, t.config.KeyExchanges...)
-			msg.KexAlgos = append(msg.KexAlgos, "ext-info-c")
+			msg.KexAlgos = append(msg.KexAlgos, extInfoClient)
 		}
 	}
 
@@ -615,7 +622,8 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 		return err
 	}
 
-	if t.sessionID == nil {
+	firstKeyExchange := t.sessionID == nil
+	if firstKeyExchange {
 		t.sessionID = result.H
 	}
 	result.SessionID = t.sessionID
@@ -630,6 +638,31 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 		return err
 	} else if packet[0] != msgNewKeys {
 		return unexpectedMessageError(msgNewKeys, packet[0])
+	}
+
+	if !isClient {
+		// We're on the server side, if this is the first key exchange
+		// see if the client sent the extension signal
+		if firstKeyExchange && contains(clientInit.KexAlgos, extInfoClient) {
+			// The other side supports ext info, and this is the first key exchange,
+			// so send an SSH_MSG_EXT_INFO message.
+			extensions := map[string][]byte{}
+			// Prepare the server-sig-algos extension message to send.
+			extensions[extServerSigAlgs] = []byte(strings.Join(supportedServerSigAlgs, ","))
+
+			extInfo := &extInfoMsg{
+				NumExtensions: uint32(len(extensions)),
+			}
+			for k, v := range extensions {
+				extInfo.Payload = appendInt(extInfo.Payload, len(k))
+				extInfo.Payload = append(extInfo.Payload, k...)
+				extInfo.Payload = appendInt(extInfo.Payload, len(v))
+				extInfo.Payload = append(extInfo.Payload, v...)
+			}
+			if err := t.conn.writePacket(Marshal(extInfo)); err != nil {
+				return err
+			}
+		}
 	}
 
 	return nil
