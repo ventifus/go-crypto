@@ -72,6 +72,24 @@
       "message": "Small preference for doing `t.Run(fmt.Sprintf(\"%s/%s\", tg.Curve, tt.Comment), ...`, otherwise it\u0027s kind of hard to figure out what is being tested when things fail spectacularly.",
       "revId": "5233aec390157ebd0c0c5b92a8c9021dd3e0a5ec",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1df4d95_10d9d4aa",
+        "filename": "internal/wycheproof/ecdh_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-03-31T16:43:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d9a2fc1_a4ee1e29",
+      "revId": "5233aec390157ebd0c0c5b92a8c9021dd3e0a5ec",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
