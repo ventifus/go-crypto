@@ -24,6 +24,14 @@ const (
 	serviceSSH      = "ssh-connection"
 )
 
+// These are string constants related to extensions and extension negotiation.
+// See RFC 8308
+const (
+	extInfoServer    = "ext-info-s"
+	extInfoClient    = "ext-info-c"
+	extServerSigAlgs = "server-sig-algs"
+)
+
 // supportedCiphers lists ciphers we support but might not recommend.
 var supportedCiphers = []string{
 	"aes128-ctr", "aes192-ctr", "aes256-ctr",
@@ -88,6 +96,15 @@ var supportedMACs = []string{
 }
 
 var supportedCompressions = []string{compressionNone}
+
+// supportedServerSigAlgs defines the algorithms supported for pubkey authentication
+// in no particular order. See RFC 8308, Section 3.1.
+var supportedServerSigAlgs = []string{KeyAlgoRSASHA256,
+	KeyAlgoRSASHA512, KeyAlgoRSA,
+	KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521,
+	KeyAlgoSKECDSA256, KeyAlgoED25519, KeyAlgoSKED25519,
+	KeyAlgoDSA,
+}
 
 // hashFuncs keeps the mapping of supported signature algorithms to their
 // respective hashes needed for signing and verification.
@@ -180,6 +197,10 @@ func findAgreedAlgorithms(isClient bool, clientKexInit, serverKexInit *kexInitMs
 	result.kex, err = findCommon("key exchange", clientKexInit.KexAlgos, serverKexInit.KexAlgos)
 	if err != nil {
 		return
+	} else if result.kex == extInfoClient || result.kex == extInfoServer {
+		// According to RFC8308 section 2.2 if either the client or server extension signal
+		// is chosen as the kex algorithm the parties must disconnect.
+		return result, fmt.Errorf("ssh: invalid kex algorithm chosen: %s", result.kex)
 	}
 
 	result.hostKey, err = findCommon("host key", clientKexInit.ServerHostKeyAlgos, serverKexInit.ServerHostKeyAlgos)

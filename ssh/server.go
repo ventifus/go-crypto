@@ -256,9 +256,38 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 	// We just did the key change, so the session ID is established.
 	s.sessionID = s.transport.getSessionID()
 
+	// the client could send a SSH_MSG_EXT_INFO after the first SSH_MSG_NEWKEYS
+	// and so before SSH_MSG_SERVICE_REQUEST. See RFC 8308, Section 2.4.
 	var packet []byte
 	if packet, err = s.transport.readPacket(); err != nil {
 		return nil, err
+	}
+
+	if len(packet) > 0 && packet[0] == msgExtInfo {
+		// read SSH_MSG_EXT_INFO
+		var extInfo extInfoMsg
+		extensions := make(map[string][]byte)
+		if err := Unmarshal(packet, &extInfo); err != nil {
+			return nil, err
+		}
+		payload := extInfo.Payload
+		for i := uint32(0); i < extInfo.NumExtensions; i++ {
+			name, rest, ok := parseString(payload)
+			if !ok {
+				return nil, parseError(msgExtInfo)
+			}
+			value, rest, ok := parseString(rest)
+			if !ok {
+				return nil, parseError(msgExtInfo)
+			}
+			extensions[string(name)] = value
+			payload = rest
+		}
+
+		// read the next packet
+		if packet, err = s.transport.readPacket(); err != nil {
+			return nil, err
+		}
 	}
 
 	var serviceRequest serviceRequestMsg
@@ -286,7 +315,8 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 func isAcceptableAlgo(algo string) bool {
 	switch algo {
 	case KeyAlgoRSA, KeyAlgoRSASHA256, KeyAlgoRSASHA512, KeyAlgoDSA, KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521, KeyAlgoSKECDSA256, KeyAlgoED25519, KeyAlgoSKED25519,
-		CertAlgoRSAv01, CertAlgoDSAv01, CertAlgoECDSA256v01, CertAlgoECDSA384v01, CertAlgoECDSA521v01, CertAlgoSKECDSA256v01, CertAlgoED25519v01, CertAlgoSKED25519v01:
+		CertAlgoRSAv01, CertAlgoDSAv01, CertAlgoECDSA256v01, CertAlgoECDSA384v01, CertAlgoECDSA521v01, CertAlgoSKECDSA256v01, CertAlgoED25519v01, CertAlgoSKED25519v01,
+		CertAlgoRSASHA256v01, CertAlgoRSASHA512v01:
 		return true
 	}
 	return false
