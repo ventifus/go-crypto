@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5d5709_3b7f731a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-04-04T08:39:05Z",
+      "side": 1,
+      "message": "I sent a proposal for the API change\n\nhttps://github.com/golang/go/issues/52132",
+      "revId": "ed4788520d5577a636d9a0885327c7dacf9ee423",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
