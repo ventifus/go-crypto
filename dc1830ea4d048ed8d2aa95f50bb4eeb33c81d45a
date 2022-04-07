@@ -72,6 +72,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd35dfce_ea6f7c28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-04-07T16:53:38Z",
+      "side": 1,
+      "message": "Thanks Brad.",
+      "revId": "dc1830ea4d048ed8d2aa95f50bb4eeb33c81d45a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df08e1fb_a58cab09",
@@ -89,6 +106,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b6f0c5_86171c74",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-04-07T16:53:38Z",
+      "side": 1,
+      "message": "I followed the signature and comments for the ChallengeTypes method. Happy to make these more explicit as part of CL 384698, does that sound ok?",
+      "parentUuid": "df08e1fb_a58cab09",
+      "revId": "dc1830ea4d048ed8d2aa95f50bb4eeb33c81d45a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cea1327_7a98b123",
@@ -102,6 +137,24 @@
       "writtenOn": "2022-04-07T16:05:31Z",
       "side": 1,
       "message": "should either this and/or ExternalAccountRequired be omitempty? nothing will choke on the extra fields if they don\u0027t understand meta, will they? that\u0027s part of the base spec?",
+      "revId": "dc1830ea4d048ed8d2aa95f50bb4eeb33c81d45a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3999965c_0ae1e6d1",
+        "filename": "acme/autocert/internal/acmetest/ca.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 5673
+      },
+      "writtenOn": "2022-04-07T16:53:38Z",
+      "side": 1,
+      "message": "LE\u0027s directory endpoint always includes a `meta` section, but it omits the `externalAccountRequired` field. And acme.Client handles it fine, which seems to be the only consumer of this internal ACME implementation.",
+      "parentUuid": "6cea1327_7a98b123",
       "revId": "dc1830ea4d048ed8d2aa95f50bb4eeb33c81d45a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
