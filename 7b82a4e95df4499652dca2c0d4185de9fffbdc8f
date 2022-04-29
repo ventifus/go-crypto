@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da01ae13_855a0a2d",
+        "filename": "acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-04-29T17:14:33Z",
+      "side": 0,
+      "message": "Does this not break usages of `noPayload`? A nil claimset will now result in a `null` string JSON payload.",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 27
+      },
+      "revId": "7b82a4e95df4499652dca2c0d4185de9fffbdc8f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
