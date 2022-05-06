@@ -57,6 +57,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6546a405_69254ae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-05-06T16:42:45Z",
+      "side": 1,
+      "message": "This is an unrelated broken builder.",
+      "parentUuid": "f0dc897a_e6c41c79",
+      "revId": "f79df554c1aff6b0d48433055ec9501226fc8bfc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6008a8e4_0f444460",
@@ -70,6 +88,24 @@
       "writtenOn": "2022-05-06T15:59:51Z",
       "side": 1,
       "message": "Blehhh, needing to keep this in sync sucks but I guess this is low-level enough that I don\u0027t really want to make this public either... 🤷.\n\nPerhaps in the future adding a crypto/ssh method like `func KeyAlgorithm(PublicKey) string` or something would make this unnecessary.",
+      "revId": "f79df554c1aff6b0d48433055ec9501226fc8bfc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ad71fb_18208749",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-05-06T16:42:45Z",
+      "side": 1,
+      "message": "Yuup, I hate it too, but adding a method felt too heavyhanded 🤷‍♂️",
+      "parentUuid": "6008a8e4_0f444460",
       "revId": "f79df554c1aff6b0d48433055ec9501226fc8bfc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
