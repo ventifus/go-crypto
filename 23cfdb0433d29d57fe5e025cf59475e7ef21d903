@@ -71,6 +71,24 @@
       "parentUuid": "c4d66424_b7742a93",
       "revId": "23cfdb0433d29d57fe5e025cf59475e7ef21d903",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdedd9b8_5aef4ebf",
+        "filename": "internal/wycheproof/rsa_pss_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2022-05-06T21:06:07Z",
+      "side": 1,
+      "message": "Ah, in that case I think you can use a pair of build-constrained files declaring local constants:\n\n```\n//go:build boringcrypto\n…\nconst boringcrypto \u003d true\n```\n\n```\n//go:build !boringcrypto\n…\nconst boringcrypto \u003d false\n```\n\n(According to https://cs.opensource.google/go/go/+/master:src/crypto/boring/notboring_test.go, `boringcrypto` and `goexperiment.boringcrypto` should be equivalent build tags.)",
+      "parentUuid": "c5cd29b9_35865c40",
+      "revId": "23cfdb0433d29d57fe5e025cf59475e7ef21d903",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
