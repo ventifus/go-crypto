@@ -109,6 +109,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c4a748_a94847a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32278
+      },
+      "writtenOn": "2022-05-13T17:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ca6291d_b93e5c00",
+      "revId": "4e7968aba130fed8075557d9f28a708346e807de",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5eda7ee3_5ee10cd4",
@@ -122,6 +140,30 @@
       "writtenOn": "2022-05-13T16:57:00Z",
       "side": 1,
       "message": "Comment should be in the form `// accountKeyRollover ...`",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 55
+      },
+      "revId": "4e7968aba130fed8075557d9f28a708346e807de",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6782e729_3a6644cd",
+        "filename": "acme/rfc8555.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 32278
+      },
+      "writtenOn": "2022-05-13T17:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eda7ee3_5ee10cd4",
       "range": {
         "startLine": 151,
         "startChar": 0,
