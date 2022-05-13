@@ -22,6 +22,30 @@
       },
       "revId": "7b82a4e95df4499652dca2c0d4185de9fffbdc8f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "225b0991_5e10fd59",
+        "filename": "acme/jws.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 32278
+      },
+      "writtenOn": "2022-05-13T16:13:19Z",
+      "side": 0,
+      "message": "The type check should give the same behavior with the assumption that `noPayload \u003d \"\"`. If you want to re-wrap this in the original `claimset !\u003d noPayload` check I\u0027m also fine with that.",
+      "parentUuid": "da01ae13_855a0a2d",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 27
+      },
+      "revId": "7b82a4e95df4499652dca2c0d4185de9fffbdc8f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
