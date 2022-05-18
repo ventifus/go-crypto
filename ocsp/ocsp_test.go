@@ -258,16 +258,18 @@ func TestOCSPResponse(t *testing.T) {
 	testCases := []struct {
 		name       string
 		issuerHash crypto.Hash
+		producedAt time.Time
 	}{
-		{"Zero value", 0},
-		{"crypto.SHA1", crypto.SHA1},
-		{"crypto.SHA256", crypto.SHA256},
-		{"crypto.SHA384", crypto.SHA384},
-		{"crypto.SHA512", crypto.SHA512},
+		{"Zero value", 0, time.Time{}},
+		{"crypto.SHA1", crypto.SHA1, thisUpdate},
+		{"crypto.SHA256", crypto.SHA256, thisUpdate},
+		{"crypto.SHA384", crypto.SHA384, thisUpdate},
+		{"crypto.SHA512", crypto.SHA512, thisUpdate},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			template.IssuerHash = tc.issuerHash
+			template.ProducedAt = tc.producedAt
 			responseBytes, err := CreateResponse(issuer, responder, template, responderPrivateKey)
 			if err != nil {
 				t.Fatalf("CreateResponse failed: %s", err)
@@ -294,9 +296,15 @@ func TestOCSPResponse(t *testing.T) {
 				t.Errorf("resp.Extensions: got %v, want %v", resp.Extensions, template.ExtraExtensions)
 			}
 
-			delay := time.Since(resp.ProducedAt)
-			if delay < -time.Hour || delay > time.Hour {
-				t.Errorf("resp.ProducedAt: got %s, want close to current time (%s)", resp.ProducedAt, time.Now())
+			if tc.producedAt.IsZero() {
+				delay := time.Since(resp.ProducedAt)
+				if delay < -time.Hour || delay > time.Hour {
+					t.Errorf("resp.ProducedAt: got %s, want close to current time (%s)", resp.ProducedAt, time.Now())
+				}
+			} else {
+				if !reflect.DeepEqual(resp.ProducedAt, template.ProducedAt) {
+					t.Errorf("resp.ProducedAt: got %v, want %v", resp.ProducedAt, template.ProducedAt)
+				}
 			}
 
 			if resp.Status != template.Status {

@@ -740,10 +740,16 @@ func CreateResponse(issuer, responderCert *x509.Certificate, template Response, 
 		IsCompound: true,
 		Bytes:      responderCert.RawSubject,
 	}
+
+	producedAt := template.ProducedAt
+	if producedAt.IsZero() {
+		producedAt = time.Now().Truncate(time.Minute).UTC()
+	}
+
 	tbsResponseData := responseData{
 		Version:        0,
 		RawResponderID: rawResponderID,
-		ProducedAt:     time.Now().Truncate(time.Minute).UTC(),
+		ProducedAt:     producedAt,
 		Responses:      []singleResponse{innerResponse},
 	}
 
