@@ -16,6 +16,40 @@
       "message": "Hi,\n\nI simplified the initial patch code a lot, removed all additional settings and struct fields and changed other things where appropriate.\n\nI have tested this patch with recent versions of OpenSSH and old ones too, for example OpenSSH 5.3p1 from CentOS6 and it seems to work fine.\n\nI have read RFC 8308 several times and the patch should be compliant.\n\nA review would be appreciated, thank you",
       "revId": "ba96d43210702111b463aba74e253b2297f05115",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6464ed57_2798b875",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2022-05-18T18:24:40Z",
+      "side": 1,
+      "message": "Thanks for working on this! We would like to see this upstream soon. Left one comment.",
+      "revId": "ba96d43210702111b463aba74e253b2297f05115",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d23b71c_d1ebd1c3",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2022-05-18T18:24:40Z",
+      "side": 1,
+      "message": "It seems that we duplicate this unmarshaling in `ssh/client_auth.rb`. Can we extract this to some common method?",
+      "revId": "ba96d43210702111b463aba74e253b2297f05115",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
