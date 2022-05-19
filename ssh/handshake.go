@@ -11,6 +11,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"strings"
 	"sync"
 )
 
@@ -456,6 +457,7 @@ func (t *handshakeTransport) sendKexInit() error {
 	io.ReadFull(rand.Reader, msg.Cookie[:])
 
 	isServer := len(t.hostKeys) > 0
+	firstKeyExchange := t.sessionID == nil
 	if isServer {
 		for _, k := range t.hostKeys {
 			// If k is an AlgorithmSigner, presume it supports all signature algorithms
@@ -474,16 +476,24 @@ func (t *handshakeTransport) sendKexInit() error {
 				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
 			}
 		}
+		// As a server we add ext-info-s to the KEX algorithms to indicate that we support
+		// the Extension Negotiation Mechanism. The ext-info-s indicator must be added only
+		// in the first key exchange. See RFC 8308, Section 2.1.
+		if firstKeyExchange {
+			msg.KexAlgos = make([]string, 0, len(t.config.KeyExchanges)+1)
+			msg.KexAlgos = append(msg.KexAlgos, t.config.KeyExchanges...)
+			msg.KexAlgos = append(msg.KexAlgos, extInfoServer)
+		}
 	} else {
 		msg.ServerHostKeyAlgos = t.hostKeyAlgorithms
 
 		// As a client we opt in to receiving SSH_MSG_EXT_INFO so we know what
 		// algorithms the server supports for public key authentication. See RFC
 		// 8308, Section 2.1.
-		if firstKeyExchange := t.sessionID == nil; firstKeyExchange {
+		if firstKeyExchange {
 			msg.KexAlgos = make([]string, 0, len(t.config.KeyExchanges)+1)
 			msg.KexAlgos = append(msg.KexAlgos, t.config.KeyExchanges...)
-			msg.KexAlgos = append(msg.KexAlgos, "ext-info-c")
+			msg.KexAlgos = append(msg.KexAlgos, extInfoClient)
 		}
 	}
 
@@ -615,7 +625,8 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 		return err
 	}
 
-	if t.sessionID == nil {
+	firstKeyExchange := t.sessionID == nil
+	if firstKeyExchange {
 		t.sessionID = result.H
 	}
 	result.SessionID = t.sessionID
@@ -630,6 +641,29 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 		return err
 	} else if packet[0] != msgNewKeys {
 		return unexpectedMessageError(msgNewKeys, packet[0])
+	}
+
+	if !isClient {
+		// We're on the server side, if this is the first key exchange
+		// and the client sent the ext-info-c indicator, we send an SSH_MSG_EXT_INFO
+		// message with the server-sig-algs extension. See RFC 8308, Section 3.1.
+		if firstKeyExchange && contains(clientInit.KexAlgos, extInfoClient) {
+			extensions := map[string][]byte{}
+			extensions[extServerSigAlgs] = []byte(strings.Join(supportedServerSigAlgs, ","))
+
+			extInfo := &extInfoMsg{
+				NumExtensions: uint32(len(extensions)),
+			}
+			for k, v := range extensions {
+				extInfo.Payload = appendInt(extInfo.Payload, len(k))
+				extInfo.Payload = append(extInfo.Payload, k...)
+				extInfo.Payload = appendInt(extInfo.Payload, len(v))
+				extInfo.Payload = append(extInfo.Payload, v...)
+			}
+			if err := t.conn.writePacket(Marshal(extInfo)); err != nil {
+				return err
+			}
+		}
 	}
 
 	return nil
