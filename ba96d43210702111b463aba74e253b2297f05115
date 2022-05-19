@@ -35,6 +35,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de15fe7_3a882a89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-05-19T15:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0514f0cf_99203558",
+      "revId": "ba96d43210702111b463aba74e253b2297f05115",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d23b71c_d1ebd1c3",
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "The reason I mention this is that we added a tested:\n\n```\ndiff --git a/ssh/handshake_test.go b/ssh/handshake_test.go\nindex b05aab3..6ded0ee 100644\n--- a/ssh/handshake_test.go\n+++ b/ssh/handshake_test.go\n@@ -22,6 +22,12 @@ type testChecker struct {\n \tcalls []string\n }\n \n+type parsedExtInfoMsg struct {\n+\tNumExtensions uint32 `sshtype:\"7\"`\n+\tExt           string\n+\tAlgs          []string\n+}\n+\n func (t *testChecker) Check(dialAddr string, addr net.Addr, key PublicKey) error {\n \tif dialAddr \u003d\u003d \"bad\" {\n \t\treturn fmt.Errorf(\"dialAddr is bad\")\n@@ -618,3 +624,52 @@ func TestNoSHA2Support(t *testing.T) {\n \t\tt.Fatal(err)\n \t}\n }\n+\n+func TestHandshakeExtInfoSignal(t *testing.T) {\n+\tclientConf :\u003d \u0026ClientConfig{\n+\t\tConfig:          Config{KeyExchanges: append(preferredKexAlgos, extInfoClient)},\n+\t\tHostKeyCallback: InsecureIgnoreHostKey(),\n+\t}\n+\ttrC, trS, err :\u003d handshakePair(clientConf, \"addr\", false)\n+\tif err !\u003d nil {\n+\t\tt.Fatalf(\"handshakePair: %v\", err)\n+\t}\n+\tdefer trC.Close()\n+\tdefer trS.Close()\n+\n+\tpacket, err :\u003d trC.readPacket()\n+\tif err !\u003d nil {\n+\t\tt.Fatalf(\"readPacket 1: %v\", err)\n+\t}\n+\n+\tvar extInfo parsedExtInfoMsg\n+\tif err :\u003d Unmarshal(packet, \u0026extInfo); err !\u003d nil {\n+\t\tt.Fatalf(\"unable to unmarshal packet: %v\", err)\n+\t}\n+\n+\tif extInfo.NumExtensions !\u003d 1 {\n+\t\tt.Errorf(\"expected 1 extension but received %d\", extInfo.NumExtensions)\n+\t}\n+\n+\tif extInfo.Ext !\u003d extServerSigAlgs {\n+\t\tt.Errorf(\"expected %s but received %s\", extServerSigAlgs, extInfo.Ext)\n+\t}\n+\n+\tif len(supportedServerSigAlgs) !\u003d len(extInfo.Algs) {\n+\t\tt.Errorf(\"expected %d %s but received %d\",\n+\t\t\tlen(supportedServerSigAlgs), extServerSigAlgs, len(extInfo.Algs))\n+\t}\n+\n+\tfor _, expected :\u003d range supportedServerSigAlgs {\n+\t\tfoundAlg :\u003d false\n+\t\tfor _, found :\u003d range extInfo.Algs {\n+\t\t\tif expected \u003d\u003d found {\n+\t\t\t\tfoundAlg \u003d true\n+\t\t\t\tbreak\n+\t\t\t}\n+\t\t}\n+\t\tif !foundAlg {\n+\t\t\tt.Errorf(\"could not find expected alg \u0027%s\u0027 in %s\", expected, extServerSigAlgs)\n+\t\t}\n+\t}\n+}\n```",
       "parentUuid": "2d23b71c_d1ebd1c3",
+      "revId": "ba96d43210702111b463aba74e253b2297f05115",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1b32cd9_c4005246",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-05-19T15:10:28Z",
+      "side": 1,
+      "message": "done, not sure if common is the right place. The current code calls this method after checking that the passed packet is a valid extInfoMsg, so I omitted the check \"if len(packet) \u003e 0 \u0026\u0026 packet[0] \u003d\u003d msgExtInfo\"",
+      "parentUuid": "498de088_0789d650",
       "revId": "ba96d43210702111b463aba74e253b2297f05115",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
