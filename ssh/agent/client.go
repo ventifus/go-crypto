@@ -226,7 +226,7 @@ var ErrExtensionUnsupported = errors.New("agent: extension unsupported")
 
 type extensionAgentMsg struct {
 	ExtensionType string `sshtype:"27"`
-	Contents      []byte
+	Contents      []byte `ssh:"rest"`
 }
 
 // Key represents a protocol 2 public key as defined in
