@@ -52,6 +52,24 @@
       "parentUuid": "7531d929_95da1f7d",
       "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e169705_b24afe7b",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2022-06-15T19:17:32Z",
+      "side": 1,
+      "message": "Thanks! When the server-sig-algs extension is active, I described the problem we\u0027re seeing with Yubikey RSA keys on Ubuntu 18.04: https://github.com/golang/go/issues/53391",
+      "parentUuid": "1acb3c23_f7c03401",
+      "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
