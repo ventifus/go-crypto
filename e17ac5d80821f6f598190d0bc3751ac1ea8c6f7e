@@ -16,6 +16,24 @@
       "message": "I highly recommend swapping the order of these algorithms:\n\n```\n      KeyAlgoRSA, KeyAlgoRSASHA512,\n```\n\nWhen we put these changes in production, we noticed a number of clients would fail with RSA keys, and the server would report:\n\n```\nsignature \"ssh-rsa\" not compatible with selected algorithm \"rsa-sha2-512\"\n``` \n\nAs https://adamheins.com/blog/ssh-agent-key-rsa mentions, older gpg-agent versions do not support `rsa-sha2-512`. On Ubuntu 18.04, which uses gpg-agent v2.2.4 and OpenSSH v7.6, logins that use RSA keys that use gpg-agent (e.g. Yubikey keys) will fail unless `ssh-rsa` takes precedence over `rsa-sha2-512`.\n\nUpgrading gpg-agent appears to solve the problem, but OpenSSH puts `ssh-rsa` first.",
       "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7531d929_95da1f7d",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2022-06-15T04:02:02Z",
+      "side": 1,
+      "message": "Never mind, I think that https://github.com/golang/go/issues/49952 might have fixed this RSA issue.",
+      "parentUuid": "f7bb1145_4ee952fd",
+      "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
