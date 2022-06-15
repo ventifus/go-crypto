@@ -24,6 +24,14 @@ const (
 	serviceSSH      = "ssh-connection"
 )
 
+// These are string constants related to extensions and extension negotiation.
+// See RFC 8308
+const (
+	extInfoServer    = "ext-info-s"
+	extInfoClient    = "ext-info-c"
+	extServerSigAlgs = "server-sig-algs"
+)
+
 // supportedCiphers lists ciphers we support but might not recommend.
 var supportedCiphers = []string{
 	"aes128-ctr", "aes192-ctr", "aes256-ctr",
@@ -89,6 +97,15 @@ var supportedMACs = []string{
 
 var supportedCompressions = []string{compressionNone}
 
+// supportedServerSigAlgs defines the algorithms supported for pubkey authentication.
+// Order should not matter, but to avoid any issues we use the same order as OpenSSH.
+// See RFC 8308, Section 3.1.
+var supportedServerSigAlgs = []string{KeyAlgoED25519, KeyAlgoSKED25519,
+	KeyAlgoRSA, KeyAlgoRSASHA256, KeyAlgoRSASHA512,
+	KeyAlgoDSA, KeyAlgoECDSA256, KeyAlgoECDSA384, KeyAlgoECDSA521,
+	KeyAlgoSKECDSA256,
+}
+
 // hashFuncs keeps the mapping of supported signature algorithms to their
 // respective hashes needed for signing and verification.
 var hashFuncs = map[string]crypto.Hash{
@@ -127,6 +144,31 @@ func unexpectedMessageError(expected, got uint8) error {
 // parseError results from a malformed SSH message.
 func parseError(tag uint8) error {
 	return fmt.Errorf("ssh: parse error in message type %d", tag)
+}
+
+// parseExtInfoMsg returns the extensions from an extInfoMsg packet.
+// packet must be an already validated extInfoMsg
+func parseExtInfoMsg(packet []byte) (map[string][]byte, error) {
+	extensions := make(map[string][]byte)
+	var extInfo extInfoMsg
+
+	if err := Unmarshal(packet, &extInfo); err != nil {
+		return nil, err
+	}
+	payload := extInfo.Payload
+	for i := uint32(0); i < extInfo.NumExtensions; i++ {
+		name, rest, ok := parseString(payload)
+		if !ok {
+			return nil, parseError(msgExtInfo)
+		}
+		value, rest, ok := parseString(rest)
+		if !ok {
+			return nil, parseError(msgExtInfo)
+		}
+		extensions[string(name)] = value
+		payload = rest
+	}
+	return extensions, nil
 }
 
 func findCommon(what string, client []string, server []string) (common string, err error) {
@@ -180,6 +222,10 @@ func findAgreedAlgorithms(isClient bool, clientKexInit, serverKexInit *kexInitMs
 	result.kex, err = findCommon("key exchange", clientKexInit.KexAlgos, serverKexInit.KexAlgos)
 	if err != nil {
 		return
+	} else if result.kex == extInfoClient || result.kex == extInfoServer {
+		// According to RFC8308 section 2.2 if either the client or server extension signal
+		// is chosen as the kex algorithm the parties must disconnect.
+		return result, fmt.Errorf("ssh: invalid kex algorithm chosen: %s", result.kex)
 	}
 
 	result.hostKey, err = findCommon("host key", clientKexInit.ServerHostKeyAlgos, serverKexInit.ServerHostKeyAlgos)
