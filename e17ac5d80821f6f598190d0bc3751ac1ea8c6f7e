@@ -34,6 +34,24 @@
       "parentUuid": "f7bb1145_4ee952fd",
       "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1acb3c23_f7c03401",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-06-15T08:09:57Z",
+      "side": 1,
+      "message": "Thanks for reporting to avoid any issues I changed the order to match OpenSSH.\nWith OpenSSH 9.0 I have this\n\ndebug1: kex_input_ext_info: server-sig-algs\u003d\u003cssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com\u003e\n\nthe patch is now updated to use the same order",
+      "parentUuid": "7531d929_95da1f7d",
+      "revId": "e17ac5d80821f6f598190d0bc3751ac1ea8c6f7e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
