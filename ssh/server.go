@@ -396,6 +396,28 @@ func (l ServerAuthError) Error() string {
 // It is returned in ServerAuthError.Errors from NewServerConn.
 var ErrNoAuth = errors.New("ssh: no auth passed yet")
 
+func isRSAType(algo string) bool {
+	return algo == KeyAlgoRSASHA512 || algo == KeyAlgoRSASHA256 || algo == KeyAlgoRSA
+}
+
+func algoCompatible(algo string, publicKey PublicKey, sig *Signature) bool {
+	if underlyingAlgo(algo) == sig.Format {
+		return true
+	}
+
+	// Buggy SSH clients may send ssh-rsa2-512 as the public key algorithm but
+	// actually include a rsa-sha signature.
+	// According to RFC 8832 Section 3.2:
+	// A server MAY, but is not required to, accept this variant or another variant that
+	// corresponds to a good-faith implementation and is considered safe to
+	// accept.
+	if publicKey.Type() == KeyAlgoRSA && isRSAType(algo) && isRSAType(sig.Format) {
+		return true
+	}
+
+	return false
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
@@ -564,7 +586,7 @@ userAuthLoop:
 					authErr = fmt.Errorf("ssh: algorithm %q not accepted", sig.Format)
 					break
 				}
-				if underlyingAlgo(algo) != sig.Format {
+				if !algoCompatible(algo, pubKey, sig) {
 					authErr = fmt.Errorf("ssh: signature %q not compatible with selected algorithm %q", sig.Format, algo)
 					break
 				}
