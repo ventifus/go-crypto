@@ -16,6 +16,24 @@
       "message": "Hi edef! This is a bit weird, https://datatracker.ietf.org/doc/html/draft-miller-ssh-agent-00#section-4.7 has byte[] for that field, which IIRC does nesting? Also, is no one using extensions with this package at this time?",
       "revId": "f336f331c135f571f523286c59307fafa9cdcbc9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e0c21b_4db101f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34602
+      },
+      "writtenOn": "2022-06-18T14:33:21Z",
+      "side": 1,
+      "message": "I\u0027m implementing the same extension as golang/go#51689 describes, and my code is very much working with OpenSSH now that I have this patch applied.\n\nI suspect the RFC is wrong. It is derived from [PROTOCOL.agent](https://github.com/openssh/openssh-portable/blob/f5ba85daddfc2da6a8dab6038269e02c0695be44/PROTOCOL.agent), written by the same author, which does not describe any nesting and matches the OpenSSH code.\n\nWe should definitely include a comment about this.",
+      "parentUuid": "847ef777_5fb05f7c",
+      "revId": "f336f331c135f571f523286c59307fafa9cdcbc9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
