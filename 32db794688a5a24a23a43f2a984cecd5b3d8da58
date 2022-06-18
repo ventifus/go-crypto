@@ -16,6 +16,24 @@
       "message": "Let\u0027s take this change to go.mod out of this patch.  Thanks.",
       "revId": "32db794688a5a24a23a43f2a984cecd5b3d8da58",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b973240_31227237",
+        "filename": "go.mod",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-18T10:55:28Z",
+      "side": 0,
+      "message": "Done. Removed the `go.mod` change.",
+      "parentUuid": "e9979c3d_c0bff432",
+      "revId": "32db794688a5a24a23a43f2a984cecd5b3d8da58",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
