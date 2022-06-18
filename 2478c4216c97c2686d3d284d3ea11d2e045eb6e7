@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c101017a_d804b36b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-18T23:31:38Z",
+      "side": 1,
+      "message": "This topic can be more direct:\n\ncurve25519: remove dependency on fmt",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8298929a_8ff2b9cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-18T23:31:38Z",
+      "side": 1,
+      "message": "We can remove this line, it\u0027s not adding anything.",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "853f961d_373dfc1c",
+        "filename": "curve25519/curve25519_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-18T23:31:38Z",
+      "side": 1,
+      "message": "This is a nice test but honestly I don\u0027t think we need it.  We can instead modify the test in $GOROOT/src/go/build/deps_test.go to test this for us (we can modify that test in a different patch, after this patch is vendored into $GOROOT).  So I think we can omit the test from this file.  Thanks.",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
