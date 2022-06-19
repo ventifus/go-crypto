@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e74a6a8_2b7bef22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-19T02:52:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c101017a_d804b36b",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8298929a_8ff2b9cb",
@@ -35,6 +53,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03990b3f_27f169df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-19T02:52:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8298929a_8ff2b9cb",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "853f961d_373dfc1c",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-06-18T23:31:38Z",
       "side": 1,
       "message": "This is a nice test but honestly I don\u0027t think we need it.  We can instead modify the test in $GOROOT/src/go/build/deps_test.go to test this for us (we can modify that test in a different patch, after this patch is vendored into $GOROOT).  So I think we can omit the test from this file.  Thanks.",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f66e324e_653e700a",
+        "filename": "curve25519/curve25519_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-19T02:52:06Z",
+      "side": 1,
+      "message": "I have removed the test. But, I am unable to find the \"deps_test.go\" file. Neither in the main Golang repo nor in the build repo. \n\nPlease let me know where to add the test cases for this change so that the next time someone tries to add `fmt` there should be some test that lets user know about the addition.",
+      "parentUuid": "853f961d_373dfc1c",
       "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
