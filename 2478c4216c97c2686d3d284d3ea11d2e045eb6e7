@@ -140,6 +140,24 @@
       "parentUuid": "281c869e_3d000330",
       "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b8dd514_77fde44c",
+        "filename": "curve25519/curve25519_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-21T04:15:54Z",
+      "side": 1,
+      "message": "Thank you. I am looking into the `.../deps_test.go` file.\n\nTrying to understand `depsRules`. \nShould I create a new issue in golang/go repo to track this change?",
+      "parentUuid": "c07eb675_259f4f9c",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
