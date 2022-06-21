@@ -158,6 +158,24 @@
       "parentUuid": "c07eb675_259f4f9c",
       "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7e03df_45b52c20",
+        "filename": "curve25519/curve25519_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-21T21:37:28Z",
+      "side": 1,
+      "message": "There\u0027s no need to open a new issue, the current issue (#48154) is enough.",
+      "parentUuid": "7b8dd514_77fde44c",
+      "revId": "2478c4216c97c2686d3d284d3ea11d2e045eb6e7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
