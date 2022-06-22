@@ -71,6 +71,24 @@
       "parentUuid": "44a754f4_c28830f5",
       "revId": "4f36628a4a57fdf585bc875ec99240dd73af8bed",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8418e49_d67b925b",
+        "filename": "curve25519/curve25519_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 38260
+      },
+      "writtenOn": "2022-06-22T04:26:57Z",
+      "side": 1,
+      "message": "tbh motivation behind the change in \"_test.go\" was to remove the dependency of \"fmt\". I noticed that the vendored code does not contain test files. \\\n\nShould I revert the change, or use \"hex.EncodeToString\"?\n\nWhile writing Go, What is preferred in this use case? Irrespective of whether it is a normal package or a _test.go file?",
+      "parentUuid": "86477fff_424056de",
+      "revId": "4f36628a4a57fdf585bc875ec99240dd73af8bed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
