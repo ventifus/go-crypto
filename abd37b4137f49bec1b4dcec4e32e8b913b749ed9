@@ -74,6 +74,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3113cec7_dee9771a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2022-06-24T13:04:55Z",
+      "side": 1,
+      "message": "I\u0027m not a great reviewer for these packages (also note they\u0027re marked as \"Deprecated: this package is unmaintained except for security fixes\"). I left one general suggestion in an inline comment.",
+      "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57b521f9_945bd6fa",
@@ -87,6 +104,23 @@
       "writtenOn": "2022-06-24T07:30:18Z",
       "side": 1,
       "message": "it looks like rerr now always stays nil, because err is now only written to but never returned.\n\nDid you intend this or is it missing the conversion to return err everywhere?",
+      "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9356300_09d8ff70",
+        "filename": "openpgp/packet/literal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2022-06-24T13:04:55Z",
+      "side": 1,
+      "message": "This function is exported, meaning its signature shows up in documentation. I think it would be better if the bug is fixed without changing the user-facing signature (from err, to \"rerr\"), since that harms readability of the documentation, and Go favors readability of documentation higher than slight inconvenience to the implementation.\n\nSame comment in other similar places.",
       "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
