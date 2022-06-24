@@ -54,7 +54,7 @@ func (l *LiteralData) parse(r io.Reader) (err error) {
 // SerializeLiteral serializes a literal data packet to w and returns a
 // WriteCloser to which the data itself can be written and which MUST be closed
 // on completion. The fileName is truncated to 255 bytes.
-func SerializeLiteral(w io.WriteCloser, isBinary bool, fileName string, time uint32) (plaintext io.WriteCloser, err error) {
+func SerializeLiteral(w io.WriteCloser, isBinary bool, fileName string, time uint32) (plaintext io.WriteCloser, rerr error) {
 	var buf [4]byte
 	buf[0] = 't'
 	if isBinary {
@@ -69,6 +69,11 @@ func SerializeLiteral(w io.WriteCloser, isBinary bool, fileName string, time uin
 	if err != nil {
 		return
 	}
+	defer func() {
+		if rerr != nil {
+			inner.Close()
+		}
+	}()
 
 	_, err = inner.Write(buf[:2])
 	if err != nil {

@@ -253,7 +253,7 @@ func (c noOpCloser) Close() error {
 // to w and returns a WriteCloser to which the to-be-encrypted packets can be
 // written.
 // If config is nil, sensible defaults will be used.
-func SerializeSymmetricallyEncrypted(w io.Writer, c CipherFunction, key []byte, config *Config) (contents io.WriteCloser, err error) {
+func SerializeSymmetricallyEncrypted(w io.Writer, c CipherFunction, key []byte, config *Config) (contents io.WriteCloser, rerr error) {
 	if c.KeySize() != len(key) {
 		return nil, errors.InvalidArgumentError("SymmetricallyEncrypted.Serialize: bad key length")
 	}
@@ -262,6 +262,11 @@ func SerializeSymmetricallyEncrypted(w io.Writer, c CipherFunction, key []byte, 
 	if err != nil {
 		return
 	}
+	defer func() {
+		if rerr != nil {
+			ciphertext.Close()
+		}
+	}()
 
 	_, err = ciphertext.Write([]byte{symmetricallyEncryptedVersion})
 	if err != nil {
