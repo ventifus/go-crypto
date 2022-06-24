@@ -87,11 +87,16 @@ func (cwc compressedWriteCloser) Close() (err error) {
 // can be written and which MUST be closed on completion. If cc is
 // nil, sensible defaults will be used to configure the compression
 // algorithm.
-func SerializeCompressed(w io.WriteCloser, algo CompressionAlgo, cc *CompressionConfig) (literaldata io.WriteCloser, err error) {
+func SerializeCompressed(w io.WriteCloser, algo CompressionAlgo, cc *CompressionConfig) (literaldata io.WriteCloser, rerr error) {
 	compressed, err := serializeStreamHeader(w, packetTypeCompressed)
 	if err != nil {
 		return
 	}
+	defer func() {
+		if rerr != nil {
+			compressed.Close()
+		}
+	}()
 
 	_, err = compressed.Write([]byte{uint8(algo)})
 	if err != nil {
