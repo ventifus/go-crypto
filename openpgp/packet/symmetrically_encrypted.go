@@ -258,10 +258,15 @@ func SerializeSymmetricallyEncrypted(w io.Writer, c CipherFunction, key []byte, 
 		return nil, errors.InvalidArgumentError("SymmetricallyEncrypted.Serialize: bad key length")
 	}
 	writeCloser := noOpCloser{w}
-	ciphertext, err := serializeStreamHeader(writeCloser, packetTypeSymmetricallyEncryptedMDC)
+	ciphertext, rerr := serializeStreamHeader(writeCloser, packetTypeSymmetricallyEncryptedMDC)
 	if err != nil {
-		return
+		return nil, rerr
 	}
+	defer func() {
+		if err != nil {
+			ciphertext.Close()
+		}
+	}()
 
 	_, err = ciphertext.Write([]byte{symmetricallyEncryptedVersion})
 	if err != nil {

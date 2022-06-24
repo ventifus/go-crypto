@@ -65,10 +65,15 @@ func SerializeLiteral(w io.WriteCloser, isBinary bool, fileName string, time uin
 	}
 	buf[1] = byte(len(fileName))
 
-	inner, err := serializeStreamHeader(w, packetTypeLiteralData)
-	if err != nil {
-		return
+	inner, rerr := serializeStreamHeader(w, packetTypeLiteralData)
+	if rerr != nil {
+		return nil, rerr
 	}
+	defer func() {
+		if err != nil {
+			inner.Close()
+		}
+	}()
 
 	_, err = inner.Write(buf[:2])
 	if err != nil {

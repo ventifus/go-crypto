@@ -297,10 +297,15 @@ func (d *dashEscaper) Close() (err error) {
 		}
 	}
 
-	out, err := armor.Encode(d.buffered, "PGP SIGNATURE", nil)
-	if err != nil {
-		return
+	out, rerr := armor.Encode(d.buffered, "PGP SIGNATURE", nil)
+	if rerr != nil {
+		return rerr
 	}
+	defer func() {
+		if err != nil {
+			out.Close()
+		}
+	}()
 
 	t := d.config.Now()
 	for i, k := range d.privateKeys {

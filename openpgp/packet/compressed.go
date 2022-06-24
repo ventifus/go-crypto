@@ -88,10 +88,15 @@ func (cwc compressedWriteCloser) Close() (err error) {
 // nil, sensible defaults will be used to configure the compression
 // algorithm.
 func SerializeCompressed(w io.WriteCloser, algo CompressionAlgo, cc *CompressionConfig) (literaldata io.WriteCloser, err error) {
-	compressed, err := serializeStreamHeader(w, packetTypeCompressed)
-	if err != nil {
-		return
+	compressed, rerr := serializeStreamHeader(w, packetTypeCompressed)
+	if rerr != nil {
+		return nil, rerr
 	}
+	defer func() {
+		if err != nil {
+			compressed.Close()
+		}
+	}()
 
 	_, err = compressed.Write([]byte{uint8(algo)})
 	if err != nil {
