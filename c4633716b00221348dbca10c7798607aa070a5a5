@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "21159940_b3ac0832",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "Minor, but please run the benchmarks 10 times each way, and change the description to include the output of \"benchstat old new\".  You can find benchstat at golang.org/x/perf/cmd/benchstat.  Thanks.",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "64cb43a3_b8fbf0c9",
@@ -48,6 +65,57 @@
       "writtenOn": "2022-06-24T04:48:51Z",
       "side": 1,
       "message": "Anything should I do to proceed this PR?",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afdc621d_0e89d5a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "Big chunks of crypto assembly code are hard to review.  I\u0027m not sure who will do it.  See also https://go.dev/wiki/AssemblyPolicy.",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a58e22c_ecdd43cc",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "s/2021/2022/",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f07737_64b392e9",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "Write the link as https://go.dev/wiki/GoArm",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -119,6 +187,74 @@
         "endLine": 17,
         "endChar": 87
       },
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4783396_f75ad435",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "If I\u0027m reading this correctly this will break on older ARM processors.  Am I missing something?",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e74529f_2de07759",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "s/2021/2022/",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883d2118_cffc1fdc",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "Remove trailing whitespace.",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15da7de1_5011eb6f",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-06-24T05:05:03Z",
+      "side": 1,
+      "message": "Remove trailing whitespace.",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
