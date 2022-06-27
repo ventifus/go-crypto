@@ -108,6 +108,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d4ecf6_9d030d42",
+        "filename": "openpgp/clearsign/clearsign.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2022-06-27T12:16:12Z",
+      "side": 1,
+      "message": "Thank you Ingo, and great to catch you here!\n\nIt is a named error return so the final value of https://go.dev/ref/spec#Defer_statements hence its value will always be\nset from the return path that was hit.",
+      "parentUuid": "57b521f9_945bd6fa",
+      "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9356300_09d8ff70",
@@ -121,6 +139,24 @@
       "writtenOn": "2022-06-24T13:04:55Z",
       "side": 1,
       "message": "This function is exported, meaning its signature shows up in documentation. I think it would be better if the bug is fixed without changing the user-facing signature (from err, to \"rerr\"), since that harms readability of the documentation, and Go favors readability of documentation higher than slight inconvenience to the implementation.\n\nSame comment in other similar places.",
+      "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a2b0b7_3a528794",
+        "filename": "openpgp/packet/literal.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5137
+      },
+      "writtenOn": "2022-06-27T12:16:12Z",
+      "side": 1,
+      "message": "Got it, I\u0027ve made the update to not change the return value. Thank you Dmitri!",
+      "parentUuid": "a9356300_09d8ff70",
       "revId": "abd37b4137f49bec1b4dcec4e32e8b913b749ed9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
