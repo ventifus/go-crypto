@@ -242,7 +242,7 @@ func (p *hashed) Hash() []byte {
 	}
 	arr[n] = '$'
 	n++
-	copy(arr[n:], []byte(fmt.Sprintf("%02d", p.cost)))
+	copy(arr[n:], formatCost(p.cost))
 	n += 2
 	arr[n] = '$'
 	n++
@@ -251,6 +251,15 @@ func (p *hashed) Hash() []byte {
 	copy(arr[n:], p.hash)
 	n += encodedHashSize
 	return arr[:n]
+}
+
+// equal to fmt.Sprintf("%02d", i)
+func formatCost(i int) string {
+	if i < 10 {
+		return "0" + strconv.Itoa(i)
+	}
+
+	return strconv.Itoa(i)
 }
 
 func (p *hashed) decodeVersion(sbytes []byte) (int, error) {
