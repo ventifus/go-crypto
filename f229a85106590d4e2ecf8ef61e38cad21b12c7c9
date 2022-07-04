@@ -33,6 +33,24 @@
       "message": "itoa is faster and has low memory allocation than fmt",
       "revId": "f229a85106590d4e2ecf8ef61e38cad21b12c7c9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "990a5eb0_c6510bde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-07-04T04:18:53Z",
+      "side": 1,
+      "message": "OK, but by that logic we should rewrite every use of fmt in the entire stadard library to use other functions instead.  We aren\u0027t going to do that, because performance is not the only criteria we care about.  Is this a function for which performance is particularly important?",
+      "parentUuid": "04cb9f34_444f5728",
+      "revId": "f229a85106590d4e2ecf8ef61e38cad21b12c7c9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
