@@ -34,6 +34,24 @@
       "parentUuid": "847ef777_5fb05f7c",
       "revId": "f336f331c135f571f523286c59307fafa9cdcbc9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93290722_7859ac7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34602
+      },
+      "writtenOn": "2022-07-08T11:00:18Z",
+      "side": 1,
+      "message": "Added a comment explaining that this does *not* match the IETF draft.",
+      "parentUuid": "71e0c21b_4db101f2",
+      "revId": "f336f331c135f571f523286c59307fafa9cdcbc9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
