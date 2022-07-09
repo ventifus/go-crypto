@@ -13,6 +13,7 @@ package sha3
 import (
 	"bytes"
 	"compress/flate"
+	"encoding"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -91,71 +92,77 @@ func testUnalignedAndGeneric(t *testing.T, testf func(impl string)) {
 // ShortMsgKATs from https://github.com/gvanas/KeccakCodePackage
 // (The testvectors are stored in keccakKats.json.deflate due to their length.)
 func TestKeccakKats(t *testing.T) {
-	testUnalignedAndGeneric(t, func(impl string) {
-		// Read the KATs.
-		deflated, err := os.Open(katFilename)
-		if err != nil {
-			t.Errorf("error opening %s: %s", katFilename, err)
-		}
-		file := flate.NewReader(deflated)
-		dec := json.NewDecoder(file)
-		var katSet KeccakKats
-		err = dec.Decode(&katSet)
-		if err != nil {
-			t.Errorf("error decoding KATs: %s", err)
-		}
-
-		for algo, function := range testDigests {
-			d := function()
-			for _, kat := range katSet.Kats[algo] {
-				d.Reset()
-				in, err := hex.DecodeString(kat.Message)
-				if err != nil {
-					t.Errorf("error decoding KAT: %s", err)
-				}
-				d.Write(in[:kat.Length/8])
-				got := strings.ToUpper(hex.EncodeToString(d.Sum(nil)))
-				if got != kat.Digest {
-					t.Errorf("function=%s, implementation=%s, length=%d\nmessage:\n %s\ngot:\n  %s\nwanted:\n %s",
-						algo, impl, kat.Length, kat.Message, got, kat.Digest)
-					t.Logf("wanted %+v", kat)
-					t.FailNow()
-				}
-				continue
+	testUnalignedAndGeneric(
+		t, func(impl string) {
+			// Read the KATs.
+			deflated, err := os.Open(katFilename)
+			if err != nil {
+				t.Errorf("error opening %s: %s", katFilename, err)
 			}
-		}
-
-		for algo, v := range testShakes {
-			for _, kat := range katSet.Kats[algo] {
-				N, err := hex.DecodeString(kat.N)
-				if err != nil {
-					t.Errorf("error decoding KAT: %s", err)
-				}
-
-				S, err := hex.DecodeString(kat.S)
-				if err != nil {
-					t.Errorf("error decoding KAT: %s", err)
-				}
-				d := v.constructor(N, S)
-				in, err := hex.DecodeString(kat.Message)
-				if err != nil {
-					t.Errorf("error decoding KAT: %s", err)
-				}
-
-				d.Write(in[:kat.Length/8])
-				out := make([]byte, len(kat.Digest)/2)
-				d.Read(out)
-				got := strings.ToUpper(hex.EncodeToString(out))
-				if got != kat.Digest {
-					t.Errorf("function=%s, implementation=%s, length=%d N:%s\n S:%s\nmessage:\n %s \ngot:\n  %s\nwanted:\n %s",
-						algo, impl, kat.Length, kat.N, kat.S, kat.Message, got, kat.Digest)
-					t.Logf("wanted %+v", kat)
-					t.FailNow()
-				}
-				continue
+			file := flate.NewReader(deflated)
+			dec := json.NewDecoder(file)
+			var katSet KeccakKats
+			err = dec.Decode(&katSet)
+			if err != nil {
+				t.Errorf("error decoding KATs: %s", err)
 			}
-		}
-	})
+
+			for algo, function := range testDigests {
+				d := function()
+				for _, kat := range katSet.Kats[algo] {
+					d.Reset()
+					in, err := hex.DecodeString(kat.Message)
+					if err != nil {
+						t.Errorf("error decoding KAT: %s", err)
+					}
+					d.Write(in[:kat.Length/8])
+					got := strings.ToUpper(hex.EncodeToString(d.Sum(nil)))
+					if got != kat.Digest {
+						t.Errorf(
+							"function=%s, implementation=%s, length=%d\nmessage:\n %s\ngot:\n  %s\nwanted:\n %s",
+							algo, impl, kat.Length, kat.Message, got, kat.Digest,
+						)
+						t.Logf("wanted %+v", kat)
+						t.FailNow()
+					}
+					continue
+				}
+			}
+
+			for algo, v := range testShakes {
+				for _, kat := range katSet.Kats[algo] {
+					N, err := hex.DecodeString(kat.N)
+					if err != nil {
+						t.Errorf("error decoding KAT: %s", err)
+					}
+
+					S, err := hex.DecodeString(kat.S)
+					if err != nil {
+						t.Errorf("error decoding KAT: %s", err)
+					}
+					d := v.constructor(N, S)
+					in, err := hex.DecodeString(kat.Message)
+					if err != nil {
+						t.Errorf("error decoding KAT: %s", err)
+					}
+
+					d.Write(in[:kat.Length/8])
+					out := make([]byte, len(kat.Digest)/2)
+					d.Read(out)
+					got := strings.ToUpper(hex.EncodeToString(out))
+					if got != kat.Digest {
+						t.Errorf(
+							"function=%s, implementation=%s, length=%d N:%s\n S:%s\nmessage:\n %s \ngot:\n  %s\nwanted:\n %s",
+							algo, impl, kat.Length, kat.N, kat.S, kat.Message, got, kat.Digest,
+						)
+						t.Logf("wanted %+v", kat)
+						t.FailNow()
+					}
+					continue
+				}
+			}
+		},
+	)
 }
 
 // TestKeccak does a basic test of the non-standardized Keccak hash functions.
@@ -191,119 +198,127 @@ func TestKeccak(t *testing.T) {
 // TestUnalignedWrite tests that writing data in an arbitrary pattern with
 // small input buffers.
 func TestUnalignedWrite(t *testing.T) {
-	testUnalignedAndGeneric(t, func(impl string) {
-		buf := sequentialBytes(0x10000)
-		for alg, df := range testDigests {
-			d := df()
-			d.Reset()
-			d.Write(buf)
-			want := d.Sum(nil)
-			d.Reset()
-			for i := 0; i < len(buf); {
-				// Cycle through offsets which make a 137 byte sequence.
-				// Because 137 is prime this sequence should exercise all corner cases.
-				offsets := [17]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1}
-				for _, j := range offsets {
-					if v := len(buf) - i; v < j {
-						j = v
+	testUnalignedAndGeneric(
+		t, func(impl string) {
+			buf := sequentialBytes(0x10000)
+			for alg, df := range testDigests {
+				d := df()
+				d.Reset()
+				d.Write(buf)
+				want := d.Sum(nil)
+				d.Reset()
+				for i := 0; i < len(buf); {
+					// Cycle through offsets which make a 137 byte sequence.
+					// Because 137 is prime this sequence should exercise all corner cases.
+					offsets := [17]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1}
+					for _, j := range offsets {
+						if v := len(buf) - i; v < j {
+							j = v
+						}
+						d.Write(buf[i : i+j])
+						i += j
 					}
-					d.Write(buf[i : i+j])
-					i += j
+				}
+				got := d.Sum(nil)
+				if !bytes.Equal(got, want) {
+					t.Errorf("Unaligned writes, implementation=%s, alg=%s\ngot %q, want %q", impl, alg, got, want)
 				}
 			}
-			got := d.Sum(nil)
-			if !bytes.Equal(got, want) {
-				t.Errorf("Unaligned writes, implementation=%s, alg=%s\ngot %q, want %q", impl, alg, got, want)
-			}
-		}
 
-		// Same for SHAKE
-		for alg, df := range testShakes {
-			want := make([]byte, 16)
-			got := make([]byte, 16)
-			d := df.constructor([]byte(df.defAlgoName), []byte(df.defCustomStr))
+			// Same for SHAKE
+			for alg, df := range testShakes {
+				want := make([]byte, 16)
+				got := make([]byte, 16)
+				d := df.constructor([]byte(df.defAlgoName), []byte(df.defCustomStr))
 
-			d.Reset()
-			d.Write(buf)
-			d.Read(want)
-			d.Reset()
-			for i := 0; i < len(buf); {
-				// Cycle through offsets which make a 137 byte sequence.
-				// Because 137 is prime this sequence should exercise all corner cases.
-				offsets := [17]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1}
-				for _, j := range offsets {
-					if v := len(buf) - i; v < j {
-						j = v
+				d.Reset()
+				d.Write(buf)
+				d.Read(want)
+				d.Reset()
+				for i := 0; i < len(buf); {
+					// Cycle through offsets which make a 137 byte sequence.
+					// Because 137 is prime this sequence should exercise all corner cases.
+					offsets := [17]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1}
+					for _, j := range offsets {
+						if v := len(buf) - i; v < j {
+							j = v
+						}
+						d.Write(buf[i : i+j])
+						i += j
 					}
-					d.Write(buf[i : i+j])
-					i += j
+				}
+				d.Read(got)
+				if !bytes.Equal(got, want) {
+					t.Errorf("Unaligned writes, implementation=%s, alg=%s\ngot %q, want %q", impl, alg, got, want)
 				}
 			}
-			d.Read(got)
-			if !bytes.Equal(got, want) {
-				t.Errorf("Unaligned writes, implementation=%s, alg=%s\ngot %q, want %q", impl, alg, got, want)
-			}
-		}
-	})
+		},
+	)
 }
 
 // TestAppend checks that appending works when reallocation is necessary.
 func TestAppend(t *testing.T) {
-	testUnalignedAndGeneric(t, func(impl string) {
-		d := New224()
+	testUnalignedAndGeneric(
+		t, func(impl string) {
+			d := New224()
 
-		for capacity := 2; capacity <= 66; capacity += 64 {
-			// The first time around the loop, Sum will have to reallocate.
-			// The second time, it will not.
-			buf := make([]byte, 2, capacity)
-			d.Reset()
-			d.Write([]byte{0xcc})
-			buf = d.Sum(buf)
-			expected := "0000DF70ADC49B2E76EEE3A6931B93FA41841C3AF2CDF5B32A18B5478C39"
-			if got := strings.ToUpper(hex.EncodeToString(buf)); got != expected {
-				t.Errorf("got %s, want %s", got, expected)
+			for capacity := 2; capacity <= 66; capacity += 64 {
+				// The first time around the loop, Sum will have to reallocate.
+				// The second time, it will not.
+				buf := make([]byte, 2, capacity)
+				d.Reset()
+				d.Write([]byte{0xcc})
+				buf = d.Sum(buf)
+				expected := "0000DF70ADC49B2E76EEE3A6931B93FA41841C3AF2CDF5B32A18B5478C39"
+				if got := strings.ToUpper(hex.EncodeToString(buf)); got != expected {
+					t.Errorf("got %s, want %s", got, expected)
+				}
 			}
-		}
-	})
+		},
+	)
 }
 
 // TestAppendNoRealloc tests that appending works when no reallocation is necessary.
 func TestAppendNoRealloc(t *testing.T) {
-	testUnalignedAndGeneric(t, func(impl string) {
-		buf := make([]byte, 1, 200)
-		d := New224()
-		d.Write([]byte{0xcc})
-		buf = d.Sum(buf)
-		expected := "00DF70ADC49B2E76EEE3A6931B93FA41841C3AF2CDF5B32A18B5478C39"
-		if got := strings.ToUpper(hex.EncodeToString(buf)); got != expected {
-			t.Errorf("%s: got %s, want %s", impl, got, expected)
-		}
-	})
+	testUnalignedAndGeneric(
+		t, func(impl string) {
+			buf := make([]byte, 1, 200)
+			d := New224()
+			d.Write([]byte{0xcc})
+			buf = d.Sum(buf)
+			expected := "00DF70ADC49B2E76EEE3A6931B93FA41841C3AF2CDF5B32A18B5478C39"
+			if got := strings.ToUpper(hex.EncodeToString(buf)); got != expected {
+				t.Errorf("%s: got %s, want %s", impl, got, expected)
+			}
+		},
+	)
 }
 
 // TestSqueezing checks that squeezing the full output a single time produces
 // the same output as repeatedly squeezing the instance.
 func TestSqueezing(t *testing.T) {
-	testUnalignedAndGeneric(t, func(impl string) {
-		for algo, v := range testShakes {
-			d0 := v.constructor([]byte(v.defAlgoName), []byte(v.defCustomStr))
-			d0.Write([]byte(testString))
-			ref := make([]byte, 32)
-			d0.Read(ref)
+	testUnalignedAndGeneric(
+		t, func(impl string) {
+			for algo, v := range testShakes {
+				d0 := v.constructor([]byte(v.defAlgoName), []byte(v.defCustomStr))
+				d0.Write([]byte(testString))
+				ref := make([]byte, 32)
+				d0.Read(ref)
 
-			d1 := v.constructor([]byte(v.defAlgoName), []byte(v.defCustomStr))
-			d1.Write([]byte(testString))
-			var multiple []byte
-			for range ref {
-				one := make([]byte, 1)
-				d1.Read(one)
-				multiple = append(multiple, one...)
+				d1 := v.constructor([]byte(v.defAlgoName), []byte(v.defCustomStr))
+				d1.Write([]byte(testString))
+				var multiple []byte
+				for range ref {
+					one := make([]byte, 1)
+					d1.Read(one)
+					multiple = append(multiple, one...)
+				}
+				if !bytes.Equal(ref, multiple) {
+					t.Errorf("%s (%s): squeezing %d bytes one at a time failed", algo, impl, len(ref))
+				}
 			}
-			if !bytes.Equal(ref, multiple) {
-				t.Errorf("%s (%s): squeezing %d bytes one at a time failed", algo, impl, len(ref))
-			}
-		}
-	})
+		},
+	)
 }
 
 // sequentialBytes produces a buffer of size consecutive bytes 0x00, 0x01, ..., used for testing.
@@ -364,6 +379,78 @@ func TestClone(t *testing.T) {
 			if !bytes.Equal(out1, out2) {
 				t.Error("\nExpected:\n", hex.EncodeToString(out1), "\ngot:\n", hex.EncodeToString(out2))
 			}
+		}
+	}
+}
+
+func stateIsEqual(a *state, b *state) bool {
+	if a.a != b.a {
+		return false
+	}
+	if bytes.Compare(a.buf, b.buf) != 0 {
+		return false
+	}
+	if a.rate != b.rate {
+		return false
+	}
+	if a.dsbyte != b.dsbyte {
+		return false
+	}
+	if a.storage != b.storage {
+		return false
+	}
+	if a.outputLen != b.outputLen {
+		return false
+	}
+	if a.state != b.state {
+		return false
+	}
+	return true
+}
+
+func TestMarshal(t *testing.T) {
+	for _, function := range testDigests {
+		d := function()
+		d2 := function()
+		k := []byte("this is a secret key; you should generate a strong random key that's at least 32 bytes long")
+		buf := []byte("and this is some data to authenticate")
+		// A MAC with 32 bytes of output has 256-bit security strength -- if you use at least a 32-byte-long key.
+		// Write the key into the hash.
+		d.Reset()
+		d2.Reset()
+		d.Write(k)
+		d2.Write(k)
+
+		// Now write the data.
+		d.Write(buf)
+		d2.Write(buf)
+		d.Write(buf)
+		d2.Write(buf)
+		halfstate, err := d.(encoding.BinaryMarshaler).MarshalBinary()
+		if err != nil {
+			t.Fatal(err)
+		}
+		halfstate2, err := d2.(encoding.BinaryMarshaler).MarshalBinary()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		unmarshalState := &state{}
+		err = unmarshalState.UnmarshalBinary(halfstate)
+		if err != nil {
+			t.Fatal(err)
+		}
+		unmarshalState2 := &state{}
+		err = unmarshalState2.UnmarshalBinary(halfstate2)
+		if err != nil {
+			t.Fatal(err)
+		}
+		originalState := d.(*state)
+		if !stateIsEqual(unmarshalState, originalState) {
+			t.Fatal("state not equal")
+		}
+		if !stateIsEqual(unmarshalState, unmarshalState2) {
+			t.Fatal("state not equal")
 		}
 	}
 }
