@@ -8,13 +8,20 @@
 
 package sha3
 
-import "unsafe"
+import (
+	"unsafe"
+)
 
 // A storageBuf is an aligned array of maxRate bytes.
 type storageBuf [maxRate / 8]uint64
 
 func (b *storageBuf) asBytes() *[maxRate]byte {
 	return (*[maxRate]byte)(unsafe.Pointer(b))
+}
+
+func fromBytes(buf *[maxRate]byte) storageBuf {
+	b := (*storageBuf)(unsafe.Pointer(buf))
+	return *b
 }
 
 // xorInUnaligned uses unaligned reads and writes to update d.a to contain d.a
