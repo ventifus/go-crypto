@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d450de9_aeb8df8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17757
+      },
+      "writtenOn": "2022-07-14T14:48:48Z",
+      "side": 1,
+      "message": "I\u0027ve also run into this. It makes sense that the extension \"payload\" data should be parsed as \"rest\". It\u0027s up to the specific extensions to deal with their own payload. This is what I gather of it all, reading some of the openssh code as well.\n\nI think it is possible that nobody implemented any extension handling Filippo, since until now there has not been any openssh.com-extension.\n",
+      "revId": "3608a87f13917b6483adcdc53e165d7ea379378e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
