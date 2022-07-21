@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "185ae89c_0f1f7ef2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2022-07-21T20:09:49Z",
+      "side": 1,
+      "message": "New API requires a proposal.  See https://go.dev/s/proposal.\n\nThe commit description has to be in English.  Thanks.",
+      "revId": "97967147ded52c094b52d5c768b5e9b8c27f8332",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
