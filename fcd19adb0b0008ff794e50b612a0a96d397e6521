@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6039e40d_4093539a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7276
+      },
+      "writtenOn": "2022-08-12T17:33:47Z",
+      "side": 1,
+      "message": "Noticed this when HKDF showed up in the hot path of some HPKE code.",
+      "revId": "fcd19adb0b0008ff794e50b612a0a96d397e6521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
