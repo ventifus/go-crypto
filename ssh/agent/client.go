@@ -752,7 +752,17 @@ func (c *client) Signers() ([]ssh.Signer, error) {
 
 	var result []ssh.Signer
 	for _, k := range keys {
-		result = append(result, &agentKeyringSigner{c, k})
+		var sign []byte
+		if key, err := ssh.ParsePublicKey(k.Marshal()); err == nil {
+			if cert, ok := key.(*ssh.Certificate); ok {
+				// Hang onto the underlying key of the certificate, so that
+				// we can use that directly, if available from the agent at
+				// signing time.
+				sign = cert.Key.Marshal()
+			}
+		}
+
+		result = append(result, &agentKeyringSigner{c, k, sign})
 	}
 	return result, nil
 }
@@ -760,15 +770,30 @@ func (c *client) Signers() ([]ssh.Signer, error) {
 type agentKeyringSigner struct {
 	agent *client
 	pub   ssh.PublicKey
+	sign  []byte
 }
 
 func (s *agentKeyringSigner) PublicKey() ssh.PublicKey {
 	return s.pub
 }
 
+func (s *agentKeyringSigner) signKey() ssh.PublicKey {
+	if s.sign != nil {
+		if keys, err := s.agent.List(); err == nil {
+			for _, k := range keys {
+				if bytes.Equal(s.sign, k.Marshal()) {
+					return k
+				}
+			}
+		}
+	}
+
+	return s.pub
+}
+
 func (s *agentKeyringSigner) Sign(rand io.Reader, data []byte) (*ssh.Signature, error) {
 	// The agent has its own entropy source, so the rand argument is ignored.
-	return s.agent.Sign(s.pub, data)
+	return s.agent.Sign(s.signKey(), data)
 }
 
 func (s *agentKeyringSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*ssh.Signature, error) {
@@ -786,7 +811,7 @@ func (s *agentKeyringSigner) SignWithAlgorithm(rand io.Reader, data []byte, algo
 		return nil, fmt.Errorf("agent: unsupported algorithm %q", algorithm)
 	}
 
-	return s.agent.SignWithFlags(s.pub, data, flags)
+	return s.agent.SignWithFlags(s.signKey(), data, flags)
 }
 
 var _ ssh.AlgorithmSigner = &agentKeyringSigner{}
