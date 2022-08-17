@@ -16,6 +16,24 @@
       "message": "Alternatively, we could scan for a matching key when Sign/SignWithAlgorithm is invoked. This would remove the overhead for any case where the certificate is not selected for authentication, and the overhead is identical for the common use case (Agent.Signers as PublicKeysCallback), since that only uses the Signers return value once, and only uses one of the returned Signers for signing.",
       "revId": "5d9682c93976e2dfc6a88ecdcbdf982ae22ce27d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ce80be_9b38b8ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34602
+      },
+      "writtenOn": "2022-08-17T19:20:15Z",
+      "side": 1,
+      "message": "The preceding patch adds caching behaviour that did not exist before, whereas the new approach adds an extra List call to Sign that wouldn\u0027t be involved otherwise. I\u0027m not dead-set on either approach, but I think this is slightly less likely to introduce surprising behaviour when people reuse the return value for longer, and thus perhaps across changes of the agent key set.",
+      "parentUuid": "55bd6a36_e99ba5b7",
+      "revId": "5d9682c93976e2dfc6a88ecdcbdf982ae22ce27d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
