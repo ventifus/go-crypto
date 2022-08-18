@@ -16,6 +16,24 @@
       "message": "Obviously can\u0027t be landed until 1.20 is released, then can be gated with a build tag.",
       "revId": "53abd7ec7c58886eba20f27d95794a0715543730",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582bec81_0dfab609",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2022-08-18T11:37:31Z",
+      "side": 1,
+      "message": "Please add the //go:build go1.20 build tag and land it now.\nThere\u0027s no reason to wait for the release.",
+      "parentUuid": "5773b6f1_d33c7f3c",
+      "revId": "53abd7ec7c58886eba20f27d95794a0715543730",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
