@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b38a54c3_16dfbb32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34602
+      },
+      "writtenOn": "2022-08-18T00:37:47Z",
+      "side": 1,
+      "message": "I\u0027ve explored a third approach, wiring it into the publicKeyCallback code instead. This resembles how it works in OpenSSH somewhat more closely, but I\u0027m less confident about that than either of the two explored so far. It makes it entirely opaque which key was actually picked, to any user of the only public API for doing key auth. I\u0027d rather not muddy the waters there. It also runs into some details with what key to do pickSignatureAlgorithm with, and what to do if they differ.\n\nIt *does* resemble the OpenSSH pick-and-mix approach a bit more: it\u0027ll happily take a separately provided certificate and use it with an agent that has never heard of the certificate, but does provide the underlying key. I\u0027m not convinced that UX affordance is quite as desirable in the context of a fully programmatic SSH client, however. It\u0027s definitely not as clear-cut as \"pure-agent auth that works with OpenSSH breaks with Golang SSH\", which seems like a more reasonable scope to address.",
+      "revId": "6c40dae58b588b26545d53db06b3dc3b0007048e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
