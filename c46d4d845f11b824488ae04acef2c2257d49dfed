@@ -167,6 +167,24 @@
       "parentUuid": "f50103dc_5d7582d7",
       "revId": "c46d4d845f11b824488ae04acef2c2257d49dfed",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea4e9508_760952af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-08-23T21:29:20Z",
+      "side": 1,
+      "message": "Should be fixed by CL 425194.",
+      "parentUuid": "9f410446_1659520a",
+      "revId": "c46d4d845f11b824488ae04acef2c2257d49dfed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
