@@ -166,6 +166,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f8976e7_6d6177a7",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-08-24T14:33:01Z",
+      "side": 1,
+      "message": "ECDH returning an error should be impossible by construction except for X25519, and I am going to document that in the next crypto/ecdh CL. Do you mind adding an unconditional Errorf if the curve is not X25519?",
+      "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2dbe594_4bc2a554",
         "filename": "internal/wycheproof/ecdh_stdlib_test.go",
         "patchSetId": 2
