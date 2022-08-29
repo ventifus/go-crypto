@@ -70,6 +70,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f89b79_d69c0314",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-08-29T21:47:15Z",
+      "side": 1,
+      "message": "Whoops",
+      "parentUuid": "8f4b111a_111fa82e",
+      "revId": "9ec42cf98990dee13771a1d594e3adb1cea8ce92",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee1b6d4f_129facf9",
@@ -87,6 +105,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42b58c39_091d2e16",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-08-29T21:47:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee1b6d4f_129facf9",
+      "revId": "9ec42cf98990dee13771a1d594e3adb1cea8ce92",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca20a4f1_eb0cdfe5",
@@ -100,6 +136,24 @@
       "writtenOn": "2022-08-29T21:34:36Z",
       "side": 1,
       "message": "We\u0027re missing a check for \"if !shouldPass\" here, or ECDH returning (nil, nil) for a shouldPass false vector would go undetected.",
+      "revId": "9ec42cf98990dee13771a1d594e3adb1cea8ce92",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd1d2dc_16ccd2f5",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-08-29T21:47:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca20a4f1_eb0cdfe5",
       "revId": "9ec42cf98990dee13771a1d594e3adb1cea8ce92",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
