@@ -147,6 +147,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad19b237_d502dcda",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 56828
+      },
+      "writtenOn": "2022-08-29T21:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87da4439_1cce7e50",
+      "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f50ae02c_fbd2d18f",
@@ -160,6 +178,24 @@
       "writtenOn": "2022-08-24T09:29:07Z",
       "side": 1,
       "message": "Are there vectors with shouldPass true but a weird private key size?",
+      "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3945a17_b8a819d3",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 56828
+      },
+      "writtenOn": "2022-08-29T21:24:07Z",
+      "side": 1,
+      "message": "Yup, I think all of them actually are. Generally they are just left-padded with a single 0 byte, although there are a couple that a short (and presumably just want to be padded out to the expected size?) Doesn\u0027t seem like something we really need to support?",
+      "parentUuid": "f50ae02c_fbd2d18f",
       "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -181,6 +217,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1e30b33_e4266668",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 56828
+      },
+      "writtenOn": "2022-08-29T21:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f8976e7_6d6177a7",
+      "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2dbe594_4bc2a554",
@@ -194,6 +248,24 @@
       "writtenOn": "2022-08-24T09:29:07Z",
       "side": 1,
       "message": "Hmm, if shouldPass is false, we should not arrive here at all, I think, not just have a mismatch with the shared value in the vector.",
+      "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cd7a855_9d64f5d9",
+        "filename": "internal/wycheproof/ecdh_stdlib_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 56828
+      },
+      "writtenOn": "2022-08-29T21:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2dbe594_4bc2a554",
       "revId": "2f0a98c9dd8af803e8c9928bb3d5ebe7b9976d57",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
