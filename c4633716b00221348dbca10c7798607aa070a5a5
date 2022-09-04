@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "59fe9364_db941aa3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21159940_b3ac0832",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "64cb43a3_b8fbf0c9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 20
@@ -258,6 +276,24 @@
       "side": 1,
       "message": "Yes, I have opened another PR to check whether the hardware has the feature",
       "parentUuid": "d4783396_f75ad435",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a7d0bf_04040077",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:39:39Z",
+      "side": 1,
+      "message": "Here is the CL https://go-review.googlesource.com/c/sys/+/332729",
+      "parentUuid": "cd6aa586_b96f2bf0",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
