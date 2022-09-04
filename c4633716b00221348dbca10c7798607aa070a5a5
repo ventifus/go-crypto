@@ -103,6 +103,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4edbe09a_d903bfa5",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a58e22c_ecdd43cc",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3f07737_64b392e9",
@@ -116,6 +134,24 @@
       "writtenOn": "2022-06-24T05:05:03Z",
       "side": 1,
       "message": "Write the link as https://go.dev/wiki/GoArm",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a6e103_14e7bdb1",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f07737_64b392e9",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -210,6 +246,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd6aa586_b96f2bf0",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Yes, I have opened another PR to check whether the hardware has the feature",
+      "parentUuid": "d4783396_f75ad435",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e74529f_2de07759",
         "filename": "sha3/keccakf_arm64.s",
         "patchSetId": 20
@@ -221,6 +275,24 @@
       "writtenOn": "2022-06-24T05:05:03Z",
       "side": 1,
       "message": "s/2021/2022/",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0667dc5f_8dad4834",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e74529f_2de07759",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -242,6 +314,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48c5d9a_84bf4f5b",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "883d2118_cffc1fdc",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15da7de1_5011eb6f",
@@ -255,6 +345,24 @@
       "writtenOn": "2022-06-24T05:05:03Z",
       "side": 1,
       "message": "Remove trailing whitespace.",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "206e4b25_57a2f7fe",
+        "filename": "sha3/keccakf_arm64.s",
+        "patchSetId": 20
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2022-09-04T09:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15da7de1_5011eb6f",
       "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
