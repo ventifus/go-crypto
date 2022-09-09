@@ -69,6 +69,10 @@ const (
 // adjusted to the number of available CPUs. The cost parameters should be
 // increased as memory latency and CPU parallelism increases. Remember to get a
 // good random salt.
+//
+// A change to any parameter or salt, changes the resulting key.
+// Therefore all parameter values and salt need to be stored alongside the key,
+// to allow for later password verification.
 func Key(password, salt []byte, time, memory uint32, threads uint8, keyLen uint32) []byte {
 	return deriveKey(argon2i, password, salt, nil, nil, time, memory, threads, keyLen)
 }
@@ -93,6 +97,10 @@ func Key(password, salt []byte, time, memory uint32, threads uint8, keyLen uint3
 // adjusted to the numbers of available CPUs. The cost parameters should be
 // increased as memory latency and CPU parallelism increases. Remember to get a
 // good random salt.
+//
+// A change to any parameter or salt, changes the resulting key.
+// Therefore all parameter values and salt need to be stored alongside the key,
+// to allow for later password verification.
 func IDKey(password, salt []byte, time, memory uint32, threads uint8, keyLen uint32) []byte {
 	return deriveKey(argon2id, password, salt, nil, nil, time, memory, threads, keyLen)
 }
