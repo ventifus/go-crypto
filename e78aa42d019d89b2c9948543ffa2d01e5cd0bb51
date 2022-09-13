@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "938930b6_21567ab3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59108
+      },
+      "writtenOn": "2022-09-13T17:20:29Z",
+      "side": 1,
+      "message": "Nice work.  I think it would be a good idea to consider implementing a framework for other RFC 8308 extensions, and not only focus on server-sig-algs.  I reviewed security of those changes and I didn\u0027t find any issues.",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4e57f6_6f74ed7b",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 59108
+      },
+      "writtenOn": "2022-09-13T17:20:29Z",
+      "side": 1,
+      "message": "We just defined the `extServerSigAlgs` const.  We should use it here.",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fb3306_a4746842",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 59108
+      },
+      "writtenOn": "2022-09-13T17:20:29Z",
+      "side": 1,
+      "message": "Simply ignoring the entire SSH_MSG_EXT_INFO on the server only sounds like a good idea if we were implementing a quick hack for server-sig-algs.  If the goal is to also provide infrastructure for other RFC 8308 features then the we should save the received extensions so that they may be used later.",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
