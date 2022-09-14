@@ -86,6 +86,24 @@
       "parentUuid": "f9145987_22dadef8",
       "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4cb3def_5b3d42bf",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-09-14T16:27:17Z",
+      "side": 1,
+      "message": "I haven\u0027t been able to get merged even trivial patches like this one\n\nhttps://github.com/golang/crypto/pull/127\n\nfeel free to submit a new PR, if possible keep the commit history. \n\nI also have other pathes here:\n\nhttps://github.com/drakkan/crypto/commits/sftpgo\n\nsome are related to this one, for example:\n\nhttps://github.com/drakkan/crypto/commit/e3c36f2ab82bdb727cb08cf758566298660af248\n\nthanks",
+      "parentUuid": "c91ac691_1011415e",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
