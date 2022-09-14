@@ -50,6 +50,24 @@
       "message": "Simply ignoring the entire SSH_MSG_EXT_INFO on the server only sounds like a good idea if we were implementing a quick hack for server-sig-algs.  If the goal is to also provide infrastructure for other RFC 8308 features then the we should save the received extensions so that they may be used later.",
       "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9145987_22dadef8",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2022-09-14T14:00:50Z",
+      "side": 1,
+      "message": "Thanks for your review. I agree but a such unresponsive upstream is discouraging, I\u0027m resigned to maintain my fork. I\u0027ll work on other RFC 8308 features if I need them for SFTPGo",
+      "parentUuid": "81fb3306_a4746842",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
