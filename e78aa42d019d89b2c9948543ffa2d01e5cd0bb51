@@ -104,6 +104,24 @@
       "parentUuid": "c91ac691_1011415e",
       "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd34fc57_b51acbd9",
+        "filename": "ssh/server.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-09-15T11:31:50Z",
+      "side": 1,
+      "message": "Hey, I just wanted to acknowledge the review delays, and mention that I plan to do a batch of x/crypto/ssh work (including reviews) after the Go 1.20 freeze in a few weeks. If you\u0027re curious about my plans, I am trying to publish updates [here](https://words.filippo.io/dispatches/go1-20/). Also note that I\u0027m obviously not the only maintainer so someone else might get to it sooner, but everyone involved in security-related work is pretty busy.\n\nIf it\u0027s ok with you, I\u0027ll reach out to hear what SFTPGo needs from upstream as I get started.\n\n(As for other RFC 8032 features, I\u0027d rather keep the code simple until we actually need it. There\u0027s always time to add more abstraction.)",
+      "parentUuid": "d4cb3def_5b3d42bf",
+      "revId": "e78aa42d019d89b2c9948543ffa2d01e5cd0bb51",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
