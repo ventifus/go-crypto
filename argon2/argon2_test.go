@@ -6,9 +6,85 @@ package argon2
 
 import (
 	"bytes"
+	"crypto/rand"
 	"encoding/hex"
+	"io"
+	"strings"
 	"testing"
+	"time"
 )
+
+func Test_modeString(t *testing.T) {
+	tests := []struct {
+		mode int
+		want string
+	}{
+		{
+			mode: argon2d,
+			want: "argon2d",
+		},
+		{
+			mode: argon2i,
+			want: "argon2i",
+		},
+		{
+			mode: argon2id,
+			want: "argon2id",
+		},
+		{
+			mode: -1,
+			want: "unknown",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.want, func(t *testing.T) {
+			if got := modeString(tt.mode); got != tt.want {
+				t.Errorf("encoding.modeString() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_parseMode(t *testing.T) {
+	tests := []struct {
+		s       string
+		want    int
+		wantErr bool
+	}{
+		{
+			s:       "argon2d",
+			want:    argon2d,
+			wantErr: false,
+		},
+		{
+			s:       "argon2i",
+			want:    argon2i,
+			wantErr: false,
+		},
+		{
+			s:       "argon2id",
+			want:    argon2id,
+			wantErr: false,
+		},
+		{
+			s:       "foo",
+			want:    -1,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.s, func(t *testing.T) {
+			got, err := parseMode(tt.s)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("parseMode() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("parseMode() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 
 var (
 	genKatPassword = []byte{
@@ -230,4 +306,212 @@ var testVectors = []struct {
 		mode: argon2id, time: 3, memory: 1024, threads: 6,
 		hash: "1640b932f4b60e272f5d2207b9a9c626ffa1bd88d2349016",
 	},
+}
+
+type errReader struct{}
+
+func (errReader) Read([]byte) (int, error) { return 0, io.ErrClosedPipe }
+
+func Test_newHash(t *testing.T) {
+	tests := []struct {
+		name    string
+		reader  io.Reader
+		want    string
+		wantErr bool
+	}{
+		{
+			name:    "salt error",
+			reader:  errReader{},
+			want:    "",
+			wantErr: true,
+		},
+		{
+			name:    "success",
+			reader:  strings.NewReader("randomsaltishard"),
+			want:    testEncoded,
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := newHash("password", 3, 4096, tt.reader)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("newHash() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("newHash() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+// Simply Hash and Check the same password.
+func TestNewHash(t *testing.T) {
+	const password = "blueberries"
+
+	hash, err := NewHash(password, 5, 1024)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if err = Check(hash, password); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestCost(t *testing.T) {
+	type args struct {
+		hash string
+	}
+	tests := []struct {
+		name         string
+		args         args
+		wantTime     uint32
+		wantMemoryKB uint32
+		wantThreads  uint8
+		wantErr      bool
+	}{
+		{
+			name:         "success",
+			args:         args{testEncoded},
+			wantTime:     3,
+			wantMemoryKB: 4096,
+			wantThreads:  1,
+		},
+		{
+			name:    "decoding error",
+			args:    args{"foobar"},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotTime, gotMemoryKB, gotThreads, err := Cost(tt.args.hash)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Cost() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if gotTime != tt.wantTime {
+				t.Errorf("Cost() gotTime = %v, want %v", gotTime, tt.wantTime)
+			}
+			if gotMemoryKB != tt.wantMemoryKB {
+				t.Errorf("Cost() gotMemoryKB = %v, want %v", gotMemoryKB, tt.wantMemoryKB)
+			}
+			if gotThreads != tt.wantThreads {
+				t.Errorf("Cost() gotThreads = %v, want %v", gotThreads, tt.wantThreads)
+			}
+		})
+	}
+}
+
+func TestCheck(t *testing.T) {
+	type args struct {
+		hash     string
+		password string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name:    "decode error",
+			args:    args{"foobar", "password"},
+			wantErr: true,
+		},
+		{
+			name:    "password mismatch",
+			args:    args{testEncoded, "wrong"},
+			wantErr: true,
+		},
+		{
+			name:    "password mismatch",
+			args:    args{testEncoded, "password"},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := Check(tt.args.hash, tt.args.password); (err != nil) != tt.wantErr {
+				t.Errorf("Check() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func Test_calibrate(t *testing.T) {
+	type args struct {
+		target   time.Duration
+		memoryKB uint32
+		reader   io.Reader
+	}
+	tests := []struct {
+		name      string
+		args      args
+		wantTimes uint32
+		wantErr   bool
+	}{
+		{
+			name:    "error",
+			args:    args{time.Second, RecommendedMemory, errReader{}},
+			wantErr: true,
+		},
+		{
+			name:      "minimal",
+			args:      args{time.Microsecond, RecommendedMemory, rand.Reader},
+			wantTimes: 1,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotTimes, err := calibrate(tt.args.target, tt.args.memoryKB, tt.args.reader)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("calibrate() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if gotTimes != tt.wantTimes {
+				t.Errorf("calibrate() = %v, want %v", gotTimes, tt.wantTimes)
+			}
+		})
+	}
+}
+
+func TestCalibrate(t *testing.T) {
+	if testing.Short() {
+		t.SkipNow()
+	}
+
+	const (
+		target    = time.Second
+		allowance = 50 * time.Millisecond // 5%
+		runs      = 10
+	)
+
+	times, err := Calibrate(target, RecommendedMemory)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("Calibrate times = %d", times)
+
+	salt, err := getSalt(rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var sum time.Duration
+
+	for i := 0; i < runs; i++ {
+		start := time.Now()
+		IDKey([]byte("password"), salt, times, RecommendedMemory, 1, keyLen)
+		sum += time.Since(start)
+	}
+
+	avg := sum / runs
+
+	if avg > target+allowance || avg < target-allowance {
+		t.Errorf("Calibrate duration = %s, want %s +/-%s", avg, target, allowance)
+	}
+
+	t.Logf("Calibrate average testrun time %s", avg)
 }

@@ -35,8 +35,14 @@
 package argon2
 
 import (
+	"crypto/rand"
+	"crypto/subtle"
 	"encoding/binary"
+	"errors"
+	"fmt"
+	"io"
 	"sync"
+	"time"
 
 	"golang.org/x/crypto/blake2b"
 )
@@ -45,10 +51,51 @@ import (
 const Version = 0x13
 
 const (
+	RecommendedTime   uint32 = 1
+	RecommendedMemory uint32 = 32 * 1024
+)
+
+// constants used by the high-level API.
+const (
+	saltLen = 16
+	keyLen  = 32
+)
+
+const (
 	argon2d = iota
 	argon2i
 	argon2id
 )
+
+// If we would use a type for the above constants,
+// this could be a generated method using the stringer tool.
+// However, that would have required refactoring
+// of the existing code.
+func modeString(mode int) string {
+	switch mode {
+	case argon2d:
+		return "argon2d"
+	case argon2i:
+		return "argon2i"
+	case argon2id:
+		return "argon2id"
+	default:
+		return "unknown"
+	}
+}
+
+func parseMode(s string) (int, error) {
+	switch s {
+	case "argon2d":
+		return argon2d, nil
+	case "argon2i":
+		return argon2i, nil
+	case "argon2id":
+		return argon2id, nil
+	default:
+		return -1, fmt.Errorf("argon2: unknown mode %s", s)
+	}
+}
 
 // Key derives a key from the password, salt, and cost parameters using Argon2i
 // returning a byte slice of length keyLen that can be used as cryptographic
@@ -280,4 +327,125 @@ func phi(rand, m, s uint64, lane, lanes uint32) uint32 {
 	p = (p * p) >> 32
 	p = (p * m) >> 32
 	return lane*lanes + uint32((s+m-(p+1))%uint64(lanes))
+}
+
+func getSalt(reader io.Reader) ([]byte, error) {
+	salt := make([]byte, saltLen)
+	if _, err := reader.Read(salt); err != nil {
+		return nil, fmt.Errorf("argon2: %w generating salt", err)
+	}
+
+	return salt, nil
+}
+
+func newHash(password string, time, memoryKB uint32, reader io.Reader) (encoded string, err error) {
+	enc := encoding{
+		mode:        argon2id,
+		version:     Version,
+		memory:      memoryKB,
+		time:        time,
+		parallelism: 1,
+	}
+
+	if enc.salt, err = getSalt(reader); err != nil {
+		return "", err
+	}
+
+	enc.key = IDKey([]byte(password), enc.salt, time, memoryKB, enc.parallelism, keyLen)
+
+	return enc.String(), nil
+}
+
+// NewHash creates a new IDKey, encoded in the PHC string format for argon2.
+// A random salt of 16 bytes is generated and stored in the encoded string,
+// along with all used parameters for later password verification.
+//
+// See https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
+// for more information about the encoding scheme.
+func NewHash(password string, time, memoryKB uint32) (encoded string, err error) {
+	return newHash(password, time, memoryKB, rand.Reader)
+}
+
+// Cost extracts the parameters used from an PHC string formatted hash.
+func Cost(hash string) (time, memoryKB uint32, threads uint8, err error) {
+	enc, err := decode(hash)
+	if err != nil {
+		return 0, 0, 0, err
+	}
+
+	return enc.time, enc.memory, enc.parallelism, nil
+}
+
+var ErrPasswordMismatch = errors.New("password does not match")
+
+// Check hashes password and compares the result with the key stored
+// in the PHC encoded string, using the same parameters.
+func Check(hash, password string) error {
+	enc, err := decode(hash)
+	if err != nil {
+		return err
+	}
+
+	keyLen := uint32(len(enc.key))
+
+	key := deriveKey(enc.mode, []byte(password), enc.salt, nil, nil, enc.time, enc.memory, enc.parallelism, keyLen)
+
+	result := subtle.ConstantTimeCompare(key, enc.key)
+	if result == 0 {
+		return ErrPasswordMismatch
+	}
+
+	return nil
+}
+
+func calibrate(target time.Duration, memoryKB uint32, reader io.Reader) (times uint32, err error) {
+	salt, err := getSalt(reader)
+	if err != nil {
+		return 0, err
+	}
+
+	password := []byte("password")
+	times = RecommendedTime
+
+	var sum time.Duration
+
+	for i := 1; ; i++ {
+		start := time.Now()
+		IDKey(password, salt, times, memoryKB, 1, keyLen)
+		dur := time.Since(start)
+
+		sum += dur
+
+		// average result of the times parameter
+		avg := sum / time.Duration(i) / time.Duration(times)
+
+		// increment is target - duration diveded by the average.
+		incr := int32((target - dur) / avg)
+		if incr == 0 { // found a stable times value, so we can stop.
+			break
+		}
+
+		// applying half of the increment, prevents extreme overshooting
+		// of times value. Something like a inversed gain.
+		times += uint32(incr / 2)
+
+		// fmt.Println("sum: ", sum, "dur:", dur, "avg:", avg, "incr:", incr)
+	}
+
+	// make sure times is not a unsafe low number or 0.
+	if times < RecommendedTime {
+		return RecommendedTime, nil
+	}
+
+	return times, nil
+}
+
+// Calibrate the time parameter for IDKey to take around target amount of time
+// to hash a key, using a fixed amount of memory.
+//
+// This function iterates on executions of IDKey and can take a long time to
+// complete if target is high and/or memoryKB is low, or when hardware is giving
+// inconsistent results due to CPU power management.
+func Calibrate(target time.Duration, memoryKB uint32) (times uint32, err error) {
+	return calibrate(target, memoryKB, rand.Reader)
 }
