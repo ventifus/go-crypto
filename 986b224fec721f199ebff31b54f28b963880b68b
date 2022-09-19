@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25330b93_129fba07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 34895
+      },
+      "writtenOn": "2022-09-19T02:13:40Z",
+      "side": 1,
+      "message": "No space after \"ssh\".",
+      "revId": "986b224fec721f199ebff31b54f28b963880b68b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
