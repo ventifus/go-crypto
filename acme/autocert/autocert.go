@@ -463,7 +463,7 @@ func (m *Manager) cert(ctx context.Context, ck certKey) (*tls.Certificate, error
 		leaf: cert.Leaf,
 	}
 	m.state[ck] = s
-	go m.startRenew(ck, s.key, s.leaf.NotAfter)
+	m.startRenew(ck, s.key, s.leaf.NotAfter)
 	return cert, nil
 }
 
