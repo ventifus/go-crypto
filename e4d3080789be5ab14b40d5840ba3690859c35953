@@ -16,6 +16,207 @@
       "message": "This CL has picked up a merge conflict.",
       "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "795f0a7e_36512db5",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1302,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "nit: this can just be `rand.Read(salt)`.",
+      "range": {
+        "startLine": 1302,
+        "startChar": 15,
+        "endLine": 1302,
+        "endChar": 26
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a994d4b_efd4c2aa",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "This and the below slice operation are slightly more readable by doing `key, iv :\u003d k[:32], k[32:]`, as is done in `passphraseProtectedOpenSSHKey`.",
+      "range": {
+        "startLine": 1322,
+        "startChar": 2,
+        "endLine": 1323,
+        "endChar": 37
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8632bff0_0dad490f",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1335,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "Change this to `privateKeyAuthMagic` and add a comment indicating this is the header prefix indicating a private key block.",
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c0637f_7586d705",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "These structs are also used in parseOpenSSHPrivateKey, might want to just lift them out so that the same types are used in both places.",
+      "range": {
+        "startLine": 1512,
+        "startChar": 1,
+        "endLine": 1525,
+        "endChar": 2
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b14fab70_ba35b76e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "This can be skipped, and the key can be directly deref\u0027d in the switch below.",
+      "range": {
+        "startLine": 1537,
+        "startChar": 1,
+        "endLine": 1540,
+        "endChar": 2
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ea525e_53fb70c9",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1566,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "Similarly, through this function we are duplicating types from parseOpenSSHPrivateKey.",
+      "range": {
+        "startLine": 1558,
+        "startChar": 9,
+        "endLine": 1566,
+        "endChar": 3
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f5c1ef_d40ebde4",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "While this is technically correct, it is somewhat confusing to the casual reader since it appears you are reading _past_ the public key (this works because `PrivateKeySize \u003d 2*PublicKeySize`). Might be (weirdly) more readable as just `32`.",
+      "range": {
+        "startLine": 1576,
+        "startChar": 14,
+        "endLine": 1576,
+        "endChar": 36
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c595f87_608d6a32",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1577,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "i.e. this can be\n\n    copy(pub, (*k)[ed25519.PublicKeySize:])\n    copy(priv, *k)",
+      "range": {
+        "startLine": 1576,
+        "startChar": 2,
+        "endLine": 1577,
+        "endChar": 15
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1f7ceb_555fa908",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-09-26T15:19:29Z",
+      "side": 1,
+      "message": "Padding can be generated in one shot as\n\n    func generateOpenSSHPadding(block []byte, blockSize int) []byte {\n      paddingNeeded :\u003d blockSize - (len(block) % blockSize)\n      if paddingNeeded \u003e 0 {\n        block \u003d append(block, make([]byte, paddingNeeded)...)\n      }\n      return block\n    }",
+      "range": {
+        "startLine": 1667,
+        "startChar": 0,
+        "endLine": 1672,
+        "endChar": 1
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
