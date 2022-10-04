@@ -16,6 +16,24 @@
       "message": "Mild preference for keeping the variable declaration here.",
       "revId": "089bfa5675191fd96a44247682f76ebca03d7916",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4af1d0_49fbae38",
+        "filename": "cast5/cast5.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 32637
+      },
+      "writtenOn": "2022-10-04T20:43:47Z",
+      "side": 0,
+      "message": "Reverted",
+      "parentUuid": "e25e28aa_25b7eb12",
+      "revId": "089bfa5675191fd96a44247682f76ebca03d7916",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
