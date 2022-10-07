@@ -22,6 +22,30 @@
       },
       "revId": "3d183850d25e8b9f8870e939d219722b090f582b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f996b2a_6717a0bd",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 10985
+      },
+      "writtenOn": "2022-10-07T23:06:16Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s a good point, fixed it by removing the homedir fallback!\n\nI\u0027m not sure if a temporary directory would be of help here: because it\u0027s temporary, we wouldn\u0027t be able to find it if the process restarts, so it would defeat the point of caching to disk. But maybe caching to \"os.TempDir() + base\" could be a more viable option. I\u0027m happy to defer to the reviewers, I don\u0027t have a strong opinion.",
+      "parentUuid": "8e6d2908_3c4a74a5",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 2
+      },
+      "revId": "3d183850d25e8b9f8870e939d219722b090f582b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
