@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e6ef585_1f160d64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-10-19T17:10:59Z",
+      "side": 1,
+      "message": "Is the plan/policy/process for tagging x/ repos laid out anywhere?",
+      "revId": "642fcc37f5043eadb2509c84b2769e729e7d27ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
