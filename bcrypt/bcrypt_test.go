@@ -241,3 +241,29 @@ func TestNoSideEffectsFromCompare(t *testing.T) {
 		t.Errorf("got=%q want=%q", got, want)
 	}
 }
+
+func TestCancellationLongDuration(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	// using DefaultCost means that cooperative scheduling will be used at least once
+	// as there are many rounds to go through
+	_, err := GenerateFromPassword(ctx, "mylongpassword1234", DefaultCost)
+
+	if !errors.Is(err, context.ErrCancelled) {
+		t.Errorf("got=%w want=%w", err, context.ErrCancelled)
+	}
+}
+
+func TestCancellationShortDuration(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	// using MinCost means that cooperative scheduling won't be used
+	// as there are a few rounds to go through
+	_, err := GenerateFromPassword(ctx, "mylongpassword1234", MinCost)
+
+	if err != nil {
+		t.Errorf("got=%w want=%w", err, nil)
+	}
+}
