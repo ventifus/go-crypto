@@ -16,6 +16,24 @@
       "message": "This change introduces a new API, and as such it must go through the proposal process as documented here: https://github.com/golang/proposal.",
       "revId": "b841986408474ff68a4d028431c502cb21b34149",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa6d0494_592ddcdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59727
+      },
+      "writtenOn": "2022-10-25T17:37:38Z",
+      "side": 1,
+      "message": "Ack. Proposal here: https://github.com/golang/go/issues/56416",
+      "parentUuid": "3443e2f3_a2998b9c",
+      "revId": "b841986408474ff68a4d028431c502cb21b34149",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
