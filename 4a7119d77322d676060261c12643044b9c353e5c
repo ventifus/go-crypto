@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00e62188_4d38e27a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-11-03T20:25:06Z",
+      "side": 1,
+      "message": "This is a pared down version of CL 396714. Please let me know if it works for you!",
+      "revId": "4a7119d77322d676060261c12643044b9c353e5c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
