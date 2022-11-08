@@ -114,10 +114,10 @@ func handshakePair(clientConf *ClientConfig, addr string, noise bool) (client *h
 	server = newServerTransport(trS, v, v, serverConf)
 
 	if err := server.waitSession(); err != nil {
-		return nil, nil, fmt.Errorf("server.waitSession: %v", err)
+		return nil, nil, fmt.Errorf("server.waitSession: %w", err)
 	}
 	if err := client.waitSession(); err != nil {
-		return nil, nil, fmt.Errorf("client.waitSession: %v", err)
+		return nil, nil, fmt.Errorf("client.waitSession: %w", err)
 	}
 
 	return client, server, nil

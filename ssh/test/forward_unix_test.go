@@ -38,14 +38,14 @@ func testPortForward(t *testing.T, n, listenAddr string) {
 		defer close(errCh)
 		sshConn, err := sshListener.Accept()
 		if err != nil {
-			errCh <- fmt.Errorf("listen.Accept failed: %v", err)
+			errCh <- fmt.Errorf("listen.Accept failed: %w", err)
 			return
 		}
 		defer sshConn.Close()
 
 		_, err = io.Copy(sshConn, sshConn)
 		if err != nil && err != io.EOF {
-			errCh <- fmt.Errorf("ssh client copy: %v", err)
+			errCh <- fmt.Errorf("ssh client copy: %w", err)
 		}
 	}()
 

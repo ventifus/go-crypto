@@ -119,7 +119,7 @@ func testV1ProtocolMessages(t *testing.T, c *client) {
 func verifyKey(sshAgent Agent) error {
 	keys, err := sshAgent.List()
 	if err != nil {
-		return fmt.Errorf("listing keys: %v", err)
+		return fmt.Errorf("listing keys: %w", err)
 	}
 
 	if len(keys) != 1 {
@@ -128,16 +128,16 @@ func verifyKey(sshAgent Agent) error {
 
 	buf := make([]byte, 128)
 	if _, err := rand.Read(buf); err != nil {
-		return fmt.Errorf("rand: %v", err)
+		return fmt.Errorf("rand: %w", err)
 	}
 
 	sig, err := sshAgent.Sign(keys[0], buf)
 	if err != nil {
-		return fmt.Errorf("sign: %v", err)
+		return fmt.Errorf("sign: %w", err)
 	}
 
 	if err := keys[0].Verify(buf, sig); err != nil {
-		return fmt.Errorf("verify: %v", err)
+		return fmt.Errorf("verify: %w", err)
 	}
 	return nil
 }
@@ -145,7 +145,7 @@ func verifyKey(sshAgent Agent) error {
 func addKeyToAgent(key crypto.PrivateKey) error {
 	sshAgent := NewKeyring()
 	if err := sshAgent.Add(AddedKey{PrivateKey: key}); err != nil {
-		return fmt.Errorf("add: %v", err)
+		return fmt.Errorf("add: %w", err)
 	}
 	return verifyKey(sshAgent)
 }
@@ -171,7 +171,7 @@ func addCertToAgentSock(key crypto.PrivateKey, cert *ssh.Certificate) error {
 
 	agentClient := NewClient(b)
 	if err := agentClient.Add(AddedKey{PrivateKey: key, Certificate: cert}); err != nil {
-		return fmt.Errorf("add: %v", err)
+		return fmt.Errorf("add: %w", err)
 	}
 	return verifyKey(agentClient)
 }
@@ -179,7 +179,7 @@ func addCertToAgentSock(key crypto.PrivateKey, cert *ssh.Certificate) error {
 func addCertToAgent(key crypto.PrivateKey, cert *ssh.Certificate) error {
 	sshAgent := NewKeyring()
 	if err := sshAgent.Add(AddedKey{PrivateKey: key, Certificate: cert}); err != nil {
-		return fmt.Errorf("add: %v", err)
+		return fmt.Errorf("add: %w", err)
 	}
 	return verifyKey(sshAgent)
 }
