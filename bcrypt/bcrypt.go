@@ -82,11 +82,18 @@ type hashed struct {
 	minor byte
 }
 
+var errPasswordTooLong = errors.New("crypto/bcrypt: password too long")
+
 // GenerateFromPassword returns the bcrypt hash of the password at the given
 // cost. If the cost given is less than MinCost, the cost will be set to
 // DefaultCost, instead. Use CompareHashAndPassword, as defined in this package,
 // to compare the returned hashed password with its cleartext version.
+// GenerateFromPassword does not accept passwords longer than 72 bytes, which
+// is the longest password bcrypt will operate on.
 func GenerateFromPassword(password []byte, cost int) ([]byte, error) {
+	if len(password) > 72 {
+		return nil, errPasswordTooLong
+	}
 	p, err := newFromPassword(password, cost)
 	if err != nil {
 		return nil, err
