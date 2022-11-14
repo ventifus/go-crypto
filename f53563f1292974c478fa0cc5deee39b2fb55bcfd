@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5011395f_060dd853",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-11-14T21:25:09Z",
+      "side": 1,
+      "message": "We refer to these by CL number, which is shorter and still clickable.\n\nAlso, we wrap the message at 72 characters (which is very awkward to do in GitHub, sorry).",
+      "revId": "f53563f1292974c478fa0cc5deee39b2fb55bcfd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b568bc81_2bc6d810",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
