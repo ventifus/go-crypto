@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89128ac9_1dbd828b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-11-14T21:33:19Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary: the constants are never going to change, and when you read the docs of the package, the fact that the types are aliases needs to be mentioned so you know where to look for the docs, but the constants are more readable as-is.",
+      "revId": "a2d4f8e00dde6c4d760728aa0574548ed518e16d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
