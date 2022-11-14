@@ -40,6 +40,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8bb9a6e_53bcde50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-11-14T23:13:42Z",
+      "side": 1,
+      "message": "Let\u0027s give the discussion on the issue a week or so to tell us why this would break people https://go.dev/issue/36546",
+      "revId": "ea0cfe58e400eb1da8e5afdf685464afca5b2249",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b7e0f57_bc56716a",
         "filename": "bcrypt/bcrypt.go",
         "patchSetId": 1
@@ -51,6 +68,29 @@
       "writtenOn": "2022-11-14T20:51:38Z",
       "side": 1,
       "message": "Is it worth making this an exported label so that client code can differentiate between this case and errors in `newFromPassword`?",
+      "revId": "ea0cfe58e400eb1da8e5afdf685464afca5b2249",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d43ab288_b6681752",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2022-11-14T23:13:42Z",
+      "side": 1,
+      "message": "bcrypt",
+      "range": {
+        "startLine": 85,
+        "startChar": 37,
+        "endLine": 85,
+        "endChar": 50
+      },
       "revId": "ea0cfe58e400eb1da8e5afdf685464afca5b2249",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
