@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6abaf6c_8c6c56da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 30659
+      },
+      "writtenOn": "2022-11-15T08:30:09Z",
+      "side": 1,
+      "message": "Ah, yes, I learned about the \"CL\" references being automatically linked recently.\nLooks like I didn\u0027t update this one yet.\n\n\u003e Also, we wrap the message at 72 characters (which is very awkward to do in GitHub, sorry).\n \nThat may have been my mistake; I formatted my commit message to be wrapped\n(I generally use 72(ish) for first line, and 80(ish) for the body), but removed\nthe wrapping in the GitHub description; at the time not aware that the Gerrit\nimporter imports the GitHub description (not the actual commit message).\n\nI should probably switch to use Gerrit directly, but using the GitHub workflow\nallows me to keep my notifications in a single place (I have tons of notifications\nand fear I would otherwise miss the ones from Gerrit).\n\nI rebased my PR, and updated both the commit message and GitHub description, and looks ok now.\n\nThanks for the help; appreciated!",
+      "parentUuid": "5011395f_060dd853",
+      "revId": "f53563f1292974c478fa0cc5deee39b2fb55bcfd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b568bc81_2bc6d810",
