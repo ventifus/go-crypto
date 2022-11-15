@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a1698dc_7d876634",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30659
+      },
+      "writtenOn": "2022-11-15T08:42:03Z",
+      "side": 1,
+      "message": "Rebased, and wrapped the commit message to 72 chars",
+      "revId": "6e4a43290b5d2d88ac738ba6ac11db770b148c94",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
