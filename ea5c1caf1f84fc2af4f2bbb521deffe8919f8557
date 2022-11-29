@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a31159_98218916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 53274
+      },
+      "writtenOn": "2022-11-29T23:33:57Z",
+      "side": 1,
+      "message": "The code has been tested against Google Trust Services\u0027 ACME endpoint and it works.\n\nThree questions for you:\n\n1) Should I deduct 1 second from the configured value?\n\n2) Is it okay to rely on time.Now().UTC()?\n\n3) Is there a need to implement somehow a check to ensure the RequestedCertificateValidity is greater than RenewBefore?\n\nFor #3 I don\u0027t think it\u0027s a good idea, as the cached or issued certificates may have a different validity than the one configured. However, there may be issues in ACME quota under the right circumstances.",
+      "revId": "ea5c1caf1f84fc2af4f2bbb521deffe8919f8557",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
