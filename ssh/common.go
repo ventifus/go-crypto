@@ -155,15 +155,15 @@ func findCommon(what string, client []string, server []string) (common string, e
 	return "", fmt.Errorf("ssh: no common algorithm for %s; client offered: %v, server offered: %v", what, client, server)
 }
 
-// directionAlgorithms records algorithm choices in one direction (either read or write)
-type directionAlgorithms struct {
+// DirectionAlgorithms records algorithm choices in one direction (either read or write)
+type DirectionAlgorithms struct {
 	Cipher      string
 	MAC         string
 	Compression string
 }
 
 // rekeyBytes returns a rekeying intervals in bytes.
-func (a *directionAlgorithms) rekeyBytes() int64 {
+func (a *DirectionAlgorithms) rekeyBytes() int64 {
 	// According to RFC 4344 block ciphers should rekey after
 	// 2^(BLOCKSIZE/4) blocks. For all AES flavors BLOCKSIZE is
 	// 128.
@@ -185,8 +185,8 @@ var aeadCiphers = map[string]bool{
 type algorithms struct {
 	kex     string
 	hostKey string
-	w       directionAlgorithms
-	r       directionAlgorithms
+	w       DirectionAlgorithms
+	r       DirectionAlgorithms
 }
 
 func findAgreedAlgorithms(isClient bool, clientKexInit, serverKexInit *kexInitMsg) (algs *algorithms, err error) {

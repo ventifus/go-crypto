@@ -41,6 +41,12 @@ type ConnMetadata interface {
 
 	// LocalAddr returns the local address for this connection.
 	LocalAddr() net.Addr
+
+	// WriteAlgorithms returns the negotiated algorithms for this connection in the outbound direction.
+	WriteAlgorithms() DirectionAlgorithms
+
+	// ReadAlgorithms returns the negotiated algorithms for this connection in the inbound direction.
+	ReadAlgorithms() DirectionAlgorithms
 }
 
 // Conn represents an SSH connection for both server and client roles.
@@ -95,6 +101,14 @@ type connection struct {
 
 func (c *connection) Close() error {
 	return c.sshConn.conn.Close()
+}
+
+func (c *connection) ReadAlgorithms() DirectionAlgorithms {
+	return c.transport.algorithms.r
+}
+
+func (c *connection) WriteAlgorithms() DirectionAlgorithms {
+	return c.transport.algorithms.w
 }
 
 // sshconn provides net.Conn metadata, but disallows direct reads and

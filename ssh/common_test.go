@@ -51,7 +51,7 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 		}
 	}
 
-	initDirAlgs := func(a *directionAlgorithms) {
+	initDirAlgs := func(a *DirectionAlgorithms) {
 		if a.Cipher == "" {
 			a.Cipher = "cipher1"
 		}
@@ -121,18 +121,18 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 				CiphersServerClient: []string{"cipher3", "cipher2"},
 			},
 			wantClient: algorithms{
-				r: directionAlgorithms{
+				r: DirectionAlgorithms{
 					Cipher: "cipher3",
 				},
-				w: directionAlgorithms{
+				w: DirectionAlgorithms{
 					Cipher: "cipher2",
 				},
 			},
 			wantServer: algorithms{
-				w: directionAlgorithms{
+				w: DirectionAlgorithms{
 					Cipher: "cipher3",
 				},
-				r: directionAlgorithms{
+				r: DirectionAlgorithms{
 					Cipher: "cipher2",
 				},
 			},
