@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "087d8160_861fc199",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38859
+      },
+      "writtenOn": "2022-12-07T13:38:23Z",
+      "side": 1,
+      "message": "just wondering if we can clarify the key format, or at least the 2 check ints.",
+      "revId": "399717f4035720c7ce854a368bbe6b91fe5a9c05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c087db3d_eab30d03",
+        "filename": "ssh/keys.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 38859
+      },
+      "writtenOn": "2022-12-07T13:38:23Z",
+      "side": 1,
+      "message": "are those check fields the \"64-bit dummy checksum?  # a random 32-bit int, repeated\" field from the openssh format[1]?\n\n[1]: https://coolaj86.com/articles/the-openssh-private-key-format/",
+      "revId": "399717f4035720c7ce854a368bbe6b91fe5a9c05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
