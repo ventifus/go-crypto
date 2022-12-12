@@ -71,7 +71,8 @@ type handshakeTransport struct {
 
 	// If the other side requests or confirms a kex, its kexInit
 	// packet is sent here for the write loop to find it.
-	startKex chan *pendingKex
+	startKex    chan *pendingKex
+	kexLoopDone chan struct{} // closed (with writeError non-nil) when kexLoop exits
 
 	// data for host key checking
 	hostKeyCallback HostKeyCallback
@@ -108,7 +109,8 @@ func newHandshakeTransport(conn keyingTransport, config *Config, clientVersion, 
 		clientVersion: clientVersion,
 		incoming:      make(chan []byte, chanSize),
 		requestKex:    make(chan struct{}, 1),
-		startKex:      make(chan *pendingKex, 1),
+		startKex:      make(chan *pendingKex),
+		kexLoopDone:   make(chan struct{}),
 
 		config: config,
 	}
@@ -340,16 +342,13 @@ write:
 		t.mu.Unlock()
 	}
 
-	// drain startKex channel. We don't service t.requestKex
-	// because nobody does blocking sends there.
-	go func() {
-		for init := range t.startKex {
-			init.done <- t.writeError
-		}
-	}()
-
 	// Unblock reader.
 	t.conn.Close()
+
+	// Mark that we are no longer receiving from startKex,
+	// so that senders can select on it to avoid deadlock.
+	// We don't service t.requestKex because nobody does blocking sends there.
+	close(t.kexLoopDone)
 }
 
 // The protocol uses uint32 for packet counters, so we can't let them
@@ -406,8 +405,12 @@ func (t *handshakeTransport) readOnePacket(first bool) ([]byte, error) {
 		done:      make(chan error, 1),
 		otherInit: p,
 	}
-	t.startKex <- &kex
-	err = <-kex.done
+	select {
+	case t.startKex <- &kex:
+		err = <-kex.done
+	case <-t.kexLoopDone:
+		err = t.getWriteError()
+	}
 
 	if debugHandshake {
 		log.Printf("%s exited key exchange (first %v), err %v", t.id(), firstKex, err)
@@ -545,7 +548,19 @@ func (t *handshakeTransport) writePacket(p []byte) error {
 }
 
 func (t *handshakeTransport) Close() error {
-	return t.conn.Close()
+	// Close the connection. This should cause the readLoop goroutine to wake up
+	// and close t.startKex, which will shut down kexLoop if running.
+	err := t.conn.Close()
+
+	// Wait for the kexLoop goroutine to complete.
+	<-t.kexLoopDone
+
+	// Wait for the readLoop goroutine to complete. This doesn't interefere with
+	// kexLoop because we know it has already completed.
+	for range t.startKex {
+	}
+
+	return err
 }
 
 func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
