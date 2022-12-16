@@ -187,9 +187,11 @@ type channel struct {
 	pending    *buffer
 	extPending *buffer
 
-	// windowMu protects myWindow, the flow-control window.
-	windowMu sync.Mutex
-	myWindow uint32
+	// windowMu protects myWindow, the flow-control window, and myConsumed,
+	// the number of bytes consumed since we last increased myWindow
+	windowMu   sync.Mutex
+	myWindow   uint32
+	myConsumed uint32
 
 	// writeMu serializes calls to mux.conn.writePacket() and
 	// protects sentClose and packetPool. This mutex must be
@@ -334,12 +336,23 @@ func (ch *channel) handleData(packet []byte) error {
 
 func (c *channel) adjustWindow(n uint32) error {
 	c.windowMu.Lock()
-	// Since myWindow is managed on our side, and can never exceed
+	// Since myConsumed is managed on our side, and can never exceed
 	// the initial window setting, we don't worry about overflow.
-	c.myWindow += uint32(n)
+	c.myConsumed += n
+	if (channelWindowSize-c.myWindow > 3*c.maxIncomingPayload) ||
+		(c.myWindow < channelWindowSize/2) {
+		n = c.myConsumed
+		c.myWindow += c.myConsumed
+		c.myConsumed = 0
+	} else {
+		n = 0
+	}
 	c.windowMu.Unlock()
+	if n == 0 {
+		return nil
+	}
 	return c.sendMessage(windowAdjustMsg{
-		AdditionalBytes: uint32(n),
+		AdditionalBytes: n,
 	})
 }
 
