@@ -74,6 +74,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd8fa4dd_19cc5994",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-12-21T17:01:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1b5fa10a_f1a7cc25",
+      "revId": "73ddac056d5cef91e51034148c7de5657c6e97cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "109261a2_7c3d8253",
@@ -87,6 +105,24 @@
       "writtenOn": "2022-11-26T18:02:28Z",
       "side": 1,
       "message": "how about: \"bcrypt: password length exceeds 72 bytes\"\n\nso the user knows doesn\u0027t have to research what \"too long\" means",
+      "revId": "73ddac056d5cef91e51034148c7de5657c6e97cf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83366a1d_5c67713b",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2022-12-21T17:01:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "109261a2_7c3d8253",
       "revId": "73ddac056d5cef91e51034148c7de5657c6e97cf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
