@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc93995_bcca85f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 52056
+      },
+      "writtenOn": "2023-01-05T10:03:41Z",
+      "side": 1,
+      "message": "Now I see I use both len and hardcoded length of 16, I should probably use one, or the other. I lean towards the hardcoded value.",
+      "revId": "3ef74498616f63c5643fe30290bd1c324725bf99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
