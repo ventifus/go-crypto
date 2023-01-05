@@ -1428,11 +1428,17 @@ func checkOpenSSHKeyPadding(pad []byte) error {
 // fingerprint as described by RFC 4716 section 4.
 func FingerprintLegacyMD5(pubKey PublicKey) string {
 	md5sum := md5.Sum(pubKey.Marshal())
-	hexarray := make([]string, len(md5sum))
-	for i, c := range md5sum {
-		hexarray[i] = hex.EncodeToString([]byte{c})
+	buf := make([]byte, 2)
+	var sb strings.Builder
+	sb.Grow(47)
+	for i := 1; i <= len(md5sum); i++ {
+		hex.Encode(buf, md5sum[i-1:i])
+		sb.Write(buf)
+		if i < 16 {
+			sb.WriteByte(':')
+		}
 	}
-	return strings.Join(hexarray, ":")
+	return sb.String()
 }
 
 // FingerprintSHA256 returns the user presentation of the key's
