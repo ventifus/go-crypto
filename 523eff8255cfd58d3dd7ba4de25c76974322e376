@@ -16,6 +16,24 @@
       "message": "Anything else I am missing, I am first time contributor, haven\u0027t used Gerrit for a very long time. Let me know if there is anything I can do.",
       "revId": "523eff8255cfd58d3dd7ba4de25c76974322e376",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3cbdcf5_2200ddd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-01-10T22:51:33Z",
+      "side": 1,
+      "message": "Hello! This change introduces a new API, and as such must go through the proposal process before it can be reviewed and merged. You can read more about this process, and the steps required, here: https://github.com/golang/proposal#proposing-changes-to-go.\n\nIt seems like this proposes somewhat similar functionality discussed in golang/go#54573, you may want to join the discussion there if you feel like there is overlap.",
+      "parentUuid": "62229380_4abfa4b4",
+      "revId": "523eff8255cfd58d3dd7ba4de25c76974322e376",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
