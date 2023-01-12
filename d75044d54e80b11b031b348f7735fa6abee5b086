@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a50de7_fd0f3196",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T17:07:20Z",
+      "side": 1,
+      "message": "duplicated.",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a8c2b7_a7ef01a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T17:07:20Z",
+      "side": 1,
+      "message": "This needs a test that runs against OpenSSH to check that it actually works (see test/ subdirectory). Also, the proposal doesn\u0027t talk about this, but if you do the proxy as a client, maybe you want to be able to make a server for the proxy too once you have an established SSH connection? Then you can unittest the client against the server.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37b1c664_80f2b604",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T17:07:20Z",
+      "side": 1,
+      "message": "these should not be exposed. \n\nmuxMsgHello \u003d ..",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f97d64c2_cf02b760",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T17:07:20Z",
+      "side": 1,
+      "message": "why are these methods public? the same for the rest below.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
