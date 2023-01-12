@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5160877_907cd7a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T16:46:41Z",
+      "side": 1,
+      "message": "maybe add context: \"This allows server to log algorithm choices, informing which clients need to be updated\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "d541180ebd75607674149fa1e1c4689e592b2162",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2b2044_a2cb305d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-12T16:46:41Z",
+      "side": 1,
+      "message": "I suggested this change to Woogie in the first place, but deferring to Roland/Filippo for final say.",
+      "revId": "d541180ebd75607674149fa1e1c4689e592b2162",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
