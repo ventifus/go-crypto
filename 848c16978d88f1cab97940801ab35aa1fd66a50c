@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a48e3d1a_95ade7fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-01-26T10:38:08Z",
+      "side": 1,
+      "message": "I feel this is missing a test. \n\nI haven\u0027t looked in detail to the change, and it\u0027s been a while since I looked at this, but maybe you could setup a packetTransport that counts packets received/transmitted, then read N packets through it in one direction, and check that you only send N/3 packets in return.",
+      "revId": "848c16978d88f1cab97940801ab35aa1fd66a50c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
