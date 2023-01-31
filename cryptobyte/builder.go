@@ -317,6 +317,9 @@ func (b *Builder) Unwrite(n int) {
 	if length < 0 {
 		panic("cryptobyte: internal error")
 	}
+	if n < 0 {
+		panic("cryptobyte: attempted to unwrite negative number of bytes")
+	}
 	if n > length {
 		panic("cryptobyte: attempted to unwrite more than was written")
 	}
