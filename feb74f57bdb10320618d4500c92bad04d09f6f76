@@ -70,6 +70,24 @@
       "message": "LGTM, thank you Alexander.",
       "revId": "feb74f57bdb10320618d4500c92bad04d09f6f76",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ed5e2a_ddc72039",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32637
+      },
+      "writtenOn": "2023-02-01T15:57:48Z",
+      "side": 1,
+      "message": "Updated the comment.",
+      "parentUuid": "f0b39c38_a84cdcbb",
+      "revId": "feb74f57bdb10320618d4500c92bad04d09f6f76",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
