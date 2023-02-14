@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f1b11a_f979b467",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-02-14T15:43:43Z",
+      "side": 1,
+      "message": "I wonder if there\u0027s a way to reduce the wall time init latency, as that will slow down every application that imports this package.\n\nWe have the internal infra for lazy-loading certificates but we did not expose any of it, did we? Maaaaybe a build-tagged linkname trick would be justifiable?",
+      "revId": "0990a20cce9794e0ec6f33e786a9064c432f1051",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f6454a_0e514da9",
+        "filename": "x509roots/parser.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-02-14T15:43:43Z",
+      "side": 1,
+      "message": "The package docs should talk about why the package exist and mostly point users to the fallback subpackage. Most users will be looking for that anyway. It can mention in passing that it exposes the parser used to generate the fallback dataset.\n\nThen all these details can go in the docs of ParseNSSCertData.",
+      "revId": "0990a20cce9794e0ec6f33e786a9064c432f1051",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
