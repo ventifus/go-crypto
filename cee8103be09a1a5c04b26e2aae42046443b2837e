@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "600d8862_04402aa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-02-15T18:14:46Z",
+      "side": 1,
+      "message": "I double checked that this works, commenting out the fallback in test/session_test.go:testOneCipher,\n\n    --- PASS: TestCiphers/aes128-gcm@openssh.com (0.04s)\n    --- PASS: TestCiphers/aes256-gcm@openssh.com (0.05s)\n\nthe constant for AES128 GCM should be renamed for consistency, but that can be in a different change.",
+      "revId": "cee8103be09a1a5c04b26e2aae42046443b2837e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
