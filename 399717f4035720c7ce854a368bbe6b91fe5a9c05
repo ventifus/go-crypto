@@ -33,6 +33,24 @@
       "message": "are those check fields the \"64-bit dummy checksum?  # a random 32-bit int, repeated\" field from the openssh format[1]?\n\n[1]: https://coolaj86.com/articles/the-openssh-private-key-format/",
       "revId": "399717f4035720c7ce854a368bbe6b91fe5a9c05",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356c1066_4d4863a2",
+        "filename": "ssh/keys.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 34882
+      },
+      "writtenOn": "2023-02-20T20:12:18Z",
+      "side": 1,
+      "message": "These checksums are described at https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.key. \n\nWhen you encrypt a key, a random value is assigned to both checks, when you decrypt it, if the value is different you know for sure that the password was not the correct one, and you don\u0027t need to attempt to unmarshal the rest.\n\nWith an incorrect password, you can also get those checks to represent the right value, but then the probability of properly unmarshal a valid key is negligible.",
+      "parentUuid": "c087db3d_eab30d03",
+      "revId": "399717f4035720c7ce854a368bbe6b91fe5a9c05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

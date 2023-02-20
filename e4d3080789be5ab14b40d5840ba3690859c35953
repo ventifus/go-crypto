@@ -241,6 +241,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61eb53f_7d4b4138",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 34882
+      },
+      "writtenOn": "2023-02-20T20:12:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef2d9f08_0a038fbd",
+      "range": {
+        "startLine": 1537,
+        "startChar": 1,
+        "endLine": 1540,
+        "endChar": 2
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86ea525e_53fb70c9",
@@ -372,6 +396,30 @@
       "side": 1,
       "message": "Per before, I don\u0027t think is a good idea to add a `case *ed25519.PrivateKey1`",
       "parentUuid": "6c595f87_608d6a32",
+      "range": {
+        "startLine": 1576,
+        "startChar": 2,
+        "endLine": 1577,
+        "endChar": 15
+      },
+      "revId": "e4d3080789be5ab14b40d5840ba3690859c35953",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1bbb1a_37063a95",
+        "filename": "ssh/keys.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1577,
+      "author": {
+        "id": 34882
+      },
+      "writtenOn": "2023-02-20T20:12:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51ff3a72_43b56777",
       "range": {
         "startLine": 1576,
         "startChar": 2,
