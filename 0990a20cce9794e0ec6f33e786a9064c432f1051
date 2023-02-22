@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba37a304_e8b43282",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-02-22T00:37:56Z",
+      "side": 1,
+      "message": "We talked a bit about this OOB, and considered using the existing lazy loading by hiding it behind `x509.CertPool.AppendCertsFromPEM`. It turns out it already uses that logic, but the parsing is not deferred, it still happens at calltime, in order to prevent malformed certificates making it into the pool, but discards the result and defers loading the certificate into memory until it is needed.\n\nLinux system pool loading avoids init time latency by deferring the parsing until `x509.SystemCertPool` is called, likely pushing it back until the first time a certificate is verified.\n\nI\u0027m not sure we can reasonably do the same thing without adding a new x509 API, since we need to load the CertPool during package initialization in order to call `x509.SetFallbackRoots`.\n\n`AppendCertsFromPEM` needs to pre-parse in order to prevent malformed certs making it into the pool, but since we pre-parse the certificates during list generation, perhaps it is fine to either (a) add an API that allows skipping the pre-parsing (seems bad for every other user, who I wouldn\u0027t want doing this), or (b) using magic linkname trickery to build our own lazy-loaded `CertPool` that skips pre-parsing... (although I\u0027m not sure how viable that is without crypto/x509 changes anyway, since we\u0027d need to access private methods on a public type, which idk if can even be `linkname`\u0027d)\n\nWith the current size of the NSS list, on my somewhat old MBP, parsing takes 1.97ms ± 1%, maybe that is acceptable to avoid horrific hacks 🤷.",
+      "parentUuid": "c9f1b11a_f979b467",
+      "revId": "0990a20cce9794e0ec6f33e786a9064c432f1051",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23f6454a_0e514da9",
         "filename": "x509roots/parser.go",
         "patchSetId": 7
