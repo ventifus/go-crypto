@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d798f91_0e086298",
+        "filename": "ssh/connection.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "So far as I can tell, `getSessionID` and `waitSession` are only called by `clientHandshake` and `serverHandshake` immediately after creating the transport.\n\nYou should be able to drop the `connTransport` type, change `connection.transport` to a `packetConn`, and and make the handshake functions operate on the concrete `*handshakeTransport`:\n\n```\ntransport :\u003d newClientTransport(...)\nif err :\u003d transport.waitSession(); err !\u003d nil {\n  return err\n}\n\nc.transport \u003d transport\nc.sessionID \u003d transport.getSessionID()\n```",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37b1c664_80f2b604",
         "filename": "ssh/control.go",
         "patchSetId": 1
@@ -60,6 +77,98 @@
         "endLine": 15,
         "endChar": 14
       },
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c739a9c_0df1ed18",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "37b1c664_80f2b604",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246bad38_e03a95b7",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Include the version in the error?\n\nfmt.Errorf(\"mux server has unsupported version %v\", v)",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac6e45d_deabcfa9",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Return errors immediately rather than indenting the non-error path:\n\n```\nif err !\u003d nil {\n  return nil, err\n}\n```",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d656ef56_92bfe34e",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Verify that the packet size is \u003c\u003d maxPacket. (You can do this just once in readLengthPrefixed, see comment below.)",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3fe35b6_470831e9",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Allocate a []byte of the correct size and use io.ReadFull to fill it.",
       "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -100,6 +209,91 @@
       "writtenOn": "2023-01-12T17:07:20Z",
       "side": 1,
       "message": "why are these methods public? the same for the rest below.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68402179_10f998db",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "This makes a copy of the whole buffer on each call.\n\nRather than hand-rolling types to do (de)serialization here, how about using x/crypto/cryptobyte? (https://pkg.go.dev/golang.org/x/crypto/cryptobyte) cryptobyte.Builder replaces controlBuffer, cryptobyte.String replaces controlMessage.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1660fb64_e4fa4222",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "This doesn\u0027t really need to be a type. How about:\n\n```\nfunc readLengthPrefixed(r io.Reader) (*cryptobyte.String, error)\n\nfunc readControlMessage(r io.Reader) (messageType uint32, body *cryptobyte.String, err error)\n```\n\n(Then you can use readLengthPrefixed in both readControlMessage and controlProxyTransport.readPacket.)",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010c2998_52093178",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Verify that the message size is \u003c\u003d maxPacket.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8319a661_ef52ebdb",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "Allocate a []byte of the correct size and use io.ReadFull.",
+      "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da61f1ed_0b59c92d",
+        "filename": "ssh/control.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2023-03-23T17:43:52Z",
+      "side": 1,
+      "message": "%q, to quote anything unexpected in the response. (And drop the \u0027\u0027, since %q adds quotes for you.)",
       "revId": "d75044d54e80b11b031b348f7735fa6abee5b086",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
