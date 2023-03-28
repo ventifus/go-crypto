@@ -186,7 +186,7 @@ func (b *Builder) addLengthPrefixed(lenLen int, isASN1 bool, f BuilderContinuati
 	}
 
 	offset := len(b.result)
-	b.add(make([]byte, lenLen)...)
+	b.addNumBytes(lenLen)
 
 	if b.inContinuation == nil {
 		b.inContinuation = new(bool)
@@ -301,6 +301,23 @@ func (b *Builder) add(bytes ...byte) {
 		return
 	}
 	b.result = append(b.result, bytes...)
+}
+
+func (b *Builder) addNumBytes(n int) {
+	if b.err != nil {
+		return
+	}
+	if b.child != nil {
+		panic("cryptobyte: attempted write while child is pending")
+	}
+	if len(b.result)+n < n {
+		b.err = errors.New("cryptobyte: length overflow")
+	}
+	if b.fixedSize && len(b.result)+n > cap(b.result) {
+		b.err = errors.New("cryptobyte: Builder is exceeding its fixed-size buffer")
+		return
+	}
+	b.result = append(b.result, make([]byte, n)...)
 }
 
 // Unwrite rolls back non-negative n bytes written directly to the Builder.
