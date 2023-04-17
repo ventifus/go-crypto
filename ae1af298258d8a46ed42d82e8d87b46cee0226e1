@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78fa9c0_03360b93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 56073
+      },
+      "writtenOn": "2023-04-17T13:59:38Z",
+      "side": 1,
+      "message": "Patch set 2 has the reproducer from the playground, once they get uploaded.",
+      "revId": "ae1af298258d8a46ed42d82e8d87b46cee0226e1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
