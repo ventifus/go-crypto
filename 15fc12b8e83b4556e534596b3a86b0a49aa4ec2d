@@ -16,6 +16,24 @@
       "message": "This only covers public key authentication, but it doesn\u0027t solve the same issue when using an ssh certificate. Could we \"extend\" that check to also include ssh certificates?",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b7a5f9_967df001",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2023-05-03T21:47:48Z",
+      "side": 1,
+      "message": "I think this should be resolved with the latest changes in https://github.com/golang/crypto/pull/221/files.",
+      "parentUuid": "2ea68aed_318256d8",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
