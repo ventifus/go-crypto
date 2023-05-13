@@ -748,7 +748,18 @@ func (s *String) ReadOptionalASN1Boolean(out *bool, defaultValue bool) bool {
 		return true
 	}
 
-	return s.ReadASN1Boolean(out)
+	if len(child) != 1 {
+		return false
+	}
+	switch child[0] {
+	case 0:
+		*out = false
+	case 0xff:
+		*out = true
+	default:
+		return false
+	}
+	return true
 }
 
 func (s *String) readASN1(out *String, outTag *asn1.Tag, skipHeader bool) bool {

@@ -433,3 +433,26 @@ func TestReadASN1Boolean(t *testing.T) {
 		}
 	}
 }
+
+func TestReadOptionalASN1Boolean(t *testing.T) {
+	defaultValue := false
+	testData := []struct {
+		in  []byte
+		ok  bool
+		out bool
+	}{
+		{[]byte{}, true, defaultValue},
+		{[]byte{0x01, 0x01, 0x00}, true, false},
+		{[]byte{0x01, 0x01, 0xff}, true, true},
+		{[]byte{0x01, 0x01, 0x01}, false, false},
+		{[]byte{0x01, 0x02, 0xff, 0xff}, false, false},
+	}
+	for i, test := range testData {
+		in := String(test.in)
+		var out bool
+		ok := in.ReadOptionalASN1Boolean(&out, defaultValue)
+		if ok != test.ok || ok && (out != test.out) {
+			t.Errorf("#%d: in.ReadOptionalASN1Boolean() = %v, want %v; out = %v, want %v", i, ok, test.ok, out, test.out)
+		}
+	}
+}
