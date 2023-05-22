@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2bc24c1_24cb8276",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2023-05-22T15:10:43Z",
+      "side": 1,
+      "message": "TRY\u003ddarwin-amd64-longtest\n\n(There is no point in trying it on linux-amd64-longtest because the test skips itself when running as root; see #10719.)",
+      "revId": "05d0429eff60926dcd2c7606819d3d01dad9a004",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
