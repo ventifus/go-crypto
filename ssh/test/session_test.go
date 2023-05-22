@@ -23,7 +23,6 @@ import (
 
 func TestRunCommandSuccess(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -40,7 +39,6 @@ func TestRunCommandSuccess(t *testing.T) {
 
 func TestHostKeyCheck(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 
 	conf := clientConfig()
 	hostDB := hostKeyDB()
@@ -62,7 +60,6 @@ func TestHostKeyCheck(t *testing.T) {
 
 func TestRunCommandStdin(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -85,7 +82,6 @@ func TestRunCommandStdin(t *testing.T) {
 
 func TestRunCommandStdinError(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -109,7 +105,6 @@ func TestRunCommandStdinError(t *testing.T) {
 
 func TestRunCommandFailed(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -126,7 +121,6 @@ func TestRunCommandFailed(t *testing.T) {
 
 func TestRunCommandWeClosed(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -146,7 +140,6 @@ func TestRunCommandWeClosed(t *testing.T) {
 
 func TestFuncLargeRead(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -178,7 +171,6 @@ func TestFuncLargeRead(t *testing.T) {
 
 func TestKeyChange(t *testing.T) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conf := clientConfig()
 	hostDB := hostKeyDB()
 	conf.HostKeyCallback = hostDB.Check
@@ -225,7 +217,6 @@ func TestValidTerminalMode(t *testing.T) {
 		t.Skipf("skipping on %s", runtime.GOOS)
 	}
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -274,7 +265,6 @@ func TestWindowChange(t *testing.T) {
 		t.Skipf("skipping on %s", runtime.GOOS)
 	}
 	server := newServer(t)
-	defer server.Shutdown()
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
 
@@ -322,7 +312,6 @@ func TestWindowChange(t *testing.T) {
 
 func testOneCipher(t *testing.T, cipher string, cipherOrder []string) {
 	server := newServer(t)
-	defer server.Shutdown()
 	conf := clientConfig()
 	conf.Ciphers = []string{cipher}
 	// Don't fail if sshd doesn't have the cipher.
@@ -381,7 +370,6 @@ func TestMACs(t *testing.T) {
 	for _, mac := range macOrder {
 		t.Run(mac, func(t *testing.T) {
 			server := newServer(t)
-			defer server.Shutdown()
 			conf := clientConfig()
 			conf.MACs = []string{mac}
 			// Don't fail if sshd doesn't have the MAC.
@@ -407,7 +395,6 @@ func TestKeyExchanges(t *testing.T) {
 	for _, kex := range kexOrder {
 		t.Run(kex, func(t *testing.T) {
 			server := newServer(t)
-			defer server.Shutdown()
 			conf := clientConfig()
 			// Don't fail if sshd doesn't have the kex.
 			conf.KeyExchanges = append([]string{kex}, kexOrder...)
@@ -442,8 +429,6 @@ func TestClientAuthAlgorithms(t *testing.T) {
 			} else {
 				t.Errorf("failed for key %q", key)
 			}
-
-			server.Shutdown()
 		})
 	}
 }
