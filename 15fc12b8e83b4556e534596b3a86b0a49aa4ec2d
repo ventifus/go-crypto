@@ -52,6 +52,24 @@
       "parentUuid": "19b7a5f9_967df001",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee067123_7c7cee2c",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2023-06-05T20:56:20Z",
+      "side": 1,
+      "message": "To be clear, this is with SSH certificates? Perhaps this should be a separate change. We\u0027ve been running with this change alone for months now, and I\u0027d rather not add more changes.\n\nCan you describe exactly how to reproduce this?",
+      "parentUuid": "a7b51297_57d4471e",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
