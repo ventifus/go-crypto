@@ -34,6 +34,24 @@
       "parentUuid": "2ea68aed_318256d8",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7b51297_57d4471e",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 58441
+      },
+      "writtenOn": "2023-06-05T20:44:45Z",
+      "side": 1,
+      "message": "I tested the latest changes, and I\u0027m still getting an error when trying to connect to OpenSSH 7.4:\n\nssh: signature \"rsa-sha2-512\" not compatible with selected algorithm \"ssh-rsa-cert-v01@openssh.com\", unsupported key type:",
+      "parentUuid": "19b7a5f9_967df001",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
