@@ -70,6 +70,24 @@
       "parentUuid": "a7b51297_57d4471e",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44bf7d26_ce30be28",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 58441
+      },
+      "writtenOn": "2023-06-06T22:25:58Z",
+      "side": 1,
+      "message": "I created a repository with a reproduction https://github.com/jakule/go-crypto-ssh-repro. I used two clients, OpenSSH 8.9 and 7.4. The older OpenSSH fails with the error posted above. I understand this could be a separate charge, but merging anything upstream takes years, and we\u0027re also running a fork of go/crypto because of this.\nLet me know if you have more questions.",
+      "parentUuid": "ee067123_7c7cee2c",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
