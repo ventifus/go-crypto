@@ -108,6 +108,24 @@
       "parentUuid": "63ca4b95_e1ac2cbb",
       "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc6ade4_c188a935",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-06-07T19:08:17Z",
+      "side": 1,
+      "message": "Thank you Stan Hu. The compatibility with old clients should be now fixed for both keys and certificates.\nI wonder if a more stringent validity check should be added. We can accept the \"ssh-rsa\" algorithm with the public key format \"ssh-rsa-cert-v01@openssh.com\" or viceversa. I think this worked even before this change. OpenSSH seems to have a stricter validation. I have errors like this \"error: userauth_pubkey: type mismatch for decoded key (received 0, expected 4) [preauth]\"",
+      "parentUuid": "905ca684_7468a3ab",
+      "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
