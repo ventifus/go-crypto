@@ -142,6 +142,24 @@
       "parentUuid": "31e10215_2e549719",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec029e5_3ea2aff0",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 58441
+      },
+      "writtenOn": "2023-06-07T15:53:19Z",
+      "side": 1,
+      "message": "Switching to the mentioned fork \"solves\" the issue not because of the patch from this PR, but because the fork is based on crypto v0.2.0. OpenSSH 7.4 stopped working after https://github.com/golang/crypto/commit/6fad3dfc18918c2ac9c112e46b32473bd2e5e2f9 was merged (v0.3.0 release). Patch propsed by @nicola.murino@gmail.com below seems to work.",
+      "parentUuid": "6788e955_cd7591fb",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

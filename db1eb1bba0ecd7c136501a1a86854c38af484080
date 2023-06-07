@@ -72,6 +72,24 @@
       "message": "```suggestion\n\tcompatibleAlgos :\u003d algorithmsForKeyFormat(underlyingAlgo(pubKeyFormat))\n```\n\nthis change should fix the reported issue with certificates.",
       "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ca4b95_e1ac2cbb",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 58441
+      },
+      "writtenOn": "2023-06-07T15:53:19Z",
+      "side": 1,
+      "message": "I confirm, this patch solves the cert issue.",
+      "parentUuid": "a8932496_5d2e50e2",
+      "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
