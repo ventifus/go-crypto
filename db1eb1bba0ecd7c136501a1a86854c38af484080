@@ -90,6 +90,24 @@
       "parentUuid": "a8932496_5d2e50e2",
       "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "905ca684_7468a3ab",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2023-06-07T16:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63ca4b95_e1ac2cbb",
+      "revId": "db1eb1bba0ecd7c136501a1a86854c38af484080",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

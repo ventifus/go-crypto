@@ -160,6 +160,24 @@
       "parentUuid": "6788e955_cd7591fb",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef44bb14_12c61678",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2023-06-07T16:15:12Z",
+      "side": 1,
+      "message": "Thanks, I rebased, added a test case, and applied that patch.",
+      "parentUuid": "2ec029e5_3ea2aff0",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
