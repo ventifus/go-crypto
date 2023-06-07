@@ -124,6 +124,24 @@
       "parentUuid": "78f5c1e1_ea2b4ca9",
       "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6788e955_cd7591fb",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 40708
+      },
+      "writtenOn": "2023-06-07T05:02:45Z",
+      "side": 1,
+      "message": "This current changeset works fine for me with your reproduction test. I reproduced the failure on v0.9.0, and then saw that it worked after I patched your repo with this:\n\n```\ndiff --git a/go.mod b/go.mod\nindex 5d9df16..f078e78 100644\n--- a/go.mod\n+++ b/go.mod\n@@ -8,3 +8,5 @@ require (\n        golang.org/x/sys v0.8.0 // indirect\n        golang.org/x/term v0.8.0 // indirect\n )\n+\n+replace golang.org/x/crypto \u003d\u003e github.com/stanhu/crypto v0.0.0-20230215194926-630f71961527\ndiff --git a/go.sum b/go.sum\nindex 7b91e7b..8cd39cf 100644\n--- a/go.sum\n+++ b/go.sum\n@@ -1,3 +1,5 @@\n+github.com/stanhu/crypto v0.0.0-20230215194926-630f71961527 h1:pCk7NKUNl+E/MT3JduorcFpZzhjXMT/18Uqfqquk5eM\u003d\n+github.com/stanhu/crypto v0.0.0-20230215194926-630f71961527/go.mod h1:RecgLatLF4+eUMCP1PoPZQb+cVrJcOPbHkTkbkB9sbw\u003d\n golang.org/x/crypto v0.9.0 h1:LF6fAI+IutBocDJ2OT0Q1g8plpYljMZ4+lty+dsqw3g\u003d\n golang.org/x/crypto v0.9.0/go.mod h1:yrmDGqONDYtNj3tH8X9dzUun2m2lzPa9ngI6/RUPGR0\u003d\n golang.org/x/sys v0.8.0 h1:EBmGv8NaZBZTWvrbjNoL6HVt+IVy3QDQpJs7VRIw3tU\u003d\n```",
+      "parentUuid": "31e10215_2e549719",
+      "revId": "15fc12b8e83b4556e534596b3a86b0a49aa4ec2d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
