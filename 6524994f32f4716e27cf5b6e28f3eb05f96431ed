@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542d2500_1fcf828b",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-06-08T04:44:40Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\t}\n\t\t\t\t// Ensure the declared public key algo is compatible\n\t\t\t\t// with the decoded one\n\t\t\t\tif !contains(algorithmsForKeyFormat(pubKey.Type()), algo) {\n\t\t\t\t\tauthErr \u003d fmt.Errorf(\"ssh: type mismatch for decoded key, received %q, expected %q\", pubKey.Type(), algo)\n\t\t\t\t\tbreak\n\t\t\t\t}\n```\n\nthis way we don\u0027t accept incompatible algo. For example algo ssh-rsa-cert-v01@openssh.com with public key type ssh-rsa will be rejected. \nNot sure if this change should be included here or discussed in a separate patch",
+      "revId": "6524994f32f4716e27cf5b6e28f3eb05f96431ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
