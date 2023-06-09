@@ -170,6 +170,24 @@
       "message": "The accepted proposal said:\n\n```\nfunc Parse(r io.Reader) ([]*Certificate, error)\n```",
       "revId": "6e8fc12a69a9fa51d6d5968ff4ae8b0c383c0019",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ee8a3af_13f8844b",
+        "filename": "x509roots/nss/parser.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-06-09T17:18:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc2c1e0c_682d4c98",
+      "revId": "6e8fc12a69a9fa51d6d5968ff4ae8b0c383c0019",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
