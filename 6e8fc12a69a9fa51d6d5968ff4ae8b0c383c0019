@@ -76,6 +76,23 @@
       "message": "At a quick glance, it seems unexpected that there are flags defined above but no flag.Parse here. Do the flags work somehow else?",
       "revId": "6e8fc12a69a9fa51d6d5968ff4ae8b0c383c0019",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c303ee5_4c47c061",
+        "filename": "x509roots/nss/parser.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 35155
+      },
+      "writtenOn": "2023-06-09T17:08:12Z",
+      "side": 1,
+      "message": "```suggestion\n// rely on the golang.org/x/crypto/x509roots/fallback package which\n```",
+      "revId": "6e8fc12a69a9fa51d6d5968ff4ae8b0c383c0019",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
