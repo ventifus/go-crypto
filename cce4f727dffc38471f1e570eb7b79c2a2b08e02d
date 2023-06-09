@@ -72,6 +72,24 @@
       "message": "FWIW, from https://pkg.go.dev/cmd/go#hdr-Generate_Go_files_by_processing_source:\n\n\u003e The go generate tool also sets the build tag \"generate\" so that files may be examined by go generate but ignored during build.\n\nSo if you were to pick \u0027generate\u0027 as the go:build constraint above, instead of \u0027gen\u0027, then it\u0027s possible to run trigger this directive with just `go generate`, without needing to also explicitly specify `-tags\u003dgen`.",
       "revId": "cce4f727dffc38471f1e570eb7b79c2a2b08e02d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c3d509_4cb90148",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-06-09T17:23:53Z",
+      "side": 1,
+      "message": "Oh cool, I\u0027ll send a follow-up to do that instead, thanks!",
+      "parentUuid": "946fb1db_8a608abc",
+      "revId": "cce4f727dffc38471f1e570eb7b79c2a2b08e02d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ],
   "submitRequirementResults": [
