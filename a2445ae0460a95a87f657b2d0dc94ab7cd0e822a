@@ -34,6 +34,24 @@
       "message": "Isn\u0027t this supposed to be on the x/net dependency?",
       "revId": "a2445ae0460a95a87f657b2d0dc94ab7cd0e822a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6d0956_7bffb891",
+        "filename": "go.mod",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 17090
+      },
+      "writtenOn": "2023-06-12T16:41:55Z",
+      "side": 1,
+      "message": "Oh wow. Thanks. Jet lag is bad.",
+      "parentUuid": "44d7bc01_91bb3c1a",
+      "revId": "a2445ae0460a95a87f657b2d0dc94ab7cd0e822a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
