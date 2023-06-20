@@ -78,6 +78,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85d00e6_ad1f38ed",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-06-20T18:29:52Z",
+      "side": 1,
+      "message": "Whoops, good catch.",
+      "parentUuid": "2aa544a8_4d192560",
+      "range": {
+        "startLine": 67,
+        "startChar": 187,
+        "endLine": 67,
+        "endChar": 246
+      },
+      "revId": "19f31ab542c475ad6dc6f0cb26c5214e2d3369f6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86e373f2_cbfe12ca",
@@ -91,6 +115,30 @@
       "writtenOn": "2023-06-20T18:26:14Z",
       "side": 1,
       "message": "And here.",
+      "range": {
+        "startLine": 68,
+        "startChar": 94,
+        "endLine": 68,
+        "endChar": 153
+      },
+      "revId": "19f31ab542c475ad6dc6f0cb26c5214e2d3369f6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "895c2cad_d0428e47",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-06-20T18:29:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86e373f2_cbfe12ca",
       "range": {
         "startLine": 68,
         "startChar": 94,
