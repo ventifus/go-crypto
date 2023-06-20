@@ -72,10 +72,6 @@ var (
 func main() {
 	flag.Parse()
 
-	if *certDataPath != "" && *certDataURL != "" {
-		log.Fatal("Only one of --certdata-url and --certdata-path may be supplied")
-	}
-
 	var certdata io.Reader
 
 	if *certDataPath != "" {
