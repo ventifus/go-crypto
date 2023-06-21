@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "af658d3d_98d60d47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "How do I edit this?",
+      "parentUuid": "36315d36_ac8f1ad5",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 43
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2af9e731_e0217553",
@@ -112,6 +136,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8936ce3f_6760793f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d61d288d_bb2b3f08",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9edf7f41_c7c981ef",
@@ -148,6 +190,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78853bdf_60de54a6",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "I wish the net package provided a ContextDialer interface type. I’ve implemented it dozens of times. I added an assertion that \u0026net.Dialer{} also implements this interface.",
+      "parentUuid": "3d019613_275c6558",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1221d28d_36dd0491",
         "filename": "ssh/tcpip_test.go",
         "patchSetId": 1
@@ -159,6 +219,30 @@
       "writtenOn": "2023-06-21T12:13:37Z",
       "side": 1,
       "message": "is this guaranteed to work, or can this be susceptible to timing races?",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 44,
+        "endChar": 67
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c3a0d71_80834a82",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "Empirically, yes. It’s not documented, but the implementation of context.WithDeadline cancels the context if the deadline has already passed:\n\n\tdur :\u003d time.Until(d)\n\tif dur \u003c\u003d 0 {\n\t\tc.cancel(true, DeadlineExceeded, nil) // deadline has already passed\n\t\treturn c, func() { c.cancel(false, Canceled, nil) }\n\t}",
+      "parentUuid": "1221d28d_36dd0491",
       "range": {
         "startLine": 44,
         "startChar": 59,
@@ -194,6 +278,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2283797_de9c03a1",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "context.WithTimeout just calls context.WithDeadline:\n\nreturn WithDeadline(parent, time.Now().Add(timeout))\n\nSo yes, maybe redundant.",
+      "parentUuid": "a5409dcb_7abf6ed7",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b787f447_51b114b2",
         "filename": "ssh/tcpip_test.go",
         "patchSetId": 1
@@ -205,6 +313,30 @@
       "writtenOn": "2023-06-21T12:13:37Z",
       "side": 1,
       "message": "this looks more robust than the previous test.",
+      "range": {
+        "startLine": 54,
+        "startChar": 57,
+        "endLine": 54,
+        "endChar": 60
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ed828b_401ba650",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T15:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b787f447_51b114b2",
       "range": {
         "startLine": 54,
         "startChar": 57,
