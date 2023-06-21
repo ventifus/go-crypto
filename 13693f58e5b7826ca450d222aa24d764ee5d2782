@@ -366,6 +366,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d04e4d_49b1ee93",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "783fec31_2fe08753",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b787f447_51b114b2",
