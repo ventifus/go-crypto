@@ -51,6 +51,24 @@
       "parentUuid": "2af9e731_e0217553",
       "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900990ea_8d9aa643",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T11:08:59Z",
+      "side": 1,
+      "message": "I suppose it could leak a goroutine if Client.Conn.OpenChannel blocks forever.\n\nA better dix might be to add context support to OpenChannel, but that’s a bigger change to the API surface.",
+      "parentUuid": "de105d55_5f14cd84",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
