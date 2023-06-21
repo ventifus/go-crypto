@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "36315d36_ac8f1ad5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "this is dup with the previous line. \n\nAdd some context: why is this a useful function?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 43
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2af9e731_e0217553",
@@ -67,6 +90,127 @@
       "side": 1,
       "message": "I suppose it could leak a goroutine if Client.Conn.OpenChannel blocks forever.\n\nA better dix might be to add context support to OpenChannel, but that’s a bigger change to the API surface.",
       "parentUuid": "de105d55_5f14cd84",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2bba67_4791851f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "apologies: I read over this too quickly. This add a DialContext for initiating a tunneled connection over an existing session, rather initiating a new SSH connection (some of the github comments also conflate the two).\n\nDialContext is compatible with net.DialContext, which also does not close the connection if the context expires after establishing the connection.",
+      "parentUuid": "900990ea_8d9aa643",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9edf7f41_c7c981ef",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "what happens after if the context is canceled after this function completes? Maybe refer to net.DialContext.",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d019613_275c6558",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "this test feels unnecessary (who guarantees that the definition in l.26 is the right one?). Is there a ContextDialer in the standard library that we can use here? If yes, move this interface assertion to the main code. If no, drop",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1221d28d_36dd0491",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "is this guaranteed to work, or can this be susceptible to timing races?",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 44,
+        "endChar": 67
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5409dcb_7abf6ed7",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "since we won\u0027t have separate code for this case, either this or the previous test seem superfluous.",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b787f447_51b114b2",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T12:13:37Z",
+      "side": 1,
+      "message": "this looks more robust than the previous test.",
+      "range": {
+        "startLine": 54,
+        "startChar": 57,
+        "endLine": 54,
+        "endChar": 60
+      },
       "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
