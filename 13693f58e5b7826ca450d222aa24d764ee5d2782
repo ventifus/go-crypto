@@ -16,6 +16,41 @@
       "message": "this looks like a cut \u0026 paste from the bugreport? \n\nproper context handling should\n\n1) also kill the connection if the context is closed after the conn is established\n\n2) probably be available for ssh.Conn rather than just client.Dial. For example, shouldn\u0027t servers also be able to respond to closed context?\n\nthe item in 2) probably warrants a more deep analysis. Maybe we could add `client.DialContext` on its own, but I\u0027d rather see the overall plan first before we start with the incremental improvements.",
       "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61d288d_bb2b3f08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T10:50:31Z",
+      "side": 1,
+      "message": "Thanks",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de105d55_5f14cd84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-21T10:50:31Z",
+      "side": 1,
+      "message": "Sure, I copied and pasted code that’s been running in production for six years.\n\nIt does close the Conn if the Context is closed before returning.\n\nssh.Dial doesn’t return a net.Conn, Client.Dial does, hence the incremental change.\n\nMany packages expect something that implements DialContext, e.g. net/http.Transport (its Dial field being deprecated).",
+      "parentUuid": "2af9e731_e0217553",
+      "revId": "13693f58e5b7826ca450d222aa24d764ee5d2782",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
