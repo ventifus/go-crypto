@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd61dd6_5612502a",
+        "filename": "ssh/test/dial_unix_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-21T17:03:07Z",
+      "side": 1,
+      "message": "since DialContext calls Dial, you can drop the preceding block.\n\nOr, leave this alone as this test doesn\u0027t do anything with contexts.",
+      "range": {
+        "startLine": 69,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "3b7d59489130235fdc7ce8cf18399ddd895e86a4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
