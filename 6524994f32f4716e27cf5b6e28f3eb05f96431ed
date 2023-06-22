@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae46a52_4380053c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7061
+      },
+      "writtenOn": "2023-06-22T19:54:10Z",
+      "side": 1,
+      "message": "I think it needs at least on \"trusted\" security-oriented person to eyeball it and +2 it.  I put \"trusted\" in square quotes because that ultimately depends on someone else\u0027s judgement (not mine, I know who\u0027s on the Go security team and a subset of who they trust).\n\nAlso for actually submitting, all the comments have to be marked \"resolved\" (as I will this one).\n\nRe testing, maybe?  Confirming that it works in an end-to-end test is not bad, but if that\u0027s a lot of work for you, probably not necessary either.  I get the impression this CL is well-tested in the fork.\n\nI don\u0027t know if this will make it into 1.21, but if it is approved, we should at least do it early in 1.22 so that we\u0027re done with it.",
+      "parentUuid": "5a019d42_d85d866e",
+      "revId": "6524994f32f4716e27cf5b6e28f3eb05f96431ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "542d2500_1fcf828b",
