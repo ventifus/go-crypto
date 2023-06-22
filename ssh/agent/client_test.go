@@ -14,6 +14,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"slices"
 	"strconv"
 	"strings"
 	"testing"
@@ -33,6 +34,16 @@ func startOpenSSHAgent(t *testing.T) (client ExtendedAgent, socket string, clean
 	bin, err := exec.LookPath("ssh-agent")
 	if err != nil {
 		t.Skip("could not find ssh-agent")
+	}
+
+	if runtime.GOOS == "windows" {
+		env := os.Environ()
+		for i := range env {
+			cmd := exec.Command("cmd", "/C", bin, "-s")
+			cmd.Env = slices.Delete(slices.Clone(env), i, i)
+			out, err := cmd.CombinedOutput()
+			t.Logf("%v -s without %v: %v, %v", bin, env[i], string(out), err)
+		}
 	}
 
 	cmd := exec.Command(bin, "-s")
