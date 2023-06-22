@@ -72,6 +72,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b06e7bd8_a2814a32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-06-22T20:24:01Z",
+      "side": 1,
+      "message": "That\u0027s just an alternative approach to fix the same issue. It depends on what the maintainers prefer. I think also this CL should be considered for a better evaluation",
+      "parentUuid": "d38add9f_e6b188fc",
+      "revId": "6524994f32f4716e27cf5b6e28f3eb05f96431ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "542d2500_1fcf828b",
