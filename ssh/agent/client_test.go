@@ -35,6 +35,13 @@ func startOpenSSHAgent(t *testing.T) (client ExtendedAgent, socket string, clean
 		t.Skip("could not find ssh-agent")
 	}
 
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cmd", "/C", bin, "-d", "-s")
+		cmd.Env = []string{}
+		out, err := cmd.CombinedOutput()
+		t.Logf("%v -d -s: %v, %v", bin, string(out), err)
+	}
+
 	cmd := exec.Command(bin, "-s")
 	cmd.Env = []string{} // Do not let the user's environment influence ssh-agent behavior.
 	cmd.Stderr = new(bytes.Buffer)
