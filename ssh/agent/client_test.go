@@ -35,8 +35,24 @@ func startOpenSSHAgent(t *testing.T) (client ExtendedAgent, socket string, clean
 		t.Skip("could not find ssh-agent")
 	}
 
+	// if runtime.GOOS == "windows" {
+	// 	env := os.Environ()
+	// 	for i := range env {
+	// 		cmd := exec.Command("cmd", "/C", bin, "-s")
+	// 		cmd.Env = slices.Delete(slices.Clone(env), i, i+1)
+	// 		out, err := cmd.CombinedOutput()
+	// 		t.Logf("%v -s without %v: %v, %v", bin, env[i], string(out), err)
+	// 	}
+	// }
+
 	cmd := exec.Command(bin, "-s")
-	cmd.Env = []string{} // Do not let the user's environment influence ssh-agent behavior.
+	// Do not let the user's environment influence ssh-agent behavior, except for PROGRAMDATA, which appears to be required.
+	cmd.Env = []string{}
+	for _, v := range os.Environ() {
+		if strings.HasPrefix(v, "PROGRAMDATA=") {
+			cmd.Env = append(cmd.Env, v)
+		}
+	}
 	cmd.Stderr = new(bytes.Buffer)
 	out, err := cmd.Output()
 	if err != nil {
