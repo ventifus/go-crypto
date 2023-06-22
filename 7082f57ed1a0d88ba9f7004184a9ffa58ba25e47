@@ -48,6 +48,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c29ea6_d913ba8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-22T16:02:33Z",
+      "side": 1,
+      "message": "I can\u0027t see it? probably should edit it directly in gerrit.",
+      "parentUuid": "07451af9_95619839",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "7082f57ed1a0d88ba9f7004184a9ffa58ba25e47",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a035e61_dfb357c4",
