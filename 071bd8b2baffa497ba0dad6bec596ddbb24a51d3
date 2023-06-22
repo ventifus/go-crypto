@@ -33,6 +33,24 @@
       "message": "We still need this, seems like it has been stuck for some time. What\u0027s the status?",
       "revId": "071bd8b2baffa497ba0dad6bec596ddbb24a51d3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c98accc8_5b06f7fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-06-22T14:37:11Z",
+      "side": 1,
+      "message": "it needs to be rebased to tip, which is trivial, but it has to be done by Ilia.",
+      "parentUuid": "85322504_6376bef8",
+      "revId": "071bd8b2baffa497ba0dad6bec596ddbb24a51d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
