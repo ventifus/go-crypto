@@ -22,6 +22,30 @@
       },
       "revId": "3b7d59489130235fdc7ce8cf18399ddd895e86a4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7a4aa8_9b45139f",
+        "filename": "ssh/test/dial_unix_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5877
+      },
+      "writtenOn": "2023-06-22T15:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcd61dd6_5612502a",
+      "range": {
+        "startLine": 69,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "3b7d59489130235fdc7ce8cf18399ddd895e86a4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
