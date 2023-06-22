@@ -41,7 +41,7 @@ Pidfile {{.Dir}}/sshd.pid
 KeyRegenerationInterval 3600
 ServerKeyBits 768
 SyslogFacility AUTH
-LogLevel DEBUG2
+LogLevel DEBUG3
 LoginGraceTime 120
 PermitRootLogin no
 StrictModes no
