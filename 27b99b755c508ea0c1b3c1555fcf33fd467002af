@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc053b8d_5424f91c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2023-06-22T17:37:40Z",
+      "side": 1,
+      "message": "This is adding a new API to a golang.org/x repo, so it\u0027s considered a notable change and in scope of https://github.com/golang/proposal#scope.\n\nI\u0027ll add that issue to the Go proposal process. Given DialContext is a commonly pattern is may be a short proposal. Thanks.",
+      "revId": "27b99b755c508ea0c1b3c1555fcf33fd467002af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b9b6933_5d2ab7f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2023-06-22T17:37:40Z",
+      "side": 1,
+      "message": "Adding Hold+1 for acceptance of proposal #20288.",
+      "revId": "27b99b755c508ea0c1b3c1555fcf33fd467002af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
