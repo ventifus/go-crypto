@@ -40,7 +40,7 @@ func startOpenSSHAgent(t *testing.T) (client ExtendedAgent, socket string, clean
 	cmd.Stderr = new(bytes.Buffer)
 	out, err := cmd.Output()
 	if err != nil {
-		t.Fatalf("%s failed: %v\n%s", strings.Join(cmd.Args, " "), err, cmd.Stderr)
+		t.Fatalf("%s failed: %v\n%s\n%s", strings.Join(cmd.Args, " "), err, cmd.Stderr, out)
 	}
 
 	// Output looks like:
