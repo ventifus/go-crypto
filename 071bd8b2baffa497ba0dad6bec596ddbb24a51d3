@@ -51,6 +51,24 @@
       "parentUuid": "85322504_6376bef8",
       "revId": "071bd8b2baffa497ba0dad6bec596ddbb24a51d3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ad7148_fae3c754",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2023-06-22T14:56:13Z",
+      "side": 1,
+      "message": "After ~3y, I no longer need the change. I did spend some effort in\n2020/2021 trying to contact people, follow up, etc -- but all without\nsuccess. I gave up on getting it in and had been carrying it locally,\nbut the server I needed to connect to has been updated.\n\nOn Thu, Jun 22, 2023 at 10:37 AM Han-Wen Nienhuys (Gerrit)\n\u003cnoreply-gerritcodereview-PUUli628pSnovyjm4qKY9Q\u003d\u003d@google.com\u003e wrote:",
+      "tag": "mailMessageId\u003d\u003cCAKb7UvgdetnsCiKWVVhzOo5aFEnmtnUR212xm87aUswYM64t8w@mail.gmail.com\u003e",
+      "revId": "071bd8b2baffa497ba0dad6bec596ddbb24a51d3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
