@@ -27,6 +27,7 @@ func dial(handler serverType, t *testing.T) *Client {
 		t.Fatalf("netPipe: %v", err)
 	}
 
+	errorCh := make(chan error, 1)
 	go func() {
 		defer c1.Close()
 		conf := ServerConfig{
@@ -35,8 +36,9 @@ func dial(handler serverType, t *testing.T) *Client {
 		conf.AddHostKey(testSigners["rsa"])
 
 		conn, chans, reqs, err := NewServerConn(c1, &conf)
+		errorCh <- err
 		if err != nil {
-			t.Fatalf("Unable to handshake: %v", err)
+			return
 		}
 		go DiscardRequests(reqs)
 
@@ -68,6 +70,9 @@ func dial(handler serverType, t *testing.T) *Client {
 	conn, chans, reqs, err := NewClientConn(c2, "", config)
 	if err != nil {
 		t.Fatalf("unable to dial remote side: %v", err)
+	}
+	if err := <-errorCh; err != nil {
+		t.Fatalf("Unable to handshake: %v", err)
 	}
 
 	return NewClient(conn, chans, reqs)
@@ -647,10 +652,12 @@ func TestSessionID(t *testing.T) {
 		User:            "user",
 	}
 
+	srvErrCh := make(chan error, 1)
 	go func() {
 		conn, chans, reqs, err := NewServerConn(c1, serverConf)
+		srvErrCh <- err
 		if err != nil {
-			t.Fatalf("server handshake: %v", err)
+			return
 		}
 		serverID <- conn.SessionID()
 		go DiscardRequests(reqs)
@@ -659,10 +666,12 @@ func TestSessionID(t *testing.T) {
 		}
 	}()
 
+	cliErrCh := make(chan error, 1)
 	go func() {
 		conn, chans, reqs, err := NewClientConn(c2, "", clientConf)
+		cliErrCh <- err
 		if err != nil {
-			t.Fatalf("client handshake: %v", err)
+			return
 		}
 		clientID <- conn.SessionID()
 		go DiscardRequests(reqs)
@@ -670,6 +679,14 @@ func TestSessionID(t *testing.T) {
 			ch.Reject(Prohibited, "")
 		}
 	}()
+
+	if err := <-srvErrCh; err != nil {
+		t.Fatalf("server handshake: %v", err)
+	}
+
+	if err := <-cliErrCh; err != nil {
+		t.Fatalf("client handshake: %v", err)
+	}
 
 	s := <-serverID
 	c := <-clientID

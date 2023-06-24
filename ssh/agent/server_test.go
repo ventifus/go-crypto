@@ -51,10 +51,12 @@ func TestSetupForwardAgent(t *testing.T) {
 	}
 	serverConf.AddHostKey(testSigners["rsa"])
 	incoming := make(chan *ssh.ServerConn, 1)
+	errorCh := make(chan error, 1)
 	go func() {
 		conn, _, _, err := ssh.NewServerConn(a, &serverConf)
+		errorCh <- err
 		if err != nil {
-			t.Fatalf("Server: %v", err)
+			return
 		}
 		incoming <- conn
 	}()
@@ -71,7 +73,9 @@ func TestSetupForwardAgent(t *testing.T) {
 	if err := ForwardToRemote(client, socket); err != nil {
 		t.Fatalf("SetupForwardAgent: %v", err)
 	}
-
+	if err := <-errorCh; err != nil {
+		t.Fatalf("Server: %v", err)
+	}
 	server := <-incoming
 	ch, reqs, err := server.OpenChannel(channelType, nil)
 	if err != nil {

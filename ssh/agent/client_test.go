@@ -363,10 +363,12 @@ func TestAuth(t *testing.T) {
 		return nil, errors.New("pubkey rejected")
 	}
 
+	errorCh := make(chan error, 1)
 	go func() {
 		conn, _, _, err := ssh.NewServerConn(a, &serverConf)
+		errorCh <- err
 		if err != nil {
-			t.Fatalf("Server: %v", err)
+			return
 		}
 		conn.Close()
 	}()
@@ -380,6 +382,9 @@ func TestAuth(t *testing.T) {
 		t.Fatalf("NewClientConn: %v", err)
 	}
 	conn.Close()
+	if err := <-errorCh; err != nil {
+		t.Fatalf("Server: %v", err)
+	}
 }
 
 func TestLockOpenSSHAgent(t *testing.T) {

@@ -5,6 +5,8 @@
 package ssh
 
 import (
+	"errors"
+	"fmt"
 	"io"
 	"sync"
 	"testing"
@@ -26,24 +28,32 @@ func channelPair(t *testing.T) (*channel, *channel, *mux) {
 	c, s := muxPair()
 
 	res := make(chan *channel, 1)
+	errorCh := make(chan error, 1)
 	go func() {
 		newCh, ok := <-s.incomingChannels
 		if !ok {
-			t.Fatalf("No incoming channel")
+			errorCh <- errors.New("no incoming channel")
+			return
 		}
 		if newCh.ChannelType() != "chan" {
-			t.Fatalf("got type %q want chan", newCh.ChannelType())
+			errorCh <- fmt.Errorf("got type %q want chan", newCh.ChannelType())
+			return
 		}
 		ch, _, err := newCh.Accept()
 		if err != nil {
-			t.Fatalf("Accept %v", err)
+			errorCh <- fmt.Errorf("accept: %w", err)
+			return
 		}
+		close(errorCh)
 		res <- ch.(*channel)
 	}()
 
 	ch, err := c.openChannel("chan", nil)
 	if err != nil {
 		t.Fatalf("OpenChannel: %v", err)
+	}
+	if err := <-errorCh; err != nil {
+		t.Fatal(err)
 	}
 
 	return <-res, ch, c
@@ -57,7 +67,7 @@ func TestMuxChannelExtendedThreadSafety(t *testing.T) {
 	defer reader.Close()
 	defer mux.Close()
 
-	var wr, rd sync.WaitGroup
+	var wr sync.WaitGroup
 	magic := "hello world"
 
 	wr.Add(2)
@@ -70,25 +80,32 @@ func TestMuxChannelExtendedThreadSafety(t *testing.T) {
 		wr.Done()
 	}()
 
-	rd.Add(2)
+	errs := make(chan error, 2)
 	go func() {
 		c, err := io.ReadAll(reader)
 		if string(c) != magic {
-			t.Fatalf("stdout read got %q, want %q (error %s)", c, magic, err)
+			errs <- fmt.Errorf("stdout read got %q, want %q (error %w)", c, magic, err)
+			return
 		}
-		rd.Done()
+		errs <- nil
 	}()
 	go func() {
 		c, err := io.ReadAll(reader.Stderr())
 		if string(c) != magic {
-			t.Fatalf("stderr read got %q, want %q (error %s)", c, magic, err)
+			errs <- fmt.Errorf("stderr read got %q, want %q (error %w)", c, magic, err)
+			return
 		}
-		rd.Done()
+		errs <- nil
 	}()
 
 	wr.Wait()
 	writer.CloseWrite()
-	rd.Wait()
+	for i := 0; i < 2; i++ {
+		err := <-errs
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
 }
 
 func TestMuxReadWrite(t *testing.T) {
@@ -99,15 +116,12 @@ func TestMuxReadWrite(t *testing.T) {
 
 	magic := "hello world"
 	magicExt := "hello stderr"
+	errs := make(chan error, 2)
 	go func() {
 		_, err := s.Write([]byte(magic))
-		if err != nil {
-			t.Fatalf("Write: %v", err)
-		}
+		errs <- err
 		_, err = s.Extended(1).Write([]byte(magicExt))
-		if err != nil {
-			t.Fatalf("Write: %v", err)
-		}
+		errs <- err
 	}()
 
 	var buf [1024]byte
@@ -128,6 +142,11 @@ func TestMuxReadWrite(t *testing.T) {
 	got = string(buf[:n])
 	if got != magicExt {
 		t.Fatalf("server: got %q want %q", got, magic)
+	}
+	for i := 0; i < 2; i++ {
+		if err := <-errs; err != nil {
+			t.Fatalf("write error: %v", err)
+		}
 	}
 }
 
@@ -212,20 +231,28 @@ func TestMuxReject(t *testing.T) {
 	defer server.Close()
 	defer client.Close()
 
+	errorCh := make(chan error, 1)
 	go func() {
 		ch, ok := <-server.incomingChannels
 		if !ok {
-			t.Fatalf("Accept")
+			errorCh <- errors.New("cannot accept channel")
+			return
 		}
 		if ch.ChannelType() != "ch" || string(ch.ExtraData()) != "extra" {
-			t.Fatalf("unexpected channel: %q, %q", ch.ChannelType(), ch.ExtraData())
+			errorCh <- fmt.Errorf("unexpected channel: %q, %q", ch.ChannelType(), ch.ExtraData())
+			return
 		}
 		ch.Reject(RejectionReason(42), "message")
+		close(errorCh)
 	}()
 
 	ch, err := client.openChannel("ch", []byte("extra"))
 	if ch != nil {
 		t.Fatal("openChannel not rejected")
+	}
+
+	if err := <-errorCh; err != nil {
+		t.Fatal(err)
 	}
 
 	ocf, ok := err.(*OpenChannelError)
@@ -294,7 +321,7 @@ func TestMuxUnknownChannelRequests(t *testing.T) {
 	defer serverPipe.Close()
 	defer client.Close()
 
-	kDone := make(chan struct{})
+	kDone := make(chan error, 1)
 	go func() {
 		// Ignore unknown channel messages that don't want a reply.
 		err := serverPipe.writePacket(Marshal(channelRequestMsg{
@@ -304,7 +331,8 @@ func TestMuxUnknownChannelRequests(t *testing.T) {
 			RequestSpecificData: []byte{},
 		}))
 		if err != nil {
-			t.Fatalf("send: %v", err)
+			kDone <- fmt.Errorf("send: %w", err)
+			return
 		}
 
 		// Send a keepalive, which should get a channel failure message
@@ -316,44 +344,53 @@ func TestMuxUnknownChannelRequests(t *testing.T) {
 			RequestSpecificData: []byte{},
 		}))
 		if err != nil {
-			t.Fatalf("send: %v", err)
+			kDone <- fmt.Errorf("send: %w", err)
+			return
 		}
 
 		packet, err := serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		decoded, err := decode(packet)
 		if err != nil {
-			t.Fatalf("decode failed: %v", err)
+			kDone <- fmt.Errorf("decode failed: %w", err)
+			return
 		}
 
 		switch msg := decoded.(type) {
 		case *channelRequestFailureMsg:
 			if msg.PeersID != 2 {
-				t.Fatalf("received response to wrong message: %v", msg)
+				kDone <- fmt.Errorf("received response to wrong message: %v", msg)
+				return
+
 			}
 		default:
-			t.Fatalf("unexpected channel message: %v", msg)
+			kDone <- fmt.Errorf("unexpected channel message: %v", msg)
+			return
 		}
 
-		kDone <- struct{}{}
+		kDone <- nil
 
 		// Receive and respond to the keepalive to confirm the mux is
 		// still processing requests.
 		packet, err = serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		if packet[0] != msgGlobalRequest {
-			t.Fatalf("expected global request")
+			kDone <- errors.New("expected global request")
+			return
 		}
 
 		err = serverPipe.writePacket(Marshal(globalRequestFailureMsg{
 			Data: []byte{},
 		}))
 		if err != nil {
-			t.Fatalf("failed to send failure msg: %v", err)
+			kDone <- fmt.Errorf("failed to send failure msg: %w", err)
+			return
 		}
 
 		close(kDone)
@@ -362,7 +399,10 @@ func TestMuxUnknownChannelRequests(t *testing.T) {
 	// Wait for the server to send the keepalive message and receive back a
 	// response.
 	select {
-	case <-kDone:
+	case err := <-kDone:
+		if err != nil {
+			t.Fatal(err)
+		}
 	case <-time.After(10 * time.Second):
 		t.Fatalf("server never received ack")
 	}
@@ -373,7 +413,10 @@ func TestMuxUnknownChannelRequests(t *testing.T) {
 	}
 
 	select {
-	case <-kDone:
+	case err := <-kDone:
+		if err != nil {
+			t.Fatal(err)
+		}
 	case <-time.After(10 * time.Second):
 		t.Fatalf("server never shut down")
 	}
@@ -385,20 +428,23 @@ func TestMuxClosedChannel(t *testing.T) {
 	defer serverPipe.Close()
 	defer client.Close()
 
-	kDone := make(chan struct{})
+	kDone := make(chan error, 1)
 	go func() {
 		// Open the channel.
 		packet, err := serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		if packet[0] != msgChannelOpen {
-			t.Fatalf("expected chan open")
+			kDone <- errors.New("expected chan open")
+			return
 		}
 
 		var openMsg channelOpenMsg
 		if err := Unmarshal(packet, &openMsg); err != nil {
-			t.Fatalf("unmarshal: %v", err)
+			kDone <- fmt.Errorf("unmarshal: %w", err)
+			return
 		}
 
 		// Send back the opened channel confirmation.
@@ -409,7 +455,8 @@ func TestMuxClosedChannel(t *testing.T) {
 			MaxPacketSize: channelMaxPacket,
 		}))
 		if err != nil {
-			t.Fatalf("send: %v", err)
+			kDone <- fmt.Errorf("send: %w", err)
+			return
 		}
 
 		// Close the channel.
@@ -417,7 +464,8 @@ func TestMuxClosedChannel(t *testing.T) {
 			PeersID: openMsg.PeersID,
 		}))
 		if err != nil {
-			t.Fatalf("send: %v", err)
+			kDone <- fmt.Errorf("send: %w", err)
+			return
 		}
 
 		// Send a keepalive message on the channel we just closed.
@@ -428,43 +476,51 @@ func TestMuxClosedChannel(t *testing.T) {
 			RequestSpecificData: []byte{},
 		}))
 		if err != nil {
-			t.Fatalf("send: %v", err)
+			kDone <- fmt.Errorf("send: %w", err)
+			return
 		}
 
 		// Receive the channel closed response.
 		packet, err = serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		if packet[0] != msgChannelClose {
-			t.Fatalf("expected channel close")
+			kDone <- errors.New("expected channel close")
+			return
 		}
 
 		// Receive the keepalive response failure.
 		packet, err = serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		if packet[0] != msgChannelFailure {
-			t.Fatalf("expected channel close")
+			kDone <- errors.New("expected channel failure")
+			return
 		}
-		kDone <- struct{}{}
+		kDone <- nil
 
 		// Receive and respond to the keepalive to confirm the mux is
 		// still processing requests.
 		packet, err = serverPipe.readPacket()
 		if err != nil {
-			t.Fatalf("read packet: %v", err)
+			kDone <- fmt.Errorf("read packet: %w", err)
+			return
 		}
 		if packet[0] != msgGlobalRequest {
-			t.Fatalf("expected global request")
+			kDone <- errors.New("expected global request")
+			return
 		}
 
 		err = serverPipe.writePacket(Marshal(globalRequestFailureMsg{
 			Data: []byte{},
 		}))
 		if err != nil {
-			t.Fatalf("failed to send failure msg: %v", err)
+			kDone <- fmt.Errorf("failed to send failure msg: %w", err)
+			return
 		}
 
 		close(kDone)
