@@ -119,6 +119,12 @@ func algorithmsForKeyFormat(keyFormat string) []string {
 	}
 }
 
+// isRSA returns whether format is a supported RSA algorithm
+func isRSA(format string) bool {
+	algos := algorithmsForKeyFormat(KeyAlgoRSA)
+	return contains(algos, format)
+}
+
 // supportedPubKeyAuthAlgos specifies the supported client public key
 // authentication algorithms. Note that this doesn't include certificate types
 // since those use the underlying algorithm. This list is sent to the client if
