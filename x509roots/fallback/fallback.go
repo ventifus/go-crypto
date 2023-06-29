@@ -29,3 +29,12 @@ func init() {
 	}
 	x509.SetFallbackRoots(p)
 }
+
+// Bundle returns the fallback X.509 trusted roots as a certificate bundle.
+//
+// This function is primarily useful for programs that build environments in
+// which Go programs should have access to the fallback roots, such as Docker
+// containers.
+func Bundle() []*x509.Certificate {
+	return bundle
+}
