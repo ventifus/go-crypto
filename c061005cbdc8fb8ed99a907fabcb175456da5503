@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "318aeb5e_d0428fab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "Mention RSA in the top line.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a596783_818d0b18",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "This test feels so small as to be basically useless: if any of these combinations are broken, I\u0027d expect them to break because we are not accounting for the mismatch elsewhere. isAlgoCompatible is a very short function, it\u0027s unlikely to be where the bug is. In general test behavior (\"simulate what gpg-agent does and ensure a connection succeeds\") and not implementation (\"isAlgoCompatible(KeyAlgoRSASHA512, KeyAlgoRSA) \u003d\u003d true\").\n\nAnyway, better than nothing, and I understand you manually tested all this.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f019da12_d4cc9f01",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "Missing period. Say whether it includes certificates or not. Also, s/format/algo/?",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1904e5d9_bab3323b",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "isRSA(CertAlgoRSASHA256v01) \u003d\u003d false feels unexpected to me.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2956d3f_41545090",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "Missing period.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce614b8b_ca06b5eb",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "If you change isRSA to return true for certificate algorithms, then you can cut this line and make 391 \"return underlyingAlgo(algo) \u003d\u003d sigFormat\"",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d69ee1a_e02806e0",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T18:07:21Z",
+      "side": 1,
+      "message": "Missing period.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
