@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7c3159_42c0aff8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T17:51:46Z",
+      "side": 1,
+      "message": "Before the : it\u0027s always only the package name, so here \"ssh: \"",
+      "revId": "4d76aba49590b908061f35222110206d828eb2db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1edb7d77_fcbcad59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T17:51:46Z",
+      "side": 1,
+      "message": "I wish we had a test for this, but if it\u0027s hard to write one right now let\u0027s keep it in mind for things that we should make easy to test with the new test framework. (I understand you tested this with OpenSSH and compared it to OpenSSH\u0027s behavior.)",
+      "revId": "4d76aba49590b908061f35222110206d828eb2db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6674e88f_70a2c02e",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T17:51:46Z",
+      "side": 1,
+      "message": "Comment formatting nits: missing period at the end, should not start a new line after each sentence. (ReFlow is an excellent VS Code extension.)\n\nI\u0027d phrase the last part as \"both must be certificate algorithms, or neither\".",
+      "revId": "4d76aba49590b908061f35222110206d828eb2db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4ea841_2dbba538",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-06-30T17:51:46Z",
+      "side": 1,
+      "message": "\"ssh: public key type %q not compatible with selected algorithm %q\"",
+      "revId": "4d76aba49590b908061f35222110206d828eb2db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
