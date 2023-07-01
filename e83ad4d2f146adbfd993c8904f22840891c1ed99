@@ -55,6 +55,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e882ac_fd326c53",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "203bc0f9_06bd125d",
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ee3d32b_6b8f666d",
@@ -68,6 +86,24 @@
       "writtenOn": "2023-06-30T18:28:24Z",
       "side": 1,
       "message": "These two bullet points say what the CLI will do and how the certificate was generated, but they should describe what this Go server does (because presumably we\u0027ll use it for something else in the future and don\u0027t want to reverse engineer what it does). (A valid alternative is saying \"it\u0027s clear from the code and the comment is more likely to get out of sync than be helpful\" and cut everything buy the first three or two lines.)\n\nLooking at the code, the behavior seems to me \"If the client presents a certificate signed by testPublicKeys[\"ca\"], it\u0027s accepted for any user. If a public key is presented, it\u0027s accepted only if it\u0027s testPublicKeys[\"rsa\"] and the username is testuser.\"",
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6781e036_f3dbe27c",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "The description should be better now",
+      "parentUuid": "4ee3d32b_6b8f666d",
       "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -89,6 +125,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40376489_b47da3bd",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "317133b8_8403a567",
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ba14c5f_8703958f",
@@ -102,6 +156,24 @@
       "writtenOn": "2023-06-30T18:28:24Z",
       "side": 1,
       "message": "t.Skipf(\"Can\u0027t find an ssh(1) client to test against: %v\", err)",
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a7b7c44_de4943a7",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ba14c5f_8703958f",
       "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -129,6 +201,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50ffd703_8ef669d3",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b31209d2_3a0bb7d9",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 25
+      },
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e48e8984_0a74f7f9",
@@ -142,6 +238,24 @@
       "writtenOn": "2023-06-30T18:28:24Z",
       "side": 1,
       "message": "The fallback logic is not obvious to me. I believe you that OpenSSH tries public key auth first and certificate auth second, but what if that changes? Won\u0027t we end up testing certificate auth twice?\n\nCan\u0027t we write \"rsa.pub\", test, delete it, write \"rsa-cert.pub\", test?",
+      "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa7d05ff_7f152b74",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T14:10:20Z",
+      "side": 1,
+      "message": "Now we only store rsa-cert.pub before certificate authentication.\nWe can\u0027t remove rsa.pub because in this case OpenSSH prints these logs\n\ndebug3: sign_and_send_pubkey: RSA-CERT SHA256:Anr3LjZK8YVpjrxu79myrW9Hrb/wpcMNpVvTq/RcBm8\ndebug1: sign_and_send_pubkey: no separate private key for certificate \"rsa\"\n\ninstead of these ones\n\ndebug3: sign_and_send_pubkey: RSA-CERT SHA256:Anr3LjZK8YVpjrxu79myrW9Hrb/wpcMNpVvTq/RcBm8\ndebug2: sign_and_send_pubkey: using private key \"rsa\" for certificate\n\nthe logic is unchanged but without rsa.pub the signature algorithm and format are as expected, so the test will also work with OpenSSH 7.2-7.7.\n\nThe test server stores the number of successful public key and certificate authentications and they are checked in the test case.\nIf the public key or certificate authentication fails, the test will fail.",
+      "parentUuid": "e48e8984_0a74f7f9",
       "revId": "e83ad4d2f146adbfd993c8904f22840891c1ed99",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
