@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "776fab41_28e3b63d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-01T17:46:19Z",
+      "side": 1,
+      "message": "Maybe do the same thing for the RSA SHA-2 key algorithms?",
+      "revId": "f738c9a0a3c30ab93f23172d4a0111e0745a60da",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
