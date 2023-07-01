@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f10296fa_efa1f52c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "318aeb5e_d0428fab",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4036056c_ff12fafb",
@@ -72,6 +90,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "820b5dd9_f265aca0",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "I agree, however a real test case, for the certificates case, is included in CL 506837",
+      "parentUuid": "7a596783_818d0b18",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f019da12_d4cc9f01",
@@ -85,6 +121,24 @@
       "writtenOn": "2023-06-30T18:07:21Z",
       "side": 1,
       "message": "Missing period. Say whether it includes certificates or not. Also, s/format/algo/?",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b39bdbf_1d72b44d",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f019da12_d4cc9f01",
       "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -106,6 +160,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b12d13a_e466fbf4",
+        "filename": "ssh/common.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1904e5d9_bab3323b",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2956d3f_41545090",
@@ -119,6 +191,24 @@
       "writtenOn": "2023-06-30T18:07:21Z",
       "side": 1,
       "message": "Missing period.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01dc890f_770f40bb",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2956d3f_41545090",
       "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -140,6 +230,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56072da3_d0daecbc",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce614b8b_ca06b5eb",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d69ee1a_e02806e0",
@@ -153,6 +261,24 @@
       "writtenOn": "2023-06-30T18:07:21Z",
       "side": 1,
       "message": "Missing period.",
+      "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86dbdbba_de1a1826",
+        "filename": "ssh/server.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-01T11:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d69ee1a_e02806e0",
       "revId": "c061005cbdc8fb8ed99a907fabcb175456da5503",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
