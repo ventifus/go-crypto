@@ -21,7 +21,7 @@ const (
 )
 
 // clientAuthenticate authenticates with the remote server. See RFC 4252.
-func (c *connection) clientAuthenticate(config *ClientConfig) error {
+func (c *Connection) clientAuthenticate(config *ClientConfig) error {
 	// initiate user auth session
 	if err := c.transport.writePacket(Marshal(&serviceRequestMsg{serviceUserAuth})); err != nil {
 		return err

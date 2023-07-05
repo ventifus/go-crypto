@@ -66,8 +66,9 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 }
 
 // NewClientConn establishes an authenticated SSH connection using c
-// as the underlying transport.  The Request and NewChannel channels
-// must be serviced or the connection will hang.
+// as the underlying transport. The Request and NewChannel channels
+// must be serviced or the connection will hang. The Conn returned is
+// always a *Connection.
 func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan NewChannel, <-chan *Request, error) {
 	fullConf := *config
 	fullConf.SetDefaults()
@@ -76,7 +77,7 @@ func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan 
 		return nil, nil, nil, errors.New("ssh: must specify HostKeyCallback")
 	}
 
-	conn := &connection{
+	conn := &Connection{
 		sshConn: sshConn{conn: c, user: fullConf.User},
 	}
 
@@ -90,7 +91,7 @@ func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan 
 
 // clientHandshake performs the client side key exchange. See RFC 4253 Section
 // 7.
-func (c *connection) clientHandshake(dialAddress string, config *ClientConfig) error {
+func (c *Connection) clientHandshake(dialAddress string, config *ClientConfig) error {
 	if config.ClientVersion != "" {
 		c.clientVersion = []byte(config.ClientVersion)
 	} else {

@@ -191,7 +191,7 @@ type ServerConn struct {
 // transport.  It starts with a handshake and, if the handshake is
 // unsuccessful, it closes the connection and returns an error.  The
 // Request and NewChannel channels must be serviced, or the connection
-// will hang.
+// will hang. The Conn inside ServerConn is always a *Connection.
 //
 // The returned error may be of type *ServerAuthError for
 // authentication errors.
@@ -208,7 +208,7 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 		}
 	}
 
-	s := &connection{
+	s := &Connection{
 		sshConn: sshConn{conn: c},
 	}
 	perms, err := s.serverHandshake(&fullConf)
@@ -232,7 +232,7 @@ func signAndMarshal(k AlgorithmSigner, rand io.Reader, data []byte, algo string)
 }
 
 // handshake performs key exchange and user authentication.
-func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error) {
+func (s *Connection) serverHandshake(config *ServerConfig) (*Permissions, error) {
 	if len(config.hostKeys) == 0 {
 		return nil, errors.New("ssh: server has no host keys")
 	}
@@ -321,7 +321,7 @@ func checkSourceAddress(addr net.Addr, sourceAddrs string) error {
 	return fmt.Errorf("ssh: remote address %v is not allowed because of source-address restriction", addr)
 }
 
-func gssExchangeToken(gssapiConfig *GSSAPIWithMICConfig, firstToken []byte, s *connection,
+func gssExchangeToken(gssapiConfig *GSSAPIWithMICConfig, firstToken []byte, s *Connection,
 	sessionID []byte, userAuthReq userAuthRequestMsg) (authErr error, perms *Permissions, err error) {
 	gssAPIServer := gssapiConfig.Server
 	defer gssAPIServer.DeleteSecContext()
@@ -395,7 +395,7 @@ func (l ServerAuthError) Error() string {
 // It is returned in ServerAuthError.Errors from NewServerConn.
 var ErrNoAuth = errors.New("ssh: no auth passed yet")
 
-func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
+func (s *Connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
 	var perms *Permissions
@@ -701,7 +701,7 @@ userAuthLoop:
 // sshClientKeyboardInteractive implements a ClientKeyboardInteractive by
 // asking the client on the other side of a ServerConn.
 type sshClientKeyboardInteractive struct {
-	*connection
+	*Connection
 }
 
 func (c *sshClientKeyboardInteractive) Challenge(name, instruction string, questions []string, echos []bool) (answers []string, err error) {
