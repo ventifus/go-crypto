@@ -16,6 +16,23 @@
       "message": "Roland, friendly post-holiday ping? :)",
       "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a164e62_7ad26633",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-06T09:52:45Z",
+      "side": 1,
+      "message": "I\u0027m not sure \"Bundle() []*x509.Certificate\" is the right API for this, for example because of https://go.dev/issue/57178: in the future the bundle in fallback might include constrained roots.\n\nI thought that what we had landed on for build environments was golang.org/x/crypto/x509roots/nss.Parse, with a few extra lines to pair a http.Get. This both surfaces constrained roots that should not be trusted fully, and avoids the issue of the fallback module becoming stale.",
+      "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
