@@ -955,3 +955,65 @@ func TestAuthMethodGSSAPIWithMIC(t *testing.T) {
 		}
 	}
 }
+
+func TestPickSignatureAlgorithm(t *testing.T) {
+	type testcase struct {
+		name       string
+		extensions map[string][]byte
+	}
+	cases := []testcase{
+		{
+			name: "server with empty server-sig-algs",
+			extensions: map[string][]byte{
+				"server-sig-algs": []byte(``),
+			},
+		},
+		{
+			name:       "server with no server-sig-algs",
+			extensions: nil,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			signer, ok := testSigners["rsa"].(MultiAlgorithmSigner)
+			if !ok {
+				t.Fatalf("rsa test signer does not implement the MultiAlgorithmSigner interface")
+			}
+			// The signer supports the public key algorithm which is then returned.
+			_, algo := pickSignatureAlgorithm(signer, c.extensions)
+			if algo != signer.PublicKey().Type() {
+				t.Errorf("got algo %q, want %q", algo, signer.PublicKey().Type())
+			}
+			signer, err := NewSignerWithAlgorithms(signer.(AlgorithmSigner), []string{KeyAlgoRSASHA512, KeyAlgoRSASHA256})
+			if err != nil {
+				t.Fatalf("unable to create signer with algorithms: %v", err)
+			}
+			// The signer does not support the public key algorithm so the preferred
+			// algorithm is returned.
+			_, algo = pickSignatureAlgorithm(signer, c.extensions)
+			if algo != signer.Algorithms()[0] {
+				t.Errorf("got algo %q, want %q", algo, signer.Algorithms()[0])
+			}
+			// Test a signer that uses a certificate algorithm as the public key
+			// type.
+			cert := &Certificate{
+				CertType: UserCert,
+				Key:      signer.PublicKey(),
+			}
+			cert.SignCert(rand.Reader, signer)
+
+			certSigner, err := NewCertSigner(cert, signer)
+			if err != nil {
+				t.Fatalf("error generating cert signer: %v", err)
+			}
+			// The signer does not support the public key algorithm and the
+			// public key format is a certificate type so the cerificate
+			// algorithm matching the preferred signer algorithm must be
+			// returned
+			_, algo = pickSignatureAlgorithm(certSigner, c.extensions)
+			if algo != CertAlgoRSASHA512v01 {
+				t.Errorf("got algo %q, want %q", algo, CertAlgoRSASHA512v01)
+			}
+		})
+	}
+}
