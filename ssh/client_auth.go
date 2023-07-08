@@ -217,14 +217,25 @@ func (cb publicKeyCallback) method() string {
 	return "publickey"
 }
 
-func pickSignatureAlgorithm(signer Signer, extensions map[string][]byte) (as AlgorithmSigner, algo string) {
+func pickSignatureAlgorithm(signer Signer, extensions map[string][]byte) (as MultiAlgorithmSigner, algo string) {
 	keyFormat := signer.PublicKey().Type()
 
-	// Like in sendKexInit, if the public key implements AlgorithmSigner we
-	// assume it supports all algorithms, otherwise only the key format one.
-	as, ok := signer.(AlgorithmSigner)
-	if !ok {
-		return algorithmSignerWrapper{signer}, keyFormat
+	// If the signer implements MultiAlgorithmSigner we use the algorithms it
+	// support, if implements AlgorithmSigner we assume it supports all
+	// algorithms, otherwise only the key format one.
+	switch s := signer.(type) {
+	case MultiAlgorithmSigner:
+		as = s
+	case AlgorithmSigner:
+		as = &multiAlgorithmSigner{
+			AlgorithmSigner:     s,
+			supportedAlgorithms: algorithmsForKeyFormat(underlyingAlgo(keyFormat)),
+		}
+	default:
+		as = &multiAlgorithmSigner{
+			AlgorithmSigner:     algorithmSignerWrapper{signer},
+			supportedAlgorithms: []string{underlyingAlgo(keyFormat)},
+		}
 	}
 
 	extPayload, ok := extensions["server-sig-algs"]
@@ -245,7 +256,14 @@ func pickSignatureAlgorithm(signer Signer, extensions map[string][]byte) (as Alg
 		}
 	}
 
-	keyAlgos := algorithmsForKeyFormat(keyFormat)
+	// Filter algorithms based on those supported by MultiAlgorithmSigner.
+	var keyAlgos []string
+	for _, algo := range algorithmsForKeyFormat(keyFormat) {
+		if contains(as.Algorithms(), underlyingAlgo(algo)) {
+			keyAlgos = append(keyAlgos, algo)
+		}
+	}
+
 	algo, err := findCommon("public key signature algorithm", keyAlgos, serverAlgos)
 	if err != nil {
 		// If there is no overlap, try the key anyway with the key format

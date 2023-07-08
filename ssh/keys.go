@@ -349,6 +349,15 @@ type AlgorithmSigner interface {
 	SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error)
 }
 
+// MultiAlgorithmSigner is an AlgorithmSigner that also reports the algorithms
+// supported by that signer.
+type MultiAlgorithmSigner interface {
+	AlgorithmSigner
+
+	// Algorithms returns the available algorithms in preference order.
+	Algorithms() []string
+}
+
 type rsaPublicKey rsa.PublicKey
 
 func (r *rsaPublicKey) Type() string {
@@ -510,6 +519,10 @@ func (k *dsaPrivateKey) PublicKey() PublicKey {
 
 func (k *dsaPrivateKey) Sign(rand io.Reader, data []byte) (*Signature, error) {
 	return k.SignWithAlgorithm(rand, data, k.PublicKey().Type())
+}
+
+func (k *dsaPrivateKey) Algorithms() []string {
+	return []string{k.PublicKey().Type()}
 }
 
 func (k *dsaPrivateKey) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error) {
@@ -961,13 +974,16 @@ func (s *wrappedSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
 	return s.SignWithAlgorithm(rand, data, s.pubKey.Type())
 }
 
+func (s *wrappedSigner) Algorithms() []string {
+	return algorithmsForKeyFormat(s.pubKey.Type())
+}
+
 func (s *wrappedSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error) {
 	if algorithm == "" {
 		algorithm = s.pubKey.Type()
 	}
 
-	supportedAlgos := algorithmsForKeyFormat(s.pubKey.Type())
-	if !contains(supportedAlgos, algorithm) {
+	if !contains(s.Algorithms(), algorithm) {
 		return nil, fmt.Errorf("ssh: unsupported signature algorithm %q for key format %q", algorithm, s.pubKey.Type())
 	}
 

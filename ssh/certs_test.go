@@ -242,6 +242,20 @@ func (s *legacyRSASigner) Sign(rand io.Reader, data []byte) (*Signature, error) 
 }
 
 func TestCertTypes(t *testing.T) {
+	algorithmSigner, ok := testSigners["rsa"].(AlgorithmSigner)
+	if !ok {
+		t.Fatal("rsa test signer does not implement the AlgorithmSigner interface")
+	}
+	multiAlgoSignerSHA256, err := NewSignerWithAlgorithms(algorithmSigner, []string{KeyAlgoRSASHA256})
+	if err != nil {
+		t.Fatalf("unable to create multi algorithm signer SHA256: %v", err)
+	}
+	// Algorithms are in order of preference, we expect rsa-sha2-512 to be used.
+	multiAlgoSignerSHA512, err := NewSignerWithAlgorithms(algorithmSigner, []string{KeyAlgoRSASHA512, KeyAlgoRSASHA256})
+	if err != nil {
+		t.Fatalf("unable to create multi algorithm signer SHA512: %v", err)
+	}
+
 	var testVars = []struct {
 		name   string
 		signer Signer
@@ -251,8 +265,10 @@ func TestCertTypes(t *testing.T) {
 		{CertAlgoECDSA384v01, testSigners["ecdsap384"], ""},
 		{CertAlgoECDSA521v01, testSigners["ecdsap521"], ""},
 		{CertAlgoED25519v01, testSigners["ed25519"], ""},
-		{CertAlgoRSAv01, testSigners["rsa"], KeyAlgoRSASHA512},
+		{CertAlgoRSAv01, testSigners["rsa"], KeyAlgoRSASHA256},
 		{"legacyRSASigner", &legacyRSASigner{testSigners["rsa"]}, KeyAlgoRSA},
+		{"multiAlgoRSASignerSHA256", multiAlgoSignerSHA256, KeyAlgoRSASHA256},
+		{"multiAlgoRSASignerSHA512", multiAlgoSignerSHA512, KeyAlgoRSASHA512},
 		{CertAlgoDSAv01, testSigners["dsa"], ""},
 	}
 
@@ -316,5 +332,26 @@ func TestCertTypes(t *testing.T) {
 				t.Fatalf("error connecting: %v", err)
 			}
 		})
+	}
+}
+
+func TestNewSignerWithAlgos(t *testing.T) {
+	algorithSigner, ok := testSigners["rsa"].(AlgorithmSigner)
+	if !ok {
+		t.Fatal("rsa test signer does not implement the AlgorithmSigner interface")
+	}
+	_, err := NewSignerWithAlgorithms(algorithSigner, nil)
+	if err == nil {
+		t.Error("signer with algos created with no algorithms")
+	}
+
+	_, err = NewSignerWithAlgorithms(algorithSigner, []string{KeyAlgoED25519})
+	if err == nil {
+		t.Error("signer with algos created with invalid algorithms")
+	}
+
+	_, err = NewSignerWithAlgorithms(algorithSigner, []string{KeyAlgoRSASHA256, KeyAlgoRSASHA512})
+	if err != nil {
+		t.Errorf("unable to create signer with valid algorithms: %v", err)
 	}
 }

@@ -199,19 +199,23 @@ func (r *keyring) SignWithFlags(key ssh.PublicKey, data []byte, flags SignatureF
 			if flags == 0 {
 				return k.signer.Sign(rand.Reader, data)
 			} else {
-				if algorithmSigner, ok := k.signer.(ssh.AlgorithmSigner); !ok {
+				var algorithm string
+				switch flags {
+				case SignatureFlagRsaSha256:
+					algorithm = ssh.KeyAlgoRSASHA256
+				case SignatureFlagRsaSha512:
+					algorithm = ssh.KeyAlgoRSASHA512
+				default:
+					return nil, fmt.Errorf("agent: unsupported signature flags: %d", flags)
+				}
+
+				switch s := k.signer.(type) {
+				case ssh.MultiAlgorithmSigner:
+					return s.SignWithAlgorithm(rand.Reader, data, algorithm)
+				case ssh.AlgorithmSigner:
+					return s.SignWithAlgorithm(rand.Reader, data, algorithm)
+				default:
 					return nil, fmt.Errorf("agent: signature does not support non-default signature algorithm: %T", k.signer)
-				} else {
-					var algorithm string
-					switch flags {
-					case SignatureFlagRsaSha256:
-						algorithm = ssh.KeyAlgoRSASHA256
-					case SignatureFlagRsaSha512:
-						algorithm = ssh.KeyAlgoRSASHA512
-					default:
-						return nil, fmt.Errorf("agent: unsupported signature flags: %d", flags)
-					}
-					return algorithmSigner.SignWithAlgorithm(rand.Reader, data, algorithm)
 				}
 			}
 		}

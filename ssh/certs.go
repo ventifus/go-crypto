@@ -247,6 +247,11 @@ type algorithmOpenSSHCertSigner struct {
 	algorithmSigner AlgorithmSigner
 }
 
+type multiAlgorithmSigner struct {
+	AlgorithmSigner
+	supportedAlgorithms []string
+}
+
 // NewCertSigner returns a Signer that signs with the given Certificate, whose
 // private key is held by signer. It returns an error if the public key in cert
 // doesn't match the key used by signer.
@@ -255,12 +260,40 @@ func NewCertSigner(cert *Certificate, signer Signer) (Signer, error) {
 		return nil, errors.New("ssh: signer and cert have different public key")
 	}
 
-	if algorithmSigner, ok := signer.(AlgorithmSigner); ok {
+	switch s := signer.(type) {
+	case MultiAlgorithmSigner:
+		return &multiAlgorithmSigner{
+			AlgorithmSigner: &algorithmOpenSSHCertSigner{
+				&openSSHCertSigner{cert, signer}, s},
+			supportedAlgorithms: s.Algorithms(),
+		}, nil
+	case AlgorithmSigner:
 		return &algorithmOpenSSHCertSigner{
-			&openSSHCertSigner{cert, signer}, algorithmSigner}, nil
-	} else {
+			&openSSHCertSigner{cert, signer}, s}, nil
+	default:
 		return &openSSHCertSigner{cert, signer}, nil
 	}
+}
+
+// NewSignerWithAlgorithms returns a signer restricted to the specified
+// algorithms. The algorithms must be set in preference order. An error is
+// returned if the specified algorithms are incompatible with the public key
+// type.
+func NewSignerWithAlgorithms(signer AlgorithmSigner, algorithms []string) (MultiAlgorithmSigner, error) {
+	if len(algorithms) == 0 {
+		return nil, errors.New("ssh: please specify at least one valid signing algorithms")
+	}
+	supportedAlgos := algorithmsForKeyFormat(underlyingAlgo(signer.PublicKey().Type()))
+	for _, algo := range algorithms {
+		if !contains(supportedAlgos, algo) {
+			return nil, fmt.Errorf("ssh: algorithm %q is not supported for key type %q",
+				algo, signer.PublicKey().Type())
+		}
+	}
+	return &multiAlgorithmSigner{
+		AlgorithmSigner:     signer,
+		supportedAlgorithms: algorithms,
+	}, nil
 }
 
 func (s *openSSHCertSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
@@ -273,6 +306,29 @@ func (s *openSSHCertSigner) PublicKey() PublicKey {
 
 func (s *algorithmOpenSSHCertSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error) {
 	return s.algorithmSigner.SignWithAlgorithm(rand, data, algorithm)
+}
+
+func (s *multiAlgorithmSigner) Algorithms() []string {
+	return s.supportedAlgorithms
+}
+
+func (s *multiAlgorithmSigner) isAlgorithmSupported(algorithm string) bool {
+	if algorithm == "" {
+		algorithm = underlyingAlgo(s.PublicKey().Type())
+	}
+	for _, algo := range s.supportedAlgorithms {
+		if algorithm == algo {
+			return true
+		}
+	}
+	return false
+}
+
+func (s *multiAlgorithmSigner) SignWithAlgorithm(rand io.Reader, data []byte, algorithm string) (*Signature, error) {
+	if !s.isAlgorithmSupported(algorithm) {
+		return nil, fmt.Errorf("ssh: algorithm %q is not supported: %v", algorithm, s.supportedAlgorithms)
+	}
+	return s.AlgorithmSigner.SignWithAlgorithm(rand, data, algorithm)
 }
 
 const sourceAddressCriticalOption = "source-address"
@@ -432,7 +488,9 @@ func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 }
 
 // SignCert signs the certificate with an authority, setting the Nonce,
-// SignatureKey, and Signature fields.
+// SignatureKey, and Signature fields. If the authority implements the
+// MultiAlgorithmSigner interface the first algorithm in the list is used. This
+// is useful if you want to sign with a specific algorithm.
 func (c *Certificate) SignCert(rand io.Reader, authority Signer) error {
 	c.Nonce = make([]byte, 32)
 	if _, err := io.ReadFull(rand, c.Nonce); err != nil {
@@ -440,8 +498,17 @@ func (c *Certificate) SignCert(rand io.Reader, authority Signer) error {
 	}
 	c.SignatureKey = authority.PublicKey()
 
-	// Default to KeyAlgoRSASHA512 for ssh-rsa signers.
-	if v, ok := authority.(AlgorithmSigner); ok && v.PublicKey().Type() == KeyAlgoRSA {
+	if v, ok := authority.(MultiAlgorithmSigner); ok {
+		// use the first algorithm in the list
+		sig, err := v.SignWithAlgorithm(rand, c.bytesForSigning(), v.Algorithms()[0])
+		if err != nil {
+			return err
+		}
+		c.Signature = sig
+		return nil
+	} else if v, ok := authority.(AlgorithmSigner); ok && v.PublicKey().Type() == KeyAlgoRSA {
+		// Default to KeyAlgoRSASHA512 for ssh-rsa signers.
+		// TODO: consider to use KeyAlgoRSASHA256 as default.
 		sig, err := v.SignWithAlgorithm(rand, c.bytesForSigning(), KeyAlgoRSASHA512)
 		if err != nil {
 			return err

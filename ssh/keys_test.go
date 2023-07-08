@@ -111,9 +111,9 @@ func TestKeySignVerify(t *testing.T) {
 }
 
 func TestKeySignWithAlgorithmVerify(t *testing.T) {
-	for _, priv := range testSigners {
+	for k, priv := range testSigners {
 		if algorithmSigner, ok := priv.(AlgorithmSigner); !ok {
-			t.Errorf("Signers constructed by ssh package should always implement the AlgorithmSigner interface: %T", priv)
+			t.Errorf("Signers %q constructed by ssh package should always implement the AlgorithmSigner interface: %T", k, priv)
 		} else {
 			pub := priv.PublicKey()
 			data := []byte("sign me")
