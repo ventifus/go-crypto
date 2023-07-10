@@ -33,6 +33,24 @@
       "message": "I\u0027m not sure \"Bundle() []*x509.Certificate\" is the right API for this, for example because of https://go.dev/issue/57178: in the future the bundle in fallback might include constrained roots.\n\nI thought that what we had landed on for build environments was golang.org/x/crypto/x509roots/nss.Parse, with a few extra lines to pair a http.Get. This both surfaces constrained roots that should not be trusted fully, and avoids the issue of the fallback module becoming stale.",
       "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7612b5c_baa31f46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8470
+      },
+      "writtenOn": "2023-07-10T13:49:32Z",
+      "side": 1,
+      "message": "\u003e I thought that what we had landed on for build environments was golang.org/x/crypto/x509roots/nss.Parse, with a few extra lines to pair a http.Get. This both surfaces constrained roots that should not be trusted fully, and avoids the issue of the fallback module becoming stale.\n\nI went back to the discussion and you’re right: we were talking about a FetchRootsAsPEM() API in https://github.com/golang/go/issues/43958#issuecomment-1284014369, which is close enough to nss.Parse+http.Get.\n\nI’m not entirely sure at this point if I just didn’t think everything through properly back then. But, now that I was actually trying to use the new package, I notice that the suggested approach is not actually that helpful (maybe we should have discussed over a pending CL instead…):\n\n1. I thought that exposing nss.Parse might actually make implementing breml/rootcerts easier, but it turns out that breml/rootcerts already uses an approach that does not require nss.Parse: https://github.com/breml/rootcerts/blob/7000414306b0b352acb0de167dc22ebe5a584085/generate_data.go#L34\n\n2. I considered doing the http.Get in my application, but then my program requires internet access and can fail when the source is slow or unavailable. So, I’ll need a cached copy and then have to deal with keeping it up-to-date.\n\n3. Instead of dealing with cache management on my user’s disk, it might be better to obtain the root certs at go:generate time and embed them into my application. But then I’m effectively doing myself the work that breml/rootcerts is currently doing for me, and have not gained anything.\n\nI think the key observation is: *obtaining* the root certs is not the tricky part, but *updating/distributing* the root certs is an annoying problem to solve. If I could just access the fallback store that x/crypto already contains, GitHub’s dependabot would from time to time submit a PR to update the x/crypto dependency, and that would be the easiest solution in terms of custom maintenance.\n\n\u003e I\u0027m not sure \"Bundle() []*x509.Certificate\" is the right API for this, for example because of https://go.dev/issue/57178: in the future the bundle in fallback might include constrained roots.\n\nWe could rename to UnconstrainedRoots(). Are constrained roots going to be vital to have a functioning certificate store? \n\n(The whole subject of constrained roots is something I’ll need to consider when working with the generator, too, which makes it less appealing to integrate at the generator level.)",
+      "parentUuid": "1a164e62_7ad26633",
+      "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
