@@ -1,0 +1,385 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9171ba12_06f6a73f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "One issue per Fixes line",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62992678_48528f9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Let\u0027s add an Example for how to use SignCertificate with MultiAlgorithmSigner.",
+      "range": {
+        "startLine": 12,
+        "startChar": 22,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5deb54_383320e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Also, an example to AddHostKey for how to use MultiAlgorithmSigner to restrict the host key algorithms.",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db04246_c00985d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "This is good, thank you! I\u0027d like to see a couple more tests for the certificate edge cases, and I have some minor comments.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352b1615_5351bd92",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Why are these in certs.go?",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d9a5ec_8a0284ad",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Let\u0027s have a test that certificate algorithms can\u0027t be passed to NewSignerWithAlgorithms.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe0f1ff1_9dea934a",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Capital letter, period.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b19c923_ca53a435",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Let\u0027s return an error rather than panic on an empty list.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6665eb_4e17b13d",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "using",
+      "range": {
+        "startLine": 511,
+        "startChar": 20,
+        "endLine": 511,
+        "endChar": 26
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd90eaf4_ef2d4713",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "if it implements",
+      "range": {
+        "startLine": 224,
+        "startChar": 13,
+        "endLine": 224,
+        "endChar": 26
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce85e2a_1c1192b6",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Same as below.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad5438c_e05cf38f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "This will lead to a pretty confusing error if it\u0027s reached for a multiAlgorithmSigner that disables the default.\n\n(Add a test.)",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8344a51_1a72d60a",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Let\u0027s make sure we have a test for certificate host keys used with a MultiAlgorithmSigner. This is subtle and I think you did it right, but I would have done it wrong the first try.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46923f55_30300f3d",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "I think we can delete algorithmSignerWrapper entirely, it does the same thing as \u0026multiAlgorithmSigner{k, []string{underlyingAlgo(k.PublicKey().Type())}}, right?",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d46999_e6c54e6c",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we check that algo is compatible with k.PublicKey().Type()? Otherwise it seems to me that algo can be a certificate type while k.PublicKey().Type() isn\u0027t.\n\n(Add a test if so.)\n\nOne way to refactor this is to leave the previous code and just add another check that checks Algorithms() if MultiAlgorithmSigner is implemented.\n\n\t\tif s, ok :\u003d k.(MultiAlgorithmSigner); ok {\n\t\t\tif !contains(s.Algorithms(), underlyingAlgo(algo)) {\n\t\t\t\tcontinue\n\t\t\t}\n\t\t}",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5c4fa2_16330356",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "This wrapping should be superflous, just return the AlgorithmSigner.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c649c5_fc2ba2e7",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "If all out AlgorithmSigner are now Multi, update this.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18d52af_607a164e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "\"Unless it also implements MultiAlgorithmSigner, an AlgorithmSigner...\"",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6d763a2_369a8284",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "There\u0027s a comment on the constants that says \"Unlike key algorithm names, these are not passed to AlgorithmSigner and don\u0027t appear in the Signature.Format field.\", update it to say \"not passed to AlgorithmSigner nor returned by MultiAlgorithmSigner\"",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5398ee_f4f35f37",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "The list must not be empty, and it must not include certificate types.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02300315_e45b13d0",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-11T13:15:33Z",
+      "side": 1,
+      "message": "Let\u0027s check for Multi here?",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
