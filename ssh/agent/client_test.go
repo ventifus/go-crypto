@@ -29,6 +29,9 @@ func startOpenSSHAgent(t *testing.T) (client ExtendedAgent, socket string, clean
 		// types supported vary by platform.
 		t.Skip("skipping test due to -short")
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip("skipping on windows")
+	}
 
 	bin, err := exec.LookPath("ssh-agent")
 	if err != nil {
