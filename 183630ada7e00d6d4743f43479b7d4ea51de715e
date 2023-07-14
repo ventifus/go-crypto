@@ -16,6 +16,24 @@
       "message": "I don\u0027t think this entire change does anything? All MultiAlgorithmSigners will also pass a type assertion to AlgorithmSigner, and there is no special MultiAlgorithmSigners behavior here.",
       "revId": "183630ada7e00d6d4743f43479b7d4ea51de715e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83dd5720_f0e9d1c0",
+        "filename": "ssh/agent/keyring.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "023693c5_012c8811",
+      "revId": "183630ada7e00d6d4743f43479b7d4ea51de715e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

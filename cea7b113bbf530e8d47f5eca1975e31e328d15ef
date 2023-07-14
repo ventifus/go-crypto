@@ -66,6 +66,72 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "211f539a_ad305f09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Added to ExampleNewServerConn",
+      "parentUuid": "2a5deb54_383320e1",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61939a0_0c6cfe7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Added ExampleCertificate_SignCert",
+      "parentUuid": "62992678_48528f9f",
+      "range": {
+        "startLine": 12,
+        "startChar": 22,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01217baf_2e75e8e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9171ba12_06f6a73f",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1db04246_c00985d0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -152,6 +218,42 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93c3bdf_b8009bc8",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85cfd6ef_9ccf5c5b",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88403186_72f7d468",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "moved to keys.go",
+      "parentUuid": "352b1615_5351bd92",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32d9a5ec_8a0284ad",
@@ -165,6 +267,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "Let\u0027s have a test that certificate algorithms can\u0027t be passed to NewSignerWithAlgorithms.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa33de81_8df375b1",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "done, see TestNewSignerWithAlgos",
+      "parentUuid": "32d9a5ec_8a0284ad",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -186,6 +306,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "473bf780_d078d5b5",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe0f1ff1_9dea934a",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b19c923_ca53a435",
@@ -203,6 +341,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7530f01_768f1787",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "done everywhere",
+      "parentUuid": "2b19c923_ca53a435",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f6665eb_4e17b13d",
@@ -216,6 +372,30 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "using",
+      "range": {
+        "startLine": 511,
+        "startChar": 20,
+        "endLine": 511,
+        "endChar": 26
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9521b14f_354c4976",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f6665eb_4e17b13d",
       "range": {
         "startLine": 511,
         "startChar": 20,
@@ -249,6 +429,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69b9cf2_8e19e176",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd90eaf4_ef2d4713",
+      "range": {
+        "startLine": 224,
+        "startChar": 13,
+        "endLine": 224,
+        "endChar": 26
+      },
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fce85e2a_1c1192b6",
@@ -262,6 +466,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "Same as below.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b14df4_79a46dd7",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fce85e2a_1c1192b6",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -283,6 +505,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb62f82_27837714",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "rewrote, please take a look again. Added TestPickSignatureAlgorithm",
+      "parentUuid": "cad5438c_e05cf38f",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8344a51_1a72d60a",
@@ -296,6 +536,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "Let\u0027s make sure we have a test for certificate host keys used with a MultiAlgorithmSigner. This is subtle and I think you did it right, but I would have done it wrong the first try.",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2baee5d_4eb85372",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Added to TestHostKeyCert",
+      "parentUuid": "a8344a51_1a72d60a",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -317,6 +575,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f14c2be_8b97f46d",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "algorithmSignerWrapper wraps a Signer, multiAlgorithmSigner requires an AlgorithmSigner",
+      "parentUuid": "46923f55_30300f3d",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3d46999_e6c54e6c",
@@ -330,6 +606,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "Shouldn\u0027t we check that algo is compatible with k.PublicKey().Type()? Otherwise it seems to me that algo can be a certificate type while k.PublicKey().Type() isn\u0027t.\n\n(Add a test if so.)\n\nOne way to refactor this is to leave the previous code and just add another check that checks Algorithms() if MultiAlgorithmSigner is implemented.\n\n\t\tif s, ok :\u003d k.(MultiAlgorithmSigner); ok {\n\t\t\tif !contains(s.Algorithms(), underlyingAlgo(algo)) {\n\t\t\t\tcontinue\n\t\t\t}\n\t\t}",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c422f1a_a7ebfaed",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3d46999_e6c54e6c",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -351,6 +645,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9f522e_4571e2f0",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c4fa2_16330356",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1c649c5_fc2ba2e7",
@@ -368,6 +680,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8da6f84_e75d5d24",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1c649c5_fc2ba2e7",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b18d52af_607a164e",
@@ -381,6 +711,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "\"Unless it also implements MultiAlgorithmSigner, an AlgorithmSigner...\"",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb9e48c3_2e974760",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b18d52af_607a164e",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -419,6 +767,42 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74a6ee9c_e2349daf",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Added this comment to NewSignerWithAlgorithms",
+      "parentUuid": "6d5398ee_f4f35f37",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9fe8ef8_b1b9f684",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6d763a2_369a8284",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02300315_e45b13d0",
@@ -432,6 +816,24 @@
       "writtenOn": "2023-07-11T13:15:33Z",
       "side": 1,
       "message": "Let\u0027s check for Multi here?",
+      "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52da719_5a4a54ed",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-14T10:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02300315_e45b13d0",
       "revId": "cea7b113bbf530e8d47f5eca1975e31e328d15ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
