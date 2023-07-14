@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52b3f355_7d62db2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-14T15:00:59Z",
+      "side": 1,
+      "message": "This should have started with \"ssh:\". For a heterogeneous repository like x/crypto it\u0027s important to tell packages apart from a oneline git log.",
+      "revId": "2e82bdd1719d8f50d18bbb60acc52accc71330b1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
