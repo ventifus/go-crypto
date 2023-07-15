@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e955bd36_172c31ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-15T17:27:00Z",
+      "side": 1,
+      "message": "I added a benchmark, diffie-hellman-group18-sha512 has very poor performance\n\nBenchmarkKexes/diffie-hellman-group14-sha1-12         \t        1000000000\t         0.02053 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group16-sha512-12       \t        1000000000\t         0.1392 ns/op\t         0 B/op\t       0 allocs/op\nBenchmarkKexes/curve25519-sha256-12                   \t        1000000000\t         0.0003657 ns/op\t     0 B/op\t       0 allocs/op\nBenchmarkKexes/curve25519-sha256@libssh.org-12        \t        1000000000\t         0.0003561 ns/op\t     0 B/op\t       0 allocs/op\nBenchmarkKexes/ecdh-sha2-nistp256-12                  \t        1000000000\t         0.0002683 ns/op\t     0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group-exchange-sha1-12  \t        1000000000\t         0.01888 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group-exchange-sha256-12         \t1000000000\t         0.01980 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group1-sha1-12                   \t1000000000\t         0.003308 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group14-sha256-12                \t1000000000\t         0.01919 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/diffie-hellman-group18-sha512-12                \t1\t                   1099024323 ns/op\t  247096 B/op\t     274 allocs/op\nBenchmarkKexes/ecdh-sha2-nistp521-12                           \t1000000000\t         0.008938 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkKexes/ecdh-sha2-nistp384-12                           \t1000000000\t         0.003701 ns/op\t       0 B/op\t       0 allocs/op\nPASS\nok  \tgolang.org/x/crypto/ssh\t3.416s \n\nhere is the output from the profiler\n\n(pprof) top\nShowing nodes accounting for 1160ms, 100% of 1160ms total\nShowing top 10 nodes out of 11\n      flat  flat%   sum%        cum   cum%\n    1100ms 94.83% 94.83%     1100ms 94.83%  math/big.addMulVVW\n      60ms  5.17%   100%     1160ms   100%  math/big.nat.montgomery\n         0     0%   100%      580ms 50.00%  golang.org/x/crypto/ssh.(*dhGroup).Client\n         0     0%   100%      580ms 50.00%  golang.org/x/crypto/ssh.(*dhGroup).Server\n         0     0%   100%      580ms 50.00%  golang.org/x/crypto/ssh.(*dhGroup).diffieHellman\n         0     0%   100%      580ms 50.00%  golang.org/x/crypto/ssh.BenchmarkKexDH18Sha512.func1\n         0     0%   100%      580ms 50.00%  golang.org/x/crypto/ssh.BenchmarkKexDH18Sha512.func2\n         0     0%   100%     1160ms   100%  math/big.(*Int).Exp (inline)\n         0     0%   100%     1160ms   100%  math/big.(*Int).exp\n         0     0%   100%     1160ms   100%  math/big.nat.expNN",
+      "revId": "7198bd15542c0985c3a7ccdbb5405fece79536bb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
