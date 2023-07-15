@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e68895b_53d8400e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-07-15T18:45:11Z",
+      "side": 1,
+      "message": "Benchmark results\n\nname                                           time/op\nKexes/diffie-hellman-group14-sha256-12         32.1ms ±15%\nKexes/diffie-hellman-group16-sha512-12          217ms ±18%\nKexes/diffie-hellman-group18-sha512-12          1.53s ±16%\nKexes/curve25519-sha256-12                      462µs ±10%\nKexes/diffie-hellman-group-exchange-sha1-12    28.1ms ±12%\nKexes/diffie-hellman-group-exchange-sha256-12  27.1ms ±12%\nKexes/diffie-hellman-group1-sha1-12            4.38ms ± 5%\nKexes/diffie-hellman-group14-sha1-12           31.5ms ±16%\nKexes/ecdh-sha2-nistp256-12                     329µs ± 6%\nKexes/curve25519-sha256@libssh.org-12           505µs ±14%\nKexes/ecdh-sha2-nistp521-12                    17.0ms ±17%\nKexes/ecdh-sha2-nistp384-12                    5.24ms ±22%\n\nname                                           alloc/op\nKexes/diffie-hellman-group14-sha256-12         61.9kB ± 0%\nKexes/diffie-hellman-group16-sha512-12          117kB ± 0%\nKexes/diffie-hellman-group18-sha512-12          230kB ± 2%\nKexes/curve25519-sha256-12                     8.21kB ± 0%\nKexes/diffie-hellman-group-exchange-sha1-12    67.4kB ± 0%\nKexes/diffie-hellman-group-exchange-sha256-12  67.4kB ± 0%\nKexes/diffie-hellman-group1-sha1-12            34.9kB ± 0%\nKexes/diffie-hellman-group14-sha1-12           61.9kB ± 0%\nKexes/ecdh-sha2-nistp256-12                    12.1kB ± 0%\nKexes/curve25519-sha256@libssh.org-12          8.21kB ± 0%\nKexes/ecdh-sha2-nistp521-12                    16.3kB ± 0%\nKexes/ecdh-sha2-nistp384-12                    13.9kB ± 0%\n\nname                                           allocs/op\nKexes/diffie-hellman-group14-sha256-12            255 ± 0%\nKexes/diffie-hellman-group16-sha512-12            256 ± 0%\nKexes/diffie-hellman-group18-sha512-12            266 ± 3%\nKexes/curve25519-sha256-12                        168 ± 0%\nKexes/diffie-hellman-group-exchange-sha1-12       314 ± 0%\nKexes/diffie-hellman-group-exchange-sha256-12     314 ± 0%\nKexes/diffie-hellman-group1-sha1-12               255 ± 0%\nKexes/diffie-hellman-group14-sha1-12              255 ± 0%\nKexes/ecdh-sha2-nistp256-12                       213 ± 0%\nKexes/curve25519-sha256@libssh.org-12             168 ± 0%\nKexes/ecdh-sha2-nistp521-12                       245 ± 0%\nKexes/ecdh-sha2-nistp384-12                       243 ± 0%",
+      "revId": "69eca9097a4589e6df08b293d255cbfaad6e24a9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
