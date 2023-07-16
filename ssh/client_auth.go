@@ -275,6 +275,19 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 		if err != nil {
 			return authFailure, nil, err
 		}
+		// OpenSSH 7.2-7.7 advertises support for rsa-sha2-256 and rsa-sha2-512
+		// in the "server-sig-algs" extension but doesn't support these
+		// algorithms for certificate authentication, so if the server rejects
+		// the key try to use the obtained algorithm as if "server-sig-algs" had
+		// not been implemented.
+		if !ok && isRSACert(algo) && algo != CertAlgoRSAv01 {
+			as, algo = pickSignatureAlgorithm(signer, nil)
+
+			ok, err = validateKey(pub, algo, user, c)
+			if err != nil {
+				return authFailure, nil, err
+			}
+		}
 		if !ok {
 			continue
 		}
