@@ -8,6 +8,7 @@ import (
 	"bufio"
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 )
@@ -248,7 +249,10 @@ func newPacketCipher(d direction, algs directionAlgorithms, kex *kexResult) (pac
 
 	var macKey []byte
 	if !aeadCiphers[algs.Cipher] {
-		macMode := macModes[algs.MAC]
+		macMode, ok := macModes[algs.MAC]
+		if !ok {
+			return nil, fmt.Errorf("ssh: unexpected MAC algorithm %q", algs.MAC)
+		}
 		macKey = make([]byte, macMode.keySize)
 		generateKeyMaterial(macKey, d.macKeyTag, kex)
 	}
