@@ -50,6 +50,8 @@ var supportedKexAlgos = []string{
 	// reuse ephemeral keys, using them for ECDH should be OK.
 	kexAlgoECDH256, kexAlgoECDH384, kexAlgoECDH521,
 	kexAlgoDH14SHA256, kexAlgoDH14SHA1, kexAlgoDH1SHA1,
+	// Supperted only client side.
+	kexAlgoDHGEXSHA1, kexAlgoDHGEXSHA256,
 }
 
 // serverForbiddenKexAlgos contains key exchange algorithms, that are forbidden
@@ -295,7 +297,7 @@ func (c *Config) SetDefaults() {
 	var ciphers []string
 	for _, c := range c.Ciphers {
 		if cipherModes[c] != nil {
-			// reject the cipher if we have no cipherModes definition
+			// Reject the cipher if we have no cipherModes definition.
 			ciphers = append(ciphers, c)
 		}
 	}
@@ -304,10 +306,26 @@ func (c *Config) SetDefaults() {
 	if c.KeyExchanges == nil {
 		c.KeyExchanges = preferredKexAlgos
 	}
+	var kexs []string
+	for _, k := range c.KeyExchanges {
+		if kexAlgoMap[k] != nil {
+			// Reject the KEX if we have no kexAlgoMap definition.
+			kexs = append(kexs, k)
+		}
+	}
+	c.KeyExchanges = kexs
 
 	if c.MACs == nil {
 		c.MACs = supportedMACs
 	}
+	var macs []string
+	for _, m := range c.MACs {
+		if macModes[m] != nil {
+			// Reject the MAC if we have no macModes definition.
+			macs = append(macs, m)
+		}
+	}
+	c.MACs = macs
 
 	if c.RekeyThreshold == 0 {
 		// cipher specific default
