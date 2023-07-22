@@ -254,3 +254,62 @@ func TestNewClientConn(t *testing.T) {
 		})
 	}
 }
+
+func TestInvalidConfigurations(t *testing.T) {
+	for _, tt := range []struct {
+		name   string
+		config Config
+	}{
+		{
+			"KeyExchanges",
+			Config{
+				KeyExchanges: []string{"unsupported"},
+			},
+		},
+		{
+			"Ciphers",
+			Config{
+				Ciphers: []string{"unsupported"},
+			},
+		},
+		{
+			"MACs",
+			Config{
+				MACs: []string{"unsupported"},
+				// MAC is used for non AAED ciphers.
+				Ciphers: []string{"aes256-ctr"},
+			},
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			c1, c2, err := netPipe()
+			if err != nil {
+				t.Fatalf("netPipe: %v", err)
+			}
+			defer c1.Close()
+			defer c2.Close()
+
+			serverConf := &ServerConfig{
+				Config: tt.config,
+				PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+					return &Permissions{}, nil
+				},
+			}
+			serverConf.AddHostKey(testSigners["rsa"])
+			go NewServerConn(c1, serverConf)
+
+			clientConf := &ClientConfig{
+				User:   "testuser",
+				Config: tt.config,
+				Auth: []AuthMethod{
+					Password("testpw"),
+				},
+				HostKeyCallback: InsecureIgnoreHostKey(),
+			}
+			_, _, _, err = NewClientConn(c2, "", clientConf)
+			if err == nil {
+				t.Fatalf("connection with unsupported %s config must fail", tt.name)
+			}
+		})
+	}
+}

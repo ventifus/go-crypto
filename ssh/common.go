@@ -295,7 +295,7 @@ func (c *Config) SetDefaults() {
 	var ciphers []string
 	for _, c := range c.Ciphers {
 		if cipherModes[c] != nil {
-			// reject the cipher if we have no cipherModes definition
+			// Reject the cipher if we have no cipherModes definition.
 			ciphers = append(ciphers, c)
 		}
 	}
