@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf36b05_067035ac",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-24T15:46:12Z",
+      "side": 1,
+      "message": "Let\u0027s test that when there\u0027s both an unsupported algorithm (first in order, on both sides, so it would be selected if supported) and another one, the connection succeeds, because that\u0027s the scenario of removing support for an existing algorithm.\n\n(Also, nit, TestUnsupportedAlgorithm maybe?)",
+      "revId": "97a4874a1e879270736ea44618e1fc7e0f0a820f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e5cd42_f70c4a94",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-24T15:46:12Z",
+      "side": 1,
+      "message": "s/Reject/Ignore/g",
+      "range": {
+        "startLine": 298,
+        "startChar": 6,
+        "endLine": 298,
+        "endChar": 12
+      },
+      "revId": "97a4874a1e879270736ea44618e1fc7e0f0a820f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
