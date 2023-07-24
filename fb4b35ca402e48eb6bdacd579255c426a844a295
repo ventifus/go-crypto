@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ade98b4_17501c18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-24T15:33:51Z",
+      "side": 1,
+      "message": "There isn\u0027t strong demand for these, and they would be insecure because we don\u0027t implement Lucky13 countermeasures, so I think I\u0027d rather have the occasional connection fail and lead to upgrading/reconfiguring the peer, than to add support for a broken thing.",
+      "revId": "fb4b35ca402e48eb6bdacd579255c426a844a295",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
