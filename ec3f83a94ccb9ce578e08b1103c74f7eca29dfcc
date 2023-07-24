@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18ad4a59_779c1194",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-24T15:58:18Z",
+      "side": 1,
+      "message": "Is that the correct behavior for a server that did not send server-sig-algs?\n\nIf nothing else I feel like it will lead to a confusing error message when the client uses MultiAlgorithmSigner to disable SHA-1 and the server only supports SHA-1.",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 53
+      },
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
