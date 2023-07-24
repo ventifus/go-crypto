@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c189d341_e422f3f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-07-24T15:47:06Z",
+      "side": 1,
+      "message": "Hold until #61244 is accepted.",
+      "revId": "a5717cd7da77fee9b3738f102dbf3b8bd1b345c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
