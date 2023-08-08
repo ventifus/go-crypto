@@ -26,6 +26,10 @@ const (
 
 // The error returned from CompareHashAndPassword when a password and hash do
 // not match.
+//
+// Note: Unlike some bcrypt implementations which silently discard data after a zero bytes,
+// we refrain from replicating this behavior considering its potential danger.
+// See: https://github.com/golang/go/issues/36016
 var ErrMismatchedHashAndPassword = errors.New("crypto/bcrypt: hashedPassword is not the hash of the given password")
 
 // The error returned from CompareHashAndPassword when a hash is too short to
