@@ -7,6 +7,7 @@ package ssh
 import (
 	"bytes"
 	"crypto/rand"
+	"errors"
 	"strings"
 	"testing"
 )
@@ -340,6 +341,258 @@ func TestUnsupportedAlgorithm(t *testing.T) {
 				}
 			} else if tt.wantError != "" {
 				t.Errorf("%s: succeeded, but want error string %q", tt.name, tt.wantError)
+			}
+		})
+	}
+}
+
+// The server has an incompatible configuration with the client, using
+// ConfigForServerCallback we can make the connection succeed.
+func TestConfigForServerCallback(t *testing.T) {
+	errCallback := errors.New("callback error")
+	for _, tt := range []struct {
+		name      string
+		callback  func(conn ConnMetadata) (*ClientConfig, error)
+		wantError string
+	}{
+		{
+			"no callback",
+			nil,
+			"no common algorithm",
+		},
+		{
+			"config from callback",
+			func(conn ConnMetadata) (*ClientConfig, error) {
+				return &ClientConfig{
+					User: "testuser",
+					Config: Config{
+						KeyExchanges: []string{kexAlgoCurve25519SHA256},
+					},
+					Auth: []AuthMethod{
+						Password("testpw"),
+					},
+					HostKeyCallback: InsecureIgnoreHostKey(),
+				}, nil
+			},
+			"",
+		},
+		{
+			"invalid config from callback", // config with no HostKeyCallback
+			func(conn ConnMetadata) (*ClientConfig, error) {
+				return &ClientConfig{
+					User: "testuser",
+					Config: Config{
+						KeyExchanges: []string{kexAlgoCurve25519SHA256},
+					},
+					Auth: []AuthMethod{
+						Password("testpw"),
+					},
+				}, nil
+			},
+			"must specify HostKeyCallback",
+		},
+		{
+			"nil config from callback",
+			func(conn ConnMetadata) (*ClientConfig, error) {
+				return nil, nil
+			},
+			"no common algorithm",
+		},
+		{
+			"error from callback",
+			func(conn ConnMetadata) (*ClientConfig, error) {
+				return nil, errCallback
+			},
+			errCallback.Error(),
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			c1, c2, err := netPipe()
+			if err != nil {
+				t.Fatalf("netPipe: %v", err)
+			}
+			defer c1.Close()
+			defer c2.Close()
+
+			serverConf := &ServerConfig{
+				Config: Config{
+					KeyExchanges: []string{kexAlgoCurve25519SHA256},
+				},
+				PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+					return &Permissions{}, nil
+				},
+			}
+			serverConf.AddHostKey(testSigners["rsa"])
+			go NewServerConn(c1, serverConf)
+
+			clientConf := &ClientConfig{
+				User: "testuser",
+				Config: Config{
+					KeyExchanges: []string{kexAlgoDH14SHA256},
+				},
+				Auth: []AuthMethod{
+					Password("testpw"),
+				},
+				HostKeyCallback:         InsecureIgnoreHostKey(),
+				ConfigForServerCallback: tt.callback,
+			}
+			_, _, _, err = NewClientConn(c2, "", clientConf)
+			if err != nil {
+				if tt.wantError == "" || !strings.Contains(err.Error(), tt.wantError) {
+					t.Errorf("%s: got error %q, missing %q", tt.name, err.Error(), tt.wantError)
+				}
+				if strings.Contains(err.Error(), errCallback.Error()) {
+					if !errors.Is(err, errCallback) {
+						t.Error("the error returned from the callback is not wrapped")
+					}
+				}
+			} else if tt.wantError != "" {
+				t.Errorf("%s: succeeded, but want error string %q", tt.name, tt.wantError)
+			}
+		})
+	}
+}
+
+// The client has an incompatible configuration with the server, using
+// ConfigForClientCallback we can make the connection succeed.
+func TestConfigForClientCallback(t *testing.T) {
+	errCallback := errors.New("callback error")
+	for _, tt := range []struct {
+		name        string
+		callback    func(conn ConnMetadata) (*ServerConfig, error)
+		clientError string
+		serverError string
+	}{
+		{
+			"no callback",
+			nil,
+			"no common algorithm",
+			"no common algorithm",
+		},
+		{
+			"config from callback",
+			func(conn ConnMetadata) (*ServerConfig, error) {
+				serverConf := &ServerConfig{
+					Config: Config{
+						KeyExchanges: []string{kexAlgoDH14SHA256},
+					},
+					PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+						return &Permissions{}, nil
+					},
+				}
+				serverConf.AddHostKey(testSigners["rsa"])
+				return serverConf, nil
+			},
+			"",
+			"",
+		},
+		{
+			"no host key from callback",
+			func(conn ConnMetadata) (*ServerConfig, error) {
+				serverConf := &ServerConfig{
+					Config: Config{
+						KeyExchanges: []string{kexAlgoDH14SHA256},
+					},
+					PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+						return &Permissions{}, nil
+					},
+				}
+				return serverConf, nil
+			},
+			"handshake failed",
+			"server has no host keys",
+		},
+		{
+			"invalid KEX from callback",
+			func(conn ConnMetadata) (*ServerConfig, error) {
+				serverConf := &ServerConfig{
+					Config: Config{
+						KeyExchanges: []string{kexAlgoDHGEXSHA256},
+					},
+					PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+						return &Permissions{}, nil
+					},
+				}
+				serverConf.AddHostKey(testSigners["rsa"])
+				return serverConf, nil
+			},
+			"handshake failed",
+			"unsupported key exchange",
+		},
+		{
+			"nil config from callback",
+			func(conn ConnMetadata) (*ServerConfig, error) {
+				return nil, nil
+			},
+			"no common algorithm",
+			"no common algorithm",
+		},
+		{
+			"error from callback",
+			func(conn ConnMetadata) (*ServerConfig, error) {
+				return nil, errCallback
+			},
+			"handshake failed",
+			errCallback.Error(),
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			c1, c2, err := netPipe()
+			if err != nil {
+				t.Fatalf("netPipe: %v", err)
+			}
+			defer c1.Close()
+			defer c2.Close()
+
+			serverConf := &ServerConfig{
+				Config: Config{
+					KeyExchanges: []string{kexAlgoCurve25519SHA256},
+				},
+				PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+					return &Permissions{}, nil
+				},
+				ConfigForClientCallback: tt.callback,
+			}
+			serverConf.AddHostKey(testSigners["rsa"])
+
+			errSrv := make(chan error)
+
+			go func() {
+				_, _, _, err := NewServerConn(c1, serverConf)
+				errSrv <- err
+			}()
+
+			clientConf := &ClientConfig{
+				User: "testuser",
+				Config: Config{
+					KeyExchanges: []string{kexAlgoDH14SHA256},
+				},
+				Auth: []AuthMethod{
+					Password("testpw"),
+				},
+				HostKeyCallback: InsecureIgnoreHostKey(),
+			}
+			_, _, _, err = NewClientConn(c2, "", clientConf)
+			if err != nil {
+				if tt.clientError == "" || !strings.Contains(err.Error(), tt.clientError) {
+					t.Errorf("%s: got client error %q, missing %q", tt.name, err.Error(), tt.clientError)
+				}
+			} else if tt.clientError != "" {
+				t.Errorf("%s: succeeded, but want error string %q", tt.name, tt.clientError)
+			}
+
+			err = <-errSrv
+			if err != nil {
+				if tt.serverError == "" || !strings.Contains(err.Error(), tt.serverError) {
+					t.Errorf("%s: got server error %q, missing %q", tt.name, err.Error(), tt.serverError)
+				}
+				if strings.Contains(err.Error(), errCallback.Error()) {
+					if !errors.Is(err, errCallback) {
+						t.Error("the error returned from the callback is not wrapped")
+					}
+				}
+			} else if tt.serverError != "" {
+				t.Errorf("%s: succeeded, but want error string %q", tt.name, tt.serverError)
 			}
 		})
 	}

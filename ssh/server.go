@@ -125,6 +125,14 @@ type ServerConfig struct {
 	// GSSAPIWithMICConfig includes gssapi server and callback, which if both non-nil, is used
 	// when gssapi-with-mic authentication is selected (RFC 4462 section 3).
 	GSSAPIWithMICConfig *GSSAPIWithMICConfig
+
+	// ConfigForClientCallback, if not nil, is called after receiving the
+	// version from the client. It may return a non-nil ServerConfig in order to
+	// change the ServerConfig that will be used to handle this connection. If
+	// the returned ServerConfig is nil, the original ServerConfig will be used.
+	// The ServerConfig returned by this callback may not be subsequently
+	// modified. If an error is returned the handshake will fail.
+	ConfigForClientCallback func(conn ConnMetadata) (*ServerConfig, error)
 }
 
 // AddHostKey adds a private key as a host key. If an existing host
@@ -177,6 +185,26 @@ func (c *pubKeyCache) add(candidate cachedPubKey) {
 	}
 }
 
+// validateServerConfig sets sensible values for unset fields and validates the
+// configuration.
+func validateServerConfig(config *ServerConfig) (*ServerConfig, error) {
+	fullConf := *config
+	fullConf.SetDefaults()
+	if fullConf.MaxAuthTries == 0 {
+		fullConf.MaxAuthTries = 6
+	}
+	// Check if the config contains any unsupported key exchanges
+	for _, kex := range fullConf.KeyExchanges {
+		if _, ok := serverForbiddenKexAlgos[kex]; ok {
+			return nil, fmt.Errorf("ssh: unsupported key exchange %s for server", kex)
+		}
+	}
+	if len(config.hostKeys) == 0 {
+		return nil, errors.New("ssh: server has no host keys")
+	}
+	return &fullConf, nil
+}
+
 // ServerConn is an authenticated SSH connection, as seen from the
 // server
 type ServerConn struct {
@@ -196,22 +224,15 @@ type ServerConn struct {
 // The returned error may be of type *ServerAuthError for
 // authentication errors.
 func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewChannel, <-chan *Request, error) {
-	fullConf := *config
-	fullConf.SetDefaults()
-	if fullConf.MaxAuthTries == 0 {
-		fullConf.MaxAuthTries = 6
-	}
-	// Check if the config contains any unsupported key exchanges
-	for _, kex := range fullConf.KeyExchanges {
-		if _, ok := serverForbiddenKexAlgos[kex]; ok {
-			return nil, nil, nil, fmt.Errorf("ssh: unsupported key exchange %s for server", kex)
-		}
+	fullConf, err := validateServerConfig(config)
+	if err != nil {
+		return nil, nil, nil, err
 	}
 
 	s := &connection{
 		sshConn: sshConn{conn: c},
 	}
-	perms, err := s.serverHandshake(&fullConf)
+	perms, err := s.serverHandshake(fullConf)
 	if err != nil {
 		c.Close()
 		return nil, nil, nil, err
@@ -233,10 +254,6 @@ func signAndMarshal(k AlgorithmSigner, rand io.Reader, data []byte, algo string)
 
 // handshake performs key exchange and user authentication.
 func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error) {
-	if len(config.hostKeys) == 0 {
-		return nil, errors.New("ssh: server has no host keys")
-	}
-
 	if !config.NoClientAuth && config.PasswordCallback == nil && config.PublicKeyCallback == nil &&
 		config.KeyboardInteractiveCallback == nil && (config.GSSAPIWithMICConfig == nil ||
 		config.GSSAPIWithMICConfig.AllowLogin == nil || config.GSSAPIWithMICConfig.Server == nil) {
@@ -252,6 +269,19 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 	s.clientVersion, err = exchangeVersions(s.sshConn.conn, s.serverVersion)
 	if err != nil {
 		return nil, err
+	}
+
+	if config.ConfigForClientCallback != nil {
+		configForClient, err := config.ConfigForClientCallback(s)
+		if err != nil {
+			return nil, err
+		}
+		if configForClient != nil {
+			config, err = validateServerConfig(configForClient)
+			if err != nil {
+				return nil, err
+			}
+		}
 	}
 
 	tr := newTransport(s.sshConn.conn, config.Rand, false /* not client */)
