@@ -65,24 +65,36 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 	return conn
 }
 
+// validateClientConfig sets sensible values for unset fields and validates the
+// configuration.
+func validateClientConfig(config *ClientConfig) (*ClientConfig, error) {
+	fullConf := *config
+	fullConf.SetDefaults()
+	if fullConf.HostKeyCallback == nil {
+		return nil, errors.New("ssh: must specify HostKeyCallback")
+	}
+	return &fullConf, nil
+}
+
 // NewClientConn establishes an authenticated SSH connection using c
 // as the underlying transport.  The Request and NewChannel channels
 // must be serviced or the connection will hang.
 func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan NewChannel, <-chan *Request, error) {
-	fullConf := *config
-	fullConf.SetDefaults()
-	if fullConf.HostKeyCallback == nil {
+	fullConf, err := validateClientConfig(config)
+	if err != nil {
 		c.Close()
-		return nil, nil, nil, errors.New("ssh: must specify HostKeyCallback")
+		return nil, nil, nil, err
 	}
 
 	conn := &connection{
 		sshConn: sshConn{conn: c, user: fullConf.User},
 	}
 
-	if err := conn.clientHandshake(addr, &fullConf); err != nil {
+	if err := conn.clientHandshake(addr, fullConf); err != nil {
 		c.Close()
-		return nil, nil, nil, fmt.Errorf("ssh: handshake failed: %v", err)
+		// Wrap the error, a ConfigForServerCallback could return a user-defined
+		// error.
+		return nil, nil, nil, fmt.Errorf("ssh: handshake failed: %w", err)
 	}
 	conn.mux = newMux(conn.transport)
 	return conn, conn.mux.incomingChannels, conn.mux.incomingRequests, nil
@@ -100,6 +112,19 @@ func (c *connection) clientHandshake(dialAddress string, config *ClientConfig) e
 	c.serverVersion, err = exchangeVersions(c.sshConn.conn, c.clientVersion)
 	if err != nil {
 		return err
+	}
+
+	if config.ConfigForServerCallback != nil {
+		configForServer, err := config.ConfigForServerCallback(c)
+		if err != nil {
+			return err
+		}
+		if configForServer != nil {
+			config, err = validateClientConfig(configForServer)
+			if err != nil {
+				return err
+			}
+		}
 	}
 
 	c.transport = newClientTransport(
@@ -239,6 +264,14 @@ type ClientConfig struct {
 	//
 	// A Timeout of zero means no timeout.
 	Timeout time.Duration
+
+	// ConfigForServerCallback, if not nil, is called after receiving the
+	// version from the server. It may return a non-nil ClientConfig in order to
+	// change the ClientConfig that will be used to handle this connection. If
+	// the returned ClientConfig is nil, the original ClientConfig will be used.
+	// The ClientConfig returned by this callback may not be subsequently
+	// modified. If an error is returned the handshake will fail.
+	ConfigForServerCallback func(conn ConnMetadata) (*ClientConfig, error)
 }
 
 // InsecureIgnoreHostKey returns a function that can be used for
