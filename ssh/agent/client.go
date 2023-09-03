@@ -143,7 +143,7 @@ const (
 	// 3.7 Key constraint identifiers
 	agentConstrainLifetime  = 1
 	agentConstrainConfirm   = 2
-	agentConstrainExtension = 3
+	agentConstrainExtension = 255
 )
 
 // maxAgentResponseBytes is the maximum agent reply size that is accepted. This
@@ -205,7 +205,7 @@ type constrainLifetimeAgentMsg struct {
 }
 
 type constrainExtensionAgentMsg struct {
-	ExtensionName    string `sshtype:"3"`
+	ExtensionName    string `sshtype:"255"`
 	ExtensionDetails []byte
 
 	// Rest is a field used for parsing, not part of message
