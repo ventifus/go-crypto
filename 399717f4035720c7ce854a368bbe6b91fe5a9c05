@@ -52,6 +52,23 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e46de07_70047dde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-09-05T18:52:14Z",
+      "side": 1,
+      "message": "Sorry for the (extremely) long wait on this, sometimes CLs get buried in my dashboard and it can be quite hard for them to resurface.",
+      "revId": "399717f4035720c7ce854a368bbe6b91fe5a9c05",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c087db3d_eab30d03",
