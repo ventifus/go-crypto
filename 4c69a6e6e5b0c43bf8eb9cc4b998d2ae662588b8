@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "466f6a1b_8a4c3e30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 28792
+      },
+      "writtenOn": "2023-09-06T19:11:00Z",
+      "side": 1,
+      "message": "Nit: this should not use a URL, but should instead read:\n```\nFixes golang/go#61275\n```\n(Note that the GitHub web interface can reformat some issue references into URLs as you copy/paste. When you are editing the ASCII text via the \"Edit\" option on the \"...\" menu on the GitHub PR, you should make sure that the ASCII text does not show a URL).",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 47
+      },
+      "revId": "4c69a6e6e5b0c43bf8eb9cc4b998d2ae662588b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5ae046_cbf65553",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 28792
+      },
+      "writtenOn": "2023-09-06T19:11:00Z",
+      "side": 1,
+      "message": "Nit: avoid the use of \u0027Signed-off-by\u0027. (The Go project instead relies on contributors signing CLAs).",
+      "revId": "4c69a6e6e5b0c43bf8eb9cc4b998d2ae662588b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
