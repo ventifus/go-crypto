@@ -171,6 +171,30 @@
       },
       "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def1d857_c5531cb6",
+        "filename": "cryptobyte/cryptobyte_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-09-06T17:50:41Z",
+      "side": 1,
+      "message": "It\u0027s fine to just fix it here, it\u0027ll make the commit log much more readable, thanks!",
+      "parentUuid": "bb69c272_66f9fcb4",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 27
+      },
+      "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
