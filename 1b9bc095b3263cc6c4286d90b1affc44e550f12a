@@ -52,6 +52,24 @@
       "parentUuid": "58d9ecf6_6a3a1579",
       "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6db5aa32_337beaab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-06T11:56:17Z",
+      "side": 1,
+      "message": "@roland@golang.org any additional updates needed here?",
+      "parentUuid": "cccbf5b6_f3ea2f30",
+      "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
