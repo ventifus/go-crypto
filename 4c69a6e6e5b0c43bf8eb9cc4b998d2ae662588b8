@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef5f3c8f_08d05246",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-06T20:28:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "466f6a1b_8a4c3e30",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 47
+      },
+      "revId": "4c69a6e6e5b0c43bf8eb9cc4b998d2ae662588b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f5ae046_cbf65553",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-09-06T19:11:00Z",
       "side": 1,
       "message": "Nit: avoid the use of \u0027Signed-off-by\u0027. (The Go project instead relies on contributors signing CLAs).",
+      "revId": "4c69a6e6e5b0c43bf8eb9cc4b998d2ae662588b8",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1b9971_cee02e37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-06T20:28:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4f5ae046_cbf65553",
       "revId": "4c69a6e6e5b0c43bf8eb9cc4b998d2ae662588b8",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
