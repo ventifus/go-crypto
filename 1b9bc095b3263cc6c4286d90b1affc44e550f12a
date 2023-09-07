@@ -90,6 +90,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd946fd_7f1990f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-07T01:50:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dec2d39_18c52fb3",
+      "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfe49f93_46be8023",
@@ -198,6 +216,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf668ebf_52ab402e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-07T01:50:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6db5aa32_337beaab",
+      "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b1fa852_5b550acf",
@@ -283,6 +319,30 @@
       "side": 1,
       "message": "Thanks! Updated.",
       "parentUuid": "def1d857_c5531cb6",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 27
+      },
+      "revId": "1b9bc095b3263cc6c4286d90b1affc44e550f12a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c9fb5fb_c97a9a33",
+        "filename": "cryptobyte/cryptobyte_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 38583
+      },
+      "writtenOn": "2023-09-07T01:50:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "533f50d1_5e930b30",
       "range": {
         "startLine": 184,
         "startChar": 13,
