@@ -46,6 +46,97 @@
       },
       "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa60344_d95e4031",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "Users are unlikely to find this in a giant 100-lines example, I\u0027d tie it to the AddHostKey docs by making it \"ExampleServerConfig_AddHostKey\"",
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "126c24b7_56281793",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "This is going to make the tests very slow, we shouldn\u0027t generate RSA keys in -short tests especially.",
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa14d5ab_f068d80d",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "Check the error.",
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffc09ff_6b146d61",
+        "filename": "ssh/example_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "Why this step? Can\u0027t you pass certificate to ssh.MarshalAuthorizedKey?",
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c65339_542c8c48",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "algorithm",
+      "range": {
+        "startLine": 367,
+        "startChar": 73,
+        "endLine": 367,
+        "endChar": 83
+      },
+      "revId": "ec3f83a94ccb9ce578e08b1103c74f7eca29dfcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

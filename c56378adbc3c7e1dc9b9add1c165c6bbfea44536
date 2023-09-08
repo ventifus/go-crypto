@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab403a10_791fa6bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "A few nits, but LGTM! Thank you, this was a large and complex change.",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05305e80_6051e2a2",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "server only supports %q for key type %q, signer only supports %v",
+      "range": {
+        "startLine": 247,
+        "startChar": 73,
+        "endLine": 247,
+        "endChar": 115
+      },
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f1773f_bd236698",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "```suggestion\n\t\tif err !\u003d nil \u0026\u0026 errSigAlgo !\u003d nil {\n```\n\nThe first one feels like the more useful to surface.",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9554afa4_4f645cc2",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "Hmm, looking at clientAuthenticate, won\u0027t this stop other methods from being tried? Is that the right behavior for an algorithm mismatch? Maybe it is, but I wanted to make it an explicit decision.",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f117851_7328cd0c",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-08T10:29:17Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this go above the if above it?\n\nOtherwise a ssh-rsa host key with ssh-rsa disabled in MultiAlgorithmSigner will be picked if ssh-rsa was negotiated, even if one of the other keys supports ssh-rsa (for some silly reason).",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
