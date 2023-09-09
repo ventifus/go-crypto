@@ -41,6 +41,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd67f58_f26d635b",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-09-09T19:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05305e80_6051e2a2",
+      "range": {
+        "startLine": 247,
+        "startChar": 73,
+        "endLine": 247,
+        "endChar": 115
+      },
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73f1773f_bd236698",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-09-08T10:29:17Z",
       "side": 1,
       "message": "```suggestion\n\t\tif err !\u003d nil \u0026\u0026 errSigAlgo !\u003d nil {\n```\n\nThe first one feels like the more useful to surface.",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89047c1f_36cf882d",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-09-09T19:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f1773f_bd236698",
       "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -75,6 +117,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a853df57_a2b3222f",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-09-09T19:59:58Z",
+      "side": 1,
+      "message": "Changed clientAuthenticate to only return the error if there is no other method left to try. I tested with the following code after removing KeyAlgoRSASHA256 from  supportedPubKeyAuthAlgos\n\nfunc TestClientAuthErrFallback(t *testing.T) {\n\tsigner, err :\u003d NewSignerWithAlgorithms(testSigners[\"rsa\"].(AlgorithmSigner), []string{KeyAlgoRSASHA256})\n\tif err !\u003d nil {\n\t\tt.Fatal(err)\n\t}\n\tconfig :\u003d \u0026ClientConfig{\n\t\tUser: \"testuser\",\n\t\tAuth: []AuthMethod{\n\t\t\tPublicKeys(signer),\n\t\t\tPassword(clientPassword),\n\t\t},\n\t\tHostKeyCallback: InsecureIgnoreHostKey(),\n\t}\n\tif err :\u003d tryAuth(t, config); err !\u003d nil {\n\t\tt.Fatalf(\"unable to dial remote side: %s\", err)\n\t}\n}\n\nwe can easily add a test case once the CL to make configurable the supported client public keys is merged",
+      "parentUuid": "9554afa4_4f645cc2",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f117851_7328cd0c",
@@ -88,6 +148,24 @@
       "writtenOn": "2023-09-08T10:29:17Z",
       "side": 1,
       "message": "Shouldn\u0027t this go above the if above it?\n\nOtherwise a ssh-rsa host key with ssh-rsa disabled in MultiAlgorithmSigner will be picked if ssh-rsa was negotiated, even if one of the other keys supports ssh-rsa (for some silly reason).",
+      "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a81fc54a_2e13962b",
+        "filename": "ssh/handshake.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-09-09T19:59:58Z",
+      "side": 1,
+      "message": "done, added TestPickIncompatibleHostKeyAlgo. We can have only one rsa host key, see AddHostKey, and if the algos are incompatible we return an error before reaching this method in findAgreedAlgorithms",
+      "parentUuid": "6f117851_7328cd0c",
       "revId": "c56378adbc3c7e1dc9b9add1c165c6bbfea44536",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
