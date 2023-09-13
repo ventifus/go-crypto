@@ -16,6 +16,24 @@
       "message": "Thank you for this patch. It looks like a duplicate of CL 508876",
       "revId": "e417676254617e1e2e7bc68700bbade116295b62",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79066ab5_ec720e34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10225
+      },
+      "writtenOn": "2023-09-13T13:56:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4cfac543_2c4fb76c",
+      "revId": "e417676254617e1e2e7bc68700bbade116295b62",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ],
   "submitRequirementResults": [
