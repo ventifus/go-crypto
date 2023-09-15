@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8581239d_84364188",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5976
+      },
+      "writtenOn": "2023-09-15T02:00:50Z",
+      "side": 1,
+      "message": "Hello tg123, I\u0027ve spotted some possible problems.\n\nThese findings are based on simple heuristics. If a finding appears wrong, briefly reply here saying so. Otherwise, please address any problems and update the GitHub PR. When complete, mark this comment as \u0027Done\u0027 and click the [blue \u0027Reply\u0027 button](https://github.com/golang/go/wiki/GerritBot#i-left-a-reply-to-a-comment-in-gerrit-but-no-one-but-me-can-see-it) above.\n\nPossible problems detected:\n  1. Are you describing the change in complete sentences with correct punctuation in the commit message body, including ending sentences with periods?\n  2. Are you using markdown? Markdown should not be used to augment text in the commit message.\n  3. You usually need to reference a bug number for all but trivial or cosmetic fixes. For the crypto repo, the format is usually \u0027Fixes golang/go#12345\u0027 or \u0027Updates golang/go#12345\u0027 at the end of the commit message. Should you have a bug reference?\n\nTo edit the commit message, see instructions [here](https://github.com/golang/go/wiki/GerritBot/#how-does-gerritbot-determine-the-final-commit-message). For guidelines on commit messages for the Go project, see [here](https://go.dev/doc/contribute#commit_messages).\n\n\n(In general for Gerrit code reviews, the CL author is expected to close out each piece of feedback by marking it as \u0027Done\u0027 if implemented as suggested or otherwise reply to each review comment. See the [Review](https://go.dev/doc/contribute#review) section of the Contributing Guide for details.)",
+      "revId": "059a3499460d6412d928b1545530ff69c6e071e9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
