@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd4b4e5_ab5ff6e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2023-09-15T19:16:06Z",
+      "side": 1,
+      "message": "ssh: add None function",
+      "revId": "64c2b211b05c78f9351438cb62accdee96fcbe3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a5008de_64677d72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2023-09-15T19:16:06Z",
+      "side": 1,
+      "message": "This line doesn\u0027t add anything useful.",
+      "revId": "64c2b211b05c78f9351438cb62accdee96fcbe3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0540216_8140cd8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2023-09-15T19:16:06Z",
+      "side": 1,
+      "message": "Please write this line as simply\n\nFixes #62657",
+      "revId": "64c2b211b05c78f9351438cb62accdee96fcbe3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2bfc04_20fbbc10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2023-09-15T19:16:06Z",
+      "side": 1,
+      "message": "Putting on hold for proposal.",
+      "revId": "64c2b211b05c78f9351438cb62accdee96fcbe3a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
