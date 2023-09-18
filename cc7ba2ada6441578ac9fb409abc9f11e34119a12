@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "296802a2_305d2889",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-18T18:29:29Z",
+      "side": 1,
+      "message": "Hold for proposal.",
+      "revId": "cc7ba2ada6441578ac9fb409abc9f11e34119a12",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
