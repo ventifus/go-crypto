@@ -34,6 +34,24 @@
       "parentUuid": "4cfac543_2c4fb76c",
       "revId": "e417676254617e1e2e7bc68700bbade116295b62",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bce8db1_5867ec7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10225
+      },
+      "writtenOn": "2023-09-18T13:43:11Z",
+      "side": 1,
+      "message": "Searching on the open CL, I see another patch CL 472695 that also duplicate with CL 508876.\n\nI will upvote on both, which ever get merged, I am happy with the result.",
+      "parentUuid": "79066ab5_ec720e34",
+      "revId": "e417676254617e1e2e7bc68700bbade116295b62",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ],
   "submitRequirementResults": [
