@@ -3,6 +3,40 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "74bf51a1_8bbbe0ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-19T08:03:52Z",
+      "side": 1,
+      "message": "Lowercase after the colon. Fixed.",
+      "revId": "11b922aa50b0f5b04fa7c465126f648b8b0013fa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ffbfb6_cf079854",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-09-19T08:03:52Z",
+      "side": 1,
+      "message": "Line breaks, ditto.\n\n(This is confusing because it\u0027s imported from the PR body. I wish gerritbot did wrapping automatically.)",
+      "revId": "11b922aa50b0f5b04fa7c465126f648b8b0013fa",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d6190f67_6f23059f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
