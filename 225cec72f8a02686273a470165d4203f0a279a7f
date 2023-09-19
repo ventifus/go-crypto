@@ -53,6 +53,24 @@
       "message": "```suggestion\n\tExtensionName    string `sshtype:\"255|3\"`\n```\n\nThe first one is used when marshaling. This struct is not used for that now, but might someday.",
       "revId": "225cec72f8a02686273a470165d4203f0a279a7f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52c47022_a2d94ab8",
+        "filename": "ssh/agent/client.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-09-19T14:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93d5ff35_3cfffd49",
+      "revId": "225cec72f8a02686273a470165d4203f0a279a7f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
