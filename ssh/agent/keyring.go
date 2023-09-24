@@ -32,8 +32,10 @@ type keyring struct {
 
 var errLocked = errors.New("agent: locked")
 
-// NewKeyring returns an Agent that holds keys in memory.  It is safe
-// for concurrent use by multiple goroutines.
+// NewKeyring returns an Agent that holds keys in memory. It is safe for
+// concurrent use by multiple goroutines. Keys returned by the List method of
+// this Agent implementation are guaranteed to return a public key from the
+// crypto.PublicKey implementation.
 func NewKeyring() Agent {
 	return &keyring{}
 }
@@ -136,9 +138,10 @@ func (r *keyring) List() ([]*Key, error) {
 	for _, k := range r.keys {
 		pub := k.signer.PublicKey()
 		ids = append(ids, &Key{
-			Format:  pub.Type(),
-			Blob:    pub.Marshal(),
-			Comment: k.comment})
+			Format:    pub.Type(),
+			Blob:      pub.Marshal(),
+			Comment:   k.comment,
+			publicKey: pub})
 	}
 	return ids, nil
 }
