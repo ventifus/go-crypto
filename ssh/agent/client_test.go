@@ -158,6 +158,14 @@ func testAgentInterface(t *testing.T, agent ExtendedAgent, key interface{}, cert
 		t.Fatalf("key comment: got %v, want %v", keys[0].Comment, "comment")
 	} else if !bytes.Equal(keys[0].Blob, pubKey.Marshal()) {
 		t.Fatalf("key mismatch")
+	} else {
+		k, ok := keys[0].CryptoPublicKey().(ssh.PublicKey)
+		if !ok {
+			t.Fatal("not ssh public key")
+		}
+		if !bytes.Equal(k.Marshal(), pubKey.Marshal()) {
+			t.Fatalf("crypto key mismatch")
+		}
 	}
 
 	// Can the agent make a valid signature?
