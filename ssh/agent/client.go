@@ -14,6 +14,7 @@ package agent // import "golang.org/x/crypto/ssh/agent"
 
 import (
 	"bytes"
+	"crypto"
 	"crypto/dsa"
 	"crypto/ecdsa"
 	"crypto/ed25519"
@@ -239,9 +240,10 @@ type extensionAgentMsg struct {
 // Key represents a protocol 2 public key as defined in
 // [PROTOCOL.agent], section 2.5.2.
 type Key struct {
-	Format  string
-	Blob    []byte
-	Comment string
+	Format    string
+	Blob      []byte
+	Comment   string
+	publicKey ssh.PublicKey
 }
 
 func clientErr(err error) error {
@@ -279,6 +281,16 @@ func (k *Key) Verify(data []byte, sig *ssh.Signature) error {
 	return pubKey.Verify(data, sig)
 }
 
+// CryptoPublicKey satisfies the crypto.PublicKey interface. This implementation
+// can return nil if the underlying public key is not valid or does not
+// implement the crypto.PublicKey interface.
+func (k *Key) CryptoPublicKey() crypto.PublicKey {
+	if key, ok := k.publicKey.(ssh.CryptoPublicKey); ok {
+		return key.CryptoPublicKey()
+	}
+	return nil
+}
+
 type wireKey struct {
 	Format string
 	Rest   []byte `ssh:"rest"`
@@ -300,11 +312,18 @@ func parseKey(in []byte) (out *Key, rest []byte, err error) {
 		return nil, nil, err
 	}
 
-	return &Key{
+	k := &Key{
 		Format:  wk.Format,
 		Blob:    record.Blob,
 		Comment: record.Comment,
-	}, record.Rest, nil
+	}
+	pubKey, err := ssh.ParsePublicKey(k.Blob)
+	if err != nil {
+		return nil, nil, err
+	}
+	k.publicKey = pubKey
+
+	return k, record.Rest, nil
 }
 
 // client is a client for an ssh-agent process.

@@ -6,7 +6,11 @@ package agent
 
 import (
 	"bytes"
+	"crypto/dsa"
+	"crypto/ecdsa"
+	"crypto/ed25519"
 	"crypto/rand"
+	"crypto/rsa"
 	"errors"
 	"io"
 	"net"
@@ -150,7 +154,8 @@ func testAgentInterface(t *testing.T, agent ExtendedAgent, key interface{}, cert
 	}
 
 	// Did the key get inserted successfully?
-	if keys, err := agent.List(); err != nil {
+	keys, err := agent.List()
+	if err != nil {
 		t.Fatalf("List: %v", err)
 	} else if len(keys) != 1 {
 		t.Fatalf("got %v, want 1 key", keys)
@@ -158,6 +163,30 @@ func testAgentInterface(t *testing.T, agent ExtendedAgent, key interface{}, cert
 		t.Fatalf("key comment: got %v, want %v", keys[0].Comment, "comment")
 	} else if !bytes.Equal(keys[0].Blob, pubKey.Marshal()) {
 		t.Fatalf("key mismatch")
+	}
+
+	cryptoKey := keys[0].CryptoPublicKey()
+	if cryptoKey == nil {
+		t.Fatal("CryptoPublicKey returned nil")
+	}
+	if _, ok := keys[0].CryptoPublicKey().(ssh.PublicKey); ok {
+		t.Fatal("CryptoPublicKey returned an ssh public key")
+	}
+
+	var ok bool
+	switch pubKey.Type() {
+	case ssh.KeyAlgoRSA, ssh.KeyAlgoRSASHA256, ssh.KeyAlgoRSASHA512, ssh.CertAlgoRSAv01, ssh.CertAlgoRSASHA256v01, ssh.CertAlgoRSASHA512v01:
+		_, ok = cryptoKey.(*rsa.PublicKey)
+	case ssh.KeyAlgoDSA, ssh.CertAlgoDSAv01:
+		_, ok = cryptoKey.(*dsa.PublicKey)
+	case ssh.KeyAlgoECDSA256, ssh.KeyAlgoECDSA384, ssh.KeyAlgoECDSA521, ssh.CertAlgoECDSA256v01, ssh.CertAlgoECDSA384v01, ssh.CertAlgoECDSA521v01:
+		_, ok = cryptoKey.(*ecdsa.PublicKey)
+	case ssh.KeyAlgoED25519, ssh.CertAlgoED25519v01:
+		_, ok = cryptoKey.(ed25519.PublicKey)
+	}
+
+	if !ok {
+		t.Fatalf("the retuned public key is not a crypto.PublicKey, type %q: %T", pubKey.Type(), cryptoKey)
 	}
 
 	// Can the agent make a valid signature?

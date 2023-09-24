@@ -283,7 +283,7 @@ func ParsePublicKey(in []byte) (out PublicKey, err error) {
 	}
 
 	if _, ok := out.(CryptoPublicKey); !ok {
-		return nil, fmt.Errorf("ssh: public key type %q does not satisfies CryptoPublicKey interface", out.Type())
+		return nil, fmt.Errorf("ssh: public key does not implement CryptoPublicKey interface, type %q", out.Type())
 	}
 
 	return out, err
@@ -316,7 +316,7 @@ func MarshalPrivateKeyWithPassphrase(key crypto.PrivateKey, comment string, pass
 
 // PublicKey represents a public key using an unspecified algorithm.
 //
-// All PublicKeys provided by this package also implement CryptoPublicKey.
+// All PublicKeys provided by this package must also implement CryptoPublicKey.
 type PublicKey interface {
 	// Type returns the key format name, e.g. "ssh-rsa".
 	Type() string
