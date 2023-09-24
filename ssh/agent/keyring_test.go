@@ -32,6 +32,9 @@ func validateListedKeys(t *testing.T, a Agent, expectedKeys []string) {
 	actualKeys := make(map[string]bool)
 	for _, key := range listedKeys {
 		actualKeys[key.Comment] = true
+		if key.CryptoPublicKey() == nil {
+			t.Fatalf("key %q returned nil from crypto.PublicKey interface", key.Comment)
+		}
 	}
 
 	matchedKeys := make(map[string]bool)
