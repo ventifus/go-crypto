@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fef901b_6f77a34d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28792
+      },
+      "writtenOn": "2023-09-25T17:29:51Z",
+      "side": 1,
+      "message": "Hi Sebastiaan, if you are still interested in this, you should update the commit title and commit message to reflect the current changes.\n\nIn case this helps -- the commit title and commit message body come from the GitHub PR title and description, and must be edited in the GitHub web interface (not via git). For instructions, see [here](https://go.dev/wiki/GerritBot/#how-does-gerritbot-determine-the-final-commit-message).",
+      "revId": "aa5dea9d45987356c95a415148e8f7bac2599cca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186cb199_69fa3882",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 28792
+      },
+      "writtenOn": "2023-09-25T17:29:51Z",
+      "side": 1,
+      "message": "It is better just to write `CL 317169`, which Gerrit will recognize as a CL reference and render with an appropriate hyperlink.",
+      "range": {
+        "startLine": 9,
+        "startChar": 23,
+        "endLine": 9,
+        "endChar": 126
+      },
+      "revId": "aa5dea9d45987356c95a415148e8f7bac2599cca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fea571e4_8e474df8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
