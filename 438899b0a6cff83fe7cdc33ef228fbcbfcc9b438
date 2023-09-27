@@ -90,6 +90,24 @@
       "message": "@roland@golang.org This CL was ready to be submitted and some time has passed. Should it be submitted now? The CL author doesn\u0027t have permissions to submit so it has to be done by an approver (or adding Auto-Submit+1 is sufficient). Thanks.",
       "revId": "438899b0a6cff83fe7cdc33ef228fbcbfcc9b438",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175be790_1f85f81a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30659
+      },
+      "writtenOn": "2023-09-27T20:59:57Z",
+      "side": 1,
+      "message": "Let me know if there\u0027s anything remaining on my side 😊",
+      "parentUuid": "520abfac_c93becf6",
+      "revId": "438899b0a6cff83fe7cdc33ef228fbcbfcc9b438",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
