@@ -271,7 +271,7 @@ func TestUnsupportedAlgorithm(t *testing.T) {
 		{
 			"unsupported and supported KEXs",
 			Config{
-				KeyExchanges: []string{"unsupported", kexAlgoCurve25519SHA256},
+				KeyExchanges: []string{"unsupported", KexAlgoCurve25519SHA256},
 			},
 			"",
 		},
@@ -285,7 +285,7 @@ func TestUnsupportedAlgorithm(t *testing.T) {
 		{
 			"unsupported and supported ciphers",
 			Config{
-				Ciphers: []string{"unsupported", chacha20Poly1305ID},
+				Ciphers: []string{"unsupported", CipherAlgoChacha20Poly1305},
 			},
 			"",
 		},
@@ -294,16 +294,16 @@ func TestUnsupportedAlgorithm(t *testing.T) {
 			Config{
 				MACs: []string{"unsupported"},
 				// MAC is used for non AAED ciphers.
-				Ciphers: []string{"aes256-ctr"},
+				Ciphers: []string{CipherAlgoAES256CTR},
 			},
 			"no common algorithm",
 		},
 		{
 			"unsupported and supported MACs",
 			Config{
-				MACs: []string{"unsupported", "hmac-sha2-256-etm@openssh.com"},
+				MACs: []string{"unsupported", MACAlgoHMACSHA256ETM},
 				// MAC is used for non AAED ciphers.
-				Ciphers: []string{"aes256-ctr"},
+				Ciphers: []string{CipherAlgoAES256CTR},
 			},
 			"",
 		},
