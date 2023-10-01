@@ -131,7 +131,7 @@ func newClientTransport(conn keyingTransport, clientVersion, serverVersion []byt
 	if config.HostKeyAlgorithms != nil {
 		t.hostKeyAlgorithms = config.HostKeyAlgorithms
 	} else {
-		t.hostKeyAlgorithms = supportedHostKeyAlgos
+		t.hostKeyAlgorithms = preferredHostKeyAlgos
 	}
 	go t.readLoop()
 	go t.kexLoop()
@@ -651,12 +651,12 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 	if !isClient && firstKeyExchange && contains(clientInit.KexAlgos, "ext-info-c") {
 		extInfo := &extInfoMsg{
 			NumExtensions: 1,
-			Payload:       make([]byte, 0, 4+15+4+len(supportedPubKeyAuthAlgosList)),
+			Payload:       make([]byte, 0, 4+15+4+len(preferredPubKeyAuthAlgosList)),
 		}
 		extInfo.Payload = appendInt(extInfo.Payload, len("server-sig-algs"))
 		extInfo.Payload = append(extInfo.Payload, "server-sig-algs"...)
-		extInfo.Payload = appendInt(extInfo.Payload, len(supportedPubKeyAuthAlgosList))
-		extInfo.Payload = append(extInfo.Payload, supportedPubKeyAuthAlgosList...)
+		extInfo.Payload = appendInt(extInfo.Payload, len(preferredPubKeyAuthAlgosList))
+		extInfo.Payload = append(extInfo.Payload, preferredPubKeyAuthAlgosList...)
 		if err := t.conn.writePacket(Marshal(extInfo)); err != nil {
 			return err
 		}

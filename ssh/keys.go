@@ -1314,7 +1314,7 @@ func passphraseProtectedOpenSSHKey(passphrase []byte) openSSHDecryptFunc {
 			return nil, err
 		}
 		switch cipherName {
-		case "aes256-ctr":
+		case CipherAlgoAES256CTR:
 			ctr := cipher.NewCTR(c, iv)
 			ctr.XORKeyStream(privKeyBlock, privKeyBlock)
 		case "aes256-cbc":
@@ -1324,7 +1324,7 @@ func passphraseProtectedOpenSSHKey(passphrase []byte) openSSHDecryptFunc {
 			cbc := cipher.NewCBCDecrypter(c, iv)
 			cbc.CryptBlocks(privKeyBlock, privKeyBlock)
 		default:
-			return nil, fmt.Errorf("ssh: unknown cipher %q, only supports %q or %q", cipherName, "aes256-ctr", "aes256-cbc")
+			return nil, fmt.Errorf("ssh: unknown cipher %q, only supports %q or %q", cipherName, CipherAlgoAES256CTR, "aes256-cbc")
 		}
 
 		return privKeyBlock, nil
@@ -1369,7 +1369,7 @@ func passphraseProtectedOpenSSHMarshaler(passphrase []byte) openSSHEncryptFunc {
 		stream := cipher.NewCTR(block, iv)
 		stream.XORKeyStream(dst, keyBlock)
 
-		return dst, "aes256-ctr", "bcrypt", string(Marshal(opts)), nil
+		return dst, CipherAlgoAES256CTR, "bcrypt", string(Marshal(opts)), nil
 	}
 }
 

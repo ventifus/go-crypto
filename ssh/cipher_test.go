@@ -17,12 +17,12 @@ import (
 )
 
 func TestDefaultCiphersExist(t *testing.T) {
-	for _, cipherAlgo := range supportedCiphers {
+	for _, cipherAlgo := range SupportedAlgorithms(false).Ciphers {
 		if _, ok := cipherModes[cipherAlgo]; !ok {
 			t.Errorf("supported cipher %q is unknown", cipherAlgo)
 		}
 	}
-	for _, cipherAlgo := range preferredCiphers {
+	for _, cipherAlgo := range InsecureAlgorithms(false).Ciphers {
 		if _, ok := cipherModes[cipherAlgo]; !ok {
 			t.Errorf("preferred cipher %q is unknown", cipherAlgo)
 		}
@@ -30,8 +30,8 @@ func TestDefaultCiphersExist(t *testing.T) {
 }
 
 func TestPacketCiphers(t *testing.T) {
-	defaultMac := "hmac-sha2-256"
-	defaultCipher := "aes128-ctr"
+	defaultMac := MACAlgoHMACSHA256
+	defaultCipher := CipherAlgoAES128CTR
 	for cipher := range cipherModes {
 		t.Run("cipher="+cipher,
 			func(t *testing.T) { testPacketCipher(t, cipher, defaultMac) })
@@ -47,7 +47,7 @@ func testPacketCipher(t *testing.T, cipher, mac string) {
 	algs := directionAlgorithms{
 		Cipher:      cipher,
 		MAC:         mac,
-		Compression: "none",
+		Compression: CompressionNone,
 	}
 	client, err := newPacketCipher(clientKeys, algs, kr)
 	if err != nil {
@@ -78,9 +78,9 @@ func testPacketCipher(t *testing.T, cipher, mac string) {
 func TestCBCOracleCounterMeasure(t *testing.T) {
 	kr := &kexResult{Hash: crypto.SHA1}
 	algs := directionAlgorithms{
-		Cipher:      aes128cbcID,
-		MAC:         "hmac-sha1",
-		Compression: "none",
+		Cipher:      CipherAlgoAES128CBC,
+		MAC:         MACAlgoHMACSHA1,
+		Compression: CompressionNone,
 	}
 	client, err := newPacketCipher(clientKeys, algs, kr)
 	if err != nil {
@@ -141,7 +141,7 @@ func TestCVE202143565(t *testing.T) {
 		constructPacket func(packetCipher) io.Reader
 	}{
 		{
-			cipher: gcm128CipherID,
+			cipher: CipherAlgoAES128GCM,
 			constructPacket: func(client packetCipher) io.Reader {
 				internalCipher := client.(*gcmCipher)
 				b := &bytes.Buffer{}
@@ -159,7 +159,7 @@ func TestCVE202143565(t *testing.T) {
 			},
 		},
 		{
-			cipher: chacha20Poly1305ID,
+			cipher: CipherAlgoChacha20Poly1305,
 			constructPacket: func(client packetCipher) io.Reader {
 				internalCipher := client.(*chacha20Poly1305Cipher)
 				b := &bytes.Buffer{}
@@ -201,13 +201,13 @@ func TestCVE202143565(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		mac := "hmac-sha2-256"
+		mac := MACAlgoHMACSHA256
 
 		kr := &kexResult{Hash: crypto.SHA1}
 		algs := directionAlgorithms{
 			Cipher:      tc.cipher,
 			MAC:         mac,
-			Compression: "none",
+			Compression: CompressionNone,
 		}
 		client, err := newPacketCipher(clientKeys, algs, kr)
 		if err != nil {

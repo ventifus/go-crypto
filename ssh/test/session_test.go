@@ -364,8 +364,8 @@ func testOneCipher(t *testing.T, cipher string, cipherOrder []string) {
 }
 
 var deprecatedCiphers = []string{
-	"aes128-cbc", "3des-cbc",
-	"arcfour128", "arcfour256",
+	ssh.CipherAlgoAES128CBC, ssh.CipherAlgoTripleDESCBC,
+	ssh.CipherAlgoRC4128, ssh.CipherAlgoRC4256,
 }
 
 func TestCiphers(t *testing.T) {
@@ -409,7 +409,7 @@ func TestKeyExchanges(t *testing.T) {
 	// diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256
 	// are not included in the default list of supported kex so we have to add them
 	// here manually.
-	kexOrder = append(kexOrder, "diffie-hellman-group-exchange-sha1", "diffie-hellman-group-exchange-sha256")
+	kexOrder = append(kexOrder, ssh.KexAlgoDHGEXSHA1, ssh.KexAlgoDHGEXSHA256)
 	// The key exchange algorithms diffie-hellman-group16-sha512 is disabled by
 	// default so we add it here manually.
 	kexOrder = append(kexOrder, "diffie-hellman-group16-sha512")
