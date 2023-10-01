@@ -131,7 +131,7 @@ func newClientTransport(conn keyingTransport, clientVersion, serverVersion []byt
 	if config.HostKeyAlgorithms != nil {
 		t.hostKeyAlgorithms = config.HostKeyAlgorithms
 	} else {
-		t.hostKeyAlgorithms = supportedHostKeyAlgos
+		t.hostKeyAlgorithms = preferredHostKeyAlgos
 	}
 	go t.readLoop()
 	go t.kexLoop()
@@ -651,12 +651,12 @@ func (t *handshakeTransport) enterKeyExchange(otherInitPacket []byte) error {
 	if !isClient && firstKeyExchange && contains(clientInit.KexAlgos, "ext-info-c") {
 		extInfo := &extInfoMsg{
 			NumExtensions: 2,
-			Payload:       make([]byte, 0, 4+15+4+len(supportedPubKeyAuthAlgosList)+4+16+4+1),
+			Payload:       make([]byte, 0, 4+15+4+len(preferredPubKeyAuthAlgosList)+4+16+4+1),
 		}
 		extInfo.Payload = appendInt(extInfo.Payload, len("server-sig-algs"))
 		extInfo.Payload = append(extInfo.Payload, "server-sig-algs"...)
-		extInfo.Payload = appendInt(extInfo.Payload, len(supportedPubKeyAuthAlgosList))
-		extInfo.Payload = append(extInfo.Payload, supportedPubKeyAuthAlgosList...)
+		extInfo.Payload = appendInt(extInfo.Payload, len(preferredPubKeyAuthAlgosList))
+		extInfo.Payload = append(extInfo.Payload, preferredPubKeyAuthAlgosList...)
 		extInfo.Payload = appendInt(extInfo.Payload, len("ping@openssh.com"))
 		extInfo.Payload = append(extInfo.Payload, "ping@openssh.com"...)
 		extInfo.Payload = appendInt(extInfo.Payload, 1)
