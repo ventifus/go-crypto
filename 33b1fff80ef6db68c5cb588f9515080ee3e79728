@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c06eca_0d078ae8",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-02T11:05:28Z",
+      "side": 1,
+      "message": "It in in InsecureAlgorithms, SHA-1 should be considered insecure nowadays. SupportedAlgorithms does not return the algorithms used by default, but those that are considered secure",
+      "parentUuid": "193b26fc_5e6fbc47",
+      "range": {
+        "startLine": 84,
+        "startChar": 59,
+        "endLine": 84,
+        "endChar": 77
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12b64647_f78dbb7a",
