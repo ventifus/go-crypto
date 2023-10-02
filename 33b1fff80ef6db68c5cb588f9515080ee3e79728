@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193b26fc_5e6fbc47",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-02T10:45:57Z",
+      "side": 1,
+      "message": "what about gex sha1 ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 59,
+        "endLine": 84,
+        "endChar": 77
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12b64647_f78dbb7a",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-02T10:45:57Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 178,
+        "startChar": 3,
+        "endLine": 178,
+        "endChar": 20
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a627f07_ca27b1bf",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-02T10:45:57Z",
+      "side": 1,
+      "message": "This is a bit ugly, and unintuitive (callers have to remember if the parameter means isClient or isServer). It looks like we don\u0027t have isClient/isServer in the public API anywhere yet. \n\nIn the larger scheme of things, the ugliness is probably OK, but IIUC, we\u0027re only doing this because of the DHGEX sha256 server implementation, which is secure for the client,  but insecure for the server (fixed prime).\n\nHow complicated would it be to make the DHGEX server side be secure? OpenSSH lets the user load the primes (which is more complicated to wire up), but if we don\u0027t have to be performant, just secure, can we just generate one, possibly using a sync.Once?",
+      "range": {
+        "startLine": 180,
+        "startChar": 25,
+        "endLine": 180,
+        "endChar": 33
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6936f1d1_734338b1",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-02T10:45:57Z",
+      "side": 1,
+      "message": "(note to self: replace this with slices.Contains in separate change)",
+      "range": {
+        "startLine": 424,
+        "startChar": 4,
+        "endLine": 424,
+        "endChar": 12
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
