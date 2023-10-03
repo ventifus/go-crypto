@@ -53,13 +53,6 @@ var supportedKexAlgos = []string{
 	kexAlgoDH1SHA1,
 }
 
-// serverForbiddenKexAlgos contains key exchange algorithms, that are forbidden
-// for the server half.
-var serverForbiddenKexAlgos = map[string]struct{}{
-	kexAlgoDHGEXSHA1:   {}, // server half implementation is only minimal to satisfy the automated tests
-	kexAlgoDHGEXSHA256: {}, // server half implementation is only minimal to satisfy the automated tests
-}
-
 // preferredKexAlgos specifies the default preference for key-exchange
 // algorithms in preference order. The diffie-hellman-group16-sha512 algorithm
 // is disabled by default because it is a bit slower than the others.
