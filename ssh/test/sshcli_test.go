@@ -89,3 +89,65 @@ func TestSSHCLIAuth(t *testing.T) {
 		t.Fatalf("user certificate authentication failed, error: %v, command output %q", err, string(out))
 	}
 }
+
+func TestSSHCLIKeyExchanges(t *testing.T) {
+	sshCLI := getSSHClient(t)
+	dir := t.TempDir()
+	keyPrivPath := filepath.Join(dir, "rsa")
+
+	for fn, content := range map[string][]byte{
+		keyPrivPath:          testdata.PEMBytes["rsa"],
+		keyPrivPath + ".pub": ssh.MarshalAuthorizedKey(testPublicKeys["rsa"]),
+	} {
+		if err := os.WriteFile(fn, content, 0600); err != nil {
+			t.Fatalf("WriteFile(%q): %v", fn, err)
+		}
+	}
+
+	for _, kex := range getAllKeyExchanges() {
+		t.Run(kex, func(t *testing.T) {
+			config := &ssh.ServerConfig{
+				Config: ssh.Config{
+					KeyExchanges: []string{kex},
+				},
+				PublicKeyCallback: func(conn ssh.ConnMetadata, key ssh.PublicKey) (*ssh.Permissions, error) {
+					if conn.User() == "testpubkey" && bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
+						return nil, nil
+					}
+
+					return nil, fmt.Errorf("pubkey for %q not acceptable", conn.User())
+				},
+			}
+			config.AddHostKey(testSigners["rsa"])
+
+			server, err := newTestServer(config)
+			if err != nil {
+				t.Fatalf("unable to start test server: %v", err)
+			}
+			defer server.Close()
+
+			cmd := testenv.Command(t, sshCLI, "-vvv", "-i", keyPrivPath, "-o", "StrictHostKeyChecking=no",
+				"-o", fmt.Sprintf("KexAlgorithms=%s", kex), "-p", server.port, "testpubkey@127.0.0.1", "true")
+			out, err := cmd.CombinedOutput()
+			if err != nil {
+				t.Fatalf("%s failed, error: %v, command output %q", kex, err, string(out))
+			}
+		})
+	}
+}
+
+func getAllKeyExchanges() []string {
+	var config ssh.Config
+	config.SetDefaults()
+	kexes := config.KeyExchanges
+	// Based on the discussion in #17230, the key exchange algorithms
+	// diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256
+	// are not included in the default list of supported kex so we have to add them
+	// here manually.
+	kexes = append(kexes, "diffie-hellman-group-exchange-sha1", "diffie-hellman-group-exchange-sha256")
+	// The key exchange algorithms diffie-hellman-group16-sha512 is disabled by
+	// default so we add it here manually.
+	kexes = append(kexes, "diffie-hellman-group16-sha512")
+
+	return kexes
+}
