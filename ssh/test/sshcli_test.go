@@ -93,3 +93,50 @@ func TestSSHCLIAuth(t *testing.T) {
 		t.Fatalf("user certificate authentication failed, error: %v, command output %q", err, string(out))
 	}
 }
+
+func TestServerDHGex(t *testing.T) {
+	sshCLI := getSSHClient(t)
+	dir := t.TempDir()
+	keyPrivPath := filepath.Join(dir, "rsa")
+
+	for fn, content := range map[string][]byte{
+		keyPrivPath:          testdata.PEMBytes["rsa"],
+		keyPrivPath + ".pub": ssh.MarshalAuthorizedKey(testPublicKeys["rsa"]),
+	} {
+		if err := os.WriteFile(fn, content, 0600); err != nil {
+			t.Fatalf("WriteFile(%q): %v", fn, err)
+		}
+	}
+
+	config := &ssh.ServerConfig{
+		Config: ssh.Config{
+			KeyExchanges: []string{"diffie-hellman-group-exchange-sha256", "diffie-hellman-group-exchange-sha1"},
+		},
+		PublicKeyCallback: func(conn ssh.ConnMetadata, key ssh.PublicKey) (*ssh.Permissions, error) {
+			if conn.User() == "testpubkey" && bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
+				return nil, nil
+			}
+
+			return nil, fmt.Errorf("pubkey for %q not acceptable", conn.User())
+		},
+	}
+	config.AddHostKey(testSigners["rsa"])
+
+	server, err := newTestServer(config)
+	if err != nil {
+		t.Fatalf("unable to start test server: %v", err)
+	}
+	defer server.Close()
+
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	for _, kex := range []string{"diffie-hellman-group-exchange-sha256", "diffie-hellman-group-exchange-sha1"} {
+		cmd := exec.CommandContext(ctx, sshCLI, "-vvv", "-i", keyPrivPath, "-o", "StrictHostKeyChecking=no",
+			"-o", fmt.Sprintf("KexAlgorithms=%s", kex), "-p", server.port, "testpubkey@127.0.0.1", "true")
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("%s failed, error: %v, command output %q", kex, err, string(out))
+		}
+	}
+}
