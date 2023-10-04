@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c79e9c9_a3c0da6b",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "looks unused?",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22269ed6_ca97a1d3",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "is probably OK for tests, but normally you\u0027d do this in a goroutine too",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0570be0b_a1da86f5",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "this looks fishy. Is this a race condition?\n\nif you structure the constructor as \n```\nfunc newTestServer() (*goTestServer, error)\n```\n\nyou don\u0027t have to worry about partial initialization",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 10
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a67e74_b59a8bf8",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "CLI",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65903dff_6938de9e",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "doesn\u0027t LookPath() do this already?",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6014d9_6afc10fe",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "use sshCLI here\n\n```\nif sshCLI \u003d\u003d \"\" { sshCLI \u003d \"ssh\" }\n```",
+      "range": {
+        "startLine": 30,
+        "startChar": 30,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10454922_88b20d95",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "needs context. `\"WriteFile(%q): %v\", keyPrivPath, err`,\n\nfold into if.\n\n```if err :\u003d ... ; err !\u003d nil {```",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b0af9b_51328d64",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "might be interesting to test authorized",
+      "range": {
+        "startLine": 60,
+        "startChar": 97,
+        "endLine": 60,
+        "endChar": 99
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c98661_67bac2f4",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-04T09:48:07Z",
+      "side": 1,
+      "message": "there is a logging callback. Maybe that is a more precise thing to hook into.",
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
