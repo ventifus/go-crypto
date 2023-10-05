@@ -410,6 +410,24 @@
       "parentUuid": "18c98661_67bac2f4",
       "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de021e53_84c7ed6f",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a2e513_ddfe4a1c",
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
