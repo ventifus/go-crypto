@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a352261_10a92c07",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "5c79e9c9_a3c0da6b",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22269ed6_ca97a1d3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-04T09:48:07Z",
       "side": 1,
       "message": "is probably OK for tests, but normally you\u0027d do this in a goroutine too",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75fbd52_555254d1",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "acceptConnections is used like this:\n\ngo s.acceptConnections()\n\nsee Start() line 73. This should be enough",
+      "parentUuid": "22269ed6_ca97a1d3",
       "range": {
         "startLine": 92,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21214a83_632f09ac",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "just defensive programming. If Start() return no error, done cannot be nil. Removed",
+      "parentUuid": "0570be0b_a1da86f5",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 10
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3a67e74_b59a8bf8",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-04T09:48:07Z",
       "side": 1,
       "message": "CLI",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15c3c373_6f9585a3",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3a67e74_b59a8bf8",
       "range": {
         "startLine": 19,
         "startChar": 11,
@@ -116,6 +212,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f610092_d3dd7138",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65903dff_6938de9e",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d6014d9_6afc10fe",
@@ -139,6 +259,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c186384_8cdd19f4",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d6014d9_6afc10fe",
+      "range": {
+        "startLine": 30,
+        "startChar": 30,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10454922_88b20d95",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-10-04T09:48:07Z",
       "side": 1,
       "message": "needs context. `\"WriteFile(%q): %v\", keyPrivPath, err`,\n\nfold into if.\n\n```if err :\u003d ... ; err !\u003d nil {```",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1907940a_941cd59f",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10454922_88b20d95",
       "range": {
         "startLine": 42,
         "startChar": 10,
@@ -198,6 +366,24 @@
       "writtenOn": "2023-10-04T09:48:07Z",
       "side": 1,
       "message": "there is a logging callback. Maybe that is a more precise thing to hook into.",
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a2e513_ddfe4a1c",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:05:59Z",
+      "side": 1,
+      "message": "The AuthLogCallback will return \"publickey\" as method for both public key and certificate authentication. However the only user able to authenticate with public key is \"testpubkey\", other user can only authenticate using certificates, so I removed userCertAuthsDone and publicKeyAuthsDone",
+      "parentUuid": "18c98661_67bac2f4",
       "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
