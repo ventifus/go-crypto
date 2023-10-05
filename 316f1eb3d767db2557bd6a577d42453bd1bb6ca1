@@ -355,6 +355,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef389063_f9c77981",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-05T18:09:31Z",
+      "side": 1,
+      "message": "For now I have made sure that the command can be executed without user interaction. We can add other checks later. Do you agree?",
+      "parentUuid": "d5b0af9b_51328d64",
+      "range": {
+        "startLine": 60,
+        "startChar": 97,
+        "endLine": 60,
+        "endChar": 99
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18c98661_67bac2f4",
         "filename": "ssh/test/sshcli_test.go",
         "patchSetId": 4
