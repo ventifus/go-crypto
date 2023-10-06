@@ -72,6 +72,24 @@
       "message": "Hello,\n\nthank you for this contribution. As you can see from the TryBots results, this change does not build. LookupPort requires two parameters.\nCould you also please explain what problem this change is supposed to fix? Thanks",
       "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f202efea_15877655",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-06T10:13:15Z",
+      "side": 1,
+      "message": "Hi, thanks for your reply. I fixed the build issue and added a test to clarify what I\u0027m trying to handle.\n\nThe basic fix is that now sshClient.Dial supports named ports (service names) like `ssh` or `https` instead of only numbers like `22` or `443`\n\nSome are defined here https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml\n\nThe net.Dial function supports this already as noted in the documentation https://pkg.go.dev/net#Dial, which means that ssh.Dial also supports this already https://pkg.go.dev/golang.org/x/crypto/ssh#Dial\n\nTo me it then seems like something was missed when sshClient.Dial does not support this same.",
+      "parentUuid": "fed4052a_020f9368",
+      "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
