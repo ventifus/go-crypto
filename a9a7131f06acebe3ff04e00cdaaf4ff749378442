@@ -16,6 +16,24 @@
       "message": "this should summarize our chat conversation and say something about why we\u0027re doing this.",
       "revId": "a9a7131f06acebe3ff04e00cdaaf4ff749378442",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fc8b27f_8146f42a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-06T14:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47d83b67_ff2f4495",
+      "revId": "a9a7131f06acebe3ff04e00cdaaf4ff749378442",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
