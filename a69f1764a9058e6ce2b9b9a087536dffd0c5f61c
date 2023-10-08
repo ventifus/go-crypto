@@ -108,6 +108,23 @@
       "message": "The commit message should be in the form\n\nssh: ....\n\nand you should also briefly explain the purpose of the patch. Thank you",
       "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f752c8f1_40d06002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-08T13:15:33Z",
+      "side": 1,
+      "message": "Please also rebase the patch on the current master. This should fix the build issues you see in TryBot",
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
