@@ -90,6 +90,24 @@
       "parentUuid": "fed4052a_020f9368",
       "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e53d94_9d007aee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-08T11:08:21Z",
+      "side": 1,
+      "message": "Thanks for the clarification and for the test case. My only concern is that `net.LookupPort` uses a background context and therefore may hang forever. For `ssh.Dial` we can pass a config with a timeout. We should have a way to pass a timeout or a context here too, but that requires an API change and so a proposal. In the meantime we could do something like this\n\n```\nctx, cancel :\u003d context.WithTimeout(context.Background(), 10*time.Second)\ndefer cancel()\n\nport, err :\u003d net.DefaultResolver.LookupPort(ctx, n, portString)\n```\n\n10 seconds should be more than enough here.\n\n@filippo@golang.org @hanwen@google.com what do you think about?",
+      "parentUuid": "f202efea_15877655",
+      "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
