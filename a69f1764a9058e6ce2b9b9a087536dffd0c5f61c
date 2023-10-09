@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e369929_a017845f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T08:39:44Z",
+      "side": 1,
+      "message": "Describe why you make this change, eg.\n\n```ssh: allow dialing named service in addition to port numbers```",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "43a3ea53_ccfc4438",
@@ -123,6 +146,29 @@
       "writtenOn": "2023-10-08T13:15:33Z",
       "side": 1,
       "message": "Please also rebase the patch on the current master. This should fix the build issues you see in TryBot",
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a9ce96_aa83bc3a",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T08:39:44Z",
+      "side": 1,
+      "message": "you\u0027re connecting to the system SSH server here, right? What happens if the test worker doesn\u0027t run SSH? Is there a way to test this hermetically?",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 63
+      },
       "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
