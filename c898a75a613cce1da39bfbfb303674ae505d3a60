@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd0d80cd_1d8442e4",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-09T17:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d87856c_202240a2",
+      "range": {
+        "startLine": 34,
+        "startChar": 61,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2492c3a8_fb52015f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-09T10:38:56Z",
       "side": 1,
       "message": "capital suggests this is a user-serviceable part. It\u0027s not.",
+      "range": {
+        "startLine": 38,
+        "startChar": 21,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2dc84a_a074a3a8",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-09T17:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2492c3a8_fb52015f",
       "range": {
         "startLine": 38,
         "startChar": 21,
@@ -83,6 +131,24 @@
       "writtenOn": "2023-10-09T10:38:56Z",
       "side": 1,
       "message": "opt: could use a for loop\n\n```\n  for fn, content :\u003d range map[string][]byte{ \"rsa\": ... } { \n  }\n```",
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6207e006_6b9421be",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-09T17:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f21e2e2_eca8974c",
       "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
