@@ -377,6 +377,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed44f38_436b2e03",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:38:56Z",
+      "side": 1,
+      "message": "disregard, this was an unfinished comment.",
+      "parentUuid": "ef389063_f9c77981",
+      "range": {
+        "startLine": 60,
+        "startChar": 97,
+        "endLine": 60,
+        "endChar": 99
+      },
+      "revId": "316f1eb3d767db2557bd6a577d42453bd1bb6ca1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18c98661_67bac2f4",

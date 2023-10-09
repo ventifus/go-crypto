@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d87856c_202240a2",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:38:56Z",
+      "side": 1,
+      "message": "nit: you can do \n\n```\nfunc (s *goTestServer) Port() string {\n\t_, port, _ :\u003d net.SplitHostPort(s.listener.Addr().String())\n\treturn port\n}\n```\n\nto avoid the odd return signature.",
+      "range": {
+        "startLine": 34,
+        "startChar": 61,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2492c3a8_fb52015f",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:38:56Z",
+      "side": 1,
+      "message": "capital suggests this is a user-serviceable part. It\u0027s not.",
+      "range": {
+        "startLine": 38,
+        "startChar": 21,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1959906_3f65da9e",
+        "filename": "ssh/test/server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:38:56Z",
+      "side": 1,
+      "message": "if you pass the channel into here, you can make s.done be a `\u003c-chan`",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 23
+      },
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f21e2e2_eca8974c",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:38:56Z",
+      "side": 1,
+      "message": "opt: could use a for loop\n\n```\n  for fn, content :\u003d range map[string][]byte{ \"rsa\": ... } { \n  }\n```",
+      "revId": "c898a75a613cce1da39bfbfb303674ae505d3a60",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
