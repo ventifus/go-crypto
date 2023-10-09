@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8960da25_f80a366c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-09T10:27:39Z",
+      "side": 1,
+      "message": "that\u0027s just part of the story. I was thinking somehting like:\n\nThere are two reasons:\n\n1. We are planning to expose recommended (secure) vs. supported (works, not necessarily recommendeD) algorithms in a follow on change. The DHGEX kex is currently only exposed as a client-side kex. To simplify the calling convention for this follow-on, we expose the server side too. \n\n2. In practice, some clients are inflexible wrt kex algorithm choice [cite reference], and DHGEX helps interoperability\n\nWe do not reocmmend the DHGEX kex as a whole: \n\n* the negotiation requires an extra round trip\n\n* the server must generate parameters (slow) or hardcode them (which defeats the security benefit over traditional DH)\n\nUsers that are concerned with security of classical DH kex should migrate to Kex based on EC or Ed25519.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "0fe331a6eb149acd0af022e86d441d4e919af8bc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2513424f_385cf86d",
