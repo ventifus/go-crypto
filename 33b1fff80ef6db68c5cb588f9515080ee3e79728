@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "170ec9c6_8dd8158b",
+        "filename": "ssh/common.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T15:00:07Z",
+      "side": 1,
+      "message": "I\u0027m suggesting to drop the words \"Please note that\", as it\u0027s superfluous.\n\nDHGEX-sha256: I don\u0027t know. it\u0027s essentially the same as diffie-hellman-group16-sha512, so if that is secure, DHGEX is too?",
+      "parentUuid": "183b6720_8e6acb91",
+      "range": {
+        "startLine": 178,
+        "startChar": 3,
+        "endLine": 178,
+        "endChar": 20
+      },
+      "revId": "33b1fff80ef6db68c5cb588f9515080ee3e79728",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a627f07_ca27b1bf",
         "filename": "ssh/common.go",
         "patchSetId": 1
