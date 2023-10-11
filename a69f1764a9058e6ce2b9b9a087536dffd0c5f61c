@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f26a374_7459cc6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T13:06:17Z",
+      "side": 1,
+      "message": "It looks like I don\u0027t have permission to do that. Can anyone help us out here?",
+      "parentUuid": "9e369929_a017845f",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "43a3ea53_ccfc4438",
@@ -150,6 +174,42 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "496b7c43_c68655fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T13:06:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f752c8f1_40d06002",
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82b2ac06_97b06676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T13:06:17Z",
+      "side": 1,
+      "message": "I tried modifying the commit message but got a permission denied. Do I need to request specific access?",
+      "parentUuid": "fa583cf5_af184816",
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a9ce96_aa83bc3a",
@@ -163,6 +223,30 @@
       "writtenOn": "2023-10-09T08:39:44Z",
       "side": 1,
       "message": "you\u0027re connecting to the system SSH server here, right? What happens if the test worker doesn\u0027t run SSH? Is there a way to test this hermetically?",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b394f47e_ee291adb",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T13:06:17Z",
+      "side": 1,
+      "message": "We have a custom handler for ssh channels defined in the test. It accepts all channels and immediately closes it. This should mean that we don\u0027t depend on the test worker setup very much except that it needs to have /etc/services or the OS equivalent populated with the ssh service which should not require actually running the ssh service.\n\nI also tried to manually insert a service in the service file /etc/services but that usually requires root and so that was not easily done.\n\nThe current setup is as hermetic as I could figure out.",
+      "parentUuid": "a5a9ce96_aa83bc3a",
       "range": {
         "startLine": 65,
         "startChar": 41,
