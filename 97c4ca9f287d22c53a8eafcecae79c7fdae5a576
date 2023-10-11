@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e631f231_486f44dd",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "473cbc93_e8885d8f",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e60a2d4_cf8717a2",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-11T14:55:07Z",
       "side": 1,
       "message": "use channelOpenDirectMsg",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a947770_648cd909",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "to do that we need to export the fields, is that a change we want to do in this PR?\n\n```\npanic: reflect: reflect.Value.SetString using value obtained using unexported field\n\ngoroutine 1783 [running]:\nreflect.flag.mustBeAssignableSlow(0xc0000ecc90?)\n        /usr/local/go/src/reflect/value.go:269 +0xb4\nreflect.flag.mustBeAssignable(...)\n        /usr/local/go/src/reflect/value.go:259\nreflect.Value.SetString({0x674680?, 0xc000252b40?, 0x9?}, {0xc000411b70, 0x9})\n        /usr/local/go/src/reflect/value.go:2461 +0x47\ngolang.org/x/crypto/ssh.Unmarshal({0xc00032995d, 0x20, 0x20}, {0x66b600?, 0xc000252b40?})\n        /home/housenkobe/go/src/crypto/ssh/messages.go:469 +0xac8\ngolang.org/x/crypto/ssh.TestDialNamedPort.func1()\n        /home/housenkobe/go/src/crypto/ssh/tcpip_test.go:47 +0x299\ncreated by golang.org/x/crypto/ssh.TestDialNamedPort in goroutine 1782\n        /home/housenkobe/go/src/crypto/ssh/tcpip_test.go:34 +0x16\n```",
+      "parentUuid": "9e60a2d4_cf8717a2",
       "range": {
         "startLine": 23,
         "startChar": 5,
@@ -64,6 +106,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10975fad_7f6f9aa0",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed25096_08247dab",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0b8e8e3_99782533",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-10-11T14:55:07Z",
       "side": 1,
       "message": "defer close the connections here.",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ad0bca_36108c65",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "They have to be closed before we loop over the srvErr chan because the server only terminates when the srvConn is closed.\n\nDo you still want me to close both connections right at the start?\n\nThen I can also defer an anonymous function that drains the srvErr chan",
+      "parentUuid": "a0b8e8e3_99782533",
       "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -104,6 +188,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe29c0a0_37a81c79",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dee87f1d_2a33b592",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 84,
+        "endChar": 10
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43c7a896_ba431335",
@@ -117,6 +225,30 @@
       "writtenOn": "2023-10-11T14:55:07Z",
       "side": 1,
       "message": "drop",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 14
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "441eed8c_87376ac8",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-11T17:12:56Z",
+      "side": 1,
+      "message": "see comment above",
+      "parentUuid": "43c7a896_ba431335",
       "range": {
         "startLine": 90,
         "startChar": 9,
