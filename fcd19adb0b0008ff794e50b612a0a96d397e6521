@@ -106,6 +106,23 @@
       "message": "@roland@golang.org do i need to rebase this against master or something?",
       "revId": "fcd19adb0b0008ff794e50b612a0a96d397e6521",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb28d62_9f3d4aac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 66368
+      },
+      "writtenOn": "2023-10-11T22:48:42Z",
+      "side": 1,
+      "message": "Comment removed by: Heschi Kreinick; Reason: cryptocurrency spam",
+      "revId": "fcd19adb0b0008ff794e50b612a0a96d397e6521",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
