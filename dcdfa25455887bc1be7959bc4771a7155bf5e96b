@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7bb6aed_72477776",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "why? We don\u0027t have equivalent tests for the other kexes. Doesn\u0027t kex_test.go cover it?",
+      "range": {
+        "startLine": 258,
+        "startChar": 5,
+        "endLine": 258,
+        "endChar": 24
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd34f37c_f4fc8df7",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "typo. Preferred\n\nyou have 4 conditions, but 2 suffices?\n\nif !(min \u003c\u003d preferred \u0026\u0026 preferred \u003c\u003d max) { .. }",
+      "range": {
+        "startLine": 706,
+        "startChar": 44,
+        "endLine": 706,
+        "endChar": 56
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c538950_f81e2c44",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "typo. \n\nI suggest `minBits :\u003d .. ; maxBits :\u003d .. `",
+      "range": {
+        "startLine": 710,
+        "startChar": 1,
+        "endLine": 710,
+        "endChar": 12
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977d4f36_7a90c0e9",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "move down to use.",
+      "range": {
+        "startLine": 711,
+        "startChar": 1,
+        "endLine": 711,
+        "endChar": 12
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "027d3ae3_98ad7b80",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "why do you have both `minimumBits` and `min`? It looks like you don\u0027t use `min` afterwards?!",
+      "range": {
+        "startLine": 712,
+        "startChar": 1,
+        "endLine": 712,
+        "endChar": 4
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252cd7c0_dcc539fe",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:38:56Z",
+      "side": 1,
+      "message": "could we loop over all kex algos to test? No need to separate out DHGex, I think.",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
