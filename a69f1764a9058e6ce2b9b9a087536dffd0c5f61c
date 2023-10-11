@@ -212,6 +212,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58964ebe_5989ef0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T13:55:47Z",
+      "side": 1,
+      "message": "this is because you\u0027ve created this through the Github bot. The github bot owns this change, so you can\u0027t change it (except by doing something with your GH PR, and having the bot upload the new version). I don\u0027t know how to edit the commit message using the bot, though.",
+      "parentUuid": "82b2ac06_97b06676",
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5a9ce96_aa83bc3a",
         "filename": "ssh/tcpip_test.go",
         "patchSetId": 2
@@ -247,6 +265,30 @@
       "side": 1,
       "message": "We have a custom handler for ssh channels defined in the test. It accepts all channels and immediately closes it. This should mean that we don\u0027t depend on the test worker setup very much except that it needs to have /etc/services or the OS equivalent populated with the ssh service which should not require actually running the ssh service.\n\nI also tried to manually insert a service in the service file /etc/services but that usually requires root and so that was not easily done.\n\nThe current setup is as hermetic as I could figure out.",
       "parentUuid": "a5a9ce96_aa83bc3a",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed12ae58_a2e9d535",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T13:55:47Z",
+      "side": 1,
+      "message": "The custom handler is running against the return of netPipe(), which means it doesn\u0027t run on port 22. You can never reach it by dialing the \"ssh\" service.\n\nCan you dial localhost:ssh directly to check if it runs SSH? You can login with pubkey auth and a \"doesnotexist\" uid, and check that you get an authentication error.\n\nIf there is no SSH running, this test has to be skipped.",
+      "parentUuid": "b394f47e_ee291adb",
       "range": {
         "startLine": 65,
         "startChar": 41,

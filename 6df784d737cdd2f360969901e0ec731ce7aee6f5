@@ -126,6 +126,24 @@
       "parentUuid": "71e53d94_9d007aee",
       "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b68311_a5e19a61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T13:55:47Z",
+      "side": 1,
+      "message": "\u003e My only concern is that net.LookupPort uses a background context and therefore may hang forever\n\ni\u0027d leave this alone. The caller can wrap the ssh.Dial() with a timer to abort after 10 seconds (or 100 seconds), but if you hardcode 10s here, and there is some case where it has to take more than 10 seconds, there is no knob people can tweak to increase the timeout.",
+      "parentUuid": "4c7b595b_1d40e402",
+      "revId": "6df784d737cdd2f360969901e0ec731ce7aee6f5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
