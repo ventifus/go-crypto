@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "473cbc93_e8885d8f",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "say something about named services.",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e60a2d4_cf8717a2",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "use channelOpenDirectMsg",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed25096_08247dab",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "drop. the test name suffices.",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b8e8e3_99782533",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "defer close the connections here.",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee87f1d_2a33b592",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "you can discard with _",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 84,
+        "endChar": 10
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c7a896_ba431335",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:55:07Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 14
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
