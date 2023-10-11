@@ -297,6 +297,30 @@
       },
       "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32118d9d_9f201dba",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-11T14:08:50Z",
+      "side": 1,
+      "message": "Actually, sshClient.Dial() sends a \"direct-tcpip\" channel open request. So you\u0027re accepting the channel in l.45, but then immediately closing it. Could you check that 1. you\u0027re getting a direct-tcpip channel request, and 2. it has port 22 in the extended info?\n\nYou\u0027re calling LookupPort on the client, but this forwarding the connection request to the server. Arguably, this should do LookupPort on the server, but the protocol requires a port number. This limitation should be documented.",
+      "parentUuid": "ed12ae58_a2e9d535",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "a69f1764a9058e6ce2b9b9a087536dffd0c5f61c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
