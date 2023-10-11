@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc35072_01472c3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 66368
+      },
+      "writtenOn": "2023-10-11T22:52:34Z",
+      "side": 1,
+      "message": "Comment removed by: Heschi Kreinick; Reason: cryptocurrency spam",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "473cbc93_e8885d8f",
