@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e615c15d_9bb76495",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-12T08:35:43Z",
+      "side": 1,
+      "message": "yes, I like your naming of the fields better.",
+      "parentUuid": "0a947770_648cd909",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ed25096_08247dab",
         "filename": "ssh/tcpip_test.go",
         "patchSetId": 5
@@ -178,6 +202,24 @@
       "side": 1,
       "message": "They have to be closed before we loop over the srvErr chan because the server only terminates when the srvConn is closed.\n\nDo you still want me to close both connections right at the start?\n\nThen I can also defer an anonymous function that drains the srvErr chan",
       "parentUuid": "a0b8e8e3_99782533",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "125e9359_84d9e502",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-12T08:35:43Z",
+      "side": 1,
+      "message": "close one (doesn\u0027t matter which) before looking at srvErr.\n\nif you don\u0027t defer close here, it leaks a connection on failure.",
+      "parentUuid": "03ad0bca_36108c65",
       "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
