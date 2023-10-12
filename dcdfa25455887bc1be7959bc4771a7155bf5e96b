@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2772b87f_2c6f8999",
+        "filename": "ssh/client_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7bb6aed_72477776",
+      "range": {
+        "startLine": 258,
+        "startChar": 5,
+        "endLine": 258,
+        "endChar": 24
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd34f37c_f4fc8df7",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-11T14:38:56Z",
       "side": 1,
       "message": "typo. Preferred\n\nyou have 4 conditions, but 2 suffices?\n\nif !(min \u003c\u003d preferred \u0026\u0026 preferred \u003c\u003d max) { .. }",
+      "range": {
+        "startLine": 706,
+        "startChar": 44,
+        "endLine": 706,
+        "endChar": 56
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3502b340_74189048",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Fixed typos, thanks. As for the conditions, I copied them from here\n\nhttps://github.com/openssh/openssh-portable/blob/master/kexgexs.c#L94\n\nI would prefer to keep them like in OpenSSH",
+      "parentUuid": "dd34f37c_f4fc8df7",
       "range": {
         "startLine": 706,
         "startChar": 44,
@@ -70,6 +118,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "925e2156_fc823699",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c538950_f81e2c44",
+      "range": {
+        "startLine": 710,
+        "startChar": 1,
+        "endLine": 710,
+        "endChar": 12
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "977d4f36_7a90c0e9",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-11T14:38:56Z",
       "side": 1,
       "message": "move down to use.",
+      "range": {
+        "startLine": 711,
+        "startChar": 1,
+        "endLine": 711,
+        "endChar": 12
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fb63da_e401ce7c",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "977d4f36_7a90c0e9",
       "range": {
         "startLine": 711,
         "startChar": 1,
@@ -116,6 +212,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ee76a2_803ae1e7",
+        "filename": "ssh/kex.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "027d3ae3_98ad7b80",
+      "range": {
+        "startLine": 712,
+        "startChar": 1,
+        "endLine": 712,
+        "endChar": 4
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "252cd7c0_dcc539fe",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-10-11T14:38:56Z",
       "side": 1,
       "message": "could we loop over all kex algos to test? No need to separate out DHGex, I think.",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "dcdfa25455887bc1be7959bc4771a7155bf5e96b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf50f1bd_d533b0d5",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-12T09:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "252cd7c0_dcc539fe",
       "range": {
         "startLine": 97,
         "startChar": 5,
