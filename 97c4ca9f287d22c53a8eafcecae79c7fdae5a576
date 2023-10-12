@@ -124,6 +124,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed769fc5_423a9273",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 59468
+      },
+      "writtenOn": "2023-10-12T10:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e615c15d_9bb76495",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ed25096_08247dab",
@@ -224,6 +248,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "928c5562_01b68c15",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 59468
+      },
+      "writtenOn": "2023-10-12T10:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "125e9359_84d9e502",
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dee87f1d_2a33b592",
@@ -308,6 +350,30 @@
       "side": 1,
       "message": "see comment above",
       "parentUuid": "43c7a896_ba431335",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 14
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f064bb_2891b31d",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 59468
+      },
+      "writtenOn": "2023-10-12T10:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "441eed8c_87376ac8",
       "range": {
         "startLine": 90,
         "startChar": 9,
