@@ -268,8 +268,9 @@ func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []str
 	return nil, "", nil, nil, errors.New("ssh: no key found")
 }
 
-// ParsePublicKey parses an SSH public key formatted for use in
-// the SSH wire protocol according to RFC 4253, section 6.6.
+// ParsePublicKey parses an SSH public key formatted for use in the SSH wire
+// protocol according to RFC 4253, section 6.6. The provided public key must
+// also implement the CryptoPublicKey interface.
 func ParsePublicKey(in []byte) (out PublicKey, err error) {
 	algo, in, ok := parseString(in)
 	if !ok {
@@ -279,6 +280,10 @@ func ParsePublicKey(in []byte) (out PublicKey, err error) {
 	out, rest, err = parsePubKey(in, string(algo))
 	if len(rest) > 0 {
 		return nil, errors.New("ssh: trailing junk in public key")
+	}
+
+	if _, ok := out.(CryptoPublicKey); !ok {
+		return nil, fmt.Errorf("ssh: public key type %q does not satisfies CryptoPublicKey interface", out.Type())
 	}
 
 	return out, err
@@ -311,7 +316,7 @@ func MarshalPrivateKeyWithPassphrase(key crypto.PrivateKey, comment string, pass
 
 // PublicKey represents a public key using an unspecified algorithm.
 //
-// Some PublicKeys provided by this package also implement CryptoPublicKey.
+// All PublicKeys provided by this package also implement CryptoPublicKey.
 type PublicKey interface {
 	// Type returns the key format name, e.g. "ssh-rsa".
 	Type() string
@@ -904,6 +909,10 @@ func (k *skECDSAPublicKey) Verify(data []byte, sig *Signature) error {
 	return errors.New("ssh: signature did not verify")
 }
 
+func (k *skECDSAPublicKey) CryptoPublicKey() crypto.PublicKey {
+	return &k.PublicKey
+}
+
 type skEd25519PublicKey struct {
 	// application is a URL-like string, typically "ssh:" for SSH.
 	// see openssh/PROTOCOL.u2f for details.
@@ -998,6 +1007,10 @@ func (k *skEd25519PublicKey) Verify(data []byte, sig *Signature) error {
 	}
 
 	return nil
+}
+
+func (k *skEd25519PublicKey) CryptoPublicKey() crypto.PublicKey {
+	return k.PublicKey
 }
 
 // NewSignerFromKey takes an *rsa.PrivateKey, *dsa.PrivateKey,

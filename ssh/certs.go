@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"crypto"
 	"errors"
 	"fmt"
 	"io"
@@ -572,6 +573,15 @@ func (c *Certificate) Type() string {
 // key. It is part of the PublicKey interface.
 func (c *Certificate) Verify(data []byte, sig *Signature) error {
 	return c.Key.Verify(data, sig)
+}
+
+// CryptoPublicKey satisfies the crypto.PublicKey interface.
+func (c *Certificate) CryptoPublicKey() crypto.PublicKey {
+	if k, ok := c.Key.(CryptoPublicKey); ok {
+		return k.CryptoPublicKey()
+	}
+
+	panic(fmt.Sprintf("ssh: public key type %q does not satisfies CryptoPublicKey interface", c.Key.Type()))
 }
 
 func parseSignatureBody(in []byte) (out *Signature, rest []byte, ok bool) {
