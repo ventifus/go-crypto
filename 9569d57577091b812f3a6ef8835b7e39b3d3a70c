@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec498829_a4e1f43c",
+        "filename": "ssh/kex.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-17T14:25:46Z",
+      "side": 1,
+      "message": "I recommend readability over following openssh, but if you really want to keep this awkward expression, link to the openssh code.",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 19
+      },
+      "revId": "9569d57577091b812f3a6ef8835b7e39b3d3a70c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
