@@ -219,6 +219,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae95874_5ee54a93",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-18T22:06:05Z",
+      "side": 1,
+      "message": "Done, and sorry for missing these.",
+      "parentUuid": "bd14ae71_eb114ae1",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0b8e8e3_99782533",
@@ -351,6 +375,30 @@
       "side": 1,
       "message": "not done.",
       "parentUuid": "fe29c0a0_37a81c79",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 84,
+        "endChar": 10
+      },
+      "revId": "97c4ca9f287d22c53a8eafcecae79c7fdae5a576",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42e8d0a_bbafaf5d",
+        "filename": "ssh/tcpip_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 66215
+      },
+      "writtenOn": "2023-10-18T22:06:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7e032f8_0177b87b",
       "range": {
         "startLine": 84,
         "startChar": 1,
