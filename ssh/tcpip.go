@@ -334,6 +334,8 @@ func (l *tcpListener) Addr() net.Addr {
 
 // Dial initiates a connection to the addr from the remote host.
 // The resulting connection has a zero LocalAddr() and RemoteAddr().
+// For TCP addresses the port section of the address can be a port number or a service name.
+// Service names are resolved at the client side, domain names are resolved on the server.
 func (c *Client) Dial(n, addr string) (net.Conn, error) {
 	var ch Channel
 	switch n {
@@ -343,11 +345,11 @@ func (c *Client) Dial(n, addr string) (net.Conn, error) {
 		if err != nil {
 			return nil, err
 		}
-		port, err := strconv.ParseUint(portString, 10, 16)
+		port, err := net.LookupPort(n, portString)
 		if err != nil {
 			return nil, err
 		}
-		ch, err = c.dial(net.IPv4zero.String(), 0, host, int(port))
+		ch, err = c.dial(net.IPv4zero.String(), 0, host, port)
 		if err != nil {
 			return nil, err
 		}
@@ -406,18 +408,18 @@ func (c *Client) DialTCP(n string, laddr, raddr *net.TCPAddr) (net.Conn, error) 
 
 // RFC 4254 7.2
 type channelOpenDirectMsg struct {
-	raddr string
-	rport uint32
-	laddr string
-	lport uint32
+	Addr       string
+	Port       uint32
+	OriginAddr string
+	OriginPort uint32
 }
 
 func (c *Client) dial(laddr string, lport int, raddr string, rport int) (Channel, error) {
 	msg := channelOpenDirectMsg{
-		raddr: raddr,
-		rport: uint32(rport),
-		laddr: laddr,
-		lport: uint32(lport),
+		Addr:       raddr,
+		Port:       uint32(rport),
+		OriginAddr: laddr,
+		OriginPort: uint32(lport),
 	}
 	ch, in, err := c.OpenChannel("direct-tcpip", Marshal(&msg))
 	if err != nil {
