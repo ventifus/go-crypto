@@ -106,6 +106,24 @@
       "parentUuid": "afb10b35_860c6140",
       "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b73d51_ea826af3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7061
+      },
+      "writtenOn": "2023-10-27T16:29:09Z",
+      "side": 1,
+      "message": "Instead of \"I think ...\" I should have said \"I checked with the rest of the release team and ...\".  Apologies for the inaccuracy.\n\nThis needs a proposal.",
+      "parentUuid": "9cbae002_59073a01",
+      "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
