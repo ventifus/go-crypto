@@ -51,7 +51,7 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 		}
 	}
 
-	initDirAlgs := func(a *directionAlgorithms) {
+	initDirAlgs := func(a *DirectionAlgorithms) {
 		if a.Cipher == "" {
 			a.Cipher = "cipher1"
 		}
@@ -63,21 +63,21 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 		}
 	}
 
-	initAlgs := func(a *algorithms) {
-		if a.kex == "" {
-			a.kex = "kex1"
+	initAlgs := func(a *NegotiatedAlgorithms) {
+		if a.Kex == "" {
+			a.Kex = "kex1"
 		}
-		if a.hostKey == "" {
-			a.hostKey = "hostkey1"
+		if a.HostKey == "" {
+			a.HostKey = "hostkey1"
 		}
-		initDirAlgs(&a.r)
-		initDirAlgs(&a.w)
+		initDirAlgs(&a.Read)
+		initDirAlgs(&a.Write)
 	}
 
 	type testcase struct {
 		name                   string
 		clientIn, serverIn     kexInitMsg
-		wantClient, wantServer algorithms
+		wantClient, wantServer NegotiatedAlgorithms
 		wantErr                bool
 	}
 
@@ -120,19 +120,19 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 				CiphersClientServer: []string{"cipher2", "cipher1"},
 				CiphersServerClient: []string{"cipher3", "cipher2"},
 			},
-			wantClient: algorithms{
-				r: directionAlgorithms{
+			wantClient: NegotiatedAlgorithms{
+				Read: DirectionAlgorithms{
 					Cipher: "cipher3",
 				},
-				w: directionAlgorithms{
+				Write: DirectionAlgorithms{
 					Cipher: "cipher2",
 				},
 			},
-			wantServer: algorithms{
-				w: directionAlgorithms{
+			wantServer: NegotiatedAlgorithms{
+				Write: DirectionAlgorithms{
 					Cipher: "cipher3",
 				},
-				r: directionAlgorithms{
+				Read: DirectionAlgorithms{
 					Cipher: "cipher2",
 				},
 			},
