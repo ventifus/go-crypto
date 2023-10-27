@@ -300,6 +300,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "342d2d19_0e809a48",
+        "filename": "sha3/keccakf_arm64.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2023-10-27T13:15:27Z",
+      "side": 1,
+      "message": "Hi @iant@google.com this CL has been pending for a long time. And in the meantime, my another optimization has been ignored, and the same implementation by another person has been merged into codebase. That truly made me feel uncomfortable and upset. I spent months for the community but nothing in returned.\n\nMay I ask for the team to review this CL?",
+      "parentUuid": "b6a7d0bf_04040077",
+      "revId": "c4633716b00221348dbca10c7798607aa070a5a5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e74529f_2de07759",
         "filename": "sha3/keccakf_arm64.s",
         "patchSetId": 20
