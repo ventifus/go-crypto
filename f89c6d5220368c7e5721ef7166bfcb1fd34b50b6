@@ -88,6 +88,24 @@
       "message": "I think this needs a proposal for the change in behavior (even if it is an improvement).  Because it is in crypto/ssh, my snap reaction is also \"are we sure there are no security implications here?\"\n\nSee https://go.dev/s/proposal\n\nIf there\u0027s already been a proposal and I missed it, add the bug number to the \ncommit message.\n\nSorry for the hiccup, but, these details matters.",
       "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbae002_59073a01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59468
+      },
+      "writtenOn": "2023-10-27T16:05:38Z",
+      "side": 1,
+      "message": "Hi David, thanks for the reply.\n\nI have no problem to create a proposal for this, but to me this doesn\u0027t sound like a notable change. Are we sure a proposal is justified for this?\n\nThe kinds of thinks that seem to go through proposals are these:\n - from issue templates: \"New external API or other notable changes\"\n - from link you shared: \"Significant changes to the language, libraries, or tools (which includes API changes in the main repo and all golang.org/x repos, as well as command-line changes to the go command)\"\n\nIMO most people won\u0027t notice this change.\n\nIt reuses a paradign used in other Dial functions.\nnet.Dial uses this same for example.\n\nSo personally I don\u0027t think it matches the requirements of needing a proposal.\n\nThat said, if you still want a proposal after this, I\u0027ll do so. please let me know.",
+      "parentUuid": "afb10b35_860c6140",
+      "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
