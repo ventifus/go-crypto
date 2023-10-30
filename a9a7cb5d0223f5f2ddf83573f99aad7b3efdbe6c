@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a920caf2_618e040d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2023-10-30T17:58:09Z",
+      "side": 1,
+      "message": "This \"fixes CVE-2023-44487\" line in the commit message implies it fixes that vulnerability, but that doesn\u0027t seem right: CVE-2023-44487 is about the possibility of excessive work in HTTP/2 servers, and this change doesn\u0027t seem to fix that problem. (The crypto repo\u0027s acme/autocert package imports golang.org/x/net/idna package, not golang.org/x/net/http2.)",
+      "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df603a9f_bb4fa5b8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
