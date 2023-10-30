@@ -96,10 +96,14 @@ func (c *connection) clientHandshake(dialAddress string, config *ClientConfig) e
 	} else {
 		c.clientVersion = []byte(packageVersion)
 	}
-	var err error
-	c.serverVersion, err = exchangeVersions(c.sshConn.conn, c.clientVersion)
-	if err != nil {
-		return err
+	if config.ServerVersion == "" {
+		var err error
+		c.serverVersion, err = ExchangeVersions(c.sshConn.conn, c.clientVersion)
+		if err != nil {
+			return err
+		}
+	} else {
+		c.serverVersion = []byte(config.ServerVersion)
 	}
 
 	c.transport = newClientTransport(
@@ -227,6 +231,11 @@ type ClientConfig struct {
 	// ClientVersion contains the version identification string that will
 	// be used for the connection. If empty, a reasonable default is used.
 	ClientVersion string
+
+	// ServerVersion is the server version to assume. If set, the
+	// version handshake is skipped. In this case, callers must
+	// explicitly call ExchangeVersions to obtain the remote version.
+	ServerVersion string
 
 	// HostKeyAlgorithms lists the public key algorithms that the client will
 	// accept from the server for host key authentication, in order of

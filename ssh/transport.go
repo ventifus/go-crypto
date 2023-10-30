@@ -288,7 +288,7 @@ const packageVersion = "SSH-2.0-Go"
 // Sends and receives a version line.  The versionLine string should
 // be US ASCII, start with "SSH-2.0-", and should not include a
 // newline. exchangeVersions returns the other side's version line.
-func exchangeVersions(rw io.ReadWriter, versionLine []byte) (them []byte, err error) {
+func ExchangeVersions(rw io.ReadWriter, versionLine []byte) (them []byte, err error) {
 	// Contrary to the RFC, we do not ignore lines that don't
 	// start with "SSH-2.0-" to make the library usable with
 	// nonconforming servers.

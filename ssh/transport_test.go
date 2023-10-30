@@ -51,7 +51,7 @@ func TestReadVersionError(t *testing.T) {
 func TestExchangeVersionsBasic(t *testing.T) {
 	v := "SSH-2.0-bla"
 	buf := bytes.NewBufferString(v + "\r\n")
-	them, err := exchangeVersions(buf, []byte("xyz"))
+	them, err := ExchangeVersions(buf, []byte("xyz"))
 	if err != nil {
 		t.Errorf("exchangeVersions: %v", err)
 	}
@@ -68,7 +68,7 @@ func TestExchangeVersions(t *testing.T) {
 	}
 	for _, c := range cases {
 		buf := bytes.NewBufferString("SSH-2.0-bla\r\n")
-		if _, err := exchangeVersions(buf, []byte(c)); err == nil {
+		if _, err := ExchangeVersions(buf, []byte(c)); err == nil {
 			t.Errorf("exchangeVersions(%q): should have failed", c)
 		}
 	}

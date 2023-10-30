@@ -118,6 +118,11 @@ type ServerConfig struct {
 	// "SSH-2.0-".
 	ServerVersion string
 
+	// ClientVersion is the client version to assume. If set, the
+	// version handshake is skipped. In this case, callers must
+	// explicitly call ExchangeVersions to obtain the remote version.
+	ClientVersion string
+
 	// BannerCallback, if present, is called and the return string is sent to
 	// the client after key exchange completed but before authentication.
 	BannerCallback func(conn ConnMetadata) string
@@ -248,10 +253,15 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 	} else {
 		s.serverVersion = []byte(packageVersion)
 	}
+
 	var err error
-	s.clientVersion, err = exchangeVersions(s.sshConn.conn, s.serverVersion)
-	if err != nil {
-		return nil, err
+	if config.ClientVersion == "" {
+		s.clientVersion, err = ExchangeVersions(s.sshConn.conn, s.serverVersion)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		s.clientVersion = []byte(config.ClientVersion)
 	}
 
 	tr := newTransport(s.sshConn.conn, config.Rand, false /* not client */)
