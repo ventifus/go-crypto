@@ -50,6 +50,23 @@
       "message": "bot connect",
       "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89e9751_b2f6c142",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-10-30T18:36:23Z",
+      "side": 1,
+      "message": "We don\u0027t arbitrarily update module dependencies to resolve vulnerabilities in unused code, as this creates unnecessary churn.",
+      "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
