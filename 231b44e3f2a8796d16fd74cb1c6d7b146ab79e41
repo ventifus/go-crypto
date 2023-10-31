@@ -39,6 +39,30 @@
       },
       "revId": "231b44e3f2a8796d16fd74cb1c6d7b146ab79e41",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e1b5bf_ea25e690",
+        "filename": "ssh/test/sshcli_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T09:51:30Z",
+      "side": 1,
+      "message": "Let me know if it is better now. Thank you!",
+      "parentUuid": "892ef8c3_8fd1cb03",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 4
+      },
+      "revId": "231b44e3f2a8796d16fd74cb1c6d7b146ab79e41",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
