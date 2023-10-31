@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a298af39_aa9e9e1f",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-31T09:59:06Z",
+      "side": 1,
+      "message": "they\u0027re the same, right? \n\n```\n\t// An alias for kexAlgoCurve25519SHA256. This kex ID will be added if is \n\t// requested kexAlgoCurve25519SHA256 for backward compatibility with XYZ.\n\tkexAlgoCurve25519SHA256LibSSH \u003d \"curve25519-sha256@libssh.org\"\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 25,
+        "endLine": 47,
+        "endChar": 76
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f5ee01_2b872365",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-31T09:59:06Z",
+      "side": 1,
+      "message": "these are preferred ciphers, right? (RC4 is missing from this list.)",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 84,
+        "endChar": 17
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c1268c_5fb63943",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-31T09:59:06Z",
+      "side": 1,
+      "message": "no, a single connection has only a single choice for each of these.\n\n```Algorithms defines a set of algorithms that can be configured in `Config` for negotation during a handshake.```",
+      "range": {
+        "startLine": 154,
+        "startChar": 37,
+        "endLine": 154,
+        "endChar": 58
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4b90c5_9c8a83d1",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-31T09:59:06Z",
+      "side": 1,
+      "message": "preferredCiphers for concistency?",
+      "range": {
+        "startLine": 388,
+        "startChar": 14,
+        "endLine": 388,
+        "endChar": 30
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b57d8aa_dc7a46e1",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 5893
+      },
+      "writtenOn": "2023-10-31T09:59:06Z",
+      "side": 1,
+      "message": "this should maintain order, ie. what you add should be next to the existing entry,\n\n```\nif idx :\u003d index(c.KeyExchanges); idx \u003e\u003d 0 { \n  c.KeyExchanges \u003d append(c.KeyExchanges[:idx + 1], kexLibSSHBlah, c.KeyExchanges[idx + 1:] ...)\n}\n```",
+      "range": {
+        "startLine": 401,
+        "startChar": 2,
+        "endLine": 404,
+        "endChar": 2
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
