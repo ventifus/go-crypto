@@ -53,6 +53,24 @@
       "message": "I believe this value of `err` is never read — if it is intentionally ignored, use a `chan struct{}` or `sync.WaitGroup` instead.",
       "revId": "dcff69181517dfdfaf8a7be5b3deb2964b0f02de",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8308b8ac_9c9f25a0",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T17:55:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d99a014a_f80be83c",
+      "revId": "dcff69181517dfdfaf8a7be5b3deb2964b0f02de",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
