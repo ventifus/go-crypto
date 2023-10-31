@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c69768_09efc67c",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T10:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a298af39_aa9e9e1f",
+      "range": {
+        "startLine": 47,
+        "startChar": 25,
+        "endLine": 47,
+        "endChar": 76
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05f5ee01_2b872365",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-31T09:59:06Z",
       "side": 1,
       "message": "these are preferred ciphers, right? (RC4 is missing from this list.)",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 84,
+        "endChar": 17
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6893e5dc_b274df81",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T10:52:24Z",
+      "side": 1,
+      "message": "I think RC4 should be considered insecure. It is returned from `InsecureAlgorithms`.",
+      "parentUuid": "05f5ee01_2b872365",
       "range": {
         "startLine": 84,
         "startChar": 1,
@@ -70,6 +118,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbd3c2ff_87760e6a",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T10:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6c1268c_5fb63943",
+      "range": {
+        "startLine": 154,
+        "startChar": 37,
+        "endLine": 154,
+        "endChar": 58
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce4b90c5_9c8a83d1",
@@ -93,6 +165,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03df9eea_a7adef37",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T10:52:24Z",
+      "side": 1,
+      "message": "I added `preferredCiphers`. It is currently the same as `supportedCiphers`",
+      "parentUuid": "ce4b90c5_9c8a83d1",
+      "range": {
+        "startLine": 388,
+        "startChar": 14,
+        "endLine": 388,
+        "endChar": 30
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b57d8aa_dc7a46e1",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-10-31T09:59:06Z",
       "side": 1,
       "message": "this should maintain order, ie. what you add should be next to the existing entry,\n\n```\nif idx :\u003d index(c.KeyExchanges); idx \u003e\u003d 0 { \n  c.KeyExchanges \u003d append(c.KeyExchanges[:idx + 1], kexLibSSHBlah, c.KeyExchanges[idx + 1:] ...)\n}\n```",
+      "range": {
+        "startLine": 401,
+        "startChar": 2,
+        "endLine": 404,
+        "endChar": 2
+      },
+      "revId": "2770c0fb06841f75bb9c83de9444ebe514b550df",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9bf2513_4d49bc8a",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-10-31T10:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b57d8aa_dc7a46e1",
       "range": {
         "startLine": 401,
         "startChar": 2,
