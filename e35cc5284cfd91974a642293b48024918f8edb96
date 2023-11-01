@@ -16,6 +16,24 @@
       "message": "internal/chacha8rand",
       "revId": "e35cc5284cfd91974a642293b48024918f8edb96",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b1dbbc3_9ab39d0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 63983
+      },
+      "writtenOn": "2023-11-01T15:34:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "96856f90_58e29b49",
+      "revId": "e35cc5284cfd91974a642293b48024918f8edb96",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
