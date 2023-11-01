@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dac886b_65f6f197",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 54223
+      },
+      "writtenOn": "2023-11-01T09:01:24Z",
+      "side": 1,
+      "message": "469875: ssh: report disconnect messages as public error type from Conn.Wait | https://go-review.googlesource.com/c/crypto/+/469875",
+      "revId": "28852664bd8f6513c61077ee0a083579368d14d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
