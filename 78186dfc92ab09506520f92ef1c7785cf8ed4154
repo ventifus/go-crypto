@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "705afb65_328eedfb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 63983
+      },
+      "writtenOn": "2023-11-07T18:35:22Z",
+      "side": 1,
+      "message": "These are from an upcoming CL from rsc https://go-review.googlesource.com/c/go/+/516859, I updated the commit message with the details.",
+      "parentUuid": "691ef325_86656911",
+      "range": {
+        "startLine": 12,
+        "startChar": 37,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "78186dfc92ab09506520f92ef1c7785cf8ed4154",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42bdd997_3281e341",
