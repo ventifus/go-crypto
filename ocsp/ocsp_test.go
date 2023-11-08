@@ -113,6 +113,23 @@ func TestOCSPDecodeWithExtensions(t *testing.T) {
 	}
 }
 
+func TestOCSPDecodeWithResponseExtensions(t *testing.T) {
+	responseBytes, _ := hex.DecodeString(ocspResponseWithNonceExtensionHex)
+	response, err := ParseResponse(responseBytes, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := len(response.ResponseExtensions); got != 1 {
+		t.Fatalf("len(response.ResponseExtensions): got %d, want 1", got)
+	}
+
+	expectedBytes, _ := hex.DecodeString(ocspResponseExtensionsValueHex)
+	extensionBytes := response.ResponseExtensions[0].Value
+	if !bytes.Equal(extensionBytes, expectedBytes) {
+		t.Errorf("response.Extensions[0]: got %x, want %x", extensionBytes, expectedBytes)
+	}
+}
+
 func TestOCSPSignature(t *testing.T) {
 	b, _ := pem.Decode([]byte(GTSRoot))
 	issuer, err := x509.ParseCertificate(b.Bytes)
@@ -201,6 +218,38 @@ func TestOCSPRequest(t *testing.T) {
 	}
 }
 
+func TestOCSPRequestWithRequestExtension(t *testing.T) {
+	requestBytes, _ := hex.DecodeString(ocspRequestWithRequestExtensionHex)
+
+	request, err := ParseRequest(requestBytes)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if got := len(request.Extensions); got != 1 {
+		t.Fatalf("len(request.Extensions): got %d, want 1", got)
+	}
+
+	if got := request.Extensions[0].Id; !got.Equal(ocspNonceExtensionOID) {
+		t.Fatalf("request.Extensions[0].ID): got %s, want %s", got, ocspNonceExtensionOID)
+	}
+
+	expectedBytes, _ := hex.DecodeString(ocspResponseExtensionsValueHex)
+	if got := request.Extensions[0].Value; !bytes.Equal(got, expectedBytes) {
+		t.Fatalf("request.Extensions[0].ID): got %x, want %x", got, expectedBytes)
+	}
+
+	marshaledRequest, err := request.Marshal()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !bytes.Equal(requestBytes, marshaledRequest) {
+		t.Errorf("Marshaled request doesn't match expected: got %x, want %x",
+			marshaledRequest, requestBytes)
+	}
+}
+
 func TestOCSPResponse(t *testing.T) {
 	leafCert, _ := hex.DecodeString(leafCertHex)
 	leaf, err := x509.ParseCertificate(leafCert)
@@ -229,7 +278,7 @@ func TestOCSPResponse(t *testing.T) {
 	extensionBytes, _ := hex.DecodeString(ocspExtensionValueHex)
 	extensions := []pkix.Extension{
 		{
-			Id:       ocspExtensionOID,
+			Id:       ocspNonceExtensionOID,
 			Critical: false,
 			Value:    extensionBytes,
 		},
@@ -238,14 +287,15 @@ func TestOCSPResponse(t *testing.T) {
 	thisUpdate := time.Date(2010, 7, 7, 15, 1, 5, 0, time.UTC)
 	nextUpdate := time.Date(2010, 7, 7, 18, 35, 17, 0, time.UTC)
 	template := Response{
-		Status:           Revoked,
-		SerialNumber:     leaf.SerialNumber,
-		ThisUpdate:       thisUpdate,
-		NextUpdate:       nextUpdate,
-		RevokedAt:        thisUpdate,
-		RevocationReason: KeyCompromise,
-		Certificate:      responder,
-		ExtraExtensions:  extensions,
+		Status:             Revoked,
+		SerialNumber:       leaf.SerialNumber,
+		ThisUpdate:         thisUpdate,
+		NextUpdate:         nextUpdate,
+		RevokedAt:          thisUpdate,
+		RevocationReason:   KeyCompromise,
+		Certificate:        responder,
+		ExtraExtensions:    extensions,
+		ResponseExtensions: extensions,
 	}
 
 	template.IssuerHash = crypto.MD5
@@ -291,6 +341,10 @@ func TestOCSPResponse(t *testing.T) {
 
 			if !reflect.DeepEqual(resp.Extensions, template.ExtraExtensions) {
 				t.Errorf("resp.Extensions: got %v, want %v", resp.Extensions, template.ExtraExtensions)
+			}
+
+			if !reflect.DeepEqual(resp.ResponseExtensions, template.ResponseExtraExtensions) {
+				t.Errorf("resp.ResponseExtensions: got %v, want %v", resp.ResponseExtensions, template.ResponseExtraExtensions)
 			}
 
 			delay := time.Since(resp.ProducedAt)
@@ -546,8 +600,9 @@ const ocspResponseWithoutCertHex = "308201d40a0100a08201cd308201c906092b06010505
 	"5a35fca2e054dfa8"
 
 // PKIX nonce extension
-var ocspExtensionOID = asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 48, 1, 2}
+var ocspNonceExtensionOID = asn1.ObjectIdentifier{1, 3, 6, 1, 5, 5, 7, 48, 1, 2}
 var ocspExtensionValueHex = "0403000000"
+var ocspResponseExtensionsValueHex = "0410ad518fe509e013ad4b58dfe1d4d878f8"
 
 const ocspResponseWithCriticalExtensionHex = "308204fe0a0100a08204f7308204f306092b0601050507300101048204e4308204e03081" +
 	"dba003020100a11b3019311730150603550403130e4f43535020526573706f6e64657218" +
@@ -623,9 +678,32 @@ const ocspResponseWithExtensionHex = "308204fb0a0100a08204f4308204f006092b060105
 	"e17afa19d6e8ae91ddf33179d16ebb6ac2c69cae8373d408ebf8c55308be6c04d93a2543" +
 	"9a94299a65a709756c7a3e568be049d5c38839"
 
+const ocspResponseWithNonceExtensionHex = "308202520a0100a082024b3082024706092b060105050730010104820238308202343082" +
+	"011ca16b3069310b300906035504061302555331153013060355040a130c6d617269616e" +
+	"6f2d636f7270311c301a060355040b13136d617269616e6f2d636f7270204465764f7073" +
+	"312530230603550403131c6d617269616e6f2d636f727020496e7465726d656469617465" +
+	"204341180f32303233313130383031323130305a307730753049300906052b0e03021a05" +
+	"0004143dc79bc7ed2d396b84a24e3b999f5c1ef2d29e58041407f24becb1585c98b88b48" +
+	"8b67a43f48b4b8166402104386fb81cf0085fb327fe6814414ad348000180f3230323331" +
+	"3130383031323130335aa011180f32303233313130393031323130335aa1023000a12330" +
+	"21301f06092b060105050730010204120410ad518fe509e013ad4b58dfe1d4d878f8300d" +
+	"06092a864886f70d01010b05000382010100894935253497f559c8497b9a825e42fc5622" +
+	"a081f635fef4daf1cf9671818800fb2e2a806d83e2516ea2198f272e13fef8dabfcfd12a" +
+	"855fe56993c278eeca2669ba9e4e648288121494a2d874af304441612eec449df3320eec" +
+	"9b6f678be48932597edde8a06b040f303ab86e9da92374f952fc7fe72ee3f32163bda4c6" +
+	"5b2e87ad320724d2d00edfa0220c98777736058e9d3066428a20af08ed1bd70a0f45f5ce" +
+	"8be9d5db307bf187314f42f44e34cc5f4da5405d3c0a809f45758a4e8734f424e81e747b" +
+	"42c783a22591f8e5e7d62586b7fa9166cb44a76a13870d9647bd39e302dffbab76730567" +
+	"f20867637766f3b8b43ee13509f25a17fd09f50b72f1"
+
 const ocspRequestHex = "3051304f304d304b3049300906052b0e03021a05000414c0fe0278fc99188891b3f212e9" +
 	"c7e1b21ab7bfc004140dfc1df0a9e0f01ce7f2b213177e6f8d157cd4f60210017f77deb3" +
 	"bcbb235d44ccc7dba62e72"
+
+const ocspRequestWithRequestExtensionHex = "30763074304d304b3049300906052b0e03021a050004143dc79bc7ed2d396b84a24e3b99" +
+	"9f5c1ef2d29e58041407f24becb1585c98b88b488b67a43f48b4b8166402104386fb81cf" +
+	"0085fb327fe6814414ad34a2233021301f06092b060105050730010204120410ad518fe50" +
+	"9e013ad4b58dfe1d4d878f8"
 
 const leafCertHex = "308203c830820331a0030201020210017f77deb3bcbb235d44ccc7dba62e72300d06092a" +
 	"864886f70d01010505003081ba311f301d060355040a1316566572695369676e20547275" +
