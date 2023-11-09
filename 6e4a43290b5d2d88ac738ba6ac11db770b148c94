@@ -16,6 +16,23 @@
       "message": "Rebased, and wrapped the commit message to 72 chars",
       "revId": "6e4a43290b5d2d88ac738ba6ac11db770b148c94",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03d60639_67ae1c4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30659
+      },
+      "writtenOn": "2023-11-09T22:29:30Z",
+      "side": 1,
+      "message": "Rebased after https://go-review.googlesource.com/c/crypto/+/534141 was merged",
+      "revId": "6e4a43290b5d2d88ac738ba6ac11db770b148c94",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
