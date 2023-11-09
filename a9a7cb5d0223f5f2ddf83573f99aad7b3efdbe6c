@@ -67,6 +67,24 @@
       "message": "We don\u0027t arbitrarily update module dependencies to resolve vulnerabilities in unused code, as this creates unnecessary churn.",
       "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6f4d0a_69663e78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30659
+      },
+      "writtenOn": "2023-11-09T22:22:56Z",
+      "side": 1,
+      "message": "Sorry for the random drive-by comment, but if that\u0027s the case, would it be possible to disabled the monthly automated updates (like https://go-review.googlesource.com/c/crypto/+/532976) as they often result in a zero-diff in used code, but cause a lot of code-churn in consumers of this package.",
+      "parentUuid": "e89e9751_b2f6c142",
+      "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
