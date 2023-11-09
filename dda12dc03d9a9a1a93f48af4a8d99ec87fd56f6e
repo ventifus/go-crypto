@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6ea98c_7e2ab89b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-11-09T20:03:39Z",
+      "side": 1,
+      "message": "Goodbye, early pandemic pending CL!",
+      "revId": "dda12dc03d9a9a1a93f48af4a8d99ec87fd56f6e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
