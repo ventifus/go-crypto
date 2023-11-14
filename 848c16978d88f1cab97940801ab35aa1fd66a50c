@@ -16,6 +16,24 @@
       "message": "I feel this is missing a test. \n\nI haven\u0027t looked in detail to the change, and it\u0027s been a while since I looked at this, but maybe you could setup a packetTransport that counts packets received/transmitted, then read N packets through it in one direction, and check that you only send N/3 packets in return.",
       "revId": "848c16978d88f1cab97940801ab35aa1fd66a50c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9120847_45eec33b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12689
+      },
+      "writtenOn": "2023-11-14T10:37:49Z",
+      "side": 1,
+      "message": "Added a couple tests. I modified memTransport instead; hope that\u0027s OK.\n\nNote that this change sends a window update whenever the window is at least 96 KiB smaller than its maximum value of 2 MiB (with the current values of the constants), regardless of the number of reads/writes/packets/whatever. Clarified this a bit in the commit message.",
+      "parentUuid": "a48e3d1a_95ade7fa",
+      "revId": "848c16978d88f1cab97940801ab35aa1fd66a50c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
