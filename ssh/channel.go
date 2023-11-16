@@ -44,6 +44,16 @@ type NewChannel interface {
 	ExtraData() []byte
 }
 
+// NewChannelWithPayload is a NewChannel that allows to send an arbitrary
+// payload in SSH_MSG_CHANNEL_OPEN_CONFIRMATION.
+type NewChannelWithPayload interface {
+	NewChannel
+
+	// AcceptWithPayload allows to set an arbitrary payload to send in
+	// SSH_MSG_CHANNEL_OPEN_CONFIRMATION.
+	AcceptWithPayload(payload []byte) (Channel, <-chan *Request, error)
+}
+
 // A Channel is an ordered, reliable, flow-controlled, duplex stream
 // that is multiplexed over an SSH connection.
 type Channel interface {
@@ -76,6 +86,16 @@ type Channel interface {
 	// safely be read and written from a different goroutine than
 	// Read and Write respectively.
 	Stderr() io.ReadWriter
+}
+
+// ChannelWithPayload is a Channel that allows to retrieve the type specific
+// data received in SSH_MSG_CHANNEL_OPEN_CONFIRMATION.
+type ChannelWithPayload interface {
+	Channel
+
+	// Payload returns the channel type specific data received in
+	// SSH_MSG_CHANNEL_OPEN_CONFIRMATION.
+	Payload() []byte
 }
 
 // Request is a request sent outside of the normal stream of
@@ -151,6 +171,7 @@ type channel struct {
 	// R/O after creation
 	chanType          string
 	extraData         []byte
+	payload           []byte
 	localId, remoteId uint32
 
 	// maxIncomingPayload and maxRemotePayload are the maximum
@@ -433,6 +454,7 @@ func (ch *channel) handlePacket(packet []byte) error {
 		}
 		ch.remoteId = msg.MyID
 		ch.maxRemotePayload = msg.MaxPacketSize
+		ch.payload = msg.TypeSpecificData
 		ch.remoteWin.add(msg.MyWindow)
 		ch.msg <- msg
 	case *windowAdjustMsg:
@@ -489,15 +511,20 @@ func (e *extChannel) Read(data []byte) (n int, err error) {
 }
 
 func (ch *channel) Accept() (Channel, <-chan *Request, error) {
+	return ch.AcceptWithPayload(nil)
+}
+
+func (ch *channel) AcceptWithPayload(payload []byte) (Channel, <-chan *Request, error) {
 	if ch.decided {
 		return nil, nil, errDecidedAlready
 	}
 	ch.maxIncomingPayload = channelMaxPacket
 	confirm := channelOpenConfirmMsg{
-		PeersID:       ch.remoteId,
-		MyID:          ch.localId,
-		MyWindow:      ch.myWindow,
-		MaxPacketSize: ch.maxIncomingPayload,
+		PeersID:          ch.remoteId,
+		MyID:             ch.localId,
+		MyWindow:         ch.myWindow,
+		MaxPacketSize:    ch.maxIncomingPayload,
+		TypeSpecificData: payload,
 	}
 	ch.decided = true
 	if err := ch.sendMessage(confirm); err != nil {
@@ -630,4 +657,8 @@ func (ch *channel) ChannelType() string {
 
 func (ch *channel) ExtraData() []byte {
 	return ch.extraData
+}
+
+func (ch *channel) Payload() []byte {
+	return ch.payload
 }
