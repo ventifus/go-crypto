@@ -327,6 +327,7 @@ func (m *mux) openChannel(chanType string, extra []byte) (*channel, error) {
 
 	switch msg := (<-ch.msg).(type) {
 	case *channelOpenConfirmMsg:
+		ch.payload = msg.TypeSpecificData
 		return ch, nil
 	case *channelOpenFailureMsg:
 		return nil, &OpenChannelError{msg.Reason, msg.Message}
