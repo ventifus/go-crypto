@@ -69,6 +69,24 @@
       "parentUuid": "e7612b5c_baa31f46",
       "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fcf7ff_23fda63b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8470
+      },
+      "writtenOn": "2023-11-23T14:59:29Z",
+      "side": 1,
+      "message": "Now that the tree is frozen, maybe we can come back to this discussion? :) Thanks",
+      "parentUuid": "d3cf5480_b442ea68",
+      "revId": "b2907f87037fac24293088ccf4fc74f2283de549",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
