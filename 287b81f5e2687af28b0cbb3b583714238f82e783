@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "794f5b5d_104b5f83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2023-11-24T16:07:46Z",
+      "side": 1,
+      "message": "(minor) Since this isn\u0027t the main repo, the issue mention needs to be fully qualified. See https://go.dev/wiki/CommitMessage#other-repos. If you install the latest version of [git-codereview](https://pkg.go.dev/golang.org/x/review/git-codereview#hdr-Hooks) and run `git-codereview hooks`, the pre-commit hook should handle this automatically for you.\n\n```suggestion\nUpdates golang/go#47027\n```",
+      "revId": "287b81f5e2687af28b0cbb3b583714238f82e783",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "76ecb19b_d5b2fcfe",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
