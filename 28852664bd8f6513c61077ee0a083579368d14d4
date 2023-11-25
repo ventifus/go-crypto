@@ -16,6 +16,23 @@
       "message": "469875: ssh: report disconnect messages as public error type from Conn.Wait | https://go-review.googlesource.com/c/crypto/+/469875",
       "revId": "28852664bd8f6513c61077ee0a083579368d14d4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67a8789a_bda03155",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-11-25T11:37:56Z",
+      "side": 1,
+      "message": "Putting on hold for proposal review.",
+      "revId": "28852664bd8f6513c61077ee0a083579368d14d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
