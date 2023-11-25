@@ -33,6 +33,24 @@
       "message": "Adding Hold+1 for acceptance of proposal #20288.",
       "revId": "27b99b755c508ea0c1b3c1555fcf33fd467002af",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9170620_bf01fc31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-11-25T11:02:56Z",
+      "side": 1,
+      "message": "Proposal has been accepted, please remove hold+1",
+      "parentUuid": "3b9b6933_5d2ab7f1",
+      "revId": "27b99b755c508ea0c1b3c1555fcf33fd467002af",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
