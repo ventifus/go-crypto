@@ -142,6 +142,23 @@
       "parentUuid": "b7b73d51_ea826af3",
       "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1571407_4caadcc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-11-27T15:44:58Z",
+      "side": 1,
+      "message": "CL 504735 was just merged. Once the proposal is approved this patch should be rebased and we should also use the context provided in DialContext when we call Dial from there. LookupPort uses context.Background internally. Thank you",
+      "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
