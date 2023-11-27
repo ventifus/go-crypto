@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ebe7be_616061b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-11-27T16:28:46Z",
+      "side": 1,
+      "message": "I\u0027m sorry for the inconvenience. I will try to understand if this issue can be fixed",
+      "revId": "5a19fd696be2b5d6639f136eb7f64b7a9734413c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
