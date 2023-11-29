@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b81763_1d2ca053",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2023-11-29T16:34:31Z",
+      "side": 1,
+      "message": "Friendly ping @roland@golang.org. Unless it\u0027s intended for this CL to be waiting.",
+      "revId": "4e281710b640eab13da438f7e3bf50b362292a83",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
