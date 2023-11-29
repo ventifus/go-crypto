@@ -16,6 +16,24 @@
       "message": "Friendly ping @roland@golang.org. Unless it\u0027s intended for this CL to be waiting.",
       "revId": "4e281710b640eab13da438f7e3bf50b362292a83",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b3f34a_478b2863",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2023-11-29T16:35:29Z",
+      "side": 1,
+      "message": "Oh sorry, completely missed this.",
+      "parentUuid": "99b81763_1d2ca053",
+      "revId": "4e281710b640eab13da438f7e3bf50b362292a83",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
