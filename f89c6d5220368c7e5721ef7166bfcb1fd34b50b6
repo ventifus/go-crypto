@@ -159,6 +159,24 @@
       "message": "CL 504735 was just merged. Once the proposal is approved this patch should be rebased and we should also use the context provided in DialContext when we call Dial from there. LookupPort uses context.Background internally. Thank you",
       "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f34dd7d_7d2dd29c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59468
+      },
+      "writtenOn": "2023-11-30T15:59:13Z",
+      "side": 1,
+      "message": "I had a look at this. To make use of the context in DialContext, I had to add a new method.\n\nrename Dial to dialContext and add ctx as parameter\n\n(new)Dial calls dialContext with a background context\n\nDialContext calls dialContext with its context.\n\ndoes that make sense?",
+      "parentUuid": "f1571407_4caadcc7",
+      "revId": "f89c6d5220368c7e5721ef7166bfcb1fd34b50b6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
