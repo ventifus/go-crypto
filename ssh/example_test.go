@@ -154,6 +154,44 @@ func ExampleNewServerConn() {
 	}
 }
 
+func ExampleServerConfig() {
+	// Minimal ServerConfig with SHA-1 algoritms disabled and supporting only
+	// password authentication.
+	algorithms := ssh.SupportedAlgorithms()
+	config := &ssh.ServerConfig{
+		Config: ssh.Config{
+			KeyExchanges: algorithms.KeyExchanges,
+			Ciphers:      algorithms.Ciphers,
+			MACs:         algorithms.MACs,
+		},
+		PublicKeyAuthAlgorithms: algorithms.PublicKeyAuths,
+		PasswordCallback: func(c ssh.ConnMetadata, pass []byte) (*ssh.Permissions, error) {
+			// Should use constant-time compare (or better, salt+hash) in
+			// a production setting.
+			if c.User() == "testuser" && string(pass) == "tiger" {
+				return nil, nil
+			}
+			return nil, fmt.Errorf("password rejected for %q", c.User())
+		},
+	}
+
+	privateBytes, err := os.ReadFile("id_rsa")
+	if err != nil {
+		log.Fatal("Failed to load private key: ", err)
+	}
+
+	private, err := ssh.ParsePrivateKey(privateBytes)
+	if err != nil {
+		log.Fatal("Failed to parse private key: ", err)
+	}
+	// Restrict host key algorithms to disable ssh-rsa.
+	signer, err := ssh.NewSignerWithAlgorithms(private.(ssh.AlgorithmSigner), []string{ssh.KeyAlgoRSASHA256, ssh.KeyAlgoRSASHA512})
+	if err != nil {
+		log.Fatal("Failed to create private key with restricted algorithms: ", err)
+	}
+	config.AddHostKey(signer)
+}
+
 func ExampleServerConfig_AddHostKey() {
 	// Minimal ServerConfig supporting only password authentication.
 	config := &ssh.ServerConfig{
@@ -260,6 +298,30 @@ func ExampleDial() {
 		log.Fatal("Failed to run: " + err.Error())
 	}
 	fmt.Println(b.String())
+}
+
+func ExampleClientConfig() {
+	var hostKey ssh.PublicKey
+	// Minimal ClientConfig with SHA-1 algoritms disabled.
+	algorithms := ssh.SupportedAlgorithms()
+	config := &ssh.ClientConfig{
+		Config: ssh.Config{
+			KeyExchanges: algorithms.KeyExchanges,
+			Ciphers:      algorithms.Ciphers,
+			MACs:         algorithms.MACs,
+		},
+		User: "username",
+		Auth: []ssh.AuthMethod{
+			ssh.Password("yourpassword"),
+		},
+		HostKeyCallback:   ssh.FixedHostKey(hostKey),
+		HostKeyAlgorithms: algorithms.HostKeys,
+	}
+	client, err := ssh.Dial("tcp", "yourserver.com:22", config)
+	if err != nil {
+		log.Fatal("Failed to dial: ", err)
+	}
+	defer client.Close()
 }
 
 func ExamplePublicKeys() {
