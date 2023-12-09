@@ -162,6 +162,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "198da6ab_f42c9a4c",
+        "filename": "ssh/common.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-12-09T15:09:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b72ff9d9_e03a1b2f",
+      "revId": "dff90d6fa676f462a243869f208601633b5262d4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e30fda95_fe8f7895",
