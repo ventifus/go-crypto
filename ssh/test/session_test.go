@@ -55,7 +55,7 @@ func TestHostKeyCheck(t *testing.T) {
 
 	// change the keys.
 	hostDB.keys[ssh.KeyAlgoRSA][25]++
-	hostDB.keys[ssh.KeyAlgoDSA][25]++
+	hostDB.keys[ssh.InsecureKeyAlgoDSA][25]++
 	hostDB.keys[ssh.KeyAlgoECDSA256][25]++
 
 	conn, err := server.TryDial(conf)
@@ -380,8 +380,8 @@ func testOneCipher(t *testing.T, cipher string, cipherOrder []string) {
 }
 
 var deprecatedCiphers = []string{
-	"aes128-cbc", "3des-cbc",
-	"arcfour128", "arcfour256",
+	ssh.InsecureCipherAES128CBC, ssh.InsecureCipherTripleDESCBC,
+	ssh.InsecureCipherRC4128, ssh.InsecureCipherRC4256,
 }
 
 func TestCiphers(t *testing.T) {
@@ -418,23 +418,13 @@ func TestMACs(t *testing.T) {
 }
 
 func TestKeyExchanges(t *testing.T) {
-	var config ssh.Config
-	config.SetDefaults()
-	kexOrder := config.KeyExchanges
-	// Based on the discussion in #17230, the key exchange algorithms
-	// diffie-hellman-group-exchange-sha1 and diffie-hellman-group-exchange-sha256
-	// are not included in the default list of supported kex so we have to add them
-	// here manually.
-	kexOrder = append(kexOrder, "diffie-hellman-group-exchange-sha1", "diffie-hellman-group-exchange-sha256")
-	// The key exchange algorithms diffie-hellman-group16-sha512 is disabled by
-	// default so we add it here manually.
-	kexOrder = append(kexOrder, "diffie-hellman-group16-sha512")
-	for _, kex := range kexOrder {
+	keyExchanges := append(ssh.SupportedAlgorithms().KeyExchanges, ssh.InsecureAlgorithms().KeyExchanges...)
+	for _, kex := range keyExchanges {
 		t.Run(kex, func(t *testing.T) {
 			server := newServer(t)
 			conf := clientConfig()
 			// Don't fail if sshd doesn't have the kex.
-			conf.KeyExchanges = append([]string{kex}, kexOrder...)
+			conf.KeyExchanges = append([]string{kex}, keyExchanges...)
 			conn, err := server.TryDial(conf)
 			if err == nil {
 				conn.Close()
