@@ -75,7 +75,7 @@ func TestNewServerConnValidationErrors(t *testing.T) {
 	}
 	serverConf = &ServerConfig{
 		Config: Config{
-			KeyExchanges: []string{kexAlgoDHGEXSHA256},
+			KeyExchanges: []string{KeyExchangeDHGEXSHA256},
 		},
 	}
 	_, _, _, err = NewServerConn(c1, serverConf)
