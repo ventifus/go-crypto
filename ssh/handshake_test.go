@@ -367,7 +367,7 @@ type errorKeyingTransport struct {
 	readLeft, writeLeft int
 }
 
-func (n *errorKeyingTransport) prepareKeyChange(*algorithms, *kexResult) error {
+func (n *errorKeyingTransport) prepareKeyChange(*NegotiatedAlgorithms, *kexResult) error {
 	return nil
 }
 
@@ -708,5 +708,60 @@ func TestPickIncompatibleHostKeyAlgo(t *testing.T) {
 	signer := pickHostKey([]Signer{multiAlgoSigner}, KeyAlgoRSA)
 	if signer != nil {
 		t.Fatal("incompatible signer returned")
+	}
+}
+
+func TestNegotiatedAlgorithms(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	var serverAlgorithms NegotiatedAlgorithms
+
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			if algorithmConn, ok := conn.(AlgorithmsConnMetadata); ok {
+				serverAlgorithms = algorithmConn.Algorithms()
+				return &Permissions{}, nil
+			}
+			return nil, errors.New("server conn does not implement AlgorithmsConnMetadata")
+		},
+	}
+	serverConf.AddHostKey(testSigners["rsa"])
+	go NewServerConn(c1, serverConf)
+
+	clientConf := &ClientConfig{
+		User:            "test",
+		Auth:            []AuthMethod{Password("testpw")},
+		HostKeyCallback: FixedHostKey(testSigners["rsa"].PublicKey()),
+	}
+
+	if conn, _, _, err := NewClientConn(c2, "", clientConf); err != nil {
+		t.Fatal(err)
+	} else {
+		if algorithmConn, ok := conn.(AlgorithmsConnMetadata); ok {
+			clientAlgorithms := algorithmConn.Algorithms()
+			if clientAlgorithms.HostKey == "" {
+				t.Fatal("negotiated client host key is empty")
+			}
+			if clientAlgorithms.KeyExchange == "" {
+				t.Fatal("negotiated client KEX is empty")
+			}
+			if clientAlgorithms.Read.Cipher == "" {
+				t.Fatal("negotiated client read cipher is empty")
+			}
+			if clientAlgorithms.Write.Cipher == "" {
+				t.Fatal("negotiated client write cipher is empty")
+			}
+			if !reflect.DeepEqual(clientAlgorithms, serverAlgorithms) {
+				t.Fatalf("negotiated client algorithms: %+v differs from negotiated server algorithms: %+v",
+					clientAlgorithms, serverAlgorithms)
+			}
+		} else {
+			t.Fatal("client conn does not implement AlgorithmsConnMetadata")
+		}
 	}
 }
