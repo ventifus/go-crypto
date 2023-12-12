@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "552e39df_32393c3e",
         "filename": "ssh/client_auth_test.go",
@@ -20,10 +21,10 @@
         "endChar": 63
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "66340b80_604f6255",
         "filename": "ssh/client_auth_test.go",
@@ -44,10 +45,10 @@
         "endChar": 63
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "bba71cb9_27fa8e97",
         "filename": "ssh/common.go",
@@ -67,10 +68,10 @@
         "endChar": 49
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3057c9a4_59f35b50",
         "filename": "ssh/common.go",
@@ -91,10 +92,10 @@
         "endChar": 49
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "85f857ec_98db4392",
         "filename": "ssh/common.go",
@@ -115,10 +116,34 @@
         "endChar": 49
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "66805975_93cef637",
+        "filename": "ssh/common.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5056
+      },
+      "writtenOn": "2023-12-12T16:11:26Z",
+      "side": 1,
+      "message": "It is more canonical to use a map-\u003etrue and then you can say\n\nif serverForbiddenKeyAlgos[xxx] {\n\ninstead of\n\nif _, ok :\u003d serverForbiddenKeyAlgos[xxx]; ok {",
+      "parentUuid": "85f857ec_98db4392",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "783aa920_e813ddb3",
         "filename": "ssh/common.go",
@@ -132,10 +157,10 @@
       "side": 1,
       "message": "why is this forbidden? Add some comments?",
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "fb394377_3935e6b0",
         "filename": "ssh/common.go",
@@ -150,10 +175,10 @@
       "message": "Done",
       "parentUuid": "783aa920_e813ddb3",
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "1e77e349_ee66382c",
         "filename": "ssh/kex.go",
@@ -173,10 +198,10 @@
         "endChar": 2
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5b28fad4_991ec17b",
         "filename": "ssh/kex.go",
@@ -197,10 +222,10 @@
         "endChar": 2
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a806df55_125d8dc5",
         "filename": "ssh/kex.go",
@@ -221,10 +246,10 @@
         "endChar": 2
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": true
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "784b5b0d_7b29f6a3",
         "filename": "ssh/kex.go",
@@ -245,8 +270,7 @@
         "endChar": 2
       },
       "revId": "feb896804c863da7dd4f14d7352671f4728a9436",
-      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705",
-      "unresolved": false
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
