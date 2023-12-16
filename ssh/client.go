@@ -12,6 +12,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"golang.org/x/crypto/ssh/internal/fips"
 )
 
 // Client implements a traditional SSH client that supports shells,
@@ -71,6 +73,23 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan NewChannel, <-chan *Request, error) {
 	fullConf := *config
 	fullConf.SetDefaults()
+	if len(config.HostKeyAlgorithms) == 0 {
+		if fips.Enabled {
+			config.HostKeyAlgorithms = fipsHostKeyAlgos
+		} else {
+			config.HostKeyAlgorithms = preferredHostKeyAlgos
+		}
+	} else {
+		var hostKeyAlgos []string
+		supported := allAlgorithms().HostKeys
+		for _, h := range config.HostKeyAlgorithms {
+			// Ignore unsupported host key algorithms.
+			if contains(supported, h) {
+				hostKeyAlgos = append(hostKeyAlgos, h)
+			}
+		}
+		config.HostKeyAlgorithms = hostKeyAlgos
+	}
 	if fullConf.HostKeyCallback == nil {
 		c.Close()
 		return nil, nil, nil, errors.New("ssh: must specify HostKeyCallback")

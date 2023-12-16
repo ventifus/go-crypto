@@ -324,9 +324,7 @@ func TestMethodInvalidAlgorithm(t *testing.T) {
 }
 
 func TestClientHMAC(t *testing.T) {
-	supportedAlgos := SupportedAlgorithms()
-	insecureAlgos := InsecureAlgorithms()
-	supportedMACs := append(supportedAlgos.MACs, insecureAlgos.MACs...)
+	supportedMACs := allAlgorithms().MACs
 	for _, mac := range supportedMACs {
 		config := &ClientConfig{
 			User: "testuser",
