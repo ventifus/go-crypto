@@ -10,6 +10,8 @@ import (
 	"fmt"
 	"io"
 	"strings"
+
+	"golang.org/x/crypto/ssh/internal/fips"
 )
 
 type authResult int
@@ -311,6 +313,13 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 	origSignersLen := len(signers)
 	for idx := 0; idx < len(signers); idx++ {
 		signer := signers[idx]
+		if fips.Enabled {
+			if rsaKey, ok := signer.PublicKey().(*rsaPublicKey); ok {
+				if rsaKey.N.BitLen() < requiredFIPSRSASize {
+					continue
+				}
+			}
+		}
 		pub := signer.PublicKey()
 		as, algo, err := pickSignatureAlgorithm(signer, extensions)
 		if err != nil && errSigAlgo == nil {
