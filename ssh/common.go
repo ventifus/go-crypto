@@ -15,6 +15,8 @@ import (
 	_ "crypto/sha1"
 	_ "crypto/sha256"
 	_ "crypto/sha512"
+
+	"golang.org/x/crypto/ssh/internal/fips"
 )
 
 // These are string constants in the SSH protocol.
@@ -84,6 +86,9 @@ var (
 	// package and which have security issues.
 	insecureKexAlgos = []string{InsecureKeyExchangeDH14SHA1, InsecureKeyExchangeDH1SHA1,
 		InsecureKeyExchangeDHGEXSHA1}
+	// fipsKexAlgos specifies FIPS approved key-exchange algorithms implemented
+	// by this package.
+	fipsKexAlgos = []string{KeyExchangeECDHP256, KeyExchangeECDHP384}
 	// supportedCiphers specifies cipher algorithms implemented by this package
 	// in preference order, excluding those with security issues.
 	supportedCiphers = []string{
@@ -100,6 +105,12 @@ var (
 		InsecureCipherTripleDESCBC,
 		InsecureCipherRC4256, InsecureCipherRC4128, InsecureCipherRC4,
 	}
+	// fipsCiphers specifies FIPS approved cipher algorithms implemented by this
+	// package.
+	fipsCiphers = []string{
+		CipherAES128GCM, CipherAES256GCM,
+		CipherAES128CTR, CipherAES192CTR, CipherAES256CTR,
+	}
 	// supportedMACs specifies MAC algorithms implemented by this package in
 	// preference order, excluding those with security issues.
 	supportedMACs = []string{HMACSHA256ETM, HMACSHA512ETM,
@@ -113,6 +124,11 @@ var (
 	// insecureMACs specifies MAC algorithms implemented by this
 	// package and which have security issues.
 	insecureMACs = []string{InsecureHMACSHA196, InsecureHMACSHA1}
+	// fipsMACs specifies FIPS approved MAC algorithms implemented by this
+	// package.
+	fipsMACs = []string{HMACSHA256ETM, HMACSHA512ETM,
+		HMACSHA256, HMACSHA512,
+	}
 	// supportedHostKeyAlgos specifies the supported host-key algorithms (i.e.
 	// methods of authenticating servers) implemented by this package in
 	// preference order, excluding those with security issues.
@@ -143,6 +159,15 @@ var (
 	insecureHostKeyAlgos = []string{KeyAlgoRSA, InsecureKeyAlgoDSA,
 		CertAlgoRSAv01, InsecureCertAlgoDSAv01,
 	}
+	// fipsHostKeyAlgos specifies FIPS approved host-key algorithms implemented
+	// by this package.
+	fipsHostKeyAlgos = []string{
+		CertAlgoRSASHA256v01, CertAlgoRSASHA512v01,
+		CertAlgoECDSA256v01, CertAlgoECDSA384v01,
+
+		KeyAlgoECDSA256, KeyAlgoECDSA384,
+		KeyAlgoRSASHA256, KeyAlgoRSASHA512,
+	}
 	// supportedPubKeyAuthAlgos specifies the supported client public key
 	// authentication algorithms. Note that this doesn't include certificate
 	// types since those use the underlying algorithm. Order is irrelevant.
@@ -166,6 +191,12 @@ var (
 	// insecurePubKeyAuthAlgos specifies client public key authentication
 	// algorithms implemented by this package and which have security issues.
 	insecurePubKeyAuthAlgos = []string{KeyAlgoRSA, InsecureKeyAlgoDSA}
+	// fipsPubKeyAuthAlgos specifies FIPS approved public key authentication
+	// algorithms implemented by this package.
+	fipsPubKeyAuthAlgos = []string{
+		KeyAlgoECDSA256, KeyAlgoECDSA384,
+		KeyAlgoRSASHA256, KeyAlgoRSASHA512,
+	}
 )
 
 // NegotiatedAlgorithms defines algorithms negotiated between client and server.
@@ -186,10 +217,31 @@ type Algorithms struct {
 	PublicKeyAuths []string
 }
 
+// isFIPSSupportedRSASize returns true if the specified size (in bits) is
+// supported for RSA keys in FIPS mode.
+func isFIPSSupportedRSASize(size int) bool {
+	return size == 2048 || size == 3072 || size == 4096
+}
+
+// isFIPSSupportedECDSASize returns true if the specified size (in bits) is
+// supported for ECDSA keys in FIPS mode.
+func isFIPSSupportedECDSASize(size int) bool {
+	return size == 256 || size == 384
+}
+
 // SupportedAlgorithms returns algorithms currently implemented by this package,
 // excluding those with security issues, which are returned by
 // InsecureAlgorithms. The algorithms listed here are in preference order.
 func SupportedAlgorithms() Algorithms {
+	if fips.Enabled {
+		return Algorithms{
+			Ciphers:        fipsCiphers,
+			MACs:           fipsMACs,
+			KeyExchanges:   fipsKexAlgos,
+			HostKeys:       fipsHostKeyAlgos,
+			PublicKeyAuths: fipsPubKeyAuthAlgos,
+		}
+	}
 	return Algorithms{
 		Ciphers:        supportedCiphers,
 		MACs:           supportedMACs,
@@ -202,12 +254,28 @@ func SupportedAlgorithms() Algorithms {
 // InsecureAlgorithms returns algorithms currently implemented by this package
 // and which have security issues.
 func InsecureAlgorithms() Algorithms {
+	if fips.Enabled {
+		return Algorithms{}
+	}
 	return Algorithms{
 		KeyExchanges:   insecureKexAlgos,
 		Ciphers:        insecureCiphers,
 		MACs:           insecureMACs,
 		HostKeys:       insecureHostKeyAlgos,
 		PublicKeyAuths: insecurePubKeyAuthAlgos,
+	}
+}
+
+func allAlgorithms() Algorithms {
+	supported := SupportedAlgorithms()
+	insecure := InsecureAlgorithms()
+
+	return Algorithms{
+		KeyExchanges:   append(supported.KeyExchanges, insecure.KeyExchanges...),
+		Ciphers:        append(supported.Ciphers, insecure.Ciphers...),
+		MACs:           append(supported.MACs, insecure.MACs...),
+		HostKeys:       append(supported.HostKeys, insecure.HostKeys...),
+		PublicKeyAuths: append(supported.PublicKeyAuths, insecure.PublicKeyAuths...),
 	}
 }
 
@@ -397,28 +465,38 @@ type Config struct {
 // exported for testing: Configs passed to SSH functions are copied and have
 // default values set automatically.
 func (c *Config) SetDefaults() {
+	algos := allAlgorithms()
 	if c.Rand == nil {
 		c.Rand = rand.Reader
 	}
-	if c.Ciphers == nil {
-		c.Ciphers = preferredCiphers
-	}
-	var ciphers []string
-	for _, c := range c.Ciphers {
-		if cipherModes[c] != nil {
-			// Ignore the cipher if we have no cipherModes definition.
-			ciphers = append(ciphers, c)
+	if len(c.Ciphers) == 0 {
+		if fips.Enabled {
+			c.Ciphers = fipsCiphers
+		} else {
+			c.Ciphers = preferredCiphers
 		}
+	} else {
+		var ciphers []string
+		for _, c := range c.Ciphers {
+			// Ignore unsupported ciphers.
+			if contains(algos.Ciphers, c) {
+				ciphers = append(ciphers, c)
+			}
+		}
+		c.Ciphers = ciphers
 	}
-	c.Ciphers = ciphers
 
-	if c.KeyExchanges == nil {
-		c.KeyExchanges = preferredKexAlgos
+	if len(c.KeyExchanges) == 0 {
+		if fips.Enabled {
+			c.KeyExchanges = fipsKexAlgos
+		} else {
+			c.KeyExchanges = preferredKexAlgos
+		}
 	}
 	var kexs []string
 	for _, k := range c.KeyExchanges {
-		if kexAlgoMap[k] != nil {
-			// Ignore the KEX if we have no kexAlgoMap definition.
+		// Ignore unsupported KEXs.
+		if contains(algos.KeyExchanges, k) {
 			kexs = append(kexs, k)
 			if k == KeyExchangeCurve25519SHA256 && !contains(c.KeyExchanges, keyExchangeCurve25519SHA256LibSSH) {
 				kexs = append(kexs, keyExchangeCurve25519SHA256LibSSH)
@@ -427,17 +505,22 @@ func (c *Config) SetDefaults() {
 	}
 	c.KeyExchanges = kexs
 
-	if c.MACs == nil {
-		c.MACs = preferredMACs
-	}
-	var macs []string
-	for _, m := range c.MACs {
-		if macModes[m] != nil {
-			// Ignore the MAC if we have no macModes definition.
-			macs = append(macs, m)
+	if len(c.MACs) == 0 {
+		if fips.Enabled {
+			c.MACs = fipsMACs
+		} else {
+			c.MACs = preferredMACs
 		}
+	} else {
+		var macs []string
+		for _, m := range c.MACs {
+			// Ignore unsupported MACs.
+			if contains(algos.MACs, m) {
+				macs = append(macs, m)
+			}
+		}
+		c.MACs = macs
 	}
-	c.MACs = macs
 
 	if c.RekeyThreshold == 0 {
 		// cipher specific default
