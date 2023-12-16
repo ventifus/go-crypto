@@ -11,6 +11,8 @@ import (
 	"io"
 	"net"
 	"strings"
+
+	"golang.org/x/crypto/ssh/internal/fips"
 )
 
 // The Permissions type holds fine-grained permissions that are
@@ -161,10 +163,45 @@ type ServerConfig struct {
 	GSSAPIWithMICConfig *GSSAPIWithMICConfig
 }
 
-// AddHostKey adds a private key as a host key. If an existing host
-// key exists with the same public key format, it is replaced. Each server
-// config must have at least one host key.
+// AddHostKey adds a private key as a host key. If an existing host key exists
+// with the same public key format, it is replaced. If the key contains
+// unsupported algorithms it is silently ignored. Each server config must have
+// at least one host key.
 func (s *ServerConfig) AddHostKey(key Signer) {
+	if fips.Enabled {
+		if rsaKey, ok := key.PublicKey().(*rsaPublicKey); ok {
+			if !isFIPSSupportedRSASize(rsaKey.N.BitLen()) {
+				return
+			}
+		}
+		if ecdsaKey, ok := key.PublicKey().(*ecdsaPublicKey); ok {
+			if !isFIPSSupportedECDSASize(ecdsaKey.Params().BitSize) {
+				return
+			}
+		}
+
+		keyFormat := key.PublicKey().Type()
+		supportedAlgos := allAlgorithms().HostKeys
+
+		switch s := key.(type) {
+		case MultiAlgorithmSigner:
+			for _, algo := range algorithmsForKeyFormat(keyFormat) {
+				if contains(s.Algorithms(), underlyingAlgo(algo)) && !contains(supportedAlgos, algo) {
+					return
+				}
+			}
+		case AlgorithmSigner:
+			for _, algo := range algorithmsForKeyFormat(keyFormat) {
+				if !contains(supportedAlgos, algo) {
+					return
+				}
+			}
+		default:
+			if !contains(supportedAlgos, keyFormat) {
+				return
+			}
+		}
+	}
 	for i, k := range s.hostKeys {
 		if k.PublicKey().Type() == key.PublicKey().Type() {
 			s.hostKeys[i] = key
@@ -243,14 +280,21 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 		fullConf.MaxAuthTries = 6
 	}
 	if len(fullConf.PublicKeyAuthAlgorithms) == 0 {
-		fullConf.PublicKeyAuthAlgorithms = preferredPubKeyAuthAlgos
+		if fips.Enabled {
+			fullConf.PublicKeyAuthAlgorithms = fipsPubKeyAuthAlgos
+		} else {
+			fullConf.PublicKeyAuthAlgorithms = preferredPubKeyAuthAlgos
+		}
 	} else {
+		var pubKeyAlgos []string
+		supported := allAlgorithms().PublicKeyAuths
 		for _, algo := range fullConf.PublicKeyAuthAlgorithms {
-			if !contains(SupportedAlgorithms().PublicKeyAuths, algo) && !contains(InsecureAlgorithms().PublicKeyAuths, algo) {
-				c.Close()
-				return nil, nil, nil, fmt.Errorf("ssh: unsupported public key authentication algorithm %s", algo)
+			// Ignore unsupported public key authentication algorithms.
+			if contains(supported, algo) {
+				pubKeyAlgos = append(pubKeyAlgos, algo)
 			}
 		}
+		fullConf.PublicKeyAuthAlgorithms = pubKeyAlgos
 	}
 
 	s := &connection{
@@ -644,6 +688,19 @@ userAuthLoop:
 			pubKey, err := ParsePublicKey(pubKeyData)
 			if err != nil {
 				return nil, err
+			}
+			if fips.Enabled {
+				if rsaKey, ok := pubKey.(*rsaPublicKey); ok {
+					if !isFIPSSupportedRSASize(rsaKey.N.BitLen()) {
+						return nil, fmt.Errorf("unsupported RSA public key, size: %d not allowed", rsaKey.N.BitLen())
+					}
+				}
+				if ecdsaKey, ok := pubKey.(*ecdsaPublicKey); ok {
+					if !isFIPSSupportedECDSASize(ecdsaKey.Params().BitSize) {
+						return nil, fmt.Errorf("unsupported ECDSA public key, size: %d not allowed", ecdsaKey.Params().BitSize)
+					}
+				}
+
 			}
 
 			candidate, ok := cache.get(s.user, pubKeyData)
