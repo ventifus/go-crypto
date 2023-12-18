@@ -120,6 +120,19 @@ func algorithmsForKeyFormat(keyFormat string) []string {
 	}
 }
 
+// keyFormatForAlgorithm is the inverse of algorithmsForKeyFormat.
+func keyFormatForAlgorithm(algo string) string {
+	if contains(algorithmsForKeyFormat(KeyAlgoRSA), algo) {
+		return KeyAlgoRSA
+	}
+
+	if contains(algorithmsForKeyFormat(CertAlgoRSAv01), algo) {
+		return CertAlgoRSAv01
+	}
+
+	return algo
+}
+
 // isRSA returns whether algo is a supported RSA algorithm, including certificate
 // algorithms.
 func isRSA(algo string) bool {

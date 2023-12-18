@@ -174,3 +174,20 @@ func TestFindAgreedAlgorithms(t *testing.T) {
 		})
 	}
 }
+
+func TestKeyFormatForAlgorithmInverse(t *testing.T) {
+	formats := []string{KeyAlgoRSA, CertAlgoRSAv01, "random-format"}
+
+	for _, format := range formats {
+		algos := algorithmsForKeyFormat(format)
+		if len(algos) == 0 {
+			t.Errorf("expect list of algos for format %s to not be empty", format)
+		}
+		for _, algo := range algos {
+			testFormat := keyFormatForAlgorithm(algo)
+			if testFormat != format {
+				t.Errorf("got format %s for algo %s, want %s", testFormat, algo, format)
+			}
+		}
+	}
+}

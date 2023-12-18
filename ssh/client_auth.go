@@ -409,6 +409,7 @@ func validateKey(key PublicKey, algo string, user string, c packetConn) (bool, e
 
 func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
 	pubKey := key.Marshal()
+	keyType := key.Type()
 
 	for {
 		packet, err := c.readPacket()
@@ -425,7 +426,7 @@ func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
 			if err := Unmarshal(packet, &msg); err != nil {
 				return false, err
 			}
-			if msg.Algo != algo || !bytes.Equal(msg.PubKey, pubKey) {
+			if (msg.Algo != algo && keyFormatForAlgorithm(msg.Algo) != keyType) || !bytes.Equal(msg.PubKey, pubKey) {
 				return false, nil
 			}
 			return true, nil
