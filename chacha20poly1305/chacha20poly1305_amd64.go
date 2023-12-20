@@ -20,7 +20,8 @@ func chacha20Poly1305Open(dst []byte, key []uint32, src, ad []byte) bool
 func chacha20Poly1305Seal(dst []byte, key []uint32, src, ad []byte)
 
 var (
-	useAVX2 = cpu.X86.HasAVX2 && cpu.X86.HasBMI2
+	useAVX2   = cpu.X86.HasAVX2 && cpu.X86.HasBMI2
+	useAVX512 = cpu.X86.HasAVX512 && cpu.X86.HasAVX512F
 )
 
 // setupState writes a ChaCha20 input matrix to state. See
