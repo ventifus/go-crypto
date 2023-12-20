@@ -20,7 +20,8 @@ func chacha20Poly1305Open(dst []byte, key []uint32, src, ad []byte) bool
 func chacha20Poly1305Seal(dst []byte, key []uint32, src, ad []byte)
 
 var (
-	useAVX2 = cpu.X86.HasAVX2 && cpu.X86.HasBMI2
+	useAVX2   = cpu.X86.HasAVX2 && cpu.X86.HasBMI2
+	useAVX512 = cpu.X86.HasAVX512 && cpu.X86.HasAVX512F
 )
 
 // setupState writes a ChaCha20 input matrix to state. See
@@ -47,9 +48,9 @@ func setupState(state *[16]uint32, key *[32]byte, nonce []byte) {
 }
 
 func (c *chacha20poly1305) seal(dst, nonce, plaintext, additionalData []byte) []byte {
-	if !cpu.X86.HasSSSE3 {
-		return c.sealGeneric(dst, nonce, plaintext, additionalData)
-	}
+	//	if !cpu.X86.HasSSSE3 {
+	//		return c.sealGeneric(dst, nonce, plaintext, additionalData)
+	//	}
 
 	var state [16]uint32
 	setupState(&state, &c.key, nonce)
@@ -63,9 +64,9 @@ func (c *chacha20poly1305) seal(dst, nonce, plaintext, additionalData []byte) []
 }
 
 func (c *chacha20poly1305) open(dst, nonce, ciphertext, additionalData []byte) ([]byte, error) {
-	if !cpu.X86.HasSSSE3 {
-		return c.openGeneric(dst, nonce, ciphertext, additionalData)
-	}
+	//	if !cpu.X86.HasSSSE3 {
+	//		return c.openGeneric(dst, nonce, ciphertext, additionalData)
+	//	}
 
 	var state [16]uint32
 	setupState(&state, &c.key, nonce)
