@@ -98,3 +98,72 @@ func TestSSHCLIAuth(t *testing.T) {
 		t.Fatalf("user certificate authentication failed, error: %v, command output %q", err, string(out))
 	}
 }
+
+func TestCBCETM(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skipf("always fails on Windows, see #64403")
+	}
+	sshCLI := sshClient(t)
+	dir := t.TempDir()
+	keyPrivPath := filepath.Join(dir, "rsa")
+
+	for fn, content := range map[string][]byte{
+		keyPrivPath: testdata.PEMBytes["rsa"],
+	} {
+		if err := os.WriteFile(fn, content, 0600); err != nil {
+			t.Fatalf("WriteFile(%q): %v", fn, err)
+		}
+	}
+
+	for _, tt := range []struct {
+		name   string
+		cipher string
+		mac    string
+	}{
+		{
+			"AES-CBC",
+			"aes128-cbc",
+			"hmac-sha2-512-etm@openssh.com",
+		},
+		{
+			"3DES-CBC",
+			"3des-cbc",
+			"hmac-sha2-256-etm@openssh.com",
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			config := &ssh.ServerConfig{
+				Config: ssh.Config{
+					Ciphers: []string{tt.cipher},
+					MACs:    []string{tt.mac},
+				},
+				PublicKeyCallback: func(conn ssh.ConnMetadata, key ssh.PublicKey) (*ssh.Permissions, error) {
+					if conn.User() == "testuser" && bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
+						return nil, nil
+					}
+
+					return nil, fmt.Errorf("pubkey for %q not acceptable", conn.User())
+				},
+			}
+			config.AddHostKey(testSigners["rsa"])
+
+			server, err := newTestServer(config)
+			if err != nil {
+				t.Fatalf("unable to start test server: %v", err)
+			}
+			defer server.Close()
+
+			port, err := server.port()
+			if err != nil {
+				t.Fatalf("unable to get server port: %v", err)
+			}
+
+			cmd := testenv.Command(t, sshCLI, "-vvv", "-i", keyPrivPath, "-o", "StrictHostKeyChecking=no",
+				"-p", port, "-c", tt.cipher, "-m", tt.mac, "testuser@127.0.0.1", "true")
+			out, err := cmd.CombinedOutput()
+			if err != nil {
+				t.Fatalf("connection failed, error: %v, command output %q", err, string(out))
+			}
+		})
+	}
+}
