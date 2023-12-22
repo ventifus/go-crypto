@@ -416,11 +416,13 @@ func (c *gcmCipher) readCipherPacket(seqNum uint32, r io.Reader) ([]byte, error)
 type cbcCipher struct {
 	mac       hash.Hash
 	macSize   uint32
+	etm       bool
 	decrypter cipher.BlockMode
 	encrypter cipher.BlockMode
 
 	// The following members are to avoid per-packet allocations.
 	seqNumBytes [4]byte
+	lengthBytes [4]byte
 	packetData  []byte
 	macResult   []byte
 
@@ -431,12 +433,14 @@ type cbcCipher struct {
 
 func newCBCCipher(c cipher.Block, key, iv, macKey []byte, algs directionAlgorithms) (packetCipher, error) {
 	cbc := &cbcCipher{
-		mac:        macModes[algs.MAC].new(macKey),
 		decrypter:  cipher.NewCBCDecrypter(c, iv),
 		encrypter:  cipher.NewCBCEncrypter(c, iv),
 		packetData: make([]byte, 1024),
 	}
-	if cbc.mac != nil {
+	macMode := macModes[algs.MAC]
+	if macMode != nil {
+		cbc.mac = macMode.new(macKey)
+		cbc.etm = macMode.etm
 		cbc.macSize = uint32(cbc.mac.Size())
 	}
 
@@ -491,25 +495,30 @@ func (e cbcError) Error() string { return string(e) }
 
 func (c *cbcCipher) readCipherPacket(seqNum uint32, r io.Reader) ([]byte, error) {
 	p, err := c.readCipherPacketLeaky(seqNum, r)
-	if err != nil {
-		if _, ok := err.(cbcError); ok {
-			// Verification error: read a fixed amount of
-			// data, to make distinguishing between
-			// failing MAC and failing length check more
-			// difficult.
-			io.CopyN(io.Discard, r, int64(c.oracleCamouflage))
-		}
+	if _, ok := err.(cbcError); ok {
+		// Verification error: read a fixed amount of
+		// data, to make distinguishing between
+		// failing MAC and failing length check more
+		// difficult.
+		io.CopyN(io.Discard, r, int64(c.oracleCamouflage))
 	}
 	return p, err
 }
 
 func (c *cbcCipher) readCipherPacketLeaky(seqNum uint32, r io.Reader) ([]byte, error) {
 	blockSize := c.decrypter.BlockSize()
+	startEncData := 0
+	if c.etm {
+		startEncData = 4
+	}
 
 	// Read the header, which will include some of the subsequent data in the
 	// case of block ciphers - this is copied back to the payload later.
 	// How many bytes of payload/padding will be read with this first read.
 	firstBlockLength := uint32((prefixLen + blockSize - 1) / blockSize * blockSize)
+	if c.etm {
+		firstBlockLength += uint32(startEncData)
+	}
 	firstBlock := c.packetData[:firstBlockLength]
 	if _, err := io.ReadFull(r, firstBlock); err != nil {
 		return nil, err
@@ -517,19 +526,37 @@ func (c *cbcCipher) readCipherPacketLeaky(seqNum uint32, r io.Reader) ([]byte, e
 
 	c.oracleCamouflage = maxPacket + 4 + c.macSize - firstBlockLength
 
-	c.decrypter.CryptBlocks(firstBlock, firstBlock)
-	length := binary.BigEndian.Uint32(firstBlock[:4])
+	var length uint32
+	if c.mac != nil {
+		c.mac.Reset()
+		binary.BigEndian.PutUint32(c.seqNumBytes[:], seqNum)
+		c.mac.Write(c.seqNumBytes[:])
+		if c.etm {
+			length = binary.BigEndian.Uint32(firstBlock[:4])
+			binary.BigEndian.PutUint32(c.lengthBytes[:], length)
+			c.mac.Write(c.lengthBytes[:])
+			c.mac.Write(firstBlock[4:])
+		}
+	}
+
+	if c.etm {
+		c.decrypter.CryptBlocks(firstBlock[4:], firstBlock[4:])
+	} else {
+		c.decrypter.CryptBlocks(firstBlock, firstBlock)
+		length = binary.BigEndian.Uint32(firstBlock[:4])
+	}
+
 	if length > maxPacket {
 		return nil, cbcError("ssh: packet too large")
 	}
-	if length+4 < maxUInt32(cbcMinPacketSize, blockSize) {
+	if length+4+uint32(startEncData) < maxUInt32(cbcMinPacketSize, blockSize) {
 		// The minimum size of a packet is 16 (or the cipher block size, whichever
 		// is larger) bytes.
 		return nil, cbcError("ssh: packet too small")
 	}
 	// The length of the packet (including the length field but not the MAC) must
 	// be a multiple of the block size or 8, whichever is larger.
-	if (length+4)%maxUInt32(cbcMinPacketSizeMultiple, blockSize) != 0 {
+	if (length+4-uint32(startEncData))%maxUInt32(cbcMinPacketSizeMultiple, blockSize) != 0 {
 		return nil, cbcError("ssh: invalid packet length multiple")
 	}
 
@@ -562,14 +589,16 @@ func (c *cbcCipher) readCipherPacketLeaky(seqNum uint32, r io.Reader) ([]byte, e
 	c.oracleCamouflage -= uint32(n)
 
 	remainingCrypted := c.packetData[firstBlockLength:macStart]
+	if c.etm {
+		c.mac.Write(remainingCrypted)
+	}
 	c.decrypter.CryptBlocks(remainingCrypted, remainingCrypted)
 
 	mac := c.packetData[macStart:]
 	if c.mac != nil {
-		c.mac.Reset()
-		binary.BigEndian.PutUint32(c.seqNumBytes[:], seqNum)
-		c.mac.Write(c.seqNumBytes[:])
-		c.mac.Write(c.packetData[:macStart])
+		if !c.etm {
+			c.mac.Write(c.packetData[:macStart])
+		}
 		c.macResult = c.mac.Sum(c.macResult[:0])
 		if subtle.ConstantTimeCompare(c.macResult, mac) != 1 {
 			return nil, cbcError("ssh: MAC failure")
@@ -581,23 +610,27 @@ func (c *cbcCipher) readCipherPacketLeaky(seqNum uint32, r io.Reader) ([]byte, e
 
 func (c *cbcCipher) writeCipherPacket(seqNum uint32, w io.Writer, rand io.Reader, packet []byte) error {
 	effectiveBlockSize := maxUInt32(cbcMinPacketSizeMultiple, c.encrypter.BlockSize())
+	startEncData := 0
+	if c.etm {
+		startEncData = 4
+	}
 
 	// Length of encrypted portion of the packet (header, payload, padding).
 	// Enforce minimum padding and packet size.
-	encLength := maxUInt32(prefixLen+len(packet)+cbcMinPaddingSize, cbcMinPaddingSize)
+	encLength := maxUInt32(prefixLen-startEncData+len(packet)+cbcMinPaddingSize, cbcMinPaddingSize)
 	// Enforce block size.
 	encLength = (encLength + effectiveBlockSize - 1) / effectiveBlockSize * effectiveBlockSize
 
-	length := encLength - 4
+	length := encLength - 4 + uint32(startEncData)
 	paddingLength := int(length) - (1 + len(packet))
 
 	// Overall buffer contains: header, payload, padding, mac.
 	// Space for the MAC is reserved in the capacity but not the slice length.
-	bufferSize := encLength + c.macSize
+	bufferSize := uint32(startEncData) + encLength + c.macSize
 	if uint32(cap(c.packetData)) < bufferSize {
-		c.packetData = make([]byte, encLength, bufferSize)
+		c.packetData = make([]byte, encLength+uint32(startEncData), bufferSize)
 	} else {
-		c.packetData = c.packetData[:encLength]
+		c.packetData = c.packetData[:encLength+uint32(startEncData)]
 	}
 
 	p := c.packetData
@@ -621,12 +654,21 @@ func (c *cbcCipher) writeCipherPacket(seqNum uint32, w io.Writer, rand io.Reader
 		c.mac.Reset()
 		binary.BigEndian.PutUint32(c.seqNumBytes[:], seqNum)
 		c.mac.Write(c.seqNumBytes[:])
-		c.mac.Write(c.packetData)
+		if c.etm {
+			binary.BigEndian.PutUint32(c.lengthBytes[:], length)
+			c.mac.Write(c.lengthBytes[:])
+			endEncData := encLength + uint32(startEncData)
+			c.encrypter.CryptBlocks(c.packetData[startEncData:endEncData], c.packetData[startEncData:endEncData])
+			c.mac.Write(c.packetData[startEncData:endEncData])
+		} else {
+			c.mac.Write(c.packetData)
+			c.encrypter.CryptBlocks(c.packetData[:encLength], c.packetData[:encLength])
+		}
 		// The MAC is now appended into the capacity reserved for it earlier.
 		c.packetData = c.mac.Sum(c.packetData)
+	} else {
+		c.encrypter.CryptBlocks(c.packetData[:encLength], c.packetData[:encLength])
 	}
-
-	c.encrypter.CryptBlocks(c.packetData[:encLength], c.packetData[:encLength])
 
 	if _, err := w.Write(c.packetData); err != nil {
 		return err
