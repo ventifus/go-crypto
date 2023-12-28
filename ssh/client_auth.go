@@ -425,10 +425,23 @@ func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
 			if err := Unmarshal(packet, &msg); err != nil {
 				return false, err
 			}
-			if msg.Algo != algo || !bytes.Equal(msg.PubKey, pubKey) {
+			if !bytes.Equal(msg.PubKey, pubKey) {
 				return false, nil
 			}
-			return true, nil
+			if msg.Algo == algo {
+				return true, nil
+			}
+			// For ssh-rsa and ssh-rsa-cert-v01@openssh.com we accept any
+			// supported signature algorithm to be compatible with some
+			// non-standards-compliant implementations, this is also the
+			// behavior of OpenSSH.
+			if key.Type() == KeyAlgoRSA && contains(algorithmsForKeyFormat(KeyAlgoRSA), msg.Algo) {
+				return true, nil
+			}
+			if key.Type() == CertAlgoRSAv01 && contains(algorithmsForKeyFormat(CertAlgoRSAv01), msg.Algo) {
+				return true, nil
+			}
+			return false, nil
 		case msgUserAuthFailure:
 			return false, nil
 		default:
