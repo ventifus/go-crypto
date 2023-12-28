@@ -1282,3 +1282,97 @@ func TestCertAuthOpenSSHCompat(t *testing.T) {
 		t.Fatalf("unable to dial remote side: %s", err)
 	}
 }
+
+type fakePackConn struct {
+	readResponse []byte
+}
+
+func (p fakePackConn) writePacket(packet []byte) error {
+	return nil
+}
+
+func (p fakePackConn) readPacket() ([]byte, error) {
+	if len(p.readResponse) == 0 {
+		return nil, io.EOF
+	}
+	defer func() {
+		p.readResponse = nil
+	}()
+	return p.readResponse, nil
+}
+
+func (p fakePackConn) Close() error {
+	return nil
+}
+
+func TestConfirmKeyAck(t *testing.T) {
+	for _, tt := range []struct {
+		name       string
+		pubKey     PublicKey
+		algo       string
+		msg        userAuthPubKeyOkMsg
+		wantResult bool
+	}{
+		{
+			name:   "rsa-standard",
+			algo:   KeyAlgoRSA,
+			pubKey: testPublicKeys["rsa"],
+			msg: userAuthPubKeyOkMsg{
+				Algo:   KeyAlgoRSA,
+				PubKey: testPublicKeys["rsa"].Marshal(),
+			},
+			wantResult: true,
+		},
+		{
+			name:   "rsa-variant",
+			algo:   KeyAlgoRSA,
+			pubKey: testPublicKeys["rsa"],
+			msg: userAuthPubKeyOkMsg{
+				Algo:   KeyAlgoRSASHA256,
+				PubKey: testPublicKeys["rsa"].Marshal(),
+			},
+			wantResult: true,
+		},
+		{
+			name:   "different-public-keys",
+			algo:   KeyAlgoRSA,
+			pubKey: testPublicKeys["rsa"],
+			msg: userAuthPubKeyOkMsg{
+				Algo:   KeyAlgoRSASHA256,
+				PubKey: testPublicKeys["rsa-openssh-format"].Marshal(),
+			},
+			wantResult: false,
+		},
+		{
+			name:   "ed25519",
+			algo:   KeyAlgoED25519,
+			pubKey: testPublicKeys["ed25519"],
+			msg: userAuthPubKeyOkMsg{
+				Algo:   KeyAlgoED25519,
+				PubKey: testPublicKeys["ed25519"].Marshal(),
+			},
+			wantResult: true,
+		},
+		{
+			name:   "different algorithms",
+			algo:   KeyAlgoED25519,
+			pubKey: testPublicKeys["ed25519"],
+			msg: userAuthPubKeyOkMsg{
+				Algo:   KeyAlgoRSA,
+				PubKey: testPublicKeys["ed25519"].Marshal(),
+			},
+			wantResult: false,
+		},
+	} {
+		c := fakePackConn{
+			readResponse: Marshal(&tt.msg),
+		}
+		ok, err := confirmKeyAck(tt.pubKey, tt.algo, c)
+		if err != nil {
+			t.Errorf("%s: got unexpected error %q", tt.name, err.Error())
+		}
+		if ok != tt.wantResult {
+			t.Errorf("%s: got unexpected result %t want %t", tt.name, ok, tt.wantResult)
+		}
+	}
+}
