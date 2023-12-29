@@ -27,7 +27,7 @@ type forwardedStreamLocalPayload struct {
 // streamLocalChannelForwardMsg is a struct used for SSH2_MSG_GLOBAL_REQUEST message
 // with "streamlocal-forward@openssh.com"/"cancel-streamlocal-forward@openssh.com" string.
 type streamLocalChannelForwardMsg struct {
-	socketPath string
+	SocketPath string
 }
 
 // ListenUnix is similar to ListenTCP but uses a Unix domain socket.
@@ -36,15 +36,24 @@ func (c *Client) ListenUnix(socketPath string) (net.Listener, error) {
 	m := streamLocalChannelForwardMsg{
 		socketPath,
 	}
-	// send message
-	ok, _, err := c.SendRequest("streamlocal-forward@openssh.com", true, Marshal(&m))
+	addr := &net.UnixAddr{Name: socketPath, Net: "unix"}
+	// Register the forward so we don't refuse requests sent after the
+	// streamlocal-forward@openssh.com has been accepted by the server and
+	// before we parse the response.
+	ch, err := c.forwards.add(addr)
 	if err != nil {
 		return nil, err
 	}
+	// send message
+	ok, _, err := c.SendRequest("streamlocal-forward@openssh.com", true, Marshal(&m))
+	if err != nil {
+		c.forwards.remove(addr)
+		return nil, err
+	}
 	if !ok {
+		c.forwards.remove(addr)
 		return nil, errors.New("ssh: streamlocal-forward@openssh.com request denied by peer")
 	}
-	ch := c.forwards.add(&net.UnixAddr{Name: socketPath, Net: "unix"})
 
 	return &unixListener{socketPath, c, ch}, nil
 }
