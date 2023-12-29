@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "166835ea_4e82a4ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2023-12-29T14:20:10Z",
+      "side": 1,
+      "message": "Thank you, I think this needs a proposal first, see https://go.dev/s/proposal",
+      "revId": "10c3c1ae8a5e3c843f377034bae617b2ded59e0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
