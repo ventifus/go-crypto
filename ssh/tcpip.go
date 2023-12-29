@@ -108,16 +108,31 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 		return c.autoPortListenWorkaround(laddr)
 	}
 
+	cleanupTCPAddr := func() {
+		if laddr.Port > 0 {
+			c.forwards.remove(laddr)
+		}
+	}
+
 	m := channelForwardMsg{
 		laddr.IP.String(),
 		uint32(laddr.Port),
 	}
+	var ch chan forward
+	if laddr.Port > 0 {
+		// Register the forward so we don't refuse requests sent after the
+		// tcpip-forward has been accepted by the server and before we parse the
+		// response. This is only possible if we have a port.
+		ch = c.forwards.add(laddr)
+	}
 	// send message
 	ok, resp, err := c.SendRequest("tcpip-forward", true, Marshal(&m))
 	if err != nil {
+		cleanupTCPAddr()
 		return nil, err
 	}
 	if !ok {
+		cleanupTCPAddr()
 		return nil, errors.New("ssh: tcpip-forward request denied by peer")
 	}
 
@@ -131,10 +146,9 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 			return nil, err
 		}
 		laddr.Port = int(p.Port)
+		// Register this forward, using the port number we obtained.
+		ch = c.forwards.add(laddr)
 	}
-
-	// Register this forward, using the port number we obtained.
-	ch := c.forwards.add(laddr)
 
 	return &tcpListener{laddr, c, ch}, nil
 }
