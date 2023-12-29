@@ -102,7 +102,7 @@ func (c *Client) handleForwards() {
 // ListenTCP requests the remote peer open a listening socket
 // on laddr. Incoming connections will be available by calling
 // Accept on the returned net.Listener.
-func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
+func (c *Client) ListenTCP(laddr *net.TCPAddr) (l net.Listener, err error) {
 	c.handleForwardsOnce.Do(c.handleForwards)
 	if laddr.Port == 0 && isBrokenOpenSSHVersion(string(c.ServerVersion())) {
 		return c.autoPortListenWorkaround(laddr)
@@ -111,6 +111,21 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 	m := channelForwardMsg{
 		laddr.IP.String(),
 		uint32(laddr.Port),
+	}
+	var ch chan forward
+	if laddr.Port > 0 {
+		// Register the forward so we don't refuse requests sent after the
+		// tcpip-forward has been accepted by the server and before we parse the
+		// response. This is only possible if we have a port.
+		ch, err = c.forwards.add(laddr)
+		if err != nil {
+			return
+		}
+		defer func() {
+			if err != nil {
+				c.forwards.remove(laddr)
+			}
+		}()
 	}
 	// send message
 	ok, resp, err := c.SendRequest("tcpip-forward", true, Marshal(&m))
@@ -121,8 +136,9 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 		return nil, errors.New("ssh: tcpip-forward request denied by peer")
 	}
 
-	// If the original port was 0, then the remote side will
-	// supply a real port number in the response.
+	// If the original port was 0, then the remote side will supply a real port
+	// number in the response. Requests sent after the tcpip-forward is accepted
+	// and before we parse the port number will be refused.
 	if laddr.Port == 0 {
 		var p struct {
 			Port uint32
@@ -131,10 +147,12 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 			return nil, err
 		}
 		laddr.Port = int(p.Port)
+		// Register this forward, using the port number we obtained.
+		ch, err = c.forwards.add(laddr)
+		if err != nil {
+			return nil, err
+		}
 	}
-
-	// Register this forward, using the port number we obtained.
-	ch := c.forwards.add(laddr)
 
 	return &tcpListener{laddr, c, ch}, nil
 }
@@ -161,15 +179,23 @@ type forward struct {
 	raddr net.Addr   // the raddr of the incoming connection
 }
 
-func (l *forwardList) add(addr net.Addr) chan forward {
+// add adds an address to the forwarding list, an error is returned if the
+// address is already in the forward list.
+func (l *forwardList) add(addr net.Addr) (chan forward, error) {
 	l.Lock()
 	defer l.Unlock()
+
+	for _, f := range l.entries {
+		if addr.Network() == f.laddr.Network() && addr.String() == f.laddr.String() {
+			return nil, fmt.Errorf("ssh: forward address %q is duplicated", addr.String())
+		}
+	}
 	f := forwardEntry{
 		laddr: addr,
 		c:     make(chan forward, 1),
 	}
 	l.entries = append(l.entries, f)
-	return f.c
+	return f.c, nil
 }
 
 // See RFC 4254, section 7.2
