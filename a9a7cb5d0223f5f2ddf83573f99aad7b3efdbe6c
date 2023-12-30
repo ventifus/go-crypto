@@ -85,6 +85,24 @@
       "parentUuid": "e89e9751_b2f6c142",
       "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87101b50_1f12ad06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2023-12-30T12:19:30Z",
+      "side": 1,
+      "message": "That would probably be useful feedback for the Release team, as I remember this was discussed when the monthly automated updates were introduced.",
+      "parentUuid": "2e6f4d0a_69663e78",
+      "revId": "a9a7cb5d0223f5f2ddf83573f99aad7b3efdbe6c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
