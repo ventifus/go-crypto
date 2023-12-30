@@ -16,6 +16,24 @@
       "message": "Please update the commit message so that it starts with `ssh: ...`. No need to specify the repo",
       "revId": "2c6aa7ae53f809ed220648106bb214c4f1f28abe",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "162d94a3_2a7d672c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 68048
+      },
+      "writtenOn": "2023-12-30T15:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f090eff6_ce7d0de9",
+      "revId": "2c6aa7ae53f809ed220648106bb214c4f1f28abe",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
