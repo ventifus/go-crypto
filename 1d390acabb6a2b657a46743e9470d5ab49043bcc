@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa22cf5_e1cbc38c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5440
+      },
+      "writtenOn": "2024-01-02T21:02:29Z",
+      "side": 1,
+      "message": "[for interrupts rotation: the logic here seems subtle enough that I don\u0027t feel comfortable +1 stamping it, and I think two domain experts / security team members should approve it instead]",
+      "revId": "1d390acabb6a2b657a46743e9470d5ab49043bcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
