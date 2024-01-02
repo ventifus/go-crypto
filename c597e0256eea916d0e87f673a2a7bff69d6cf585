@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abdbce99_3d76709c",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-02T20:57:59Z",
+      "side": 1,
+      "message": "Is this call safe to perform at this point? What guarantees that the given `socketPath` isn\u0027t already present in the `forwards` list?\n\n(Would the call to `c.SendRequest have failed previously if the path were a duplicate?)",
+      "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d7d7cb9_8823a0b0",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-02T20:57:59Z",
+      "side": 1,
+      "message": "Duplicating the calls to `cleanupTCPAddr` seems a little fragile for future refactoring.\n\nAs an alternative, consider naming the return values and using a `defer`:\n```go\nfunc (c *Client) ListenTCP(laddr *net.TCPAddr) (l net.Listener, err error) {\n\t…\n\tif laddr.Port \u003e 0 {\n\t\tch \u003d c.forwards.add(laddr)\n\t\tdefer func() {\n\t\t\tif err !\u003d nil {\n\t\t\t\tc.forwards.remove(laddr)\n\t\t\t}\n\t\t}()\n\t}\n```",
+      "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
