@@ -16,6 +16,24 @@
       "message": "[for interrupts rotation: the logic here seems subtle enough that I don\u0027t feel comfortable +1 stamping it, and I think two domain experts / security team members should approve it instead]",
       "revId": "1d390acabb6a2b657a46743e9470d5ab49043bcc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9daf3d9e_09746342",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-03T09:21:15Z",
+      "side": 1,
+      "message": "You\u0027re right thanks, it\u0027s pretty subtle, we did something similar in CL 510155 and maybe also here we should retry after all other signers are tried normally like we did there. Not being able to reproduce the issue ourselves doesn\u0027t help.",
+      "parentUuid": "dfa22cf5_e1cbc38c",
+      "revId": "1d390acabb6a2b657a46743e9470d5ab49043bcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
