@@ -8,6 +8,7 @@ package test
 
 import (
 	"bytes"
+	"runtime"
 	"testing"
 
 	"golang.org/x/crypto/ssh"
@@ -15,6 +16,9 @@ import (
 )
 
 func TestAgentForward(t *testing.T) {
+	if runtime.GOOS == "darwin" {
+		t.Skip("temporary skip on macOS, see #64959")
+	}
 	server := newServer(t)
 	conn := server.Dial(clientConfig())
 	defer conn.Close()
