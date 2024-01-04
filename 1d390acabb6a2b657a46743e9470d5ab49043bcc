@@ -34,6 +34,23 @@
       "parentUuid": "dfa22cf5_e1cbc38c",
       "revId": "1d390acabb6a2b657a46743e9470d5ab49043bcc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e0808c_c4f407e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 68048
+      },
+      "writtenOn": "2024-01-04T22:04:21Z",
+      "side": 1,
+      "message": "Just wanted to let you know that I expect to lose access to the account I used to create this PR (stephenm@stripe.com) tomorrow since I\u0027ve decided to leave my current job. All follow-up communication I will handle through my personal account instead (stephen.melinyshyn@gmail.com / https://github.com/Melinysh).",
+      "revId": "1d390acabb6a2b657a46743e9470d5ab49043bcc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
