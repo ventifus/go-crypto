@@ -178,7 +178,7 @@ func (s *server) TryDial(config *ssh.ClientConfig) (*ssh.Client, error) {
 
 // addr is the user specified host:port. While we don't actually dial it,
 // we need to know this for host key matching
-func (s *server) TryDialWithAddr(config *ssh.ClientConfig, addr string) (*ssh.Client, error) {
+func (s *server) TryDialWithAddr(config *ssh.ClientConfig, addr string) (client *ssh.Client, err error) {
 	sshd, err := exec.LookPath("sshd")
 	if err != nil {
 		s.t.Skipf("skipping test: %v", err)
@@ -188,13 +188,20 @@ func (s *server) TryDialWithAddr(config *ssh.ClientConfig, addr string) (*ssh.Cl
 	if err != nil {
 		s.t.Fatalf("unixConnection: %v", err)
 	}
+	defer func() {
+		c2.Close()
+		if client == nil {
+			c1.Close()
+		}
+	}()
 
-	cmd := testenv.Command(s.t, sshd, "-f", s.configfile, "-i", "-e")
 	f, err := c2.File()
 	if err != nil {
 		s.t.Fatalf("UnixConn.File: %v", err)
 	}
 	defer f.Close()
+
+	cmd := testenv.Command(s.t, sshd, "-f", s.configfile, "-i", "-e")
 	cmd.Stdin = f
 	cmd.Stdout = f
 	cmd.Stderr = new(bytes.Buffer)
