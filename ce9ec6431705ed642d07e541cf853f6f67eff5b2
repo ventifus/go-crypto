@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbedc3a1_3d2e07f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-05T21:08:36Z",
+      "side": 1,
+      "message": "I like the general idea and it would achieve the same goals as https://github.com/golang/go/issues/64974 in a more type-safe way (using struct fields instead of opaque strings)",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bc54995_04282c43",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-05T21:08:36Z",
+      "side": 1,
+      "message": "Is this method needed?\nAFAIK, `errors.Is/As` will work out of the box",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6101ccc9_a5a94dcb",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-05T21:08:36Z",
+      "side": 1,
+      "message": "nit: var name and type feel a bit odd together.\nit seems like `PartialSuccessError` is used in lieu of another struct that contains all possible auth calblacks.\n\nmaybe we can add another struct `ServerAuthMethods` and change `PartialSuccessError` to:\n```go\ntype PartialSuccessError struct {\n  Next ServerAuthMethods\n}\n```",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c469e703_8f4bf57d",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-05T21:08:36Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\tcandidate.perms, candidate.result \u003d authConfig.PublicKeyCallback(s, pubKey)\n```",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2923ea04_3050eabe",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-05T21:08:36Z",
+      "side": 1,
+      "message": "```suggestion\n// Copyright 2024 The Go Authors. All rights reserved.\n```",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
