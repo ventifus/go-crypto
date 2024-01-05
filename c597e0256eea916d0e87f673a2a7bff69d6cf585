@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14a835b8_1769913a",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-05T15:16:40Z",
+      "side": 1,
+      "message": "You are right, we should return an error if the address is already in the forwarding list otherwise when we remove it, after an error, we may remove the wrong one.\n\nWe can control the forward list for a single client, the server (in this case OpenSSH) returns an error like this if the address is already in use: `error: unix_listener: cannot bind to path /tmp/sock: Address already in use`.\n\nI\u0027m not sure if for test cases it is better to mock a Conn or make real requests (tcp forwarding requires at least 2 ports)",
+      "parentUuid": "abdbce99_3d76709c",
+      "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d7d7cb9_8823a0b0",
         "filename": "ssh/tcpip.go",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-02T20:57:59Z",
       "side": 1,
       "message": "Duplicating the calls to `cleanupTCPAddr` seems a little fragile for future refactoring.\n\nAs an alternative, consider naming the return values and using a `defer`:\n```go\nfunc (c *Client) ListenTCP(laddr *net.TCPAddr) (l net.Listener, err error) {\n\t…\n\tif laddr.Port \u003e 0 {\n\t\tch \u003d c.forwards.add(laddr)\n\t\tdefer func() {\n\t\t\tif err !\u003d nil {\n\t\t\t\tc.forwards.remove(laddr)\n\t\t\t}\n\t\t}()\n\t}\n```",
+      "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c035fc9f_3f4a04a7",
+        "filename": "ssh/tcpip.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-05T15:16:40Z",
+      "side": 1,
+      "message": "Much better, thanks!",
+      "parentUuid": "8d7d7cb9_8823a0b0",
       "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
