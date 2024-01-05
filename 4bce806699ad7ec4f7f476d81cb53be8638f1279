@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc039edd_213b2327",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-05T23:25:11Z",
+      "side": 1,
+      "message": "Add:\n```\nCq-Include-Trybots: luci.golang.try:x_crypto-gotip-darwin-amd64-longtest\n```",
+      "revId": "4bce806699ad7ec4f7f476d81cb53be8638f1279",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
