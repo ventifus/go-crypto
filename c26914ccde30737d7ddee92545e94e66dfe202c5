@@ -95,6 +95,23 @@
       },
       "revId": "c26914ccde30737d7ddee92545e94e66dfe202c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a61e1565_a01b292f",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-01-06T00:44:23Z",
+      "side": 1,
+      "message": "Looks like `TestKeyChange` needs it too.",
+      "revId": "c26914ccde30737d7ddee92545e94e66dfe202c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
