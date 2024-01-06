@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8eb9bec_bc214ad0",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-06T14:48:10Z",
+      "side": 1,
+      "message": "errors.As works but for what I known a custom error needs to implement Is() to make it work.",
+      "parentUuid": "1bc54995_04282c43",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6101ccc9_a5a94dcb",
         "filename": "ssh/server.go",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2024-01-05T21:08:36Z",
       "side": 1,
       "message": "nit: var name and type feel a bit odd together.\nit seems like `PartialSuccessError` is used in lieu of another struct that contains all possible auth calblacks.\n\nmaybe we can add another struct `ServerAuthMethods` and change `PartialSuccessError` to:\n```go\ntype PartialSuccessError struct {\n  Next ServerAuthMethods\n}\n```",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "633e691f_ea8aee3f",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-06T14:48:10Z",
+      "side": 1,
+      "message": "I agree, this is better, ideally we should use the new struct also in ServerConfig but this way we will break backward compatibility",
+      "parentUuid": "6101ccc9_a5a94dcb",
       "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -69,6 +105,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3687b6e_e67b041f",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-06T14:48:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c469e703_8f4bf57d",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2923ea04_3050eabe",
@@ -82,6 +136,24 @@
       "writtenOn": "2024-01-05T21:08:36Z",
       "side": 1,
       "message": "```suggestion\n// Copyright 2024 The Go Authors. All rights reserved.\n```",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cede09a6_701a71fa",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-06T14:48:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2923ea04_3050eabe",
       "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
