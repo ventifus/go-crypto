@@ -477,10 +477,7 @@ userAuthLoop:
 			displayedBanner = true
 			msg := config.BannerCallback(s)
 			if msg != "" {
-				bannerMsg := &userAuthBannerMsg{
-					Message: msg,
-				}
-				if err := s.transport.writePacket(Marshal(bannerMsg)); err != nil {
+				if err := s.SendAuthBanner(msg); err != nil {
 					return nil, err
 				}
 			}
@@ -743,6 +740,15 @@ userAuthLoop:
 		return nil, err
 	}
 	return perms, nil
+}
+
+func (s *connection) SendAuthBanner(msg string) error {
+	if s.mux != nil {
+		return errors.New("ssh: SendAuthBanner called after handshake completed")
+	}
+	return s.transport.writePacket(Marshal(&userAuthBannerMsg{
+		Message: msg,
+	}))
 }
 
 // sshClientKeyboardInteractive implements a ClientKeyboardInteractive by

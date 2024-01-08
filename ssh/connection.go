@@ -43,6 +43,16 @@ type ConnMetadata interface {
 	LocalAddr() net.Addr
 }
 
+// AuthBannerSender is a server-side connection that supports sending
+// authentication banners on-demand. Connection values passed into
+// authentication callbacks in ServerConfig implement this interface.
+type AuthBannerSender interface {
+	// SendAuthBanner sends a banner to the client. SendAuthBanner can be
+	// called multiple times on the same connection, but only before or during
+	// the authentication phase.
+	SendAuthBanner(banner string) error
+}
+
 // Conn represents an SSH connection for both server and client roles.
 // Conn is the basis for implementing an application layer, such
 // as ClientConn, which implements the traditional shell access for

@@ -5,8 +5,10 @@
 package ssh
 
 import (
+	"errors"
 	"io"
 	"net"
+	"slices"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -93,6 +95,66 @@ func TestNewServerConnValidationErrors(t *testing.T) {
 	}
 	if c.isUsed() {
 		t.Fatal("NewServerConn with unsupported key exchange used connection")
+	}
+}
+
+func TestSendAuthBanner(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	msgPassword1 := "first banner from PasswordCallback"
+	msgPassword2 := "second banner from PasswordCallback"
+	msgPubkey := "banner from PublicKeyCallback"
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, pw []byte) (*Permissions, error) {
+			if err := conn.(AuthBannerSender).SendAuthBanner(msgPassword1); err != nil {
+				return nil, err
+			}
+			if err := conn.(AuthBannerSender).SendAuthBanner(msgPassword2); err != nil {
+				return nil, err
+			}
+			return nil, errors.New("please use public key")
+		},
+		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
+			conn.(AuthBannerSender).SendAuthBanner(msgPubkey)
+			return nil, nil
+		},
+	}
+	serverConf.AddHostKey(testSigners["ecdsap256"])
+
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		NewServerConn(c1, serverConf)
+	}()
+
+	var gotMsgs []string
+	clientConf := ClientConfig{
+		User: "user",
+		Auth: []AuthMethod{
+			Password("hunter1"),
+			PublicKeys(testSigners["ed25519"]),
+		},
+		BannerCallback: func(msg string) error {
+			gotMsgs = append(gotMsgs, msg)
+			return nil
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	c, _, _, err := NewClientConn(c2, "", &clientConf)
+	if err != nil {
+		t.Fatalf("got unexpected error %v", err)
+	}
+	c.Close()
+	<-done
+	wantMsgs := []string{msgPassword1, msgPassword2, msgPubkey}
+	if !slices.Equal(gotMsgs, wantMsgs) {
+		t.Errorf("got banner messages: %q, want: %q", gotMsgs, wantMsgs)
 	}
 }
 
