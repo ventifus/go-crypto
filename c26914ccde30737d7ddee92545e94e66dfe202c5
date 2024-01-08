@@ -114,6 +114,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ff37a0_6f2e9321",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-08T16:36:58Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nI think I prefer it as-is, so that it is locally obvious that the call to `err.Error()` will not panic.",
+      "parentUuid": "d798d557_e458979c",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "c26914ccde30737d7ddee92545e94e66dfe202c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a61e1565_a01b292f",
@@ -127,6 +151,24 @@
       "writtenOn": "2024-01-06T00:44:23Z",
       "side": 1,
       "message": "Looks like `TestKeyChange` needs it too.",
+      "revId": "c26914ccde30737d7ddee92545e94e66dfe202c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "523324fd_993ff524",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-08T16:36:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a61e1565_a01b292f",
       "revId": "c26914ccde30737d7ddee92545e94e66dfe202c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
