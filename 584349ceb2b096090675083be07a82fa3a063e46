@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "015a15da_92e9a89e",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-08T20:55:01Z",
+      "side": 1,
+      "message": "Should `NoClientAuthCallback` also be here?\nIt wouldn\u0027t be used with `PartialSuccessError` but the type seems incomplete without it.",
+      "revId": "584349ceb2b096090675083be07a82fa3a063e46",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e7fc4c_8cdbaad8",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-08T20:55:01Z",
+      "side": 1,
+      "message": "nit: returning `serverAuthErrors` instead of passing in a pointer seems a bit simpler",
+      "revId": "584349ceb2b096090675083be07a82fa3a063e46",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf746b8f_e9011bcd",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-01-08T20:55:01Z",
+      "side": 1,
+      "message": "close the returned `Conn` if error is non-nil\n```suggestion\n\tc, _, _, err :\u003d NewClientConn(c2, \"\", clientConfig)\n\tif err \u003d\u003d nil {\n\t\tc.Close()\n\t}\n```",
+      "revId": "584349ceb2b096090675083be07a82fa3a063e46",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
