@@ -53,6 +53,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "640e81bf_630e0713",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-09T15:44:57Z",
+      "side": 1,
+      "message": "It is better to use errors.As and remove the Is implementation. Thank you for noticing",
+      "parentUuid": "b8eb9bec_bc214ad0",
+      "revId": "ce9ec6431705ed642d07e541cf853f6f67eff5b2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6101ccc9_a5a94dcb",
