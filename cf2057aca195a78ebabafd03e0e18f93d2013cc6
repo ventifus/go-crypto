@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5193914_b9553b41",
+        "filename": "ssh/common.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-01-12T10:51:07Z",
+      "side": 1,
+      "message": "None of these are implemented by the BoringCrypto module, we should not include them.",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 70
+      },
+      "revId": "cf2057aca195a78ebabafd03e0e18f93d2013cc6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
