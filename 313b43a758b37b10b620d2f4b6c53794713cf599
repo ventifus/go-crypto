@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaefd71e_76706fcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 58448
+      },
+      "writtenOn": "2024-01-19T04:19:48Z",
+      "side": 1,
+      "message": "FIPS 140-3 changed a lot of things (yay, modern algorithms!), so would ask that the list of FIPS compliant ciphers/algorithms be validated against it (especially against FIPS 186-5).",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d4b55c_eb6e67f2",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 58448
+      },
+      "writtenOn": "2024-01-19T04:19:48Z",
+      "side": 1,
+      "message": "This should match the order in `preferredCiphers`, as it doesn\u0027t make sense to have FIPS return a different order. If we don\u0027t want order to matter in this particular slice, then the code that uses this should just take `preferredCiphers` and remove all ciphers that aren\u0027t in `fipsCiphers` but keep the order.",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c7f0eb_9ccda9a9",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 58448
+      },
+      "writtenOn": "2024-01-19T04:19:48Z",
+      "side": 1,
+      "message": "Also same comment as below, but focused on CertAlgoED25519v01 and KeyAlgoED25519 in relation to Edwards25519 being permitted based on FIPS 186-5 and NIST SP 800-186.",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1140c8ac_3cd9e0c4",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 58448
+      },
+      "writtenOn": "2024-01-19T04:19:48Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ebb60f1_20f5562f",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 58448
+      },
+      "writtenOn": "2024-01-19T04:19:48Z",
+      "side": 1,
+      "message": "Wouldn\u0027t (at least) ED25519 be supported here, as Edwards25519 is permitted based on FIPS 186-5 and NIST SP 800-186?",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
