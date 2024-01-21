@@ -16,6 +16,24 @@
       "message": "Is it possible to write a regression test for this issue?",
       "revId": "6c3d672f6276fc54b3e4782f2cad653e40e08f81",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d076690_57bedc7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-21T14:07:41Z",
+      "side": 1,
+      "message": "Done, but maybe the test case could be improved",
+      "parentUuid": "cf7855ca_236652bb",
+      "revId": "6c3d672f6276fc54b3e4782f2cad653e40e08f81",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
