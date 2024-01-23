@@ -35,6 +35,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb07460b_ab9df5cd",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-23T14:43:17Z",
+      "side": 1,
+      "message": "You are right, we must keep the same order",
+      "parentUuid": "17d4b55c_eb6e67f2",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c7f0eb_9ccda9a9",
@@ -65,6 +83,42 @@
       "writtenOn": "2024-01-19T04:19:48Z",
       "side": 1,
       "message": "Same comment as above.",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ff3c62_3829d66f",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-23T14:43:17Z",
+      "side": 1,
+      "message": "Ed25519 is currently disabled in `crypto/tls` too, this is why we haven\u0027t enabled it here. We are not sure if it has been certified in boringcrypto",
+      "parentUuid": "93c7f0eb_9ccda9a9",
+      "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f8349a_de3a9e74",
+        "filename": "ssh/common.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-01-23T14:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1140c8ac_3cd9e0c4",
       "revId": "313b43a758b37b10b620d2f4b6c53794713cf599",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
