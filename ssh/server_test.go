@@ -5,8 +5,10 @@
 package ssh
 
 import (
+	"errors"
 	"io"
 	"net"
+	"slices"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -93,6 +95,67 @@ func TestNewServerConnValidationErrors(t *testing.T) {
 	}
 	if c.isUsed() {
 		t.Fatal("NewServerConn with unsupported key exchange used connection")
+	}
+}
+
+func TestBannerError(t *testing.T) {
+	serverConfig := &ServerConfig{
+		BannerCallback: func(ConnMetadata) string {
+			return "banner from BannerCallback"
+		},
+		NoClientAuth: true,
+		NoClientAuthCallback: func(ConnMetadata) (*Permissions, error) {
+			return nil, BannerError{
+				Err:     errors.New("error from NoClientAuthCallback"),
+				Message: "banner from NoClientAuthCallback",
+			}
+		},
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			return &Permissions{}, nil
+		},
+		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
+			return nil, BannerError{
+				Err:     errors.New("error from PublicKeyCallback"),
+				Message: "banner from PublicKeyCallback",
+			}
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	var banners []string
+	clientConfig := &ClientConfig{
+		User: "test",
+		Auth: []AuthMethod{
+			PublicKeys(testSigners["rsa"]),
+			Password(clientPassword),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+		BannerCallback: func(msg string) error {
+			banners = append(banners, msg)
+			return nil
+		},
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+	go newServer(c1, serverConfig)
+	c, _, _, err := NewClientConn(c2, "", clientConfig)
+	if err != nil {
+		t.Fatalf("client connection failed: %v", err)
+	}
+	defer c.Close()
+
+	wantBanners := []string{
+		"banner from BannerCallback",
+		"banner from NoClientAuthCallback",
+		"banner from PublicKeyCallback",
+	}
+	if !slices.Equal(banners, wantBanners) {
+		t.Errorf("got banners:\n%q\nwant banners:\n%q", banners, wantBanners)
 	}
 }
 
