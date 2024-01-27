@@ -703,8 +703,15 @@ func (gex *dhGEXSHA) Server(c packetConn, randSource io.Reader, magics *handshak
 	if kexDHGexRequest.MaxBits < kexDHGexRequest.MinBits || kexDHGexRequest.PreferredBits < kexDHGexRequest.MinBits ||
 		kexDHGexRequest.MaxBits < kexDHGexRequest.PreferredBits || kexDHGexRequest.MaxBits < dhGroupExchangeMinimumBits ||
 		kexDHGexRequest.MinBits > 4096 {
-		return nil, fmt.Errorf("ssh: DH GEX request out of range, min: %d, max: %d, preferred: %d", kexDHGexRequest.MinBits,
-			kexDHGexRequest.MaxBits, kexDHGexRequest.PreferredBits)
+		err := &AlgorithmNegotiationError{
+			What:                "diffie-hellman-group-exchange key size (out of range)",
+			RequestedAlgorithms: []string{fmt.Sprintf("min size: %d", dhGroupExchangeMinimumBits), "max size: 4096"},
+			SupportedAlgorithms: []string{fmt.Sprintf("min size: %d", kexDHGexRequest.MinBits),
+				fmt.Sprintf("preferred size: %d", kexDHGexRequest.PreferredBits),
+				fmt.Sprintf("max size: %d", kexDHGexRequest.MaxBits)},
+			isClient: false,
+		}
+		return nil, err
 	}
 
 	var p *big.Int
