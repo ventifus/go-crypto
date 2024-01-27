@@ -84,7 +84,7 @@ func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan 
 		c.Close()
 		return nil, nil, nil, fmt.Errorf("ssh: handshake failed: %w", err)
 	}
-	conn.mux = newMux(conn.transport)
+	conn.mux = newMux(conn.transport, &muxCallbacks{hostKeys00: config.HostKeys00Callback})
 	return conn, conn.mux.incomingChannels, conn.mux.incomingRequests, nil
 }
 
@@ -168,6 +168,61 @@ func (c *Client) handleChannelOpens(in <-chan NewChannel) {
 	c.mu.Unlock()
 }
 
+// HostKeysProve sends a hostkeys-prove@openssh.com message to request the
+// server prove ownership of the private half of the key and validates the
+// received signatures.
+func (c *Client) HostKeysProve(publicKeys []PublicKey) error {
+	if len(publicKeys) == 0 {
+		return errors.New("ssh: no keys provided")
+	}
+	var payload []byte
+	for _, k := range publicKeys {
+		payload = appendString(payload, string(k.Marshal()))
+	}
+
+	ok, respPayload, err := c.SendRequest("hostkeys-prove-00@openssh.com", true, payload)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return errors.New("ssh: hostkeys-prove-00@openssh.com request denied by peer")
+	}
+	var signatures [][]byte
+
+	for {
+		if len(respPayload) == 0 {
+			break
+		}
+		signature, rest, ok := parseString(respPayload)
+		if !ok {
+			return errors.New("ssh: failed to parse hostkeys-prove-00@openssh.com response payload")
+		}
+		signatures = append(signatures, signature)
+		respPayload = rest
+	}
+	if len(signatures) != len(publicKeys) {
+		return fmt.Errorf("ssh: expected %d signatures in hostkeys-prove-00@openssh.com response payload, got %d",
+			len(publicKeys), len(signatures))
+	}
+	// The signatures in response should match the order of the keys in the
+	// request.
+	for idx, k := range publicKeys {
+		sig, rest, ok := parseSignatureBody(signatures[idx])
+		if len(rest) > 0 || !ok {
+			return errors.New("ssh: signature parse error")
+		}
+		data := Marshal(&msgHostKeyProveSignature{
+			Name:      "hostkeys-prove-00@openssh.com",
+			SessionID: string(c.SessionID()),
+			PubKey:    string(k.Marshal()),
+		})
+		if err := k.Verify(data, sig); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // Dial starts a client connection to the given SSH server. It is a
 // convenience function that connects to the given network address,
 // initiates the SSH handshake, and then sets up a Client.  For access
@@ -196,6 +251,10 @@ type HostKeyCallback func(hostname string, remote net.Addr, key PublicKey) error
 // the server. A BannerCallback receives the message sent by the remote server.
 type BannerCallback func(message string) error
 
+// HostKeys00Callback is the function type used to receive the host keys sent by
+// servers using the hostkeys-00@openssh.com global message.
+type HostKeys00Callback func(publicKeys []PublicKey)
+
 // A ClientConfig structure is used to configure a Client. It must not be
 // modified after having been passed to an SSH function.
 type ClientConfig struct {
@@ -217,6 +276,11 @@ type ClientConfig struct {
 	// to succeed. The functions InsecureIgnoreHostKey or
 	// FixedHostKey can be used for simplistic host key checks.
 	HostKeyCallback HostKeyCallback
+
+	// HostKeys00Callback is called after the authentication if the server sends
+	// a hostkeys-00@openssh.com message. The client configuraton can supply
+	// this callback to get notified about the received public keys.
+	HostKeys00Callback HostKeys00Callback
 
 	// BannerCallback is called during the SSH dance to display a custom
 	// server's message. The client configuration can supply this callback to
