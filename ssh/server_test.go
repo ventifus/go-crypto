@@ -62,6 +62,82 @@ func TestClientAuthRestrictedPublicKeyAlgos(t *testing.T) {
 	}
 }
 
+func TestHostKeyUpdateRotation(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			return &Permissions{}, nil
+		},
+	}
+	mas, err := NewSignerWithAlgorithms(testSigners["rsa"].(AlgorithmSigner), []string{KeyAlgoRSASHA256, KeyAlgoRSASHA512})
+	if err != nil {
+		t.Fatal(err)
+	}
+	serverConf.AddHostKey(mas)
+	serverConf.AddHostKey(testSigners["ecdsap256"])
+	serverConf.AddHostKey(testSigners["ed25519"])
+	go NewServerConn(c1, serverConf)
+
+	hostKeysUpdateDone := make(chan []HostKeyUpdate, 1)
+
+	clientConf := ClientConfig{
+		Auth: []AuthMethod{
+			Password("123"),
+		},
+		User:            "user",
+		HostKeyCallback: InsecureIgnoreHostKey(),
+		HostKeysUpdateCallback: func(keysUpdate []HostKeyUpdate) {
+			hostKeysUpdateDone <- keysUpdate
+		},
+		HostKeyAlgorithms: []string{KeyAlgoRSASHA512},
+	}
+
+	c, chans, reqs, err := NewClientConn(c2, "", &clientConf)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer c.Close()
+
+	client := NewClient(c, chans, reqs)
+
+	hostKeyUpdates := <-hostKeysUpdateDone
+	if len(hostKeyUpdates) != 3 {
+		t.Fatalf("expected 3 host keys from hostkeys-00@openssh.com extension, got %d", len(hostKeyUpdates))
+	}
+	for _, hostKeyUpdate := range hostKeyUpdates {
+		var expectedKey PublicKey
+		switch hostKeyUpdate.KeyType() {
+		case KeyAlgoRSA:
+			expectedKey = testPublicKeys["rsa"]
+		case KeyAlgoED25519:
+			expectedKey = testPublicKeys["ed25519"]
+		case KeyAlgoECDSA256:
+			expectedKey = testPublicKeys["ecdsap256"]
+		}
+
+		if hostKeyUpdate.Fingerprint() != FingerprintSHA256(expectedKey) {
+			t.Errorf("unexpected fingerprint for key type %q", hostKeyUpdate.KeyType())
+		}
+		if !hostKeyUpdate.Equal(expectedKey) {
+			t.Errorf("unexpected public key for key type %q", hostKeyUpdate.KeyType())
+		}
+		if _, err := hostKeyUpdate.PublicKey(client); err != nil {
+			t.Fatalf("unable to prove host key type %q: %v", hostKeyUpdate.KeyType(), err)
+		}
+	}
+
+	hostKeyUpdate := HostKeyUpdate{testPublicKeys["ecdsap384"]}
+	if _, err = hostKeyUpdate.PublicKey(client); err == nil {
+		t.Fatal("prove for unknown host key suceeded!")
+	}
+}
+
 func TestNewServerConnValidationErrors(t *testing.T) {
 	serverConf := &ServerConfig{
 		PublicKeyAuthAlgorithms: []string{CertAlgoRSAv01},
