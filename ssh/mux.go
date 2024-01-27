@@ -83,6 +83,15 @@ func (c *chanList) dropAll() []*channel {
 	return r
 }
 
+type muxCallbacks struct {
+	// hostProve is the callback to handle hostkeys-prove-00@openssh.com global
+	// messages.
+	hostProve func(req *Request)
+	// hostKeys00 is the callback to notify clients about the host keys received
+	// via the hostkeys-00@openssh.com global message.
+	hostKeys00 HostKeys00Callback
+}
+
 // mux represents the state for the SSH connection protocol, which
 // multiplexes many channels onto a single packet transport.
 type mux struct {
@@ -94,6 +103,7 @@ type mux struct {
 	globalSentMu     sync.Mutex
 	globalResponses  chan interface{}
 	incomingRequests chan *Request
+	callbacks        *muxCallbacks
 
 	errCond *sync.Cond
 	err     error
@@ -113,12 +123,13 @@ func (m *mux) Wait() error {
 }
 
 // newMux returns a mux that runs over the given connection.
-func newMux(p packetConn) *mux {
+func newMux(p packetConn, callbacks *muxCallbacks) *mux {
 	m := &mux{
 		conn:             p,
 		incomingChannels: make(chan NewChannel, chanSize),
 		globalResponses:  make(chan interface{}, 1),
 		incomingRequests: make(chan *Request, chanSize),
+		callbacks:        callbacks,
 		errCond:          newCond(),
 	}
 	if debugMux {
@@ -252,6 +263,31 @@ func (m *mux) onePacket() error {
 	return ch.handlePacket(packet)
 }
 
+func handleHostKeys00Request(req *Request, callback HostKeys00Callback) {
+	var publicKeys []PublicKey
+
+	payload := req.Payload
+	for {
+		if len(payload) == 0 {
+			break
+		}
+		key, rest, ok := parseString(payload)
+		if !ok {
+			req.Reply(false, nil)
+			return
+		}
+		pubKey, err := ParsePublicKey(key)
+		if err != nil {
+			req.Reply(false, nil)
+			return
+		}
+		publicKeys = append(publicKeys, pubKey)
+		payload = rest
+	}
+	req.Reply(false, nil)
+	callback(publicKeys)
+}
+
 func (m *mux) handleGlobalPacket(packet []byte) error {
 	msg, err := decode(packet)
 	if err != nil {
@@ -260,11 +296,27 @@ func (m *mux) handleGlobalPacket(packet []byte) error {
 
 	switch msg := msg.(type) {
 	case *globalRequestMsg:
-		m.incomingRequests <- &Request{
+		req := &Request{
 			Type:      msg.Type,
 			WantReply: msg.WantReply,
 			Payload:   msg.Data,
 			mux:       m,
+		}
+		switch req.Type {
+		case "hostkeys-prove-00@openssh.com":
+			if m.callbacks != nil && m.callbacks.hostProve != nil {
+				go m.callbacks.hostProve(req)
+			} else {
+				m.incomingRequests <- req
+			}
+		case "hostkeys-00@openssh.com":
+			if m.callbacks != nil && m.callbacks.hostKeys00 != nil {
+				go handleHostKeys00Request(req, m.callbacks.hostKeys00)
+			} else {
+				m.incomingRequests <- req
+			}
+		default:
+			m.incomingRequests <- req
 		}
 	case *globalRequestSuccessMsg, *globalRequestFailureMsg:
 		m.globalResponses <- msg

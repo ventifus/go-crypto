@@ -62,6 +62,62 @@ func TestClientAuthRestrictedPublicKeyAlgos(t *testing.T) {
 	}
 }
 
+func TestHostKeyUpdateRotation(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			return &Permissions{}, nil
+		},
+	}
+	mas, err := NewSignerWithAlgorithms(testSigners["rsa"].(AlgorithmSigner), []string{KeyAlgoRSASHA256, KeyAlgoRSASHA512})
+	if err != nil {
+		t.Fatal(err)
+	}
+	serverConf.AddHostKey(mas)
+	serverConf.AddHostKey(testSigners["ecdsap256"])
+	serverConf.AddHostKey(testSigners["ed25519"])
+	go NewServerConn(c1, serverConf)
+
+	hostKey00Done := make(chan []PublicKey, 1)
+
+	clientConf := ClientConfig{
+		Auth: []AuthMethod{
+			Password("123"),
+		},
+		User:            "user",
+		HostKeyCallback: InsecureIgnoreHostKey(),
+		HostKeys00Callback: func(publicKeys []PublicKey) {
+			hostKey00Done <- publicKeys
+		},
+		HostKeyAlgorithms: []string{KeyAlgoRSASHA512},
+	}
+
+	c, chans, reqs, err := NewClientConn(c2, "", &clientConf)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer c.Close()
+
+	pubHostKeys := <-hostKey00Done
+	if len(pubHostKeys) != 3 {
+		t.Errorf("expected 3 host keys from hostkeys-00@openssh.com extension, got %d", len(pubHostKeys))
+	}
+	client := NewClient(c, chans, reqs)
+	if err = client.HostKeysProve(pubHostKeys); err != nil {
+		t.Fatal(err)
+	}
+	// Request to prove a public key that the server does not own.
+	if err = client.HostKeysProve([]PublicKey{testPublicKeys["ecdsap384"]}); err == nil {
+		t.Fatal("prove for unknown host key suceeded!")
+	}
+}
+
 func TestNewServerConnValidationErrors(t *testing.T) {
 	serverConf := &ServerConfig{
 		PublicKeyAuthAlgorithms: []string{CertAlgoRSAv01},
