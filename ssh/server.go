@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"crypto/rand"
 	"errors"
 	"fmt"
 	"io"
@@ -161,17 +162,15 @@ type ServerConfig struct {
 	GSSAPIWithMICConfig *GSSAPIWithMICConfig
 }
 
-// AddHostKey adds a private key as a host key. If an existing host
-// key exists with the same public key format, it is replaced. Each server
-// config must have at least one host key.
+// AddHostKey adds a private key as a host key. Each server config must have at
+// least one host key. Multiple host keys for the same key type are allowed.
 func (s *ServerConfig) AddHostKey(key Signer) {
-	for i, k := range s.hostKeys {
-		if k.PublicKey().Type() == key.PublicKey().Type() {
-			s.hostKeys[i] = key
+	for _, k := range s.hostKeys {
+		// The same host key cannot be added multiple times.
+		if bytes.Equal(k.PublicKey().Marshal(), key.PublicKey().Marshal()) {
 			return
 		}
 	}
-
 	s.hostKeys = append(s.hostKeys, key)
 }
 
@@ -283,6 +282,75 @@ func signAndMarshal(k AlgorithmSigner, rand io.Reader, data []byte, algo string)
 	return Marshal(sig), nil
 }
 
+func handleHostProveRequest(req *Request, signers []Signer, sessionID []byte, hostKeyAlgo string) {
+	var hostKeys [][]byte
+
+	payload := req.Payload
+	for {
+		if len(payload) == 0 {
+			break
+		}
+		hostKey, rest, ok := parseString(payload)
+		if !ok {
+			req.Reply(false, nil)
+			return
+		}
+		hostKeys = append(hostKeys, hostKey)
+		payload = rest
+	}
+
+	var signatures []byte
+	for _, h := range hostKeys {
+		for _, signer := range signers {
+			if bytes.Equal(signer.PublicKey().Marshal(), h) {
+				preferredAlgo := ""
+				// Special case for RSA keys: if a RSA hostkey was negotiated,
+				// then use its signature type for signing RSA hostkey proofs.
+				if isRSA(hostKeyAlgo) && isRSA(signer.PublicKey().Type()) {
+					preferredAlgo = underlyingAlgo(hostKeyAlgo)
+				}
+				// generate a signature as for [PROTOCOL], section 2.5.
+				data := msgHostKeyProveSignature{
+					Name:      "hostkeys-prove-00@openssh.com",
+					SessionID: string(sessionID),
+					PubKey:    string(h),
+				}
+				var signature *Signature
+				var err error
+				if mas, ok := signer.(MultiAlgorithmSigner); ok {
+					signAlgo := mas.Algorithms()[0]
+					if preferredAlgo != "" && contains(mas.Algorithms(), preferredAlgo) {
+						signAlgo = preferredAlgo
+					}
+					signature, err = mas.SignWithAlgorithm(rand.Reader, Marshal(&data), signAlgo)
+				} else if as, ok := signer.(AlgorithmSigner); ok {
+					availableAlgos := algorithmsForKeyFormat(signer.PublicKey().Type())
+					signAlgo := availableAlgos[0]
+					if preferredAlgo != "" && contains(availableAlgos, preferredAlgo) {
+						signAlgo = preferredAlgo
+					}
+					signature, err = as.SignWithAlgorithm(rand.Reader, Marshal(&data), signAlgo)
+				} else {
+					signature, err = signer.Sign(rand.Reader, Marshal(&data))
+				}
+				if err != nil {
+					req.Reply(false, nil)
+					return
+				}
+				s := Marshal(signature)
+				sig := make([]byte, stringLength(len(s)))
+				marshalString(sig, s)
+				signatures = append(signatures, sig...)
+			}
+		}
+	}
+	if len(signatures) == 0 {
+		req.Reply(false, nil)
+		return
+	}
+	req.Reply(true, signatures)
+}
+
 // handshake performs key exchange and user authentication.
 func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error) {
 	if len(config.hostKeys) == 0 {
@@ -339,7 +407,18 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 	if err != nil {
 		return nil, err
 	}
-	s.mux = newMux(s.transport)
+	s.mux = newMux(s.transport, &muxCallbacks{
+		hostProve: func(req *Request) {
+			handleHostProveRequest(req, config.hostKeys, s.sessionID, s.transport.algorithms.hostKey)
+		},
+	})
+	// Inform the client of our host keys using hostkeys-00@openssh.com extension
+	var payload []byte
+	for _, k := range config.hostKeys {
+		payload = appendString(payload, string(k.PublicKey().Marshal()))
+	}
+	// FIXME: should we check the error?
+	s.mux.SendRequest("hostkeys-00@openssh.com", false, payload)
 	return perms, err
 }
 

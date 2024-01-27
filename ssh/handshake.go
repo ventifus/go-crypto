@@ -524,13 +524,21 @@ func (t *handshakeTransport) sendKexInit() error {
 			case MultiAlgorithmSigner:
 				for _, algo := range algorithmsForKeyFormat(keyFormat) {
 					if contains(s.Algorithms(), underlyingAlgo(algo)) {
-						msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algo)
+						if !contains(msg.ServerHostKeyAlgos, algo) {
+							msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algo)
+						}
 					}
 				}
 			case AlgorithmSigner:
-				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algorithmsForKeyFormat(keyFormat)...)
+				for _, algo := range algorithmsForKeyFormat(keyFormat) {
+					if !contains(msg.ServerHostKeyAlgos, algo) {
+						msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, algo)
+					}
+				}
 			default:
-				msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
+				if !contains(msg.ServerHostKeyAlgos, keyFormat) {
+					msg.ServerHostKeyAlgos = append(msg.ServerHostKeyAlgos, keyFormat)
+				}
 			}
 		}
 

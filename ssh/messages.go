@@ -363,6 +363,13 @@ type pongMsg struct {
 	Data string `sshtype:"193"`
 }
 
+// Connection protocol change. See [PROTOCOL], section 2.5
+type msgHostKeyProveSignature struct {
+	Name      string
+	SessionID string
+	PubKey    string
+}
+
 // typeTags returns the possible type bytes for the given reflect.Type, which
 // should be a struct. The possible values are separated by a '|' character.
 func typeTags(structType reflect.Type) (tags []byte) {

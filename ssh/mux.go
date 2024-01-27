@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -83,6 +84,20 @@ func (c *chanList) dropAll() []*channel {
 	return r
 }
 
+type hostKeysUpdate struct {
+	sessionID []byte
+	callback  HostKeysUpdateCallback
+}
+
+type muxCallbacks struct {
+	// hostProve is the callback to handle hostkeys-prove-00@openssh.com global
+	// messages.
+	hostProve func(req *Request)
+	// hostKeysUpdate is the callback to notify clients about the host keys
+	// received via the hostkeys-00@openssh.com global message.
+	hostKeysUpdate *hostKeysUpdate
+}
+
 // mux represents the state for the SSH connection protocol, which
 // multiplexes many channels onto a single packet transport.
 type mux struct {
@@ -94,6 +109,7 @@ type mux struct {
 	globalSentMu     sync.Mutex
 	globalResponses  chan interface{}
 	incomingRequests chan *Request
+	callbacks        *muxCallbacks
 
 	errCond *sync.Cond
 	err     error
@@ -113,12 +129,13 @@ func (m *mux) Wait() error {
 }
 
 // newMux returns a mux that runs over the given connection.
-func newMux(p packetConn) *mux {
+func newMux(p packetConn, callbacks *muxCallbacks) *mux {
 	m := &mux{
 		conn:             p,
 		incomingChannels: make(chan NewChannel, chanSize),
 		globalResponses:  make(chan interface{}, 1),
 		incomingRequests: make(chan *Request, chanSize),
+		callbacks:        callbacks,
 		errCond:          newCond(),
 	}
 	if debugMux {
@@ -252,6 +269,90 @@ func (m *mux) onePacket() error {
 	return ch.handlePacket(packet)
 }
 
+// HostKeysProve sends a hostkeys-prove@openssh.com message to request the
+// server prove ownership of the private half of the key and validates the
+// received signatures.
+func (m *mux) hostKeysProve(publicKeys []PublicKey, sessionID []byte) error {
+	if len(publicKeys) == 0 {
+		return errors.New("ssh: no keys provided")
+	}
+	var payload []byte
+	for _, k := range publicKeys {
+		payload = appendString(payload, string(k.Marshal()))
+	}
+
+	ok, respPayload, err := m.SendRequest("hostkeys-prove-00@openssh.com", true, payload)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return errors.New("ssh: hostkeys-prove-00@openssh.com request denied by peer")
+	}
+	var signatures [][]byte
+
+	for {
+		if len(respPayload) == 0 {
+			break
+		}
+		signature, rest, ok := parseString(respPayload)
+		if !ok {
+			return errors.New("ssh: failed to parse hostkeys-prove-00@openssh.com response payload")
+		}
+		signatures = append(signatures, signature)
+		respPayload = rest
+	}
+	if len(signatures) != len(publicKeys) {
+		return fmt.Errorf("ssh: expected %d signatures in hostkeys-prove-00@openssh.com response payload, got %d",
+			len(publicKeys), len(signatures))
+	}
+	// The signatures in response should match the order of the keys in the
+	// request.
+	for idx, k := range publicKeys {
+		sig, rest, ok := parseSignatureBody(signatures[idx])
+		if len(rest) > 0 || !ok {
+			return errors.New("ssh: signature parse error")
+		}
+		data := Marshal(&msgHostKeyProveSignature{
+			Name:      "hostkeys-prove-00@openssh.com",
+			SessionID: string(sessionID),
+			PubKey:    string(k.Marshal()),
+		})
+		if err := k.Verify(data, sig); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (m *mux) handleHostKeysUpdateRequest(req *Request, hostKeysUpdate *hostKeysUpdate) {
+	var newKeys []*HostKeyUpdate
+
+	payload := req.Payload
+	for {
+		if len(payload) == 0 {
+			break
+		}
+		key, rest, ok := parseString(payload)
+		if !ok {
+			req.Reply(false, nil)
+			return
+		}
+		pubKey, err := ParsePublicKey(key)
+		if err != nil {
+			req.Reply(false, nil)
+			return
+		}
+		newKeys = append(newKeys, &HostKeyUpdate{
+			key:       pubKey,
+			sessionID: hostKeysUpdate.sessionID,
+			mux:       m,
+		})
+		payload = rest
+	}
+	req.Reply(false, nil)
+	hostKeysUpdate.callback(newKeys)
+}
+
 func (m *mux) handleGlobalPacket(packet []byte) error {
 	msg, err := decode(packet)
 	if err != nil {
@@ -260,11 +361,27 @@ func (m *mux) handleGlobalPacket(packet []byte) error {
 
 	switch msg := msg.(type) {
 	case *globalRequestMsg:
-		m.incomingRequests <- &Request{
+		req := &Request{
 			Type:      msg.Type,
 			WantReply: msg.WantReply,
 			Payload:   msg.Data,
 			mux:       m,
+		}
+		switch req.Type {
+		case "hostkeys-prove-00@openssh.com":
+			if m.callbacks != nil && m.callbacks.hostProve != nil {
+				go m.callbacks.hostProve(req)
+			} else {
+				m.incomingRequests <- req
+			}
+		case "hostkeys-00@openssh.com":
+			if m.callbacks != nil && m.callbacks.hostKeysUpdate != nil && m.callbacks.hostKeysUpdate.callback != nil {
+				go m.handleHostKeysUpdateRequest(req, m.callbacks.hostKeysUpdate)
+			} else {
+				m.incomingRequests <- req
+			}
+		default:
+			m.incomingRequests <- req
 		}
 	case *globalRequestSuccessMsg, *globalRequestFailureMsg:
 		m.globalResponses <- msg
