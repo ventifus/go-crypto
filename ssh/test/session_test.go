@@ -67,6 +67,30 @@ func TestHostKeyCheck(t *testing.T) {
 	}
 }
 
+func TestHostKeys00Extension(t *testing.T) {
+	server := newServer(t)
+	conf := clientConfig()
+
+	hostKeysUpdateDone := make(chan []ssh.HostKeyUpdate, 1)
+	conf.HostKeysUpdateCallback = func(keysUpdate []ssh.HostKeyUpdate) {
+		hostKeysUpdateDone <- keysUpdate
+	}
+
+	conn := server.Dial(conf)
+	defer conn.Close()
+
+	// We might end up waiting forever if the server doesn't support
+	// hostkeys-00@openssh.com, however this extension seems to be implemented
+	// even in very old versions of OpenSSH like e.g. v7.2.
+	hostKeyUpdates := <-hostKeysUpdateDone
+
+	for _, hostKeyUpdate := range hostKeyUpdates {
+		if _, err := hostKeyUpdate.PublicKey(conn); err != nil {
+			t.Fatalf("unable to prove host key type %q: %v", hostKeyUpdate.KeyType(), err)
+		}
+	}
+}
+
 func TestRunCommandStdin(t *testing.T) {
 	server := newServer(t)
 	conn := server.Dial(clientConfig())
