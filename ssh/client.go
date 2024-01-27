@@ -84,7 +84,12 @@ func NewClientConn(c net.Conn, addr string, config *ClientConfig) (Conn, <-chan 
 		c.Close()
 		return nil, nil, nil, fmt.Errorf("ssh: handshake failed: %w", err)
 	}
-	conn.mux = newMux(conn.transport)
+	conn.mux = newMux(conn.transport, &muxCallbacks{
+		hostKeysUpdate: &hostKeysUpdate{
+			sessionID: conn.sessionID,
+			callback:  config.HostKeysUpdateCallback,
+		},
+	})
 	return conn, conn.mux.incomingChannels, conn.mux.incomingRequests, nil
 }
 
@@ -185,6 +190,41 @@ func Dial(network, addr string, config *ClientConfig) (*Client, error) {
 	return NewClient(c, chans, reqs), nil
 }
 
+// HostKeyUpdate represents a public key sent from servers using the
+// hostkeys-00@openssh.com global message.
+type HostKeyUpdate struct {
+	key       PublicKey
+	mux       *mux
+	sessionID []byte
+}
+
+// Fingerprint returns the key's fingerprint as unpadded base64 encoded sha256
+// hash. This is the same format returned by [FingerprintSHA256].
+func (h *HostKeyUpdate) Fingerprint() string {
+	return FingerprintSHA256(h.key)
+}
+
+// KeyType returns the key type.
+func (h *HostKeyUpdate) KeyType() string {
+	return h.key.Type()
+}
+
+// Equal reports whether the public part of the host key matches the one
+// supplied.
+func (h *HostKeyUpdate) Equal(key PublicKey) bool {
+	return bytes.Equal(h.key.Marshal(), key.Marshal())
+}
+
+// PublicKey sends a hostkeys-prove@openssh.com message to request the server
+// prove ownership of the private half of the key and returns the public key if
+// the verification is successful.
+func (h *HostKeyUpdate) PublicKey() (PublicKey, error) {
+	if err := h.mux.hostKeysProve([]PublicKey{h.key}, h.sessionID); err != nil {
+		return nil, err
+	}
+	return h.key, nil
+}
+
 // HostKeyCallback is the function type used for verifying server
 // keys.  A HostKeyCallback must return nil if the host key is OK, or
 // an error to reject it. It receives the hostname as passed to Dial
@@ -195,6 +235,10 @@ type HostKeyCallback func(hostname string, remote net.Addr, key PublicKey) error
 // BannerCallback is the function type used for treat the banner sent by
 // the server. A BannerCallback receives the message sent by the remote server.
 type BannerCallback func(message string) error
+
+// HostKeysUpdateCallback is the function type used to receive the host keys
+// sent by servers using the hostkeys-00@openssh.com global message.
+type HostKeysUpdateCallback func(keysUpdate []*HostKeyUpdate)
 
 // A ClientConfig structure is used to configure a Client. It must not be
 // modified after having been passed to an SSH function.
@@ -217,6 +261,11 @@ type ClientConfig struct {
 	// to succeed. The functions InsecureIgnoreHostKey or
 	// FixedHostKey can be used for simplistic host key checks.
 	HostKeyCallback HostKeyCallback
+
+	// HostKeysUpdateCallback is called after the authentication if the server
+	// sends a hostkeys-00@openssh.com message. The client configuration can
+	// supply this callback to get notified about the received public keys.
+	HostKeysUpdateCallback HostKeysUpdateCallback
 
 	// BannerCallback is called during the SSH dance to display a custom
 	// server's message. The client configuration can supply this callback to
