@@ -502,3 +502,29 @@ func TestWindowChange(t *testing.T) {
 
 	runTestAndUpdateIfNeeded(t, test.name, test.run)
 }
+
+func TestHostKeys00Extension(t *testing.T) {
+	done := make(chan struct{}, 1)
+
+	config := recordingsClientConfig()
+	config.HostKeysUpdateCallback = func(keysUpdate []*ssh.HostKeyUpdate) {
+		defer close(done)
+
+		for _, hostKeyUpdate := range keysUpdate {
+			if _, err := hostKeyUpdate.PublicKey(); err != nil {
+				t.Fatalf("unable to prove host key type %q: %v", hostKeyUpdate.KeyType(), err)
+			}
+		}
+	}
+
+	test := clientTest{
+		name:   "HostKeys00Extension",
+		config: config,
+		successCallback: func(t *testing.T, client *ssh.Client) {
+			// Wait for the host key update callback.
+			<-done
+		},
+	}
+
+	runTestAndUpdateIfNeeded(t, test.name, test.run)
+}
