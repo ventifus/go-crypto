@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cca561a_531fe9bc",
+        "filename": "ssh/streamlocal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-01-31T22:07:20Z",
+      "side": 1,
+      "message": "\u003e You are right, we should return an error if the address is already in the forwarding list otherwise when we remove it, after an error, we may remove the wrong one.\n\u003e \n\u003e We can control the forward list for a single client, the server (in this case OpenSSH) returns an error like this if the address is already in use: `error: unix_listener: cannot bind to path /tmp/sock: Address already in use`.\n\u003e \n\u003e I\u0027m not sure if for test cases it is better to mock a Conn or make real requests (tcp forwarding requires at least 2 ports)\n\nIf you can do the port allocation in a non-flaky way, I\u0027d say it\u0027s much better to use real requests — that\u0027s more likely to turn up timing bugs and/or differences in behavior that may matter to real users.",
+      "parentUuid": "14a835b8_1769913a",
+      "revId": "c597e0256eea916d0e87f673a2a7bff69d6cf585",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d7d7cb9_8823a0b0",
         "filename": "ssh/tcpip.go",
         "patchSetId": 1
