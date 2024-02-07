@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573d2592_8ddcf02b",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-02-07T18:53:22Z",
+      "side": 1,
+      "message": "Should we hardcode the constraint in nss/parser.go instead, and let this code skip it? That has the advantage of informing any other nss.Parse users as well.",
+      "revId": "0b375382aa4002b824048c693a129c2b0e5f3b87",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
