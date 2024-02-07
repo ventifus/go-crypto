@@ -69,6 +69,20 @@ var (
 	output       = flag.String("output", "fallback/bundle.go", "Path to file to write output to")
 )
 
+// manualExclusions contains a map of SHA256 fingerprints of roots that we manually exclude
+// from the bundle for various reasons.
+var manualExclusions = map[string]bool{
+	// TUBITAK Kamu SM SSL Kok Sertifikasi - Surum 1
+	// We exclude this root because mozilla manually constrains this root to
+	// issue names under .tr, but this information is only encoded in the CCADB
+	// IncludedCACertificateReport, in a field the format of which is
+	// undocumented, and is only used for this particular certificate. Rather
+	// than adding special parsing for this, we skip it. When code constraint
+	// support is available, we may also want to simply add a manual constraint,
+	// rather than a manual exclusion.
+	"46edc3689046d53a453fb3104ab80dcaec658b2660ea1629dd7e867990648716": true,
+}
+
 func main() {
 	flag.Parse()
 
@@ -133,7 +147,11 @@ func main() {
 			// new version.
 			continue
 		}
-		fmt.Fprintf(b, "# %s\n# %x\n", c.X509.Subject.String(), sha256.Sum256(c.X509.Raw))
+		hexSHA := fmt.Sprintf("%x", sha256.Sum256(c.X509.Raw))
+		if manualExclusions[hexSHA] {
+			continue
+		}
+		fmt.Fprintf(b, "# %s\n# %s\n", c.X509.Subject.String(), hexSHA)
 		pem.Encode(b, &pem.Block{Type: "CERTIFICATE", Bytes: c.X509.Raw})
 	}
 	fmt.Fprintln(b, "`")
