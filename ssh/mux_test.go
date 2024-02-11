@@ -5,11 +5,13 @@
 package ssh
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
 	"sync"
 	"testing"
+	"time"
 )
 
 func muxPair() (*mux, *mux) {
@@ -260,6 +262,79 @@ func TestMuxConnectionCloseWriteUnblock(t *testing.T) {
 
 	writer.remoteWin.waitWriterBlocked()
 	mux.Close()
+}
+
+func TestChannelWriteDeadlines(t *testing.T) {
+	r, w, mux := channelPair(t)
+	defer r.Close()
+	defer w.Close()
+	defer mux.Close()
+
+	writer, ok := w.Extended(0).(*extChannel)
+	if !ok {
+		t.Fatal("writer is not an extended channel")
+	}
+	writer.SetWriteDeadline(time.Now().Add(-1 * time.Second))
+
+	err := w.writePacket(make([]byte, channelWindowSize))
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected write error %v, got: %v", context.DeadlineExceeded, err)
+	}
+	w.writeMu.Lock()
+	if !w.writeDeadlineExceeded {
+		t.Error("write deadline exceed flag is not set")
+	}
+	w.writeMu.Unlock()
+	// a second write will return an error without trying to write
+	_, err = w.Write(make([]byte, channelWindowSize))
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected write error %v, got: %v", context.DeadlineExceeded, err)
+	}
+}
+
+func TestChannelReadDeadlines(t *testing.T) {
+	r, w, mux := channelPair(t)
+	defer r.Close()
+	defer w.Close()
+	defer mux.Close()
+
+	reader, ok := r.Extended(0).(*extChannel)
+	if !ok {
+		t.Fatal("reader is not an extended channel")
+	}
+	reader.SetReadDeadline(time.Now().Add(50 * time.Millisecond))
+
+	_, err := r.Read(make([]byte, channelWindowSize))
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected read error %v, got: %v", context.DeadlineExceeded, err)
+	}
+	// A read deadline exceeded error is not fatal. If we reset the deadline and
+	// write something, further reads must work.
+	reader.SetReadDeadline(time.Now().Add(1 * time.Second))
+
+	magic := "hello world"
+	var wg sync.WaitGroup
+	t.Cleanup(wg.Wait)
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+
+		_, err := w.Write([]byte(magic))
+		if err != nil {
+			t.Errorf("Write: %v", err)
+			return
+		}
+	}()
+
+	var buf [1024]byte
+	n, err := reader.Read(buf[:])
+	if err != nil {
+		t.Fatalf("read error: %v", err)
+	}
+	got := string(buf[:n])
+	if got != magic {
+		t.Fatalf("unexpecte read: got %q want %q", got, magic)
+	}
 }
 
 func TestMuxReject(t *testing.T) {
