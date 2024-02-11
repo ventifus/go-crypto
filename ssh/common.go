@@ -5,6 +5,7 @@
 package ssh
 
 import (
+	"context"
 	"crypto"
 	"crypto/rand"
 	"fmt"
@@ -407,9 +408,10 @@ func newCond() *sync.Cond { return sync.NewCond(new(sync.Mutex)) }
 // wishing to write to a channel.
 type window struct {
 	*sync.Cond
-	win          uint32 // RFC 4254 5.2 says the window size can grow to 2^32-1
-	writeWaiters int
-	closed       bool
+	win             uint32 // RFC 4254 5.2 says the window size can grow to 2^32-1
+	writeWaiters    int
+	closed          bool
+	deadlineReached bool
 }
 
 // add adds win to the amount of window available
@@ -442,6 +444,13 @@ func (w *window) close() {
 	w.L.Unlock()
 }
 
+func (w *window) deadline() {
+	w.L.Lock()
+	w.deadlineReached = true
+	w.Broadcast()
+	w.L.Unlock()
+}
+
 // reserve reserves win from the available window capacity.
 // If no capacity remains, reserve will block. reserve may
 // return less than requested.
@@ -450,7 +459,7 @@ func (w *window) reserve(win uint32) (uint32, error) {
 	w.L.Lock()
 	w.writeWaiters++
 	w.Broadcast()
-	for w.win == 0 && !w.closed {
+	for w.win == 0 && !w.closed && !w.deadlineReached {
 		w.Wait()
 	}
 	w.writeWaiters--
@@ -458,6 +467,11 @@ func (w *window) reserve(win uint32) (uint32, error) {
 		win = w.win
 	}
 	w.win -= win
+	if w.deadlineReached {
+		w.deadlineReached = false
+		// If the window is also closed the error will be io.EOF.
+		err = context.DeadlineExceeded
+	}
 	if w.closed {
 		err = io.EOF
 	}

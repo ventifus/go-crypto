@@ -5,6 +5,7 @@
 package ssh
 
 import (
+	"context"
 	"io"
 	"sync"
 )
@@ -19,7 +20,8 @@ type buffer struct {
 	head *element // the buffer that will be read first
 	tail *element // the buffer that will be read last
 
-	closed bool
+	closed          bool
+	deadlineReached bool
 }
 
 // An element represents a single link in a linked list.
@@ -59,6 +61,13 @@ func (b *buffer) eof() {
 	b.Cond.L.Unlock()
 }
 
+func (b *buffer) deadline() {
+	b.Cond.L.Lock()
+	b.deadlineReached = true
+	b.Cond.Signal()
+	b.Cond.L.Unlock()
+}
+
 // Read reads data from the internal buffer in buf.  Reads will block
 // if no data is available, or until the buffer is closed.
 func (b *buffer) Read(buf []byte) (n int, err error) {
@@ -88,6 +97,12 @@ func (b *buffer) Read(buf []byte) (n int, err error) {
 		// check to see if the buffer is closed.
 		if b.closed {
 			err = io.EOF
+			break
+		}
+		// check if the deadline was reached.
+		if b.deadlineReached {
+			err = context.DeadlineExceeded
+			b.deadlineReached = false
 			break
 		}
 		// out of buffers, wait for producer
