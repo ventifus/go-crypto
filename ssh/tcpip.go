@@ -486,6 +486,9 @@ func (t *chanConn) RemoteAddr() net.Addr {
 // SetDeadline sets the read and write deadlines associated
 // with the connection.
 func (t *chanConn) SetDeadline(deadline time.Time) error {
+	if ch, ok := t.Channel.(ChannelWithDeadlines); ok {
+		return ch.SetDeadline(deadline)
+	}
 	if err := t.SetReadDeadline(deadline); err != nil {
 		return err
 	}
@@ -497,6 +500,9 @@ func (t *chanConn) SetDeadline(deadline time.Time) error {
 // After the deadline, the error from Read will implement net.Error
 // with Timeout() == true.
 func (t *chanConn) SetReadDeadline(deadline time.Time) error {
+	if ch, ok := t.Channel.(ChannelWithDeadlines); ok {
+		return ch.SetReadDeadline(deadline)
+	}
 	// for compatibility with previous version,
 	// the error message contains "tcpChan"
 	return errors.New("ssh: tcpChan: deadline not supported")
@@ -505,5 +511,8 @@ func (t *chanConn) SetReadDeadline(deadline time.Time) error {
 // SetWriteDeadline exists to satisfy the net.Conn interface
 // but is not implemented by this type.  It always returns an error.
 func (t *chanConn) SetWriteDeadline(deadline time.Time) error {
+	if ch, ok := t.Channel.(ChannelWithDeadlines); ok {
+		return ch.SetWriteDeadline(deadline)
+	}
 	return errors.New("ssh: tcpChan: deadline not supported")
 }

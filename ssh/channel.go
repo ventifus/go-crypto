@@ -5,12 +5,15 @@
 package ssh
 
 import (
+	"context"
 	"encoding/binary"
 	"errors"
 	"fmt"
 	"io"
 	"log"
 	"sync"
+	"sync/atomic"
+	"time"
 )
 
 const (
@@ -76,6 +79,24 @@ type Channel interface {
 	// safely be read and written from a different goroutine than
 	// Read and Write respectively.
 	Stderr() io.ReadWriter
+}
+
+// ChannelWithDeadlines is a channel with deadlines support.
+type ChannelWithDeadlines interface {
+	Channel
+
+	// SetDeadline sets the read and write deadlines associated with the
+	// channel. It is equivalent to calling both SetReadDeadline and
+	// SetWriteDeadline.
+	SetDeadline(deadline time.Time) error
+
+	// SetReadDeadline sets the deadline for future Read calls. A zero value for
+	// t means Read will not time out.
+	SetReadDeadline(deadline time.Time) error
+
+	// SetWriteDeadline sets the deadline for future Write calls. A zero value
+	// for t means Write will not time out.
+	SetWriteDeadline(deadline time.Time) error
 }
 
 // Request is a request sent outside of the normal stream of
@@ -173,6 +194,9 @@ type channel struct {
 	// Pending internal channel messages.
 	msg chan interface{}
 
+	readDeadline  atomic.Int64
+	writeDeadline atomic.Int64
+
 	// Since requests have no ID, there can be only one request
 	// with WantReply=true outstanding.  This lock is held by a
 	// goroutine that has such an outgoing request pending.
@@ -197,26 +221,65 @@ type channel struct {
 	// protects sentClose and packetPool. This mutex must be
 	// different from windowMu, as writePacket can block if there
 	// is a key exchange pending.
-	writeMu   sync.Mutex
-	sentClose bool
+	writeMu               sync.Mutex
+	sentClose             bool
+	writeDeadlineExceeded bool
 
 	// packetPool has a buffer for each extended channel ID to
 	// save allocations during writes.
 	packetPool map[uint32][]byte
 }
 
+func (ch *channel) SetDeadline(deadline time.Time) error {
+	if err := ch.SetReadDeadline(deadline); err != nil {
+		return err
+	}
+	return ch.SetWriteDeadline(deadline)
+}
+
+func (ch *channel) SetReadDeadline(deadline time.Time) error {
+	ch.readDeadline.Store(deadline.UnixMilli())
+	return nil
+}
+
+func (ch *channel) SetWriteDeadline(deadline time.Time) error {
+	ch.writeDeadline.Store(deadline.UnixMilli())
+	return nil
+}
+
 // writePacket sends a packet. If the packet is a channel close, it updates
 // sentClose. This method takes the lock c.writeMu.
 func (ch *channel) writePacket(packet []byte) error {
 	ch.writeMu.Lock()
+	defer ch.writeMu.Unlock()
+
 	if ch.sentClose {
-		ch.writeMu.Unlock()
 		return io.EOF
 	}
+	if ch.writeDeadlineExceeded {
+		return context.DeadlineExceeded
+	}
+
 	ch.sentClose = (packet[0] == msgChannelClose)
-	err := ch.mux.conn.writePacket(packet)
-	ch.writeMu.Unlock()
-	return err
+
+	if deadline := ch.writeDeadline.Load(); deadline > 0 {
+		ctx, cancel := context.WithDeadline(context.Background(), time.UnixMilli(deadline))
+		defer cancel()
+
+		resCh := make(chan error, 1)
+		go func() {
+			resCh <- ch.mux.conn.writePacket(packet)
+		}()
+
+		select {
+		case err := <-resCh:
+			return err
+		case <-ctx.Done():
+			ch.writeDeadlineExceeded = true
+			return ctx.Err()
+		}
+	}
+	return ch.mux.conn.writePacket(packet)
 }
 
 func (ch *channel) sendMessage(msg interface{}) error {
@@ -232,6 +295,12 @@ func (ch *channel) sendMessage(msg interface{}) error {
 // WriteExtended writes data to a specific extended stream. These streams are
 // used, for example, for stderr.
 func (ch *channel) WriteExtended(data []byte, extendedCode uint32) (n int, err error) {
+	if deadline := ch.writeDeadline.Load(); deadline > 0 && deadline < time.Now().UnixMilli() {
+		ch.writeMu.Lock()
+		ch.writeDeadlineExceeded = true
+		ch.writeMu.Unlock()
+		return 0, fmt.Errorf("%w: write deadline %v", context.DeadlineExceeded, time.UnixMilli(deadline))
+	}
 	if ch.sentEOF {
 		return 0, io.EOF
 	}
@@ -355,14 +424,54 @@ func (c *channel) adjustWindow(adj uint32) error {
 	})
 }
 
+type channelReadResult struct {
+	n   int
+	err error
+}
+
 func (c *channel) ReadExtended(data []byte, extended uint32) (n int, err error) {
-	switch extended {
-	case 1:
-		n, err = c.extPending.Read(data)
-	case 0:
-		n, err = c.pending.Read(data)
-	default:
-		return 0, fmt.Errorf("ssh: extended code %d unimplemented", extended)
+	deadline := c.readDeadline.Load()
+	if deadline > 0 && deadline < time.Now().UnixMilli() {
+		c.extPending.eof()
+		c.pending.eof()
+		return 0, fmt.Errorf("%w: read deadline %v", context.DeadlineExceeded, time.UnixMilli(deadline))
+	}
+
+	readData := func() (int, error) {
+		switch extended {
+		case 1:
+			return c.extPending.Read(data)
+		case 0:
+			return c.pending.Read(data)
+		default:
+			return 0, fmt.Errorf("ssh: extended code %d unimplemented", extended)
+		}
+	}
+
+	if deadline > 0 {
+		ctx, cancel := context.WithDeadline(context.Background(), time.UnixMilli(deadline))
+		defer cancel()
+
+		readCh := make(chan channelReadResult, 1)
+
+		go func() {
+			n, err := readData()
+			readCh <- channelReadResult{n, err}
+		}()
+
+		select {
+		case res := <-readCh:
+			n = res.n
+			err = res.err
+		case <-ctx.Done():
+			n = 0
+			err = ctx.Err()
+			// Calling eof() will unblock the above goroutine.
+			c.extPending.eof()
+			c.pending.eof()
+		}
+	} else {
+		n, err = readData()
 	}
 
 	if n > 0 {
@@ -498,6 +607,18 @@ func (e *extChannel) Write(data []byte) (n int, err error) {
 
 func (e *extChannel) Read(data []byte) (n int, err error) {
 	return e.ch.ReadExtended(data, e.code)
+}
+
+func (e *extChannel) SetDeadline(deadline time.Time) error {
+	return e.ch.SetDeadline(deadline)
+}
+
+func (e *extChannel) SetReadDeadline(deadline time.Time) error {
+	return e.ch.SetReadDeadline(deadline)
+}
+
+func (e *extChannel) SetWriteDeadline(deadline time.Time) error {
+	return e.ch.SetWriteDeadline(deadline)
 }
 
 func (ch *channel) Accept() (Channel, <-chan *Request, error) {
