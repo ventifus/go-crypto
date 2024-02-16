@@ -8,8 +8,13 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"net"
+	"os"
 	"sync"
 	"testing"
+	"time"
+
+	"golang.org/x/net/nettest"
 )
 
 func muxPair() (*mux, *mux) {
@@ -260,6 +265,184 @@ func TestMuxConnectionCloseWriteUnblock(t *testing.T) {
 
 	writer.remoteWin.waitWriterBlocked()
 	mux.Close()
+}
+
+func TestChannelWriteDeadlines(t *testing.T) {
+	r, w, mux := channelPair(t)
+	defer r.Close()
+	defer w.Close()
+	defer mux.Close()
+
+	writer, ok := w.Extended(0).(*extChannel)
+	if !ok {
+		t.Fatal("writer is not an extended channel")
+	}
+	writer.SetWriteDeadline(time.Now().Add(50 * time.Millisecond))
+
+	if _, err := writer.Write(make([]byte, channelWindowSize)); err != nil {
+		t.Errorf("could not fill window: %v", err)
+	}
+	_, err := writer.Write(make([]byte, 1))
+	if !errors.Is(err, os.ErrDeadlineExceeded) {
+		t.Fatalf("expected write error %v, got: %v", os.ErrDeadlineExceeded, err)
+	}
+	// A new Write will immediately errors out.
+	_, err = writer.Write(make([]byte, 1))
+	if !errors.Is(err, os.ErrDeadlineExceeded) {
+		t.Fatalf("expected write error %v, got: %v", os.ErrDeadlineExceeded, err)
+	}
+	// A write deadline exceeded error is not fatal. If we reset the deadline and
+	// read something, further writes must work.
+	writer.SetWriteDeadline(time.Now().Add(1 * time.Second))
+	buf := make([]byte, 32768)
+	_, err = r.Read(buf)
+	if err != nil {
+		t.Fatalf("unexpected read error: %v", err)
+	}
+	_, err = writer.Write(make([]byte, 1))
+	if err != nil {
+		t.Fatalf("unexpected write error: %v", err)
+	}
+}
+
+func TestChannelDeadlineUnblockWrite(t *testing.T) {
+	reader, writer, mux := channelPair(t)
+	defer reader.Close()
+	defer writer.Close()
+	defer mux.Close()
+
+	writer.SetWriteDeadline(time.Now().Add(-1 * time.Second))
+	// Reset the deadline.
+	writer.SetWriteDeadline(time.Time{})
+
+	if _, err := writer.Write(make([]byte, channelWindowSize)); err != nil {
+		t.Errorf("could not fill window: %v", err)
+	}
+
+	isWriting := make(chan bool, 1)
+	done := make(chan bool, 1)
+
+	go func() {
+		defer func() {
+			done <- true
+		}()
+
+		isWriting <- true
+		_, err := writer.Write(make([]byte, 1))
+		if !errors.Is(err, os.ErrDeadlineExceeded) {
+			t.Errorf("expected write error %v, got: %v", os.ErrDeadlineExceeded, err)
+		}
+	}()
+	// Wait for the write to start.
+	<-isWriting
+	// Setting a deadline in the past will unblock the write.
+	writer.SetWriteDeadline(time.Now().Add(-1 * time.Second))
+	<-done
+}
+
+func TestChannelReadDeadlines(t *testing.T) {
+	r, w, mux := channelPair(t)
+	defer r.Close()
+	defer w.Close()
+	defer mux.Close()
+
+	reader, ok := r.Extended(0).(*extChannel)
+	if !ok {
+		t.Fatal("reader is not an extended channel")
+	}
+	reader.SetReadDeadline(time.Now().Add(50 * time.Millisecond))
+
+	_, err := r.Read(make([]byte, channelWindowSize))
+	if !errors.Is(err, os.ErrDeadlineExceeded) {
+		t.Fatalf("expected read error %v, got: %v", os.ErrDeadlineExceeded, err)
+	}
+	// A new Read will immediately errors out.
+	_, err = r.Read(make([]byte, channelWindowSize))
+	if !errors.Is(err, os.ErrDeadlineExceeded) {
+		t.Fatalf("expected read error %v, got: %v", os.ErrDeadlineExceeded, err)
+	}
+	// A read deadline exceeded error is not fatal. If we reset the deadline and
+	// write something, further reads must work.
+	reader.SetReadDeadline(time.Now().Add(1 * time.Second))
+
+	magic := "hello world"
+
+	_, err = w.Write([]byte(magic))
+	if err != nil {
+		t.Errorf("Write: %v", err)
+		return
+	}
+
+	var buf [1024]byte
+	n, err := reader.Read(buf[:])
+	if err != nil {
+		t.Fatalf("read error: %v", err)
+	}
+	got := string(buf[:n])
+	if got != magic {
+		t.Fatalf("unexpected read: got %q want %q", got, magic)
+	}
+}
+
+func TestChannelDeadlineUnblockRead(t *testing.T) {
+	reader, writer, mux := channelPair(t)
+	defer reader.Close()
+	defer writer.Close()
+	defer mux.Close()
+
+	reader.SetReadDeadline(time.Now().Add(-1 * time.Second))
+	// Reset the deadline.
+	reader.SetReadDeadline(time.Time{})
+
+	isReading := make(chan bool, 1)
+	done := make(chan bool, 1)
+
+	go func() {
+		defer func() {
+			done <- true
+		}()
+
+		isReading <- true
+		_, err := reader.Read(make([]byte, channelWindowSize))
+		if !errors.Is(err, os.ErrDeadlineExceeded) {
+			t.Errorf("expected read error: %v, got: %v", os.ErrDeadlineExceeded, err)
+		}
+	}()
+	// Wait for the read to start.
+	<-isReading
+	// Setting a deadline in the past will unblock the read.
+	reader.SetReadDeadline(time.Now().Add(-1 * time.Second))
+	<-done
+}
+
+func TestChannelsNetTest(t *testing.T) {
+	nettest.TestConn(t, func() (c1 net.Conn, c2 net.Conn, stop func(), err error) {
+		reader, writer, mux := channelPair(t)
+
+		zeroAddr := &net.TCPAddr{
+			IP:   net.IPv4zero,
+			Port: 0,
+		}
+
+		r := &chanConn{
+			Channel: reader,
+			laddr:   zeroAddr,
+			raddr:   zeroAddr,
+		}
+		w := &chanConn{
+			Channel: writer,
+			laddr:   zeroAddr,
+			raddr:   zeroAddr,
+		}
+
+		stopFn := func() {
+			reader.Close()
+			writer.Close()
+			mux.Close()
+		}
+
+		return r, w, stopFn, nil
+	})
 }
 
 func TestMuxReject(t *testing.T) {
