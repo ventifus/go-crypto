@@ -497,6 +497,9 @@ func (t *chanConn) SetDeadline(deadline time.Time) error {
 // After the deadline, the error from Read will implement net.Error
 // with Timeout() == true.
 func (t *chanConn) SetReadDeadline(deadline time.Time) error {
+	if ch, ok := t.Channel.(ChannelWithDeadlines); ok {
+		return ch.SetReadDeadline(deadline)
+	}
 	// for compatibility with previous version,
 	// the error message contains "tcpChan"
 	return errors.New("ssh: tcpChan: deadline not supported")
@@ -505,5 +508,18 @@ func (t *chanConn) SetReadDeadline(deadline time.Time) error {
 // SetWriteDeadline exists to satisfy the net.Conn interface
 // but is not implemented by this type.  It always returns an error.
 func (t *chanConn) SetWriteDeadline(deadline time.Time) error {
+	if ch, ok := t.Channel.(ChannelWithDeadlines); ok {
+		return ch.SetWriteDeadline(deadline)
+	}
 	return errors.New("ssh: tcpChan: deadline not supported")
+}
+
+// Close is a wrapper around channel.Close that returns nil if the underlying
+// Close returns io.EOF to satisfy the net.Conn interface.
+func (c *chanConn) Close() error {
+	err := c.Channel.Close()
+	if err == io.EOF {
+		return nil
+	}
+	return err
 }
