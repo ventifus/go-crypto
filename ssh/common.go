@@ -10,7 +10,9 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"os"
 	"sync"
+	"time"
 
 	_ "crypto/sha1"
 	_ "crypto/sha256"
@@ -407,9 +409,11 @@ func newCond() *sync.Cond { return sync.NewCond(new(sync.Mutex)) }
 // wishing to write to a channel.
 type window struct {
 	*sync.Cond
-	win          uint32 // RFC 4254 5.2 says the window size can grow to 2^32-1
-	writeWaiters int
-	closed       bool
+	win             uint32 // RFC 4254 5.2 says the window size can grow to 2^32-1
+	writeWaiters    int
+	closed          bool
+	deadlineReached bool
+	timer           *time.Timer
 }
 
 // add adds win to the amount of window available
@@ -438,19 +442,57 @@ func (w *window) add(win uint32) bool {
 func (w *window) close() {
 	w.L.Lock()
 	w.closed = true
+	if w.timer != nil {
+		w.timer.Stop()
+		w.timer = nil
+	}
 	w.Broadcast()
 	w.L.Unlock()
+}
+
+func (w *window) deadline() {
+	w.L.Lock()
+	w.deadlineReached = true
+	w.Broadcast()
+	w.L.Unlock()
+}
+
+func (w *window) setDeadline(deadline time.Time) {
+	if !deadline.IsZero() && deadline.Before(time.Now()) {
+		// Unblock reserve, if any.
+		w.deadline()
+		return
+	}
+	w.L.Lock()
+	defer w.L.Unlock()
+
+	w.deadlineReached = false
+	if w.timer != nil {
+		w.timer.Stop()
+		w.timer = nil
+	}
+	if deadline.IsZero() {
+		return
+	}
+	w.timer = time.AfterFunc(time.Until(deadline), func() {
+		w.deadline()
+	})
 }
 
 // reserve reserves win from the available window capacity.
 // If no capacity remains, reserve will block. reserve may
 // return less than requested.
 func (w *window) reserve(win uint32) (uint32, error) {
-	var err error
 	w.L.Lock()
+	defer w.L.Unlock()
+
+	var err error
+	if w.deadlineReached {
+		return 0, os.ErrDeadlineExceeded
+	}
 	w.writeWaiters++
 	w.Broadcast()
-	for w.win == 0 && !w.closed {
+	for w.win == 0 && !w.closed && !w.deadlineReached {
 		w.Wait()
 	}
 	w.writeWaiters--
@@ -458,10 +500,13 @@ func (w *window) reserve(win uint32) (uint32, error) {
 		win = w.win
 	}
 	w.win -= win
+	if w.deadlineReached {
+		// If the window is also closed the error will be io.EOF.
+		err = os.ErrDeadlineExceeded
+	}
 	if w.closed {
 		err = io.EOF
 	}
-	w.L.Unlock()
 	return win, err
 }
 
