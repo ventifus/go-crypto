@@ -11,6 +11,7 @@ import (
 	"io"
 	"log"
 	"sync"
+	"time"
 )
 
 const (
@@ -76,6 +77,24 @@ type Channel interface {
 	// safely be read and written from a different goroutine than
 	// Read and Write respectively.
 	Stderr() io.ReadWriter
+}
+
+// ChannelWithDeadlines is a channel with deadlines support.
+type ChannelWithDeadlines interface {
+	Channel
+
+	// SetDeadline sets the read and write deadlines associated with the
+	// channel. It is equivalent to calling both SetReadDeadline and
+	// SetWriteDeadline.
+	SetDeadline(deadline time.Time) error
+
+	// SetReadDeadline sets the deadline for future Read calls. A zero value for
+	// t means Read will not time out.
+	SetReadDeadline(deadline time.Time) error
+
+	// SetWriteDeadline sets the deadline for future Write calls. A zero value
+	// for t means Write will not time out.
+	SetWriteDeadline(deadline time.Time) error
 }
 
 // Request is a request sent outside of the normal stream of
@@ -203,6 +222,24 @@ type channel struct {
 	// packetPool has a buffer for each extended channel ID to
 	// save allocations during writes.
 	packetPool map[uint32][]byte
+}
+
+func (ch *channel) SetDeadline(deadline time.Time) error {
+	if err := ch.SetReadDeadline(deadline); err != nil {
+		return err
+	}
+	return ch.SetWriteDeadline(deadline)
+}
+
+func (ch *channel) SetReadDeadline(deadline time.Time) error {
+	ch.extPending.setDeadline(deadline)
+	ch.pending.setDeadline(deadline)
+	return nil
+}
+
+func (ch *channel) SetWriteDeadline(deadline time.Time) error {
+	ch.remoteWin.setDeadline(deadline)
+	return nil
 }
 
 // writePacket sends a packet. If the packet is a channel close, it updates
@@ -490,6 +527,18 @@ var errDecidedAlready = errors.New("ssh: can call Accept or Reject only once")
 type extChannel struct {
 	code uint32
 	ch   *channel
+}
+
+func (e *extChannel) SetDeadline(deadline time.Time) error {
+	return e.ch.SetDeadline(deadline)
+}
+
+func (e *extChannel) SetReadDeadline(deadline time.Time) error {
+	return e.ch.SetReadDeadline(deadline)
+}
+
+func (e *extChannel) SetWriteDeadline(deadline time.Time) error {
+	return e.ch.SetWriteDeadline(deadline)
 }
 
 func (e *extChannel) Write(data []byte) (n int, err error) {

@@ -239,6 +239,34 @@ func TestExitStatusZero(t *testing.T) {
 	}
 }
 
+func TestChannelWithDeadlinesImplementation(t *testing.T) {
+	conn := dial(exitStatusZeroHandler, t)
+	defer conn.Close()
+
+	ch, in, err := conn.OpenChannel("session", nil)
+	if err != nil {
+		t.Fatalf("unexpected error opening a session channel: %v", err)
+	}
+
+	if _, ok := ch.(ChannelWithDeadlines); !ok {
+		t.Errorf("the returned channel does not support deadlines")
+	}
+
+	session, err := newSession(ch, in)
+	if err != nil {
+		t.Fatalf("Unable to request new session: %v", err)
+	}
+	defer session.Close()
+
+	if err := session.Shell(); err != nil {
+		t.Fatalf("Unable to execute command: %v", err)
+	}
+	err = session.Wait()
+	if err != nil {
+		t.Fatalf("expected nil but got %v", err)
+	}
+}
+
 // Test exit signal and status are both returned correctly.
 func TestExitSignalAndStatus(t *testing.T) {
 	conn := dial(exitSignalAndStatusHandler, t)
