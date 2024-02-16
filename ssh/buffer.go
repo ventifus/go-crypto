@@ -5,8 +5,10 @@
 package ssh
 
 import (
+	"context"
 	"io"
 	"sync"
+	"time"
 )
 
 // buffer provides a linked list buffer for data exchange
@@ -19,7 +21,9 @@ type buffer struct {
 	head *element // the buffer that will be read first
 	tail *element // the buffer that will be read last
 
-	closed bool
+	closed          bool
+	deadlineReached bool
+	timer           *time.Timer
 }
 
 // An element represents a single link in a linked list.
@@ -55,6 +59,35 @@ func (b *buffer) write(buf []byte) {
 func (b *buffer) eof() {
 	b.Cond.L.Lock()
 	b.closed = true
+	if b.timer != nil {
+		b.timer.Stop()
+		b.timer = nil
+	}
+	b.Cond.Signal()
+	b.Cond.L.Unlock()
+}
+
+func (b *buffer) setDeadline(deadline time.Time) {
+	if deadline.Before(time.Now()) {
+		// Unblock read, if any.
+		b.deadline()
+		return
+	}
+	b.Cond.L.Lock()
+	defer b.Cond.L.Unlock()
+
+	b.deadlineReached = false
+	if b.timer != nil {
+		b.timer.Stop()
+	}
+	b.timer = time.AfterFunc(time.Until(deadline), func() {
+		b.deadline()
+	})
+}
+
+func (b *buffer) deadline() {
+	b.Cond.L.Lock()
+	b.deadlineReached = true
 	b.Cond.Signal()
 	b.Cond.L.Unlock()
 }
@@ -64,6 +97,10 @@ func (b *buffer) eof() {
 func (b *buffer) Read(buf []byte) (n int, err error) {
 	b.Cond.L.Lock()
 	defer b.Cond.L.Unlock()
+
+	if b.deadlineReached {
+		return 0, context.DeadlineExceeded
+	}
 
 	for len(buf) > 0 {
 		// if there is data in b.head, copy it
@@ -88,6 +125,11 @@ func (b *buffer) Read(buf []byte) (n int, err error) {
 		// check to see if the buffer is closed.
 		if b.closed {
 			err = io.EOF
+			break
+		}
+		// check if the deadline was reached.
+		if b.deadlineReached {
+			err = context.DeadlineExceeded
 			break
 		}
 		// out of buffers, wait for producer
