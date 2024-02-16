@@ -10,7 +10,9 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"os"
 	"sync"
+	"time"
 )
 
 const (
@@ -76,6 +78,26 @@ type Channel interface {
 	// safely be read and written from a different goroutine than
 	// Read and Write respectively.
 	Stderr() io.ReadWriter
+}
+
+// ChannelWithDeadlines is a channel with deadlines support.
+type ChannelWithDeadlines interface {
+	Channel
+
+	// SetDeadline sets the read and write deadlines associated with the
+	// channel. It is equivalent to calling both SetReadDeadline and
+	// SetWriteDeadline. Deadlines errors are not fatal, the Channel can be used
+	// again after resetting the deadlines.
+	SetDeadline(deadline time.Time) error
+
+	// SetReadDeadline sets the deadline for future Read calls and unblock Read
+	// calls waiting for data. A zero value for t means Read will not time out.
+	SetReadDeadline(deadline time.Time) error
+
+	// SetWriteDeadline sets the deadline for future Write calls and unblock
+	// Write calls waiting for window capacity. A zero value for t means Write
+	// will not time out.
+	SetWriteDeadline(deadline time.Time) error
 }
 
 // Request is a request sent outside of the normal stream of
@@ -193,30 +215,130 @@ type channel struct {
 	myWindow   uint32
 	myConsumed uint32
 
-	// writeMu serializes calls to mux.conn.writePacket() and
-	// protects sentClose and packetPool. This mutex must be
-	// different from windowMu, as writePacket can block if there
-	// is a key exchange pending.
+	// writeMu serializes calls to mux.conn.writePacket(). This mutex
+	// must be different from windowMu, as writePacket can block if
+	// there is a key exchange pending.
 	writeMu   sync.Mutex
 	sentClose bool
 
-	// packetPool has a buffer for each extended channel ID to
-	// save allocations during writes.
-	packetPool map[uint32][]byte
+	// deadlines handling
+	writeCond       *sync.Cond
+	deadlineReached bool
+	readyToWrite    bool
+	//isClosed        bool
+	writeQueue  chan []byte
+	writeBuffer []byte
+	writeErr    error
+}
+
+func (ch *channel) SetDeadline(deadline time.Time) error {
+	if err := ch.SetReadDeadline(deadline); err != nil {
+		return err
+	}
+	return ch.SetWriteDeadline(deadline)
+}
+
+func (ch *channel) SetReadDeadline(deadline time.Time) error {
+	ch.extPending.setDeadline(deadline)
+	ch.pending.setDeadline(deadline)
+	return nil
+}
+
+func (ch *channel) deadlineReachedFn(val bool) {
+	ch.writeMu.Lock()
+	defer ch.writeMu.Unlock()
+
+	ch.deadlineReached = val
+	ch.writeCond.Broadcast()
+}
+
+func (ch *channel) SetWriteDeadline(deadline time.Time) error {
+	ch.remoteWin.setDeadline(deadline, ch.deadlineReachedFn)
+	return nil
+}
+
+func (ch *channel) setReadyToWrite() {
+	ch.writeMu.Lock()
+	defer ch.writeMu.Unlock()
+
+	ch.readyToWrite = true
+	ch.writeCond.Broadcast()
+}
+
+func (ch *channel) setClose() {
+	ch.writeMu.Lock()
+	defer ch.writeMu.Unlock()
+
+	ch.sentClose = true
+	ch.writeCond.Broadcast()
+}
+
+func (ch *channel) setWriteError(err error) {
+	ch.writeMu.Lock()
+	defer ch.writeMu.Unlock()
+
+	if ch.writeErr == nil {
+		ch.writeErr = err
+		ch.writeCond.Broadcast()
+	}
+}
+
+func (ch *channel) writeLoop() {
+	ch.setReadyToWrite()
+
+	for packet := range ch.writeQueue {
+		err := ch.mux.conn.writePacket(packet)
+		if err != nil {
+			ch.setWriteError(err)
+			return
+		}
+		if packet[0] == msgChannelClose {
+			ch.setClose()
+			return
+		}
+		ch.setReadyToWrite()
+	}
 }
 
 // writePacket sends a packet. If the packet is a channel close, it updates
-// sentClose. This method takes the lock c.writeMu.
-func (ch *channel) writePacket(packet []byte) error {
+// sentClose. This method takes the lock c.writeMu. We accept header and data
+// arguments separately so that in WriteExtended we don't have to allocate the
+// data packet and we reuse writeBuffer here to avoid allocations.
+func (ch *channel) writePacket(header, data []byte) error {
 	ch.writeMu.Lock()
-	if ch.sentClose {
-		ch.writeMu.Unlock()
-		return io.EOF
+	defer ch.writeMu.Unlock()
+
+	for {
+		if ch.writeErr != nil {
+			return ch.writeErr
+		}
+		if ch.sentClose {
+			return io.EOF
+		}
+		if ch.deadlineReached {
+			return os.ErrDeadlineExceeded
+		}
+		if ch.readyToWrite {
+			ch.readyToWrite = false
+			space := len(header) + len(data)
+			if cap(ch.writeBuffer) < space {
+				ch.writeBuffer = make([]byte, space)
+			}
+			ch.writeBuffer = ch.writeBuffer[:0]
+			ch.writeBuffer = append(ch.writeBuffer, header...)
+			ch.writeBuffer = append(ch.writeBuffer, data...)
+			ch.writeQueue <- ch.writeBuffer
+			// Wait for the write or the deadline before returning.
+			ch.writeCond.Wait()
+
+			if ch.deadlineReached {
+				return os.ErrDeadlineExceeded
+			}
+			return ch.writeErr
+		}
+		// We wait for the above conditions.
+		ch.writeCond.Wait()
 	}
-	ch.sentClose = (packet[0] == msgChannelClose)
-	err := ch.mux.conn.writePacket(packet)
-	ch.writeMu.Unlock()
-	return err
 }
 
 func (ch *channel) sendMessage(msg interface{}) error {
@@ -226,7 +348,7 @@ func (ch *channel) sendMessage(msg interface{}) error {
 
 	p := Marshal(msg)
 	binary.BigEndian.PutUint32(p[1:], ch.remoteId)
-	return ch.writePacket(p)
+	return ch.writePacket(nil, p)
 }
 
 // WriteExtended writes data to a specific extended stream. These streams are
@@ -235,52 +357,38 @@ func (ch *channel) WriteExtended(data []byte, extendedCode uint32) (n int, err e
 	if ch.sentEOF {
 		return 0, io.EOF
 	}
-	// 1 byte message type, 4 bytes remoteId, 4 bytes data length
+	// 1 byte message type, 4 bytes remoteId, 4 bytes data length.
 	opCode := byte(msgChannelData)
 	headerLength := uint32(9)
 	if extendedCode > 0 {
+		// 4 bytes for the extended code length.
 		headerLength += 4
 		opCode = msgChannelExtendedData
 	}
 
-	ch.writeMu.Lock()
-	packet := ch.packetPool[extendedCode]
-	// We don't remove the buffer from packetPool, so
-	// WriteExtended calls from different goroutines will be
-	// flagged as errors by the race detector.
-	ch.writeMu.Unlock()
+	header := make([]byte, headerLength)
 
 	for len(data) > 0 {
 		space := min(ch.maxRemotePayload, len(data))
 		if space, err = ch.remoteWin.reserve(space); err != nil {
 			return n, err
 		}
-		if want := headerLength + space; uint32(cap(packet)) < want {
-			packet = make([]byte, want)
-		} else {
-			packet = packet[:want]
-		}
 
-		todo := data[:space]
-
-		packet[0] = opCode
-		binary.BigEndian.PutUint32(packet[1:], ch.remoteId)
+		header = header[:0]
+		header = append(header, opCode)
+		header = binary.BigEndian.AppendUint32(header, ch.remoteId)
 		if extendedCode > 0 {
-			binary.BigEndian.PutUint32(packet[5:], uint32(extendedCode))
+			header = binary.BigEndian.AppendUint32(header, uint32(extendedCode))
 		}
-		binary.BigEndian.PutUint32(packet[headerLength-4:], uint32(len(todo)))
-		copy(packet[headerLength:], todo)
-		if err = ch.writePacket(packet); err != nil {
+		header = binary.BigEndian.AppendUint32(header, space)
+		todo := data[:space]
+		if err = ch.writePacket(header, todo); err != nil {
 			return n, err
 		}
 
 		n += len(todo)
 		data = data[len(todo):]
 	}
-
-	ch.writeMu.Lock()
-	ch.packetPool[extendedCode] = packet
-	ch.writeMu.Unlock()
 
 	return n, err
 }
@@ -351,6 +459,7 @@ func (c *channel) adjustWindow(adj uint32) error {
 		return nil
 	}
 	return c.sendMessage(windowAdjustMsg{
+		PeersID:         c.remoteId,
 		AdditionalBytes: sendAdj,
 	})
 }
@@ -384,13 +493,15 @@ func (c *channel) close() {
 	c.extPending.eof()
 	close(c.msg)
 	close(c.incomingRequests)
-	c.writeMu.Lock()
 	// This is not necessary for a normal channel teardown, but if
 	// there was another error, it is.
-	c.sentClose = true
-	c.writeMu.Unlock()
+	c.setClose()
 	// Unblock writers.
 	c.remoteWin.close()
+	// Unblock write loop. If the write loop is blocked on a
+	// mux.conn.writePacket it will be unblocked by conn.Close() called in
+	// mux.loop immediately after this method.
+	close(c.writeQueue)
 }
 
 // responseMessageReceived is called when a success or failure message is
@@ -478,9 +589,12 @@ func (m *mux) newChannel(chanType string, direction channelDirection, extraData 
 		chanType:         chanType,
 		extraData:        extraData,
 		mux:              m,
-		packetPool:       make(map[uint32][]byte),
+		writeQueue:       make(chan []byte),
 	}
+	ch.writeCond = sync.NewCond(&ch.writeMu)
 	ch.localId = m.chanList.add(ch)
+	// start the write loop
+	go ch.writeLoop()
 	return ch
 }
 
@@ -490,6 +604,18 @@ var errDecidedAlready = errors.New("ssh: can call Accept or Reject only once")
 type extChannel struct {
 	code uint32
 	ch   *channel
+}
+
+func (e *extChannel) SetDeadline(deadline time.Time) error {
+	return e.ch.SetDeadline(deadline)
+}
+
+func (e *extChannel) SetReadDeadline(deadline time.Time) error {
+	return e.ch.SetReadDeadline(deadline)
+}
+
+func (e *extChannel) SetWriteDeadline(deadline time.Time) error {
+	return e.ch.SetWriteDeadline(deadline)
 }
 
 func (e *extChannel) Write(data []byte) (n int, err error) {
