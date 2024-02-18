@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ca60401_5e09c40c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-02-18T16:02:27Z",
+      "side": 1,
+      "message": "Sorry for starting the wrong builder",
+      "revId": "5ed9c223546e493b358167f3f44b4ab6342d04e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
