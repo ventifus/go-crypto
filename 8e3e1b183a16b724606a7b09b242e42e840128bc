@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca7956e_66b4467a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-02-20T20:55:46Z",
+      "side": 1,
+      "message": "(nit) s/workaround for/work around/\n\n(The first line of Go commit messages is conventionally a verb phrase, completing the sentence “This change modifies Go to ….”)",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "8e3e1b183a16b724606a7b09b242e42e840128bc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
