@@ -15,6 +15,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"sync"
 	"testing"
 )
 
@@ -641,9 +642,22 @@ func TestClientAuthMaxAuthTries(t *testing.T) {
 		defer c1.Close()
 		defer c2.Close()
 
-		go newServer(c1, serverConfig)
+		var wg sync.WaitGroup
+		wg.Add(1)
+
+		go func() {
+			defer wg.Done()
+			_, err := newServer(c1, serverConfig)
+			if tries > serverConfig.MaxAuthTries {
+				var authErr *ServerAuthError
+				if !errors.As(err, &authErr) {
+					t.Errorf("expected ServerAuthError, got: %v", err)
+				}
+			}
+		}()
 		_, _, _, err = NewClientConn(c2, "", clientConfig)
-		if tries > 2 {
+		wg.Wait()
+		if tries > serverConfig.MaxAuthTries {
 			if err == nil {
 				t.Fatalf("client: got no error, want %s", expectedErr)
 			} else if err.Error() != expectedErr.Error() {
