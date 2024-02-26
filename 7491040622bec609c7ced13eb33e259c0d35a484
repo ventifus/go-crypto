@@ -16,6 +16,23 @@
       "message": "Woohoo.",
       "revId": "7491040622bec609c7ced13eb33e259c0d35a484",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78537ddf_49a60a41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-02-26T18:57:07Z",
+      "side": 1,
+      "message": "Retrying trybots since the 503 seems transient, to be confirmed.",
+      "revId": "7491040622bec609c7ced13eb33e259c0d35a484",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
