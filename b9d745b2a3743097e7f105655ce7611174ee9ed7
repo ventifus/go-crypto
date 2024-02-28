@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2072a9f0_c5b1371e",
+        "filename": "ssh/streamlocal_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6365
+      },
+      "writtenOn": "2024-02-28T21:36:56Z",
+      "side": 1,
+      "message": "`defer` is scoped to the end of the function, not the end of the loop iteration — this leaks all of the connections until the end of the `acceptConnections` call, which doesn\u0027t seem to be what is intended.\n\n(Plus, what guarantees that the `handleSSHRequests` goroutine is done with the connection by this point? Or does `NewServerConn` consume the original connection?)",
+      "revId": "b9d745b2a3743097e7f105655ce7611174ee9ed7",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
