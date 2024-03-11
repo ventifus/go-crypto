@@ -16,6 +16,23 @@
       "message": "I spotted some possible problems.\n\nThese findings are based on simple heuristics. If a finding appears wrong, briefly reply here saying so. Otherwise, please address any problems and update the GitHub PR. When complete, mark this comment as \u0027Done\u0027 and click the [blue \u0027Reply\u0027 button](https://go.dev/wiki/GerritBot#i-left-a-reply-to-a-comment-in-gerrit-but-no-one-but-me-can-see-it) above.\n\nPossible problems detected:\n  1. The commit message body is very brief. That can be OK if the change is trivial like correcting spelling or fixing a broken link, but usually the description should provide context for the change and explain what it does in complete sentences.\n  2. Do you have the right bug reference format? For the crypto repo, the format is usually \u0027Fixes golang/go#12345\u0027 or \u0027Updates golang/go#12345\u0027 at the end of the commit message.\n\nThe commit title and commit message body come from the GitHub PR title and description, and must be edited in the GitHub web interface (not via git). For instructions, see [here](https://go.dev/wiki/GerritBot/#how-does-gerritbot-determine-the-final-commit-message). For guidelines on commit messages for the Go project, see [here](https://go.dev/doc/contribute#commit_messages).\n\n\n(In general for Gerrit code reviews, the change author is expected to [log in to Gerrit](https://go-review.googlesource.com/login/) with a Gmail or other Google account and then close out each piece of feedback by marking it as \u0027Done\u0027 if implemented as suggested or otherwise reply to each review comment. See the [Review](https://go.dev/doc/contribute#review) section of the Contributing Guide for details.)",
       "revId": "8cfaabda8786fec3d1041a3c33ee2e8ac9e02b0e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db09d940_52fc5d50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3325323
+      },
+      "writtenOn": "2024-03-11T13:14:10Z",
+      "side": 1,
+      "message": "I edit the expand commit message in Github, also copy to there\n\nfix [#66232](https://github.com/golang/go/issues/66232)\n\n- refactor \u0027constructor\u0027 return type to \u0027(ShakeHash, error)\u0027\n- modify some function call to invoke consistently\n- add a basic length check when create newCShake\n- add test for invalid length message use\n\nThe code already formatted, I think it\u0027s ok for the coding style",
+      "revId": "8cfaabda8786fec3d1041a3c33ee2e8ac9e02b0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
