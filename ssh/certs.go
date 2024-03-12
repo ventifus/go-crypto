@@ -381,7 +381,10 @@ func (c *CertChecker) Authenticate(conn ConnMetadata, pubKey PublicKey) (*Permis
 }
 
 // CheckCert checks CriticalOptions, ValidPrincipals, revocation, timestamp and
-// the signature of the certificate.
+// verify that the signature key of the certificate is valid but not that it is a valid user or host authority. This method does not actually
+// authenticate the certificate at all or enforce a certificate type, see
+// [CertChecker.Authenticate], [CertChecker.CheckHostKey] and
+// [CertChecker.IsUserAuthority].
 func (c *CertChecker) CheckCert(principal string, cert *Certificate) error {
 	if c.IsRevoked != nil && c.IsRevoked(cert) {
 		return fmt.Errorf("ssh: certificate serial %d revoked", cert.Serial)
