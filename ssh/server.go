@@ -200,8 +200,9 @@ type ServerConn struct {
 // Request and NewChannel channels must be serviced, or the connection
 // will hang.
 //
-// The returned error may be of type *ServerAuthError for
-// authentication errors.
+// The returned error may be of type *ServerAuthError for authentication errors.
+// This method blocks waiting for user authentication, so it is generally used
+// in a goroutine.
 func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewChannel, <-chan *Request, error) {
 	fullConf := *config
 	fullConf.SetDefaults()

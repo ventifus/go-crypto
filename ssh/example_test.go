@@ -86,6 +86,9 @@ func ExampleNewServerConn() {
 	if err != nil {
 		log.Fatal("failed to listen for connection: ", err)
 	}
+	// In a real application you would accept connections in a for loop and
+	// serve them in a goroutine since NewServerConn blocks waiting for user
+	// authentication.
 	nConn, err := listener.Accept()
 	if err != nil {
 		log.Fatal("failed to accept incoming connection: ", err)
