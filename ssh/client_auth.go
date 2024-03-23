@@ -404,10 +404,10 @@ func validateKey(key PublicKey, algo string, user string, c packetConn) (bool, e
 		return false, err
 	}
 
-	return confirmKeyAck(key, algo, c)
+	return confirmKeyAck(key, c)
 }
 
-func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
+func confirmKeyAck(key PublicKey, c packetConn) (bool, error) {
 	pubKey := key.Marshal()
 
 	for {
@@ -425,7 +425,15 @@ func confirmKeyAck(key PublicKey, algo string, c packetConn) (bool, error) {
 			if err := Unmarshal(packet, &msg); err != nil {
 				return false, err
 			}
-			if msg.Algo != algo || !bytes.Equal(msg.PubKey, pubKey) {
+			// According to RFC 4252 Section 7 the algorithm in
+			// SSH_MSG_USERAUTH_PK_OK should match that of the request but some
+			// servers send the key type instead. OpenSSH checks for the key
+			// type, so we do the same.
+			// https://github.com/openssh/openssh-portable/blob/86bdd3853f4d32c85e295e6216a2fe0953ad93f0/sshconnect2.c#L709
+			if !contains(algorithmsForKeyFormat(key.Type()), msg.Algo) {
+				return false, nil
+			}
+			if !bytes.Equal(msg.PubKey, pubKey) {
 				return false, nil
 			}
 			return true, nil
