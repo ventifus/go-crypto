@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c72bdf7_5b517eed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Co-authored-by: Peter Verraedt \u003cpeter.verraedt@kuleuven.be\u003e",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "de61be58_90467f95",
@@ -14,6 +31,211 @@
       "writtenOn": "2024-02-21T18:53:39Z",
       "side": 1,
       "message": "The proposal https://github.com/golang/go/issues/61447 was accepted a month ago. Looks like we just need a review on this CL. Could some of the Go security folks take a look please?",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d132342_5cc6ce63",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "This is repeating a lot of docs from ServerConfig. Can\u0027t they all say\n\n    FooCallback behaves like [ServerConfig.FooCallback].\n   \n?",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2307d9_5fbc0ce5",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Which NoClientAuth?\n\nIt\u0027s actually not very clear to me how NoClientAuthCallback here works, since \"none\" is not sent as an available method with the partial success message, and a comment below says\n\n    Do not allow none authentication in further rounds.\n    \nMaybe NoClientAuthCallback should just not be in the struct?\n\nAlso I think it should not be possible to return a PartialSuccessError from ServerConfig.NoClientAuthCallback, right?",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce076d0e_799e5fb6",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "```suggestion\n// PartialSuccessError can be returned by any of the [ServerConfig] authentication\n// callbacks to indicate to the client that authentication has partially succeeded,\n// but further steps are required.\n```",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 19
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc803aec_e68942f6",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "```suggestion\n\t// Next defines the authentication callbacks to apply to further steps.\n\t// The available methods communicated to the client are based on the\n\t// non-nil ServerAuthCallbacks fields.\n```",
+      "range": {
+        "startLine": 468,
+        "startChar": 1,
+        "endLine": 469,
+        "endChar": 26
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c66392e2_f3baa618",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "I get what you are doing, but no, we shouldn\u0027t put the auth methods in a thing called \"Error\". Why not make this a ServerAuthCallbacks?",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b2d94a_b3b4c25d",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Do we need to support changing user halfway a multi-step authentication? It\u0027s more likely to cause bad bugs (what if we later set some other field of s based on userAuthReq.User and forget to reset it here?) than to be useful.\n\nLet\u0027s have a way to know if we are past a partial success (you can also use it in place of keeping the noClientAuthAllowed variable) and in that case error out if the user changes.\n\nAlso allows moving the initial ServerAuthCallbacks setup outside the loop, which is clearer.\n\nP.S. There\u0027s also a risk an application will save ConnMetadata.User() in the PartialSuccessError closure. Let\u0027s definitely error out.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a02acafb_3ba32a90",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Break this into multiple lines.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0d0d24_baf503d6",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "I\u0027m not sure I like errors.As here and above. An error wrapping PartialSuccessError is more likely to be a mistake than not.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8c94a2_e30ea372",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t// accept a different set of public keys.\n```",
+      "range": {
+        "startLine": 773,
+        "startChar": 13,
+        "endLine": 773,
+        "endChar": 21
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b42ff20c_801f3e31",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Incorrect error message if PartialSuccessError.Next is empty.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a87d9a8_5929dc51",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-03-31T23:05:01Z",
+      "side": 1,
+      "message": "Let\u0027s have a couple more failing tests:\n\n- only password\n- only pubkey\n- pubkey and then wrong password\n- pubkey and then pubkey again and then password",
       "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
