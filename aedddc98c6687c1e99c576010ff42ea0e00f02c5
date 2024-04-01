@@ -107,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3621e2c5_cc2f6883",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T17:28:35Z",
+      "side": 1,
+      "message": "Returning `PartialSuccessError` from `ServerConfig.NoClientAuthCallback` is allowed, something like this\n\n```\nserverConfig :\u003d \u0026ssh.ServerConfig{\n\t\tNoClientAuth: true,\n\t\tNoClientAuthCallback: func(conn ssh.ConnMetadata) (*ssh.Permissions, error) {\n\t\t\tif conn.User() \u003d\u003d \"testuser\" {\n\t\t\t\treturn nil, \u0026ssh.PartialSuccessError{\n\t\t\t\t\tNext: ssh.ServerAuthCallbacks{\n\t\t\t\t\t\tPublicKeyCallback: func(conn ssh.ConnMetadata, key ssh.PublicKey) (*ssh.Permissions, error) {\n\t\t\t\t\t\t\tif conn.User() \u003d\u003d \"testuser\" {\n\t\t\t\t\t\t\t\treturn nil, \u0026ssh.PartialSuccessError{\n\t\t\t\t\t\t\t\t\tNext: ssh.ServerAuthCallbacks{\n\t\t\t\t\t\t\t\t\t\tPasswordCallback: func(conn ssh.ConnMetadata, password []byte) (*ssh.Permissions, error) {\n\t\t\t\t\t\t\t\t\t\t\tif conn.User() \u003d\u003d \"testuser\" \u0026\u0026 string(password) \u003d\u003d \"password\" {\n\t\t\t\t\t\t\t\t\t\t\t\treturn nil, nil\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t\treturn nil, errors.New(\"password auth failed\")\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\treturn nil, errors.New(\"wrong user\")\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn nil, errors.New(\"wrong user\")\n\t\t},\n\t}\n```\n\nwill work fine, here are the relevant ssh logs:\n\n```\nAuthenticated using \"none\" with partial success.\ndebug1: Authentications that can continue: publickey\nAuthenticated using \"publickey\" with partial success.\ndebug1: Authentications that can continue: password\n```\n\nbut this is different from OpenSSH. If you configure OpenSSH like this\n\n```\nMatch User nicola\n\tAuthenticationMethods publickey,password\n```\n\nwe have these logs:\n\n```\ndebug1: Authentications that can continue: publickey\nAuthenticated using \"publickey\" with partial success.\ndebug1: Authentications that can continue: password\n```\n\nI think we have to not set `failureMsg.PartialSuccess \u003d true` if `userAuthReq.Method \u003d\u003d \"none\"`. Not sure if it\u0027s worth renaming `PartialSuccessError` to something more generic and allow to set the `PartialSuccess` bool externally. It seems the `none` auth method is the only special case here.",
+      "parentUuid": "2a2307d9_5fbc0ce5",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce076d0e_799e5fb6",
         "filename": "ssh/server.go",
         "patchSetId": 6
