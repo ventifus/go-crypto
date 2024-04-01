@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e43a92a0_38d06ff7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c72bdf7_5b517eed",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "de61be58_90467f95",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -48,6 +66,24 @@
       "writtenOn": "2024-03-31T23:05:01Z",
       "side": 1,
       "message": "This is repeating a lot of docs from ServerConfig. Can\u0027t they all say\n\n    FooCallback behaves like [ServerConfig.FooCallback].\n   \n?",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bb6a75a_a50d3723",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d132342_5cc6ce63",
       "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -92,6 +128,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "390cb9a0_5969e4f6",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce076d0e_799e5fb6",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 19
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc803aec_e68942f6",
@@ -105,6 +165,30 @@
       "writtenOn": "2024-03-31T23:05:01Z",
       "side": 1,
       "message": "```suggestion\n\t// Next defines the authentication callbacks to apply to further steps.\n\t// The available methods communicated to the client are based on the\n\t// non-nil ServerAuthCallbacks fields.\n```",
+      "range": {
+        "startLine": 468,
+        "startChar": 1,
+        "endLine": 469,
+        "endChar": 26
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e4f7f60_d2878463",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc803aec_e68942f6",
       "range": {
         "startLine": 468,
         "startChar": 1,
@@ -132,6 +216,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d104dd_cc8f7e1f",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c66392e2_f3baa618",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56b2d94a_b3b4c25d",
@@ -145,6 +247,24 @@
       "writtenOn": "2024-03-31T23:05:01Z",
       "side": 1,
       "message": "Do we need to support changing user halfway a multi-step authentication? It\u0027s more likely to cause bad bugs (what if we later set some other field of s based on userAuthReq.User and forget to reset it here?) than to be useful.\n\nLet\u0027s have a way to know if we are past a partial success (you can also use it in place of keeping the noClientAuthAllowed variable) and in that case error out if the user changes.\n\nAlso allows moving the initial ServerAuthCallbacks setup outside the loop, which is clearer.\n\nP.S. There\u0027s also a risk an application will save ConnMetadata.User() in the PartialSuccessError closure. Let\u0027s definitely error out.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3dcaeb7_139d83cf",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56b2d94a_b3b4c25d",
       "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -166,6 +286,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b514908_7f727933",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a02acafb_3ba32a90",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b0d0d24_baf503d6",
@@ -179,6 +317,24 @@
       "writtenOn": "2024-03-31T23:05:01Z",
       "side": 1,
       "message": "I\u0027m not sure I like errors.As here and above. An error wrapping PartialSuccessError is more likely to be a mistake than not.",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5107bf36_a1ebd725",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b0d0d24_baf503d6",
       "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -206,6 +362,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e974758e_385dba28",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b8c94a2_e30ea372",
+      "range": {
+        "startLine": 773,
+        "startChar": 13,
+        "endLine": 773,
+        "endChar": 21
+      },
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b42ff20c_801f3e31",
@@ -223,6 +403,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d08e569_ab8457de",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done. The message is now more generic. Not sure if this is appropriate",
+      "parentUuid": "b42ff20c_801f3e31",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a87d9a8_5929dc51",
@@ -236,6 +434,24 @@
       "writtenOn": "2024-03-31T23:05:01Z",
       "side": 1,
       "message": "Let\u0027s have a couple more failing tests:\n\n- only password\n- only pubkey\n- pubkey and then wrong password\n- pubkey and then pubkey again and then password",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6074709d_c5fb0f46",
+        "filename": "ssh/server_multi_auth_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-01T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a87d9a8_5929dc51",
       "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
