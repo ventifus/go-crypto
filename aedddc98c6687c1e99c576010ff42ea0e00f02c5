@@ -123,6 +123,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5e17f6_28a335ba",
+        "filename": "ssh/server.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "Ok, if returning PartialSuccessError from ServerConfig.NoClientAuthCallback works, then I think the current change is fine.",
+      "parentUuid": "3621e2c5_cc2f6883",
+      "revId": "aedddc98c6687c1e99c576010ff42ea0e00f02c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce076d0e_799e5fb6",

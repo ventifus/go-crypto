@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20ec3c5a_7a255bd1",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "Missing . here and below.",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a7ed7e_8767e939",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "Missing .",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45fbde3_4f91956a",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "Double space.",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a4622a_07bf54a1",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "Why the `s.user !\u003d \"\"` condition?",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c9e855_cf7f7e30",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "errors.As",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf09400_c525af59",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "I\u0027m not sure I get why this condition. How is the client supposed to know if \"none\" is all they need, or if they need to continue?\n\nAlso, this allows changing user name between the none and the following auths.",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f16ed04_58b28db4",
+        "filename": "ssh/server.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T11:01:25Z",
+      "side": 1,
+      "message": "This matches the current behavior, so it\u0027s ok for this CL, but doesn\u0027t it allow an attacker to do an infinite sequence of \"none\"?",
+      "revId": "caf61dfc0ddfe1abac8c9dda2abdec17506d4211",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
