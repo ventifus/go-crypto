@@ -52,6 +52,29 @@
       "parentUuid": "fd118dd1_bf89cb67",
       "revId": "66745c21ec78866f135e5cb92dd11e30e95cf9f1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c609c773_f878169e",
+        "filename": "ssh/server.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 14020
+      },
+      "writtenOn": "2024-04-02T21:53:12Z",
+      "side": 1,
+      "message": "authentication\n```suggestion\n\t\t\t\t// failed authentication attempt, and given they are typically\n```",
+      "range": {
+        "startLine": 780,
+        "startChar": 14,
+        "endLine": 780,
+        "endChar": 28
+      },
+      "revId": "66745c21ec78866f135e5cb92dd11e30e95cf9f1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
