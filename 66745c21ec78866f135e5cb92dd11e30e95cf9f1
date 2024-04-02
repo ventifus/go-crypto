@@ -16,6 +16,24 @@
       "message": "The accepted proposal (https://go.dev/issue/61447#issuecomment-1883196004) also had a `NoClientAuthCallback` field, which isn\u0027t present here. Is that intended?",
       "revId": "66745c21ec78866f135e5cb92dd11e30e95cf9f1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd118dd1_bf89cb67",
+        "filename": "ssh/server.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-04-02T21:18:11Z",
+      "side": 1,
+      "message": "We realized during review that it doesn\u0027t really make sense to allow none in later steps. Since we can always add it later if we turn out to be wrong, it felt ok not to restart the proposal process to remove it.",
+      "parentUuid": "283ebdbe_6a3a788f",
+      "revId": "66745c21ec78866f135e5cb92dd11e30e95cf9f1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
