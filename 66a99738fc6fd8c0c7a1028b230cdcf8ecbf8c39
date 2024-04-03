@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4904e4cd_f086a297",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-03T12:52:35Z",
+      "side": 1,
+      "message": "now we have this test",
+      "parentUuid": "48d90581_4018336b",
+      "revId": "66a99738fc6fd8c0c7a1028b230cdcf8ecbf8c39",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f9c0770_55f027bf",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-03T12:33:18Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 98,
+        "startChar": 51,
+        "endLine": 98,
+        "endChar": 70
+      },
+      "revId": "66a99738fc6fd8c0c7a1028b230cdcf8ecbf8c39",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ae101d_2ce91fea",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-04-03T12:52:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6f9c0770_55f027bf",
       "range": {
         "startLine": 98,
         "startChar": 51,
