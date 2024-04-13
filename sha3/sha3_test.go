@@ -188,6 +188,21 @@ func TestKeccak(t *testing.T) {
 	}
 }
 
+// TestShakeSum tests that the output of Sum matches the output of Read.
+func TestShakeSum(t *testing.T) {
+	for _, sh := range []ShakeHash{NewShake128(), NewShake256()} {
+		s := sh.Sum(nil)
+		if len(s) == 0 {
+			t.Error("Sum result length is 0")
+		}
+		r := make([]byte, len(s))
+		sh.Read(r)
+		if !bytes.Equal(s, r) {
+			t.Errorf("mismatch: Sum=%s Read=%s", hex.EncodeToString(s), hex.EncodeToString(r))
+		}
+	}
+}
+
 // TestUnalignedWrite tests that writing data in an arbitrary pattern with
 // small input buffers.
 func TestUnalignedWrite(t *testing.T) {
