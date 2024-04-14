@@ -55,7 +55,7 @@ func TestMultiStepAuth(t *testing.T) {
 		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
 			if bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
 				if conn.User() == usernameSecondFactor {
-					return nil, &PartialSuccessError{
+					err := &PartialSuccessError{
 						Next: ServerAuthCallbacks{
 							PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
 								if string(password) == clientPassword {
@@ -65,6 +65,7 @@ func TestMultiStepAuth(t *testing.T) {
 							},
 						},
 					}
+					return nil, fmt.Errorf("nested partial success error: %w", err)
 				}
 				return nil, nil
 			}
@@ -93,7 +94,9 @@ func TestMultiStepAuth(t *testing.T) {
 	if len(serverAuthErrors) != 3 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[1].(*PartialSuccessError); !ok {
+	var partialSuccess *PartialSuccessError
+
+	if !errors.As(serverAuthErrors[1], &partialSuccess) {
 		t.Fatalf("expected partial success error, got: %v", serverAuthErrors[1])
 	}
 	// Now test a wrong sequence.
@@ -116,7 +119,7 @@ func TestMultiStepAuth(t *testing.T) {
 	if serverAuthErrors[1] != errWrongSequence {
 		t.Fatal("server not returned wrong sequence")
 	}
-	if _, ok := serverAuthErrors[2].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[2], &partialSuccess) {
 		t.Fatalf("expected partial success error, got: %v", serverAuthErrors[2])
 	}
 	// Now test using a correct sequence but a wrong password before the right
@@ -145,7 +148,7 @@ func TestMultiStepAuth(t *testing.T) {
 	if len(serverAuthErrors) != 5 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[1].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[1], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 	if serverAuthErrors[2] != errPwdAuthFailed {
@@ -188,7 +191,7 @@ func TestMultiStepAuth(t *testing.T) {
 	if len(serverAuthErrors) != 2 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[1].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[1], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 
@@ -209,7 +212,7 @@ func TestMultiStepAuth(t *testing.T) {
 	if len(serverAuthErrors) != 3 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[1].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[1], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 	if serverAuthErrors[2] != errPwdAuthFailed {
@@ -236,7 +239,7 @@ func TestMultiStepAuth(t *testing.T) {
 	if len(serverAuthErrors) != 3 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[1].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[1], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 
@@ -303,7 +306,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 					},
 				}
 			case user2:
-				return nil, &PartialSuccessError{
+				err := &ChangeAuthMethodsError{
 					Next: ServerAuthCallbacks{
 						PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
 							if bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
@@ -315,6 +318,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 						},
 					},
 				}
+				return nil, fmt.Errorf("composed change auth method error: %w", err)
 			default:
 				return nil, errInvalidCredentials
 			}
@@ -339,7 +343,10 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 	if len(serverAuthErrors) != 2 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
+
+	var partialSuccess *PartialSuccessError
+
+	if !errors.As(serverAuthErrors[0], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 
@@ -356,13 +363,16 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 		t.Fatalf("client login error: %s", err)
 	}
 	// The error sequence is:
-	// - partial success
+	// - change authentication methods
 	// - nil
 	if len(serverAuthErrors) != 2 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
-		t.Fatal("server not returned partial success")
+
+	var changeAuthMethod *ChangeAuthMethodsError
+
+	if !errors.As(serverAuthErrors[0], &changeAuthMethod) {
+		t.Fatal("server not returned change authentication methods error")
 	}
 
 	// user1 cannot login with public key
@@ -384,7 +394,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 	if len(serverAuthErrors) != 1 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
+	if !errors.As(serverAuthErrors[0], &partialSuccess) {
 		t.Fatal("server not returned partial success")
 	}
 	// user2 cannot login with password
@@ -406,7 +416,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 	if len(serverAuthErrors) != 1 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
-		t.Fatal("server not returned partial success")
+	if !errors.As(serverAuthErrors[0], &changeAuthMethod) {
+		t.Fatal("server not returned change authentication methods error")
 	}
 }
