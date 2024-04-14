@@ -303,7 +303,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 					},
 				}
 			case user2:
-				return nil, &PartialSuccessError{
+				return nil, &ChangeAuthMethodsError{
 					Next: ServerAuthCallbacks{
 						PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
 							if bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
@@ -356,13 +356,13 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 		t.Fatalf("client login error: %s", err)
 	}
 	// The error sequence is:
-	// - partial success
+	// - change authentication methods
 	// - nil
 	if len(serverAuthErrors) != 2 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
-		t.Fatal("server not returned partial success")
+	if _, ok := serverAuthErrors[0].(*ChangeAuthMethodsError); !ok {
+		t.Fatal("server not returned change authentication methods error")
 	}
 
 	// user1 cannot login with public key
@@ -406,7 +406,7 @@ func TestDynamicAuthCallbacks(t *testing.T) {
 	if len(serverAuthErrors) != 1 {
 		t.Fatalf("unexpected number of server auth errors: %v, errors: %+v", len(serverAuthErrors), serverAuthErrors)
 	}
-	if _, ok := serverAuthErrors[0].(*PartialSuccessError); !ok {
-		t.Fatal("server not returned partial success")
+	if _, ok := serverAuthErrors[0].(*ChangeAuthMethodsError); !ok {
+		t.Fatal("server not returned change authentication methods error")
 	}
 }
