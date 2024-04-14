@@ -5,6 +5,7 @@
 package ssh
 
 import (
+	"context"
 	"errors"
 	"io"
 	"net"
@@ -188,6 +189,63 @@ func TestMaxAuthTriesFirstNoneAuthErrorIgnored(t *testing.T) {
 	}
 	if serverAuthErrors[1] != nil {
 		t.Errorf("unexpected error: %v", serverAuthErrors[1])
+	}
+}
+func TestNewServerConnContext(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			return &Permissions{}, nil
+		},
+	}
+	serverConf.AddHostKey(testSigners["rsa"])
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	go NewServerConnContext(ctx, c1, serverConf)
+
+	clientConf := ClientConfig{
+		Auth: []AuthMethod{
+			Password(clientPassword),
+		},
+		User:            "user",
+		HostKeyCallback: InsecureIgnoreHostKey(),
+	}
+
+	_, _, _, err = NewClientConn(c2, "", &clientConf)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestNewServerConnContextErrors(t *testing.T) {
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+
+	serverConf := &ServerConfig{
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			return &Permissions{}, nil
+		},
+	}
+	serverConf.AddHostKey(testSigners["rsa"])
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	_, _, _, err = NewServerConnContext(ctx, c1, serverConf)
+	if !errors.Is(err, context.Canceled) {
+		t.Fatalf("NewServerConnContext expected %v; got %v", context.Canceled, err)
 	}
 }
 

@@ -6,6 +6,7 @@ package ssh
 
 import (
 	"bytes"
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -192,6 +193,42 @@ type ServerConn struct {
 	// If the succeeding authentication callback returned a
 	// non-nil Permissions pointer, it is stored here.
 	Permissions *Permissions
+}
+
+// NewServerConnContext is like [NewServerConn] but also accepts a context. The
+// provided Context must be non-nil. If the context expires before the handshake
+// is complete, an error is returned. Once the handshake is completed, any
+// expiration of the context will not affect the connection.
+func NewServerConnContext(ctx context.Context, c net.Conn, config *ServerConfig) (
+	*ServerConn, <-chan NewChannel, <-chan *Request, error,
+) {
+	type result struct {
+		conn  *ServerConn
+		chans <-chan NewChannel
+		reqs  <-chan *Request
+		err   error
+	}
+	ch := make(chan result)
+
+	go func() {
+		conn, chans, reqs, err := NewServerConn(c, config)
+
+		ch <- result{
+			conn:  conn,
+			chans: chans,
+			reqs:  reqs,
+			err:   err,
+		}
+	}()
+
+	select {
+	case res := <-ch:
+		return res.conn, res.chans, res.reqs, res.err
+	case <-ctx.Done():
+		// Close the underlying connection.
+		c.Close()
+		return nil, nil, nil, context.Cause(ctx)
+	}
 }
 
 // NewServerConn starts a new SSH server with c as the underlying
