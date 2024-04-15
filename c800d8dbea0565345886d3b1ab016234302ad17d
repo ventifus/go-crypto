@@ -91,6 +91,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b75ce0_a11d06d3",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 50270
+      },
+      "writtenOn": "2024-04-15T10:55:53Z",
+      "side": 1,
+      "message": "Done (sorry, forgot to switch it back after testing the error message!)",
+      "parentUuid": "101e3cd6_9f273e80",
+      "revId": "c800d8dbea0565345886d3b1ab016234302ad17d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae1afd0f_2a4fd81e",
@@ -104,6 +122,24 @@
       "writtenOn": "2024-04-14T09:40:03Z",
       "side": 1,
       "message": "Use t.Run with a name, rather than \"(test %d)\".",
+      "revId": "c800d8dbea0565345886d3b1ab016234302ad17d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b1df76_192d4005",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 50270
+      },
+      "writtenOn": "2024-04-15T10:55:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae1afd0f_2a4fd81e",
       "revId": "c800d8dbea0565345886d3b1ab016234302ad17d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
