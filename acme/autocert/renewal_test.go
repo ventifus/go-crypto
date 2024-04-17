@@ -8,6 +8,7 @@ import (
 	"context"
 	"crypto"
 	"crypto/ecdsa"
+	"fmt"
 	"testing"
 	"time"
 
@@ -18,23 +19,45 @@ import (
 func TestRenewalNext(t *testing.T) {
 	now := time.Now()
 	man := &Manager{
-		RenewBefore: 7 * 24 * time.Hour,
-		nowFunc:     func() time.Time { return now },
+		nowFunc: func() time.Time { return now },
 	}
 	defer man.stopRenew()
+	const day = 24 * time.Hour
 	tt := []struct {
-		expiry   time.Time
-		min, max time.Duration
+		renewBefore time.Duration
+		validPeriod time.Duration
+		notAfter    time.Time
+		min, max    time.Duration
 	}{
-		{now.Add(90 * 24 * time.Hour), 83*24*time.Hour - renewJitter, 83 * 24 * time.Hour},
-		{now.Add(time.Hour), 0, 1},
-		{now, 0, 1},
-		{now.Add(-time.Hour), 0, 1},
+		{7 * day, 90 * day, now.Add(90 * day), 83*day - renewJitter, 83 * day},
+		{7 * day, 90 * day, now.Add(time.Hour), 0, 1},
+		{7 * day, 90 * day, now, 0, 1},
+		{7 * day, 90 * day, now.Add(-time.Hour), 0, 1},
+
+		// If RenewBefore is 0, we refresh around when certificate is at 2/3 of its
+		// lifetime, but never sooner than 30 days before expiration (ignoring random
+		// jitter).
+		{0, 90 * day, now.Add(90 * day), 60*day - renewJitter, 60 * day},
+		{0, 90 * day, now.Add(60 * day), 30*day - renewJitter, 30 * day},
+		{0, 90 * day, now, 0, 1},
+		{0, 365 * day, now.Add(365 * day), 365*day - 30*day - renewJitter, 365*day - 30*day},
+		{0, 365 * day, now.Add(265 * day), 265*day - 30*day - renewJitter, 265*day - 30*day},
+		{0, 365 * day, now, 0, 1},
+		{0, 3 * day, now.Add(3 * day), 2*day - renewJitter, 2 * day},
+		{0, 3 * day, now.Add(2 * day), 1*day - renewJitter, 1 * day},
+		{0, 3 * day, now, 0, 1},
+
+		// Nonzero renewBefore less than 1h is treated as 30d.
+		{time.Hour - 1, 90 * day, now.Add(90 * day), 60*day - renewJitter, 60 * day},
+		{-1, 90 * day, now.Add(60 * day), 30*day - renewJitter, 30 * day},
+		{1, 90 * day, now, 0, 1},
 	}
 
 	dr := &domainRenewal{m: man}
 	for i, test := range tt {
-		next := dr.next(test.expiry)
+		man.RenewBefore = test.renewBefore
+		notBefore := test.notAfter.Add(-test.validPeriod)
+		next := dr.next(notBefore, test.notAfter)
 		if next < test.min || test.max < next {
 			t.Errorf("%d: next = %v; want between %v and %v", i, next, test.min, test.max)
 		}
@@ -42,10 +65,22 @@ func TestRenewalNext(t *testing.T) {
 }
 
 func TestRenewFromCache(t *testing.T) {
-	man := testManager(t)
-	man.RenewBefore = 24 * time.Hour
+	const day = 24 * time.Hour
+	slop := renewJitter + 5*time.Minute // Extra time for refresh/tests to complete.
+	testRenewFromCache(t, day, 90*day, 90*day-day-slop)
+	testRenewFromCache(t, 30*day, 90*day, 90*day-30*day-slop)
+	testRenewFromCache(t, 0, 90*day, 90*day-30*day-slop)
+	testRenewFromCache(t, 0, 7*day, 7*day*2/3-slop)
+	testRenewFromCache(t, 0, 365*day, 365*day-30*day-slop)
+}
 
-	ca := acmetest.NewCAServer(t).Start()
+func testRenewFromCache(t *testing.T, renewBefore time.Duration, validityPeriod time.Duration, expectAfter time.Duration) {
+	descr := fmt.Sprintf("renewBefore %v, validityPeriod %v", renewBefore, validityPeriod)
+
+	man := testManager(t)
+	man.RenewBefore = renewBefore
+
+	ca := acmetest.NewCAServer(t, validityPeriod).Start()
 	ca.ResolveGetCertificate(exampleDomain, man.GetCertificate)
 
 	man.Client = &acme.Client{
@@ -54,9 +89,9 @@ func TestRenewFromCache(t *testing.T) {
 
 	// cache an almost expired cert
 	now := time.Now()
-	c := ca.LeafCert(exampleDomain, "ECDSA", now.Add(-2*time.Hour), now.Add(time.Minute))
+	c := ca.LeafCert(exampleDomain, "ECDSA", now.Add(-validityPeriod), now.Add(time.Minute))
 	if err := man.cachePut(context.Background(), exampleCertKey, c); err != nil {
-		t.Fatal(err)
+		t.Fatalf("%s: %v", descr, err)
 	}
 
 	// verify the renewal happened
@@ -79,25 +114,23 @@ func TestRenewFromCache(t *testing.T) {
 		}()
 
 		if err != nil {
-			t.Errorf("testDidRenewLoop: %v", err)
+			t.Errorf("%s: testDidRenewLoop: %v", descr, err)
 		}
-		// Next should be about 90 days:
-		// CaServer creates 90days expiry + account for man.RenewBefore.
-		// Previous expiration was within 1 min.
-		future := 88 * 24 * time.Hour
-		if next < future {
-			t.Errorf("testDidRenewLoop: next = %v; want >= %v", next, future)
+		// Next should be about at validityPeriod - renewBefore if renewBefore is set.
+		// Otherwise at 2/3 of validityPeriod with a max of 30 days.
+		if next < expectAfter {
+			t.Errorf("%s: testDidRenewLoop: next = %v; want >= %v", descr, next, expectAfter)
 		}
 
 		// ensure the new cert is cached
-		after := time.Now().Add(future)
+		after := time.Now().Add(expectAfter)
 		tlscert, err := man.cacheGet(context.Background(), exampleCertKey)
 		if err != nil {
-			t.Errorf("man.cacheGet: %v", err)
+			t.Errorf("%s: man.cacheGet: %v", descr, err)
 			return
 		}
 		if !tlscert.Leaf.NotAfter.After(after) {
-			t.Errorf("cache leaf.NotAfter = %v; want > %v", tlscert.Leaf.NotAfter, after)
+			t.Errorf("%s: cache leaf.NotAfter = %v; want > %v", descr, tlscert.Leaf.NotAfter, after)
 		}
 
 		// verify the old cert is also replaced in memory
@@ -105,16 +138,16 @@ func TestRenewFromCache(t *testing.T) {
 		defer man.stateMu.Unlock()
 		s := man.state[exampleCertKey]
 		if s == nil {
-			t.Errorf("m.state[%q] is nil", exampleCertKey)
+			t.Errorf("%s: m.state[%q] is nil", descr, exampleCertKey)
 			return
 		}
 		tlscert, err = s.tlscert()
 		if err != nil {
-			t.Errorf("s.tlscert: %v", err)
+			t.Errorf("%s: s.tlscert: %v", descr, err)
 			return
 		}
 		if !tlscert.Leaf.NotAfter.After(after) {
-			t.Errorf("state leaf.NotAfter = %v; want > %v", tlscert.Leaf.NotAfter, after)
+			t.Errorf("%s: state leaf.NotAfter = %v; want > %v", descr, tlscert.Leaf.NotAfter, after)
 		}
 	}
 
@@ -127,7 +160,7 @@ func TestRenewFromCache(t *testing.T) {
 }
 
 func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
-	ca := acmetest.NewCAServer(t).Start()
+	ca := acmetest.NewCAServer(t, 90*24*time.Hour).Start()
 	man := testManager(t)
 	man.RenewBefore = 24 * time.Hour
 	man.Client = &acme.Client{
@@ -239,7 +272,7 @@ func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
 	}
 
 	// trigger renew
-	man.startRenew(exampleCertKey, s.key, s.leaf.NotAfter)
+	man.startRenew(exampleCertKey, s.key, s.leaf.NotBefore, s.leaf.NotAfter)
 	<-renewed
 	func() {
 		man.renewalMu.Lock()

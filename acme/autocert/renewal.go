@@ -27,16 +27,16 @@ type domainRenewal struct {
 }
 
 // start starts a cert renewal timer at the time
-// defined by the certificate expiration time exp.
+// defined by the certificate validity of notBefore and notAfter.
 //
 // If the timer is already started, calling start is a noop.
-func (dr *domainRenewal) start(exp time.Time) {
+func (dr *domainRenewal) start(notBefore, notAfter time.Time) {
 	dr.timerMu.Lock()
 	defer dr.timerMu.Unlock()
 	if dr.timer != nil {
 		return
 	}
-	dr.timer = time.AfterFunc(dr.next(exp), dr.renew)
+	dr.timer = time.AfterFunc(dr.next(notBefore, notAfter), dr.renew)
 }
 
 // stop stops the cert renewal timer and waits for any in-flight calls to renew
@@ -107,8 +107,8 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 	// a race is likely unavoidable in a distributed environment
 	// but we try nonetheless
 	if tlscert, err := dr.m.cacheGet(ctx, dr.ck); err == nil {
-		next := dr.next(tlscert.Leaf.NotAfter)
-		if next > dr.m.renewBefore()+renewJitter {
+		next := dr.next(tlscert.Leaf.NotBefore, tlscert.Leaf.NotAfter)
+		if next > renewJitter {
 			signer, ok := tlscert.PrivateKey.(crypto.Signer)
 			if ok {
 				state := &certState{
@@ -139,13 +139,19 @@ func (dr *domainRenewal) do(ctx context.Context) (time.Duration, error) {
 		return 0, err
 	}
 	dr.updateState(state)
-	return dr.next(leaf.NotAfter), nil
+	return dr.next(leaf.NotBefore, leaf.NotAfter), nil
 }
 
-func (dr *domainRenewal) next(expiry time.Time) time.Duration {
-	d := expiry.Sub(dr.m.now()) - dr.m.renewBefore()
+func (dr *domainRenewal) next(notBefore, notAfter time.Time) time.Duration {
+	d := notAfter.Sub(dr.m.now()) - dr.m.renewBefore(notBefore, notAfter)
+
 	// add a bit of randomness to renew deadline
-	n := pseudoRand.int63n(int64(renewJitter))
+	jitter := renewJitter
+	validPeriod := notAfter.Sub(notBefore)
+	if validPeriod < jitter {
+		jitter = validPeriod / 2
+	}
+	n := pseudoRand.int63n(int64(jitter))
 	d -= time.Duration(n)
 	if d < 0 {
 		return 0

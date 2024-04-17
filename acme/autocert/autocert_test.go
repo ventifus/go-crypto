@@ -411,7 +411,7 @@ func TestGetCertificate(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			man := testManager(t)
-			s := acmetest.NewCAServer(t)
+			s := acmetest.NewCAServer(t, 90*24*time.Hour)
 			if !tt.disableALPN {
 				s.ResolveGetCertificate(tt.domain, man.GetCertificate)
 			}
@@ -514,7 +514,7 @@ func TestGetCertificate_failedAttempt(t *testing.T) {
 }
 
 func TestRevokeFailedAuthz(t *testing.T) {
-	ca := acmetest.NewCAServer(t)
+	ca := acmetest.NewCAServer(t, 90*24*time.Hour)
 	// Make the authz unfulfillable on the client side, so it will be left
 	// pending at the end of the verification attempt.
 	ca.ChallengeTypes("fake-01", "fake-02")
@@ -892,7 +892,7 @@ func TestEndToEndALPN(t *testing.T) {
 	const domain = "example.org"
 
 	// ACME CA server
-	ca := acmetest.NewCAServer(t).Start()
+	ca := acmetest.NewCAServer(t, 90*24*time.Hour).Start()
 
 	// User HTTPS server.
 	m := &Manager{
@@ -945,7 +945,7 @@ func TestEndToEndHTTP(t *testing.T) {
 	const domain = "example.org"
 
 	// ACME CA server.
-	ca := acmetest.NewCAServer(t).ChallengeTypes("http-01").Start()
+	ca := acmetest.NewCAServer(t, 90*24*time.Hour).ChallengeTypes("http-01").Start()
 
 	// User HTTP server for the ACME challenge.
 	m := testManager(t)
