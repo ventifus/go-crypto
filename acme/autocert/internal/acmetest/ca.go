@@ -50,6 +50,7 @@ type CAServer struct {
 	url            string
 	roots          *x509.CertPool
 	eabRequired    bool
+	validityPeriod time.Duration
 
 	mu             sync.Mutex
 	certCount      int                           // number of issued certs
@@ -67,9 +68,10 @@ type getCertificateFunc func(hello *tls.ClientHelloInfo) (*tls.Certificate, erro
 
 // NewCAServer creates a new ACME test server. The returned CAServer issues
 // certs signed with the CA roots available in the Roots field.
-func NewCAServer(t *testing.T) *CAServer {
+func NewCAServer(t *testing.T, validityPeriod time.Duration) *CAServer {
 	ca := &CAServer{t: t,
 		challengeTypes: []string{"fake-01", "tls-alpn-01", "http-01"},
+		validityPeriod: validityPeriod,
 		domainAddr:     make(map[string]string),
 		domainGetCert:  make(map[string]getCertificateFunc),
 		domainHandler:  make(map[string]http.Handler),
@@ -527,7 +529,7 @@ func (ca *CAServer) leafCert(csr *x509.CertificateRequest) (der []byte, err erro
 		SerialNumber:          big.NewInt(int64(ca.certCount)),
 		Subject:               pkix.Name{Organization: []string{"Test Acme Co"}},
 		NotBefore:             time.Now(),
-		NotAfter:              time.Now().Add(90 * 24 * time.Hour),
+		NotAfter:              time.Now().Add(ca.validityPeriod),
 		KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment,
 		ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth},
 		DNSNames:              csr.DNSNames,

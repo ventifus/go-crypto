@@ -134,7 +134,9 @@ type Manager struct {
 	// RenewBefore optionally specifies how early certificates should
 	// be renewed before they expire.
 	//
-	// If zero, they're renewed 30 days before expiration.
+	// If zero, they're renewed the lesser of 30 days before expiration,
+	// or after 2/3 of the certificate lifetime (i.e. for a certificate
+	// with a 9 day validity period, 3 days before expiration).
 	RenewBefore time.Duration
 
 	// Client is used to perform low-level operations, such as account registration
@@ -463,7 +465,7 @@ func (m *Manager) cert(ctx context.Context, ck certKey) (*tls.Certificate, error
 		leaf: cert.Leaf,
 	}
 	m.state[ck] = s
-	m.startRenew(ck, s.key, s.leaf.NotAfter)
+	m.startRenew(ck, s.key, s.leaf.NotBefore, s.leaf.NotAfter)
 	return cert, nil
 }
 
@@ -609,7 +611,7 @@ func (m *Manager) createCert(ctx context.Context, ck certKey) (*tls.Certificate,
 	}
 	state.cert = der
 	state.leaf = leaf
-	m.startRenew(ck, state.key, state.leaf.NotAfter)
+	m.startRenew(ck, state.key, state.leaf.NotBefore, state.leaf.NotAfter)
 	return state.tlscert()
 }
 
@@ -906,8 +908,9 @@ func httpTokenCacheKey(tokenPath string) string {
 // - a new cert was created by m.createCert
 //
 // The key argument is a certificate private key.
-// The exp argument is the cert expiration time (NotAfter).
-func (m *Manager) startRenew(ck certKey, key crypto.Signer, exp time.Time) {
+// The notBefore and notAfter arguments are the start and end time of validity for
+// the current certificate.
+func (m *Manager) startRenew(ck certKey, key crypto.Signer, notBefore, notAfter time.Time) {
 	m.renewalMu.Lock()
 	defer m.renewalMu.Unlock()
 	if m.renewal[ck] != nil {
@@ -919,7 +922,7 @@ func (m *Manager) startRenew(ck certKey, key crypto.Signer, exp time.Time) {
 	}
 	dr := &domainRenewal{m: m, ck: ck, key: key}
 	m.renewal[ck] = dr
-	dr.start(exp)
+	dr.start(notBefore, notAfter)
 }
 
 // stopRenew stops all currently running cert renewal timers.
@@ -1027,11 +1030,19 @@ func (m *Manager) hostPolicy() HostPolicy {
 	return defaultHostPolicy
 }
 
-func (m *Manager) renewBefore() time.Duration {
-	if m.RenewBefore > renewJitter {
-		return m.RenewBefore
+// renewBefore returns the applicable period before refreshing a certificate that
+// has notBefore/notAfter.
+func (m *Manager) renewBefore(notBefore, notAfter time.Time) time.Duration {
+	next := m.RenewBefore
+	if next == 0 {
+		next = notAfter.Sub(notBefore) / 3
+		if next > 30*24*time.Hour {
+			next = 30 * 24 * time.Hour
+		}
+	} else if next < time.Hour {
+		next = 30 * 24 * time.Hour
 	}
-	return 720 * time.Hour // 30 days
+	return next
 }
 
 func (m *Manager) now() time.Time {
