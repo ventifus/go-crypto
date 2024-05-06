@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e69323_76014ae4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2024-05-06T15:29:42Z",
+      "side": 1,
+      "message": "(For next time) It would be good to include on which architecture this benchmark result was measured.",
+      "revId": "18acf6293a8f5f6638459f5ec4b97ac495412ebd",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
