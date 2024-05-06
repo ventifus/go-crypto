@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5df3541e_f6492dc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2024-05-06T17:47:23Z",
+      "side": 1,
+      "message": "LGTM. It would be good if Filoppo or Roland take a look. Thanks.",
+      "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af45195e_34000cdf",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2024-05-06T17:47:23Z",
+      "side": 1,
+      "message": "Is there a way to create a deterministic key that is not accepted by server? (Random may be okay, I\u0027m not sure.)",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 47
+      },
+      "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
