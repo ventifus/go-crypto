@@ -39,6 +39,30 @@
       },
       "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e47d6d42_62c487de",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-05-07T05:44:16Z",
+      "side": 1,
+      "message": "It is possible to embed a static key here and use (for example) x509.ParsePKCS8PrivateKey() to parse it into a private key object. The likelihood of such hard coded static key being listed in OpenSSH\u0027s authorized_keys is close to zero, as it is for a random key. The only benefit of a static key would be that the unit test would run slightly faster due to eliminated key generation step.\n\nWould you prefer the static key approach?",
+      "parentUuid": "af45195e_34000cdf",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 47
+      },
+      "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
