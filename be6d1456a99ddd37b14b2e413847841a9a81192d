@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d9fc354_14d64231",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-05-12T21:44:50Z",
+      "side": 1,
+      "message": "The proposal has been approved: https://github.com/golang/go/issues/64962#issuecomment-2101499763\nNicola and/or Filippo, please review when you have a chance.",
+      "revId": "be6d1456a99ddd37b14b2e413847841a9a81192d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
