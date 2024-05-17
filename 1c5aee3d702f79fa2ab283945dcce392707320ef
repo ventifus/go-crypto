@@ -105,6 +105,30 @@
       },
       "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7414ceae_e4633531",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-05-17T11:18:58Z",
+      "side": 1,
+      "message": "I talked about this with @filippo@golang.org, a static key is preferable. Thank you",
+      "parentUuid": "6fe5aa5c_d3c0e407",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 47
+      },
+      "revId": "1c5aee3d702f79fa2ab283945dcce392707320ef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
