@@ -36,6 +36,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8563c598_16cfb446",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-05-20T22:44:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5606eab9_663f034f",
+      "revId": "be6d1456a99ddd37b14b2e413847841a9a81192d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb65e1ed_b7630652",
@@ -53,6 +71,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c740c2_55d0fd70",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-05-20T22:44:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb65e1ed_b7630652",
+      "revId": "be6d1456a99ddd37b14b2e413847841a9a81192d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ec9eb86_d71bb9f0",
@@ -66,6 +102,24 @@
       "writtenOn": "2024-05-17T12:11:25Z",
       "side": 1,
       "message": "wrap one of the two banner error",
+      "revId": "be6d1456a99ddd37b14b2e413847841a9a81192d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf665022_959e3392",
+        "filename": "ssh/server_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-05-20T22:44:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ec9eb86_d71bb9f0",
       "revId": "be6d1456a99ddd37b14b2e413847841a9a81192d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
