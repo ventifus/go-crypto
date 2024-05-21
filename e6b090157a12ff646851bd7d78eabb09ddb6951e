@@ -34,6 +34,24 @@
       "parentUuid": "844f6108_5bf76899",
       "revId": "e6b090157a12ff646851bd7d78eabb09ddb6951e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fada4cad_6605c1a2",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-05-21T20:31:42Z",
+      "side": 1,
+      "message": "I\u0027m still not sure what a `*BannerError` with a nil `Err` field would represent and whether it makes sense to try to support it. But it seems reasonable for the `Error` method not to panic.",
+      "parentUuid": "6196b651_eb47e41a",
+      "revId": "e6b090157a12ff646851bd7d78eabb09ddb6951e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
