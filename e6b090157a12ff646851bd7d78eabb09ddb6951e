@@ -16,6 +16,24 @@
       "message": "Would it be better if the Err field had a comment stating it\u0027s expected to have a non-nil value?\n\n```suggestion\n\tErr     error // non-nil\n```\n\nAs is, the documentation doesn\u0027t really say that something like `\u0026BannerError{Message: \"banner message\"}` isn\u0027t intended to be used, yet the `Error` method would panic with a nil dereference in that case.",
       "revId": "e6b090157a12ff646851bd7d78eabb09ddb6951e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6196b651_eb47e41a",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 68424
+      },
+      "writtenOn": "2024-05-21T17:31:42Z",
+      "side": 1,
+      "message": "Good point! I made the Error method handle a nil inner error instead, WDYT?",
+      "parentUuid": "844f6108_5bf76899",
+      "revId": "e6b090157a12ff646851bd7d78eabb09ddb6951e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
