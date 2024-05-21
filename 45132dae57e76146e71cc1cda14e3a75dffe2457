@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb7398b_0202eab2",
+        "filename": "chacha20/chacha_mipsle.s",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 50943
+      },
+      "writtenOn": "2024-05-21T10:24:25Z",
+      "side": 1,
+      "message": "This is going to automatically use the new IS, as soon as https://go-review.googlesource.com/c/go/+/578175 is merged and a user requests it through `GOMIPS`.",
+      "revId": "45132dae57e76146e71cc1cda14e3a75dffe2457",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
