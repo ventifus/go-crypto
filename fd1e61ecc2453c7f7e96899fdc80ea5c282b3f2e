@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c7329b6_e1aacdf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-05-21T10:56:44Z",
+      "side": 1,
+      "message": "In the commit message please write\n\nFixes or updates golang/go#64962 not the link",
+      "revId": "fd1e61ecc2453c7f7e96899fdc80ea5c282b3f2e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
