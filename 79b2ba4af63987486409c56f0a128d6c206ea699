@@ -16,6 +16,23 @@
       "message": "This is new API that should normally go through the proposal process.  See https://github.com/golang/proposal#readme.",
       "revId": "79b2ba4af63987486409c56f0a128d6c206ea699",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9609062a_da21f591",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2024-05-23T03:03:41Z",
+      "side": 1,
+      "message": "On hold for proposal.",
+      "revId": "79b2ba4af63987486409c56f0a128d6c206ea699",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
