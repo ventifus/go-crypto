@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6f1a0e_ed091300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3483137
+      },
+      "writtenOn": "2024-06-13T00:13:21Z",
+      "side": 1,
+      "message": "@nicola.murino@gmail.com thanks for working on this. Getting this in would unblock quite a lot for me.\n\nSome minor observations:\n- The `net.Conn` spec specifically mentions the use of `os.ErrDeadlineExceeded` to be returned by timed-out reads/writes in order to allow for testing via `errors.Is(err, os.ErrDeadlineExceeded)`, but you are returning `context.DeadlineExceeded`\n- The `net.Conn` spec (and also your godoc on the `ChannelWithDeadlines` iface) mentions that if the deadline `time.Time` is zero, read/write operations should not time out. AFAICT the zero-time case is not handled and would fall in the `time.Before(time.Now())` case. What I think should happen in this case is that the timer is either `Stop()`ed, or `Reset()` to a time far in the future - without triggering deadlines. \n- The `channel` methods `SetDeadline`, `SetReadDeadline` and `SetWriteDeadline` do not seem to be propagating errors correctly.\n\nThanks again for working on this.",
+      "revId": "7f31419db0e2587af8d3fe6459f2af3969796f5b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
