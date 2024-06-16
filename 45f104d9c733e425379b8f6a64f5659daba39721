@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df9f13b7_7a7335e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3483137
+      },
+      "writtenOn": "2024-06-16T21:24:16Z",
+      "side": 1,
+      "message": "Tested this code with my real-life use case and it works without any unintended side effects! 🎉\n\nBefore this goes in:\n- the `chanConn` struct (`tcpip.go`) needs to be updated to the `Channel`\u0027s implementations of `SetReadDeadline` and `SetWriteDeadline`\n- performance testing would be nice to see.\n\nLeft some additional details of my manual testing in https://github.com/golang/go/issues/65930#issuecomment-2171883722",
+      "revId": "45f104d9c733e425379b8f6a64f5659daba39721",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
