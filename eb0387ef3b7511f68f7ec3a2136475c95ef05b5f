@@ -33,6 +33,24 @@
       "message": "Thanks for this contribution. The commit message is too long, please change it to something more concise and provide additional description in the body. A test case is also needed to prevent this from breaking again in the future.",
       "revId": "eb0387ef3b7511f68f7ec3a2136475c95ef05b5f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0254eb4_07bddd84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-06-16T17:48:29Z",
+      "side": 1,
+      "message": "I initially though the windows OpenSSH behavior would be tricky to simulate. Turns out making the go ssh server fail keyboard-interactive auth immediately without sending any prompt to client triggers the exact same protocol flow. Added a test case that does just that.",
+      "parentUuid": "994d3d07_457d0463",
+      "revId": "eb0387ef3b7511f68f7ec3a2136475c95ef05b5f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
