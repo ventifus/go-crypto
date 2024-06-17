@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4a0bcc_76eac8f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3483137
+      },
+      "writtenOn": "2024-06-17T15:22:17Z",
+      "side": 1,
+      "message": "@nicola.murino@gmail.com\n\nCode looks good so far... but the dial() method of chanConn needs to return a `ChannelWithDeadlines`, and for that the `ssh.Conn` interface would need to be broken, replaced, or duplicated such that the `OpenChannel` method returns a `ChannelWithDeadlines` (instead of a `Channel`).\n\ne.g.\n\n```\nOpenChannel(name string, data []byte) (Channel, \u003c-chan *Request, error)\n```\n\n```\nOpenChannel(name string, data []byte) (ChannelWithDeadlines, \u003c-chan *Request, error)\n```\n\nIn my previous testing (based on PS 9) I eliminated `ChannelWithDeadlines` in favour adding the deadline-related methods to `Channel` just to minimize the changes on top of your CL and make sure I\u0027m testing only your CL and not too many extra changes.\n\nI agree that there should be no breaking changes if possible to get this in sooner than v2. (lots of people use `Channel` today - I for example, use it to generate mocks, etc... so changing `Channel` would be a breaking change for me).\n\nWe might need a new version of other ifaces if we don\u0027t want breaking changes. For example, may need a `ssh.ConnV2` or `ssh.ConnWithDeadlinedChannels`...",
+      "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
