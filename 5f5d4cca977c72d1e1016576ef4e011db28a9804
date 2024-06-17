@@ -52,6 +52,41 @@
       "parentUuid": "816c70d1_87228335",
       "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "217076fd_9c7558e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3483137
+      },
+      "writtenOn": "2024-06-17T15:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af6fb87d_6fe7c45d",
+      "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2367181c_de328ffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3483137
+      },
+      "writtenOn": "2024-06-17T15:45:43Z",
+      "side": 1,
+      "message": "Hey @nicola.murino@gmail.com - you are right.\n\nTested my local setup (websocket over ssh conn - which requires conn to implement deadlines) based on PS 11 and it all works as expected -- no unintended side effects.\n\n👍🎉",
+      "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
