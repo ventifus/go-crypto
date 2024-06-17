@@ -34,6 +34,24 @@
       "parentUuid": "aa4a0bcc_76eac8f7",
       "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af6fb87d_6fe7c45d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-06-17T15:30:51Z",
+      "side": 1,
+      "message": "`OpenChannel` should return a struct that implements both `Channel` and `ChannelWithDeadlines`. There is also a test case for this. If it does not work please provide a small reproducer and I\u0027ll try to fix",
+      "parentUuid": "816c70d1_87228335",
+      "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
