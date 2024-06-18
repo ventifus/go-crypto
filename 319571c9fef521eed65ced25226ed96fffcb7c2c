@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e590bbd2_81821b0d",
+        "filename": "ssh/server.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-06-18T10:23:03Z",
+      "side": 1,
+      "message": "I can see this confusing end users if it\u0027s printed. Maybe \"authentication can continue\"?",
+      "revId": "319571c9fef521eed65ced25226ed96fffcb7c2c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
