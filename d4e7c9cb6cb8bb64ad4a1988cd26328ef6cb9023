@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d7af45_e4d4fec0",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-06-24T15:42:04Z",
+      "side": 0,
+      "message": "Is deleting this line intentional? It makes \"Deprecated: ...\" no longer at the start of its own paragraph as described at https://go.dev/wiki/Deprecated.",
+      "revId": "d4e7c9cb6cb8bb64ad4a1988cd26328ef6cb9023",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
