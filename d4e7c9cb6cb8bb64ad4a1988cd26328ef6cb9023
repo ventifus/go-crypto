@@ -16,6 +16,24 @@
       "message": "Is deleting this line intentional? It makes \"Deprecated: ...\" no longer at the start of its own paragraph as described at https://go.dev/wiki/Deprecated.",
       "revId": "d4e7c9cb6cb8bb64ad4a1988cd26328ef6cb9023",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413a0fb0_68bb69c8",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-06-24T15:45:11Z",
+      "side": 0,
+      "message": "Ah, no, thank you. This was actually a gopls bug I think, it added the import \"crypto/ecdh\" line and moved the docstring to follow it. I added the newline back but apparently missed the paragraph separator. I\u0027ll try to reproduce it.",
+      "parentUuid": "f1d7af45_e4d4fec0",
+      "revId": "d4e7c9cb6cb8bb64ad4a1988cd26328ef6cb9023",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
