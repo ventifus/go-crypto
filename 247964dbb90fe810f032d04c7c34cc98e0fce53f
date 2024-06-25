@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd0f9328_9d1e283e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-06-25T19:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c62be98_6bbf2306",
+      "revId": "247964dbb90fe810f032d04c7c34cc98e0fce53f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3982182_1f65f470",
@@ -41,6 +59,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af46828_8e61cb01",
+        "filename": "sha3/_asm/go.mod",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-06-25T19:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3982182_1f65f470",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 9
+      },
+      "revId": "247964dbb90fe810f032d04c7c34cc98e0fce53f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d8692df_259c25a0",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-06-25T17:47:10Z",
       "side": 1,
       "message": "Is this the same as rc in keccakf.go, and if so, does it make sense to use that copy of it rather than making another copy?",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "247964dbb90fe810f032d04c7c34cc98e0fce53f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67919e76_1842b601",
+        "filename": "sha3/_asm/keccakf_amd64_asm.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-06-25T19:52:05Z",
+      "side": 1,
+      "message": "the `rc` var in `keccakf.go` is not publicly exported. I felt the decision to publicly expose `rc` was outside the purview of this CL. The constants are defined in the spec and should never change. If we want to expose `rc` I think it makes sense to do that in a separate CL.",
+      "parentUuid": "7d8692df_259c25a0",
       "range": {
         "startLine": 16,
         "startChar": 4,
