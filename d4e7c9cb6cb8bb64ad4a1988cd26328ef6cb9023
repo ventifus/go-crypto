@@ -34,6 +34,24 @@
       "parentUuid": "f1d7af45_e4d4fec0",
       "revId": "d4e7c9cb6cb8bb64ad4a1988cd26328ef6cb9023",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1110e23c_8c6e3e07",
+        "filename": "curve25519/curve25519.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-06-26T12:11:29Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "413a0fb0_68bb69c8",
+      "revId": "d4e7c9cb6cb8bb64ad4a1988cd26328ef6cb9023",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
