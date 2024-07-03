@@ -18,6 +18,74 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "407942d4_a221c96d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 1,
+      "message": "Roland PTAL!",
+      "revId": "c2bf647e5a604a9327696be0cd6d99b6d6e3a7ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0789c441_3b28cab8",
+        "filename": "sha3/_asm/go.mod",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 1,
+      "message": "I *think* this will not be go get-able both because of the _ and because of the unrooted module name.",
+      "revId": "c2bf647e5a604a9327696be0cd6d99b6d6e3a7ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0cb1f3_312b2f79",
+        "filename": "sha3/_asm/go.mod",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 1,
+      "message": "go 1.22",
+      "revId": "c2bf647e5a604a9327696be0cd6d99b6d6e3a7ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d5d3a2_79daddec",
+        "filename": "sha3/_asm/keccakf_amd64_asm.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 1,
+      "message": "2024",
+      "revId": "c2bf647e5a604a9327696be0cd6d99b6d6e3a7ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f0d67f8_08864ded",
@@ -31,6 +99,30 @@
       "writtenOn": "2024-06-26T18:52:11Z",
       "side": 1,
       "message": "I am not clear about what the effect of removing this \"0,\" is.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 29
+      },
+      "revId": "c2bf647e5a604a9327696be0cd6d99b6d6e3a7ab",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "103064f6_8095d2c3",
+        "filename": "sha3/keccakf_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 1,
+      "message": "Those are the optional flags. I assume zero is the default and Avo knows to omit them.",
+      "parentUuid": "4f0d67f8_08864ded",
       "range": {
         "startLine": 6,
         "startChar": 0,

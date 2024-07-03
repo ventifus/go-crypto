@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c25df2_0319a221",
+        "filename": "sha3/keccakf_amd64.s",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-03T18:22:22Z",
+      "side": 0,
+      "message": "Move attribution to sha3/_asm/keccakf_amd64_asm.go",
+      "revId": "1c7450041f58a5e714eb084ae0e670d3576ea9fb",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
