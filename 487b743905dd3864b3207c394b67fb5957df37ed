@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32235a86_938b9891",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-07-13T21:57:52Z",
+      "side": 1,
+      "message": "I believe this should be ready to be merged.\n\nCopyright date fixed. Attribution moved to the Avo .go file. Go version in mod file updated.\n\nI ended up having to add `_ \"golang.org/x/crypto/sha3\"` to the import statement in `keccakf_amd64_asm.go` to prevent `go mod tidy` from removing the package from the mod file.\n\nI also made some changes to the verification pipeline to reduce noise which resulted in a 0 line diff between the reference assembly and Avo\u0027s output.",
+      "revId": "487b743905dd3864b3207c394b67fb5957df37ed",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
