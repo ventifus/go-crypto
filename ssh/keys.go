@@ -488,7 +488,26 @@ func (r *rsaPublicKey) Verify(data []byte, sig *Signature) error {
 	h := hash.New()
 	h.Write(data)
 	digest := h.Sum(nil)
-	return rsa.VerifyPKCS1v15((*rsa.PublicKey)(r), hash, digest, sig.Blob)
+	// Pad MSB bytes. Required by RFC 4253, allowed by RFC 8332:
+	//
+	// RFC 4253 Section 6.6:
+	//     The value for 'rsa_signature_blob' is encoded as a string
+	//     containing s (which is an integer, without lengths or padding,
+	//     unsigned, and in network byte order).
+	//
+	// RFC 8332 Section 3:
+	//     ... When S contains leading zeros, there exist signers that
+	//     will send a shorter encoding of S that omits them.  A verifier
+	//     MAY accept shorter encodings of S with one or more leading
+	//     zeros omitted.
+	blob := sig.Blob
+	keySize := (*rsa.PublicKey)(r).Size()
+	if len(blob) < keySize {
+		padded := make([]byte, keySize)
+		copy(padded[keySize-len(blob):], blob)
+		blob = padded
+	}
+	return rsa.VerifyPKCS1v15((*rsa.PublicKey)(r), hash, digest, blob)
 }
 
 func (r *rsaPublicKey) CryptoPublicKey() crypto.PublicKey {
