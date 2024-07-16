@@ -16,6 +16,29 @@
       "message": "Not worth blocking this CL on, but this would be better as v0.0.0 followed by a replace directive pointing to ../.. so that it doesn\u0027t get out of sync with the dev tree.",
       "revId": "24c501eef2bc0932f9867df8fa4ac56bb7f096ac",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c4c7d8_244ab67d",
+        "filename": "sha3/_asm/keccakf_amd64_asm.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13315
+      },
+      "writtenOn": "2024-07-16T18:24:42Z",
+      "side": 1,
+      "message": "6a refers to the old Go assembler? The \"6a\" tool no longer exists. Maybe say Go assembly syntax.\n\nThere are other places in this repo that use 6a. So this is fine. Maybe we want to update them at some point.",
+      "range": {
+        "startLine": 5,
+        "startChar": 56,
+        "endLine": 5,
+        "endChar": 58
+      },
+      "revId": "24c501eef2bc0932f9867df8fa4ac56bb7f096ac",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
