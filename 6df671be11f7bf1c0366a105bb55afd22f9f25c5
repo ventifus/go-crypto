@@ -16,6 +16,41 @@
       "message": "Ian, now you mentioned https://github.com/golang/go/issues/14274#issuecomment-2234154773 - can you please have a look at this change?",
       "revId": "6df671be11f7bf1c0366a105bb55afd22f9f25c5",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17af144_5cacedce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2024-07-17T22:10:17Z",
+      "side": 1,
+      "message": "Thanks for the pointer.  Unfortunately I\u0027m really not qualified to evaluate crypto code.",
+      "parentUuid": "71d2d279_4c179d83",
+      "revId": "6df671be11f7bf1c0366a105bb55afd22f9f25c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b57e50c_e2640f7c",
+        "filename": "crypt/md5crypt/md5crypt.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5206
+      },
+      "writtenOn": "2024-07-17T22:10:17Z",
+      "side": 1,
+      "message": "This looks insecure in the modern era.  The package comment should explain why the package exists at all, explain when people might want to use it, and recommend against using it for any other purpose.",
+      "revId": "6df671be11f7bf1c0366a105bb55afd22f9f25c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
