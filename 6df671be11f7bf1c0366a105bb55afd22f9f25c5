@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d2d279_4c179d83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16077
+      },
+      "writtenOn": "2024-07-17T21:49:06Z",
+      "side": 1,
+      "message": "Ian, now you mentioned https://github.com/golang/go/issues/14274#issuecomment-2234154773 - can you please have a look at this change?",
+      "revId": "6df671be11f7bf1c0366a105bb55afd22f9f25c5",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
