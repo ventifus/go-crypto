@@ -51,7 +51,19 @@ func testPortForward(t *testing.T, n, listenAddr string) {
 		}
 	}()
 
-	forwardedAddr := sshListener.Addr().String()
+	// The forwarded address match the listen address because we run the tests
+	// on the same host, we only need to reset the port if 0.
+	host, port, err := net.SplitHostPort(listenAddr)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if port == "0" {
+		_, port, err = net.SplitHostPort(sshListener.Addr().String())
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	forwardedAddr := net.JoinHostPort(host, port)
 	netConn, err := net.Dial(n, forwardedAddr)
 	if err != nil {
 		t.Fatalf("net dial failed: %v", err)
@@ -111,6 +123,8 @@ func testPortForward(t *testing.T, n, listenAddr string) {
 }
 
 func TestPortForwardTCP(t *testing.T) {
+	testPortForward(t, "tcp", ":0")
+	testPortForward(t, "tcp", "[::]:0")
 	testPortForward(t, "tcp", "localhost:0")
 }
 

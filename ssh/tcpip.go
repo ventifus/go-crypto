@@ -25,11 +25,7 @@ import (
 func (c *Client) Listen(n, addr string) (net.Listener, error) {
 	switch n {
 	case "tcp", "tcp4", "tcp6":
-		laddr, err := net.ResolveTCPAddr(n, addr)
-		if err != nil {
-			return nil, err
-		}
-		return c.ListenTCP(laddr)
+		return c.listenTCPInternal(addr)
 	case "unix":
 		return c.ListenUnix(addr)
 	default:
@@ -102,6 +98,9 @@ func (c *Client) handleForwards() {
 // ListenTCP requests the remote peer open a listening socket
 // on laddr. Incoming connections will be available by calling
 // Accept on the returned net.Listener.
+//
+// NOTE: ListenTCP expects an IP address, to use a hostname use [Client.Listen]
+// instead.
 func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 	c.handleForwardsOnce.Do(c.handleForwards)
 	if laddr.Port == 0 && isBrokenOpenSSHVersion(string(c.ServerVersion())) {
@@ -134,9 +133,60 @@ func (c *Client) ListenTCP(laddr *net.TCPAddr) (net.Listener, error) {
 	}
 
 	// Register this forward, using the port number we obtained.
-	ch := c.forwards.add(laddr)
+	ch := c.forwards.add(laddr.String())
 
-	return &tcpListener{laddr, c, ch}, nil
+	return &tcpListener{laddr, laddr.String(), c, ch}, nil
+}
+
+func (c *Client) listenTCPInternal(addr string) (net.Listener, error) {
+	host, originalPort, err := net.SplitHostPort(addr)
+	if err != nil {
+		return nil, err
+	}
+	port, err := strconv.ParseUint(originalPort, 10, 32)
+	if err != nil {
+		return nil, err
+	}
+	c.handleForwardsOnce.Do(c.handleForwards)
+
+	m := channelForwardMsg{
+		host,
+		uint32(port),
+	}
+	// send message
+	ok, resp, err := c.SendRequest("tcpip-forward", true, Marshal(&m))
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, errors.New("ssh: tcpip-forward request denied by peer")
+	}
+
+	// If the original port was 0, then the remote side will
+	// supply a real port number in the response.
+	if port == 0 {
+		var p struct {
+			Port uint32
+		}
+		if err := Unmarshal(resp, &p); err != nil {
+			return nil, err
+		}
+		port = uint64(p.Port)
+		addr = net.JoinHostPort(host, strconv.FormatUint(port, 10))
+	}
+
+	// Register this forward, using the port number we obtained.
+	ch := c.forwards.add(addr)
+	// Use a zero address for local address, the listener is on the remote host
+	// and we may be unable to resolve the specified address locally. We set the
+	// port so that if 0 is passed there is a way to know the port chosen by the
+	// remote server.
+	zeroAddr := &net.TCPAddr{
+		IP:   net.IPv4zero,
+		Port: int(port),
+	}
+
+	return &tcpListener{zeroAddr, addr, c, ch}, nil
 }
 
 // forwardList stores a mapping between remote
@@ -149,8 +199,8 @@ type forwardList struct {
 // forwardEntry represents an established mapping of a laddr on a
 // remote ssh server to a channel connected to a tcpListener.
 type forwardEntry struct {
-	laddr net.Addr
-	c     chan forward
+	addr string // host:port or socket path
+	c    chan forward
 }
 
 // forward represents an incoming forwarded tcpip connection. The
@@ -161,12 +211,12 @@ type forward struct {
 	raddr net.Addr   // the raddr of the incoming connection
 }
 
-func (l *forwardList) add(addr net.Addr) chan forward {
+func (l *forwardList) add(addr string) chan forward {
 	l.Lock()
 	defer l.Unlock()
 	f := forwardEntry{
-		laddr: addr,
-		c:     make(chan forward, 1),
+		addr: addr,
+		c:    make(chan forward, 1),
 	}
 	l.entries = append(l.entries, f)
 	return f.c
@@ -195,7 +245,7 @@ func parseTCPAddr(addr string, port uint32) (*net.TCPAddr, error) {
 func (l *forwardList) handleChannels(in <-chan NewChannel) {
 	for ch := range in {
 		var (
-			laddr net.Addr
+			addr  string
 			raddr net.Addr
 			err   error
 		)
@@ -207,16 +257,12 @@ func (l *forwardList) handleChannels(in <-chan NewChannel) {
 				continue
 			}
 
-			// RFC 4254 section 7.2 specifies that incoming
-			// addresses should list the address, in string
-			// format. It is implied that this should be an IP
-			// address, as it would be impossible to connect to it
-			// otherwise.
-			laddr, err = parseTCPAddr(payload.Addr, payload.Port)
-			if err != nil {
-				ch.Reject(ConnectionFailed, err.Error())
-				continue
-			}
+			// RFC 4254 section 7.2 specifies that incoming addresses should
+			// list the address that was connected, in string format. It is the
+			// same address used in the tcpip-forward request. The originator
+			// address is an IP address instead.
+			addr = net.JoinHostPort(payload.Addr, strconv.FormatUint(uint64(payload.Port), 10))
+
 			raddr, err = parseTCPAddr(payload.OriginAddr, payload.OriginPort)
 			if err != nil {
 				ch.Reject(ConnectionFailed, err.Error())
@@ -229,10 +275,7 @@ func (l *forwardList) handleChannels(in <-chan NewChannel) {
 				ch.Reject(ConnectionFailed, "could not parse forwarded-streamlocal@openssh.com payload: "+err.Error())
 				continue
 			}
-			laddr = &net.UnixAddr{
-				Name: payload.SocketPath,
-				Net:  "unix",
-			}
+			addr = payload.SocketPath
 			raddr = &net.UnixAddr{
 				Name: "@",
 				Net:  "unix",
@@ -240,7 +283,7 @@ func (l *forwardList) handleChannels(in <-chan NewChannel) {
 		default:
 			panic(fmt.Errorf("ssh: unknown channel type %s", channelType))
 		}
-		if ok := l.forward(laddr, raddr, ch); !ok {
+		if ok := l.forward(addr, raddr, ch); !ok {
 			// Section 7.2, implementations MUST reject spurious incoming
 			// connections.
 			ch.Reject(Prohibited, "no forward for address")
@@ -252,11 +295,11 @@ func (l *forwardList) handleChannels(in <-chan NewChannel) {
 
 // remove removes the forward entry, and the channel feeding its
 // listener.
-func (l *forwardList) remove(addr net.Addr) {
+func (l *forwardList) remove(addr string) {
 	l.Lock()
 	defer l.Unlock()
 	for i, f := range l.entries {
-		if addr.Network() == f.laddr.Network() && addr.String() == f.laddr.String() {
+		if addr == f.addr {
 			l.entries = append(l.entries[:i], l.entries[i+1:]...)
 			close(f.c)
 			return
@@ -274,11 +317,11 @@ func (l *forwardList) closeAll() {
 	l.entries = nil
 }
 
-func (l *forwardList) forward(laddr, raddr net.Addr, ch NewChannel) bool {
+func (l *forwardList) forward(addr string, raddr net.Addr, ch NewChannel) bool {
 	l.Lock()
 	defer l.Unlock()
 	for _, f := range l.entries {
-		if laddr.Network() == f.laddr.Network() && laddr.String() == f.laddr.String() {
+		if addr == f.addr {
 			f.c <- forward{newCh: ch, raddr: raddr}
 			return true
 		}
@@ -288,6 +331,7 @@ func (l *forwardList) forward(laddr, raddr net.Addr, ch NewChannel) bool {
 
 type tcpListener struct {
 	laddr *net.TCPAddr
+	addr  string
 
 	conn *Client
 	in   <-chan forward
@@ -314,13 +358,21 @@ func (l *tcpListener) Accept() (net.Conn, error) {
 
 // Close closes the listener.
 func (l *tcpListener) Close() error {
+	host, port, err := net.SplitHostPort(l.addr)
+	if err != nil {
+		return err
+	}
+	rport, err := strconv.ParseUint(port, 10, 32)
+	if err != nil {
+		return err
+	}
 	m := channelForwardMsg{
-		l.laddr.IP.String(),
-		uint32(l.laddr.Port),
+		host,
+		uint32(rport),
 	}
 
 	// this also closes the listener.
-	l.conn.forwards.remove(l.laddr)
+	l.conn.forwards.remove(l.addr)
 	ok, _, err := l.conn.SendRequest("cancel-tcpip-forward", true, Marshal(&m))
 	if err == nil && !ok {
 		err = errors.New("ssh: cancel-tcpip-forward failed")
