@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/mmcloughlin/avo v0.6.0
-	golang.org/x/crypto v0.25.0
+	golang.org/x/crypto v0.0.0
 )
 
 require (
@@ -13,3 +13,5 @@ require (
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
 )
+
+replace golang.org/x/crypto => ../../
