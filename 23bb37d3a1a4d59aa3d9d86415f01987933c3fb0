@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63c97e2_d7f45296",
+        "filename": "sha3/_asm/go.mod",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3467131
+      },
+      "writtenOn": "2024-07-23T00:31:59Z",
+      "side": 1,
+      "message": "Technically I think this can be omitted:\n\n\"If a version is present on the left side of the arrow (\u003d\u003e), only that specific version of the module is replaced; other versions will be accessed normally. If the left version is omitted, all versions of the module are replaced.\"\n\nIt\u0027d be neat to be able to use a semantically meaningful version (i.e. \"local\"), but I don\u0027t know if Go would actually accept that.",
+      "range": {
+        "startLine": 17,
+        "startChar": 28,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "23bb37d3a1a4d59aa3d9d86415f01987933c3fb0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
