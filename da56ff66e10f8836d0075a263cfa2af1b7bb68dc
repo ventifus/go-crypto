@@ -34,6 +34,24 @@
       "parentUuid": "fcf3e946_457e1a41",
       "revId": "da56ff66e10f8836d0075a263cfa2af1b7bb68dc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59faba87_81311689",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-07-24T19:44:29Z",
+      "side": 1,
+      "message": "Thank you!",
+      "parentUuid": "38d58195_74fbba40",
+      "revId": "da56ff66e10f8836d0075a263cfa2af1b7bb68dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
