@@ -16,6 +16,24 @@
       "message": "Please update the docs to be similar to the rest of the package: explain what we do and add `.See RFC 4253, Section x.x.` at the end. \n\nAlso add a note explaining that for compatibility with existing clients (specifying the affected putty and ssh.net versions), we also accept short signatures for rsa-sha2 variants, but we may remove this support in the future because RFC 8332 says they are not allowed, even though a verifier can still accept them. Also add a reference to the OpenSSH code that accepts the short signature so we can easily check if this is changed in the future.\n\nThank you!",
       "revId": "da56ff66e10f8836d0075a263cfa2af1b7bb68dc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d58195_74fbba40",
+        "filename": "ssh/keys.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2024-07-24T19:23:26Z",
+      "side": 1,
+      "message": "Please have a look at the updated comment. I believe I\u0027ve addressed all the bits you mention, but wasn\u0027t sure what the best way was to reference OpenSSH code in such a way that it would be easy to track future changes -- I just included a link to a fixed tag.\n\nHappy to reword this comment in any way you recommend.",
+      "parentUuid": "fcf3e946_457e1a41",
+      "revId": "da56ff66e10f8836d0075a263cfa2af1b7bb68dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
