@@ -16,6 +16,23 @@
       "message": "Hopefully my update matches what you were looking for. Happy to edit/etc as needed.",
       "revId": "54ba33fa5d59fb85b85f65b9401344e742d7c5ea",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcb10fd1_71e09603",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-07-25T01:22:32Z",
+      "side": 1,
+      "message": "@filippo@golang.org or @roland@golang.org Does this change look okay to you too? Thanks.",
+      "revId": "54ba33fa5d59fb85b85f65b9401344e742d7c5ea",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
