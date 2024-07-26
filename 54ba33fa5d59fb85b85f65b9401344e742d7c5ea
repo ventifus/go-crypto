@@ -33,6 +33,24 @@
       "message": "@filippo@golang.org or @roland@golang.org Does this change look okay to you too? Thanks.",
       "revId": "54ba33fa5d59fb85b85f65b9401344e742d7c5ea",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43255e72_df8861b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2024-07-26T16:20:04Z",
+      "side": 1,
+      "message": "(Marking thread unresolved for visibility.)",
+      "parentUuid": "dcb10fd1_71e09603",
+      "revId": "54ba33fa5d59fb85b85f65b9401344e742d7c5ea",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
