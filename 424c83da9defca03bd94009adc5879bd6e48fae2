@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b61a2b6_c2991997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-07-26T02:59:50Z",
+      "side": 1,
+      "message": "0 Diff between Avo and Reference Assembly",
+      "revId": "424c83da9defca03bd94009adc5879bd6e48fae2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
