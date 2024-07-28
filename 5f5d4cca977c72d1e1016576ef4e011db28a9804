@@ -104,6 +104,24 @@
       "message": "This also fixes the issue for me. I tested using the reproduction program from https://github.com/golang/go/issues/68621",
       "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad5a295a_49ed07e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-07-28T19:22:33Z",
+      "side": 1,
+      "message": "Thanks for testing. Before this patch can be merged, the related proposal needs to be approved and I also suspect that writes may block in some edge cases, so this needs to be verified",
+      "parentUuid": "886d13d8_7d1f5336",
+      "revId": "5f5d4cca977c72d1e1016576ef4e011db28a9804",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
