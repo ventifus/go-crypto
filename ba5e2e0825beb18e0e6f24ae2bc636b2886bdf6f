@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52178d4_eb42cfd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-07-29T23:30:27Z",
+      "side": 1,
+      "message": "Diff of Reference vs Avo assembly output:\nhttps://gist.github.com/Garrett-Bodley/04577f4aebfa717aae749f42e9650e21\n\nOf note:\n - I chose to include some parameter metadata in the generated assembly that does not exist in the reference file. This accounts for the entirety of the diff.\n - The reference file uses an `#ifdef` to handle different `amd64` architectural levels. Avo does not support `#ifdef` declarations so I came up with my own workaround. This can be found starting on line `400` in `chacha20poly1305_amd64_asm.go`\n - There are 4 instructions in the reference file that Avo does not recognize  as valid. I bypassed Avo\u0027s type system in order to mirror the reference file, but it may make sense to revise those instructions (perhaps in a separate CL). They can be found on lines `700`, `1124`, `1271`, and `4036` in `chacha20poly1305_amd64_asm.go`.\n - The reference file seems to have been written prior to Go\u0027s assembler supporting certain Vector instructions. As a work around these instructions were hand implemented in the reference file via `#define` macros and the `BYTE` directive. I have mirrored that in the Avo implementation, which can be seen starting at line `130` and again at line `1781` in `chacha20poly1305_amd64_asm.go`. These instructions are now supported by Go\u0027s assembler, and can be modernized in a subsequent CL.",
+      "revId": "ba5e2e0825beb18e0e6f24ae2bc636b2886bdf6f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
