@@ -50,6 +50,23 @@
       "message": "please change `crypto/ssh/knownhosts: ...` to `ssh/knownhosts: ...` in the commit message.\nAlso update the comment for the `Want` field in `KeyError`, now multiple host keys are allowed for a key algorithm format",
       "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77fc0d94_f906c758",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-07-30T10:38:52Z",
+      "side": 1,
+      "message": "A rebase should fix the TryBot failure.",
+      "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
