@@ -7,6 +7,7 @@ package acme
 import (
 	"crypto"
 	"crypto/x509"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -527,6 +528,11 @@ type Challenge struct {
 	// when this challenge was used.
 	// The type of a non-nil value is *Error.
 	Error error
+
+	// Payload is the JSON-formatted payload that the client sends
+	// to the server to indicate it is ready to respond to the challenge.
+	// When unset, it defaults to an empty JSON object: {}.
+	Payload json.RawMessage
 }
 
 // wireChallenge is ACME JSON challenge representation.
