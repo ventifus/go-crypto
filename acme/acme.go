@@ -510,11 +510,22 @@ func (c *Client) GetChallenge(ctx context.Context, url string) (*Challenge, erro
 //
 // The server will then perform the validation asynchronously.
 func (c *Client) Accept(ctx context.Context, chal *Challenge) (*Challenge, error) {
+	return c.AcceptWithPayload(ctx, chal, json.RawMessage("{}"))
+}
+
+// AcceptWithPayload informs the server that the client accepts
+// one of its challenges and sends a challenge response in the payload.
+//
+// The server will then perform the validation asynchronously.
+//
+// This supports challenge types like "device-attest-01" that require
+// the ACME client to send a non-empty JSON body in a response to the challenge.
+func (c *Client) AcceptWithPayload(ctx context.Context, chal *Challenge, payload interface{}) (*Challenge, error) {
 	if _, err := c.Discover(ctx); err != nil {
 		return nil, err
 	}
 
-	res, err := c.post(ctx, nil, chal.URI, json.RawMessage("{}"), wantStatus(
+	res, err := c.post(ctx, nil, chal.URI, payload, wantStatus(
 		http.StatusOK,       // according to the spec
 		http.StatusAccepted, // Let's Encrypt: see https://goo.gl/WsJ7VT (acme-divergences.md)
 	))
