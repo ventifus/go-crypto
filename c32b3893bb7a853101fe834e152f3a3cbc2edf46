@@ -39,6 +39,24 @@
       "message": "Same as the AES-GCM CL: use Go in main() after Generate() instead.",
       "revId": "c32b3893bb7a853101fe834e152f3a3cbc2edf46",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05376c80_f129581b",
+        "filename": "chacha20poly1305/_asm/chacha20poly1305_amd64_asm.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-08-29T21:44:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9aa484f_b4dfbb9e",
+      "revId": "c32b3893bb7a853101fe834e152f3a3cbc2edf46",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
