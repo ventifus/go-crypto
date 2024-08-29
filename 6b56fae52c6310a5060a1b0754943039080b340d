@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c68475c2_35ef66d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-08-29T06:30:37Z",
+      "side": 1,
+      "message": "Verified.",
+      "revId": "6b56fae52c6310a5060a1b0754943039080b340d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3ad5698_a4001b20",
+        "filename": "blake2b/_asm/AVX2/blake2bAVX2_amd64_asm.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-08-29T06:30:37Z",
+      "side": 1,
+      "message": "Leftover?",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 25
+      },
+      "revId": "6b56fae52c6310a5060a1b0754943039080b340d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
