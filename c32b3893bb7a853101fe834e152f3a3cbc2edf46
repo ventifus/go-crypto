@@ -75,6 +75,24 @@
       "parentUuid": "05376c80_f129581b",
       "revId": "c32b3893bb7a853101fe834e152f3a3cbc2edf46",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58fcce59_62b83359",
+        "filename": "chacha20poly1305/_asm/chacha20poly1305_amd64_asm.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-08-29T23:52:31Z",
+      "side": 1,
+      "message": "disgregard, garbage draft auto sent when mailing code updates",
+      "parentUuid": "a77aa5c7_86963273",
+      "revId": "c32b3893bb7a853101fe834e152f3a3cbc2edf46",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
