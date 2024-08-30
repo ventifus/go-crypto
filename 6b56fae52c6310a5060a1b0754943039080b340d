@@ -63,6 +63,30 @@
       },
       "revId": "6b56fae52c6310a5060a1b0754943039080b340d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba962800_2a3087bf",
+        "filename": "blake2b/_asm/AVX2/blake2bAVX2_amd64_asm.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3467065
+      },
+      "writtenOn": "2024-08-30T00:37:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1c007eb_dd318590",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 25
+      },
+      "revId": "6b56fae52c6310a5060a1b0754943039080b340d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
