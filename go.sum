@@ -1,3 +1,5 @@
+filippo.io/mlkem768 v0.0.0-20240902154959-36b3023d41cf h1:86axjPm1h3xNpCAFqQ4rw37BG4GhzFAnjn6ZCdZSytw=
+filippo.io/mlkem768 v0.0.0-20240902154959-36b3023d41cf/go.mod h1:IkpYfciLz5fI/S4/Z0NlhR4cpv6ubCMDnIwAe0XiojA=
 golang.org/x/net v0.21.0 h1:AQyQV4dYCvJ7vGmJyKki9+PBdyvhkSd8EIx/qb0AYv4=
 golang.org/x/net v0.21.0/go.mod h1:bIjVDfnllIU7BJ2DNgfnXvpSvtn8VRwhlsaeUTyUS44=
 golang.org/x/sys v0.25.0 h1:r+8e+loiHxRqhXVl6ML1nO3l1+oFoWbnlu2Ehimmi34=
