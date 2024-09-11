@@ -113,177 +113,84 @@ func main() {
 	removePeskyUnicodeDot(internalFunctions, "../chacha20poly1305_amd64.s")
 }
 
-// Utility function to emit BYTE instruction
-func BYTE(u8 U8) {
-	Instruction(&ir.Instruction{Opcode: "BYTE", Operands: []Op{u8}})
-}
-
 // PALIGNR $4, X3, X3
 func shiftB0Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xdb))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), B0, B0)
 }
 
 // PALIGNR $4, X4, X4
 func shiftB1Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xe4))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), B1, B1)
 }
 
 // PALIGNR $4, X5, X5
 func shiftB2Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xed))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), B2, B2)
 }
 
 // PALIGNR $4, X13, X13
 func shiftB3Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xed))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), B3, B3)
 }
 
 // PALIGNR $8, X6, X6
 func shiftC0Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xf6))
-	BYTE(U8(0x08))
+	PALIGNR(Imm(8), C0, C0)
 }
 
 // PALIGNR $8, X7, X7
 func shiftC1Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xff))
-	BYTE(U8(0x08))
+	PALIGNR(Imm(8), C1, C1)
 }
 
 // PALIGNR $8, X8, X8
 func shiftC2Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xc0))
-	BYTE(U8(0x08))
+	PALIGNR(Imm(8), C2, C2)
 }
 
 // PALIGNR $8, X14, X14
 func shiftC3Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xf6))
-	BYTE(U8(0x08))
+	PALIGNR(Imm(8), C3, C3)
 }
 
 // PALIGNR $12, X9, X9
 func shiftD0Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xc9))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), D0, D0)
 }
 
 // PALIGNR $12, X10, X10
 func shiftD1Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xd2))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), D1, D1)
 }
 
 // PALIGNR $12, X11, X11
 func shiftD2Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xdb))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), D2, D2)
 }
 
 // PALIGNR $12, X15, X15
 func shiftD3Left() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xff))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), D3, D3)
 }
 
 // PALIGNR $12, X3, X3
 func shiftB0Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xdb))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), B0, B0)
 }
 
 // PALIGNR $12, X4, X4
 func shiftB1Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xe4))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), B1, B1)
 }
 
 // PALIGNR $12, X5, X5
 func shiftB2Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xed))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), B2, B2)
 }
 
 // PALIGNR $12, X13, X13
 func shiftB3Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xed))
-	BYTE(U8(0x0c))
+	PALIGNR(Imm(12), B3, B3)
 }
 
 func shiftC0Right() {
@@ -304,46 +211,22 @@ func shiftC3Right() {
 
 // PALIGNR $4, X9, X9
 func shiftD0Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xc9))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), D0, D0)
 }
 
 // PALIGNR $4, X10, X10
 func shiftD1Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xd2))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), D1, D1)
 }
 
 // PALIGNR $4, X11, X11
 func shiftD2Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xdb))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), D2, D2)
 }
 
 // PALIGNR $4, X15, X15
 func shiftD3Right() {
-	BYTE(U8(0x66))
-	BYTE(U8(0x45))
-	BYTE(U8(0x0f))
-	BYTE(U8(0x3a))
-	BYTE(U8(0x0f))
-	BYTE(U8(0xff))
-	BYTE(U8(0x04))
+	PALIGNR(Imm(4), D3, D3)
 }
 
 // ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SOME  MACROS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
@@ -1655,38 +1538,6 @@ func openSSETail256HashLoop() {
 	JMP(LabelRef("openSSETail64DecLoop"))
 }
 
-// Functions to emit AVX instructions via BYTE directive
-
-// broadcasti128 16(r8), ymm14
-func VBROADCASTI128_16_R8_YMM14() {
-	BYTE(U8(0xc4))
-	BYTE(U8(0x42))
-	BYTE(U8(0x7d))
-	BYTE(U8(0x5a))
-	BYTE(U8(0x70))
-	BYTE(U8(0x10))
-}
-
-// broadcasti128 32(r8), ymm12
-func VBROADCASTI128_32_R8_YMM12() {
-	BYTE(U8(0xc4))
-	BYTE(U8(0x42))
-	BYTE(U8(0x7d))
-	BYTE(U8(0x5a))
-	BYTE(U8(0x60))
-	BYTE(U8(0x20))
-}
-
-// broadcasti128 48(r8), ymm4
-func VBROADCASTI128_48_R8_YMM4() {
-	BYTE(U8(0xc4))
-	BYTE(U8(0xc2))
-	BYTE(U8(0x7d))
-	BYTE(U8(0x5a))
-	BYTE(U8(0x60))
-	BYTE(U8(0x30))
-}
-
 // ----------------------------------------------------------------------------
 // ------------------------- AVX2 Code ----------------------------------------
 
@@ -1695,9 +1546,9 @@ func chacha20Poly1305Open_AVX2() {
 	VZEROUPPER()
 	chacha20Constants := chacha20Constants_DATA()
 	VMOVDQU(chacha20Constants, AA0)
-	VBROADCASTI128_16_R8_YMM14()
-	VBROADCASTI128_32_R8_YMM12()
-	VBROADCASTI128_48_R8_YMM4()
+	VBROADCASTI128(Mem{Base: R8}.Offset(16), Y14)
+	VBROADCASTI128(Mem{Base: R8}.Offset(32), Y12)
+	VBROADCASTI128(Mem{Base: R8}.Offset(48), Y4)
 	avx2InitMask := avx2InitMask_DATA()
 	VPADDD(avx2InitMask, DD0, DD0)
 
@@ -3898,9 +3749,9 @@ func chacha20Poly1305Seal_AVX2() {
 	VZEROUPPER()
 	chacha20Constants := chacha20Constants_DATA()
 	VMOVDQU(chacha20Constants, AA0)
-	VBROADCASTI128_16_R8_YMM14()
-	VBROADCASTI128_32_R8_YMM12()
-	VBROADCASTI128_48_R8_YMM4()
+	VBROADCASTI128(Mem{Base: R8}.Offset(16), Y14)
+	VBROADCASTI128(Mem{Base: R8}.Offset(32), Y12)
+	VBROADCASTI128(Mem{Base: R8}.Offset(48), Y4)
 	avx2InitMask := avx2InitMask_DATA()
 	VPADDD(avx2InitMask, DD0, DD0)
 
