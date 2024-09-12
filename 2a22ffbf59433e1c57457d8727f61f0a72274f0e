@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "891c7a2c_4c53e7df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-09-12T10:48:56Z",
+      "side": 1,
+      "message": "This implements unencrypted PKCS#8 keys wrapped in legacy PEM encryption, not PKCS#8 native encryption as requested in #43387 and #8860. I\u0027m not aware of any software that produces these, and PEM encryption is unauthenticathed so fundamentally weak.",
+      "revId": "2a22ffbf59433e1c57457d8727f61f0a72274f0e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
