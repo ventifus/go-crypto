@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13c83f6_cef6f532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3620841
+      },
+      "writtenOn": "2024-09-15T10:19:29Z",
+      "side": 1,
+      "message": "@nicola.murino@gmail.com wanted me to confirm that I\u0027m okay with the potential landing of this change in x/crypto. This is confirmation 😊",
+      "revId": "98c7e75e4d42cfd47a8cc0c3e17d8f8b50daa534",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
