@@ -59,6 +59,29 @@ type GSSAPIWithMICConfig struct {
 	Server GSSAPIServer
 }
 
+func (s *connection) SendAuthBanner(msg string) error {
+	if s.serverAuthComplete.Load() {
+		return errors.New("ssh: SendAuthBanner outside of authentication phase")
+	}
+	return s.transport.writePacket(Marshal(&userAuthBannerMsg{
+		Message: msg,
+	}))
+}
+
+func (*connection) unexportedMethodForFutureProofing() {}
+
+// ServerPreAuthConn is the interface available on an incoming server
+// connection before authentication has completed.
+type ServerPreAuthConn interface {
+	unexportedMethodForFutureProofing() // permits growing ServerPreAuthConn safely later, ala testing.TB
+
+	ConnMetadata
+
+	// SendAuthBanner sends a baner message to the client.
+	// It returns an error once the authentication phase has ended.
+	SendAuthBanner(string) error
+}
+
 // ServerConfig holds server specific configuration data.
 type ServerConfig struct {
 	// Config contains configuration shared between client and server.
@@ -117,6 +140,11 @@ type ServerConfig struct {
 	// AuthLogCallback, if non-nil, is called to log all authentication
 	// attempts.
 	AuthLogCallback func(conn ConnMetadata, method string, err error)
+
+	// GetPreAuthConn, if non-nil, is called upon receiving a new connection
+	// before any authentication has started. The provided ServerPreAuthConn
+	// can be used before authentication is complete.
+	GetPreAuthConn func(ServerPreAuthConn)
 
 	// ServerVersion is the version identification string to announce in
 	// the public handshake.
@@ -229,7 +257,11 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 	s := &connection{
 		sshConn: sshConn{conn: c},
 	}
+	if config.GetPreAuthConn != nil {
+		config.GetPreAuthConn(s)
+	}
 	perms, err := s.serverHandshake(&fullConf)
+	s.serverAuthComplete.Store(true)
 	if err != nil {
 		c.Close()
 		return nil, nil, nil, err
