@@ -480,6 +480,28 @@ func (b *BannerError) Error() string {
 	return b.Err.Error()
 }
 
+// BannerSender sends banner messages from the server to the client. Banners
+// can only be sent before authentication is complete, from callbacks in
+// ServerConfig. Calls to SendBanner after authentication always fail. Callers
+// can access a BannerSender using a checked type assertion on the ConnMetadata
+// value passed to the callbacks in ServerConfig.
+type BannerSender interface {
+	SendBanner(message string) error
+}
+
+func (s *connection) SendBanner(message string) error {
+	if s.serverAuthComplete.Load() {
+		return errors.New("ssh: SendAuthBanner outside of authentication phase is not allowed")
+	}
+	if message == "" {
+		return nil
+	}
+	bannerMsg := &userAuthBannerMsg{
+		Message: message,
+	}
+	return s.transport.writePacket(Marshal(bannerMsg))
+}
+
 func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, error) {
 	sessionID := s.transport.getSessionID()
 	var cache pubKeyCache
@@ -538,13 +560,8 @@ userAuthLoop:
 		if !displayedBanner && config.BannerCallback != nil {
 			displayedBanner = true
 			msg := config.BannerCallback(s)
-			if msg != "" {
-				bannerMsg := &userAuthBannerMsg{
-					Message: msg,
-				}
-				if err := s.transport.writePacket(Marshal(bannerMsg)); err != nil {
-					return nil, err
-				}
+			if err := s.SendBanner(msg); err != nil {
+				return nil, err
 			}
 		}
 
@@ -754,13 +771,8 @@ userAuthLoop:
 
 		var bannerErr *BannerError
 		if errors.As(authErr, &bannerErr) {
-			if bannerErr.Message != "" {
-				bannerMsg := &userAuthBannerMsg{
-					Message: bannerErr.Message,
-				}
-				if err := s.transport.writePacket(Marshal(bannerMsg)); err != nil {
-					return nil, err
-				}
+			if err := s.SendBanner(bannerErr.Message); err != nil {
+				return nil, err
 			}
 		}
 
@@ -839,6 +851,7 @@ userAuthLoop:
 		}
 	}
 
+	s.serverAuthComplete.Store(true)
 	if err := s.transport.writePacket([]byte{msgUserAuthSuccess}); err != nil {
 		return nil, err
 	}

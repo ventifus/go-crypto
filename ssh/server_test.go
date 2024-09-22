@@ -299,6 +299,84 @@ func TestBannerError(t *testing.T) {
 	}
 }
 
+func TestSendBannerInterface(t *testing.T) {
+	var connMetadata ConnMetadata
+	serverConfig := &ServerConfig{
+		NoClientAuth: true,
+		NoClientAuthCallback: func(conn ConnMetadata) (*Permissions, error) {
+			if b, ok := conn.(BannerSender); ok {
+				b.SendBanner("banner from NoClientAuthCallback")
+			} else {
+				t.Error("ConnMetadata does not implement BannerSender interface")
+			}
+			return nil, errors.New("error from NoClientAuthCallback")
+		},
+		PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+			// Store ConnMetadata so we can test sending a banner after the
+			// authentication is complete.
+			connMetadata = conn
+			return &Permissions{}, nil
+		},
+		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
+			if b, ok := conn.(BannerSender); ok {
+				b.SendBanner("banner1 from PublicKeyCallback")
+				b.SendBanner("banner2 from PublicKeyCallback")
+			} else {
+				t.Error("ConnMetadata does not implement BannerSender interface")
+			}
+			return nil, errors.New("error from PublicKeyCallback")
+		},
+	}
+	serverConfig.AddHostKey(testSigners["rsa"])
+
+	var banners []string
+	clientConfig := &ClientConfig{
+		User: "test",
+		Auth: []AuthMethod{
+			PublicKeys(testSigners["rsa"]),
+			KeyboardInteractive(func(name, instruction string, questions []string, echos []bool) ([]string, error) {
+				return []string{"letmein"}, nil
+			}),
+			Password(clientPassword),
+		},
+		HostKeyCallback: InsecureIgnoreHostKey(),
+		BannerCallback: func(msg string) error {
+			banners = append(banners, msg)
+			return nil
+		},
+	}
+
+	c1, c2, err := netPipe()
+	if err != nil {
+		t.Fatalf("netPipe: %v", err)
+	}
+	defer c1.Close()
+	defer c2.Close()
+	go newServer(c1, serverConfig)
+	c, _, _, err := NewClientConn(c2, "", clientConfig)
+	if err != nil {
+		t.Fatalf("client connection failed: %v", err)
+	}
+	defer c.Close()
+
+	wantBanners := []string{
+		"banner from NoClientAuthCallback",
+		"banner1 from PublicKeyCallback",
+		"banner2 from PublicKeyCallback",
+	}
+	if !reflect.DeepEqual(banners, wantBanners) {
+		t.Errorf("got banners:\n%q\nwant banners:\n%q", banners, wantBanners)
+	}
+	// Authentication is now complete, sending a banner is no longer allowed.
+	if b, ok := connMetadata.(BannerSender); ok {
+		if err := b.SendBanner("banner after authentication"); err == nil {
+			t.Error("sending a banner after authentication is complete should fail")
+		}
+	} else {
+		t.Error("ConnMetadata does not implement BannerSender interface")
+	}
+}
+
 type markerConn struct {
 	closed uint32
 	used   uint32
