@@ -33,6 +33,24 @@
       "message": "The spec doesn\u0027t explicitly state that empty messages aren\u0027t allowed. If keeping this logic here, at a minimum I recommend including something in the BannerSender doc comment that makes it clear that empty messages cannot be sent.\n\nAlso, what about non-empty messages that are whitespace only?",
       "revId": "f5bae1c1012086c8b24ec443f47a0bcebeff134f",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f811f8ab_f3427f22",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-09-25T17:54:25Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. It\u0027s the same in the current implementation, but you\u0027re right, we should check how OpenSSH handles this edge case. \n\nI implemented this to compare with CL 613856 and I have to say that I like more the approach suggested by @bradfitz@tailscale.com. I plan to do some more testing with that CL in the next few days.",
+      "parentUuid": "bd5c5b01_b8fe785f",
+      "revId": "f5bae1c1012086c8b24ec443f47a0bcebeff134f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
