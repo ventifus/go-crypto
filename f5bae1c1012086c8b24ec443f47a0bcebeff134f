@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "750a5f12_a2f4e464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3639045
+      },
+      "writtenOn": "2024-09-25T17:40:31Z",
+      "side": 1,
+      "message": "Thanks for putting this together. I left one suggestion.",
+      "revId": "f5bae1c1012086c8b24ec443f47a0bcebeff134f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd5c5b01_b8fe785f",
+        "filename": "ssh/server.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 3639045
+      },
+      "writtenOn": "2024-09-25T17:40:31Z",
+      "side": 1,
+      "message": "The spec doesn\u0027t explicitly state that empty messages aren\u0027t allowed. If keeping this logic here, at a minimum I recommend including something in the BannerSender doc comment that makes it clear that empty messages cannot be sent.\n\nAlso, what about non-empty messages that are whitespace only?",
+      "revId": "f5bae1c1012086c8b24ec443f47a0bcebeff134f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
