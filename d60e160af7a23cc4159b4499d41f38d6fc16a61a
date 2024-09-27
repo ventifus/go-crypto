@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcbd34a5_0b86f40c",
+        "filename": "internal/poly1305/sum_ppc64x.s",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 62743
+      },
+      "writtenOn": "2024-09-27T09:44:05Z",
+      "side": 0,
+      "message": "could also mention about the cleanup in the description of the CL",
+      "revId": "d60e160af7a23cc4159b4499d41f38d6fc16a61a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
