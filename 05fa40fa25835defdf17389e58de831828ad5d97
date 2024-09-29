@@ -33,6 +33,57 @@
       "message": "Sorry for the delay. The patch looks good to me, only some minor notes for the test case. Please rebase",
       "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4549549e_dfd656a1",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-09-29T13:04:11Z",
+      "side": 1,
+      "message": "we can initialize the ServerConfig outside the goroutine",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db87fabb_01837bbe",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-09-29T13:04:11Z",
+      "side": 1,
+      "message": "we wait for the inner goroutine to end but not for the main goroutine. \n\nA `WaitGroup` is generally used to wait for a collection of goroutines to finish, if we have a single goroutine we can use a channel",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eefa27c7_1181ff20",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2024-09-29T13:04:11Z",
+      "side": 1,
+      "message": "`NewClientConn` should always return an error here, right? If so we should also check the error",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
