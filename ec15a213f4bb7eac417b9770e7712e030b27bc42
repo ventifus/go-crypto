@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ecd7ef2_bfa13baf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-09-29T10:21:44Z",
+      "side": 1,
+      "message": "Moved from CL 318869 to break GerritBot relation. Refactored build tags, rebased, and added x/sys/cpu check. Assembly is unchanged.",
+      "revId": "ec15a213f4bb7eac417b9770e7712e030b27bc42",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
