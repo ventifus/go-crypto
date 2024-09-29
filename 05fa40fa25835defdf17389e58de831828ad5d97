@@ -35,6 +35,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d438594f_71d9f578",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-09-29T14:02:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fa605d7_73125fc4",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4549549e_dfd656a1",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-09-29T13:04:11Z",
       "side": 1,
       "message": "we can initialize the ServerConfig outside the goroutine",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c3c63b_5e711dd0",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-09-29T14:02:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4549549e_dfd656a1",
       "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -69,6 +105,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5096a48e_15997ea0",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-09-29T14:02:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db87fabb_01837bbe",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eefa27c7_1181ff20",
@@ -82,6 +136,24 @@
       "writtenOn": "2024-09-29T13:04:11Z",
       "side": 1,
       "message": "`NewClientConn` should always return an error here, right? If so we should also check the error",
+      "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af91343_03f9c4c8",
+        "filename": "ssh/client_auth_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 26284
+      },
+      "writtenOn": "2024-09-29T14:02:27Z",
+      "side": 1,
+      "message": "Nope. NewClientConn() should succeed. I added a check for nil err and a comment on what is expected.",
+      "parentUuid": "eefa27c7_1181ff20",
       "revId": "05fa40fa25835defdf17389e58de831828ad5d97",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
