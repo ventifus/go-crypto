@@ -421,11 +421,11 @@ func TestCSHAKEAccumulated(t *testing.T) {
 	//    console.log(bytesToHex(acc.xof(32)));
 	//
 	t.Run("cSHAKE128", func(t *testing.T) {
-		testCSHAKEAccumulated(t, NewCShake128, rate128,
+		testCSHAKEAccumulated(t, NewCShake128, rateK256,
 			"bb14f8657c6ec5403d0b0e2ef3d3393497e9d3b1a9a9e8e6c81dbaa5fd809252")
 	})
 	t.Run("cSHAKE256", func(t *testing.T) {
-		testCSHAKEAccumulated(t, NewCShake256, rate256,
+		testCSHAKEAccumulated(t, NewCShake256, rateK512,
 			"0baaf9250c6e25f0c14ea5c7f9bfde54c8a922c8276437db28f3895bdf6eeeef")
 	})
 }
