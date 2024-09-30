@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8df845a4_9f23cefd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2024-09-30T18:33:39Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "c90b99f068914b4f7004c20e9ee437147662a0c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5cbb0a6_1b369482",
+        "filename": "sha3/hashes.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2024-09-30T18:33:39Z",
+      "side": 1,
+      "message": "These new constants are a nice tidying 👍",
+      "revId": "c90b99f068914b4f7004c20e9ee437147662a0c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff39d17a_560d9db6",
+        "filename": "sha3/sha3.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2024-09-30T18:33:39Z",
+      "side": 1,
+      "message": "I think it\u0027s not too bad to match this to implementation but also wouldn\u0027t begrudge a companion comment spelling out the components of the summation explicitly. Something like:\n```\n// magic bytes, rate byte, main state bytes, n byte, sponge direction state byte. \n```",
+      "revId": "c90b99f068914b4f7004c20e9ee437147662a0c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
