@@ -16,6 +16,74 @@
       "message": "This is a little tricky to match against the pseudo-code in NIST.SP.800-185, but I think I grok the change and the error it\u0027s addressing. The quality unit test additions give me more confidence that I think this is be ready for a 2nd reviewer.",
       "revId": "b63376a92f7929fc9c1b5f53f354a484f7a91adf",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d9f608_2bb1560b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2024-10-01T04:57:42Z",
+      "side": 1,
+      "message": "Looks okay. Left a couple of suggestions for optimizations.",
+      "revId": "b63376a92f7929fc9c1b5f53f354a484f7a91adf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5af9ca57_ae421c2a",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2024-10-01T04:57:42Z",
+      "side": 1,
+      "message": "Nicely readable, though i don\u0027t love that this might have do hundreds of modulus ops (up to rate-6 i believe). The correct code that only uses a single modulus doesn\u0027t seem _that_ bad to me:\n\n```\nif padlen :\u003d rate - len(out)%rate; padlen \u003c rate {\n    out \u003d append(out, make([]byte, padlen)...)\n}\n```\n\n(I wish go had ceiling div and ceiling mod operations, but that\u0027s a topic for another time)\n\nAs an additional optimization, we don\u0027t even have to append zeros - the tail of the buffer is already zeroed and large enough to slice it to [:len(out)+padlen]",
+      "revId": "b63376a92f7929fc9c1b5f53f354a484f7a91adf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ef9fdee_3594a6db",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2024-10-01T04:57:42Z",
+      "side": 1,
+      "message": "Y\u0027know, it feels a little silly to physically pad out this buffer when the padding\u0027s only purpose is to force a `permute` call after writing the initial block. We could just call `c.permute` directly.\n\nBut that\u0027s probably an idea for another CL.",
+      "revId": "b63376a92f7929fc9c1b5f53f354a484f7a91adf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22145db3_0370d7fe",
+        "filename": "sha3/shake.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2024-10-01T04:57:42Z",
+      "side": 1,
+      "message": "Suggestion: `bits.Len64(x|1)`. Then you can remove the `if` below.",
+      "revId": "b63376a92f7929fc9c1b5f53f354a484f7a91adf",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
