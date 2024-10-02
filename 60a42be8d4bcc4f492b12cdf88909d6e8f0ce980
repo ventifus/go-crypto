@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30e0c927_58acae41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6255
+      },
+      "writtenOn": "2024-10-02T02:55:26Z",
+      "side": 1,
+      "message": "Nice 👍\n\nI was reminded recently that #23172 defined purego as \"no C, no asm, _no unsafe_\" (emphasis added). However it looks like the sha3 package hasn\u0027t been strictly following that definition, and i think it was a bad decision in the first place to lump all three of those into one tag. So maybe pretend i didn\u0027t mention it :)",
+      "revId": "60a42be8d4bcc4f492b12cdf88909d6e8f0ce980",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
