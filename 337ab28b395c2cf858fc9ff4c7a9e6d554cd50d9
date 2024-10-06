@@ -34,6 +34,24 @@
       "parentUuid": "68a86e95_a6c51b93",
       "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c80846_0b3a8bba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 36548
+      },
+      "writtenOn": "2024-10-06T16:56:06Z",
+      "side": 1,
+      "message": "Hi Filoppo, I was working on this on the weekend. I identified that the \n`VLD1R.P\t8(R1), [V26.D2]` doesn\u0027t work as I used before now. Nothing was loaded. Not sure how can I solve this. Should I use WORD?",
+      "parentUuid": "397e1a02_38f1c0b9",
+      "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
