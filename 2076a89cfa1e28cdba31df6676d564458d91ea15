@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117781af_bc122c90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 36178
+      },
+      "writtenOn": "2024-10-14T12:55:28Z",
+      "side": 1,
+      "message": "There\u0027s a larger gain to be had by unrolling the range tweak inner-loops (about 15% over this, 20% over the original), but that\u0027s a lot more code, so maybe not worth it.",
+      "revId": "2076a89cfa1e28cdba31df6676d564458d91ea15",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
