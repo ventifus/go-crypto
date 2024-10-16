@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c478315_3652908e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2024-10-16T15:11:42Z",
+      "side": 1,
+      "message": "Does this context make sense to include in a commit message for `git log`? I would probably have left it in the CR desc but omitted it here (but don\u0027t feel strongly).",
+      "revId": "298b811f5447df5f35da8d8ba9c46268dd6c4641",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6d56a0_5330315a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2024-10-16T15:11:42Z",
+      "side": 1,
+      "message": "LGTM mod the same qualification I gave in the other CR:\n\n\u003e I chewed on this diff for a bit locally and while I think it\u0027s sound, I\u0027m also relatively unfamiliar with the guts of SHA-3 and SHAKE",
+      "revId": "298b811f5447df5f35da8d8ba9c46268dd6c4641",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
