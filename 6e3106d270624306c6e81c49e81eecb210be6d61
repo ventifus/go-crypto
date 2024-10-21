@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53c4b28_cef9736b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-10-21T20:19:47Z",
+      "side": 1,
+      "message": "Moved this before CL 616635 so that there is no change in the encoded format even if you pick a specific pseudo-version mid-history.",
+      "revId": "6e3106d270624306c6e81c49e81eecb210be6d61",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
