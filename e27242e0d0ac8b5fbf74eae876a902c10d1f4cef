@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69751abb_cca010af",
+        "filename": "sha3/hashes.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-10-21T20:18:34Z",
+      "side": 1,
+      "message": "No, Keccak[c] is the underlying sponge with a capacity of c. The SHA-3 functions then use a sponge with capacity 2 * size.\n\nFrom FIPS 202, Section 6.1: SHA3-256(M) \u003d KECCAK[512] (M || 01, 256)",
+      "parentUuid": "3773b546_3a8f8e72",
+      "range": {
+        "startLine": 55,
+        "startChar": 44,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "e27242e0d0ac8b5fbf74eae876a902c10d1f4cef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c73f7128_f8cda7fa",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-21T19:14:50Z",
       "side": 1,
       "message": "Should this be moved to hashes.go along with the other rates? (and possibly also the domain separation bytes.)",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "e27242e0d0ac8b5fbf74eae876a902c10d1f4cef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b90675f_5261e7b9",
+        "filename": "sha3/shake.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-10-21T20:18:34Z",
+      "side": 1,
+      "message": "I kinda went back end forth between keeping it here because it\u0027s used only in SHAKE, and together with the rest. No strong opinion, so fixed.",
+      "parentUuid": "c73f7128_f8cda7fa",
       "range": {
         "startLine": 59,
         "startChar": 1,
