@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3773b546_3a8f8e72",
+        "filename": "sha3/hashes.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2024-10-21T19:14:50Z",
+      "side": 1,
+      "message": "This is somewhat confusing (in terms of naming), it seems like this should be `c/2`? Keccak224 has a capacity of 448 bits, Keccak256 has a capacity of 512 bits, etc. (or the rate name should indicate the keccak variant, with the capacity not being included in the name, as it was previously.)",
+      "range": {
+        "startLine": 55,
+        "startChar": 44,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "e27242e0d0ac8b5fbf74eae876a902c10d1f4cef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c73f7128_f8cda7fa",
+        "filename": "sha3/shake.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2024-10-21T19:14:50Z",
+      "side": 1,
+      "message": "Should this be moved to hashes.go along with the other rates? (and possibly also the domain separation bytes.)",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "e27242e0d0ac8b5fbf74eae876a902c10d1f4cef",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
