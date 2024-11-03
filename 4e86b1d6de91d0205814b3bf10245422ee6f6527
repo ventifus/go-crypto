@@ -70,6 +70,24 @@
       "message": "In an auth callback I added this code:\n\n```\n\tgo func() {\n\t\tfor {\n\t\t\terr :\u003d preConn.SendAuthBanner(\"test\\r\\n\")\n\t\t\tif err !\u003d nil {\n\t\t\t\tfmt.Printf(\"unable to send the banner: %v\\n\", err)\n\t\t\t\treturn\n\t\t\t}\n\t\t}\n\t}()\n\tpreConn.SendAuthBanner(\"initial banner\\r\\n\")\n\ttime.Sleep(200 * time.Millisecond)\n\treturn nil,nil\n```\n\nand I was able to send a banner after `msgUserAuthSuccess`. The `ssh` CLI fails like this\n\n```\ndispatch_protocol_error: type 53 seq 21548\ndispatch_protocol_error: type 53 seq 21549\nConnection to 127.0.0.1 closed by remote host.\nclient_loop: send disconnect: Broken pipe\n```\n\nSo this is a fatal error.\nI think we should use a mutex to make sure the `writePacket` requests for `userAuthBannerMsg` and `msgUserAuthSuccess` are properly serialized. What do you think about?",
       "revId": "4e86b1d6de91d0205814b3bf10245422ee6f6527",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c30a92_f2c4caaa",
+        "filename": "ssh/server.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2024-11-03T16:12:52Z",
+      "side": 1,
+      "message": "Good catch, thanks! Fixed. PTAL.",
+      "parentUuid": "753c12e4_233c4006",
+      "revId": "4e86b1d6de91d0205814b3bf10245422ee6f6527",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
