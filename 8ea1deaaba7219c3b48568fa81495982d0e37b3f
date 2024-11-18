@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6882efd_f7ac382a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3743789
+      },
+      "writtenOn": "2024-11-18T19:49:01Z",
+      "side": 1,
+      "message": "Here is an errata that intends to clarify the language: https://www.rfc-editor.org/errata/eid5729",
+      "revId": "8ea1deaaba7219c3b48568fa81495982d0e37b3f",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
