@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79b351e8_1b844566",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-12-04T18:54:51Z",
+      "side": 1,
+      "message": "```suggestion\nopenpgp/clearsign: just use rand.Reader in tests\n```\n\n(It\u0027s useful to know test-only changes from a oneline log.)",
+      "revId": "b5469b899ca80dc1f00980cc0e34297ed541b489",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e68965_ee1f55fd",
+        "filename": "openpgp/clearsign/clearsign_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2024-12-04T18:54:51Z",
+      "side": 1,
+      "message": "It\u0027s the default, so just\n```suggestion\n\tconfig :\u003d packet.Config{}\n```",
+      "revId": "b5469b899ca80dc1f00980cc0e34297ed541b489",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
