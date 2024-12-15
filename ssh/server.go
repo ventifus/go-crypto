@@ -43,6 +43,9 @@ type Permissions struct {
 	// pass data from the authentication callbacks to the server
 	// application layer.
 	Extensions map[string]string
+
+	// ExtraData allows to store user defined data.
+	ExtraData map[any]any
 }
 
 type GSSAPIWithMICConfig struct {
@@ -125,6 +128,18 @@ type ServerConfig struct {
 	// depending on the public key, store it inside a
 	// Permissions.Extensions entry.
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
+
+	// VerifiedPublicKeyCallback, if non-nil, is called after a client
+	// successfully confirms having control over a key that was previously
+	// approved by PublicKeyCallback. The permissions object passed to the
+	// callback is the one returned by PublicKeyCallback for the given public
+	// key and its ownership is transferred to the callback. The returned
+	// Permissions object can be the same object, optionally modified, or a
+	// completely new object. If VerifiedPublicKeyCallback is non-nil,
+	// PublicKeyCallback is not allowed to return a PartialSuccessError, which
+	// can instead be returned by VerifiedPublicKeyCallback.
+	VerifiedPublicKeyCallback func(conn ConnMetadata, key PublicKey, permissions *Permissions,
+		signatureAlgorithm string) (*Permissions, error)
 
 	// KeyboardInteractiveCallback, if non-nil, is called when
 	// keyboard-interactive authentication is selected (RFC
@@ -468,6 +483,10 @@ type ServerAuthCallbacks struct {
 	// PublicKeyCallback behaves like [ServerConfig.PublicKeyCallback].
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
 
+	// VerifiedPublicKeyCallback behaves like [ServerConfig.VerifiedPublicKeyCallback].
+	VerifiedPublicKeyCallback func(conn ConnMetadata, key PublicKey, permissions *Permissions,
+		signatureAlgorithm string) (*Permissions, error)
+
 	// KeyboardInteractiveCallback behaves like [ServerConfig.KeyboardInteractiveCallback].
 	KeyboardInteractiveCallback func(conn ConnMetadata, client KeyboardInteractiveChallenge) (*Permissions, error)
 
@@ -533,6 +552,7 @@ func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, err
 	authConfig := ServerAuthCallbacks{
 		PasswordCallback:            config.PasswordCallback,
 		PublicKeyCallback:           config.PublicKeyCallback,
+		VerifiedPublicKeyCallback:   config.VerifiedPublicKeyCallback,
 		KeyboardInteractiveCallback: config.KeyboardInteractiveCallback,
 		GSSAPIWithMICConfig:         config.GSSAPIWithMICConfig,
 	}
@@ -658,6 +678,9 @@ userAuthLoop:
 				candidate.pubKeyData = pubKeyData
 				candidate.perms, candidate.result = authConfig.PublicKeyCallback(s, pubKey)
 				_, isPartialSuccessError := candidate.result.(*PartialSuccessError)
+				if isPartialSuccessError && authConfig.VerifiedPublicKeyCallback != nil {
+					return nil, errors.New("ssh: invalid library usage: PublicKeyCallback must not return partial success when VerifiedPublicKeyCallback is defined")
+				}
 
 				if (candidate.result == nil || isPartialSuccessError) &&
 					candidate.perms != nil &&
@@ -728,6 +751,9 @@ userAuthLoop:
 
 				authErr = candidate.result
 				perms = candidate.perms
+				if authErr == nil && authConfig.VerifiedPublicKeyCallback != nil {
+					perms, authErr = authConfig.VerifiedPublicKeyCallback(s, pubKey, perms, algo)
+				}
 			}
 		case "gssapi-with-mic":
 			if authConfig.GSSAPIWithMICConfig == nil {
