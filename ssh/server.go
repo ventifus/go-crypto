@@ -43,6 +43,9 @@ type Permissions struct {
 	// pass data from the authentication callbacks to the server
 	// application layer.
 	Extensions map[string]string
+
+	// ExtraData allows to store user defined data.
+	ExtraData any
 }
 
 type GSSAPIWithMICConfig struct {
@@ -104,6 +107,11 @@ type ServerConfig struct {
 	// depending on the public key, store it inside a
 	// Permissions.Extensions entry.
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
+
+	// VerifiedPublicKeyCallback, if non-nil, is called before the server sends
+	// a response to the client, passing in the same ConnMetadata and PublicKey
+	// that was passed to the PublicKeyCallback.
+	VerifiedPublicKeyCallback func(conn ConnMetadata, key PublicKey, permissions *Permissions) (*Permissions, error)
 
 	// KeyboardInteractiveCallback, if non-nil, is called when
 	// keyboard-interactive authentication is selected (RFC
@@ -441,6 +449,9 @@ type ServerAuthCallbacks struct {
 	// PublicKeyCallback behaves like [ServerConfig.PublicKeyCallback].
 	PublicKeyCallback func(conn ConnMetadata, key PublicKey) (*Permissions, error)
 
+	// VerifiedPublicKeyCallback behaves like [ServerConfig.VerifiedPublicKeyCallback].
+	VerifiedPublicKeyCallback func(conn ConnMetadata, key PublicKey, permissions *Permissions) (*Permissions, error)
+
 	// KeyboardInteractiveCallback behaves like [ServerConfig.KeyboardInteractiveCallback].
 	KeyboardInteractiveCallback func(conn ConnMetadata, client KeyboardInteractiveChallenge) (*Permissions, error)
 
@@ -502,6 +513,7 @@ func (s *connection) serverAuthenticate(config *ServerConfig) (*Permissions, err
 	authConfig := ServerAuthCallbacks{
 		PasswordCallback:            config.PasswordCallback,
 		PublicKeyCallback:           config.PublicKeyCallback,
+		VerifiedPublicKeyCallback:   config.VerifiedPublicKeyCallback,
 		KeyboardInteractiveCallback: config.KeyboardInteractiveCallback,
 		GSSAPIWithMICConfig:         config.GSSAPIWithMICConfig,
 	}
@@ -701,6 +713,9 @@ userAuthLoop:
 
 				authErr = candidate.result
 				perms = candidate.perms
+				if authErr == nil && authConfig.VerifiedPublicKeyCallback != nil {
+					perms, authErr = authConfig.VerifiedPublicKeyCallback(s, pubKey, perms)
+				}
 			}
 		case "gssapi-with-mic":
 			if authConfig.GSSAPIWithMICConfig == nil {
