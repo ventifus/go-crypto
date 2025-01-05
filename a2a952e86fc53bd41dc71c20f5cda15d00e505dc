@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a0722a_b916b19d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-01-05T16:10:50Z",
+      "side": 1,
+      "message": "Tests fail because rc1 is used and after rc1 the Encapsulate order was changed. See #70950",
+      "revId": "a2a952e86fc53bd41dc71c20f5cda15d00e505dc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
