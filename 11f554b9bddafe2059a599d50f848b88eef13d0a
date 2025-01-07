@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c675ab25_91c8e85c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-01-07T10:44:41Z",
+      "side": 1,
+      "message": "Thank you for your contribution. Please open a proposal to discuss it. We need an approved proposal to add a new API",
+      "revId": "11f554b9bddafe2059a599d50f848b88eef13d0a",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
