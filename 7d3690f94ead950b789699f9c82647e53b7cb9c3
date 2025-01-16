@@ -33,6 +33,24 @@
       "message": "Please remove this `panic`",
       "revId": "7d3690f94ead950b789699f9c82647e53b7cb9c3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae51320b_d0023045",
+        "filename": "ssh/server.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2025-01-16T12:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ce3b486_04732945",
+      "revId": "7d3690f94ead950b789699f9c82647e53b7cb9c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
