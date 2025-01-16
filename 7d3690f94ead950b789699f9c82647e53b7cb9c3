@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "363faaf5_ac4359a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5065
+      },
+      "writtenOn": "2025-01-16T02:45:27Z",
+      "side": 1,
+      "message": "Nicola, Roland, PTAL. I\u0027ve updated the doc comment per the issue, and the proposal is now approved.",
+      "revId": "7d3690f94ead950b789699f9c82647e53b7cb9c3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
