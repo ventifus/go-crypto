@@ -7,11 +7,16 @@ package blake2b
 import (
 	"encoding/binary"
 	"errors"
+	"hash"
 	"io"
 )
 
+var _ hash.XOF = (XOF)(nil)
+
 // XOF defines the interface to hash functions that
 // support arbitrary-length output.
+//
+// Can be safely interface-upgraded to [hash.XOF].
 type XOF interface {
 	// Write absorbs more data into the hash's state. It panics if called
 	// after Read.
@@ -26,6 +31,9 @@ type XOF interface {
 
 	// Reset resets the XOF to its initial state.
 	Reset()
+
+	// BlockSize returns the XOF underlying block size.
+	BlockSize() int
 }
 
 // OutputLengthUnknown can be used as the size argument to NewXOF to indicate
@@ -91,6 +99,13 @@ func (x *xof) Write(p []byte) (n int, err error) {
 func (x *xof) Clone() XOF {
 	clone := *x
 	return &clone
+}
+
+func (x *xof) BlockSize() int {
+	if x.readMode {
+		return 0
+	}
+	return x.d.BlockSize()
 }
 
 func (x *xof) Reset() {
