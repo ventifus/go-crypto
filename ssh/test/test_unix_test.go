@@ -52,6 +52,7 @@ IgnoreRhosts yes
 RhostsRSAAuthentication no
 HostbasedAuthentication no
 PubkeyAcceptedKeyTypes=*
+KexAlgorithms +diffie-hellman-group14-sha1
 `
 	multiAuthSshdConfigTail = `
 UsePAM yes
