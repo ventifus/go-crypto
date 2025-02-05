@@ -33,6 +33,23 @@
       "message": "Id5f72b32c61c9383a26ec182339486a432c7cdf5",
       "revId": "a8ea4be81f0769fd5857e087083cbb6d3cb9f196",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c67a271_4457f771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3615187
+      },
+      "writtenOn": "2025-02-05T14:49:28Z",
+      "side": 1,
+      "message": "Dry run: CV is trying the patch.\n\nBot data: {\"action\":\"start\",\"triggered_at\":\"2025-01-16T12:45:08Z\",\"revision\":\"ca17125454a6700aa9f892383eed4a2b01c0f11a\"}",
+      "revId": "a8ea4be81f0769fd5857e087083cbb6d3cb9f196",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
