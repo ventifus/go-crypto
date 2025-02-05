@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85a1408c_7c3e4a95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3615187
+      },
+      "writtenOn": "2025-02-05T14:43:28Z",
+      "side": 0,
+      "message": "Id5f72b32c61c9383a26ec182339486a432c7cdf5",
+      "revId": "71d3a4cfdb0360795ce5f2d7041e01823fd22eb6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
