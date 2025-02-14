@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7aabd171_7d628396",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-14T20:02:11Z",
+      "side": 1,
+      "message": "CL 649716.",
+      "parentUuid": "ea20f1a7_85bfb470",
+      "revId": "06dff2c7e283ebd85cc54b1d9a38ae232cee0770",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a620544b_c6c8f262",
         "filename": "x509roots/fallback/fallback.go",
         "patchSetId": 1
