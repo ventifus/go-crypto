@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea20f1a7_85bfb470",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-14T19:27:32Z",
+      "side": 1,
+      "message": "Hmm, this build constraint is no longer needed, the go directive in go.mod is enough now that all supported Go versions treat it as a minimum rather than advisory. (That is, Go 1.20 doesn\u0027t need to be supported anymore.)\n\nSo this can be dropped I think. I\u0027ll send a follow up CL. (CC @roland@golang.org.)",
+      "revId": "06dff2c7e283ebd85cc54b1d9a38ae232cee0770",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a620544b_c6c8f262",
+        "filename": "x509roots/fallback/fallback.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-14T19:27:32Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "06dff2c7e283ebd85cc54b1d9a38ae232cee0770",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
