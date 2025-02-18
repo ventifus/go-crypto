@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d87dac10_c6c6682c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5305
+      },
+      "writtenOn": "2025-02-18T17:27:42Z",
+      "side": 1,
+      "message": "Thanks, but no thanks. The x/crypto repository does not use the golang.org/x/net/html package, and is therefore not affected by CVE-2024-45338.",
+      "revId": "7979c38772e834800072ecbb03a1b825ccd61527",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
