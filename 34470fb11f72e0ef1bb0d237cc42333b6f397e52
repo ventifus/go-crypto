@@ -56,6 +56,30 @@
       },
       "revId": "34470fb11f72e0ef1bb0d237cc42333b6f397e52",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "423df1e3_ea6134f4",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-02-21T17:25:50Z",
+      "side": 1,
+      "message": "Assuming everything in the bundle still parses (which I believe is true since I can run the benchmark function without any failures from mustParse), I think this should be fine. I\u0027d be shocked if Mozilla added any new roots with a negative serial (in violation of various specifications).",
+      "parentUuid": "d6d62b6d_626f21f2",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "34470fb11f72e0ef1bb0d237cc42333b6f397e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
