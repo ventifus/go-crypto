@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba3f1b35_53c34683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-21T17:12:16Z",
+      "side": 1,
+      "message": "Thanks. One question for Roland, since the build constraint affects the language version in addition to specifiing the minimum toolchain.",
+      "revId": "34470fb11f72e0ef1bb0d237cc42333b6f397e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fcad582_748a7992",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-21T17:12:16Z",
+      "side": 1,
+      "message": "This is the only loop, and it\u0027s not the kind whose behavior would change in the 1.22 language version.",
+      "revId": "34470fb11f72e0ef1bb0d237cc42333b6f397e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d62b6d_626f21f2",
+        "filename": "x509roots/fallback/bundle.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-02-21T17:12:16Z",
+      "side": 1,
+      "message": "The only potentially relevant language change between 1.20 and 1.23 I\u0027m spotting is that [x509.ParseCertificate](https://pkg.go.dev/crypto/x509#ParseCertificate) in 1.23 stops accepting negative serial numbers (unless that\u0027s changed via the x509negativeserial godebug).\n\n@roland@golang.org That\u0027s not something this module is expected to run into, is it? Are you fine with switching this module to default to the language version semantics set in its go.mod (1.23 now, to be bumped every 6 months)?",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "34470fb11f72e0ef1bb0d237cc42333b6f397e52",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
