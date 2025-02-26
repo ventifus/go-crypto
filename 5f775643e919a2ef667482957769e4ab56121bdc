@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3bcec74_632800a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 38859
+      },
+      "writtenOn": "2025-02-26T12:57:47Z",
+      "side": 1,
+      "message": "apparently I don\u0027t have permissions to change the commit message",
+      "parentUuid": "cc8c8cf7_15ea7fbc",
+      "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ef8a101_6875bc18",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-07-30T10:37:45Z",
       "side": 1,
       "message": "Fixes #36126",
+      "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b919cb83_eeb12258",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 38859
+      },
+      "writtenOn": "2025-02-26T12:57:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3ef8a101_6875bc18",
       "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2024-07-30T10:38:52Z",
       "side": 1,
       "message": "A rebase should fix the TryBot failure.",
+      "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66eabefa_8b96d432",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38859
+      },
+      "writtenOn": "2025-02-26T12:57:47Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "b9ebaf6e_4fb111af",
       "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
