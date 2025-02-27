@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64e8a1d0_38cfcf6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-02-27T07:25:13Z",
+      "side": 1,
+      "message": "Please remove all the markdown from the commit message, for example\n\nssh/knownhosts: check more than one key\n\nThe problem was that it was keeping only the first known key of each\ntype found. If you have a server advertising multiple keys of the same\ntype, you might get a missmatch key error.\n\nPer sshd(8) man page, it should allow reapeatable hosts with different\nhost keys, although it don\u0027t specify anything about hosts being from\ndifferent types:\n\nIt is permissible (but not recommended) to have several lines or\ndifferent host keys for the same names. This will inevitably happen when\nshort forms of host names from different domains are put in the file. It\nis possible that the files contain conflicting information;\nauthentication is accepted if valid information can be found from either\nfile.\n\nSo, this changes knownhosts behavior to accept any of the keys for a\ngiven host, regardless of type.\n\nFixes #36126",
+      "parentUuid": "39f47145_da8a2382",
+      "revId": "5f775643e919a2ef667482957769e4ab56121bdc",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ef8a101_6875bc18",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
