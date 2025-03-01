@@ -52,6 +52,24 @@
       "parentUuid": "8440b4bc_cf937ad5",
       "revId": "d515cb2c1eb192a8721175a281d7fe7b98d03578",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e455b5fd_42cb33c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2025-03-01T20:36:21Z",
+      "side": 1,
+      "message": "OK, I think this is done. It turns out to be more complex than just passing in the right packet type since we want the unmarshal to work too.\n\nLet me know if you wanted something simpler, e.g. just analyzing the error we get.",
+      "parentUuid": "43b30a3e_af52eeb5",
+      "revId": "d515cb2c1eb192a8721175a281d7fe7b98d03578",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
