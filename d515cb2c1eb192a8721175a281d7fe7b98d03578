@@ -16,6 +16,24 @@
       "message": "Thank you! Can you please add a small test case?",
       "revId": "d515cb2c1eb192a8721175a281d7fe7b98d03578",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8440b4bc_cf937ad5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2025-03-01T19:17:09Z",
+      "side": 1,
+      "message": "I thought about doing that originally but couldn\u0027t see a natural spot. Would you like me to start a new test for the decode function in general and then only test this packet? Or all packets?",
+      "parentUuid": "fe8677a0_4980e5d9",
+      "revId": "d515cb2c1eb192a8721175a281d7fe7b98d03578",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
