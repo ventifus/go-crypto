@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef9caa9_70531f5d",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-03-03T15:26:06Z",
+      "side": 1,
+      "message": "nit: worth describing this as an RFC 3339 formatted date?",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cee15746_4ea3e377",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-03-03T15:26:06Z",
+      "side": 1,
+      "message": "I found this comment a little bit confusing because the logic that follows doesn\u0027t touch the `cn`, `sha256hash` or `pem`.\n```suggestion\n\t\t// parse possible constraints, this should check all possible constraint fields of unparsedCertificate.\n```",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270708e8_904a8b0e",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-03-03T15:26:06Z",
+      "side": 1,
+      "message": "nit: maybe useful to be explicit about the source of the constraint:\n\n```suggestion\n\t\t\t\t\t\treturn fmt.Errorf(\"certificate issued after trust anchor distrust-after date %q\", distrustAfter)\n```",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92dbf1c7_18ad707a",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-03-03T15:26:06Z",
+      "side": 1,
+      "message": "I think NSS also [special cases additional name constraints](https://github.com/nss-dev/nss/blob/1e76d6c5c7e9d6d4822e16fd53c66c6c20f924a0/lib/certdb/genname.c#L1558-L1639). \n\nThat\u0027s something we try pick up in [webpki-roots](https://github.com/rustls/webpki-roots/blob/90c48f38672f4300eea5f1b712d4ccca8ad82123/webpki-ccadb/src/lib.rs#L140-L182). AFAIK it\u0027s only used for one TLS root, [TUBITAK Kamu SM SSL Kok Sertifikasi - Surum 1](https://github.com/rustls/webpki-roots/blob/90c48f38672f4300eea5f1b712d4ccca8ad82123/webpki-roots/src/lib.rs#L1628), to add a name constraint requirement for a permitted subtree.\n\nIs that something on your radar for supporting here in addition to the distrust after dates?",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
