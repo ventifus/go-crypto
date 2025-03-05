@@ -16,6 +16,24 @@
       "message": "Is this superseded by CL 608975 ?\nOr is there a proposal for this new API addition?",
       "revId": "b0a119560e31b112bbbf0b55fb85db3b4fc98a0b",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5785565b_1b4a9fcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-03-05T20:41:34Z",
+      "side": 1,
+      "message": "I think the API change in CL 608975 should cover the use case here as well.",
+      "parentUuid": "caeba687_b46e1584",
+      "revId": "b0a119560e31b112bbbf0b55fb85db3b4fc98a0b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
