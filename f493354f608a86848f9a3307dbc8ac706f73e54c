@@ -16,6 +16,24 @@
       "message": "Let\u0027s consolidate _amd64.go, _ppc64x.go, and _loong64.go into a single _asm.go.",
       "revId": "f493354f608a86848f9a3307dbc8ac706f73e54c",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a9b0c0_2a651560",
+        "filename": "internal/poly1305/sum_loong64.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59718
+      },
+      "writtenOn": "2025-03-06T09:51:59Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "60de58c8_3368e907",
+      "revId": "f493354f608a86848f9a3307dbc8ac706f73e54c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
