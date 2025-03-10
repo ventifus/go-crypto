@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b00031_a9ccb1d9",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-03-10T17:28:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ef9caa9_70531f5d",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cee15746_4ea3e377",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-03T15:26:06Z",
       "side": 1,
       "message": "I found this comment a little bit confusing because the logic that follows doesn\u0027t touch the `cn`, `sha256hash` or `pem`.\n```suggestion\n\t\t// parse possible constraints, this should check all possible constraint fields of unparsedCertificate.\n```",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d4ae6a_af120d79",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-03-10T17:28:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cee15746_4ea3e377",
       "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
