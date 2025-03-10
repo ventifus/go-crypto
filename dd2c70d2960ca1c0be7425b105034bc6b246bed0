@@ -52,6 +52,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28dc3cab_1d8c30c6",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-03-10T17:28:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "270708e8_904a8b0e",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92dbf1c7_18ad707a",
@@ -65,6 +83,24 @@
       "writtenOn": "2025-03-03T15:26:06Z",
       "side": 1,
       "message": "I think NSS also [special cases additional name constraints](https://github.com/nss-dev/nss/blob/1e76d6c5c7e9d6d4822e16fd53c66c6c20f924a0/lib/certdb/genname.c#L1558-L1639). \n\nThat\u0027s something we try pick up in [webpki-roots](https://github.com/rustls/webpki-roots/blob/90c48f38672f4300eea5f1b712d4ccca8ad82123/webpki-ccadb/src/lib.rs#L140-L182). AFAIK it\u0027s only used for one TLS root, [TUBITAK Kamu SM SSL Kok Sertifikasi - Surum 1](https://github.com/rustls/webpki-roots/blob/90c48f38672f4300eea5f1b712d4ccca8ad82123/webpki-roots/src/lib.rs#L1628), to add a name constraint requirement for a permitted subtree.\n\nIs that something on your radar for supporting here in addition to the distrust after dates?",
+      "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a502cf63_da2aa53b",
+        "filename": "x509roots/gen_fallback_bundle.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-03-10T17:28:08Z",
+      "side": 1,
+      "message": "We manully exclude that root, because the name constraint information is only encoded in CCADB, and at the time I couldn\u0027t come up with a reasonable way to automatically consume that information. See https://github.com/golang/go/issues/61963#issuecomment-1769093792 and https://go.dev/cl/562475.\n\nAfter this CL goes in, we may want to revisit the decision and add a manual constraint (as referenced in the comment in CL 562475.)",
+      "parentUuid": "92dbf1c7_18ad707a",
       "revId": "dd2c70d2960ca1c0be7425b105034bc6b246bed0",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
