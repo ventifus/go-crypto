@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb08ff6b_cdc2db76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59718
+      },
+      "writtenOn": "2025-03-13T12:39:18Z",
+      "side": 1,
+      "message": "The CL requires an update to the sys project version, as it depends on CL 655355 of the sys project.",
+      "revId": "344d2eef9361aeb39b41f755f28bf74c5c6dd78b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
