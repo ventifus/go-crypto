@@ -33,6 +33,24 @@
       "message": "WDYT about avoiding special notation entirely and saying something like:\n\n```suggestion\n\treturn fmt.Sprintf(\"crypto/bcrypt: cost %d is outside allowed inclusive range %d..%d\", int(ic), MinCost, MaxCost)\n```\n\nIf you take my suggestion don\u0027t forget to update the commit message as well since it references the bracketed notation.",
       "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24331b99_ffdf9661",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-03-13T22:25:47Z",
+      "side": 1,
+      "message": "Good idea, I\u0027ll update to this.",
+      "parentUuid": "9cba001a_84a5a810",
+      "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
