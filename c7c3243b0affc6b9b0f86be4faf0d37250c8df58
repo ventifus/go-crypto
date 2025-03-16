@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b985c36_51b7f23e",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-03-16T19:16:59Z",
+      "side": 1,
+      "message": "```suggestion\n\t// If zero, they\u0027re renewed at the lesser of 30 days before expiration,\n```\n\nI think we should also say that RenewBefore cannot be lower than 1 hour?",
+      "revId": "c7c3243b0affc6b9b0f86be4faf0d37250c8df58",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d30cb6_1a59e64d",
+        "filename": "acme/autocert/autocert.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-03-16T19:16:59Z",
+      "side": 1,
+      "message": "What about:\n\n```\nnext :\u003d m.RenewBefore\nif next \u003c renewJitter {\n  next \u003d 30*24*time.Hour\n}\nreturn min(next, 30*24*time.Hour, notAfter.Sub(notBefore)/3)\n```\n\nIt\u0027d likely to be a foothgun if you were working with extremely short lived certs and set RenewBefore \u003c 1 hour.",
+      "revId": "c7c3243b0affc6b9b0f86be4faf0d37250c8df58",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7193d6c_49d14175",
+        "filename": "acme/autocert/renewal.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-03-16T19:16:59Z",
+      "side": 1,
+      "message": "shouldn\u0027t this also be `/ 3` ? otherwise there\u0027s a higher propbability of triggering an immediate renewal",
+      "revId": "c7c3243b0affc6b9b0f86be4faf0d37250c8df58",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
