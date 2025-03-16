@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488a1d54_e72a3ec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-03-16T18:50:09Z",
+      "side": 1,
+      "message": "As a change in external API, this needs an approved proposal, see https://go.dev/s/proposal",
+      "revId": "05f9b7d8a83117790db2686ebc9d60369f942315",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
