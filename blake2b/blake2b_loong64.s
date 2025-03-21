@@ -1,0 +1,470 @@
+// Copyright 2025 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+//go:build loong64 && gc && !purego
+
+#include "textflag.h"
+
+DATA ·iv0<>+0(SB)/8, $0x6a09e667f3bcc908
+DATA ·iv0<>+8(SB)/8, $0xbb67ae8584caa73b
+GLOBL ·iv0<>(SB), RODATA|NOPTR, $16
+
+DATA ·iv1<>+0(SB)/8, $0x3c6ef372fe94f82b
+DATA ·iv1<>+8(SB)/8, $0xa54ff53a5f1d36f1
+GLOBL ·iv1<>(SB), RODATA|NOPTR, $16
+
+DATA ·iv2<>+0(SB)/8, $0x510e527fade682d1
+DATA ·iv2<>+8(SB)/8, $0x9b05688c2b3e6c1f
+GLOBL ·iv2<>(SB), RODATA|NOPTR, $16
+
+DATA ·iv3<>+0(SB)/8, $0x1f83d9abfb41bd6b
+DATA ·iv3<>+8(SB)/8, $0x5be0cd19137e2179
+GLOBL ·iv3<>(SB), RODATA|NOPTR, $16
+
+#define SHUFFLE_1 \
+	VADDV		V2, V13, V12; \	// V12 = V2
+	VADDV		V6, V13, V16; \	// V16 = V6
+	VADDV		V4, V13, V14; \	// V14 = V4
+	VADDV		V5, V13, V4; \	// V4 = V5
+	VADDV		V14, V13, V5; \	// V5 = V4
+	VSHUF4IV	$9, V3, V2; \
+	VSHUF4IV	$9, V12, V3; \
+	VSHUF4IV	$3, V7, V6; \
+	VSHUF4IV	$3, V16, V7; \
+
+#define SHUFFLE_2 \
+	VADDV		V2, V13, V12; \	// V12 = V2
+	VADDV		V6, V13, V16; \	// V16 = V6
+	VADDV		V4, V13, V14; \	// V14 = V4
+	VADDV		V5, V13, V4; \	// V4 = V5
+	VADDV		V14, V13, V5; \	// V5 = V4
+	VSHUF4IV	$3, V3, V2; \
+	VSHUF4IV	$3, V12, V3; \
+	VSHUF4IV	$9, V7, V6; \
+	VSHUF4IV	$9, V16, V7; \
+
+#define LOAD_M_0_0 \
+	VMOVQ	R11, V8.V[0]; \
+	VMOVQ	R13, V8.V[1]; \
+	VMOVQ	R15, V9.V[0]; \
+	VMOVQ	R17, V9.V[1]; \
+	VMOVQ	R12, V10.V[0]; \
+	VMOVQ	R14, V10.V[1]; \
+	VMOVQ	R16, V11.V[0]; \
+	VMOVQ	R18, V11.V[1]; \
+
+#define LOAD_M_0_8 \
+	VMOVQ	R19, V8.V[0]; \
+	VMOVQ	R25, V8.V[1]; \
+	VMOVQ	R27, V9.V[0]; \
+	VMOVQ	R29, V9.V[1]; \
+	VMOVQ	R24, V10.V[0]; \
+	VMOVQ	R26, V10.V[1]; \
+	VMOVQ	R28, V11.V[0]; \
+	VMOVQ	R30, V11.V[1]; \
+
+#define LOAD_M_1_0 \
+	VMOVQ	R29, V8.V[0]; \
+	VMOVQ	R15, V8.V[1]; \
+	VMOVQ	R24, V9.V[0]; \
+	VMOVQ	R28, V9.V[1]; \
+	VMOVQ	R25, V10.V[0]; \
+	VMOVQ	R19, V10.V[1]; \
+	VMOVQ	R30, V11.V[0]; \
+	VMOVQ	R17, V11.V[1]; \
+
+#define LOAD_M_1_8 \
+	VMOVQ	R12, V8.V[0]; \
+	VMOVQ	R11, V8.V[1]; \
+	VMOVQ	R26, V9.V[0]; \
+	VMOVQ	R16, V9.V[1]; \
+	VMOVQ	R27, V10.V[0]; \
+	VMOVQ	R13, V10.V[1]; \
+	VMOVQ	R18, V11.V[0]; \
+	VMOVQ	R14, V11.V[1]; \
+
+#define LOAD_M_2_0 \
+	VMOVQ	R26, V8.V[0]; \
+	VMOVQ	R27, V8.V[1]; \
+	VMOVQ	R16, V9.V[0]; \
+	VMOVQ	R30, V9.V[1]; \
+	VMOVQ	R19, V10.V[0]; \
+	VMOVQ	R11, V10.V[1]; \
+	VMOVQ	R13, V11.V[0]; \
+	VMOVQ	R28, V11.V[1]; \
+
+#define LOAD_M_2_8 \
+	VMOVQ	R25, V8.V[0]; \
+	VMOVQ	R14, V8.V[1]; \
+	VMOVQ	R18, V9.V[0]; \
+	VMOVQ	R24, V9.V[1]; \
+	VMOVQ	R29, V10.V[0]; \
+	VMOVQ	R17, V10.V[1]; \
+	VMOVQ	R12, V11.V[0]; \
+	VMOVQ	R15, V11.V[1]; \
+
+#define LOAD_M_3_0 \
+	VMOVQ	R18, V8.V[0]; \
+	VMOVQ	R14, V8.V[1]; \
+	VMOVQ	R28, V9.V[0]; \
+	VMOVQ	R26, V9.V[1]; \
+	VMOVQ	R24, V10.V[0]; \
+	VMOVQ	R12, V10.V[1]; \
+	VMOVQ	R27, V11.V[0]; \
+	VMOVQ	R29, V11.V[1]; \
+
+#define LOAD_M_3_8 \
+	VMOVQ	R13, V8.V[0]; \
+	VMOVQ	R16, V8.V[1]; \
+	VMOVQ	R15, V9.V[0]; \
+	VMOVQ	R30, V9.V[1]; \
+	VMOVQ	R17, V10.V[0]; \
+	VMOVQ	R25, V10.V[1]; \
+	VMOVQ	R11, V11.V[0]; \
+	VMOVQ	R19, V11.V[1]; \
+
+#define LOAD_M_4_0 \
+	VMOVQ	R24, V8.V[0]; \
+	VMOVQ	R16, V8.V[1]; \
+	VMOVQ	R13, V9.V[0]; \
+	VMOVQ	R25, V9.V[1]; \
+	VMOVQ	R11, V10.V[0]; \
+	VMOVQ	R18, V10.V[1]; \
+	VMOVQ	R15, V11.V[0]; \
+	VMOVQ	R30, V11.V[1]; \
+
+#define LOAD_M_4_8 \
+	VMOVQ	R29, V8.V[0]; \
+	VMOVQ	R26, V8.V[1]; \
+	VMOVQ	R17, V9.V[0]; \
+	VMOVQ	R14, V9.V[1]; \
+	VMOVQ	R12, V10.V[0]; \
+	VMOVQ	R27, V10.V[1]; \
+	VMOVQ	R19, V11.V[0]; \
+	VMOVQ	R28, V11.V[1]; \
+
+#define LOAD_M_5_0 \
+	VMOVQ	R13, V8.V[0]; \
+	VMOVQ	R17, V8.V[1]; \
+	VMOVQ	R11, V9.V[0]; \
+	VMOVQ	R19, V9.V[1]; \
+	VMOVQ	R27, V10.V[0]; \
+	VMOVQ	R25, V10.V[1]; \
+	VMOVQ	R26, V11.V[0]; \
+	VMOVQ	R14, V11.V[1]; \
+
+#define LOAD_M_5_8 \
+	VMOVQ	R15, V8.V[0]; \
+	VMOVQ	R18, V8.V[1]; \
+	VMOVQ	R30, V9.V[0]; \
+	VMOVQ	R12, V9.V[1]; \
+	VMOVQ	R28, V10.V[0]; \
+	VMOVQ	R16, V10.V[1]; \
+	VMOVQ	R29, V11.V[0]; \
+	VMOVQ	R24, V11.V[1]; \
+
+#define LOAD_M_6_0 \
+	VMOVQ	R27, V8.V[0]; \
+	VMOVQ	R12, V8.V[1]; \
+	VMOVQ	R29, V9.V[0]; \
+	VMOVQ	R15, V9.V[1]; \
+	VMOVQ	R16, V10.V[0]; \
+	VMOVQ	R30, V10.V[1]; \
+	VMOVQ	R28, V11.V[0]; \
+	VMOVQ	R25, V11.V[1]; \
+
+#define LOAD_M_6_8 \
+	VMOVQ	R11, V8.V[0]; \
+	VMOVQ	R17, V8.V[1]; \
+	VMOVQ	R24, V9.V[0]; \
+	VMOVQ	R19, V9.V[1]; \
+	VMOVQ	R18, V10.V[0]; \
+	VMOVQ	R14, V10.V[1]; \
+	VMOVQ	R13, V11.V[0]; \
+	VMOVQ	R26, V11.V[1]; \
+
+#define LOAD_M_7_0 \
+	VMOVQ	R28, V8.V[0]; \
+	VMOVQ	R18, V8.V[1]; \
+	VMOVQ	R27, V9.V[0]; \
+	VMOVQ	R14, V9.V[1]; \
+	VMOVQ	R26, V10.V[0]; \
+	VMOVQ	R29, V10.V[1]; \
+	VMOVQ	R12, V11.V[0]; \
+	VMOVQ	R24, V11.V[1]; \
+
+#define LOAD_M_7_8 \
+	VMOVQ	R16, V8.V[0]; \
+	VMOVQ	R30, V8.V[1]; \
+	VMOVQ	R19, V9.V[0]; \
+	VMOVQ	R13, V9.V[1]; \
+	VMOVQ	R11, V10.V[0]; \
+	VMOVQ	R15, V10.V[1]; \
+	VMOVQ	R17, V11.V[0]; \
+	VMOVQ	R25, V11.V[1]; \
+
+#define LOAD_M_8_0 \
+	VMOVQ	R17, V8.V[0]; \
+	VMOVQ	R29, V8.V[1]; \
+	VMOVQ	R26, V9.V[0]; \
+	VMOVQ	R11, V9.V[1]; \
+	VMOVQ	R30, V10.V[0]; \
+	VMOVQ	R24, V10.V[1]; \
+	VMOVQ	R14, V11.V[0]; \
+	VMOVQ	R19, V11.V[1]; \
+
+#define LOAD_M_8_8 \
+	VMOVQ	R27, V8.V[0]; \
+	VMOVQ	R28, V8.V[1]; \
+	VMOVQ	R12, V9.V[0]; \
+	VMOVQ	R25, V9.V[1]; \
+	VMOVQ	R13, V10.V[0]; \
+	VMOVQ	R18, V10.V[1]; \
+	VMOVQ	R15, V11.V[0]; \
+	VMOVQ	R16, V11.V[1]; \
+
+#define LOAD_M_9_0 \
+	VMOVQ	R25, V8.V[0]; \
+	VMOVQ	R19, V8.V[1]; \
+	VMOVQ	R18, V9.V[0]; \
+	VMOVQ	R12, V9.V[1]; \
+	VMOVQ	R13, V10.V[0]; \
+	VMOVQ	R15, V10.V[1]; \
+	VMOVQ	R17, V11.V[0]; \
+	VMOVQ	R16, V11.V[1]; \
+
+#define LOAD_M_9_8 \
+	VMOVQ	R30, V8.V[0]; \
+	VMOVQ	R24, V8.V[1]; \
+	VMOVQ	R14, V9.V[0]; \
+	VMOVQ	R28, V9.V[1]; \
+	VMOVQ	R26, V10.V[0]; \
+	VMOVQ	R29, V10.V[1]; \
+	VMOVQ	R27, V11.V[0]; \
+	VMOVQ	R11, V11.V[1]; \
+
+#define ROUND_0 \
+	VADDV	V0, V8, V0; \
+	VADDV	V1, V9, V1; \
+	VADDV	V0, V2, V0; \
+	VADDV	V1, V3, V1; \
+	VXORV	V6, V0, V6; \
+	VXORV	V7, V1, V7; \
+	VROTRV	$32, V6, V6; \
+	VROTRV	$32, V7, V7; \
+	VADDV	V4, V6, V4; \
+	VADDV	V5, V7, V5; \
+	VXORV	V2, V4, V2; \
+	VXORV	V3, V5, V3; \
+	VROTRV	$24, V2, V2; \
+	VROTRV	$24, V3, V3; \
+	VADDV	V0, V10, V0; \
+	VADDV	V1, V11, V1; \
+	VADDV	V0, V2, V0; \
+	VADDV	V1, V3, V1; \
+	VXORV	V6, V0, V6; \
+	VXORV	V7, V1, V7; \
+	VROTRV	$16, V6, V6; \
+	VROTRV	$16, V7, V7; \
+	VADDV	V4, V6, V4; \
+	VADDV	V5, V7, V5; \
+	VXORV	V2, V4, V2; \
+	VXORV	V3, V5, V3; \
+	VROTRV	$63, V2, V2; \
+	VROTRV	$63, V3, V3; \
+
+#define ROUND_8 \
+	VADDV	V0, V8, V0; \
+	VADDV	V1, V9, V1; \
+	VADDV	V0, V2, V0; \
+	VADDV	V1, V3, V1; \
+	VXORV	V6, V0, V6; \
+	VXORV	V7, V1, V7; \
+	VROTRV	$32, V6, V6; \
+	VROTRV	$32, V7, V7; \
+	VADDV	V4, V6, V4; \
+	VADDV	V5, V7, V5; \
+	VXORV	V2, V4, V2; \
+	VXORV	V3, V5, V3; \
+	VROTRV	$24, V2, V2; \
+	VROTRV	$24, V3, V3; \
+	VADDV	V0, V10, V0; \
+	VADDV	V1, V11, V1; \
+	VADDV	V0, V2, V0; \
+	VADDV	V1, V3, V1; \
+	VXORV	V6, V0, V6; \
+	VXORV	V7, V1, V7; \
+	VROTRV	$16, V6, V6; \
+	VROTRV	$16, V7, V7; \
+	VADDV	V4, V6, V4; \
+	VADDV	V5, V7, V5; \
+	VXORV	V2, V4, V2; \
+	VXORV	V3, V5, V3; \
+	VROTRV	$63, V2, V2; \
+	VROTRV	$63, V3, V3; \
+
+// func hashBlocksVX(h *[8]uint64, c *[2]uint64, flag uint64, blocks []byte)
+TEXT ·hashBlocksVX(SB), NOSPLIT, $288-48
+	MOVV	h+0(FP), R4
+	MOVV	c+8(FP), R5
+	MOVV	flag+16(FP), R6
+	MOVV	blocks_base+24(FP), R7
+	MOVV	blocks_len+32(FP), R8
+	MOVV	(R5), R9	// c0
+	MOVV	8(R5), R10	// c1
+
+loop:
+	ADDV	$0x80, R9
+	SGTU	$0x80, R9, R11
+	ADDV	R10, R11, R10
+	VMOVQ	R9, V8.V[0]
+	VMOVQ	R10, V8.V[1]
+
+	MOVV	$·iv0<>(SB), R11
+	MOVV	$·iv1<>(SB), R12
+	MOVV	$·iv2<>(SB), R13
+	MOVV	$·iv3<>(SB), R14
+	VMOVQ	(R13), V6
+	VMOVQ	(R11), V4
+	VMOVQ	(R12), V5
+	MOVV	(R14), R15	// v14
+	MOVV	8(R14), R16
+	VXORV	V6, V8, V6
+	XOR	R15, R6, R15
+	VMOVQ	R16, V7.V[1]
+	VMOVQ	R15, V7.V[0]
+
+	VMOVQ	(R4), V0
+	VMOVQ	16(R4), V1
+	VMOVQ	32(R4), V2
+	VMOVQ	48(R4), V3
+
+	MOVV	0(R7), R11
+	MOVV	8(R7), R12
+	MOVV	16(R7), R13
+	MOVV	24(R7), R14
+	MOVV	32(R7), R15
+	MOVV	40(R7), R16
+	MOVV	48(R7), R17
+	MOVV	56(R7), R18
+	MOVV	64(R7), R19
+	MOVV	72(R7), R24
+	MOVV	80(R7), R25
+	MOVV	88(R7), R26
+	MOVV	96(R7), R27
+	MOVV	104(R7), R28
+	MOVV	112(R7), R29
+	MOVV	120(R7), R30
+
+	VXORV	V13, V13, V13	// V13=0
+
+	LOAD_M_0_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_0_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_1_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_1_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_2_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_2_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_3_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_3_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_4_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_4_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_5_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_5_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_6_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_6_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_7_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_7_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_8_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_8_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_9_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_9_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_0_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_0_8
+	ROUND_8
+	SHUFFLE_2
+
+	LOAD_M_1_0
+	ROUND_0
+	SHUFFLE_1
+	LOAD_M_1_8
+	ROUND_8
+	SHUFFLE_2
+
+	VMOVQ	(R4), V8
+	VMOVQ	16(R4), V9
+	VMOVQ	32(R4), V10
+	VMOVQ	48(R4), V11
+	VXORV	V0, V4, V0
+	VXORV	V1, V5, V1
+	VXORV	V2, V6, V2
+	VXORV	V3, V7, V3
+	VXORV	V0, V8, V0
+	VXORV	V1, V9, V1
+	VXORV	V2, V10, V2
+	VXORV	V3, V11, V3
+	VMOVQ	V0, (R4)
+	VMOVQ	V1, 16(R4)
+	VMOVQ	V2, 32(R4)
+	VMOVQ	V3, 48(R4)
+
+	SUBV	$128, R8
+	ADDV	$128, R7
+	BNE	R8, R0, loop
+
+	MOVV	R9, (R5)
+	MOVV	R10, 8(R5)
+
+	RET
