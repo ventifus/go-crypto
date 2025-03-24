@@ -33,6 +33,24 @@
       "message": "see https://go.dev/wiki/CodeReviewComments#indent-error-flow\n\nI\u0027d suggest:\n\n```\ncache, err :\u003d os.UserCacheDir()\nif err !\u003d nil {\n  cache \u003d \"/.cache\"\n}\nreturn filepath.Join(cache, base)\n```",
       "revId": "ba62a479d3f802a8691fd6c76d338449a608cf3e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff174bff_a102b4b7",
+        "filename": "acme/autocert/listener.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 10985
+      },
+      "writtenOn": "2025-03-24T23:52:57Z",
+      "side": 1,
+      "message": "Great idea, done!",
+      "parentUuid": "a57791d7_634ebc27",
+      "revId": "ba62a479d3f802a8691fd6c76d338449a608cf3e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
