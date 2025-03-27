@@ -36,6 +36,12 @@ const (
 	Size128 = 16
 )
 
+var (
+	useSSE4  bool
+	useSSSE3 bool
+	useSSE2  bool
+)
+
 var errKeySize = errors.New("blake2s: invalid key size")
 
 var iv = [8]uint32{
