@@ -2,6 +2,111 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+/*
+The mux represents the state of the SSH connection protocol, which
+multiplexes multiple channels onto a single packet transport. The mux receives a
+handshakeTransport struct as the implementation of the packetConn interface. The
+handshakeTransport is created after the connection has been established and the
+version has been exchanged, it starts with a mandatory key exchange (KEX) and is
+used to wait for the session to be established, the first expected message is
+msgNewKeys. After the initial handshake and authentication, a mux is created on
+both the server and client sides using newMux. Upon creation, the mux starts the
+loop function in a separate goroutine to run the connection machine. The loop
+function repeatedly calls the onePacket method until an error is returned. The
+onePacket method calls the readPacket method of the packetConn interface (and
+thus of the handshakeTransport struct), then handles the received packet based
+on its type. If an error occurs during packet handling, the loop ends.
+
+Packet handling in onePacket:
+
+  - msgChannelOpen packets are handled in handleChannelOpen. If the request is
+    invalid, an error is returned; otherwise, the new channel is added to
+    chanList. Additionally, the channel is added to the Go channel
+    incomingChannels, which is a buffered channel with a buffer length set to
+    chanSize (16).
+  - Global requests and responses are handled in handleGlobalPacket.
+    [ssh.Request] packets are added to the Go channel incomingRequests, which
+    is a buffered channel with a buffer length set to chanSize (16). Responses
+    to global requests are added to globalResponses, which is a buffered
+    channel with a buffer length of 1. Global requests are sent using
+    [ssh.Conn.SendRequest], which calls the mux's SendRequest method, sending
+    the request and receiving the response from the globalResponses channel.
+    If the global request expects a reply, the globalSentMu mutex is used to
+    ensure that the response received from globalResponses corresponds to the
+    message sent.
+  - Ping messages are parsed using [ssh.Unmarshal], and a pong reply is sent.
+
+Channel-specific packets are forwarded to the channel they refer to. The channel
+is obtained from chanList based on the packet's channel ID. The Go channels
+incomingChannels and incomingRequests are returned to the application calling
+[ssh.NewServerConn] and [ssh.NewClientConn], and they must be serviced. If not,
+the connection will hang. On the client side, [ssh.NewClient] automatically
+handles the incoming channels and requests.
+
+If onePacket returns an error, all channels are removed from chanList and
+closed. Additionally, the Go channels incomingChannels, incomingRequests, and
+globalResponses are closed. The [ssh.Conn.Wait] method can be used to wait for
+the mux to end. When the mux loop ends, the errCond sync condition is used to
+return from the Wait method. The [ssh.Conn.Close] method can be used to close
+the handshakeTransport, which generates an error in the readPacket method used
+in onePacket, causing the mux loop to end.
+
+[ssh.Channel] is implemented using the channel struct, which internally
+references a mux. Channel-specific data read from onePacket is forwarded to the
+referenced channel and stored in channels using the buffer struct, a linked list
+used for data exchange between the producer and consumer. For writes,
+[ssh.Channel] uses the internal reference to the mux. Therefore, all reads and
+writes for both global requests and channel-specific packets go through the mux.
+The mux uses the packetConn interface implementation (handshakeTransport) to
+perform reads and writes. The handshakeTransport struct uses the keyingTransport
+interface, implemented using the transport struct, to perform the reads and
+writes that implement the SSH packet protocol. The transport struct wraps the
+underlying [net.Conn] within a [bufio.NewReader] and a [bufio.NewWriter]. The
+handshakeTransport implements rekeying on top of the keyingTransport and is used
+by the mux for actual reads and writes.
+
+The handshakeTransport starts two goroutines:
+
+  - kexLoop: Waits for and replies to KEX requests from the other side of the
+    connection and sends KEX requests once the RekeyThreshold is reached.
+  - readLoop: Reads incoming packets and adds them to the Go channel incoming,
+    which is a buffered channel with a buffer length set to chanSize (16). The
+    readPacket method returns packets from the incoming Go channel. Therefore,
+    the mux needs to continuously call the readPacket method to prevent the
+    incoming channel from becoming full and blocking the read loop.
+
+When the readLoop wants to schedule a KEX, it pings the requestKex Go channel, a
+buffered channel with a buffer length set to 1, so that the kexLoop can send the
+KEX request. A KEX is scheduled when writeBytesLeft is less than or equal to
+zero. If the other side requests or confirms a KEX, its kexInit message is sent
+to the startKex unbuffered Go channel and handled in the kexLoop. Writes are
+protected using a [sync.Mutex] and the [sync.Cond] writeCond. Specifically,
+writeError, sentInitPacket, sentInitMsg, writeBytesLeft, and the writePacket
+method are protected by the mutex. While a KEX is in progress, sentInitMsg is
+not nil. The write requests, while a KEX is in progress, return nil to the
+caller (generally the application using the library) and are queued internally
+in pendingPackets until the pendingPackets size is less than maxPendingPackets
+(64). Once the pending packets queue is full, the writes wait on the writeCond
+condition. When the KEX completes, the pending packets queue is sent, and any
+waiting writes are unblocked. Writes waiting on writeCond are also unblocked if
+there is a write error or a read error. The read loop records a write error even
+if there is a read error. When the read loop ends, it also closes the startKex
+channel to unblock the KEX loop if it is waiting for it. The requestKex channel
+is not closed when the read loop ends because it may also be written to in
+writePacket, which could lead to a panic.
+
+Important: If the read loop of the handshake transport ends, the mux loop ends,
+and the connection is closed. The KEX loop can end due to a write error or
+because the startKex channel is closed. Before ending, it closes the connection
+to unblock the read loop if it is waiting for data to read, drains the startKex
+channel, and closes the kexLoopDone, an unbuffered channel, so that Close can
+return.
+
+Close closes the connection, waking up the read loop goroutine, closes the
+startKex channel, shutting down the KEX loop (if running), and finally waits on
+the kexLoopDone channel for the KEX loop to complete. The Close() method then
+returns the error from conn.Close().
+*/
 package ssh
 
 import (
