@@ -56,6 +56,10 @@ var (
 
 	// ErrNoAccount indicates that the Client's key has not been registered with the CA.
 	ErrNoAccount = errors.New("acme: account does not exist")
+
+	// ErrPreAuthorizationNotSupported indicates that the server does not
+	// support pre-authorization of identifiers.
+	ErrPreAuthorizationNotSupported = errors.New("acme: pre-authorization is not supported")
 )
 
 // A Subproblem describes an ACME subproblem as reported in an Error.
