@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef08754e_d4920f39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-03-31T14:49:27Z",
+      "side": 1,
+      "message": "LGTM 👍\n\nMaybe worth a citation to https://www.rfc-editor.org/rfc/rfc8555#section-7.4.1 in your commit message? I think the key language here is\n\n\u003e If a CA wishes to allow pre-authorization within ACME, it can offer a\n\u003e \"new authorization\" resource in its directory by adding the field\n\u003e \"newAuthz\" with a URL for the newAuthz resource.",
+      "revId": "38d498b8c626fffcdde6a68f18412cce16617af2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
