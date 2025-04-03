@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "877b0a20_b2a11f7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "Broadly looks good 👍 I tried to take extra care comparing the places where the logic differed from the Go tls equivalent machinery.\n\nIs there anything special I need to do in order to arrange to run these tests locally? Running `go test ./ssh/...` on `b0535d60b8985837fdc7ae0e2350a2355b53b722` used a lot of CPU and then got terminated with a timeout at ~600s. Possibly something specific to my (admittedly weird) x86_64 Linux machine?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cef64d0_52cf7b3d",
+        "filename": "ssh/test/recording_client_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "WDYT about lifting this `const` and the comment up to the file-level? It feels a little bit easy to overlook here, but I don\u0027t feel strongly!",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2442c7d5_55d5fb95",
+        "filename": "ssh/test/recording_client_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "nice mode 🤘",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b0a0e1_9ec5c8f4",
+        "filename": "ssh/test/recording_client_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "I don\u0027t think there are any build restrictions keeping this test to Linux only (or I\u0027m overlooking something!). Will relying on this bash-ism be OK in that circumstance?\n\nI\u0027m also not sure it has the intended effect. I thought using `bash -c` would spawn a new shell and `$$` would be the PID of the just-spawned process. Am I wrong?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695be6aa_b712dcdd",
+        "filename": "ssh/test/recording_server_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "I think this is a bit of copy-pasta that fell out of sync:\n\n```suggestion\n\t// config contains the server configuration to use for this test.\n```",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "effbcd78_0f317e52",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "This was carried over from the `defaultSshdConfig` in `ssh/test/test_unix_test.go`, but I\u0027m wondering if the line should be removed or contextualized somehow.\n\nFor e.g. is there a reason you might want to edit this to uncomment the line?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52bc22a6_9c423600",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "I notice this `KexAlgorithms` line was added. \n\nIt seems reasonable, but maybe its worth noting somewhere since it\u0027s an easy to overlook change from the version that was pulled out of `ssh/test/test_unix_test.go`?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0321930_99974d34",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "nit: i\u0027d be tempted to put the two embedded fields next to each other ahead of the \"normal\" fields. I think the `tls` equivalent `recordingConn` does that too.",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeed2c53_376f2676",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "is this `readyToRead` chan a bit of leftover commented code that could be removed?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a899673_7baa383c",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "Could this be translated to English for us poor mono-lingual gophers? 😄",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5e580b_eb6bc402",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "nit: replace the `t` in `SetDeadline`, `SetReadDeadline` and `SetWriteDeadline` with `_` since the bindings are unused?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "303ca76d_6cd67962",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T15:56:28Z",
+      "side": 1,
+      "message": "There are a few references to `localPipe` in this file, but it looks like the `localPipe` function from `crypto/tls/handshake_test.go` didn\u0027t make the migration into this version.\n\nProbably best to either reword, or remove the refs?",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
