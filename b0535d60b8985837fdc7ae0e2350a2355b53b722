@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf87080_3cb16794",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-04-03T17:17:51Z",
+      "side": 1,
+      "message": "\u003e Is there anything special I need to do in order to arrange to run these tests locally? Running go test ./ssh/... on b0535d60b8985837fdc7ae0e2350a2355b53b722 used a lot of CPU and then got terminated with a timeout at ~600s. Possibly something specific to my (admittedly weird) x86_64 Linux machine?\n\nQuick update here. I tried testing with tip and it failed the same way, so I think the issue is likely something specific to my env and not at all related to this CR.\n\nIn case it\u0027s helpful, here\u0027s some output:\n* from this CR: https://gist.github.com/cpu/dfa3fac142939d86776d0e69c694e988\n* from tip: https://gist.github.com/cpu/eab7d8f48ca389236603401bcdf85a9a",
+      "parentUuid": "877b0a20_b2a11f7d",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cef64d0_52cf7b3d",
