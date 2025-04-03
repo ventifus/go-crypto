@@ -1,0 +1,232 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d392d2f5_f158b1e5",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n//go:build go1.24\n```\n\nIt\u0027s been a while.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 16
+      },
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e673728b_dba70eb3",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "Doesn\u0027t look like you need this.\n\nIn general `if err \u003d c25519kp.generate(rand); err !\u003d nil {` makes me nervous because it makes me ask \"is the assigned err used later?\". Better `if err :\u003d ...`",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4ba5f8e_f664de9e",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "Isn\u0027t this the client\u0027s public value?",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b645b5c0_0c8bfe02",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\t\treturn nil, errors.New(\"ssh: peer\u0027s mlkem768x25519 public value has wrong length\")\n```",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5d36c4_024fc935",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\tmlkem768Secret, err :\u003d mlkemDk.Decapsulate(reply.EphemeralPubKey[:mlkem.CiphertextSize768])\n\tif err !\u003d nil {\n```",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 108
+      },
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8385b7b4_7d5f83cd",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\t\treturn nil, fmt.Errorf(\"ssh: peer\u0027s mlkem768x25519 public value is not valid: %w\", err)\n```",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f32a44_79ca7e49",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\th :\u003d sha256.New()\n```\n\nHas the advantage of ensuring the hash is actually compiled in, and might save allocations.",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6498b2_a85c602d",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\th.Reset()\n```",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ff07157_eaa3e1c7",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "No named returns unless strictly necessary for godoc reasons or to catch in a defer.\n\nThey make it hard to follow what is returned.",
+      "range": {
+        "startLine": 115,
+        "startChar": 138,
+        "endLine": 115,
+        "endChar": 168
+      },
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "716f42a9_7ee1a156",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\t// The server public value is the concatenation of the KEM ciphertext\n\t// and the Curve25519 ECDH public value.\n```\n\nIn general I don\u0027t like comments that just describe the next line because either they are correct and useless, or they are wrong and confusing.",
+      "range": {
+        "startLine": 146,
+        "startChar": 60,
+        "endLine": 147,
+        "endChar": 7
+      },
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7250c9_cd7bd941",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\th :\u003d sha256.New()\n```",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2100dc90_acfd7b98",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-03T09:21:01Z",
+      "side": 1,
+      "message": "```suggestion\n\th.Reset()\n```",
+      "revId": "31e92be6383f07f3d500a3b1a765c50b90c90dae",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
