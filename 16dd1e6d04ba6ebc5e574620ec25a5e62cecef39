@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d68603_f1115255",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-04-07T15:26:47Z",
+      "side": 1,
+      "message": "If this error variable is exported, isn\u0027t this change in scope of the proposal process (https://go.dev/s/proposal#scope)?\n\nIf it doesn\u0027t need to be exported, then making it exported can be made into a separate proposal.",
+      "range": {
+        "startLine": 62,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "16dd1e6d04ba6ebc5e574620ec25a5e62cecef39",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
