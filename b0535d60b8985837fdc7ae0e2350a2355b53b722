@@ -105,6 +105,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4553ed88_4d936fc5",
+        "filename": "ssh/test/recording_client_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-04-08T11:02:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75b0a0e1_9ec5c8f4",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "695be6aa_b712dcdd",
