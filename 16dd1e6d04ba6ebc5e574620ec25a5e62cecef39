@@ -22,6 +22,30 @@
       },
       "revId": "16dd1e6d04ba6ebc5e574620ec25a5e62cecef39",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc80172c_4c98b240",
+        "filename": "acme/types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-04-10T12:46:26Z",
+      "side": 1,
+      "message": "Acknowledged and fixed",
+      "parentUuid": "08d68603_f1115255",
+      "range": {
+        "startLine": 62,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "16dd1e6d04ba6ebc5e574620ec25a5e62cecef39",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
