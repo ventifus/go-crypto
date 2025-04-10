@@ -16,6 +16,24 @@
       "message": "In August when Go 1.25.0 is released, the go directive in go.mod will be bumped to `go 1.24.0`, so checking for the pre-release version will stop being needed.\n\nIt\u0027s fine as is, but you could also write it in a way that minimizes the upcoming diff to be easier to delete.\n\nSomething like this that leads to a trivial future diff:\n\n```diff\n-if runtime.Version() \u003d\u003d \"go1.24rc1\" {\n-    // Rare path. (This entire block will be deleted in a few months.)\n-    [...]\n-}\n-\n // Common path. (This block will stay behind.)\n [...]\n```",
       "revId": "95006919d0b79005171414f14612a22ac662a6e6",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c824f9d3_18b2b993",
+        "filename": "ssh/mlkem.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-04-10T15:46:01Z",
+      "side": 1,
+      "message": "It should be better now. Thank you",
+      "parentUuid": "01dcfd81_70e4ea64",
+      "revId": "95006919d0b79005171414f14612a22ac662a6e6",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
