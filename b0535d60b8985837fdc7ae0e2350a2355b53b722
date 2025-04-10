@@ -245,6 +245,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6ae5512_9068b7a9",
+        "filename": "ssh/test/recording_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-04-10T07:31:52Z",
+      "side": 1,
+      "message": "I generally prefer to place the mutex immediately before the fields it protects. In this case, `clientToServer` is set during struct initialization and isn’t protected by the mutex.",
+      "parentUuid": "d0321930_99974d34",
+      "revId": "b0535d60b8985837fdc7ae0e2350a2355b53b722",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeed2c53_376f2676",
