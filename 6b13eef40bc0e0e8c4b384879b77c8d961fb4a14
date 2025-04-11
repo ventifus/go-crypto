@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d352d8b2_e3968cc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-04-11T17:54:44Z",
+      "side": 1,
+      "message": "Note that on GOARCH\u003dwasm builders, x/crypto/ssh/test.TestRunCommandSuccess/RunCommandSuccess is failing as seen on the [x/crypto (gotip)](https://ci.chromium.org/p/golang/g/x-crypto-gotip/console) view:\n\n```\n\u003d\u003d\u003d RUN   TestRunCommandSuccess/RunCommandSuccess\n\u003d\u003d\u003d PAUSE TestRunCommandSuccess/RunCommandSuccess\n\u003d\u003d\u003d CONT  TestRunCommandSuccess/RunCommandSuccess\n*** Test killed with quit: ran too long (11m0s).\nsignal: quit (core dumped)\n```",
+      "revId": "6b13eef40bc0e0e8c4b384879b77c8d961fb4a14",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
