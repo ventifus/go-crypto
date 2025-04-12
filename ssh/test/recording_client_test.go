@@ -21,7 +21,6 @@ import (
 	"time"
 
 	"golang.org/x/crypto/internal/testenv"
-	"golang.org/x/crypto/sha3"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/testdata"
 )
@@ -175,6 +174,9 @@ func (test *clientTest) run(t *testing.T, write bool) {
 		if err := test.storeUsername(); err != nil {
 			t.Fatalf("failed to store username to %q: %v", test.usernameDataPath(), err)
 		}
+		// Resets the random source, as it may have already been used when a
+		// recording file exists but is invalid for any reason.
+		setDeterministicRandomSource(&test.config.Config)
 		recordingConn = test.connFromCommand(t, "default")
 		clientConn = recordingConn
 	} else {
@@ -238,7 +240,7 @@ func recordingsClientConfig() *ssh.ClientConfig {
 	if config.KeyExchanges[0] == "mlkem768x25519-sha256" {
 		config.KeyExchanges = config.KeyExchanges[1:]
 	}
-	config.Rand = sha3.NewShake128()
+	setDeterministicRandomSource(&config.Config)
 	config.Auth = []ssh.AuthMethod{
 		ssh.PublicKeys(testSigners["rsa"]),
 	}
