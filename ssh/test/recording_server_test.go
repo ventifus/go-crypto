@@ -220,7 +220,6 @@ func recordingsServerConfig() *ssh.ServerConfig {
 	}
 	config.SetDefaults()
 	// Remove ML-KEM since it only works with Go 1.24.
-	config.SetDefaults()
 	if config.KeyExchanges[0] == "mlkem768x25519-sha256" {
 		config.KeyExchanges = config.KeyExchanges[1:]
 	}
