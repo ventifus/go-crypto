@@ -33,6 +33,24 @@
       "message": "Notably, TestRunCommandSuccess was previously not running on js, wasip1.",
       "revId": "6b13eef40bc0e0e8c4b384879b77c8d961fb4a14",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ceed129_1afae702",
+        "filename": "ssh/test/session_test.go",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-04-12T09:52:31Z",
+      "side": 1,
+      "message": "@dmitshur@google.com  Sorry for the issue, please see CL 665095\nI used gomote to test these changes. Also note that some tests previously skipped on Windows and macOS (see `skipIfIssue64959`) are now executed",
+      "parentUuid": "969fb435_7320dc99",
+      "revId": "6b13eef40bc0e0e8c4b384879b77c8d961fb4a14",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
