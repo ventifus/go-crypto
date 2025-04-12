@@ -234,7 +234,7 @@ func recordingsClientConfig() *ssh.ClientConfig {
 	config := clientConfig()
 	// Remove ML-KEM since it only works with Go 1.24.
 	config.SetDefaults()
-	if config.KeyExchanges[0] == "mlkem768x25519-sha256" {
+	if config.KeyExchanges[0] == ssh.KeyExchangeMLKEM768X25519SHA256 {
 		config.KeyExchanges = config.KeyExchanges[1:]
 	}
 	config.Rand = sha3.NewShake128()
@@ -348,7 +348,7 @@ func TestHostKeyCheck(t *testing.T) {
 
 	// change the keys.
 	hostDB.keys[ssh.KeyAlgoRSA][25]++
-	hostDB.keys[ssh.KeyAlgoDSA][25]++
+	hostDB.keys[ssh.InsecureKeyAlgoDSA][25]++
 	hostDB.keys[ssh.KeyAlgoECDSA256][25]++
 
 	test := clientTest{
