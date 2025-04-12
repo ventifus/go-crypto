@@ -18,7 +18,6 @@ import (
 	"time"
 
 	"golang.org/x/crypto/internal/testenv"
-	"golang.org/x/crypto/sha3"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/testdata"
 )
@@ -133,6 +132,10 @@ func (test *serverTest) run(t *testing.T, write bool) {
 	var recordingConn *recordingConn
 
 	if write {
+		// Resets the random source, as it may have already been used when a
+		// recording file exists but is invalid for any reason.
+		setDeterministicRandomSource(&test.config.Config)
+
 		var err error
 		recordingConn, err = test.connFromCommand(t)
 		if err != nil {
@@ -211,13 +214,11 @@ func (test *serverTest) run(t *testing.T, write bool) {
 
 func recordingsServerConfig() *ssh.ServerConfig {
 	config := &ssh.ServerConfig{
-		Config: ssh.Config{
-			Rand: sha3.NewShake128(),
-		},
 		PublicKeyCallback: func(conn ssh.ConnMetadata, key ssh.PublicKey) (*ssh.Permissions, error) {
 			return nil, nil
 		},
 	}
+	setDeterministicRandomSource(&config.Config)
 	config.SetDefaults()
 	// Remove ML-KEM since it only works with Go 1.24.
 	if config.KeyExchanges[0] == "mlkem768x25519-sha256" {
