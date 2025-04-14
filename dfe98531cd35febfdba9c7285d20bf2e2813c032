@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd595fd_fed8cd9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59718
+      },
+      "writtenOn": "2025-04-14T06:23:43Z",
+      "side": 1,
+      "message": "I am now going to change the use of these vector instructions to the word form. Please do not revert.",
+      "revId": "dfe98531cd35febfdba9c7285d20bf2e2813c032",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
