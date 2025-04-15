@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed77f8e_04b80d98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59718
+      },
+      "writtenOn": "2025-04-15T11:01:40Z",
+      "side": 1,
+      "message": "The build failure mentioned in issues 73354 have been fixed in this CL.",
+      "revId": "1da6557d86b93ef693b1460c6aa8a384e6178094",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
