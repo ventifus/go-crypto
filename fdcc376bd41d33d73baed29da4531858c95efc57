@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0d3175_d9ff36f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-16T08:38:02Z",
+      "side": 1,
+      "message": "Unless the tests actually don\u0027t compile on a platform (e.g. because of package syscall), I prefer to use Skip than build tags, because it lets you use more logic, be more specific on which part of a test is skipped, and add a comment.",
+      "revId": "fdcc376bd41d33d73baed29da4531858c95efc57",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
