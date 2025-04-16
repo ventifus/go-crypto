@@ -39,6 +39,30 @@
       },
       "revId": "1da6557d86b93ef693b1460c6aa8a384e6178094",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a022ba43_985c6c1f",
+        "filename": "salsa20/salsa/salsa20_loong64.s",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 59718
+      },
+      "writtenOn": "2025-04-16T07:13:36Z",
+      "side": 1,
+      "message": "OK. Then I will abandon these two CLs. Thank you.",
+      "parentUuid": "ffc297f3_db48d468",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 5
+      },
+      "revId": "1da6557d86b93ef693b1460c6aa8a384e6178094",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
