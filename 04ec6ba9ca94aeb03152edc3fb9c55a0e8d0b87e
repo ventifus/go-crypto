@@ -16,6 +16,24 @@
       "message": "Mention what is not supported. Is it running commands?",
       "revId": "04ec6ba9ca94aeb03152edc3fb9c55a0e8d0b87e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faca9188_2cd7ee20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-04-16T10:01:23Z",
+      "side": 1,
+      "message": "yes, `session.Run` hangs on wasm and `TestWindowChange` hangs while trying to read the stdout here \n\n```\nvar buf bytes.Buffer\nif _, err :\u003d io.Copy(\u0026buf, stdout); err !\u003d nil {\n    t.Fatalf(\"reading failed: %s\", err)\n}",
+      "parentUuid": "aeb69b7c_992ee537",
+      "revId": "04ec6ba9ca94aeb03152edc3fb9c55a0e8d0b87e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
