@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb69b7c_992ee537",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-16T09:26:47Z",
+      "side": 1,
+      "message": "Mention what is not supported. Is it running commands?",
+      "revId": "04ec6ba9ca94aeb03152edc3fb9c55a0e8d0b87e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
