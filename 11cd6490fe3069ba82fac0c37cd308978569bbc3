@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3882eb6_50f44587",
+        "filename": "ssh/test/recording_client_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-17T08:55:50Z",
+      "side": 1,
+      "message": "Only calling this on write entangles logic that lives outside this function: namely that run is called first with write false and then with write true. That might change! What if we call it twice with write false, to test two configurations? Why not remove all other calls of setDeterministicRandomSource and add one before the if, that runs unconditionally?",
+      "revId": "11cd6490fe3069ba82fac0c37cd308978569bbc3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
