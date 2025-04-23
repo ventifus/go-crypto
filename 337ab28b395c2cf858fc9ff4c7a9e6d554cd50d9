@@ -86,6 +86,24 @@
       "message": "FYI, now that sha3 has moved to std (https://github.com/golang/go/issues/69982), you probably need to re-send this patch to the go repo. Ideally once the bug that Filippo pointed out is fixed, given that it\u0027s a blocker.",
       "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7a38e8d_ea94f013",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4031720
+      },
+      "writtenOn": "2025-04-23T16:05:48Z",
+      "side": 1,
+      "message": "Hau, I was looking at this today and realized what the problem is: the syntax for initializing round_consts should not have \u003c\u003e angle brackets; the actual table in memory is not properly initialized, so the iterations are using round constants of all zeros. Making this change:\n\n```\n-DATA   round_consts\u003c\u003e+0x00(SB)/8, $0x0000000000000001\n-DATA   round_consts\u003c\u003e+0x08(SB)/8, $0x0000000000008082\n+DATA   round_consts+0x00(SB)/8, $0x0000000000000001\n+DATA   round_consts+0x08(SB)/8, $0x0000000000008082\n```\n\netc etc, passes the tests for me. Thanks for doing the work on this BTW!",
+      "parentUuid": "82c80846_0b3a8bba",
+      "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
