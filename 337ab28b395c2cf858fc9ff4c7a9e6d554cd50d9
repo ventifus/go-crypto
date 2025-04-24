@@ -140,6 +140,24 @@
       "parentUuid": "c9770a76_97a5b80e",
       "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0a8cfe1_81187f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-04-24T10:26:41Z",
+      "side": 1,
+      "message": "Indeed, OpenSSL turns them on only on Apple M. Amended the CL to do that.",
+      "parentUuid": "446ad9fd_bdab9ac3",
+      "revId": "337ab28b395c2cf858fc9ff4c7a9e6d554cd50d9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ],
   "submitRequirementResults": [
