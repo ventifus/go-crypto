@@ -231,3 +231,28 @@ var testVectors = []struct {
 		hash: "1640b932f4b60e272f5d2207b9a9c626ffa1bd88d2349016",
 	},
 }
+
+func TestIssue65717(t *testing.T) {
+	tests := []struct {
+		f       func(password, salt []byte, time, memory uint32, threads uint8, keyLen uint32) []byte
+		memory  uint32
+		keyLen  uint32
+		threads uint8
+		want    string
+	}{
+		{f: Key, memory: 1024, keyLen: 0, threads: 1, want: "argon2: keyLen length is too small"},
+		{f: Key, memory: 1, keyLen: 16, threads: 1, want: "argon2: memory length is too small"},
+		{f: IDKey, memory: 1024, keyLen: 0, threads: 1, want: "argon2: keyLen length is too small"},
+		{f: IDKey, memory: 1, keyLen: 16, threads: 1, want: "argon2: memory length is too small"},
+	}
+	for _, tmp := range tests {
+		func() {
+			defer func() {
+				if got := recover(); got != tmp.want {
+					t.Fatalf("got: %v, want %s", got, tmp.want)
+				}
+			}()
+			tmp.f(nil, nil, 1, tmp.memory, tmp.threads, tmp.keyLen)
+		}()
+	}
+}
