@@ -10,6 +10,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/rsa"
+	"encoding/pem"
 	"errors"
 	"fmt"
 	"io"
@@ -44,7 +45,7 @@ type SignerV2 interface {
 // algorithms are excluded by default. If you need to specify which algorithms
 // to use, consider using [NewSignerV2WithAlgorithms] instead.
 func NewSignerV2(signer crypto.Signer) (SignerV2, error) {
-	pubKey, err := NewPublicKeyV2(signer.Public())
+	pubKey, err := newPublicKeyV2(signer.Public())
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +63,7 @@ func NewSignerV2WithAlgorithms(signer crypto.Signer, algorithms []string) (Signe
 	if len(algorithms) == 0 {
 		return nil, errors.New("ssh: please specify at least one valid signing algorithm")
 	}
-	pubKey, err := NewPublicKeyV2(signer.Public())
+	pubKey, err := newPublicKeyV2(signer.Public())
 	if err != nil {
 		return nil, err
 	}
@@ -95,12 +96,11 @@ func NewCertificateSignerV2(cert *Certificate, signer SignerV2) (SignerV2, error
 	}, nil
 }
 
-// NewPublicKeyV2 takes an *rsa.PublicKey, *ecdsa.PublicKey or ed25519.PublicKey
+// newPublicKeyV2 takes an *rsa.PublicKey, *ecdsa.PublicKey or ed25519.PublicKey
 // returns a corresponding PublicKey instance. ECDSA keys must use P-256, P-384
 // or P-521.
-func NewPublicKeyV2(key crypto.PublicKey) (PublicKey, error) {
+func newPublicKeyV2(key crypto.PublicKey) (PublicKey, error) {
 	switch key := key.(type) {
-
 	case *rsa.PublicKey:
 		return (*rsaPublicKey)(key), nil
 	case *ecdsa.PublicKey:
@@ -125,4 +125,30 @@ type wrappedSignerWithAlgorithms struct {
 
 func (s *wrappedSignerWithAlgorithms) Algorithms() []string {
 	return s.supportedAlgorithms
+}
+
+// MarshalPrivateKeyOptionsV2 defines the available options to Marshal a private
+// key in OpenSSH format.
+type MarshalPrivateKeyOptionsV2 struct {
+	Comment string
+	// If set the key will be encrypted.
+	Passphrase string
+	// Defines the number of rounds for key derivation. The default value is 24.
+	// Increasing the number of rounds enhances security but also slows down key
+	// derivation.
+	SaltRounds int
+}
+
+// MarshalPrivateKeyV2 returns a PEM block with the private key serialized in the
+// OpenSSH format.
+func MarshalPrivateKeyV2(key crypto.Signer, options *MarshalPrivateKeyOptionsV2) (*pem.Block, error) {
+	if options.Passphrase != "" {
+		if options.SaltRounds <= 0 {
+			// See here: https://github.com/openssh/openssh-portable/blob/e048230/sshkey.c#L2855.
+			options.SaltRounds = 24
+		}
+		return marshalOpenSSHPrivateKey(key, options.Comment,
+			passphraseProtectedOpenSSHMarshaler([]byte(options.Passphrase), uint32(options.SaltRounds)))
+	}
+	return marshalOpenSSHPrivateKey(key, options.Comment, unencryptedOpenSSHMarshaler)
 }
