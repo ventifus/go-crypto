@@ -6,6 +6,11 @@ package ssh
 
 import (
 	"crypto"
+	"crypto/ecdsa"
+	"crypto/ed25519"
+	"crypto/rsa"
+	"errors"
+	"fmt"
 	"io"
 )
 
@@ -41,4 +46,26 @@ func NewSignerV2(signer crypto.Signer) (SignerV2, error) {
 	}
 
 	return &wrappedSigner{signer, pubKey}, nil
+}
+
+// NewPublicKeyV2 takes an *rsa.PublicKey, *ecdsa.PublicKey or ed25519.PublicKey
+// returns a corresponding PublicKey instance. ECDSA keys must use P-256, P-384
+// or P-521.
+func NewPublicKeyV2(key crypto.PublicKey) (PublicKey, error) {
+	switch key := key.(type) {
+	case *rsa.PublicKey:
+		return (*rsaPublicKey)(key), nil
+	case *ecdsa.PublicKey:
+		if !supportedEllipticCurve(key.Curve) {
+			return nil, errors.New("ssh: only P-256, P-384 and P-521 EC keys are supported")
+		}
+		return (*ecdsaPublicKey)(key), nil
+	case ed25519.PublicKey:
+		if l := len(key); l != ed25519.PublicKeySize {
+			return nil, fmt.Errorf("ssh: invalid size %d for Ed25519 public key", l)
+		}
+		return ed25519PublicKey(key), nil
+	default:
+		return nil, fmt.Errorf("ssh: unsupported key type %T", key)
+	}
 }
