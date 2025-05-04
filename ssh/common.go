@@ -56,7 +56,9 @@ const (
 	// from Go version 1.24.
 	KeyExchangeMLKEM768X25519SHA256 = "mlkem768x25519-sha256"
 
-	// An alias for KeyExchangeCurve25519SHA256.
+	// An alias for KeyExchangeCurve25519SHA256. This kex ID will be added if
+	// KeyExchangeCurve25519SHA256 is requested for backward compatibility with
+	// OpenSSH versions up to 7.2.
 	keyExchangeCurve25519SHA256LibSSH = "curve25519-sha256@libssh.org"
 )
 
@@ -73,12 +75,12 @@ const (
 var (
 	// supportedKexAlgos specifies key-exchange algorithms implemented by this
 	// package in preference order, excluding those with security issues.
-	supportedKexAlgos = []string{KeyExchangeCurve25519SHA256, keyExchangeCurve25519SHA256LibSSH,
+	supportedKexAlgos = []string{KeyExchangeCurve25519SHA256,
 		KeyExchangeECDHP256, KeyExchangeECDHP384, KeyExchangeECDHP521,
 		KeyExchangeDH14SHA256, KeyExchangeDH16SHA512, KeyExchangeDHGEXSHA256}
 	// preferredKexAlgos specifies the default preference for key-exchange
 	// algorithms in preference order.
-	preferredKexAlgos = []string{KeyExchangeCurve25519SHA256, keyExchangeCurve25519SHA256LibSSH,
+	preferredKexAlgos = []string{KeyExchangeCurve25519SHA256,
 		KeyExchangeECDHP256, KeyExchangeECDHP384, KeyExchangeECDHP521,
 		KeyExchangeDH14SHA256, InsecureKeyExchangeDH14SHA1,
 	}
@@ -427,6 +429,9 @@ func (c *Config) SetDefaults() {
 		if kexAlgoMap[k] != nil {
 			// Ignore the KEX if we have no kexAlgoMap definition.
 			kexs = append(kexs, k)
+			if k == KeyExchangeCurve25519SHA256 && !contains(c.KeyExchanges, keyExchangeCurve25519SHA256LibSSH) {
+				kexs = append(kexs, keyExchangeCurve25519SHA256LibSSH)
+			}
 		}
 	}
 	c.KeyExchanges = kexs
