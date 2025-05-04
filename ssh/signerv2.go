@@ -10,6 +10,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/rsa"
+	"encoding/pem"
 	"errors"
 	"fmt"
 	"io"
@@ -125,4 +126,30 @@ type wrappedSignerWithAlgorithms struct {
 
 func (s *wrappedSignerWithAlgorithms) Algorithms() []string {
 	return s.supportedAlgorithms
+}
+
+// MarshalPrivateKeyOptionsV2 defines the available options to Marshal a private
+// key in OpenSSH format.
+type MarshalPrivateKeyOptionsV2 struct {
+	Comment string
+	// If set the key will be encrypted.
+	Passphrase string
+	// Defines the number of rounds for key derivation. The default value is 24.
+	// Increasing the number of rounds enhances security but also slows down key
+	// derivation.
+	SaltRounds int
+}
+
+// MarshalPrivateKeyV2 returns a PEM block with the private key serialized in the
+// OpenSSH format.
+func MarshalPrivateKeyV2(key crypto.PrivateKey, options *MarshalPrivateKeyOptionsV2) (*pem.Block, error) {
+	if options.Passphrase != "" {
+		if options.SaltRounds <= 0 {
+			// See here: https://github.com/openssh/openssh-portable/blob/e048230/sshkey.c#L2855.
+			options.SaltRounds = 24
+		}
+		return marshalOpenSSHPrivateKey(key, options.Comment,
+			passphraseProtectedOpenSSHMarshaler([]byte(options.Passphrase), uint32(options.SaltRounds)))
+	}
+	return marshalOpenSSHPrivateKey(key, options.Comment, unencryptedOpenSSHMarshaler)
 }
