@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43da87c0_dcd9c5a2",
+        "filename": "ssh/certs.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "// Deprecated: DSA is only supported at insecure key sizes, and was removed from major implementations.",
+      "revId": "6da309e36c849cab68ad881d820f58e99e0bc616",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2507775_b90dc5e6",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "This looks good but unrelated.",
+      "revId": "6da309e36c849cab68ad881d820f58e99e0bc616",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}

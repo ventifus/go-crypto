@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92468063_07c0dc71",
+        "filename": "ssh/certs.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "Also apply the Deprecated header here.",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3407d92_418f55e9",
+        "filename": "ssh/cipher_test.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "insecure?",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef491a4d_85aaf56d",
+        "filename": "ssh/keys.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "Same as the other Deprecated message.",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d03e642_bf1c6f98",
+        "filename": "ssh/keys.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "Add the Deprecated message here too.",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2be780d_e9307fb5",
+        "filename": "ssh/testdata/Client-KEX-curve25519-sha256",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-06T14:46:55Z",
+      "side": 1,
+      "message": "Move the behavior change to a different CL.",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
