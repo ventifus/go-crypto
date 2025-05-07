@@ -16,6 +16,24 @@
       "message": "The trybot failures reminded me that since this is an x/ repo, it needs to keep working with somewhat older versions of Go. I think it\u0027s okay to just drop this check, but if you want to keep it, it\u0027ll have to live in a new file that\u0027s build-tagged to go1.25",
       "revId": "9f89fe3d1ad59aa8af85bc70a104632b8ee2384e",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f65183_7a293c11",
+        "filename": "blake2b/blake2x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 64033
+      },
+      "writtenOn": "2025-05-07T12:01:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70b19390_4f03a6e9",
+      "revId": "9f89fe3d1ad59aa8af85bc70a104632b8ee2384e",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
