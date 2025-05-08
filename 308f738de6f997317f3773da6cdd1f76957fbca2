@@ -51,6 +51,24 @@
       "parentUuid": "9cba001a_84a5a810",
       "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70f1f98c_0e5ba904",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-08T16:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24331b99_ffdf9661",
+      "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
