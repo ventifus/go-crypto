@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae97b75_bf1d6dee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-05-11T13:13:46Z",
+      "side": 1,
+      "message": "drop this line, it\u0027s redundant with the title \n\nhttps://go.dev/doc/contribute#sending_a_change_github",
+      "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88604134_5b9b485d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 34788
+      },
+      "writtenOn": "2025-05-11T13:13:46Z",
+      "side": 1,
+      "message": "line break please",
+      "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8e215335_bdd3e2c7",
