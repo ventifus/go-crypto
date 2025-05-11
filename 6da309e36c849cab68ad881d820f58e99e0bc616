@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad8cbe1_96283f16",
+        "filename": "ssh/certs.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43da87c0_dcd9c5a2",
+      "revId": "6da309e36c849cab68ad881d820f58e99e0bc616",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2507775_b90dc5e6",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "This looks good but unrelated.",
+      "revId": "6da309e36c849cab68ad881d820f58e99e0bc616",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5b2202_f1671351",
+        "filename": "ssh/cipher.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e2507775_b90dc5e6",
       "revId": "6da309e36c849cab68ad881d820f58e99e0bc616",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }

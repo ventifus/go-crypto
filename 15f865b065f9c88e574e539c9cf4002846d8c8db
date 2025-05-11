@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a8e7f9_836140eb",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "356b1a60_c0d66d5b",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94a4b1d8_7314fcf2",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "```suggestion\n\tCipherChaCha20Poly1305     \u003d \"chacha20-poly1305@openssh.com\"\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 23
+      },
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5367428_ef8fa4ad",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94a4b1d8_7314fcf2",
       "range": {
         "startLine": 32,
         "startChar": 1,
@@ -58,6 +100,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8182fa_288d9ade",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c73dc65e_2d7de268",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1df2fc8b_1fb3c927",
@@ -71,6 +131,30 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "```suggestion\n\t// KeyExchangeMLKEM768X25519SHA256 is supported from Go 1.24.\n```",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 25
+      },
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "980768ea_d2f4f3e2",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1df2fc8b_1fb3c927",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -98,6 +182,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbeeceff_922d37b1",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Changed to `KeyExchangeCurve25519` and `KeyExchangeMLKEM768X25519`",
+      "parentUuid": "8df5808b_df1b59d2",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76f8ee75_64ac1996",
@@ -111,6 +213,24 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bafe160_c0d82018",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76f8ee75_64ac1996",
       "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -132,6 +252,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b0010d_8ec79dbb",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "You are right, hmac-sha1 is not insecure and still enabled by default in OpenSSH",
+      "parentUuid": "46ee9f99_33421f5c",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad3ba189_7c1f452c",
@@ -149,6 +287,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b851cf7_8db2671e",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad3ba189_7c1f452c",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd0b14e3_70398057",
@@ -162,6 +318,24 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "Not a fan of calling this preferred, even if it\u0027s internal. Maybe default?",
+      "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d787aad_0f983801",
+        "filename": "ssh/common.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd0b14e3_70398057",
       "revId": "15f865b065f9c88e574e539c9cf4002846d8c8db",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }

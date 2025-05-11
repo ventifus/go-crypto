@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "976f32d7_2aca4fd8",
+        "filename": "ssh/certs.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92468063_07c0dc71",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3407d92_418f55e9",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "insecure?",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18cf022_401062d4",
+        "filename": "ssh/cipher_test.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3407d92_418f55e9",
       "range": {
         "startLine": 27,
         "startChar": 13,
@@ -58,6 +100,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3546215_d66928d1",
+        "filename": "ssh/keys.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef491a4d_85aaf56d",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d03e642_bf1c6f98",
@@ -75,6 +135,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c134cbc8_e7dd89dc",
+        "filename": "ssh/keys.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d03e642_bf1c6f98",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2be780d_e9307fb5",
@@ -88,6 +166,24 @@
       "writtenOn": "2025-05-06T14:46:55Z",
       "side": 1,
       "message": "Move the behavior change to a different CL.",
+      "revId": "42bc83c479774edb80fca925112866c80b531a4d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f997b375_1736bcac",
+        "filename": "ssh/testdata/Client-KEX-curve25519-sha256",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2be780d_e9307fb5",
       "revId": "42bc83c479774edb80fca925112866c80b531a4d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
