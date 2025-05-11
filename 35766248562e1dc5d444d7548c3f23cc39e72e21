@@ -16,6 +16,24 @@
       "message": "Move these three comments to the consts, it\u0027s useful to know they have two names, and more useful to have it associated to the const than here.",
       "revId": "35766248562e1dc5d444d7548c3f23cc39e72e21",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "337108e8_251863de",
+        "filename": "ssh/kex.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-05-11T10:16:10Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "296b9462_b5622483",
+      "revId": "35766248562e1dc5d444d7548c3f23cc39e72e21",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
