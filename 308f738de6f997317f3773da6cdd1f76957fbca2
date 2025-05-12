@@ -69,6 +69,42 @@
       "parentUuid": "24331b99_ffdf9661",
       "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffaf0930_5faeb816",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-05-12T17:21:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24331b99_ffdf9661",
+      "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e901c6a_9767d9a8",
+        "filename": "bcrypt/bcrypt.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-05-12T17:21:45Z",
+      "side": 1,
+      "message": "Good idea, I\u0027ll update to this.",
+      "parentUuid": "9cba001a_84a5a810",
+      "revId": "308f738de6f997317f3773da6cdd1f76957fbca2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

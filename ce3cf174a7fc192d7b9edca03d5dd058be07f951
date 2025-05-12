@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a29f3bc_433e5d00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-05-12T17:21:45Z",
+      "side": 1,
+      "message": "Removed that line from the Github PR description.",
+      "parentUuid": "9ae97b75_bf1d6dee",
+      "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88604134_5b9b485d",
@@ -37,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e8253d7f_c6b6067c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-05-12T17:21:45Z",
+      "side": 1,
+      "message": "Added line breaks in the Github PR description.",
+      "parentUuid": "88604134_5b9b485d",
+      "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8e215335_bdd3e2c7",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -48,6 +84,23 @@
       "writtenOn": "2025-03-13T22:25:47Z",
       "side": 1,
       "message": "Updated the error message as suggested, and also the commit message.",
+      "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4264fe71_4d943181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3343873
+      },
+      "writtenOn": "2025-05-12T17:21:45Z",
+      "side": 1,
+      "message": "Addressed comments for redundant line and adding line breaks via the Github PR description.",
       "revId": "ce3cf174a7fc192d7b9edca03d5dd058be07f951",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
