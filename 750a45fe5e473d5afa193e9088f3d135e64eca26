@@ -16,6 +16,24 @@
       "message": "This test fails on s390x because its alternate implementation does not implement the marshaling methods.",
       "revId": "750a45fe5e473d5afa193e9088f3d135e64eca26",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1777e491_01796567",
+        "filename": "sha3/sha3_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-05-13T16:20:04Z",
+      "side": 1,
+      "message": "Thanks for the report. This is now tracked in issue #73681.",
+      "parentUuid": "1137d96b_fa8bcd9a",
+      "revId": "750a45fe5e473d5afa193e9088f3d135e64eca26",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
