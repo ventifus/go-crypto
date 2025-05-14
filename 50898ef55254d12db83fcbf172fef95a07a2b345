@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e44891e_69843341",
+        "filename": "ssh/common.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-14T11:05:01Z",
+      "side": 1,
+      "message": "```suggestion\n// [Config.Ciphers]. For a list, see the [Algorithms.Ciphers] returned by\n```",
+      "revId": "50898ef55254d12db83fcbf172fef95a07a2b345",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a653beb_4c7f30d0",
+        "filename": "ssh/common.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-05-14T11:05:01Z",
+      "side": 1,
+      "message": "```suggestion\n// in [Config.KeyExchanges]. For a list, see the\n// [Algorithms.KeyExchanges] returned by [SupportedAlgorithms] or\n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 69
+      },
+      "revId": "50898ef55254d12db83fcbf172fef95a07a2b345",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
