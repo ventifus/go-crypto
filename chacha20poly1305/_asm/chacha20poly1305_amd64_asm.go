@@ -660,68 +660,11 @@ func chacha20Poly1305Open() {
 	Load(Param("src").Len(), inl)
 	Load(Param("ad").Base(), adp)
 
-	Comment("Check for AVX2 support")
-	CMPB(Mem{Symbol: Symbol{Name: ThatPeskyUnicodeDot + "useAVX2"}, Base: StaticBase}, Imm(1))
-	JE(LabelRef("chacha20Poly1305Open_AVX2"))
-
-	Comment("Special optimization, for very short buffers")
-	CMPQ(inl, Imm(128))
-	JBE(LabelRef("openSSE128")) // About 16% faster
-
-	Comment("For long buffers, prepare the poly key first")
-	chacha20Constants := chacha20Constants_DATA()
-	MOVOU(chacha20Constants, A0)
-	MOVOU(Mem{Base: keyp}.Offset(1*16), B0)
-	MOVOU(Mem{Base: keyp}.Offset(2*16), C0)
-	MOVOU(Mem{Base: keyp}.Offset(3*16), D0)
-	MOVO(D0, T1)
-
-	Comment("Store state on stack for future use")
-	MOVO(B0, state1Store)
-	MOVO(C0, state2Store)
-	MOVO(D0, ctr3Store)
-	MOVQ(U32(10), itr2)
-
-	openSSEPreparePolyKey()
-	openSSEMainLoop()
-	openSSEInternalLoop()
-	openSSEMainLoopDone()
 	openSSEFinalize()
 
 	// ----------------------------------------------------------------------------
 	// Special optimization for buffers smaller than 129 bytes
-	openSSE128()
-	openSSE128InnerCipherLoop()
-	openSSE128Open()
 	openSSETail16()
-	openSSETail16Store()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 64 bytes of ciphertext
-	openSSETail64()
-	openSSETail64LoopA()
-	openSSETail64LoopB()
-	openSSETail64DecLoop()
-	openSSETail64DecLoopDone()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 128 bytes of ciphertext
-	openSSETail128()
-	openSSETail128LoopA()
-	openSSETail128LoopB()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 192 bytes of ciphertext
-	openSSETail192()
-	openSSLTail192LoopA()
-	openSSLTail192LoopB()
-	openSSLTail192Store()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 256 bytes of ciphertext
-	openSSETail256()
-	openSSETail256Loop()
-	openSSETail256HashLoop()
 
 	// ----------------------------------------------------------------------------
 	// ------------------------- AVX2 Code ----------------------------------------
