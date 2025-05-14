@@ -644,141 +644,84 @@ func hashADDone() {
 // Implements the following function fignature:
 //
 //	func chacha20Poly1305Open(dst []byte, key []uint32, src []byte, ad []byte) bool
-func chacha20Poly1305Open() {
-	Implement("chacha20Poly1305Open")
-	Attributes(0)
-	AllocLocal(288)
+// func chacha20Poly1305Open() {
+// 	Implement("chacha20Poly1305Open")
+// 	Attributes(0)
+// 	AllocLocal(288)
 
-	Comment("For aligned stack access")
-	MOVQ(RSP, RBP)
-	ADDQ(Imm(32), RBP)
-	ANDQ(I8(-32), RBP)
+// 	Comment("For aligned stack access")
+// 	MOVQ(RSP, RBP)
+// 	ADDQ(Imm(32), RBP)
+// 	ANDQ(I8(-32), RBP)
 
-	Load(Param("dst").Base(), oup)
-	Load(Param("key").Base(), keyp)
-	Load(Param("src").Base(), inp)
-	Load(Param("src").Len(), inl)
-	Load(Param("ad").Base(), adp)
+// 	Load(Param("dst").Base(), oup)
+// 	Load(Param("key").Base(), keyp)
+// 	Load(Param("src").Base(), inp)
+// 	Load(Param("src").Len(), inl)
+// 	Load(Param("ad").Base(), adp)
 
-	Comment("Check for AVX2 support")
-	CMPB(Mem{Symbol: Symbol{Name: ThatPeskyUnicodeDot + "useAVX2"}, Base: StaticBase}, Imm(1))
-	JE(LabelRef("chacha20Poly1305Open_AVX2"))
+// 	openSSEFinalize()
 
-	Comment("Special optimization, for very short buffers")
-	CMPQ(inl, Imm(128))
-	JBE(LabelRef("openSSE128")) // About 16% faster
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for buffers smaller than 129 bytes
+// 	openSSETail16()
 
-	Comment("For long buffers, prepare the poly key first")
-	chacha20Constants := chacha20Constants_DATA()
-	MOVOU(chacha20Constants, A0)
-	MOVOU(Mem{Base: keyp}.Offset(1*16), B0)
-	MOVOU(Mem{Base: keyp}.Offset(2*16), C0)
-	MOVOU(Mem{Base: keyp}.Offset(3*16), D0)
-	MOVO(D0, T1)
+// 	// ----------------------------------------------------------------------------
+// 	// ------------------------- AVX2 Code ----------------------------------------
+// 	chacha20Poly1305Open_AVX2()
+// 	openAVX2PreparePolyKey()
+// 	openAVX2InitialHash64()
+// 	openAVX2MainLoop()
+// 	openAVX2InternalLoop()
+// 	openAVX2MainLoopDone()
 
-	Comment("Store state on stack for future use")
-	MOVO(B0, state1Store)
-	MOVO(C0, state2Store)
-	MOVO(D0, ctr3Store)
-	MOVQ(U32(10), itr2)
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for buffers smaller than 193 bytes
+// 	openAVX2192()
+// 	openAVX2192InnerCipherLoop()
+// 	openAVX2ShortOpen()
+// 	openAVX2ShortOpenLoop()
+// 	openAVX2ShortTail32()
+// 	openAVX2ShortDone()
 
-	openSSEPreparePolyKey()
-	openSSEMainLoop()
-	openSSEInternalLoop()
-	openSSEMainLoopDone()
-	openSSEFinalize()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for buffers smaller than 321 bytes
+// 	openAVX2320()
+// 	openAVX2320InnerCipherLoop()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for buffers smaller than 129 bytes
-	openSSE128()
-	openSSE128InnerCipherLoop()
-	openSSE128Open()
-	openSSETail16()
-	openSSETail16Store()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 128 bytes of ciphertext
+// 	openAVX2Tail128()
+// 	openAVX2Tail128LoopA()
+// 	openAVX2Tail128LoopB()
+// 	openAVX2TailLoop()
+// 	openAVX2Tail()
+// 	openAVX2TailDone()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 64 bytes of ciphertext
-	openSSETail64()
-	openSSETail64LoopA()
-	openSSETail64LoopB()
-	openSSETail64DecLoop()
-	openSSETail64DecLoopDone()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 256 bytes of ciphertext
+// 	openAVX2Tail256()
+// 	openAVX2Tail256LoopA()
+// 	openAVX2Tail256LoopB()
+// 	openAVX2Tail256Hash()
+// 	openAVX2Tail256HashEnd()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 128 bytes of ciphertext
-	openSSETail128()
-	openSSETail128LoopA()
-	openSSETail128LoopB()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 384 bytes of ciphertext
+// 	openAVX2Tail384()
+// 	openAVX2Tail384LoopB()
+// 	openAVX2Tail384LoopA()
+// 	openAVX2Tail384Hash()
+// 	openAVX2Tail384HashEnd()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 192 bytes of ciphertext
-	openSSETail192()
-	openSSLTail192LoopA()
-	openSSLTail192LoopB()
-	openSSLTail192Store()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 256 bytes of ciphertext
-	openSSETail256()
-	openSSETail256Loop()
-	openSSETail256HashLoop()
-
-	// ----------------------------------------------------------------------------
-	// ------------------------- AVX2 Code ----------------------------------------
-	chacha20Poly1305Open_AVX2()
-	openAVX2PreparePolyKey()
-	openAVX2InitialHash64()
-	openAVX2MainLoop()
-	openAVX2InternalLoop()
-	openAVX2MainLoopDone()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for buffers smaller than 193 bytes
-	openAVX2192()
-	openAVX2192InnerCipherLoop()
-	openAVX2ShortOpen()
-	openAVX2ShortOpenLoop()
-	openAVX2ShortTail32()
-	openAVX2ShortDone()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for buffers smaller than 321 bytes
-	openAVX2320()
-	openAVX2320InnerCipherLoop()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 128 bytes of ciphertext
-	openAVX2Tail128()
-	openAVX2Tail128LoopA()
-	openAVX2Tail128LoopB()
-	openAVX2TailLoop()
-	openAVX2Tail()
-	openAVX2TailDone()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 256 bytes of ciphertext
-	openAVX2Tail256()
-	openAVX2Tail256LoopA()
-	openAVX2Tail256LoopB()
-	openAVX2Tail256Hash()
-	openAVX2Tail256HashEnd()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 384 bytes of ciphertext
-	openAVX2Tail384()
-	openAVX2Tail384LoopB()
-	openAVX2Tail384LoopA()
-	openAVX2Tail384Hash()
-	openAVX2Tail384HashEnd()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 512 bytes of ciphertext
-	openAVX2Tail512()
-	openAVX2Tail512LoopB()
-	openAVX2Tail512LoopA()
-	openAVX2Tail512HashLoop()
-	openAVX2Tail512HashEnd()
-}
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 512 bytes of ciphertext
+// 	openAVX2Tail512()
+// 	openAVX2Tail512LoopB()
+// 	openAVX2Tail512LoopA()
+// 	openAVX2Tail512HashLoop()
+// 	openAVX2Tail512HashEnd()
+// }
 
 func openSSEPreparePolyKey() {
 	Label("openSSEPreparePolyKey")
@@ -1690,8 +1633,22 @@ func VBROADCASTI128_48_R8_YMM4() {
 // ----------------------------------------------------------------------------
 // ------------------------- AVX2 Code ----------------------------------------
 
-func chacha20Poly1305Open_AVX2() {
-	Label("chacha20Poly1305Open_AVX2")
+func chacha20Poly1305Open() {
+	Implement("chacha20Poly1305Open")
+	Attributes(0)
+	AllocLocal(288)
+
+	Comment("For aligned stack access")
+	MOVQ(RSP, RBP)
+	ADDQ(Imm(32), RBP)
+	ANDQ(I8(-32), RBP)
+
+	Load(Param("dst").Base(), oup)
+	Load(Param("key").Base(), keyp)
+	Load(Param("src").Base(), inp)
+	Load(Param("src").Len(), inl)
+	Load(Param("ad").Base(), adp)
+
 	VZEROUPPER()
 	chacha20Constants := chacha20Constants_DATA()
 	VMOVDQU(chacha20Constants, AA0)
@@ -1712,6 +1669,65 @@ func chacha20Poly1305Open_AVX2() {
 	VMOVDQA(CC0, state2StoreAVX2)
 	VMOVDQA(DD0, ctr3StoreAVX2)
 	MOVQ(U32(10), itr2)
+
+	openAVX2PreparePolyKey()
+	openAVX2InitialHash64()
+	openAVX2MainLoop()
+	openAVX2InternalLoop()
+	openAVX2MainLoopDone()
+
+	openSSEFinalize()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 129 bytes
+	openSSETail16()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 193 bytes
+	openAVX2192()
+	openAVX2192InnerCipherLoop()
+	openAVX2ShortOpen()
+	openAVX2ShortOpenLoop()
+	openAVX2ShortTail32()
+	openAVX2ShortDone()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 321 bytes
+	openAVX2320()
+	openAVX2320InnerCipherLoop()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 128 bytes of ciphertext
+	openAVX2Tail128()
+	openAVX2Tail128LoopA()
+	openAVX2Tail128LoopB()
+	openAVX2TailLoop()
+	openAVX2Tail()
+	openAVX2TailDone()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 256 bytes of ciphertext
+	openAVX2Tail256()
+	openAVX2Tail256LoopA()
+	openAVX2Tail256LoopB()
+	openAVX2Tail256Hash()
+	openAVX2Tail256HashEnd()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 384 bytes of ciphertext
+	openAVX2Tail384()
+	openAVX2Tail384LoopB()
+	openAVX2Tail384LoopA()
+	openAVX2Tail384Hash()
+	openAVX2Tail384HashEnd()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 512 bytes of ciphertext
+	openAVX2Tail512()
+	openAVX2Tail512LoopB()
+	openAVX2Tail512LoopA()
+	openAVX2Tail512HashLoop()
+	openAVX2Tail512HashEnd()
 }
 
 func openAVX2PreparePolyKey() {
@@ -2970,140 +2986,98 @@ func openAVX2Tail512HashEnd() {
 // Implements the following function fignature:
 //
 //	func chacha20Poly1305Seal(dst []byte, key []uint32, src, ad []byte)
-func chacha20Poly1305Seal() {
-	Implement("chacha20Poly1305Seal")
-	Attributes(0)
-	AllocLocal(288)
+// func chacha20Poly1305Seal() {
+// 	Implement("chacha20Poly1305Seal")
+// 	Attributes(0)
+// 	AllocLocal(288)
 
-	MOVQ(RSP, RBP)
-	ADDQ(Imm(32), RBP)
-	ANDQ(I32(-32), RBP)
-	Load(Param("dst").Base(), oup)
-	Load(Param("key").Base(), keyp)
-	Load(Param("src").Base(), inp)
-	Load(Param("src").Len(), inl)
-	Load(Param("ad").Base(), adp)
+// 	MOVQ(RSP, RBP)
+// 	ADDQ(Imm(32), RBP)
+// 	ANDQ(I32(-32), RBP)
+// 	Load(Param("dst").Base(), oup)
+// 	Load(Param("key").Base(), keyp)
+// 	Load(Param("src").Base(), inp)
+// 	Load(Param("src").Len(), inl)
+// 	Load(Param("ad").Base(), adp)
 
-	CMPB(Mem{Symbol: Symbol{Name: ThatPeskyUnicodeDot + "useAVX2"}, Base: StaticBase}, Imm(1))
-	JE(LabelRef("chacha20Poly1305Seal_AVX2"))
+// 	CMPB(Mem{Symbol: Symbol{Name: ThatPeskyUnicodeDot + "useAVX2"}, Base: StaticBase}, Imm(1))
+// 	JE(LabelRef("chacha20Poly1305Seal_AVX2"))
 
-	Comment("Special optimization, for very short buffers")
-	CMPQ(inl, Imm(128))
-	JBE(LabelRef("sealSSE128"))
+// 	Comment("Special optimization, for very short buffers")
+// 	CMPQ(inl, Imm(128))
+// 	JBE(LabelRef("sealSSE128"))
 
-	Comment("In the seal case - prepare the poly key + 3 blocks of stream in the first iteration")
-	chacha20Constants := chacha20Constants_DATA()
-	MOVOU(chacha20Constants, A0)
-	MOVOU(Mem{Base: keyp}.Offset(1*16), B0)
-	MOVOU(Mem{Base: keyp}.Offset(2*16), C0)
-	MOVOU(Mem{Base: keyp}.Offset(3*16), D0)
+// 	Comment("In the seal case - prepare the poly key + 3 blocks of stream in the first iteration")
+// 	chacha20Constants := chacha20Constants_DATA()
+// 	MOVOU(chacha20Constants, A0)
+// 	MOVOU(Mem{Base: keyp}.Offset(1*16), B0)
+// 	MOVOU(Mem{Base: keyp}.Offset(2*16), C0)
+// 	MOVOU(Mem{Base: keyp}.Offset(3*16), D0)
 
-	Comment("Store state on stack for future use")
-	MOVO(B0, state1Store)
-	MOVO(C0, state2Store)
+// 	Comment("Store state on stack for future use")
+// 	MOVO(B0, state1Store)
+// 	MOVO(C0, state2Store)
 
-	Comment("Load state, increment counter blocks")
-	MOVO(A0, A1)
-	MOVO(B0, B1)
-	MOVO(C0, C1)
-	MOVO(D0, D1)
-	sseIncMask := sseIncMask_DATA()
-	PADDL(sseIncMask, D1)
-	MOVO(A1, A2)
-	MOVO(B1, B2)
-	MOVO(C1, C2)
-	MOVO(D1, D2)
-	PADDL(sseIncMask, D2)
-	MOVO(A2, A3)
-	MOVO(B2, B3)
-	MOVO(C2, C3)
-	MOVO(D2, D3)
-	PADDL(sseIncMask, D3)
+// 	Comment("Load state, increment counter blocks")
+// 	MOVO(A0, A1)
+// 	MOVO(B0, B1)
+// 	MOVO(C0, C1)
+// 	MOVO(D0, D1)
+// 	sseIncMask := sseIncMask_DATA()
+// 	PADDL(sseIncMask, D1)
+// 	MOVO(A1, A2)
+// 	MOVO(B1, B2)
+// 	MOVO(C1, C2)
+// 	MOVO(D1, D2)
+// 	PADDL(sseIncMask, D2)
+// 	MOVO(A2, A3)
+// 	MOVO(B2, B3)
+// 	MOVO(C2, C3)
+// 	MOVO(D2, D3)
+// 	PADDL(sseIncMask, D3)
 
-	Comment("Store counters")
-	MOVO(D0, ctr0Store)
-	MOVO(D1, ctr1Store)
-	MOVO(D2, ctr2Store)
-	MOVO(D3, ctr3Store)
-	MOVQ(U32(10), itr2)
+// 	Comment("Store counters")
+// 	MOVO(D0, ctr0Store)
+// 	MOVO(D1, ctr1Store)
+// 	MOVO(D2, ctr2Store)
+// 	MOVO(D3, ctr3Store)
+// 	MOVQ(U32(10), itr2)
 
-	sealSSEIntroLoop()
-	sealSSEMainLoop()
+// 	sealSSEIntroLoop()
+// 	sealSSEMainLoop()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 64 bytes of plaintext
-	sealSSETail64()
-	sealSSETail64LoopA()
-	sealSSETail64LoopB()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 64 bytes of plaintext
+// 	sealSSETail64()
+// 	sealSSETail64LoopA()
+// 	sealSSETail64LoopB()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 128 bytes of plaintext
-	sealSSETail128()
-	sealSSETail128LoopA()
-	sealSSETail128LoopB()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 128 bytes of plaintext
+// 	sealSSETail128()
+// 	sealSSETail128LoopA()
+// 	sealSSETail128LoopB()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 192 bytes of plaintext
-	sealSSETail192()
-	sealSSETail192LoopA()
-	sealSSETail192LoopB()
+// 	// ----------------------------------------------------------------------------
+// 	// Special optimization for the last 192 bytes of plaintext
+// 	sealSSETail192()
+// 	sealSSETail192LoopA()
+// 	sealSSETail192LoopB()
 
-	// ----------------------------------------------------------------------------
-	// Special seal optimization for buffers smaller than 129 bytes
-	sealSSE128()
-	sealSSE128SealHash()
-	sealSSE128Seal()
-	sealSSETail()
-	sealSSETailLoadLoop()
-	sealSSEFinalize()
+// 	// ----------------------------------------------------------------------------
+// 	// Special seal optimization for buffers smaller than 129 bytes
+// 	sealSSE128()
+// 	sealSSE128SealHash()
+// 	sealSSE128Seal()
+// 	sealSSETail()
+// 	sealSSETailLoadLoop()
+// 	sealSSEFinalize()
 
-	// ----------------------------------------------------------------------------
-	// ------------------------- AVX2 Code ----------------------------------------
-	chacha20Poly1305Seal_AVX2()
-	sealAVX2IntroLoop()
-	sealAVX2MainLoop()
-	sealAVX2InternalLoop()
-	sealAVX2InternalLoopStart()
+// 	// ----------------------------------------------------------------------------
+// 	// ------------------------- AVX2 Code ----------------------------------------
+// 	chacha20Poly1305Seal_AVX2()
 
-	// ----------------------------------------------------------------------------
-	// Special optimization for buffers smaller than 193 bytes
-	seal192AVX2()
-	sealAVX2192InnerCipherLoop()
-	sealAVX2ShortSeal()
-	sealAVX2SealHash()
-	sealAVX2ShortSealLoop()
-	sealAVX2ShortTail32()
-	sealAVX2ShortDone()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for buffers smaller than 321 bytes
-	seal320AVX2()
-	sealAVX2320InnerCipherLoop()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 128 bytes of ciphertext
-	sealAVX2Tail128()
-	sealAVX2Tail128LoopA()
-	sealAVX2Tail128LoopB()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 256 bytes of ciphertext
-	sealAVX2Tail256()
-	sealAVX2Tail256LoopA()
-	sealAVX2Tail256LoopB()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 384 bytes of ciphertext
-	sealAVX2Tail384()
-	sealAVX2Tail384LoopA()
-	sealAVX2Tail384LoopB()
-
-	// ----------------------------------------------------------------------------
-	// Special optimization for the last 512 bytes of ciphertext
-	sealAVX2Tail512()
-	sealAVX2Tail512LoopA()
-	sealAVX2Tail512LoopB()
-}
+// }
 
 func sealSSEIntroLoop() {
 	Label("sealSSEIntroLoop")
@@ -3893,8 +3867,20 @@ func sealSSEFinalize() {
 // ----------------------------------------------------------------------------
 // ------------------------- AVX2 Code ----------------------------------------
 
-func chacha20Poly1305Seal_AVX2() {
-	Label("chacha20Poly1305Seal_AVX2")
+func chacha20Poly1305Seal() {
+	Implement("chacha20Poly1305Seal")
+	Attributes(0)
+	AllocLocal(288)
+
+	MOVQ(RSP, RBP)
+	ADDQ(Imm(32), RBP)
+	ANDQ(I32(-32), RBP)
+	Load(Param("dst").Base(), oup)
+	Load(Param("key").Base(), keyp)
+	Load(Param("src").Base(), inp)
+	Load(Param("src").Len(), inl)
+	Load(Param("ad").Base(), adp)
+
 	VZEROUPPER()
 	chacha20Constants := chacha20Constants_DATA()
 	VMOVDQU(chacha20Constants, AA0)
@@ -3931,6 +3917,59 @@ func chacha20Poly1305Seal_AVX2() {
 	VMOVDQA(DD2, ctr2StoreAVX2)
 	VMOVDQA(DD3, ctr3StoreAVX2)
 	MOVQ(U32(10), itr2)
+
+	sealAVX2IntroLoop()
+	sealAVX2MainLoop()
+	sealAVX2InternalLoop()
+	sealAVX2InternalLoopStart()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 129 bytes
+	// sealSSE128()
+	// sealSSE128SealHash()
+	// sealSSE128Seal()
+	sealSSETail()
+	// sealSSETailLoadLoop()
+	sealSSEFinalize()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 193 bytes
+	seal192AVX2()
+	sealAVX2192InnerCipherLoop()
+	sealAVX2ShortSeal()
+	sealAVX2SealHash()
+	sealAVX2ShortSealLoop()
+	sealAVX2ShortTail32()
+	sealAVX2ShortDone()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for buffers smaller than 321 bytes
+	seal320AVX2()
+	sealAVX2320InnerCipherLoop()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 128 bytes of ciphertext
+	sealAVX2Tail128()
+	sealAVX2Tail128LoopA()
+	sealAVX2Tail128LoopB()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 256 bytes of ciphertext
+	sealAVX2Tail256()
+	sealAVX2Tail256LoopA()
+	sealAVX2Tail256LoopB()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 384 bytes of ciphertext
+	sealAVX2Tail384()
+	sealAVX2Tail384LoopA()
+	sealAVX2Tail384LoopB()
+
+	// ----------------------------------------------------------------------------
+	// Special optimization for the last 512 bytes of ciphertext
+	sealAVX2Tail512()
+	sealAVX2Tail512LoopA()
+	sealAVX2Tail512LoopB()
 }
 
 func sealAVX2IntroLoop() {
