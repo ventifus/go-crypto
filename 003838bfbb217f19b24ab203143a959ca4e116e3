@@ -16,6 +16,24 @@
       "message": "```suggestion\n\tfor b.Loop() {\n```",
       "revId": "003838bfbb217f19b24ab203143a959ca4e116e3",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ab1253e_5b1b581a",
+        "filename": "x509roots/fallback/fallback_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 55874
+      },
+      "writtenOn": "2025-05-25T20:55:37Z",
+      "side": 1,
+      "message": "go.mod of x/crypto specifies 1.23, but b.Loop was only added in 1.24, so we have to use b.N",
+      "parentUuid": "47c7cc10_c52a4b62",
+      "revId": "003838bfbb217f19b24ab203143a959ca4e116e3",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
