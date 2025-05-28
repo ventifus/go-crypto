@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e97a30e2_6e56960e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-28T15:33:19Z",
+      "side": 1,
+      "message": "I\u0027m starting to scope some testing work in this package and figured I could start with a bit of clean-up.",
+      "revId": "ea9fcfca389905541995153a7fdff9b45867d23d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b50c8e_de8710a6",
+        "filename": "acme/acme_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-28T15:33:19Z",
+      "side": 1,
+      "message": "It looked like there wasn\u0027t coverage of `TLSALPN01ChallengeCert` with non-nil options so I adjusted this test that was previously covering that for the TLS-SNI-01 and TLS-SNI-02 challenge certs to instead cover TLS-ALPN-01.",
+      "revId": "ea9fcfca389905541995153a7fdff9b45867d23d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}

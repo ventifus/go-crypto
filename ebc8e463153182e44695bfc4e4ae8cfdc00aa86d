@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf9cac3_d9ae8979",
+        "filename": "acme/acme.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-28T15:33:19Z",
+      "side": 0,
+      "message": "For the curious, the deprecation notice was added in https://go-review.googlesource.com/c/crypto/+/380314 (Jan 22, 2022)",
+      "revId": "ebc8e463153182e44695bfc4e4ae8cfdc00aa86d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
