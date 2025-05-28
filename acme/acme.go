@@ -32,7 +32,6 @@ import (
 	"encoding/asn1"
 	"encoding/base64"
 	"encoding/json"
-	"encoding/pem"
 	"errors"
 	"fmt"
 	"math/big"
@@ -772,12 +771,6 @@ func tlsChallengeCert(san []string, opt []CertOption) (tls.Certificate, error) {
 		Certificate: [][]byte{der},
 		PrivateKey:  key,
 	}, nil
-}
-
-// encodePEM returns b encoded as PEM with block of type typ.
-func encodePEM(typ string, b []byte) []byte {
-	pb := &pem.Block{Type: typ, Bytes: b}
-	return pem.EncodeToMemory(pb)
 }
 
 // timeNow is time.Now, except in tests which can mess with it.
