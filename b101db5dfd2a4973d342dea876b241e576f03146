@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d932b79_32d80e2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-28T15:56:18Z",
+      "side": 1,
+      "message": "\u003e Patch Set 1 was rebased\n\nI rebased this on master since https://go-review.googlesource.com/c/crypto/+/676835 is probably going to be discarded due to compat guarantees :\u0027(",
+      "revId": "b101db5dfd2a4973d342dea876b241e576f03146",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
