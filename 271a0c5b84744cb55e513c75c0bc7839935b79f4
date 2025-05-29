@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd88c4c_1780c48f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55874
+      },
+      "writtenOn": "2025-05-29T19:06:01Z",
+      "side": 1,
+      "message": "Also changed from Fixed to Updates in commit message, since the init time is still high. This change only improves it slightly. (https://github.com/golang/go/issues/73691#issuecomment-2907893034)",
+      "revId": "271a0c5b84744cb55e513c75c0bc7839935b79f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
