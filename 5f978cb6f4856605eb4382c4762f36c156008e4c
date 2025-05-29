@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4381a053_4d0bd109",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-29T14:59:18Z",
+      "side": 1,
+      "message": "Reworked to maintain compat. guarantee. The package docs say:\n\n\u003e The current implementation supports only the modern RFC 8555 but some of the old API surface remains for compatibility. While code using the old API will still compile, it will return an error. Note the deprecation comments to update your code.\n\nso I think returning an error from these (likely unsafe) functions is the best bet.\n\nPTAL",
+      "revId": "5f978cb6f4856605eb4382c4762f36c156008e4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8a5b3f_8c2b7da6",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-29T14:59:18Z",
+      "side": 1,
+      "message": "RE: \"insecure for use in shared hosting environments\" see [this incident report from Let\u0027s Encrypt](https://community.letsencrypt.org/t/2018-01-09-issue-with-tls-sni-01-and-shared-hosting-infrastructure/49996)",
+      "revId": "5f978cb6f4856605eb4382c4762f36c156008e4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5c88f96_8eb6fd50",
+        "filename": "acme/acme.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-05-29T14:59:18Z",
+      "side": 1,
+      "message": "errPreRFC is phrased \"acme: server does not support the RFC 8555 version of ACME\" which is perhaps not the right message for this context (?)\n\nIf folks prefer, we could add a second `errPreRFCChallenge` that has phrasing like \"acme: pre-RFC 8555 challenge types are not supported\". WDYT?",
+      "revId": "5f978cb6f4856605eb4382c4762f36c156008e4c",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
