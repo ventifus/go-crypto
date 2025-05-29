@@ -159,8 +159,9 @@ func (a *AuthorizationError) Error() string {
 // The clients can still fetch the order object from CA using GetOrder
 // to inspect its state.
 type OrderError struct {
-	OrderURL string
-	Status   string
+	OrderURL        string
+	Status          string
+	ValidationError *Error
 }
 
 func (oe *OrderError) Error() string {
