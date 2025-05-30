@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63be9e45_3e22e61c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55874
+      },
+      "writtenOn": "2025-05-30T07:48:01Z",
+      "side": 1,
+      "message": "What if we added the PEM encoded certs as comments in `bundle.go`? WDYT?",
+      "parentUuid": "2fb035be_7faa8577",
+      "revId": "3e2364059ab05425f784cd305a04de374fcf1dba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04180d34_563662a4",
         "filename": "x509roots/fallback/fallback.go",
         "patchSetId": 2
