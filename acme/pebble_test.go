@@ -297,14 +297,10 @@ func testIssuance(t *testing.T, env *environment, provisioner challengeProvision
 			Type:  "dns",
 			Value: "www.example.com",
 		},
-		// TODO(@cpu): enable this identifier once IP addresses are handled correctly
-		//   by acme.TLSALPN01ChallengeCert
-		/*
-			{
-				Type:  "ip",
-				Value: "127.0.0.1",
-			},
-		*/
+		{
+			Type:  "ip",
+			Value: "127.0.0.1",
+		},
 	}
 	order, err := client.AuthorizeOrder(ctx, identifiers)
 	if err != nil {
