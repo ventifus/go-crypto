@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83bc321b_cf3c3bc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35558
+      },
+      "writtenOn": "2025-05-31T00:16:17Z",
+      "side": 1,
+      "message": "For what little it\u0027s worth, I\u0027ve tested this out with my sftp server and it correctly reported the algo being used to verify the public key. My setup doesn\u0027t use the fancier multi-auth capabilities.",
+      "revId": "684134de2f706a7cde44a7df2689fc2651569483",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
