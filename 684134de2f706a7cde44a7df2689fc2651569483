@@ -16,6 +16,23 @@
       "message": "For what little it\u0027s worth, I\u0027ve tested this out with my sftp server and it correctly reported the algo being used to verify the public key. My setup doesn\u0027t use the fancier multi-auth capabilities.",
       "revId": "684134de2f706a7cde44a7df2689fc2651569483",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67a50d0_21d644be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3471180
+      },
+      "writtenOn": "2025-06-01T23:20:45Z",
+      "side": 1,
+      "message": "Hi",
+      "revId": "684134de2f706a7cde44a7df2689fc2651569483",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
