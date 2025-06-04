@@ -233,7 +233,9 @@ func parseCert(in []byte, privAlgo string) (*Certificate, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	if _, ok := certKeyAlgoNames[k.Type()]; ok {
+		return nil, fmt.Errorf("ssh: the signature key type %q is invalid for certificates", k.Type())
+	}
 	c.SignatureKey = k
 	c.Signature, rest, ok = parseSignatureBody(g.Signature)
 	if !ok || len(rest) > 0 {
