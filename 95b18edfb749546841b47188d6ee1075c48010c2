@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b909c3_bdd24b32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-06-05T17:01:22Z",
+      "side": 1,
+      "message": "Consider making at least these two longtest builders mandatory, which can be done with the `Cq-Include-Trybots` footer:\n\n```suggestion\nChange-Id: I3fac703ec70559e18b30d5fff88274335a7c3952\nCq-Include-Trybots: x_crypto-gotip-linux-amd64-longtest,x_crypto-go1.24-linux-amd64-longtest\n```\n\nThat will make them run whenever Commit-Queue+1 is triggered, without needing to manually trigger them. See https://go.dev/wiki/SlowBots#using-slowbots for details.\n\nNote that the \"x_crypto-\" prefix in the builder means to run tests in the x/crypto repo. Leaving that out results in just the main Go repo tests running.",
+      "revId": "95b18edfb749546841b47188d6ee1075c48010c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a97c92ec_90209996",
@@ -14,6 +31,23 @@
       "writtenOn": "2025-06-05T16:53:30Z",
       "side": 1,
       "message": "@dmitshur@golang.org tested locally on macOS\n\n```\nnicola@iMac-di-Nicola ssh % go test -v -timeout 30s -run ^TestSSHCLIKeyExchanges$ golang.org/x/crypto/ssh/test\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/mlkem768x25519-sha256\n    sshcli_test.go:128: KEX \"mlkem768x25519-sha256\" is not supported in the installed ssh CLI\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/curve25519-sha256\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/ecdh-sha2-nistp256\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/ecdh-sha2-nistp384\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/ecdh-sha2-nistp521\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group14-sha256\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group16-sha512\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group-exchange-sha256\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group14-sha1\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group1-sha1\n\u003d\u003d\u003d RUN   TestSSHCLIKeyExchanges/diffie-hellman-group-exchange-sha1\n--- PASS: TestSSHCLIKeyExchanges (0.42s)\n    --- SKIP: TestSSHCLIKeyExchanges/mlkem768x25519-sha256 (0.01s)\n    --- PASS: TestSSHCLIKeyExchanges/curve25519-sha256 (0.02s)\n    --- PASS: TestSSHCLIKeyExchanges/ecdh-sha2-nistp256 (0.02s)\n    --- PASS: TestSSHCLIKeyExchanges/ecdh-sha2-nistp384 (0.02s)\n    --- PASS: TestSSHCLIKeyExchanges/ecdh-sha2-nistp521 (0.03s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group14-sha256 (0.03s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group16-sha512 (0.08s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group-exchange-sha256 (0.08s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group14-sha1 (0.03s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group1-sha1 (0.02s)\n    --- PASS: TestSSHCLIKeyExchanges/diffie-hellman-group-exchange-sha1 (0.08s)\nPASS\nok  \tgolang.org/x/crypto/ssh/test\t0.819s\nnicola@iMac-di-Nicola ssh % go version\ngo version go1.24.3 darwin/amd64\nnicola@iMac-di-Nicola ssh % ssh -Q kex\ndiffie-hellman-group1-sha1\ndiffie-hellman-group14-sha1\ndiffie-hellman-group14-sha256\ndiffie-hellman-group16-sha512\ndiffie-hellman-group18-sha512\ndiffie-hellman-group-exchange-sha1\ndiffie-hellman-group-exchange-sha256\necdh-sha2-nistp256\necdh-sha2-nistp384\necdh-sha2-nistp521\ncurve25519-sha256\ncurve25519-sha256@libssh.org\nsntrup761x25519-sha512@openssh.com\n```",
+      "revId": "95b18edfb749546841b47188d6ee1075c48010c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2563cb19_876cbc30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-06-05T17:01:22Z",
+      "side": 1,
+      "message": "Thanks.",
       "revId": "95b18edfb749546841b47188d6ee1075c48010c2",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
