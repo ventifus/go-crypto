@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3717785b_7e2d9768",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-06-05T17:09:41Z",
+      "side": 1,
+      "message": "Sorry, that suggestion should\u0027ve been:\n\n```suggestion\nChange-Id: I3fac703ec70559e18b30d5fff88274335a7c3952\nCq-Include-Trybots: luci.golang.try:x_crypto-gotip-linux-amd64-longtest,x_crypto-go1.24-linux-amd64-longtest\n```\n\n(I accidentally dropped the \u0027luci.golang.try:\u0027 prefix when copying it.)\n\nDone in PS 3.",
+      "parentUuid": "93b909c3_bdd24b32",
+      "revId": "95b18edfb749546841b47188d6ee1075c48010c2",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a97c92ec_90209996",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
