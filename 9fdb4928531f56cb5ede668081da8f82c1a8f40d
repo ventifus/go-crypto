@@ -19,6 +19,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a5eefc_7665bf1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5167
+      },
+      "writtenOn": "2025-06-10T18:08:13Z",
+      "side": 1,
+      "message": "Oops. I clicked the wrong trybots.",
+      "parentUuid": "3bc08336_fa784bff",
+      "revId": "9fdb4928531f56cb5ede668081da8f82c1a8f40d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9afa62d_997b93b7",
