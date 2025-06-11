@@ -110,6 +110,9 @@ func TestSSHCLIKeyExchanges(t *testing.T) {
 		t.Skipf("always fails on Windows, see #64403")
 	}
 	sshCLI := sshClient(t)
+	sshCLIVersionOut, _ := testenv.Command(t, sshCLI, "-V").CombinedOutput()
+	fmt.Printf("ssh client version: %s\n", sshCLIVersionOut)
+
 	keyFiles := map[string][]byte{
 		"rsa":     testdata.PEMBytes["rsa"],
 		"rsa.pub": ssh.MarshalAuthorizedKey(testPublicKeys["rsa"]),
