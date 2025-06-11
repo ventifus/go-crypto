@@ -154,13 +154,15 @@ func (a *AuthorizationError) Error() string {
 
 // OrderError is returned from Client's order related methods.
 // It indicates the order is unusable and the clients should start over with
-// AuthorizeOrder.
+// AuthorizeOrder. A Problem description may be provided with details on
+// what caused the order to become unusable.
 //
 // The clients can still fetch the order object from CA using GetOrder
 // to inspect its state.
 type OrderError struct {
 	OrderURL string
 	Status   string
+	Problem  *Error
 }
 
 func (oe *OrderError) Error() string {
