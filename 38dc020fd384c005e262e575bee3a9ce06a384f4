@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6643609_506ac96e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-11T21:00:16Z",
+      "side": 1,
+      "message": "This is ready for review again after a bit of iteration/flailing around in CI.\n\n* I added the correct commit message trailer to get the longtest builders to run the test\n* I removed the AAAA records from the mock DNS server, the LUCI environment seems to have issues connecting to the IPv6 loopback.\n* I switched to one table-driven unit test instead of multiple tests functions. This required some minor interface tweaks.\n* Per Filippo\u0027s advice I reworked the test so its built on all platforms, but only run in CI for Linux (as opposed to build-gating the whole test).",
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
