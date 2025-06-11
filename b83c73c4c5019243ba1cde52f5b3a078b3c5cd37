@@ -16,6 +16,24 @@
       "message": "I tried to add `Cq-Include-Trybots: luci.golang.try:gotip-linux-amd64-longtest` to this commit message but ran into an error:\n\n\u003e builder \"golang/try/gotip-linux-amd64-longtest\" is included but not defined in the LUCI project\n\nI think that\u0027s the correct builder name \u0026 it _seems_ to exist, but for now I\u0027ve removed the trailer pending some guidance from someone more familiar with Trybots :)",
       "revId": "b83c73c4c5019243ba1cde52f5b3a078b3c5cd37",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55541065_f26e59cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-11T18:47:04Z",
+      "side": 1,
+      "message": "I wanted `",
+      "parentUuid": "8e7a26ca_5ff45d38",
+      "revId": "b83c73c4c5019243ba1cde52f5b3a078b3c5cd37",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
