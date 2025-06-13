@@ -16,6 +16,69 @@
       "message": "This is ready for review again after a bit of iteration/flailing around in CI.\n\n* I added the correct commit message trailer to get the longtest builders to run the test\n* I removed the AAAA records from the mock DNS server, the LUCI environment seems to have issues connecting to the IPv6 loopback.\n* I switched to one table-driven unit test instead of multiple tests functions. This required some minor interface tweaks.\n* Per Filippo\u0027s advice I reworked the test so its built on all platforms, but only run in CI for Linux (as opposed to build-gating the whole test).",
       "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e89572a9_1076a080",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-06-13T12:43:09Z",
+      "side": 1,
+      "message": "Non-blocking nits.",
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "694bc887_329dc93a",
+        "filename": "acme/pebble_notlinux_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-06-13T12:43:09Z",
+      "side": 1,
+      "message": "Is panic the right thing here or should we update the signature to take `t *testing.T` and call `t.Skip(\"pebble testing only supported on Linux\")`? I\u0027m assuming there are conventions I\u0027m unaware of\n\n```suggestion\nfunc spawnServerProcess(t *testing.T, _ string, _ string, _ ...string) {\n\tt.Skip(\"pebble testing only supported on Linux\")\n```\n\nThis is in case it isn\u0027t clear what I was suggesting, not a requirement.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 48
+      },
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be72578_279966cc",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-06-13T12:43:09Z",
+      "side": 1,
+      "message": "Even though we\u0027re just importing ourselves, shouldn\u0027t it be after the standard library by convention?\n\n```suggestion\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net\"\n\t\"net/http\"\n\t\"os\"\n\t\"os/exec\"\n\t\"path/filepath\"\n\t\"runtime\"\n\t\"strings\"\n\t\"sync\"\n\t\"sync/atomic\"\n\t\"testing\"\n\t\"time\"\n\n\t\"golang.org/x/crypto/acme\"\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 7
+      },
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
