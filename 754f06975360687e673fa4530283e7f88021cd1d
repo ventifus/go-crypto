@@ -16,6 +16,23 @@
       "message": "I found this helpful while debugging the Pebble integration tests. WDYT?",
       "revId": "754f06975360687e673fa4530283e7f88021cd1d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e282f5c_8db202ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-06-13T12:50:29Z",
+      "side": 1,
+      "message": "I\u0027m strongly +1 here, but I _think_ because we\u0027re adding a public field here we need a proposal first and I\u0027m not seeing one on https://github.com/golang/go/issues?q\u003dis%3Aissue%20state%3Aopen%20acme%20OrderError\n\nPersonally, I feel that if we\u0027re just making the library compliant with the existing standard (8555) then it really shouldn\u0027t need a full proposal process but I\u0027m guessing here that it probably does.",
+      "revId": "754f06975360687e673fa4530283e7f88021cd1d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
