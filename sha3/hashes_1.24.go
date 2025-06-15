@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-//go:build !go1.24
+//go:build go1.24
 
 package sha3
 
@@ -11,7 +11,7 @@ package sha3
 // bytes.
 
 import (
-	"crypto"
+	"crypto/sha3"
 	"hash"
 )
 
@@ -19,81 +19,46 @@ import (
 // Its generic security strength is 224 bits against preimage attacks,
 // and 112 bits against collision attacks.
 func New224() hash.Hash {
-	return new224()
+	return sha3.New224()
 }
 
 // New256 creates a new SHA3-256 hash.
 // Its generic security strength is 256 bits against preimage attacks,
 // and 128 bits against collision attacks.
 func New256() hash.Hash {
-	return new256()
+	return sha3.New256()
 }
 
 // New384 creates a new SHA3-384 hash.
 // Its generic security strength is 384 bits against preimage attacks,
 // and 192 bits against collision attacks.
 func New384() hash.Hash {
-	return new384()
+	return sha3.New384()
 }
 
 // New512 creates a new SHA3-512 hash.
 // Its generic security strength is 512 bits against preimage attacks,
 // and 256 bits against collision attacks.
 func New512() hash.Hash {
-	return new512()
-}
-
-func init() {
-	crypto.RegisterHash(crypto.SHA3_224, New224)
-	crypto.RegisterHash(crypto.SHA3_256, New256)
-	crypto.RegisterHash(crypto.SHA3_384, New384)
-	crypto.RegisterHash(crypto.SHA3_512, New512)
-}
-
-func new224Generic() *state {
-	return &state{rate: rateK448, outputLen: 28, dsbyte: dsbyteSHA3}
-}
-
-func new256Generic() *state {
-	return &state{rate: rateK512, outputLen: 32, dsbyte: dsbyteSHA3}
-}
-
-func new384Generic() *state {
-	return &state{rate: rateK768, outputLen: 48, dsbyte: dsbyteSHA3}
-}
-
-func new512Generic() *state {
-	return &state{rate: rateK1024, outputLen: 64, dsbyte: dsbyteSHA3}
+	return sha3.New512()
 }
 
 // Sum224 returns the SHA3-224 digest of the data.
 func Sum224(data []byte) (digest [28]byte) {
-	h := New224()
-	h.Write(data)
-	h.Sum(digest[:0])
-	return
+	return sha3.Sum224(data)
 }
 
 // Sum256 returns the SHA3-256 digest of the data.
 func Sum256(data []byte) (digest [32]byte) {
-	h := New256()
-	h.Write(data)
-	h.Sum(digest[:0])
-	return
+	return sha3.Sum256(data)
 }
 
 // Sum384 returns the SHA3-384 digest of the data.
 func Sum384(data []byte) (digest [48]byte) {
-	h := New384()
-	h.Write(data)
-	h.Sum(digest[:0])
-	return
+	return sha3.Sum384(data)
 }
 
 // Sum512 returns the SHA3-512 digest of the data.
 func Sum512(data []byte) (digest [64]byte) {
-	h := New512()
-	h.Write(data)
-	h.Sum(digest[:0])
-	return
+	return sha3.Sum512(data)
 }
