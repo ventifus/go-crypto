@@ -52,6 +52,24 @@
       "message": "This presumably needs a //go:build go1.25 constraint?",
       "revId": "9fdb4928531f56cb5ede668081da8f82c1a8f40d",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf2a947_3166124b",
+        "filename": "blake2b/go125.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 64033
+      },
+      "writtenOn": "2025-06-17T16:28:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9afa62d_997b93b7",
+      "revId": "9fdb4928531f56cb5ede668081da8f82c1a8f40d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
