@@ -16,6 +16,24 @@
       "message": "This would seem to violate the hash.XOF interface, which doesn\u0027t indicate that BlockSize can behave differently after Read.",
       "revId": "4696d1892d53cd922423dafee947058118e70c19",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a31c6be_23910a80",
+        "filename": "blake2b/blake2x.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5167
+      },
+      "writtenOn": "2025-06-19T04:36:02Z",
+      "side": 1,
+      "message": "It looks like it should be fine to call (*digest).BlockSize even if the xof is in read mode.",
+      "parentUuid": "6b340bed_6bcb225c",
+      "revId": "4696d1892d53cd922423dafee947058118e70c19",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
