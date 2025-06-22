@@ -647,6 +647,48 @@ func (cb KeyboardInteractiveChallenge) auth(session []byte, user string, c packe
 	}
 }
 
+type sequentialAuthMethod struct {
+	authMehods []AuthMethod
+}
+
+func (s *sequentialAuthMethod) method() string {
+	// We return the name of the first auth method in the sequence.
+	if len(s.authMehods) > 0 {
+		return s.authMehods[0].method()
+	}
+	return ""
+}
+
+func (s *sequentialAuthMethod) auth(session []byte, user string, c packetConn, rand io.Reader, extensions map[string][]byte) (ok authResult, methods []string, err error) {
+	for idx, auth := range s.authMehods {
+		ok, methods, err = auth.auth(session, user, c, rand, extensions)
+		if err != nil || ok == authFailure {
+			return authFailure, methods, err
+		}
+		if ok == authSuccess && idx != len(s.authMehods)-1 {
+			err := &disconnectMsg{
+				Reason:  11, // SSH_DISCONNECT_BY_APPLICATION
+				Message: "only the final authentication method in a sequential process is allowed to succeed",
+			}
+			return authFailure, nil, err
+		}
+	}
+	return ok, methods, err
+}
+
+// SequentialAuthMethods is a wrapper for multiple authentication methods. It
+// attempts each method in sequence, stopping immediately on the first failure.
+// If all methods succeed, the result of the last one is returned. This is
+// useful for enforcing multi-step authentication sequences where all steps must
+// succeed. Note that a partial success is not treated as a failure, even if
+// returned by the final method but only the final method is allowed to return a
+// successfull authentication. If a method other than the last one succeeds, the
+// connection will be closed, and no further authentication methods combined
+// with this one will be attempted.
+func SequentialsAuthMethods(auths []AuthMethod) AuthMethod {
+	return &sequentialAuthMethod{authMehods: auths}
+}
+
 type retryableAuthMethod struct {
 	authMethod AuthMethod
 	maxTries   int

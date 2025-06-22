@@ -221,6 +221,119 @@ func TestAuthMethodWrongPassword(t *testing.T) {
 	}
 }
 
+func TestAuthMethodSequentialAuth(t *testing.T) {
+	username := "testuser"
+	serverConfig := &ServerConfig{
+		PublicKeyCallback: func(conn ConnMetadata, key PublicKey) (*Permissions, error) {
+			if bytes.Equal(key.Marshal(), testPublicKeys["rsa"].Marshal()) {
+				return nil, &PartialSuccessError{
+					Next: ServerAuthCallbacks{
+						PasswordCallback: func(conn ConnMetadata, password []byte) (*Permissions, error) {
+							if conn.User() == username && string(password) == clientPassword {
+								return nil, nil
+							}
+							return nil, errors.New("password auth failed")
+						},
+					},
+				}
+			}
+			return nil, fmt.Errorf("pubkey for %q not acceptable", conn.User())
+		},
+	}
+
+	testCases := []struct {
+		name          string
+		clientAuth    []AuthMethod
+		expectSuccess bool
+	}{
+		{
+			name: "Correct sequence",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					PublicKeys(testSigners["rsa"]),
+					Password(clientPassword),
+				}),
+			},
+			expectSuccess: true,
+		},
+		{
+			name: "Correct sequence, wrong password",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					PublicKeys(testSigners["rsa"]),
+					Password("wrong"),
+				}),
+			},
+			expectSuccess: false,
+		},
+		{
+			name: "Wrong sequence",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					Password(clientPassword),
+					PublicKeys(testSigners["rsa"]),
+				}),
+			},
+			expectSuccess: false,
+		},
+		{
+			name: "Next auth methods on failure",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					PublicKeys(testSigners["rsa"]),
+					Password("wrong"),
+				}),
+				PublicKeys(testSigners["rsa"]),
+				Password(clientPassword),
+			},
+			expectSuccess: true,
+		},
+		{
+			name: "Next auth method after partial success",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					PublicKeys(testSigners["rsa"]),
+				}),
+				Password(clientPassword),
+			},
+			expectSuccess: true,
+		},
+		{
+			name: "Empty sequence",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{}),
+			},
+			expectSuccess: false,
+		},
+		{
+			name: "Incomplete sequence",
+			clientAuth: []AuthMethod{
+				SequentialsAuthMethods([]AuthMethod{
+					PublicKeys(testSigners["rsa"]),
+				}),
+			},
+			expectSuccess: false,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			clientConfig := &ClientConfig{
+				User:            username,
+				Auth:            tc.clientAuth,
+				HostKeyCallback: InsecureIgnoreHostKey(),
+			}
+
+			_, err := doClientServerAuth(t, serverConfig, clientConfig)
+			if tc.expectSuccess && err != nil {
+				t.Fatalf("expected success, but got error: %v", err)
+			} else if !tc.expectSuccess && err == nil {
+				t.Fatalf("expected failure, but got success")
+			}
+		})
+	}
+}
+
 func TestAuthMethodKeyboardInteractive(t *testing.T) {
 	answers := keyboardInteractive(map[string]string{
 		"question1": "answer1",
