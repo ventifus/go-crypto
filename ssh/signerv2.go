@@ -10,6 +10,8 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/rsa"
+	"crypto/x509"
+	"encoding/asn1"
 	"encoding/pem"
 	"errors"
 	"fmt"
@@ -142,6 +144,9 @@ type MarshalPrivateKeyOptionsV2 struct {
 // MarshalPrivateKeyV2 returns a PEM block with the private key serialized in the
 // OpenSSH format.
 func MarshalPrivateKeyV2(key crypto.Signer, options *MarshalPrivateKeyOptionsV2) (*pem.Block, error) {
+	if options == nil {
+		options = &MarshalPrivateKeyOptionsV2{}
+	}
 	if options.Passphrase != "" {
 		if options.SaltRounds <= 0 {
 			// See here: https://github.com/openssh/openssh-portable/blob/e048230/sshkey.c#L2855.
@@ -151,4 +156,104 @@ func MarshalPrivateKeyV2(key crypto.Signer, options *MarshalPrivateKeyOptionsV2)
 			passphraseProtectedOpenSSHMarshaler([]byte(options.Passphrase), uint32(options.SaltRounds)))
 	}
 	return marshalOpenSSHPrivateKey(key, options.Comment, unencryptedOpenSSHMarshaler)
+}
+
+// ParsePrivateKeyOptionsV2 defines the available options to Parse a PEM encoded
+// private key .
+type ParsePrivateKeyOptionsV2 struct {
+	// If set the key will be encrypted.
+	Passphrase string
+}
+
+// ParsePrivateKeyV2 returns a crypto.Signer from a PEM encoded private key.
+func ParsePrivateKeyV2(pemBytes []byte, options *ParsePrivateKeyOptionsV2) (crypto.Signer, error) {
+	if options == nil {
+		// FIXME: don't use a pointer?
+		options = &ParsePrivateKeyOptionsV2{}
+	}
+	var key any
+	var err error
+
+	if options.Passphrase != "" {
+		key, err = parseRawPrivateKeyWithPassphrase(pemBytes, []byte(options.Passphrase))
+	} else {
+		key, err = parseRawPrivateKey(pemBytes)
+	}
+
+	if err != nil {
+		return nil, err
+	}
+
+	if signer, ok := key.(crypto.Signer); ok {
+		return signer, nil
+	}
+	return nil, fmt.Errorf("ssh: unsupported key type %T", key)
+}
+
+func parseRawPrivateKey(pemBytes []byte) (any, error) {
+	block, _ := pem.Decode(pemBytes)
+	if block == nil {
+		return nil, errors.New("ssh: no key found")
+	}
+
+	if encryptedBlock(block) {
+		return nil, &PassphraseMissingError{}
+	}
+
+	switch block.Type {
+	case "RSA PRIVATE KEY":
+		return x509.ParsePKCS1PrivateKey(block.Bytes)
+	// RFC5208 - https://tools.ietf.org/html/rfc5208
+	case "PRIVATE KEY":
+		return x509.ParsePKCS8PrivateKey(block.Bytes)
+	case "EC PRIVATE KEY":
+		return x509.ParseECPrivateKey(block.Bytes)
+	case "OPENSSH PRIVATE KEY":
+		return parseOpenSSHPrivateKey(block.Bytes, unencryptedOpenSSHKey)
+	default:
+		return nil, fmt.Errorf("ssh: unsupported key type %q", block.Type)
+	}
+}
+
+func parseRawPrivateKeyWithPassphrase(pemBytes, passphrase []byte) (interface{}, error) {
+	block, _ := pem.Decode(pemBytes)
+	if block == nil {
+		return nil, errors.New("ssh: no key found")
+	}
+
+	if block.Type == "OPENSSH PRIVATE KEY" {
+		return parseOpenSSHPrivateKey(block.Bytes, passphraseProtectedOpenSSHKey(passphrase))
+	}
+
+	if !encryptedBlock(block) || !x509.IsEncryptedPEMBlock(block) {
+		return nil, errors.New("ssh: not an encrypted key")
+	}
+
+	buf, err := x509.DecryptPEMBlock(block, passphrase)
+	if err != nil {
+		if err == x509.IncorrectPasswordError {
+			return nil, err
+		}
+		return nil, fmt.Errorf("ssh: cannot decode encrypted private keys: %v", err)
+	}
+
+	var result interface{}
+
+	switch block.Type {
+	case "RSA PRIVATE KEY":
+		result, err = x509.ParsePKCS1PrivateKey(buf)
+	case "EC PRIVATE KEY":
+		result, err = x509.ParseECPrivateKey(buf)
+	default:
+		err = fmt.Errorf("ssh: unsupported key type %q", block.Type)
+	}
+	// Because of deficiencies in the format, DecryptPEMBlock does not always
+	// detect an incorrect password. In these cases decrypted DER bytes is
+	// random noise. If the parsing of the key returns an asn1.StructuralError
+	// we return x509.IncorrectPasswordError.
+	if _, ok := err.(asn1.StructuralError); ok {
+		return nil, x509.IncorrectPasswordError
+	}
+
+	return result, err
 }

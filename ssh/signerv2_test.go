@@ -10,6 +10,8 @@ import (
 	"encoding/pem"
 	"reflect"
 	"testing"
+
+	"golang.org/x/crypto/ssh/testdata"
 )
 
 func TestNewPublicKeyV2(t *testing.T) {
@@ -45,21 +47,16 @@ func TestMarshalPrivateKeyV2(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			k, ok := testPrivateKeys[tt.name]
-			if !ok {
-				t.Fatalf("cannot find key %s", tt.name)
+			expected, err := ParsePrivateKeyV2(testdata.PEMBytes[tt.name], nil)
+			if err != nil {
+				t.Fatal(err)
 			}
-			expected, ok := k.(crypto.Signer)
-			if !ok {
-				t.Fatalf("key %s isn't a crypto.Signer", tt.name)
-			}
-
 			block, err := MarshalPrivateKeyV2(expected, &MarshalPrivateKeyOptionsV2{Comment: "test@golang.org"})
 			if err != nil {
 				t.Fatalf("cannot marshal %s: %v", tt.name, err)
 			}
 
-			key, err := ParseRawPrivateKey(pem.EncodeToMemory(block))
+			key, err := ParsePrivateKeyV2(pem.EncodeToMemory(block), nil)
 			if err != nil {
 				t.Fatalf("cannot parse %s: %v", tt.name, err)
 			}
@@ -100,7 +97,7 @@ func TestMarshalPrivateKeyWithPassphraseV2(t *testing.T) {
 				t.Fatalf("cannot marshal %s: %v", tt.name, err)
 			}
 
-			key, err := ParseRawPrivateKeyWithPassphrase(pem.EncodeToMemory(block), []byte("test-passphrase"))
+			key, err := ParsePrivateKeyV2(pem.EncodeToMemory(block), &ParsePrivateKeyOptionsV2{Passphrase: "test-passphrase"})
 			if err != nil {
 				t.Fatalf("cannot parse %s: %v", tt.name, err)
 			}
