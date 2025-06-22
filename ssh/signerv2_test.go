@@ -59,7 +59,7 @@ func TestMarshalPrivateKeyV2(t *testing.T) {
 				t.Fatalf("cannot marshal %s: %v", tt.name, err)
 			}
 
-			key, err := ParseRawPrivateKey(pem.EncodeToMemory(block))
+			key, err := ParsePrivateKeyV2(pem.EncodeToMemory(block), nil)
 			if err != nil {
 				t.Fatalf("cannot parse %s: %v", tt.name, err)
 			}
@@ -100,7 +100,7 @@ func TestMarshalPrivateKeyWithPassphraseV2(t *testing.T) {
 				t.Fatalf("cannot marshal %s: %v", tt.name, err)
 			}
 
-			key, err := ParseRawPrivateKeyWithPassphrase(pem.EncodeToMemory(block), []byte("test-passphrase"))
+			key, err := ParsePrivateKeyV2(pem.EncodeToMemory(block), &ParsePrivateKeyOptionsV2{Passphrase: "test-passphrase"})
 			if err != nil {
 				t.Fatalf("cannot parse %s: %v", tt.name, err)
 			}
