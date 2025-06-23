@@ -69,6 +69,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "180dd654_9a4ee787",
+        "filename": "acme/pebble_linux_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "Good call. It took a little bit of rejigging but the results are indeed nicer.",
+      "parentUuid": "39abebcb_97af11a4",
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "694bc887_329dc93a",
@@ -106,6 +124,30 @@
       "side": 1,
       "message": "The top-level test already skips for the wrong platforms so this function shouldn\u0027t be called at all unless there\u0027s some kind of a bug. With that framing in mind it felt more appropriate to panic if it was called. \n\nDoes that line of reasoning resonate with you?",
       "parentUuid": "694bc887_329dc93a",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 48
+      },
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9821bb5c_71add0e7",
+        "filename": "acme/pebble_notlinux_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "This fell away with the change to pre-build the binaries instead of using `go run`.\n\nThanks!",
+      "parentUuid": "d64d4789_d619f125",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -187,6 +229,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61b26b15_d6a221c7",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "Re-ordered the imports.",
+      "parentUuid": "29e272d0_dca65580",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 7
+      },
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "499a1a07_5feffcb2",
@@ -200,6 +266,24 @@
       "writtenOn": "2025-06-13T15:48:15Z",
       "side": 1,
       "message": "I think this is probably fine, but a lot of people develop on darwin (which I think these tests should run fine on), so in order to catch issues, might want to do `linux || darwin`.",
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "799ceb44_9b37af18",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "This fell away. There\u0027s no platform specific bits to gate off anymore AFAICT.",
+      "parentUuid": "499a1a07_5feffcb2",
       "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
@@ -221,6 +305,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b8dd92_a5adcf7a",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "I had a shorter timeout initially but was seeing it fail in CI. The switch to pre-building the binaries helped (again, good suggestion!) and I was able to reduce it again.",
+      "parentUuid": "86e56e8e_2dd8b3e7",
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ce5b9f5_2c0ee48c",
@@ -234,6 +336,30 @@
       "writtenOn": "2025-06-13T15:48:15Z",
       "side": 1,
       "message": "25?",
+      "range": {
+        "startLine": 703,
+        "startChar": 41,
+        "endLine": 703,
+        "endChar": 43
+      },
+      "revId": "38dc020fd384c005e262e575bee3a9ce06a384f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84239ee_8462cf95",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 17
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-23T16:42:35Z",
+      "side": 1,
+      "message": "Iteration count is back to 10, so this fell away.",
+      "parentUuid": "6ce5b9f5_2c0ee48c",
       "range": {
         "startLine": 703,
         "startChar": 41,
