@@ -22,6 +22,30 @@
       },
       "revId": "85154865cc795bab030cf6fb0224ec8f8df34dd4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55bf353f_e6ab9973",
+        "filename": "ssh/client_auth.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-24T11:10:01Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "fa1248d3_23e0eb30",
+      "range": {
+        "startLine": 686,
+        "startChar": 28,
+        "endLine": 687,
+        "endChar": 35
+      },
+      "revId": "85154865cc795bab030cf6fb0224ec8f8df34dd4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
