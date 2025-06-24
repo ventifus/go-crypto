@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98b16ca1_91e8ecb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-24T11:25:43Z",
+      "side": 1,
+      "message": "On hold awaiting proposal approval",
+      "revId": "85154865cc795bab030cf6fb0224ec8f8df34dd4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa1248d3_23e0eb30",
