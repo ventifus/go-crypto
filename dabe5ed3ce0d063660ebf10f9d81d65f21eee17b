@@ -18,6 +18,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab78d184_2f35b0ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-30T12:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84239fb0_a47ebe3f",
+      "revId": "dabe5ed3ce0d063660ebf10f9d81d65f21eee17b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65f2ee09_710d4ad1",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-06-30T10:44:20Z",
       "side": 1,
       "message": "Encode this as hex or base64.",
+      "range": {
+        "startLine": 815,
+        "startChar": 14,
+        "endLine": 848,
+        "endChar": 36
+      },
+      "revId": "dabe5ed3ce0d063660ebf10f9d81d65f21eee17b",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cfda6f_ebf76604",
+        "filename": "ssh/keys_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-30T12:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65f2ee09_710d4ad1",
       "range": {
         "startLine": 815,
         "startChar": 14,
