@@ -24,6 +24,30 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4cc5740_cea6eb5d",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-30T12:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c5d7a34_7c245add",
+      "range": {
+        "startLine": 451,
+        "startChar": 31,
+        "endLine": 452,
+        "endChar": 18
+      },
+      "revId": "d8df1ee6f9aad4df731a3f36207f238b39f37ab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee46da1c_fa0e8ced",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-06-30T10:42:23Z",
       "side": 1,
       "message": "```suggestion\n\t\treturn fmt.Errorf(\"ssh: certificates cannot be used as authority (public key type %q)\",\n```",
+      "revId": "d8df1ee6f9aad4df731a3f36207f238b39f37ab1",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bfb37ae_666597fe",
+        "filename": "ssh/certs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-06-30T12:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee46da1c_fa0e8ced",
       "revId": "d8df1ee6f9aad4df731a3f36207f238b39f37ab1",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
