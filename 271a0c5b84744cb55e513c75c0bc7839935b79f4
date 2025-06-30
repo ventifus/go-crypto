@@ -16,6 +16,23 @@
       "message": "Also changed from Fixed to Updates in commit message, since the init time is still high. This change only improves it slightly. (https://github.com/golang/go/issues/73691#issuecomment-2907893034)",
       "revId": "271a0c5b84744cb55e513c75c0bc7839935b79f4",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a0dcafa_44ab4c5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-06-30T17:35:18Z",
+      "side": 1,
+      "message": "Can you regen the bundle, we recently merged an automated update that mutated the old bundle so there is now a diff.",
+      "revId": "271a0c5b84744cb55e513c75c0bc7839935b79f4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }

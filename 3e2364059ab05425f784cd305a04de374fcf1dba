@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82eb9a22_bb440ce6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12545
+      },
+      "writtenOn": "2025-06-30T17:35:18Z",
+      "side": 1,
+      "message": "I\u0027m not sure it\u0027s necessary, the main problem would be trying to match changes to the unparsedCertificates list with the changes in bundle.der. If there was a mismatch between the PEM and the DER it\u0027d be quite hard to pinpoint without significant extra effort from a reviewer.\n\nI don\u0027t think we really need to worry about adversarial changes here, since we only accept the automated updates from our release tooling, so I think it\u0027s just fine to trust the generated bundle file, as long as the relevant tests pass. Maybe we should add a test to fallback_test.go that checks that the certs returned by mustParse have their CN matching the CN in unparsedCertificates?",
+      "parentUuid": "63be9e45_3e22e61c",
+      "revId": "3e2364059ab05425f784cd305a04de374fcf1dba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04180d34_563662a4",
         "filename": "x509roots/fallback/fallback.go",
         "patchSetId": 2
