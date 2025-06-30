@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc503b1_1b8c1209",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 35155
+      },
+      "writtenOn": "2025-06-30T15:53:19Z",
+      "side": 1,
+      "message": "```suggestion\nFixes golang/go#73914\n```\n\nSince this CL is in an x/ repo. It won\u0027t automatically close the issue otherwise. (See https://go.dev/wiki/CommitMessage#other-repos.)",
+      "revId": "c71cda4e3d3545f05c4c6e77691c6c9db39bc288",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d67f2335_2de44ec7",
