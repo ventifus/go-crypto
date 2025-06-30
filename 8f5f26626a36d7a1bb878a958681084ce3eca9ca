@@ -35,6 +35,24 @@
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbabbaac_54b340b2",
+        "filename": "blake2b/blake2x.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 64033
+      },
+      "writtenOn": "2025-06-30T16:25:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a7fd471_dc9ac990",
+      "revId": "8f5f26626a36d7a1bb878a958681084ce3eca9ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b8a54db_95c1e660",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-06-19T22:31:18Z",
       "side": 1,
       "message": "```\n// Copyright 2025 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build go1.25\n\npackage blake2b\n```\n\nCopyright header first, then build tag, then the package clause, with a blank line in between. (Otherwise the copyright header will be treated as package doc comment.)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 15
+      },
+      "revId": "8f5f26626a36d7a1bb878a958681084ce3eca9ca",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee40558_3a4ef373",
+        "filename": "blake2b/go125.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 64033
+      },
+      "writtenOn": "2025-06-30T16:25:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b8a54db_95c1e660",
       "range": {
         "startLine": 1,
         "startChar": 0,
