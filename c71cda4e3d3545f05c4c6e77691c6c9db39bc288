@@ -16,6 +16,24 @@
       "message": "Huh, was this ever called with a nil `san`?",
       "revId": "c71cda4e3d3545f05c4c6e77691c6c9db39bc288",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0223c50f_f29221be",
+        "filename": "acme/acme.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-06-30T17:00:36Z",
+      "side": 0,
+      "message": "I don\u0027t think so, at least not anytime recently.",
+      "parentUuid": "be12e38e_7afed274",
+      "revId": "c71cda4e3d3545f05c4c6e77691c6c9db39bc288",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
