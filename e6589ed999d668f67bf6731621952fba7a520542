@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99354810_bb2e482d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3961206
+      },
+      "writtenOn": "2025-06-30T12:43:08Z",
+      "side": 1,
+      "message": "Personally I feel this is important, so I sent the proposal bug https://github.com/golang/go/issues/74430\n\nHappy to revive this for you later on if the proposal is accepted",
+      "revId": "e6589ed999d668f67bf6731621952fba7a520542",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
