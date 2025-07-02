@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb0cb819_12d0a99f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-07-02T14:12:26Z",
+      "side": 1,
+      "message": "Hi Adam, thanks for the CR.\n\nI believe this change would require a [proposal issue](https://github.com/golang/proposal?tab\u003dreadme-ov-file#scope). Have you filed one already?",
+      "revId": "5b7bba8352eced153f274804b6e5418e78a42681",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
