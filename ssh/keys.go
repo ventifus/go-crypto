@@ -311,7 +311,7 @@ func MarshalPrivateKey(key crypto.PrivateKey, comment string) (*pem.Block, error
 // MarshalPrivateKeyWithPassphrase returns a PEM block holding the encrypted
 // private key serialized in the OpenSSH format.
 func MarshalPrivateKeyWithPassphrase(key crypto.PrivateKey, comment string, passphrase []byte) (*pem.Block, error) {
-	return marshalOpenSSHPrivateKey(key, comment, passphraseProtectedOpenSSHMarshaler(passphrase))
+	return marshalOpenSSHPrivateKey(key, comment, passphraseProtectedOpenSSHMarshaler(passphrase, 16))
 }
 
 // PublicKey represents a public key using an unspecified algorithm.
@@ -412,6 +412,7 @@ func NewSignerWithAlgorithms(signer AlgorithmSigner, algorithms []string) (Multi
 type multiAlgorithmSigner struct {
 	AlgorithmSigner
 	supportedAlgorithms []string
+	privateKey          crypto.Signer
 }
 
 func (s *multiAlgorithmSigner) Algorithms() []string {
@@ -435,6 +436,10 @@ func (s *multiAlgorithmSigner) SignWithAlgorithm(rand io.Reader, data []byte, al
 		return nil, fmt.Errorf("ssh: algorithm %q is not supported: %v", algorithm, s.supportedAlgorithms)
 	}
 	return s.AlgorithmSigner.SignWithAlgorithm(rand, data, algorithm)
+}
+
+func (s *multiAlgorithmSigner) PrivateKey() crypto.Signer {
+	return s.privateKey
 }
 
 type rsaPublicKey rsa.PublicKey
@@ -1095,11 +1100,19 @@ func NewSignerFromSigner(signer crypto.Signer) (Signer, error) {
 	return &wrappedSigner{signer, pubKey}, nil
 }
 
+func (s *wrappedSigner) PrivateKey() crypto.Signer {
+	return s.signer
+}
+
 func (s *wrappedSigner) PublicKey() PublicKey {
 	return s.pubKey
 }
 
 func (s *wrappedSigner) Sign(rand io.Reader, data []byte) (*Signature, error) {
+	return s.SignWithAlgorithm(rand, data, s.pubKey.Type())
+}
+
+func (s *wrappedSigner) SignMessage(rand io.Reader, data []byte) (*Signature, error) {
 	return s.SignWithAlgorithm(rand, data, s.pubKey.Type())
 }
 
@@ -1402,7 +1415,7 @@ func unencryptedOpenSSHMarshaler(privKeyBlock []byte) ([]byte, string, string, s
 	return key, "none", "none", "", nil
 }
 
-func passphraseProtectedOpenSSHMarshaler(passphrase []byte) openSSHEncryptFunc {
+func passphraseProtectedOpenSSHMarshaler(passphrase []byte, rounds uint32) openSSHEncryptFunc {
 	return func(privKeyBlock []byte) ([]byte, string, string, string, error) {
 		salt := make([]byte, 16)
 		if _, err := rand.Read(salt); err != nil {
@@ -1412,7 +1425,7 @@ func passphraseProtectedOpenSSHMarshaler(passphrase []byte) openSSHEncryptFunc {
 		opts := struct {
 			Salt   []byte
 			Rounds uint32
-		}{salt, 16}
+		}{salt, rounds}
 
 		// Derive key to encrypt the private key block.
 		k, err := bcrypt_pbkdf.Key(passphrase, salt, int(opts.Rounds), 32+aes.BlockSize)
