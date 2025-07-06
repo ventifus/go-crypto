@@ -268,7 +268,7 @@ func NewServerConn(c net.Conn, config *ServerConfig) (*ServerConn, <-chan NewCha
 // and serializes the result in SSH wire format. algo is the negotiate
 // algorithm and may be a certificate type.
 func signAndMarshal(k AlgorithmSigner, rand io.Reader, data []byte, algo string) ([]byte, error) {
-	sig, err := k.SignWithAlgorithm(rand, data, underlyingAlgo(algo))
+	sig, err := signWithSigner(k, rand, data, underlyingAlgo(algo))
 	if err != nil {
 		return nil, err
 	}

@@ -353,7 +353,7 @@ func (cb publicKeyCallback) auth(session []byte, user string, c packetConn, rand
 			Service: serviceSSH,
 			Method:  cb.method(),
 		}, algo, pubKey)
-		sign, err := as.SignWithAlgorithm(rand, data, underlyingAlgo(algo))
+		sign, err := signWithSigner(as, rand, data, underlyingAlgo(algo))
 		if err != nil {
 			return authFailure, nil, err
 		}

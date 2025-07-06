@@ -468,7 +468,7 @@ func (c *Certificate) SignCert(rand io.Reader, authority Signer) error {
 			return errors.New("the provided authority has no signature algorithm")
 		}
 		// Use the first algorithm in the list.
-		sig, err := v.SignWithAlgorithm(rand, c.bytesForSigning(), v.Algorithms()[0])
+		sig, err := signWithSigner(v, rand, c.bytesForSigning(), v.Algorithms()[0])
 		if err != nil {
 			return err
 		}
@@ -477,7 +477,7 @@ func (c *Certificate) SignCert(rand io.Reader, authority Signer) error {
 	} else if v, ok := authority.(AlgorithmSigner); ok && v.PublicKey().Type() == KeyAlgoRSA {
 		// Default to KeyAlgoRSASHA512 for ssh-rsa signers.
 		// TODO: consider using KeyAlgoRSASHA256 as default.
-		sig, err := v.SignWithAlgorithm(rand, c.bytesForSigning(), KeyAlgoRSASHA512)
+		sig, err := signWithSigner(v, rand, c.bytesForSigning(), KeyAlgoRSASHA512)
 		if err != nil {
 			return err
 		}
