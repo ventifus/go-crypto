@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0270982_3b3933f3",
+        "filename": "go.mod",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6005
+      },
+      "writtenOn": "2025-07-09T22:11:51Z",
+      "side": 1,
+      "message": "@roland@golang.org FYI, the tagging workflow is now capable of doing best-effort updates for these (i.e., using whatever is the latest released version available at the start of the workflow, not the upcoming x/net v0.42.0 version that\u0027ll be tagged soon. This was #73264. So it should be easier to rely on x/crypto having a modern x/net without needing to manually maintain it.\n\nLeaving this as unresolved so you can see this before it\u0027s auto-submitted.",
+      "range": {
+        "startLine": 6,
+        "startChar": 21,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "c8d29186ba817b664ca9914aed3ceb2238e4149d",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
