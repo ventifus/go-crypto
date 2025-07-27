@@ -206,6 +206,7 @@ var (
 		KeyAlgoED25519,
 		KeyAlgoSKED25519,
 		KeyAlgoSKECDSA256,
+		KeyAlgoWebAuthnSKECDSA256,
 		KeyAlgoECDSA256,
 		KeyAlgoECDSA384,
 		KeyAlgoECDSA521,
@@ -220,6 +221,7 @@ var (
 		KeyAlgoED25519,
 		KeyAlgoSKED25519,
 		KeyAlgoSKECDSA256,
+		KeyAlgoWebAuthnSKECDSA256,
 		KeyAlgoECDSA256,
 		KeyAlgoECDSA384,
 		KeyAlgoECDSA521,
@@ -292,8 +294,9 @@ var hashFuncs = map[string]crypto.Hash{
 	KeyAlgoECDSA384:    crypto.SHA384,
 	KeyAlgoECDSA521:    crypto.SHA512,
 	// KeyAlgoED25519 doesn't pre-hash.
-	KeyAlgoSKECDSA256: crypto.SHA256,
-	KeyAlgoSKED25519:  crypto.SHA256,
+	KeyAlgoSKECDSA256:         crypto.SHA256,
+	KeyAlgoWebAuthnSKECDSA256: crypto.SHA256,
+	KeyAlgoSKED25519:          crypto.SHA256,
 }
 
 // algorithmsForKeyFormat returns the supported signature algorithms for a given
@@ -305,6 +308,8 @@ func algorithmsForKeyFormat(keyFormat string) []string {
 		return []string{KeyAlgoRSASHA256, KeyAlgoRSASHA512, KeyAlgoRSA}
 	case CertAlgoRSAv01:
 		return []string{CertAlgoRSASHA256v01, CertAlgoRSASHA512v01, CertAlgoRSAv01}
+	case KeyAlgoSKECDSA256:
+		return []string{KeyAlgoSKECDSA256, KeyAlgoWebAuthnSKECDSA256}
 	default:
 		return []string{keyFormat}
 	}
