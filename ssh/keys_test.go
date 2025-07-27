@@ -794,7 +794,7 @@ func TestCryptoPublicKey(t *testing.T) {
 		switch pub := k1.CryptoPublicKey().(type) {
 		case *ecdsa.PublicKey:
 			p2 = &skECDSAPublicKey{
-				application: "ssh:",
+				application: d.Application,
 				PublicKey:   *pub,
 			}
 		case ed25519.PublicKey:
