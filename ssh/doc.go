@@ -15,8 +15,10 @@ References:
 
 	[PROTOCOL]: https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=HEAD
 	[PROTOCOL.certkeys]: http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL.certkeys?rev=HEAD
+	[PROTOCOL.u2f]:		 https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL.u2f?rev=HEAD
 	[SSH-PARAMETERS]:    http://www.iana.org/assignments/ssh-parameters/ssh-parameters.xml#ssh-parameters-1
 	[SSH-CERTS]:	https://datatracker.ietf.org/doc/html/draft-miller-ssh-cert-01
+	[WebAuthn]:		https://www.w3.org/TR/webauthn-2/
 
 This package does not fall under the stability promise of the Go language itself,
 so its API may be changed when pressing needs arise.

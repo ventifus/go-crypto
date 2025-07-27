@@ -22,6 +22,7 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	"encoding/hex"
+	"encoding/json"
 	"encoding/pem"
 	"errors"
 	"fmt"
@@ -55,6 +56,9 @@ const (
 	// corresponding PublicKey.Type is KeyAlgoRSA. See RFC 8332, Section 2.
 	KeyAlgoRSASHA256 = "rsa-sha2-256"
 	KeyAlgoRSASHA512 = "rsa-sha2-512"
+	// KeyAlgoWebAuthnSKECDSA256 is a public key algorithm, not public key format.
+	// [PROTOCOL.u2f], Section "webauthn signatures".
+	KeyAlgoWebAuthnSKECDSA256 = "webauthn-sk-ecdsa-sha2-nistp256@openssh.com"
 )
 
 const (
@@ -830,7 +834,7 @@ func (k *ecdsaPublicKey) CryptoPublicKey() crypto.PublicKey {
 }
 
 // skFields holds the additional fields present in U2F/FIDO2 signatures.
-// See openssh/PROTOCOL.u2f 'SSH U2F Signatures' for details.
+// [PROTOCOL.u2f], Section "SSH U2F signatures".
 type skFields struct {
 	// Flags contains U2F/FIDO2 flags such as 'user present'
 	Flags byte
@@ -838,6 +842,38 @@ type skFields struct {
 	// used to detect concurrent use of a private key, should
 	// it be extracted from hardware.
 	Counter uint32
+}
+
+// skFieldsWebAuthn holds fields present in WebAuthn signatures.
+// [PROTOCOL.u2f], Section "webauthn signatures".
+type skFieldsWebAuthn struct {
+	// Flags contains U2F/FIDO2 flags:
+	// - Bit 0: User Present result.
+	// - Bit 6: Attested credential data included (AD).
+	// - Bit 7: Extension data included (ED).
+	// [WebAuthn], Section 6.1.
+	Flags byte
+	// Counter is a monotonic signature counter which can be
+	// used to detect concurrent use of a private key, should
+	// it be extracted from hardware.
+	Counter uint32
+	// Origin is the HTTP origin making the signature.
+	Origin string
+	// ClientData is the JSON-like structure signed by the browser.
+	// [WebAuthn], Section 6.1.
+	ClientData string
+	// Extensions represent any extensions used in making the signature.
+	// [WebAuthn], Section 9.
+	Extensions string
+}
+
+// webAuthnClientData defines the structure for WebAuthn client data.
+// [WebAuthn], Section 5.8.1.
+type webAuthnClientData struct {
+	Type        string `json:"type"`
+	Challenge   string `json:"challenge"`
+	Origin      string `json:"origin"`
+	CrossOrigin bool   `json:"cross_origin"`
 }
 
 type skECDSAPublicKey struct {
@@ -902,8 +938,60 @@ func (k *skECDSAPublicKey) Marshal() []byte {
 }
 
 func (k *skECDSAPublicKey) Verify(data []byte, sig *Signature) error {
-	if sig.Format != k.Type() {
+	supportedAlgos := algorithmsForKeyFormat(k.Type())
+	if !contains(supportedAlgos, sig.Format) {
 		return fmt.Errorf("ssh: signature type %s for key type %s", sig.Format, k.Type())
+	}
+
+	var ecSig struct {
+		R *big.Int
+		S *big.Int
+	}
+	if err := Unmarshal(sig.Blob, &ecSig); err != nil {
+		return err
+	}
+
+	var flags byte
+	var counter uint32
+
+	if sig.Format == KeyAlgoWebAuthnSKECDSA256 {
+		var skf skFieldsWebAuthn
+		if err := Unmarshal(sig.Rest, &skf); err != nil {
+			return err
+		}
+		// Validate the flags: the Attestation Data (AD) flag should not be set.
+		// If the Extension Data (ED) flag is set, extension data must be
+		// included.
+		const flagAD = 1 << 6
+		const flagExt = 1 << 7
+		if skf.Flags&flagAD != 0 {
+			return errors.New("ssh: unexpected WebAuthn Attestation Data (AD) flag set")
+		}
+		if skf.Flags&flagExt == 0 && skf.Extensions != "" {
+			return errors.New("ssh: WebAuthn extension data included, but the ED flag is not set")
+		}
+		var clientData webAuthnClientData
+		if err := json.Unmarshal([]byte(skf.ClientData), &clientData); err != nil {
+			return fmt.Errorf("ssh: WebAuthn client data is not a valid JSON: %w", err)
+		}
+		// Validate ClientData. [WebAuthn], Section 5.8.1.
+		if clientData.Origin != skf.Origin || clientData.Type != "webauthn.get" {
+			return errors.New("ssh: WebAuthn client data is not valid")
+		}
+		expectedChallenge := base64.RawURLEncoding.EncodeToString(data)
+		if clientData.Challenge != expectedChallenge {
+			return errors.New("ssh: WebAuthn client data challenge mismatch")
+		}
+		flags = skf.Flags
+		counter = skf.Counter
+		data = []byte(skf.ClientData)
+	} else {
+		var skf skFields
+		if err := Unmarshal(sig.Rest, &skf); err != nil {
+			return err
+		}
+		flags = skf.Flags
+		counter = skf.Counter
 	}
 
 	h := hashFuncs[sig.Format].New()
@@ -914,19 +1002,6 @@ func (k *skECDSAPublicKey) Verify(data []byte, sig *Signature) error {
 	h.Write(data)
 	dataDigest := h.Sum(nil)
 
-	var ecSig struct {
-		R *big.Int
-		S *big.Int
-	}
-	if err := Unmarshal(sig.Blob, &ecSig); err != nil {
-		return err
-	}
-
-	var skf skFields
-	if err := Unmarshal(sig.Rest, &skf); err != nil {
-		return err
-	}
-
 	blob := struct {
 		ApplicationDigest []byte `ssh:"rest"`
 		Flags             byte
@@ -934,8 +1009,8 @@ func (k *skECDSAPublicKey) Verify(data []byte, sig *Signature) error {
 		MessageDigest     []byte `ssh:"rest"`
 	}{
 		appDigest,
-		skf.Flags,
-		skf.Counter,
+		flags,
+		counter,
 		dataDigest,
 	}
 
