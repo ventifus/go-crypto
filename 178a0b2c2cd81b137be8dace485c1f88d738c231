@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6132338_38aa2ef1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 55874
+      },
+      "writtenOn": "2025-07-30T15:50:54Z",
+      "side": 1,
+      "message": "Hi,\n\nFriendly ping for a review of this CL 😊.",
+      "revId": "178a0b2c2cd81b137be8dace485c1f88d738c231",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
