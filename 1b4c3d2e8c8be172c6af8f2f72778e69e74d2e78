@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "557bb5e6_65426ede",
+        "filename": "acme/pebble_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-07-31T18:02:03Z",
+      "side": 0,
+      "message": "Both of the [recently reported flakes](https://github.com/golang/go/issues/74437#issuecomment-3138230878) were failing here after 10 attempts.",
+      "revId": "1b4c3d2e8c8be172c6af8f2f72778e69e74d2e78",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
