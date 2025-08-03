@@ -34,6 +34,24 @@
       "parentUuid": "a38a95f7_eea9fa52",
       "revId": "9340f9e2a4014c38e030ced68573644036daeaba",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3fe8b01_109b88b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4271327
+      },
+      "writtenOn": "2025-08-03T19:21:43Z",
+      "side": 1,
+      "message": "Yes we have checked. It works nicely for our use case where remote forwarded domain should not be resolved locally.",
+      "parentUuid": "be98bef5_c83de8cb",
+      "revId": "9340f9e2a4014c38e030ced68573644036daeaba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
