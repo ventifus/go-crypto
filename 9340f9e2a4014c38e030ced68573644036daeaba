@@ -16,6 +16,24 @@
       "message": "I am eagerly waiting for this to be merged. Any timeline about whe we can expect this fix?",
       "revId": "9340f9e2a4014c38e030ced68573644036daeaba",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be98bef5_c83de8cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35201
+      },
+      "writtenOn": "2025-08-03T13:22:49Z",
+      "side": 1,
+      "message": "Have you had a chance to test the CL? Can you confirm that it works well for your use case? Thank you",
+      "parentUuid": "a38a95f7_eea9fa52",
+      "revId": "9340f9e2a4014c38e030ced68573644036daeaba",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
