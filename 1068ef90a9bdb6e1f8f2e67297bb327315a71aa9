@@ -33,6 +33,24 @@
       "message": "Whoopsie, the LUCI builders are broken because of infra issues.",
       "revId": "1068ef90a9bdb6e1f8f2e67297bb327315a71aa9",
       "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "851cfa80_f4d82ce7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26879
+      },
+      "writtenOn": "2025-08-06T17:33:01Z",
+      "side": 1,
+      "message": "Yeahhhhh they seem pretty messed up right now. \n\nI don\u0027t think I can vote Trybot bypass on this repo :-/",
+      "parentUuid": "97ff471f_1169b8ea",
+      "revId": "1068ef90a9bdb6e1f8f2e67297bb327315a71aa9",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
     }
   ]
 }
