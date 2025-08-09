@@ -18,7 +18,9 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"net/netip"
 	"os"
+	"strconv"
 	"strings"
 
 	"golang.org/x/crypto/ssh"
@@ -421,20 +423,41 @@ func New(files ...string) (ssh.HostKeyCallback, error) {
 	return certChecker.CheckHostKey, nil
 }
 
-// Normalize normalizes an address into the form used in known_hosts
+// Normalize normalizes an address into the form used in known_hosts. Supports
+// IPv4, hostnames, bracketed IPv6, and IPv6 without brackets but with a port.
+// Any other non-standard formats are returned with minimal transformation.
 func Normalize(address string) string {
-	host, port, err := net.SplitHostPort(address)
-	if err != nil {
-		host = address
-		port = "22"
+	const defaultSSHPort = "22"
+
+	host := address
+	port := defaultSSHPort
+
+	h, p, err := net.SplitHostPort(address)
+	if err == nil {
+		host = h
+		port = p
+	} else {
+		lastColon := strings.LastIndex(address, ":")
+		if lastColon != -1 {
+			candidateHost := address[:lastColon]
+			candidatePort := address[lastColon+1:]
+			if _, err := strconv.Atoi(candidatePort); err == nil {
+				if addr, err := netip.ParseAddr(candidateHost); err == nil && addr.IsValid() {
+					host = candidateHost
+					port = candidatePort
+				}
+			}
+		}
 	}
-	entry := host
-	if port != "22" {
-		entry = "[" + entry + "]:" + port
-	} else if strings.Contains(host, ":") && !strings.HasPrefix(host, "[") {
-		entry = "[" + entry + "]"
+
+	if strings.HasPrefix(host, "[") && strings.HasSuffix(host, "]") {
+		host = host[1 : len(host)-1]
 	}
-	return entry
+
+	if port == defaultSSHPort {
+		return host
+	}
+	return "[" + host + "]:" + port
 }
 
 // Line returns a line to add append to the known_hosts files.
