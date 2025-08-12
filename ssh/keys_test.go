@@ -59,6 +59,23 @@ func TestKeyMarshalParse(t *testing.T) {
 	}
 }
 
+func TestParsePublicKeyWithSigningAlgoAsKeyFormat(t *testing.T) {
+	base64Key := []byte(`AAAADHJzYS1zaGEyLTI1NgAAAAMBAAEAAAEBAJ7qMyjLXEJCCJmRknuCLo0uPi5GrPY5pQYr84lhlN8Gor5KVL2LKYCW4e70r5xzj7SrHHSCft1FMlYg1KDO9xrprJh733kQqAPWETmSuH0EfRtGtcH6EarKyVxk6As076/yNiiMKVBtG0RPa1L7FviTfcYK4vnCCVrbv3RmA5CCzuG5BSMbRLxzVb4Ri3p8jhxYT8N4QGe/2yqvJLys5vQ9szpZR3tcFp3DJIVZhBRfR6LnoY23XZniAAMQaUVBX86dXQ++dNwAwZSXSt9Og+AniOCiBYqhNVa5n3DID/H7YtEtG+CbZr3r2KD3fv8AfSLRar4XOp8rsRdD31h/kr8=`)
+	key := make([]byte, base64.StdEncoding.DecodedLen(len(base64Key)))
+	n, err := base64.StdEncoding.Decode(key, base64Key)
+	if err != nil {
+		t.Fatal(err)
+	}
+	key = key[:n]
+	_, err = ParsePublicKey(key)
+	if err == nil {
+		t.Fatal("parsing a public key using a signature algorithm as the key format succeeded unexpectedly")
+	}
+	if !strings.Contains(err.Error(), `signature algorithm "rsa-sha2-256" isn't a key format`) {
+		t.Errorf(`got %v, expected 'signature algorithm "rsa-sha2-256" isn't a key format'`, err)
+	}
+}
+
 func TestUnsupportedCurves(t *testing.T) {
 	raw, err := ecdsa.GenerateKey(elliptic.P224(), rand.Reader)
 	if err != nil {

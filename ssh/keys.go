@@ -66,6 +66,15 @@ const (
 	SigAlgoRSASHA2512 = KeyAlgoRSASHA512
 )
 
+// signAlgoMapping maps signature algorithm identifiers to their corresponding
+// public key formats.
+var signAlgoMapping = map[string]string{
+	KeyAlgoRSASHA256:     KeyAlgoRSA,
+	KeyAlgoRSASHA512:     KeyAlgoRSA,
+	CertAlgoRSASHA256v01: CertAlgoRSAv01,
+	CertAlgoRSASHA512v01: CertAlgoRSAv01,
+}
+
 // parsePubKey parses a public key of the given algorithm.
 // Use ParsePublicKey for keys with prepended algorithm.
 func parsePubKey(in []byte, algo string) (pubKey PublicKey, rest []byte, err error) {
@@ -89,6 +98,10 @@ func parsePubKey(in []byte, algo string) (pubKey PublicKey, rest []byte, err err
 		}
 		return cert, nil, nil
 	}
+	if keyAlgo, ok := signAlgoMapping[algo]; ok {
+		return nil, nil, fmt.Errorf("ssh: signature algorithm %q isn't a key format. Please use %q as the key format", algo, keyAlgo)
+	}
+
 	return nil, nil, fmt.Errorf("ssh: unknown key algorithm: %v", algo)
 }
 
