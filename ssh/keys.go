@@ -66,6 +66,15 @@ const (
 	SigAlgoRSASHA2512 = KeyAlgoRSASHA512
 )
 
+// signAlgoMapping maps signature algorithm identifiers to their corresponding
+// public key formats.
+var signAlgoMapping = map[string]string{
+	KeyAlgoRSASHA256:     KeyAlgoRSA,
+	KeyAlgoRSASHA512:     KeyAlgoRSA,
+	CertAlgoRSASHA256v01: CertAlgoRSAv01,
+	CertAlgoRSASHA512v01: CertAlgoRSAv01,
+}
+
 // parsePubKey parses a public key of the given algorithm.
 // Use ParsePublicKey for keys with prepended algorithm.
 func parsePubKey(in []byte, algo string) (pubKey PublicKey, rest []byte, err error) {
@@ -89,6 +98,10 @@ func parsePubKey(in []byte, algo string) (pubKey PublicKey, rest []byte, err err
 		}
 		return cert, nil, nil
 	}
+	if keyAlgo, ok := signAlgoMapping[algo]; ok {
+		return nil, nil, fmt.Errorf("ssh: signature algorithm %q isn't a key format. Please use %q as the key format", algo, keyAlgo)
+	}
+
 	return nil, nil, fmt.Errorf("ssh: unknown key algorithm: %v", algo)
 }
 
@@ -194,6 +207,7 @@ func ParseKnownHosts(in []byte) (marker string, hosts []string, pubKey PublicKey
 // ParseAuthorizedKey parses a public key from an authorized_keys
 // file used in OpenSSH according to the sshd(8) manual page.
 func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []string, rest []byte, err error) {
+	var lastErr error
 	for len(in) > 0 {
 		end := bytes.IndexByte(in, '\n')
 		if end != -1 {
@@ -222,6 +236,8 @@ func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []str
 
 		if out, comment, err = parseAuthorizedKey(in[i:]); err == nil {
 			return out, comment, options, rest, nil
+		} else {
+			lastErr = err
 		}
 
 		// No key type recognised. Maybe there's an options field at
@@ -264,10 +280,16 @@ func ParseAuthorizedKey(in []byte) (out PublicKey, comment string, options []str
 		if out, comment, err = parseAuthorizedKey(in[i:]); err == nil {
 			options = candidateOptions
 			return out, comment, options, rest, nil
+		} else {
+			lastErr = err
 		}
 
 		in = rest
 		continue
+	}
+
+	if lastErr != nil {
+		return nil, "", nil, nil, lastErr
 	}
 
 	return nil, "", nil, nil, errors.New("ssh: no key found")
