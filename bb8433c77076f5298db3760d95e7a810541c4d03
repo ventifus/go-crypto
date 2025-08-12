@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599b4501_502a9b16",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-08-12T10:46:05Z",
+      "side": 1,
+      "message": "Make a keyFormatForAlgorithm function instead.",
+      "revId": "bb8433c77076f5298db3760d95e7a810541c4d03",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5f8ba0_1ce377a4",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-08-12T10:46:05Z",
+      "side": 1,
+      "message": "```suggestion\n\t\treturn nil, nil, fmt.Errorf(\"ssh: signature algorithm %q isn\u0027t a key format; key is malformed and should be re-encoded with type %q\", algo, keyAlgo)\n```",
+      "revId": "bb8433c77076f5298db3760d95e7a810541c4d03",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5c881e_cc1f441f",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-08-12T10:46:05Z",
+      "side": 1,
+      "message": "Add a comment that invalid lines are ignored.",
+      "revId": "bb8433c77076f5298db3760d95e7a810541c4d03",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db4ecde_ec68c22e",
+        "filename": "ssh/keys.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 11715
+      },
+      "writtenOn": "2025-08-12T10:46:05Z",
+      "side": 1,
+      "message": "```suggestion\n\t\treturn nil, \"\", nil, nil, fmt.Errorf(\"ssh: no key found; last parsing error for ignored line: %w\", lastErr)\n```",
+      "revId": "bb8433c77076f5298db3760d95e7a810541c4d03",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
