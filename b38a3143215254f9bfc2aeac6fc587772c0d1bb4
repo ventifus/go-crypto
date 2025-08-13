@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad1a56f_e55fc1f1",
+        "filename": "go.mod",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 35155
+      },
+      "writtenOn": "2025-08-13T14:48:55Z",
+      "side": 1,
+      "message": "Many of the changes at https://go.dev/doc/godebug#go-124 involve things potentially more related in the context of x/crypto. Given trybots are passing it seems like nothing breaks, but there may be followup opportunities. @roland@golang.org FYI.",
+      "revId": "b38a3143215254f9bfc2aeac6fc587772c0d1bb4",
+      "serverId": "62eb7196-b449-3ce5-99f1-c037f21e1705"
+    }
+  ]
+}
