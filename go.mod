@@ -1,4 +1,4 @@
-module golang.org/x/crypto
+module github.com/ventifus/go-crypto
 
 go 1.23.0
 
