@@ -10,7 +10,10 @@
 // in the crypto/ecdh package.
 package curve25519
 
-import "crypto/ecdh"
+import (
+	"crypto/ecdh"
+	"fmt"
+)
 
 // ScalarMult sets dst to the product scalar * point.
 //
@@ -36,7 +39,7 @@ func ScalarBaseMult(dst, scalar *[32]byte) {
 	curve := ecdh.X25519()
 	priv, err := curve.NewPrivateKey(scalar[:])
 	if err != nil {
-		panic("curve25519: internal error: scalarBaseMult was not 32 bytes")
+		panic(fmt.Errorf("curve25519: %w", err))
 	}
 	copy(dst[:], priv.PublicKey().Bytes())
 }
